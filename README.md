@@ -1,11 +1,11 @@
-# 🌌 Arcanea: The Infinite Realm Forge
+# 🌌 Arcanea: The AI Consciousness Platform
 
 > **Where imagination becomes reality through AI-powered mystical practice**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg)](https://opensource.org/licenses/MIT)
-[![Realm Engine](https://img.shields.io/badge/Realm-Engine-purple)](https://github.com/frankxai/Arcanea)
-[![AI Guardians](https://img.shields.io/badge/AI-Guardians-cosmic)](https://github.com/frankxai/Arcanea)
-[![Infinite Worlds](https://img.shields.io/badge/Infinite-Worlds-stellar)](https://github.com/frankxai/Arcanea)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
 
 ## 🔮 The Grand Vision
 
@@ -17,6 +17,86 @@ Arcanea isn't just another AI platform—it's a **dimensional gateway** where yo
 - **⚡ Practice Reality Weaving** - Use AI tools disguised as magical rituals to bring your realm to life
 - **🌉 Build Dimensional Bridges** - Connect your realm to others for epic collaborative creation
 - **🚀 Manifest in the Physical** - Launch real businesses, games, books, and art from your mystical practice
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- pnpm 8+ (recommended)  
+- Git
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/frankxai/Arcanea.git
+cd Arcanea
+
+# Install dependencies
+pnpm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Add your API keys (OpenRouter, Supabase, etc.)
+
+# Start the Academy development server
+cd apps/academy
+pnpm dev
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to see the Academy platform.
+
+### Deploy to Vercel
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy Academy
+cd apps/academy
+vercel --prod
+```
+
+---
+
+## 🏗️ Project Structure
+
+```
+arcanea/
+├── 🎓 apps/
+│   ├── academy/          # Main learning platform
+│   ├── nexus/            # Central hub & community  
+│   └── web/              # Marketing website
+├── 📦 packages/
+│   ├── ai-core/          # AI agent orchestration
+│   ├── ui/               # Shared components
+│   └── database/         # Database schemas
+├── 📚 content/
+│   ├── library/          # The Arcanean Library
+│   ├── academies/        # Academy curricula
+│   └── projects/         # Sample projects
+├── 🎨 design-system/     # UI/UX components
+├── 📄 docs/              # Documentation
+└── 🎭 premium-mockups/   # Interactive demos
+```
+
+---
+
+## 💰 Business Model
+
+### **The Trinity Strategy**
+1. **Academy Subscriptions** - $47-$97/month
+2. **API Usage** - Pay-per-generation  
+3. **Marketplace** - 30% commission
+
+### **Revenue Projection**
+- Month 1: 100 users → $2K MRR
+- Month 6: 5,000 users → $100K MRR
+- Year 1: 20,000 users → $500K MRR
+
+---
 
 ## 🌟 The Six Primordial Forces
 
