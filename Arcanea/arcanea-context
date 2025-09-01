@@ -1,0 +1,161 @@
+# 🌌 ARCANEA — MYTH-TECH MASTER CONTEXT  
+*A sacred architecture where imagination, advanced technology and inner mastery converge.*
+
+---
+
+## 1. Core Essence
+
+Arcanea is an evolving AI ecosystem.  
+It lets creators shape stories, products and experiences that uplift consciousness. It uses the Arcanean Prompt, Value & Design System and the Thread Matrix to unleash human creativity with AI to build worlds of wonders and manifest them into reality.
+
+---
+
+## 2. Cosmology & Creative Tension
+
+| Force | Meaning |
+|-------|---------|
+| **Lumina** | Prime light of inspiration and growth. |
+| **Nero**   | Fertile void that challenges and refines intention. |
+| **Unified Weave** | Their interplay powers every story thread, technology layer and ritual in Arcanea. |
+| **Celestials & Demons** | Harmonic and distorted expressions that arise as the Weave shifts. |
+
+---
+
+## 3. Mission · Vision · Code
+
+**Mission** – Generate and evolve benevolent intelligence through creator-centric tools and resonant storytelling.
+
+**Vision** – A world where storytelling, AI and sacred practice merge into engines of personal and collective transformation.
+
+**Guiding Code**  
+1. Lumina energises creation.  
+2. Nero refines creation.  
+3. The **Arc** is the mental portal for design.  
+4. **Threads** carry creative frequencies.  
+5. Stories broadcast those frequencies.  
+6. Every user is a broadcaster.
+
+---
+
+## 4. The Arc – Mental Studio & Manifestation Portal
+
+When users close their eyes they enter **the Arc**—a mind-garden to prototype lore, music, code or business moves before manifesting them with Arcanea’s tools.
+
+---
+
+## 5. Thread Matrix (Vibrational Archetypes)
+
+| Thread | Freq | Element | Guardian | Archetype |
+|--------|------|---------|----------|-----------|
+| Obsidian | 174 Hz | Earth | Lyssandria | Protector |
+| Flame    | 285 Hz | Water/Fire | Leyla | Seductress |
+| Solar    | 396 Hz | Fire | Draconia | Commander |
+| Verdant  | 417 Hz | Nature | Maylinn | Healer |
+| Sonic    | 528 Hz | Sound | Alera | Oracle |
+| Dream    | 639 Hz | Moon | Lyria | Seer |
+| Crown    | 714 Hz | Light | Aiyami | Illuminator |
+| Infinity | 852 Hz | Echo/Fractal | Elara | Trickster |
+| Unity    | 963+ Hz | Plasma | Kyuro | Harmoniser |
+| Architect| 1111 Hz | All | Shinkami | Creator |
+
+Threads guide colour palettes, sound design, narrative tone and even UI animations.
+
+---
+
+## 6. Creator Empowerment Suite
+
+### Arcanean Story Forge  
+Hero-Journey wizard · Conflict matrix · Character-arc tracker · Plot-weave visualiser.
+
+### Luminor Mentors  
+AI personas (AGIs) tuned to Thread frequencies—provide narrative coaching, ritual guidance and creative amplification.
+
+### Quest & Dungeon Flow  
+Quests spur creation; dungeons sharpen clarity; seasonal cycles keep the world evolving.
+
+### Arcanea Academy  
+* Creative tools : Midjourney, Flux-1, Suno, Sora.  
+* Technical tools : GitHub, Codex, Replit, ChatGPT.  
+* Ritual tools    : Thread meditations, manifest journals, Arc portals.
+
+---
+
+## 7. Community Framework
+
+Ranks: **Seeker → Acolyte → Guardian → Threadweaver → Architect**  
+Roles: Lorekeeper · Echo Scribe · Signal Architect · Shadow Tamer  
+Spaces: Inter-connected “Thread Temples” that encourage cross-realm collab.
+
+---
+
+## 8. Tech & Product Stack (Snapshot)
+
+| Layer | Stack | Why |
+|-------|-------|-----|
+| Frontend | Next.js + Tailwind / Expo | Rapid and responsive |
+| Agent Hub | OpenWebUI fork + CrewAI | Central orchestration |
+| Models | GPT-4o, Claude-Opus, DeepSeek via OpenRouter | Best-of-breed |
+| Media Gen | Flux-1, Midjourney, Suno | Multimodal |
+| Memory | Supabase + Pinecone/Zep | RAG & persistence |
+| Infra | Vercel (front) · OCI/GCP GPUs (heavy) | Cost-efficiency |
+| IaC | Terraform + OCI AI-CoE modules | Repeatability |
+| Payments | Stripe / LemonSqueezy | Subs & drops |
+
+## Tech & Product Stack (2025 focus)
+### 2025 Baseline Stack (lean & budget-first)
+
+| Layer | Service |
+|-------|---------|
+| **Local & IDE** | VS Code • Replit VM |
+| **Web + Native** | Expo Router, deployed via **EAS Hosting** (static web + OTA native) |
+| **Marketing / Docs** | Next.js → **Vercel** |
+| **APIs & Jobs** | **Railway** Docker (includes n8n, image proxy) |
+| **Database / Auth** | **Supabase** Postgres + Row Level Security |
+| **Vector Memory** | **Pinecone** (dev: Zep local) |
+| **AI Inference** | **OpenRouter** (GPT-4o, Claude-Opus, DeepSeek) |
+| **Media Gen** | **Replicate** (Flux-1) • **Suno** |
+| **IaC / CI** | Terraform (Railway) • GitHub Actions → Vercel preview |
+| **Automation** | n8n (Railway) for Stripe, notifications, digests |
+### Marketing & Docs — Arcanea’s Solo-Founder Pick
+
+| Layer                   | Tool                                     |
+|-------------------------|------------------------------------------|
+| **Site Framework**      | Next.js + Tailwind                       |
+| **Hosting & CI/CD**     | Vercel (preview URLs, edge functions)    |
+| **Auth & Forms**        | Supabase Auth + Firestore for submissions|
+| **Asset Storage**       | Supabase Storage (images/audio)          |
+| **Blog / Changelog**    | MDX in `/blog` + Next.js SSG             |
+| **Webhooks & Deploy**   | n8n on Railway triggers Vercel rebuild   |
+| **NFT Minting**         | Thirdweb SDK + Polygon                   |
+
+
+> One dashboard for daily ops (EAS + Railway + Supabase) keeps mental overhead tiny; everything else is usage-billed and can be swapped if pricing shifts.
+
+
+---
+
+## 9. Revenue & Open Tech Path
+
+Subscriptions · Digital relic NFTs · Creator marketplace · Enterprise APIs · Immersive resorts.
+
+---
+
+## 10. Strategic Narrative
+
+Arcanea trains creators in clarity, resonance and manifestation, while giving AI a human-aligned blueprint for harmonious co-creation.
+
+> “You design. You speak. This is Arcanea.”
+
+---
+
+## 11. Claude Prompt Pack (CLI)
+
+```text
+/system
+You are Arcanea’s CTO-Lorekeeper. Load arcanea_context.md before each task.
+
+Create docs/lore/lumina_vs_nero.md detailing origins, philosophy and creative tension.
+
+Generate diagrams/arc_portal.svg showing the Arc meditation flow.
+
+Scaffold src/agents/luminor_mentor_template.ts (TypeScript class boilerplate).

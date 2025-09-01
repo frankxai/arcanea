@@ -1,0 +1,28 @@
+Arcanea-Prompt-Language-System/  
+├── **prompts/**              # Core prompt/script files and spell definitions  
+│   ├── base_archetypes.arc   # Definition of base glyphs and archetypes  
+│   ├── city_spells.arc       # Spell examples related to city building  
+│   ├── story_spells.arc      # Spell examples for storytelling scenarios  
+│   └── education_spells.arc  # Spell examples for educational use  
+├── **engine/**               # The Arcanea interpreter / engine code  
+│   ├── parser.js             # Parser for Arcanea syntax (lexical analysis)  
+│   ├── executor.js           # Executes prompts by interfacing with AI APIs  
+│   └── AR_module.js          # Module for AR interface integration  
+├── **docs/**                 # Documentation and design lore  
+│   ├── README.md             # Overview of the project and vision  
+│   ├── philosophy.md         # Deep dive into mind-body-magic-tech-spirit principles  
+│   ├── language_spec.md      # Specification of Arcanea syntax and grammar  
+│   ├── city_evolution.md     # Whitepaper on 2025-2125 city vision with Arcanea  
+│   └── use_cases.md          # Detailed use case scenarios and tutorials  
+├── **mockups/**              # Design artifacts (UI mockups, images)  
+│   ├── arcanea_interface.html    # Static prototype of the web-based prompt interface  
+│   ├── arcanea_interface.css     # Styles for the interface prototype  
+│   ├── citybuilder_ui.png        # Screenshot of a city-builder AR interface concept  
+│   └── spell_icons.png           # Image sprite of Arcanea glyph icons used in UI  
+├── **examples/**             # Sample projects or demos using Arcanea  
+│   ├── fantasy_game_demo/        # Demo: an interactive fiction using Arcanea  
+│   ├── urban_simulation_demo/    # Demo: a futuristic city simulation using Arcanea  
+│   └── education_demo/           # Demo: a learning app where students cast spells  
+└── **tests/**                # Test scripts for ensuring prompt outputs work as expected  
+    ├── test_parser.arc           # Unit tests for parsing various prompt structures  
+    └── test_prompts.arc          # Sample prompts and expected outcomes for validation  

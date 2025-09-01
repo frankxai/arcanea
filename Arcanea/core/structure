@@ -1,0 +1,13 @@
+/arcanea-core
+  /gateway          # FastAPI + LangServe router
+  /mpc/arc-chat     # vLLM docker, model weights
+  /mpc/arc-image    # ComfyUI workflow + wrapper
+  /mpc/arc-video    # SVD shim
+  /mpc/arc-music    # MusicGen shim
+  /mpc/arc-embed    # embeddings + Qdrant
+  /plugins          # manifests + OpenAPI specs
+  /infra
+     docker-compose.yaml
+     k8s/helm/
+  /ui
+     open-webui-fork/

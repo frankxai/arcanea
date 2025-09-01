@@ -1,0 +1,334 @@
+/* 🔒 Arcanea Component Locking System */
+/* Defines which components are LOCKED (perfected) vs FLEXIBLE (customizable) */
+
+/* 
+  COMPONENT STATES:
+  🔒 LOCKED - These are perfected and should not be changed
+  🔧 FLEXIBLE - These can be customized and modified
+  ⚠️  EXPERIMENTAL - Work in progress, may change
+*/
+
+/* === 🔒 LOCKED COMPONENTS (DO NOT MODIFY) === */
+
+/* Button hover effects - LOCKED ✅ */
+.btn-premium {
+  /* 🔒 LOCKED - Perfect button with grained gradient and light sweep */
+  position: relative;
+  background: var(--gradient-aurora-grained);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  font-weight: 600;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  
+  /* KEEP THE BELOVED ROUND CORNERS! */
+  border-radius: var(--radius-2xl);
+  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+}
+
+.btn-premium::before {
+  /* 🔒 LOCKED - Light sweep effect */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.btn-premium:hover {
+  /* 🔒 LOCKED - Perfect hover state */
+  transform: translateY(-3px);
+  box-shadow: 
+    0 15px 35px rgba(102, 126, 234, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-premium:hover::before {
+  /* 🔒 LOCKED - Light sweep animation */
+  transform: translateX(100%);
+}
+
+/* Glass Premium Button - LOCKED ✅ */
+.btn-glass-premium {
+  /* 🔒 LOCKED - Perfect glass button */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  
+  /* KEEP THE BELOVED ROUND CORNERS! */
+  border-radius: var(--radius-2xl);
+  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+}
+
+.btn-glass-premium::after {
+  /* 🔒 LOCKED - Shimmer effect */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s;
+}
+
+.btn-glass-premium:hover {
+  /* 🔒 LOCKED - Perfect glass hover */
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-glass-premium:hover::after {
+  /* 🔒 LOCKED - Shimmer animation */
+  left: 100%;
+}
+
+/* Premium Hover Effects - LOCKED ✅ */
+.hover-lift-premium {
+  /* 🔒 LOCKED - Perfect lift effect */
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+.hover-lift-premium::after {
+  /* 🔒 LOCKED - Highlight overlay */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.hover-lift-premium:hover {
+  /* 🔒 LOCKED - Perfect lift motion */
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.hover-lift-premium:hover::after {
+  /* 🔒 LOCKED - Highlight reveal */
+  opacity: 1;
+}
+
+/* Magnetic Hover - LOCKED ✅ */
+.hover-magnetic {
+  /* 🔒 LOCKED - Perfect magnetic attraction */
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+
+.hover-magnetic:hover {
+  /* 🔒 LOCKED - Magnetic lift */
+  transform: translateY(-4px);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Premium Gradients - LOCKED ✅ */
+.bg-grained-aurora { background: var(--gradient-aurora-grained); }
+.bg-grained-cosmic { background: var(--gradient-cosmic-grained); }
+.bg-grained-neural { background: var(--gradient-neural-grained); }
+.bg-grained-matrix { background: var(--gradient-matrix-grained); }
+.bg-grained-plasma { background: var(--gradient-plasma); }
+.bg-grained-sunset { background: var(--gradient-sunset-grained); }
+.bg-grained-ocean { background: var(--gradient-ocean-grained); }
+.bg-grained-forest { background: var(--gradient-forest-grained); }
+.bg-mesh-premium { background: var(--gradient-mesh-premium); }
+
+/* Character Gradients - LOCKED ✅ */
+.bg-lumina-grained { background: var(--gradient-lumina-grained); }
+.bg-harmonix-grained { background: var(--gradient-harmonix-grained); }
+.bg-scripta-grained { background: var(--gradient-scripta-grained); }
+
+/* === 🔧 FLEXIBLE COMPONENTS (CUSTOMIZABLE) === */
+
+/* Basic Cards - FLEXIBLE */
+.card-flexible {
+  /* 🔧 FLEXIBLE - Can be customized */
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card-flexible:hover {
+  /* 🔧 FLEXIBLE - Modify as needed */
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Basic Buttons - FLEXIBLE */
+.btn-flexible {
+  /* 🔧 FLEXIBLE - Can be styled differently */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-flexible-primary {
+  /* 🔧 FLEXIBLE - Primary variant */
+  background: var(--arcanea-primary);
+  color: white;
+}
+
+.btn-flexible-secondary {
+  /* 🔧 FLEXIBLE - Secondary variant */
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+}
+
+/* Typography - FLEXIBLE */
+.text-flexible {
+  /* 🔧 FLEXIBLE - Can adjust typography */
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* Layout Components - FLEXIBLE */
+.container-flexible {
+  /* 🔧 FLEXIBLE - Adjust container sizes */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.grid-flexible {
+  /* 🔧 FLEXIBLE - Modify grid as needed */
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* === ⚠️ EXPERIMENTAL COMPONENTS (WORK IN PROGRESS) === */
+
+/* Advanced Glass Effects - EXPERIMENTAL */
+.glass-experimental {
+  /* ⚠️ EXPERIMENTAL - May change */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px) saturate(200%) brightness(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%) brightness(120%);
+  border-radius: var(--radius-xl);
+}
+
+/* Advanced Animations - EXPERIMENTAL */
+.hover-experimental {
+  /* ⚠️ EXPERIMENTAL - Testing new effects */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-experimental:hover {
+  /* ⚠️ EXPERIMENTAL - May be refined */
+  transform: translateY(-6px) rotateX(10deg) rotateY(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* === COMPONENT USAGE GUIDELINES === */
+
+/*
+🔒 LOCKED COMPONENTS - Usage Rules:
+- DO NOT modify the CSS of these components
+- Use them as-is for consistent premium experience  
+- If you need variations, create new flexible components
+- These represent the perfected Arcanea aesthetic
+
+Examples of locked components:
+- .btn-premium (perfect button with light sweep)
+- .btn-glass-premium (perfect glass button)  
+- .hover-lift-premium (perfect lift animation)
+- .hover-magnetic (perfect magnetic effect)
+- All grained gradients (--gradient-*-grained)
+
+🔧 FLEXIBLE COMPONENTS - Usage Rules:
+- Feel free to modify and customize
+- Create variations and themes
+- Adjust sizing, colors, and spacing
+- Use as building blocks for new components
+
+Examples of flexible components:
+- .card-flexible (basic card structure)
+- .btn-flexible (basic button structure)
+- .text-flexible (typography base)
+- .grid-flexible (layout base)
+
+⚠️ EXPERIMENTAL COMPONENTS - Usage Rules:  
+- Use with caution in production
+- May change or be removed
+- Test thoroughly before implementing
+- Provide feedback for refinement
+
+Examples of experimental components:
+- .glass-experimental (advanced glass effects)
+- .hover-experimental (advanced hover effects)
+*/
+
+/* === COMPONENT STATE INDICATORS === */
+
+/* Visual indicators for component states (development only) */
+[data-debug="true"] .btn-premium::before,
+[data-debug="true"] .btn-glass-premium::before,
+[data-debug="true"] .hover-lift-premium::before {
+  /* Shows 🔒 for locked components in debug mode */
+  content: '🔒';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+  z-index: 1000;
+}
+
+[data-debug="true"] .card-flexible::before,
+[data-debug="true"] .btn-flexible::before {
+  /* Shows 🔧 for flexible components in debug mode */
+  content: '🔧';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+  z-index: 1000;
+}
+
+[data-debug="true"] .glass-experimental::before,
+[data-debug="true"] .hover-experimental::before {
+  /* Shows ⚠️ for experimental components in debug mode */
+  content: '⚠️';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+  z-index: 1000;
+}

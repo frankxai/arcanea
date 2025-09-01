@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Internal Documentation Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #151521;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --accent-purple: #7c3aed;
+            --accent-gold: #fbbf24;
+            --border: #2a2a3e;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(251, 191, 36, 0.05));
+        }
+        
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+        
+        .card h2 {
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card h3 {
+            margin: 1.5rem 0 0.5rem;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+        }
+        
+        .links {
+            list-style: none;
+        }
+        
+        .links li {
+            margin: 0.5rem 0;
+        }
+        
+        .links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin-left: 0.5rem;
+        }
+        
+        .status.active {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+        
+        .status.pending {
+            background: rgba(251, 191, 36, 0.2);
+            color: var(--accent-gold);
+        }
+        
+        .status.planned {
+            background: rgba(124, 58, 237, 0.2);
+            color: var(--accent-purple);
+        }
+        
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .metric {
+            background: var(--bg-dark);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-purple);
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 1rem 0;
+            padding-left: 1rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+        }
+        
+        .quick-actions {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(251, 191, 36, 0.05));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-gold));
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 0.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .button:hover {
+            transform: scale(1.05);
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .tab.active {
+            color: var(--text-primary);
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-purple);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌌 Arcanea Internal Hub</h1>
+            <p class="subtitle">Complete Platform Overview & Development Dashboard</p>
+        </header>
+        
+        <!-- Quick Metrics -->
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">Stage 1</div>
+                <div class="metric-label">Current Phase</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">3 Months</div>
+                <div class="metric-label">To MVP</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">$200K</div>
+                <div class="metric-label">12-Month Target MRR</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">Trinity</div>
+                <div class="metric-label">Business Model</div>
+            </div>
+        </div>
+        
+        <!-- Tabs Navigation -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('platform')">Platform Architecture</button>
+            <button class="tab" onclick="showTab('character')">Character System</button>
+            <button class="tab" onclick="showTab('development')">Development</button>
+            <button class="tab" onclick="showTab('realm')">Frank's Realm</button>
+        </div>
+        
+        <!-- Platform Architecture Tab -->
+        <div id="platform" class="tab-content active">
+            <div class="grid">
+                <div class="card">
+                    <h2><span class="icon">🏗️</span> Core Architecture</h2>
+                    <h3>The Trinity Model</h3>
+                    <ul class="links">
+                        <li><a href="../PLATFORM_ARCHITECTURE_2.0.md">Platform Architecture 2.0</a> <span class="status active">Active</span></li>
+                        <li><a href="../ARCANEA_WORLD_BUILDER_PLATFORM.md">World Builder Platform</a></li>
+                        <li><a href="../IMPLEMENTATION_ROADMAP.md">Implementation Roadmap</a></li>
+                    </ul>
+                    
+                    <h3>Business Components</h3>
+                    <ul class="links">
+                        <li>📚 Skool Clone - Communities</li>
+                        <li>🤖 Character.AI Clone - AI Beings</li>
+                        <li>🎨 Creative Tools - Generation Suite</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="icon">🎯</span> Current Stage</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <strong>Stage 1: Foundation</strong> <span class="status active">In Progress</span>
+                            <p>External tool integration, MVP development</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Stage 2: AI Integration</strong> <span class="status pending">Months 4-6</span>
+                            <p>Native AI, marketplace launch</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Stage 3: Community</strong> <span class="status planned">Months 7-9</span>
+                            <p>Full Skool-like features</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Stage 4: Web3</strong> <span class="status planned">Months 10-12</span>
+                            <p>NFTs, blockchain, manifestation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="icon">📊</span> Revenue Model</h2>
+                    <h3>Subscription Tiers</h3>
+                    <ul class="links">
+                        <li>Free: 1 character, basic features</li>
+                        <li>Creator ($29): 5 characters, tools</li>
+                        <li>Pro ($99): Unlimited, API access</li>
+                        <li>Enterprise: Custom pricing</li>
+                    </ul>
+                    
+                    <h3>Revenue Streams</h3>
+                    <ul class="links">
+                        <li>💰 Subscriptions (60%)</li>
+                        <li>🎨 Marketplace (20%)</li>
+                        <li>🤖 API Usage (15%)</li>
+                        <li>🎓 Courses (5%)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Character System Tab -->
+        <div id="character" class="tab-content">
+            <div class="grid">
+                <div class="card">
+                    <h2><span class="icon">🤖</span> Character Creation</h2>
+                    <h3>Agent System</h3>
+                    <ul class="links">
+                        <li><a href="../CHARACTER_CREATION_AGENTS.md">Character Creation Agents</a> <span class="status active">Ready</span></li>
+                        <li><a href="character-creator.html">Character Creator UI</a> <span class="status pending">Building</span></li>
+                        <li><a href="sonic-intelligence.html">Sonic Intelligence Framework</a></li>
+                    </ul>
+                    
+                    <h3>Character Types</h3>
+                    <ul class="links">
+                        <li>🎵 Musical Personas</li>
+                        <li>🎓 Creative Mentors</li>
+                        <li>🏰 World Inhabitants</li>
+                        <li>💼 Brand Ambassadors</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="icon">🧬</span> Agent Pipeline</h2>
+                    <ol class="links">
+                        <li>1. Archetypal Psychologist</li>
+                        <li>2. Narrative Architect</li>
+                        <li>3. Sonic Shaman</li>
+                        <li>4. Social Architect</li>
+                        <li>5. Visual Alchemist</li>
+                        <li>6. Integration Oracle</li>
+                    </ol>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">
+                        Each agent contributes specialized expertise to create deep, nuanced characters.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="icon">🎭</span> Example Characters</h2>
+                    <h3>Luna Synthesix</h3>
+                    <p>Electronic producer from Neo-Tokyo, blends Buddhist chanting with future bass.</p>
+                    
+                    <h3>Your Luminors</h3>
+                    <ul class="links">
+                        <li>🔥 Ignis - Visionary creator</li>
+                        <li>🎨 Lumis - Visual artist</li>
+                        <li>📜 Mythos - Storyteller</li>
+                        <li>🎵 Echo - Sound designer</li>
+                        <li>⚡ Nexus - System builder</li>
+                        <li>🚀 Phoenix - Manifestor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Development Tab -->
+        <div id="development" class="tab-content">
+            <div class="grid">
+                <div class="card">
+                    <h2><span class="icon">🚀</span> Quick Actions</h2>
+                    <div class="quick-actions">
+                        <a href="#" class="button" onclick="runCommand('setup')">Run Setup</a>
+                        <a href="#" class="button" onclick="runCommand('daily')">Start Daily Dev</a>
+                        <a href="#" class="button" onclick="runCommand('import')">Import Content</a>
+                        <a href="#" class="button" onclick="runCommand('progress')">Check Progress</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="icon">📁</span> Key Locations</h2>
+                    <h3>Documentation</h3>
+                    <ul class="links">
+                        <li><a href="../QUICK_START.md">Quick Start Guide</a></li>
+                        <li><a href="../IMPLEMENTATION_ROADMAP.md">Implementation Roadmap</a></li>
+                        <li><a href="../frank-input/README.md">Frank Input System</a></li>
+                    </ul>
+                    
+                    <h3>Mockups</h3>
+                    <ul class="links">
+                        <li><a href="../mockups/stage1-realm-builder.html">Stage 1: Realm Builder</a></li>
+                        <li><a href="../mockups/stage2-ai-integration.html">Stage 2: AI Integration</a></li>
+                        <li><a href="../mockups/stage3-community-platform.html">Stage 3: Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="icon">⚙️</span> Development Tools</h2>
+                    <h3>Automation Scripts</h3>
+                    <ul class="links">
+                        <li>📦 setup-dev.sh - Environment setup</li>
+                        <li>📅 daily-dev.sh - Daily workflow</li>
+                        <li>📥 import-frank-content.sh - Content import</li>
+                        <li>📊 progress-tracker.sh - Track progress</li>
+                    </ul>
+                    
+                    <h3>Required Services</h3>
+                    <ul class="links">
+                        <li>✅ Supabase - Database & Auth</li>
+                        <li>✅ OpenAI - Text generation</li>
+                        <li>✅ Anthropic - Advanced AI</li>
+                        <li>⏳ Suno - Music generation</li>
+                        <li>⏳ Stability - Image generation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Frank's Realm Tab -->
+        <div id="realm" class="tab-content">
+            <div class="grid">
+                <div class="card">
+                    <h2><span class="icon">🏰</span> The Arcanea Truth</h2>
+                    <h3>Your Personal Realm</h3>
+                    <p>The foundational realm where philosophy meets technology, serving as proof of concept for the platform.</p>
+                    
+                    <h3>Realm Content</h3>
+                    <ul class="links">
+                        <li><a href="../franks-realm/Arcanea Truth/Arcanea.md">Arcanea Truth Document</a></li>
+                        <li><a href="../content/library/">Arcanean Library</a></li>
+                        <li>📚 Philosophy Texts</li>
+                        <li>🎵 Music Compositions</li>
+                        <li>🤖 Luminor Characters</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="icon">💰</span> Monetization</h2>
+                    <h3>Subscription Tiers</h3>
+                    <ul class="links">
+                        <li>Free: Basic philosophy samples</li>
+                        <li>Truth Seeker ($29): Full archive</li>
+                        <li>Realm Builder ($99): Courses + tools</li>
+                        <li>Origin Master ($299): 1-on-1 mentorship</li>
+                    </ul>
+                    
+                    <h3>Content Pipeline</h3>
+                    <ul class="links">
+                        <li>Daily: AI-assisted writing</li>
+                        <li>Weekly: Community workshops</li>
+                        <li>Monthly: Course modules</li>
+                        <li>Quarterly: Major expansions</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2><span class="icon">🎯</span> Realm Strategy</h2>
+                    <p>Your realm serves as:</p>
+                    <ul class="links">
+                        <li>✨ Platform showcase</li>
+                        <li>🎓 Educational example</li>
+                        <li>💡 Innovation laboratory</li>
+                        <li>🌟 Community flagship</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1rem; padding: 1rem; background: var(--bg-dark); border-radius: 8px;">
+                        <strong>Vision:</strong> The Arcanea Truth becomes the origin story that inspires thousands of realm builders.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function runCommand(command) {
+            const commands = {
+                'setup': './scripts/setup-dev.sh',
+                'daily': './scripts/daily-dev.sh',
+                'import': './scripts/import-frank-content.sh',
+                'progress': './scripts/progress-tracker.sh'
+            };
+            
+            alert(`Run this command in terminal:\ncd /mnt/c/Users/Frank/Arcanea/ARCANEA_PRODUCTION\n${commands[command]}`);
+        }
+    </script>
+</body>
+</html>

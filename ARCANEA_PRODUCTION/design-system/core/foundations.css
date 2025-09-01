@@ -1,0 +1,443 @@
+/* 🏛️ Arcanea Design Foundations */
+/* Typography, Layout, and Core Elements */
+
+/* === FONT IMPORTS === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+/* === GLOBAL RESET === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  font-family: var(--font-cosmic);
+  font-weight: var(--font-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* === COSMIC TYPOGRAPHY SYSTEM === */
+
+/* Headings - Ethereal Font Family */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-ethereal);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+}
+
+.cosmic-title {
+  font-family: var(--font-ethereal);
+  background: var(--gradient-cosmic);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: var(--cosmic-text-glow);
+}
+
+/* Heading Scale */
+h1, .cosmic-h1 {
+  font-size: var(--text-5xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--font-extrabold);
+}
+
+h2, .cosmic-h2 {
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--font-bold);
+}
+
+h3, .cosmic-h3 {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-snug);
+  font-weight: var(--font-bold);
+}
+
+h4, .cosmic-h4 {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  font-weight: var(--font-semibold);
+}
+
+h5, .cosmic-h5 {
+  font-size: var(--text-xl);
+  line-height: var(--leading-normal);
+  font-weight: var(--font-semibold);
+}
+
+h6, .cosmic-h6 {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  font-weight: var(--font-medium);
+}
+
+/* Body Text */
+p, .cosmic-text {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.cosmic-lead {
+  font-size: var(--text-xl);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+  font-weight: var(--font-medium);
+}
+
+.cosmic-small {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-tertiary);
+}
+
+.cosmic-caption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-tight);
+  color: var(--text-tertiary);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Code & Technical Text */
+code, .cosmic-code {
+  font-family: var(--font-technical);
+  font-size: 0.875em;
+  background-color: var(--bg-tertiary);
+  padding: 0.125rem 0.25rem;
+  border-radius: var(--radius-sm);
+  color: var(--arcanea-primary);
+}
+
+pre {
+  font-family: var(--font-technical);
+  background-color: var(--bg-tertiary);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+}
+
+/* === COSMIC LAYOUT SYSTEM === */
+
+/* Container Sizes */
+.cosmic-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.cosmic-container-sm {
+  max-width: 640px;
+}
+
+.cosmic-container-md {
+  max-width: 768px;
+}
+
+.cosmic-container-lg {
+  max-width: 1024px;
+}
+
+.cosmic-container-xl {
+  max-width: 1280px;
+}
+
+.cosmic-container-2xl {
+  max-width: 1536px;
+}
+
+/* Grid Systems */
+.cosmic-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.cosmic-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cosmic-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cosmic-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cosmic-grid-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* Flexbox Utilities */
+.cosmic-flex {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.cosmic-flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.cosmic-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cosmic-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* === COSMIC ELEMENTS === */
+
+/* Links */
+a, .cosmic-link {
+  color: var(--arcanea-primary);
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-cosmic);
+  position: relative;
+}
+
+a:hover, .cosmic-link:hover {
+  color: var(--arcanea-secondary);
+  text-shadow: 0 0 10px currentColor;
+}
+
+.cosmic-link-underline {
+  position: relative;
+}
+
+.cosmic-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-cosmic);
+  transition: width var(--duration-normal) var(--ease-cosmic);
+}
+
+.cosmic-link-underline:hover::after {
+  width: 100%;
+}
+
+/* Lists */
+ul, ol {
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+li {
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.cosmic-list-none {
+  list-style: none;
+  padding-left: 0;
+}
+
+.cosmic-list-cosmic {
+  list-style: none;
+  padding-left: 0;
+}
+
+.cosmic-list-cosmic li {
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.cosmic-list-cosmic li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--arcanea-primary);
+  font-weight: var(--font-bold);
+}
+
+/* Dividers */
+hr, .cosmic-divider {
+  border: none;
+  height: 1px;
+  background: var(--gradient-cosmic);
+  margin: var(--space-8) 0;
+  opacity: 0.5;
+}
+
+.cosmic-divider-glow {
+  height: 2px;
+  background: var(--gradient-cosmic);
+  box-shadow: 0 0 10px var(--arcanea-primary);
+}
+
+/* === FORM ELEMENTS === */
+
+/* Input Fields */
+input, textarea, select {
+  font-family: var(--font-cosmic);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  transition: all var(--duration-normal) var(--ease-cosmic);
+  width: 100%;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--arcanea-primary);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  background-color: var(--bg-secondary);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Labels */
+label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+/* === COSMIC BACKGROUNDS === */
+
+.cosmic-bg-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(243, 156, 18, 0.05) 0%, transparent 50%);
+  background-size: 100px 100px, 150px 150px, 200px 200px;
+  background-position: 0 0, 50px 50px, 100px 100px;
+  animation: nebula-drift 30s linear infinite;
+}
+
+.cosmic-bg-stars {
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  position: relative;
+}
+
+.cosmic-bg-stars::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px;
+  background-position: 25px 25px;
+  animation: star-twinkle 8s ease-in-out infinite;
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* Mobile First Approach */
+@media (max-width: 640px) {
+  .cosmic-grid-2,
+  .cosmic-grid-3,
+  .cosmic-grid-4,
+  .cosmic-grid-6 {
+    grid-template-columns: 1fr;
+  }
+  
+  h1, .cosmic-h1 { font-size: var(--text-4xl); }
+  h2, .cosmic-h2 { font-size: var(--text-3xl); }
+  h3, .cosmic-h3 { font-size: var(--text-2xl); }
+  
+  .cosmic-container {
+    padding: 0 var(--space-4);
+  }
+}
+
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .cosmic-grid-4,
+  .cosmic-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  .cosmic-grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* === ACCESSIBILITY === */
+
+/* Focus Indicators */
+*:focus-visible {
+  outline: 2px solid var(--arcanea-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --bg-primary: #000000;
+    --bg-secondary: #1a1a1a;
+    --border-color: #ffffff;
+  }
+}
+
+/* === PRINT STYLES === */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  .cosmic-bg-pattern,
+  .cosmic-bg-stars {
+    background: none !important;
+  }
+}

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Lumina Academy - Premium Dashboard</title>
+    
+    <!-- Import our design system -->
+    <link rel="stylesheet" href="../../design-system/core/enhanced-effects.css">
+    <link rel="stylesheet" href="../../design-system/core/component-system.css">
+    
+    <style>
+        /* Premium Academy Dashboard */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --lumina-primary: #45b7d1;
+            --lumina-secondary: #96c8e8;
+            --lumina-accent: #f0f9ff;
+            --lumina-gradient: linear-gradient(135deg, #45b7d1 0%, #96c8e8 50%, #d1e7f5 100%);
+            --lumina-grained: var(--gradient-lumina-grained);
+            
+            --sidebar-width: 280px;
+            --header-height: 80px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .lumina-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--lumina-grained);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            animation: luminaGlow 3s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lumina-avatar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .lumina-avatar:hover::before {
+            transform: translateX(100%);
+        }
+        
+        @keyframes luminaGlow {
+            0% { box-shadow: 0 0 20px rgba(69, 183, 209, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(69, 183, 209, 0.6); }
+        }
+        
+        .lumina-name {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: var(--lumina-grained);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .lumina-status {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        .sidebar-nav {
+            padding: 1rem;
+        }
+        
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+        
+        .nav-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-lg);
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            margin-bottom: 0.25rem;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            background: rgba(69, 183, 209, 0.15);
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+        
+        .nav-item.active {
+            background: var(--lumina-grained);
+            box-shadow: 0 4px 20px rgba(69, 183, 209, 0.3);
+        }
+        
+        .nav-icon {
+            font-size: 1.25rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            background: linear-gradient(135deg, 
+                rgba(69, 183, 209, 0.05) 0%, 
+                transparent 30%, 
+                rgba(150, 200, 232, 0.03) 100%);
+        }
+        
+        .dashboard-header {
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .welcome-section {
+            flex: 1;
+        }
+        
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .welcome-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 2rem;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Learning Progress Card */
+        .progress-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--lumina-grained);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-name {
+            font-weight: 500;
+        }
+        
+        .skill-level {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--lumina-grained);
+            border-radius: 4px;
+            transition: width 2s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: progressPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes progressPulse {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
+        }
+        
+        /* Current Lesson Card */
+        .current-lesson {
+            background: var(--lumina-grained);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .current-lesson::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        
+        .lesson-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .lesson-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .lesson-description {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .lesson-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .lesson-time {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+        }
+        
+        /* Projects Section */
+        .projects-section {
+            margin-top: 3rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--lumina-grained);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                0 10px 25px rgba(69, 183, 209, 0.15);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .project-icon {
+            font-size: 2rem;
+            background: var(--lumina-grained);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .project-status {
+            background: rgba(69, 183, 209, 0.2);
+            color: #45b7d1;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .project-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Lumina Chat Widget */
+        .lumina-chat {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            z-index: 1000;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .lumina-chat.open {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .chat-header {
+            background: var(--lumina-grained);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chat-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.125rem;
+        }
+        
+        .chat-info p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .chat-messages {
+            height: 200px;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .message {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+        
+        .chat-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--lumina-grained);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 8px 25px rgba(69, 183, 209, 0.4);
+        }
+        
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(69, 183, 209, 0.6);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-content {
+                padding: 1rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lumina-chat {
+                width: 280px;
+                right: 1rem;
+                bottom: 1rem;
+            }
+            
+            .chat-toggle {
+                right: 1rem;
+                bottom: 1rem;
+            }
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="lumina-avatar">
+                    🎨
+                </div>
+                <div class="lumina-name">Lumina</div>
+                <div class="lumina-status">Your AI Design Mentor</div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Academy</div>
+                    <a href="#" class="nav-item active">
+                        <span class="nav-icon">🏠</span>
+                        Dashboard
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        Art Studio
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">🖼️</span>
+                        Gallery
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        Lessons
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Projects</div>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">✨</span>
+                        New Project
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">📁</span>
+                        My Projects
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">👥</span>
+                        Collaborations
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Community</div>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">🌍</span>
+                        Showcase
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">💬</span>
+                        Forums
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="nav-icon">🏆</span>
+                        Challenges
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="welcome-section">
+                    <h1 class="welcome-title">Welcome back, Creator!</h1>
+                    <p class="welcome-subtitle">Ready to create something beautiful with Lumina today?</p>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn-glass-premium">
+                        🔔 Notifications
+                    </button>
+                    <button class="btn-premium">
+                        ✨ New Project
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                
+                <!-- Main Content Grid -->
+                <div class="content-grid fade-in">
+                    
+                    <!-- Learning Progress -->
+                    <div class="progress-card">
+                        <h2 class="card-title">
+                            📊 Your Creative Journey
+                        </h2>
+                        
+                        <div class="skill-item">
+                            <div>
+                                <div class="skill-name">Digital Painting</div>
+                                <div class="skill-level">Advanced</div>
+                            </div>
+                            <div style="width: 150px;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div>
+                                <div class="skill-name">Color Theory</div>
+                                <div class="skill-level">Expert</div>
+                            </div>
+                            <div style="width: 150px;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 92%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div>
+                                <div class="skill-name">UI/UX Design</div>
+                                <div class="skill-level">Intermediate</div>
+                            </div>
+                            <div style="width: 150px;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 68%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div>
+                                <div class="skill-name">3D Modeling</div>
+                                <div class="skill-level">Beginner</div>
+                            </div>
+                            <div style="width: 150px;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 34%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Current Lesson -->
+                    <div class="current-lesson">
+                        <div class="lesson-badge">Next Lesson</div>
+                        <h3 class="lesson-title">Advanced Lighting Techniques</h3>
+                        <p class="lesson-description">
+                            Master the art of dynamic lighting in digital art. 
+                            Learn how light shapes emotion and atmosphere in your creations.
+                        </p>
+                        
+                        <div class="lesson-progress">
+                            <span class="lesson-time">⏱️ 45 minutes</span>
+                            <span style="color: rgba(255,255,255,0.8);">🎯 Skill: Lighting</span>
+                        </div>
+                        
+                        <button class="btn-glass-premium" style="width: 100%; background: rgba(255,255,255,0.2); color: white;">
+                            🚀 Continue Learning
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Projects Section -->
+                <section class="projects-section slide-up">
+                    <div class="section-header">
+                        <h2 class="section-title">Your Creative Projects</h2>
+                        <button class="btn-premium">
+                            ✨ Start New Project
+                        </button>
+                    </div>
+                    
+                    <div class="projects-grid">
+                        <!-- Project 1 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <span class="project-icon">🌟</span>
+                                <span class="project-status">In Progress</span>
+                            </div>
+                            <h3 class="project-title">Ethereal Landscape Series</h3>
+                            <p class="project-description">
+                                A collection of dreamlike landscapes exploring the intersection 
+                                of reality and imagination using advanced digital painting techniques.
+                            </p>
+                            <div class="project-meta">
+                                <span>🕒 Last worked: 2 hours ago</span>
+                                <span>75% Complete</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 2 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <span class="project-icon">🎭</span>
+                                <span class="project-status">Review</span>
+                            </div>
+                            <h3 class="project-title">Character Design Portfolio</h3>
+                            <p class="project-description">
+                                Character designs for a fantasy RPG game, focusing on diverse 
+                                cultures and unique visual storytelling elements.
+                            </p>
+                            <div class="project-meta">
+                                <span>🕒 Completed: Yesterday</span>
+                                <span>Awaiting Feedback</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 3 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <span class="project-icon">🏛️</span>
+                                <span class="project-status">Planning</span>
+                            </div>
+                            <h3 class="project-title">Architectural Visualization</h3>
+                            <p class="project-description">
+                                Modern architectural concepts rendered in photorealistic 3D, 
+                                exploring sustainable design and futuristic aesthetics.
+                            </p>
+                            <div class="project-meta">
+                                <span>🕒 Started: 3 days ago</span>
+                                <span>10% Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Lumina Chat Widget -->
+    <div class="lumina-chat" id="luminaChat">
+        <div class="chat-header">
+            <div class="chat-avatar">🎨</div>
+            <div class="chat-info">
+                <h4>Lumina</h4>
+                <p>Online • Ready to help</p>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message">
+                👋 Hello! I noticed you're working on your lighting techniques. 
+                Would you like some personalized tips for your current project?
+            </div>
+            <div class="message">
+                I can help you with color harmony, composition, or any creative challenges you're facing. What would you like to explore?
+            </div>
+        </div>
+    </div>
+    
+    <!-- Chat Toggle Button -->
+    <button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+        💬
+    </button>
+    
+    <script>
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            // Animate progress bars
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach((bar, index) => {
+                    setTimeout(() => {
+                        bar.style.opacity = '1';
+                        bar.style.transform = 'scaleX(1)';
+                    }, index * 200);
+                });
+            }, 500);
+            
+            // Add stagger animation to cards
+            document.querySelectorAll('.project-card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('slide-up');
+            });
+        });
+        
+        // Chat functionality
+        function toggleChat() {
+            const chat = document.getElementById('luminaChat');
+            const toggle = document.getElementById('chatToggle');
+            
+            if (chat.classList.contains('open')) {
+                chat.classList.remove('open');
+                toggle.innerHTML = '💬';
+            } else {
+                chat.classList.add('open');
+                toggle.innerHTML = '✖️';
+                
+                // Simulate Lumina responding
+                setTimeout(() => {
+                    addChatMessage("🎨 I'm here to help! What creative challenge can we solve together today?");
+                }, 1000);
+            }
+        }
+        
+        function addChatMessage(message) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message fade-in';
+            messageDiv.textContent = message;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        // Interactive skill progress
+        document.querySelectorAll('.skill-item').forEach(skill => {
+            skill.addEventListener('click', () => {
+                const progressBar = skill.querySelector('.progress-fill');
+                const currentWidth = parseInt(progressBar.style.width);
+                const newWidth = Math.min(currentWidth + 5, 100);
+                
+                progressBar.style.width = newWidth + '%';
+                
+                if (newWidth === 100) {
+                    skill.style.background = 'rgba(69, 183, 209, 0.2)';
+                    setTimeout(() => {
+                        addChatMessage(`🎉 Congratulations! You've mastered ${skill.querySelector('.skill-name').textContent}!`);
+                        if (!document.getElementById('luminaChat').classList.contains('open')) {
+                            toggleChat();
+                        }
+                    }, 500);
+                }
+            });
+        });
+        
+        // Project card interactions
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.project-title').textContent;
+                
+                // Create modal-like effect
+                card.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    card.style.transform = 'translateY(-5px) scale(1.02)';
+                    
+                    // Simulate opening project
+                    const overlay = document.createElement('div');
+                    overlay.style.cssText = `
+                        position: fixed; 
+                        inset: 0; 
+                        background: rgba(0,0,0,0.8); 
+                        backdrop-filter: blur(10px);
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        z-index: 10000;
+                        animation: fadeIn 0.3s ease;
+                    `;
+                    
+                    overlay.innerHTML = `
+                        <div style="
+                            background: var(--lumina-grained);
+                            border-radius: 24px;
+                            padding: 3rem;
+                            text-align: center;
+                            max-width: 500px;
+                            animation: scaleIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                        ">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🎨</div>
+                            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">
+                                Opening ${title}
+                            </h2>
+                            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+                                Loading your creative workspace with all tools and assets...
+                            </p>
+                            <div style="
+                                width: 60px; 
+                                height: 60px; 
+                                border: 3px solid rgba(255,255,255,0.3);
+                                border-top: 3px solid white;
+                                border-radius: 50%;
+                                animation: spin 1s linear infinite;
+                                margin: 0 auto;
+                            "></div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(overlay);
+                    
+                    // Remove overlay after animation
+                    setTimeout(() => {
+                        overlay.remove();
+                    }, 3000);
+                }, 200);
+            });
+        });
+        
+        // Add navigation highlighting based on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id') || 'dashboard';
+                }
+            });
+        });
+        
+        // Sidebar toggle for mobile
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+        
+        // Add dynamic styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            
+            @keyframes scaleIn {
+                from { 
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                to { 
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

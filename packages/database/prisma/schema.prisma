@@ -1,0 +1,465 @@
+// Arcanea Ecosystem Database Schema
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// === USER MANAGEMENT ===
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  name      String?
+  avatar    String?
+  
+  // Subscription & Access
+  tier            SubscriptionTier @default(EXPLORER)
+  subscriptionId  String?
+  customerId      String?
+  
+  // Profile Data
+  profile         Json?
+  preferences     Json?
+  onboardingComplete Boolean @default(false)
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lastActiveAt DateTime @default(now())
+  
+  // Relations
+  enrollments     UserEnrollment[]
+  progress        UserProgress[]
+  projects        Project[]
+  interactions    LuminorInteraction[]
+  posts           CommunityPost[]
+  achievements    UserAchievement[]
+  starlightNotes  StarlightNote[]
+  
+  @@map("users")
+}
+
+enum SubscriptionTier {
+  EXPLORER  // Free
+  CREATOR   // $49/month
+  PROFESSIONAL // $149/month
+  MASTER    // $499/month
+}
+
+// === ACADEMY STRUCTURE ===
+model Academy {
+  id          String @id @default(cuid())
+  name        String
+  slug        String @unique
+  description String
+  color       String // Hex color for theming
+  icon        String?
+  
+  // Academy Configuration
+  isActive    Boolean @default(true)
+  difficulty  Difficulty
+  estimatedHours Int
+  
+  // Relations
+  luminorId   String @unique
+  luminor     Luminor @relation(fields: [luminorId], references: [id])
+  courses     Course[]
+  enrollments UserEnrollment[]
+  posts       CommunityPost[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("academies")
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model Luminor {
+  id   String @id @default(cuid())
+  name String
+  slug String @unique
+  
+  // Visual Identity
+  color       String
+  avatar      String?
+  
+  // Personality Configuration
+  personality Json   // PersonalityTraits, teachingStyle, etc.
+  systemPrompt String @db.Text
+  
+  // Capabilities
+  expertise   String[]
+  tools       String[] // AI tools this Luminor can guide with
+  
+  // Relations
+  academy      Academy?
+  interactions LuminorInteraction[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("luminors")
+}
+
+model Course {
+  id          String @id @default(cuid())
+  title       String
+  slug        String
+  description String @db.Text
+  
+  // Course Structure
+  difficulty     Difficulty
+  durationWeeks  Int
+  prerequisites  String[]
+  learningGoals  String[]
+  
+  // Configuration
+  isPublished Boolean @default(false)
+  price       Int?    // Price in cents
+  
+  // Relations
+  academyId   String
+  academy     Academy @relation(fields: [academyId], references: [id])
+  modules     Module[]
+  enrollments UserEnrollment[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([academyId, slug])
+  @@map("courses")
+}
+
+model Module {
+  id          String @id @default(cuid())
+  title       String
+  slug        String
+  description String @db.Text
+  
+  // Module Structure
+  weekNumber Int
+  orderIndex Int
+  content    Json // Structured content data
+  
+  // AI Tools Integration
+  requiredTools String[] // Which AI tools are needed
+  projects      Json[]   // Project specifications
+  
+  // Relations
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id])
+  progress UserProgress[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([courseId, slug])
+  @@map("modules")
+}
+
+// === USER PROGRESS & LEARNING ===
+model UserEnrollment {
+  id String @id @default(cuid())
+  
+  // Relations
+  userId   String
+  user     User @relation(fields: [userId], references: [id])
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id])
+  academyId String
+  academy  Academy @relation(fields: [academyId], references: [id])
+  
+  // Progress Tracking
+  status           EnrollmentStatus @default(ACTIVE)
+  progressPercent  Float @default(0.0)
+  currentModuleId  String?
+  
+  // Timestamps
+  enrolledAt   DateTime @default(now())
+  completedAt  DateTime?
+  lastAccessAt DateTime @default(now())
+  
+  @@unique([userId, courseId])
+  @@map("user_enrollments")
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  PAUSED
+  DROPPED
+}
+
+model UserProgress {
+  id String @id @default(cuid())
+  
+  // Relations
+  userId   String
+  user     User @relation(fields: [userId], references: [id])
+  moduleId String
+  module   Module @relation(fields: [moduleId], references: [id])
+  
+  // Progress Data
+  status          ProgressStatus @default(NOT_STARTED)
+  timeSpent       Int @default(0) // in minutes
+  attemptCount    Int @default(0)
+  
+  // Submissions & Feedback
+  submissions Json[] // Project submissions
+  scores      Json?  // Assessment scores
+  feedback    Json?  // Luminor feedback
+  
+  // Timestamps
+  startedAt   DateTime?
+  completedAt DateTime?
+  lastActiveAt DateTime @default(now())
+  
+  @@unique([userId, moduleId])
+  @@map("user_progress")
+}
+
+enum ProgressStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  SUBMITTED
+  COMPLETED
+  NEEDS_REVIEW
+}
+
+// === PROJECTS & CREATIONS ===
+model Project {
+  id          String @id @default(cuid())
+  title       String
+  description String @db.Text
+  
+  // Project Data
+  type        ProjectType
+  aiTools     String[] // Tools used in creation
+  files       Json[]   // File metadata and URLs
+  config      Json?    // Tool configurations used
+  
+  // Status & Visibility
+  status      ProjectStatus @default(DRAFT)
+  isPublic    Boolean @default(false)
+  featured    Boolean @default(false)
+  
+  // Metrics
+  likes       Int @default(0)
+  views       Int @default(0)
+  comments    Int @default(0)
+  
+  // Relations
+  userId   String
+  user     User @relation(fields: [userId], references: [id])
+  moduleId String?
+  
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  publishedAt DateTime?
+  
+  @@map("projects")
+}
+
+enum ProjectType {
+  IMAGE
+  MUSIC
+  VIDEO
+  TEXT
+  CODE
+  MULTIMODAL
+}
+
+enum ProjectStatus {
+  DRAFT
+  SUBMITTED
+  PUBLISHED
+  ARCHIVED
+}
+
+// === AI INTERACTIONS ===
+model LuminorInteraction {
+  id String @id @default(cuid())
+  
+  // Relations
+  userId    String
+  user      User @relation(fields: [userId], references: [id])
+  luminorId String
+  luminor   Luminor @relation(fields: [luminorId], references: [id])
+  
+  // Interaction Data
+  sessionId    String
+  context      Json?  // Learning context, current module, etc.
+  userMessage  String @db.Text
+  luminorResponse String @db.Text
+  
+  // Metadata
+  tokens       Int?   // Token usage
+  duration     Int?   // Response time in ms
+  satisfaction Int?   // User rating 1-5
+  
+  createdAt DateTime @default(now())
+  
+  @@index([userId, sessionId])
+  @@map("luminor_interactions")
+}
+
+// === COMMUNITY FEATURES ===
+model CommunityPost {
+  id      String @id @default(cuid())
+  title   String?
+  content String @db.Text
+  
+  // Post Configuration
+  type        PostType
+  isPublished Boolean @default(true)
+  isPinned    Boolean @default(false)
+  
+  // Engagement
+  likes    Int @default(0)
+  replies  Int @default(0)
+  views    Int @default(0)
+  
+  // Media Attachments
+  media Json[] // Images, videos, project links
+  
+  // Relations
+  userId    String
+  user      User @relation(fields: [userId], references: [id])
+  academyId String?
+  academy   Academy? @relation(fields: [academyId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("community_posts")
+}
+
+enum PostType {
+  SHOWCASE
+  QUESTION
+  DISCUSSION
+  ANNOUNCEMENT
+  TUTORIAL
+}
+
+// === ACHIEVEMENTS & GAMIFICATION ===
+model Achievement {
+  id          String @id @default(cuid())
+  name        String
+  description String
+  icon        String
+  color       String
+  
+  // Achievement Rules
+  criteria    Json   // Conditions for earning
+  points      Int    // Points awarded
+  rarity      AchievementRarity
+  
+  // Relations
+  users UserAchievement[]
+  
+  createdAt DateTime @default(now())
+  
+  @@map("achievements")
+}
+
+enum AchievementRarity {
+  COMMON
+  UNCOMMON
+  RARE
+  LEGENDARY
+}
+
+model UserAchievement {
+  id String @id @default(cuid())
+  
+  // Relations
+  userId        String
+  user          User @relation(fields: [userId], references: [id])
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  
+  // Progress
+  progress    Float @default(0.0) // 0.0 to 1.0
+  isComplete  Boolean @default(false)
+  
+  earnedAt DateTime @default(now())
+  
+  @@unique([userId, achievementId])
+  @@map("user_achievements")
+}
+
+// === STARLIGHT INTELLIGENCE SYSTEM ===
+model StarlightNote {
+  id       String @id @default(cuid())
+  title    String?
+  content  String @db.Text
+  
+  // Classification
+  type     NoteType
+  tags     String[]
+  category String?
+  
+  // Knowledge Graph
+  embedding    Float[] // Vector embedding for similarity
+  connections  Json[]  // Connected note IDs and relationship types
+  
+  // Metadata
+  source      String? // Where this knowledge came from
+  confidence  Float   @default(1.0) // Confidence in accuracy
+  importance  Int     @default(1) // 1-10 importance score
+  
+  // Relations
+  userId String
+  user   User @relation(fields: [userId], references: [id])
+  
+  // Timestamps
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  lastAccessedAt DateTime @default(now())
+  
+  @@map("starlight_notes")
+}
+
+enum NoteType {
+  LEARNING
+  PROJECT
+  INSIGHT
+  REFERENCE
+  REFLECTION
+}
+
+// === SYSTEM ANALYTICS ===
+model SystemEvent {
+  id String @id @default(cuid())
+  
+  // Event Data
+  eventType String
+  userId    String?
+  sessionId String?
+  
+  // Event Details
+  data      Json
+  metadata  Json?
+  
+  // Context
+  userAgent String?
+  ipAddress String?
+  
+  createdAt DateTime @default(now())
+  
+  @@index([eventType, createdAt])
+  @@index([userId, createdAt])
+  @@map("system_events")
+}

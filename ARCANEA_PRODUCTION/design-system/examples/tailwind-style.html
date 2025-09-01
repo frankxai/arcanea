@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Design System - Tailwind/Headless UI Style</title>
+    <link rel="stylesheet" href="../core/design-tokens.css">
+    <link rel="stylesheet" href="../core/enhanced-effects.css">
+    <link rel="stylesheet" href="../core/component-system.css">
+    <style>
+        /* Tailwind-inspired utility classes with Arcanea premium effects */
+        
+        /* === UTILITY-FIRST APPROACH === */
+        /* Following Tailwind's philosophy but with Arcanea's premium touch */
+        
+        /* Spacing utilities */
+        .p-0 { padding: 0; }
+        .p-1 { padding: 0.25rem; }
+        .p-2 { padding: 0.5rem; }
+        .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        
+        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        
+        .m-4 { margin: 1rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        
+        /* Layout utilities */
+        .flex { display: flex; }
+        .inline-flex { display: inline-flex; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+        .block { display: block; }
+        
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        
+        /* Sizing utilities */
+        .w-full { width: 100%; }
+        .h-12 { height: 3rem; }
+        .min-h-screen { min-height: 100vh; }
+        .max-w-md { max-width: 28rem; }
+        .max-w-lg { max-width: 32rem; }
+        .max-w-4xl { max-width: 56rem; }
+        
+        /* Border radius utilities with Arcanea premium curves */
+        .rounded { border-radius: var(--radius-md); }
+        .rounded-lg { border-radius: var(--radius-lg); }
+        .rounded-xl { border-radius: var(--radius-xl); }
+        .rounded-2xl { border-radius: var(--radius-2xl); }
+        .rounded-full { border-radius: 9999px; }
+        
+        /* Background utilities with premium gradients */
+        .bg-white { background-color: white; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-gray-100 { background-color: #f3f4f6; }
+        .bg-primary { background-color: var(--arcanea-primary); }
+        .bg-secondary { background-color: var(--bg-secondary); }
+        
+        /* Premium gradient utilities */
+        .bg-gradient-aurora { background: var(--gradient-aurora-grained); }
+        .bg-gradient-cosmic { background: var(--gradient-cosmic-grained); }
+        .bg-gradient-neural { background: var(--gradient-neural-grained); }
+        .bg-gradient-plasma { background: var(--gradient-plasma); }
+        .bg-gradient-sunset { background: var(--gradient-sunset-grained); }
+        
+        /* Glass morphism utilities */
+        .glass { 
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .glass-strong { 
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+        }
+        
+        /* Border utilities */
+        .border { border: 1px solid var(--border-primary); }
+        .border-white { border: 1px solid rgba(255, 255, 255, 0.15); }
+        .border-0 { border: none; }
+        
+        /* Text utilities */
+        .text-white { color: white; }
+        .text-gray-600 { color: #6b7280; }
+        .text-gray-900 { color: #111827; }
+        .text-primary { color: var(--text-primary); }
+        .text-sm { font-size: 0.875rem; }
+        .text-base { font-size: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-center { text-align: center; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        
+        /* Shadow utilities with premium effects */
+        .shadow { box-shadow: var(--shadow-md); }
+        .shadow-lg { box-shadow: var(--shadow-lg); }
+        .shadow-xl { box-shadow: var(--shadow-xl); }
+        .shadow-premium { 
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Transition utilities */
+        .transition { transition: all 0.15s ease-in-out; }
+        .transition-all { transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
+        .transition-premium { transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        
+        /* Transform utilities with premium effects */
+        .hover\:scale-105:hover { transform: scale(1.05); }
+        .hover\:scale-102:hover { transform: scale(1.02); }
+        .hover\:-translate-y-1:hover { transform: translateY(-0.25rem); }
+        .hover\:-translate-y-2:hover { transform: translateY(-0.5rem); }
+        .hover\:-translate-y-3:hover { transform: translateY(-0.75rem); }
+        .hover\:lift-premium:hover { 
+            transform: translateY(-8px) scale(1.02);
+        }
+        
+        /* Premium hover combinations */
+        .hover\:shadow-premium:hover { 
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Interactive utilities */
+        .cursor-pointer { cursor: pointer; }
+        .select-none { user-select: none; }
+        
+        /* Focus utilities */
+        .focus\:outline-none:focus { outline: none; }
+        .focus\:ring-2:focus { 
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* === COMPONENT COMPOSITIONS === */
+        /* Pre-built component classes using utilities */
+        
+        .btn-tailwind {
+            @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold transition-premium cursor-pointer select-none focus:outline-none;
+        }
+        
+        .btn-primary {
+            @apply bg-gradient-aurora text-white border-white hover:lift-premium hover:shadow-premium;
+        }
+        
+        .btn-glass {
+            @apply glass text-primary border hover:-translate-y-2 hover:shadow-lg;
+        }
+        
+        .card-tailwind {
+            @apply bg-secondary border rounded-xl p-6 transition-all hover:-translate-y-1 hover:shadow-lg;
+        }
+        
+        .card-glass {
+            @apply glass border-white rounded-xl p-6 transition-premium hover:lift-premium hover:shadow-premium;
+        }
+        
+        .input-tailwind {
+            @apply w-full px-4 py-3 rounded-lg border bg-white focus:outline-none focus:ring-2 transition;
+        }
+        
+        /* Mobile responsive utilities */
+        @media (min-width: 640px) {
+            .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .dark\:bg-gray-900 { background-color: #111827; }
+            .dark\:text-white { color: white; }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-900 border-b px-4 py-6 sm:px-6 md:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                🎨 Arcanea Design System
+            </h1>
+            <p class="text-gray-600">Tailwind CSS / Headless UI Style Implementation</p>
+            <div class="mt-4 flex gap-2">
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Utility-First</span>
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Responsive</span>
+                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Premium Effects</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="px-4 py-8 sm:px-6 md:px-8">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- Philosophy Section -->
+            <section class="mb-8">
+                <div class="card-glass mb-6">
+                    <h2 class="text-xl font-bold mb-4 text-primary">🚀 Utility-First Philosophy</h2>
+                    <p class="text-gray-600 mb-4">
+                        This implementation follows Tailwind CSS's utility-first approach, combining atomic CSS classes with Arcanea's premium design tokens and effects. Build any design directly in your markup with consistent, predictable utilities.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white rounded-lg p-4 border">
+                            <h4 class="font-semibold text-gray-900 mb-2">✨ Key Benefits</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Rapid prototyping and development</li>
+                                <li>• Consistent design tokens</li>
+                                <li>• Premium effects built-in</li>
+                                <li>• Mobile-first responsive</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border">
+                            <h4 class="font-semibold text-gray-900 mb-2">🎯 Use Cases</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• React with Headless UI</li>
+                                <li>• Vue with Headless UI</li>
+                                <li>• Plain HTML prototypes</li>
+                                <li>• Design system exploration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Button Examples -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Buttons with Utility Classes</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    
+                    <!-- Premium Gradient Buttons -->
+                    <div class="card-tailwind">
+                        <h3 class="font-semibold text-gray-900 mb-4">Premium Gradient Buttons</h3>
+                        <div class="space-y-3">
+                            <button class="btn-tailwind btn-primary w-full">
+                                ✨ Aurora Gradient
+                            </button>
+                            <button class="btn-tailwind bg-gradient-cosmic text-white border-white hover:lift-premium hover:shadow-premium w-full">
+                                🌌 Cosmic Gradient
+                            </button>
+                            <button class="btn-tailwind bg-gradient-neural text-white border-white hover:lift-premium hover:shadow-premium w-full">
+                                🧠 Neural Gradient
+                            </button>
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-100 rounded text-xs">
+                            <code>class="btn-tailwind btn-primary"</code>
+                        </div>
+                    </div>
+
+                    <!-- Glass Morphism Buttons -->
+                    <div class="card-tailwind">
+                        <h3 class="font-semibold text-gray-900 mb-4">Glass Morphism Buttons</h3>
+                        <div class="space-y-3">
+                            <button class="btn-tailwind btn-glass w-full">
+                                🔮 Glass Button
+                            </button>
+                            <button class="btn-tailwind glass-strong text-primary border-white hover:-translate-y-2 hover:shadow-lg w-full">
+                                💎 Strong Glass
+                            </button>
+                            <button class="btn-tailwind glass text-primary border hover:scale-102 hover:-translate-y-1 transition-all w-full">
+                                ⚡ Light Glass
+                            </button>
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-100 rounded text-xs">
+                            <code>class="btn-tailwind btn-glass"</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards and Layouts -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Cards and Layouts</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="card-tailwind">
+                        <div class="w-full h-12 bg-gradient-aurora rounded mb-4"></div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Standard Card</h3>
+                        <p class="text-gray-600 text-sm mb-4">Built with utility classes for rapid development.</p>
+                        <button class="btn-tailwind btn-primary text-sm px-4 py-2">
+                            Learn More
+                        </button>
+                    </div>
+
+                    <div class="card-glass">
+                        <div class="w-full h-12 bg-gradient-cosmic rounded mb-4"></div>
+                        <h3 class="font-semibold text-primary mb-2">Glass Card</h3>
+                        <p class="text-gray-600 text-sm mb-4">Premium glass morphism with backdrop blur.</p>
+                        <button class="btn-tailwind btn-glass text-sm px-4 py-2">
+                            Explore
+                        </button>
+                    </div>
+
+                    <div class="bg-gradient-neural rounded-xl p-6 text-white transition-premium hover:lift-premium hover:shadow-premium cursor-pointer">
+                        <div class="w-full h-12 bg-white bg-opacity-20 rounded mb-4"></div>
+                        <h3 class="font-semibold mb-2">Gradient Card</h3>
+                        <p class="text-white text-opacity-90 text-sm mb-4">Full gradient background with premium effects.</p>
+                        <button class="px-4 py-2 bg-white bg-opacity-20 rounded-lg text-sm font-medium hover:bg-opacity-30 transition">
+                            Discover
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form Components -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Form Components</h2>
+                <div class="card-glass max-w-lg mx-auto">
+                    <h3 class="font-semibold text-primary mb-4">Premium Contact Form</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" class="input-tailwind" placeholder="Enter your name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" class="input-tailwind" placeholder="you@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea class="input-tailwind h-24 resize-none" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-tailwind btn-primary w-full">
+                            ✨ Send Message
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Utility Examples -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Utility Class Examples</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    
+                    <!-- Spacing and Layout -->
+                    <div class="card-tailwind">
+                        <h3 class="font-semibold text-gray-900 mb-4">Spacing & Layout</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-blue-100 rounded text-sm">
+                                <code>p-3</code> - Padding on all sides
+                            </div>
+                            <div class="px-4 py-2 bg-green-100 rounded text-sm">
+                                <code>px-4 py-2</code> - Horizontal/Vertical padding
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-purple-100 rounded text-sm">
+                                <span>Left</span>
+                                <code>flex items-center justify-between</code>
+                                <span>Right</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Premium Effects -->
+                    <div class="card-tailwind">
+                        <h3 class="font-semibold text-gray-900 mb-4">Premium Effects</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 glass rounded text-sm cursor-pointer hover:-translate-y-1 transition-all">
+                                <code>glass hover:-translate-y-1</code>
+                            </div>
+                            <div class="p-3 bg-gradient-aurora text-white rounded text-sm cursor-pointer hover:scale-102 transition-all">
+                                <code>bg-gradient-aurora hover:scale-102</code>
+                            </div>
+                            <div class="p-3 bg-white rounded shadow cursor-pointer hover:shadow-premium transition-premium">
+                                <code>hover:shadow-premium</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Usage Guide -->
+            <section class="mb-8">
+                <div class="card-glass">
+                    <h2 class="text-xl font-bold mb-4 text-primary">📚 Usage Guide</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-3">🎯 Quick Start</h4>
+                            <div class="bg-gray-100 p-4 rounded-lg text-sm">
+                                <pre><code>&lt;!-- Basic button --&gt;
+&lt;button class="btn-tailwind btn-primary"&gt;
+  Click me
+&lt;/button&gt;
+
+&lt;!-- Glass card --&gt;
+&lt;div class="card-glass"&gt;
+  &lt;h3 class="font-semibold mb-2"&gt;Title&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;Content&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-3">⚡ Custom Combinations</h4>
+                            <div class="bg-gray-100 p-4 rounded-lg text-sm">
+                                <pre><code>&lt;!-- Custom hover effects --&gt;
+&lt;div class="p-6 glass rounded-xl 
+     hover:lift-premium 
+     hover:shadow-premium 
+     transition-premium"&gt;
+  Custom component
+&lt;/div&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <h4 class="font-semibold text-blue-900 mb-2">💡 Pro Tips</h4>
+                        <ul class="text-blue-800 text-sm space-y-1">
+                            <li>• Combine utilities for unique designs: <code>glass hover:lift-premium transition-premium</code></li>
+                            <li>• Use responsive prefixes: <code>sm:grid-cols-2 md:grid-cols-3</code></li>
+                            <li>• Layer premium effects: <code>bg-gradient-aurora hover:shadow-premium</code></li>
+                            <li>• Focus states included: <code>focus:ring-2 focus:outline-none</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Integration Examples -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Framework Integration</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- React Example -->
+                    <div class="card-tailwind">
+                        <h3 class="font-semibold text-gray-900 mb-3">⚛️ React + Headless UI</h3>
+                        <div class="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
+                            <pre><code>import { Dialog } from '@headlessui/react'
+
+function PremiumModal({ isOpen, onClose }) {
+  return (
+    &lt;Dialog 
+      open={isOpen} 
+      onClose={onClose}
+      className="fixed inset-0 z-50 flex 
+                 items-center justify-center p-4"
+    &gt;
+      &lt;Dialog.Overlay className="fixed inset-0 
+                                bg-black bg-opacity-25" /&gt;
+      
+      &lt;div className="card-glass max-w-md mx-auto"&gt;
+        &lt;Dialog.Title className="text-lg font-bold 
+                                mb-4 text-primary"&gt;
+          Premium Modal
+        &lt;/Dialog.Title&gt;
+        
+        &lt;p className="text-gray-600 mb-4"&gt;
+          Modal content with glass morphism.
+        &lt;/p&gt;
+        
+        &lt;button 
+          onClick={onClose}
+          className="btn-tailwind btn-primary w-full"
+        &gt;
+          Close
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/Dialog&gt;
+  )
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Vue Example -->
+                    <div class="card-tailwind">
+                        <h3 class="font-semibold text-gray-900 mb-3">💚 Vue + Headless UI</h3>
+                        <div class="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
+                            <pre><code>&lt;template&gt;
+  &lt;Listbox v-model="selected"&gt;
+    &lt;ListboxButton 
+      class="btn-tailwind btn-glass w-full 
+             justify-between"
+    &gt;
+      {{ selected.name }}
+      &lt;ChevronDownIcon class="w-5 h-5" /&gt;
+    &lt;/ListboxButton&gt;
+
+    &lt;ListboxOptions 
+      class="card-glass mt-2 max-h-60 
+             overflow-auto focus:outline-none"
+    &gt;
+      &lt;ListboxOption
+        v-for="option in options"
+        :key="option.id"
+        :value="option"
+        class="cursor-pointer px-4 py-2
+               hover:bg-white hover:bg-opacity-10
+               transition-all"
+      &gt;
+        {{ option.name }}
+      &lt;/ListboxOption&gt;
+    &lt;/ListboxOptions&gt;
+  &lt;/Listbox&gt;
+&lt;/template&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t bg-white dark:bg-gray-900 px-4 py-8 sm:px-6 md:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-gray-600 mb-4">
+                🎨 Arcanea Design System - Tailwind CSS Style Implementation
+            </p>
+            <div class="flex justify-center gap-4 text-sm">
+                <span class="px-3 py-1 glass rounded-full">Utility-First CSS</span>
+                <span class="px-3 py-1 glass rounded-full">Premium Effects</span>
+                <span class="px-3 py-1 glass rounded-full">Framework Agnostic</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
