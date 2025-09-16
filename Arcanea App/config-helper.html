@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Configuration Helper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        .config-section {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            color: #3b82f6;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: #e5e7eb;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-description {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .command-output {
+            background: #0a0a0a;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 4px;
+            color: #3b82f6;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(59, 130, 246, 0.4);
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .warning-title {
+            color: #f59e0b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-text {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .success-box.show {
+            display: block;
+        }
+
+        .success-title {
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-text {
+            color: #34d399;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            gap: 0.5rem;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #3b82f6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: rgba(59, 130, 246, 0.3);
+            color: white;
+        }
+
+        .tab:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .provider-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .provider-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .provider-card.selected {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .provider-logo {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚙️ Configuration Helper</h1>
+            <p class="subtitle">Generate deployment configuration for your Arcanea app</p>
+        </header>
+
+        <!-- Warning -->
+        <div class="warning-box">
+            <div class="warning-title">🔒 Security Notice</div>
+            <p class="warning-text">
+                Never share your API keys publicly or commit them to version control. 
+                This tool generates commands for secure deployment using EAS secrets.
+            </p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('eas')">EAS Secrets</div>
+            <div class="tab" onclick="showTab('env')">Environment File</div>
+            <div class="tab" onclick="showTab('deploy')">Deployment</div>
+        </div>
+
+        <!-- EAS Secrets Tab -->
+        <div class="tab-content active" id="eas-content">
+            <div class="config-section">
+                <h2 class="section-title">🔐 API Configuration</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">OpenAI API Key</label>
+                    <input type="password" class="form-input" id="openai-key" placeholder="sk-...">
+                    <p class="form-description">
+                        Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank" style="color: #3b82f6;">OpenAI Platform</a>. Required for SuperAgent and Scripta.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Anthropic API Key</label>
+                    <input type="password" class="form-input" id="anthropic-key" placeholder="sk-ant-...">
+                    <p class="form-description">
+                        Get your API key from <a href="https://console.anthropic.com/" target="_blank" style="color: #3b82f6;">Anthropic Console</a>. Used as fallback for enhanced reliability.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Environment</label>
+                    <select class="form-input" id="environment">
+                        <option value="development">Development</option>
+                        <option value="preview">Preview</option>
+                        <option value="production" selected>Production</option>
+                    </select>
+                    <p class="form-description">
+                        Choose your deployment environment. Production is recommended for Google Play Store.
+                    </p>
+                </div>
+
+                <button class="generate-btn" onclick="generateEASCommands()">
+                    Generate EAS Commands
+                </button>
+
+                <div class="command-output" id="eas-commands" style="display: none;">
+                    <button class="copy-btn" onclick="copyCommands('eas-commands')">Copy</button>
+                    <div id="eas-output"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Environment File Tab -->
+        <div class="tab-content" id="env-content">
+            <div class="config-section">
+                <h2 class="section-title">📄 Local Development</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">OpenAI API Key</label>
+                    <input type="password" class="form-input" id="env-openai-key" placeholder="sk-...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Anthropic API Key</label>
+                    <input type="password" class="form-input" id="env-anthropic-key" placeholder="sk-ant-...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Environment</label>
+                    <select class="form-input" id="env-environment">
+                        <option value="development" selected>Development</option>
+                        <option value="staging">Staging</option>
+                    </select>
+                </div>
+
+                <button class="generate-btn" onclick="generateEnvFile()">
+                    Generate .env File
+                </button>
+
+                <div class="command-output" id="env-file" style="display: none;">
+                    <button class="copy-btn" onclick="copyCommands('env-file')">Copy</button>
+                    <div id="env-output"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deployment Tab -->
+        <div class="tab-content" id="deploy-content">
+            <div class="config-section">
+                <h2 class="section-title">🚀 Deployment Commands</h2>
+                
+                <div class="provider-grid">
+                    <div class="provider-card selected" onclick="selectProvider('expo')">
+                        <div class="provider-logo">⚡</div>
+                        <div>Expo EAS</div>
+                    </div>
+                    <div class="provider-card" onclick="selectProvider('vercel')">
+                        <div class="provider-logo">▲</div>
+                        <div>Vercel</div>
+                    </div>
+                    <div class="provider-card" onclick="selectProvider('netlify')">
+                        <div class="provider-logo">🌐</div>
+                        <div>Netlify</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Platform</label>
+                    <select class="form-input" id="deploy-platform">
+                        <option value="android" selected>Android (Google Play)</option>
+                        <option value="ios">iOS (App Store)</option>
+                        <option value="all">Both Platforms</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Build Profile</label>
+                    <select class="form-input" id="build-profile">
+                        <option value="development">Development</option>
+                        <option value="preview">Preview</option>
+                        <option value="production" selected>Production</option>
+                    </select>
+                </div>
+
+                <button class="generate-btn" onclick="generateDeployCommands()">
+                    Generate Deploy Commands
+                </button>
+
+                <div class="command-output" id="deploy-commands" style="display: none;">
+                    <button class="copy-btn" onclick="copyCommands('deploy-commands')">Copy</button>
+                    <div id="deploy-output"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-box" id="success-message">
+            <div class="success-title">✅ Configuration Generated</div>
+            <p class="success-text">
+                Your configuration has been generated successfully. Copy the commands above and run them in your terminal.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let selectedProvider = 'expo';
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-content').classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function selectProvider(provider) {
+            selectedProvider = provider;
+            
+            document.querySelectorAll('.provider-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.target.classList.add('selected');
+        }
+
+        function generateEASCommands() {
+            const openaiKey = document.getElementById('openai-key').value;
+            const anthropicKey = document.getElementById('anthropic-key').value;
+            const environment = document.getElementById('environment').value;
+            
+            if (!openaiKey || !anthropicKey) {
+                alert('Please enter both OpenAI and Anthropic API keys');
+                return;
+            }
+            
+            const commands = `# Set up EAS secrets for ${environment}
+eas secret:create --scope project --name OPENAI_API_KEY --value "${openaiKey}"
+eas secret:create --scope project --name ANTHROPIC_API_KEY --value "${anthropicKey}"
+eas secret:create --scope project --name ENVIRONMENT --value "${environment}"
+
+# Verify secrets
+eas secret:list
+
+# Build for ${environment}
+eas build --platform android --profile ${environment}`;
+            
+            document.getElementById('eas-output').textContent = commands;
+            document.getElementById('eas-commands').style.display = 'block';
+            document.getElementById('success-message').classList.add('show');
+        }
+
+        function generateEnvFile() {
+            const openaiKey = document.getElementById('env-openai-key').value;
+            const anthropicKey = document.getElementById('env-anthropic-key').value;
+            const environment = document.getElementById('env-environment').value;
+            
+            if (!openaiKey || !anthropicKey) {
+                alert('Please enter both OpenAI and Anthropic API keys');
+                return;
+            }
+            
+            const envContent = `# Arcanea Environment Configuration
+# Add this to your .env.local file
+OPENAI_API_KEY=${openaiKey}
+ANTHROPIC_API_KEY=${anthropicKey}
+ENVIRONMENT=${environment}
+
+# Optional: Add these for enhanced functionality
+NEXT_PUBLIC_APP_VERSION=1.0.0
+NEXT_PUBLIC_APP_NAME=Arcanea`;
+            
+            document.getElementById('env-output').textContent = envContent;
+            document.getElementById('env-file').style.display = 'block';
+            document.getElementById('success-message').classList.add('show');
+        }
+
+        function generateDeployCommands() {
+            const platform = document.getElementById('deploy-platform').value;
+            const profile = document.getElementById('build-profile').value;
+            
+            let commands = '';
+            
+            if (selectedProvider === 'expo') {
+                commands = `# Expo EAS Deployment
+# Make sure you're logged in
+eas login
+
+# Configure build if not done
+eas build:configure
+
+# Build for ${platform}`;
+                
+                if (platform === 'android') {
+                    commands += `\neas build --platform android --profile ${profile}`;
+                } else if (platform === 'ios') {
+                    commands += `\neas build --platform ios --profile ${profile}`;
+                } else {
+                    commands += `\neas build --platform all --profile ${profile}`;
+                }
+                
+                commands += `\n\n# Submit to app stores (after build completes)`;
+                if (platform === 'android' || platform === 'all') {
+                    commands += `\neas submit --platform android`;
+                }
+                if (platform === 'ios' || platform === 'all') {
+                    commands += `\neas submit --platform ios`;
+                }
+            } else if (selectedProvider === 'vercel') {
+                commands = `# Vercel Deployment
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel --prod
+
+# Set environment variables
+vercel env add OPENAI_API_KEY
+vercel env add ANTHROPIC_API_KEY`;
+            } else if (selectedProvider === 'netlify') {
+                commands = `# Netlify Deployment
+# Install Netlify CLI
+npm i -g netlify-cli
+
+# Login and deploy
+netlify login
+netlify deploy --prod
+
+# Set environment variables in Netlify dashboard
+# or use CLI:
+netlify env:set OPENAI_API_KEY "your-key"
+netlify env:set ANTHROPIC_API_KEY "your-key"`;
+            }
+            
+            document.getElementById('deploy-output').textContent = commands;
+            document.getElementById('deploy-commands').style.display = 'block';
+            document.getElementById('success-message').classList.add('show');
+        }
+
+        function copyCommands(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.querySelector('div').textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const button = element.querySelector('.copy-btn');
+                button.textContent = 'Copied!';
+                button.style.background = 'rgba(16, 185, 129, 0.4)';
+                
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.style.background = 'rgba(59, 130, 246, 0.2)';
+                }, 2000);
+            });
+        }
+
+        // Auto-fill from URL parameters if available
+        function autoFillFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const openaiKey = params.get('openai');
+            const anthropicKey = params.get('anthropic');
+            
+            if (openaiKey) {
+                document.getElementById('openai-key').value = openaiKey;
+                document.getElementById('env-openai-key').value = openaiKey;
+            }
+            
+            if (anthropicKey) {
+                document.getElementById('anthropic-key').value = anthropicKey;
+                document.getElementById('env-anthropic-key').value = anthropicKey;
+            }
+        }
+
+        // Initialize
+        autoFillFromURL();
+    </script>
+</body>
+</html>

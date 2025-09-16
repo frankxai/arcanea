@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Create - AI Creative Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #8b5cf6;
+            --primary-dark: #4f46e5;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --text-white: #ffffff;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        body {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .mobile-container {
+            max-width: 428px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: var(--bg-primary);
+            position: relative;
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Status Bar */
+        .status-bar {
+            height: 44px;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 44px;
+            z-index: 100;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .header-title {
+            flex: 1;
+        }
+
+        .header-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            letter-spacing: -0.02em;
+        }
+
+        .header-title p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 24px;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .intro-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+        }
+
+        .intro-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .intro-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Input Section */
+        .input-section {
+            margin-bottom: 24px;
+        }
+
+        .input-label {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .prompt-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .prompt-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            padding-bottom: 48px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            font-size: 16px;
+            font-family: inherit;
+            resize: none;
+            transition: all 0.2s;
+        }
+
+        .prompt-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--bg-primary);
+        }
+
+        .prompt-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .prompt-tools {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .prompt-tool {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .prompt-tool:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .suggestion-chip {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .suggestion-chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        /* Content Type Selector */
+        .type-selector {
+            margin-bottom: 24px;
+        }
+
+        .type-tabs {
+            display: flex;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 4px;
+            margin-bottom: 16px;
+        }
+
+        .type-tab {
+            flex: 1;
+            padding: 12px 16px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .type-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .type-tab:not(.active) {
+            color: var(--text-secondary);
+        }
+
+        .type-tab:not(.active):hover {
+            color: var(--primary);
+        }
+
+        /* Style Options */
+        .style-options {
+            margin-bottom: 24px;
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .style-option {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .style-option:hover {
+            border-color: var(--primary);
+        }
+
+        .style-option.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .style-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .style-name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Generate Section */
+        .generate-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 100px;
+        }
+
+        .generate-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .cost-info {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .time-info {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Loading State */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            text-align: center;
+            max-width: 300px;
+            padding: 40px 20px;
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 24px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .loading-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            animation: progress 5s ease-out forwards;
+        }
+
+        @keyframes progress {
+            to { width: 100%; }
+        }
+
+        .cancel-btn {
+            margin-top: 24px;
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cancel-btn:hover {
+            border-color: var(--error);
+            color: var(--error);
+        }
+
+        /* Result Preview */
+        .result-section {
+            display: none;
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 100px;
+        }
+
+        .result-preview {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: white;
+        }
+
+        .result-info {
+            padding: 20px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .result-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .result-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .result-btn.primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .result-btn.secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .result-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive */
+        @media (max-width: 428px) {
+            .mobile-container {
+                max-width: 100vw;
+                width: 100%;
+            }
+
+            .style-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Haptic feedback */
+        .haptic {
+            animation: hapticPulse 0.1s ease-out;
+        }
+
+        @keyframes hapticPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.98); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span>9:41</span>
+            </div>
+            <div class="status-right">
+                <svg width="24" height="12" viewBox="0 0 24 12" fill="currentColor">
+                    <rect x="2" y="3" width="4" height="6" rx="1"/>
+                    <rect x="8" y="2" width="4" height="8" rx="1"/>
+                    <rect x="14" y="1" width="4" height="10" rx="1"/>
+                    <rect x="20" y="4" width="2" height="4" rx="0.5"/>
+                </svg>
+                <svg width="24" height="12" viewBox="0 0 24 12" fill="currentColor">
+                    <rect x="3" y="3" width="18" height="6" rx="3"/>
+                    <rect x="21" y="4.5" width="1.5" height="3" rx="0.75"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-nav">
+                <button class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </button>
+                <div class="header-title">
+                    <h1>Quick Create</h1>
+                    <p>Generate content in seconds</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Introduction -->
+            <div class="intro-section">
+                <div class="intro-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+                <h2 class="intro-title">What's on your mind?</h2>
+                <p class="intro-subtitle">Describe anything you want to create and our AI will make it happen instantly</p>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <label class="input-label">Describe what you want to create</label>
+                <div class="prompt-container">
+                    <textarea 
+                        class="prompt-input" 
+                        id="promptInput"
+                        placeholder="A professional headshot of a confident businesswoman in a modern office..."
+                        oninput="updateGenerateButton()"
+                    ></textarea>
+                    <div class="prompt-tools">
+                        <button class="prompt-tool" onclick="openVoiceInput()" title="Voice input">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                <line x1="12" y1="19" x2="12" y2="23"/>
+                                <line x1="8" y1="23" x2="16" y2="23"/>
+                            </svg>
+                        </button>
+                        <button class="prompt-tool" onclick="clearPrompt()" title="Clear">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m18 6-12 12"/>
+                                <path d="m6 6 12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="suggestions">
+                    <div class="suggestion-chip" onclick="addSuggestion('professional headshot')">Professional headshot</div>
+                    <div class="suggestion-chip" onclick="addSuggestion('social media post')">Social media post</div>
+                    <div class="suggestion-chip" onclick="addSuggestion('logo design')">Logo design</div>
+                    <div class="suggestion-chip" onclick="addSuggestion('upbeat music')">Upbeat music</div>
+                    <div class="suggestion-chip" onclick="addSuggestion('product photo')">Product photo</div>
+                </div>
+            </div>
+
+            <!-- Content Type Selector -->
+            <div class="type-selector">
+                <label class="input-label">Content type</label>
+                <div class="type-tabs">
+                    <button class="type-tab active" onclick="selectType('image')" data-type="image">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                            <circle cx="9" cy="9" r="2"/>
+                            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                        </svg>
+                        Image
+                    </button>
+                    <button class="type-tab" onclick="selectType('music')" data-type="music">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18V5l12-2v13"/>
+                            <circle cx="6" cy="18" r="3"/>
+                            <circle cx="18" cy="16" r="3"/>
+                        </svg>
+                        Music
+                    </button>
+                    <button class="type-tab" onclick="selectType('text')" data-type="text">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        Text
+                    </button>
+                </div>
+            </div>
+
+            <!-- Style Options -->
+            <div class="style-options">
+                <label class="input-label">Style</label>
+                <div class="style-grid" id="styleGrid">
+                    <!-- Will be populated based on content type -->
+                </div>
+            </div>
+
+            <!-- Generate Section -->
+            <div class="generate-section">
+                <div class="generate-info">
+                    <div class="cost-info">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                        </svg>
+                        <span id="costAmount">5 credits</span>
+                    </div>
+                    <div class="time-info" id="timeEstimate">~30 seconds</div>
+                </div>
+                <button class="generate-btn" id="generateBtn" onclick="startGeneration()" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                    Generate
+                </button>
+            </div>
+
+            <!-- Result Section -->
+            <div class="result-section" id="resultSection">
+                <div class="result-preview" id="resultPreview">🎨</div>
+                <div class="result-info">
+                    <h3 class="result-title" id="resultTitle">Professional Headshot</h3>
+                    <p class="result-description" id="resultDescription">A stunning professional headshot perfect for LinkedIn and business profiles.</p>
+                    <div class="result-actions">
+                        <button class="result-btn secondary" onclick="regenerate()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                <path d="M21 3v5h-5"/>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                <path d="M8 16H3v5"/>
+                            </svg>
+                            Regenerate
+                        </button>
+                        <button class="result-btn primary" onclick="saveResult()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                                <polyline points="17,21 17,13 7,13 7,21"/>
+                                <polyline points="7,3 7,8 15,8"/>
+                            </svg>
+                            Save
+                        </button>
+                        <button class="result-btn secondary" onclick="shareResult()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                                <polyline points="16,6 12,2 8,6"/>
+                                <line x1="12" y1="2" x2="12" y2="15"/>
+                            </svg>
+                            Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3 class="loading-title" id="loadingTitle">Creating your image...</h3>
+            <p class="loading-subtitle" id="loadingSubtitle">AI is analyzing your description and generating the perfect result</p>
+            <div class="loading-progress">
+                <div class="loading-bar"></div>
+            </div>
+            <button class="cancel-btn" onclick="cancelGeneration()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let currentType = 'image';
+        let selectedStyle = 'realistic';
+        let isGenerating = false;
+
+        const stylesByType = {
+            image: [
+                { id: 'realistic', name: 'Realistic', icon: '📷' },
+                { id: 'artistic', name: 'Artistic', icon: '🎨' },
+                { id: 'cartoon', name: 'Cartoon', icon: '🎭' },
+                { id: 'modern', name: 'Modern', icon: '✨' },
+                { id: 'vintage', name: 'Vintage', icon: '📸' },
+                { id: 'minimalist', name: 'Minimal', icon: '⚪' }
+            ],
+            music: [
+                { id: 'upbeat', name: 'Upbeat', icon: '🎵' },
+                { id: 'chill', name: 'Chill', icon: '😌' },
+                { id: 'electronic', name: 'Electronic', icon: '🤖' },
+                { id: 'acoustic', name: 'Acoustic', icon: '🎸' },
+                { id: 'orchestral', name: 'Orchestra', icon: '🎼' },
+                { id: 'ambient', name: 'Ambient', icon: '🌙' }
+            ],
+            text: [
+                { id: 'professional', name: 'Professional', icon: '💼' },
+                { id: 'casual', name: 'Casual', icon: '💬' },
+                { id: 'creative', name: 'Creative', icon: '✍️' },
+                { id: 'persuasive', name: 'Persuasive', icon: '🎯' },
+                { id: 'informative', name: 'Informative', icon: '📚' },
+                { id: 'storytelling', name: 'Story', icon: '📖' }
+            ]
+        };
+
+        const costByType = {
+            image: 5,
+            music: 10,
+            text: 2
+        };
+
+        const timeByType = {
+            image: '~30 seconds',
+            music: '~45 seconds',
+            text: '~10 seconds'
+        };
+
+        function goBack() {
+            window.location.href = '02-main-dashboard-v2.html';
+        }
+
+        function selectType(type) {
+            if (isGenerating) return;
+            
+            currentType = type;
+            
+            // Update tab appearance
+            document.querySelectorAll('.type-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-type="${type}"]`).classList.add('active');
+            
+            // Update style options
+            updateStyleOptions();
+            
+            // Update costs and time
+            updateCostsAndTime();
+            
+            // Add haptic feedback
+            event.target.classList.add('haptic');
+            setTimeout(() => event.target.classList.remove('haptic'), 100);
+        }
+
+        function updateStyleOptions() {
+            const grid = document.getElementById('styleGrid');
+            const styles = stylesByType[currentType];
+            
+            grid.innerHTML = styles.map((style, index) => `
+                <div class="style-option ${index === 0 ? 'selected' : ''}" onclick="selectStyle('${style.id}', this)" data-style="${style.id}">
+                    <div class="style-icon">${style.icon}</div>
+                    <div class="style-name">${style.name}</div>
+                </div>
+            `).join('');
+            
+            selectedStyle = styles[0].id;
+        }
+
+        function selectStyle(styleId, element) {
+            if (isGenerating) return;
+            
+            document.querySelectorAll('.style-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedStyle = styleId;
+            
+            // Add haptic feedback
+            element.classList.add('haptic');
+            setTimeout(() => element.classList.remove('haptic'), 100);
+        }
+
+        function updateCostsAndTime() {
+            document.getElementById('costAmount').textContent = `${costByType[currentType]} credits`;
+            document.getElementById('timeEstimate').textContent = timeByType[currentType];
+        }
+
+        function addSuggestion(suggestion) {
+            const input = document.getElementById('promptInput');
+            const currentValue = input.value.trim();
+            
+            if (currentValue) {
+                input.value = currentValue + ', ' + suggestion;
+            } else {
+                input.value = suggestion;
+            }
+            
+            updateGenerateButton();
+            
+            // Add haptic feedback
+            event.target.classList.add('haptic');
+            setTimeout(() => event.target.classList.remove('haptic'), 100);
+        }
+
+        function clearPrompt() {
+            document.getElementById('promptInput').value = '';
+            updateGenerateButton();
+        }
+
+        function openVoiceInput() {
+            // Simulate voice input
+            alert('Voice input feature coming soon! 🎤');
+        }
+
+        function updateGenerateButton() {
+            const prompt = document.getElementById('promptInput').value.trim();
+            const button = document.getElementById('generateBtn');
+            
+            button.disabled = !prompt || isGenerating;
+        }
+
+        function startGeneration() {
+            const prompt = document.getElementById('promptInput').value.trim();
+            if (!prompt || isGenerating) return;
+            
+            isGenerating = true;
+            updateGenerateButton();
+            
+            // Show loading overlay
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            // Update loading messages based on type
+            const loadingMessages = {
+                image: {
+                    title: 'Creating your image...',
+                    subtitle: 'AI is analyzing your description and generating the perfect visual'
+                },
+                music: {
+                    title: 'Composing your music...',
+                    subtitle: 'AI is creating melodies and harmonies that match your vision'
+                },
+                text: {
+                    title: 'Writing your content...',
+                    subtitle: 'AI is crafting engaging text based on your requirements'
+                }
+            };
+            
+            const messages = loadingMessages[currentType];
+            document.getElementById('loadingTitle').textContent = messages.title;
+            document.getElementById('loadingSubtitle').textContent = messages.subtitle;
+            
+            // Simulate generation process
+            setTimeout(() => {
+                showResult();
+            }, 5000);
+        }
+
+        function cancelGeneration() {
+            isGenerating = false;
+            document.getElementById('loadingOverlay').style.display = 'none';
+            updateGenerateButton();
+        }
+
+        function showResult() {
+            isGenerating = false;
+            document.getElementById('loadingOverlay').style.display = 'none';
+            
+            // Update result based on type and style
+            const resultContent = {
+                image: {
+                    preview: '🖼️',
+                    title: 'Professional Headshot',
+                    description: 'A stunning professional headshot perfect for LinkedIn and business profiles.'
+                },
+                music: {
+                    preview: '🎵',
+                    title: 'Upbeat Energy Track',
+                    description: 'An energetic and motivational track perfect for videos and presentations.'
+                },
+                text: {
+                    preview: '📝',
+                    title: 'Marketing Copy',
+                    description: 'Engaging and persuasive copy that captures attention and drives action.'
+                }
+            };
+            
+            const result = resultContent[currentType];
+            document.getElementById('resultPreview').textContent = result.preview;
+            document.getElementById('resultTitle').textContent = result.title;
+            document.getElementById('resultDescription').textContent = result.description;
+            
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+            
+            updateGenerateButton();
+        }
+
+        function regenerate() {
+            document.getElementById('resultSection').style.display = 'none';
+            // Scroll back to top
+            document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function saveResult() {
+            alert('✨ Saved to your projects! Your creation is now available in your gallery.');
+            setTimeout(() => {
+                window.location.href = '02-main-dashboard-v2.html';
+            }, 1000);
+        }
+
+        function shareResult() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check out what I created with AI!',
+                    text: 'I just created this amazing content using AI Creative Studio',
+                    url: window.location.href
+                });
+            } else {
+                alert('📤 Sharing features coming soon! Your creation will be shareable across all platforms.');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStyleOptions();
+            updateCostsAndTime();
+            updateGenerateButton();
+            
+            // Add touch feedback
+            document.querySelectorAll('button, .suggestion-chip, .style-option').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    if (!this.disabled && !this.classList.contains('haptic')) {
+                        this.style.transform = 'scale(0.98)';
+                    }
+                });
+                
+                element.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

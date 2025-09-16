@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea - AI Creative Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #8b5cf6;
+            --primary-dark: #4f46e5;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --text-white: #ffffff;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            --bg-dark: #1f2937;
+            --bg-darker: #111827;
+            
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-light: #9ca3af;
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-tertiary: #374151;
+            --bg-dark: #f9fafb;
+            --bg-darker: #ffffff;
+            --border: #374151;
+            --border-light: #4b5563;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .mobile-container {
+            max-width: 428px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: var(--bg-primary);
+            position: relative;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            height: 44px;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Screen Container */
+        .screen {
+            display: none;
+            min-height: calc(100vh - 44px);
+            animation: slideInRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--text-white);
+            text-align: center;
+            padding: 60px 24px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.5"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.3"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.4"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            position: relative;
+        }
+
+        .app-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .app-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .app-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .feature-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 18px;
+            background: var(--text-white);
+            color: var(--primary);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Content Screens */
+        .screen-content {
+            flex: 1;
+            padding: 32px 24px 120px;
+            background: var(--bg-primary);
+        }
+
+        .screen-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .screen-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .screen-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Selection Grid */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .selection-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .selection-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .selection-card.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--text-white);
+        }
+
+        .selection-card.selected .card-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .selection-card.selected .card-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Progress Steps */
+        .progress-container {
+            position: fixed;
+            top: 44px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 428px;
+            max-width: 100%;
+            background: var(--bg-primary);
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s;
+        }
+
+        .progress-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .progress-dot.completed {
+            background: var(--success);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 428px;
+            max-width: 100%;
+            background: var(--bg-primary);
+            padding: 16px 24px 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-button {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid var(--border);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-button:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .nav-button.primary {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--text-white);
+        }
+
+        .nav-button.primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Loading State */
+        .loading-state {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 24px;
+            min-height: calc(100vh - 44px);
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 24px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .loading-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Success State */
+        .success-state {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 24px;
+            min-height: calc(100vh - 44px);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .success-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .success-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 428px) {
+            .mobile-container,
+            .progress-container,
+            .navigation {
+                max-width: 100vw;
+                width: 100%;
+            }
+        }
+
+        /* Haptic feedback simulation */
+        .haptic {
+            animation: hapticPulse 0.1s ease-out;
+        }
+
+        @keyframes hapticPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.98); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span>9:41</span>
+            </div>
+            <div class="status-right">
+                <svg width="24" height="12" viewBox="0 0 24 12" fill="currentColor">
+                    <rect x="2" y="3" width="4" height="6" rx="1"/>
+                    <rect x="8" y="2" width="4" height="8" rx="1"/>
+                    <rect x="14" y="1" width="4" height="10" rx="1"/>
+                    <rect x="20" y="4" width="2" height="4" rx="0.5"/>
+                </svg>
+                <svg width="24" height="12" viewBox="0 0 24 12" fill="currentColor">
+                    <rect x="3" y="3" width="18" height="6" rx="3"/>
+                    <rect x="21" y="4.5" width="1.5" height="3" rx="0.75"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-container" id="progressContainer" style="display: none;">
+            <div class="progress-steps">
+                <div class="progress-dot active" id="dot1"></div>
+                <div class="progress-dot" id="dot2"></div>
+                <div class="progress-dot" id="dot3"></div>
+            </div>
+        </div>
+
+        <!-- Welcome Screen -->
+        <div class="screen active" id="screen1">
+            <div class="welcome-screen">
+                <div class="welcome-bg"></div>
+                <div class="app-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                        <path d="M5 3v4"/>
+                        <path d="M19 17v4"/>
+                        <path d="M3 5h4"/>
+                        <path d="M17 19h4"/>
+                    </svg>
+                </div>
+                
+                <h1 class="app-title">AI Creative Studio</h1>
+                <p class="app-subtitle">Create professional content 10x faster with AI assistance</p>
+                
+                <div class="feature-highlights">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <div class="feature-title">Generate in Seconds</div>
+                            <div class="feature-desc">Create images, music, and text instantly</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <div class="feature-title">Professional Quality</div>
+                            <div class="feature-desc">Export-ready content for any platform</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                                <path d="m15 5 4 4"/>
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <div class="feature-title">Endless Possibilities</div>
+                            <div class="feature-desc">From social posts to full productions</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="nextScreen()">Get Started</button>
+            </div>
+        </div>
+
+        <!-- Content Type Selection -->
+        <div class="screen" id="screen2">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <h2 class="screen-title">What do you want to create?</h2>
+                    <p class="screen-subtitle">Choose your primary content type to get personalized tools and templates</p>
+                </div>
+                
+                <div class="selection-grid">
+                    <div class="selection-card" onclick="selectContentType(this, 'images')" data-type="images">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                                <circle cx="9" cy="9" r="2"/>
+                                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Images & Art</h3>
+                        <p class="card-desc">Photos, illustrations, logos, social media posts</p>
+                    </div>
+                    
+                    <div class="selection-card" onclick="selectContentType(this, 'videos')" data-type="videos">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="23 7 16 12 23 17 23 7"/>
+                                <rect width="15" height="14" x="1" y="5" rx="2" ry="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Videos</h3>
+                        <p class="card-desc">Short clips, animations, promotional videos</p>
+                    </div>
+                    
+                    <div class="selection-card" onclick="selectContentType(this, 'music')" data-type="music">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18V5l12-2v13"/>
+                                <circle cx="6" cy="18" r="3"/>
+                                <circle cx="18" cy="16" r="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Music & Audio</h3>
+                        <p class="card-desc">Beats, soundtracks, voiceovers, podcasts</p>
+                    </div>
+                    
+                    <div class="selection-card" onclick="selectContentType(this, 'text')" data-type="text">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Writing</h3>
+                        <p class="card-desc">Articles, scripts, captions, marketing copy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Assistant Selection -->
+        <div class="screen" id="screen3">
+            <div class="screen-content">
+                <div class="screen-header">
+                    <h2 class="screen-title">Choose your AI assistant</h2>
+                    <p class="screen-subtitle">Each assistant specializes in different creative styles to match your vision</p>
+                </div>
+                
+                <div class="selection-grid" id="assistantGrid">
+                    <!-- Will be populated based on content type -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Setup Complete -->
+        <div class="screen" id="screen4">
+            <div class="success-state">
+                <div class="success-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4"/>
+                        <circle cx="12" cy="12" r="10"/>
+                    </svg>
+                </div>
+                
+                <h2 class="success-title">You're all set!</h2>
+                <p class="success-subtitle">Your AI assistant is ready to help you create amazing content. Let's start with your first project!</p>
+                
+                <button class="cta-button" onclick="completeOnboarding()">Start Creating</button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div class="loading-state" id="loadingScreen">
+            <div class="loading-spinner"></div>
+            <h3 class="loading-title">Setting up your studio...</h3>
+            <p class="loading-subtitle">Preparing your AI assistant and tools</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation" id="navigation" style="display: none;">
+            <button class="nav-button" id="backBtn" onclick="prevScreen()">Back</button>
+            <button class="nav-button primary" id="nextBtn" onclick="nextScreen()" disabled>Continue</button>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 1;
+        let selectedContentType = null;
+        let selectedAssistant = null;
+
+        const assistantsByType = {
+            images: [
+                { id: 'visual-pro', name: 'Visual Pro', desc: 'Professional photos & realistic art', icon: 'camera' },
+                { id: 'artist', name: 'Artist', desc: 'Illustrations & creative designs', icon: 'palette' },
+                { id: 'brand-expert', name: 'Brand Expert', desc: 'Logos & marketing materials', icon: 'briefcase' }
+            ],
+            videos: [
+                { id: 'video-pro', name: 'Video Pro', desc: 'Professional video production', icon: 'video' },
+                { id: 'animator', name: 'Animator', desc: 'Motion graphics & animations', icon: 'film' },
+                { id: 'social-creator', name: 'Social Creator', desc: 'Short-form social content', icon: 'smartphone' }
+            ],
+            music: [
+                { id: 'composer', name: 'Composer', desc: 'Original music & soundtracks', icon: 'music' },
+                { id: 'producer', name: 'Producer', desc: 'Beats & electronic music', icon: 'headphones' },
+                { id: 'voice-coach', name: 'Voice Coach', desc: 'Voiceovers & audio editing', icon: 'mic' }
+            ],
+            text: [
+                { id: 'copywriter', name: 'Copywriter', desc: 'Marketing & persuasive copy', icon: 'edit' },
+                { id: 'storyteller', name: 'Storyteller', desc: 'Creative writing & narratives', icon: 'book' },
+                { id: 'social-writer', name: 'Social Writer', desc: 'Captions & social content', icon: 'message-circle' }
+            ]
+        };
+
+        const iconSvgs = {
+            camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/>',
+            palette: '<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2Z"/>',
+            briefcase: '<rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+            video: '<polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/>',
+            film: '<rect width="2" height="20" x="2" y="2" rx="1"/><rect width="2" height="20" x="20" y="2" rx="1"/><path d="m7 2 3 6-3 6 3 6-3 2"/><path d="m17 2-3 6 3 6-3 6 3 2"/>',
+            smartphone: '<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+            music: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+            headphones: '<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
+            mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>',
+            edit: '<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/>',
+            book: '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>',
+            'message-circle': '<path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/>'
+        };
+
+        function nextScreen() {
+            if (currentScreen === 1) {
+                currentScreen = 2;
+                showScreen(currentScreen);
+                showProgress();
+                showNavigation();
+            } else if (currentScreen === 2 && selectedContentType) {
+                populateAssistants();
+                currentScreen = 3;
+                showScreen(currentScreen);
+                updateProgress();
+            } else if (currentScreen === 3 && selectedAssistant) {
+                showLoading();
+                setTimeout(() => {
+                    currentScreen = 4;
+                    showScreen(currentScreen);
+                    hideNavigation();
+                    updateProgress();
+                }, 2000);
+            }
+        }
+
+        function prevScreen() {
+            if (currentScreen > 2) {
+                currentScreen--;
+                showScreen(currentScreen);
+                updateProgress();
+                showNavigation();
+            }
+        }
+
+        function showScreen(screenNum) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(`screen${screenNum}`).classList.add('active');
+            hideLoading();
+        }
+
+        function showProgress() {
+            document.getElementById('progressContainer').style.display = 'block';
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const dots = ['dot1', 'dot2', 'dot3'];
+            dots.forEach((dot, index) => {
+                const element = document.getElementById(dot);
+                if (index < currentScreen - 1) {
+                    element.className = 'progress-dot completed';
+                } else if (index === currentScreen - 1) {
+                    element.className = 'progress-dot active';
+                } else {
+                    element.className = 'progress-dot';
+                }
+            });
+        }
+
+        function showNavigation() {
+            document.getElementById('navigation').style.display = 'flex';
+            updateNavigation();
+        }
+
+        function hideNavigation() {
+            document.getElementById('navigation').style.display = 'none';
+        }
+
+        function updateNavigation() {
+            const backBtn = document.getElementById('backBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            backBtn.style.display = currentScreen > 2 ? 'block' : 'none';
+            
+            let canContinue = false;
+            if (currentScreen === 2) canContinue = selectedContentType !== null;
+            if (currentScreen === 3) canContinue = selectedAssistant !== null;
+            
+            nextBtn.disabled = !canContinue;
+        }
+
+        function selectContentType(element, type) {
+            // Remove previous selection
+            document.querySelectorAll('.selection-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add haptic feedback
+            element.classList.add('haptic');
+            setTimeout(() => element.classList.remove('haptic'), 100);
+            
+            // Select current
+            element.classList.add('selected');
+            selectedContentType = type;
+            
+            updateNavigation();
+        }
+
+        function selectAssistant(element, assistantId) {
+            // Remove previous selection
+            document.querySelectorAll('.selection-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add haptic feedback
+            element.classList.add('haptic');
+            setTimeout(() => element.classList.remove('haptic'), 100);
+            
+            // Select current
+            element.classList.add('selected');
+            selectedAssistant = assistantId;
+            
+            updateNavigation();
+        }
+
+        function populateAssistants() {
+            const assistants = assistantsByType[selectedContentType];
+            const grid = document.getElementById('assistantGrid');
+            
+            grid.innerHTML = assistants.map(assistant => `
+                <div class="selection-card" onclick="selectAssistant(this, '${assistant.id}')" data-assistant="${assistant.id}">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            ${iconSvgs[assistant.icon]}
+                        </svg>
+                    </div>
+                    <h3 class="card-title">${assistant.name}</h3>
+                    <p class="card-desc">${assistant.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function showLoading() {
+            document.getElementById('loadingScreen').style.display = 'flex';
+            hideNavigation();
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingScreen').style.display = 'none';
+        }
+
+        function completeOnboarding() {
+            // Simulate navigation to main app
+            window.location.href = '02-main-dashboard-v2.html';
+        }
+
+        // Add touch feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('button, .selection-card').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    if (!this.disabled) {
+                        this.style.transform = 'scale(0.98)';
+                    }
+                });
+                
+                element.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

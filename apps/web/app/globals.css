@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+body { background: theme(colors.arcanean.bg); color: theme(colors.arcanean.text); }
+
+.panel { background: theme(colors.arcanean.panel); border: 1px solid theme(colors.arcanean.border); }
+.muted { color: theme(colors.arcanean.muted); }
+
+.aurora-text {
+  background: linear-gradient(90deg, #78a6ff, #7fffd4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: color-mix(in srgb, white 6%, transparent);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+}

@@ -10,6 +10,10 @@
   "scripts": {
     "dev": "turbo run dev",
     "dev:academy": "turbo run dev --filter=@arcanea/academy",
+    "dev:web": "turbo run dev --filter=@arcanea/web",
+    "dev:chat": "turbo run dev --filter=@arcanea/chat",
+    "dev:studio": "turbo run dev --filter=@arcanea/studio",
+    "dev:gallery": "turbo run dev --filter=@arcanea/gallery",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",

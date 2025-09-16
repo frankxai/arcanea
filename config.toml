@@ -1,0 +1,2 @@
+approval_policy = "never"          # don't ask before applying patches
+sandbox_mode    = "workspace-write" # read/write inside the repo; safer than full access

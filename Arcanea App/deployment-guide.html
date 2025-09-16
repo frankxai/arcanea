@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Deployment Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #9ca3af;
+            font-size: 1.2rem;
+        }
+
+        /* Progress tracker */
+        .progress-tracker {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-title {
+            color: #3b82f6;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(59, 130, 246, 0.2);
+            z-index: 1;
+        }
+
+        .progress-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 60%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        .step {
+            position: relative;
+            z-index: 2;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .step.completed {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .step.active {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .step.pending {
+            background: rgba(156, 163, 175, 0.2);
+            border: 2px solid #6b7280;
+            color: #9ca3af;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Phase sections */
+        .phase {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .phase h2 {
+            color: #3b82f6;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .phase-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        .task-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .task:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid #6b7280;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .task-checkbox.completed {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .task-checkbox.completed::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .task-description {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .task-time {
+            color: #8b5cf6;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Code blocks */
+        .command-block {
+            background: #0a0a0a;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .command-block::before {
+            content: '$ ';
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 4px;
+            color: #3b82f6;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(59, 130, 246, 0.4);
+        }
+
+        /* Info boxes */
+        .info-box {
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .info-box.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #f59e0b;
+        }
+
+        .info-box.error {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+        }
+
+        .info-box.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+        }
+
+        .info-box.info {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+
+        /* Quick start box */
+        .quick-start {
+            position: sticky;
+            top: 2rem;
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+
+        .quick-start h3 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .quick-start-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quick-link {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 6px;
+            color: #3b82f6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .quick-link:hover {
+            background: rgba(59, 130, 246, 0.4);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .progress-steps {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .progress-line {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Deployment Guide</h1>
+            <p class="subtitle">Complete guide to deploy Arcanea to Google Play Store</p>
+        </header>
+
+        <!-- Quick Start -->
+        <div class="quick-start">
+            <h3>⚡ Quick Start</h3>
+            <div class="quick-start-links">
+                <a href="#prerequisites" class="quick-link">📋 Prerequisites</a>
+                <a href="#environment" class="quick-link">⚙️ Environment Setup</a>
+                <a href="#build" class="quick-link">🔨 Build Process</a>
+                <a href="#deploy" class="quick-link">🚀 Deployment</a>
+            </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="progress-tracker">
+            <h3 class="progress-title">Deployment Progress</h3>
+            <div class="progress-steps">
+                <div class="progress-line"></div>
+                <div class="step completed" title="Prerequisites">1</div>
+                <div class="step active" title="Environment Setup">2</div>
+                <div class="step pending" title="Build & Test">3</div>
+                <div class="step pending" title="Google Play Store">4</div>
+                <div class="step pending" title="Launch">5</div>
+            </div>
+        </div>
+
+        <!-- Phase 1: Prerequisites -->
+        <div class="phase" id="prerequisites">
+            <h2>
+                <div class="phase-icon">📋</div>
+                Phase 1: Prerequisites
+            </h2>
+            
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox completed" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Install Node.js and npm</div>
+                        <div class="task-description">Node.js 18+ required for Expo development</div>
+                    </div>
+                    <div class="task-time">5 min</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox completed" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Create Google Play Developer Account</div>
+                        <div class="task-description">$25 one-time registration fee required</div>
+                    </div>
+                    <div class="task-time">1 day</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox completed" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Get API Keys</div>
+                        <div class="task-description">OpenAI and Anthropic API keys for AI features</div>
+                    </div>
+                    <div class="task-time">10 min</div>
+                </li>
+            </ul>
+
+            <div class="info-box info">
+                <strong>💡 Pro Tip:</strong> Start the Google Play Developer account registration early as it can take 1-2 days for approval.
+            </div>
+        </div>
+
+        <!-- Phase 2: Environment Setup -->
+        <div class="phase" id="environment">
+            <h2>
+                <div class="phase-icon">⚙️</div>
+                Phase 2: Environment Setup
+            </h2>
+            
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Install Expo CLI</div>
+                        <div class="task-description">Global installation of Expo development tools</div>
+                    </div>
+                    <div class="task-time">2 min</div>
+                </li>
+            </ul>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                npm install -g expo-cli eas-cli
+            </div>
+
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Create Expo Account</div>
+                        <div class="task-description">Sign up at expo.dev for build services</div>
+                    </div>
+                    <div class="task-time">5 min</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Configure Environment Variables</div>
+                        <div class="task-description">Set up API keys and secrets</div>
+                    </div>
+                    <div class="task-time">5 min</div>
+                </li>
+            </ul>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                eas secret:create --scope project --name OPENAI_API_KEY --value "your-key-here"
+            </div>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                eas secret:create --scope project --name ANTHROPIC_API_KEY --value "your-key-here"
+            </div>
+        </div>
+
+        <!-- Phase 3: Build & Test -->
+        <div class="phase" id="build">
+            <h2>
+                <div class="phase-icon">🔨</div>
+                Phase 3: Build & Test
+            </h2>
+            
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Install Dependencies</div>
+                        <div class="task-description">Install all required npm packages</div>
+                    </div>
+                    <div class="task-time">3 min</div>
+                </li>
+            </ul>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                cd "Arcanea App" && npm install
+            </div>
+
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Test Local Development</div>
+                        <div class="task-description">Ensure app runs correctly in development</div>
+                    </div>
+                    <div class="task-time">10 min</div>
+                </li>
+            </ul>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                npm start
+            </div>
+
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Configure EAS Build</div>
+                        <div class="task-description">Set up build configuration for production</div>
+                    </div>
+                    <div class="task-time">5 min</div>
+                </li>
+            </ul>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                eas build:configure
+            </div>
+
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Generate Production Build</div>
+                        <div class="task-description">Create Android App Bundle for Google Play</div>
+                    </div>
+                    <div class="task-time">15 min</div>
+                </li>
+            </ul>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                eas build --platform android --profile production
+            </div>
+
+            <div class="info-box warning">
+                <strong>⚠️ Build Time:</strong> The first production build can take 10-15 minutes. Subsequent builds are typically faster.
+            </div>
+        </div>
+
+        <!-- Phase 4: Google Play Store -->
+        <div class="phase" id="deploy">
+            <h2>
+                <div class="phase-icon">🏪</div>
+                Phase 4: Google Play Store
+            </h2>
+            
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Download Build Artifact</div>
+                        <div class="task-description">Get the AAB file from Expo dashboard</div>
+                    </div>
+                    <div class="task-time">2 min</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Create App Listing</div>
+                        <div class="task-description">Set up store page in Google Play Console</div>
+                    </div>
+                    <div class="task-time">30 min</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Upload Screenshots</div>
+                        <div class="task-description">Prepare and upload app screenshots (min 2, recommended 8)</div>
+                    </div>
+                    <div class="task-time">20 min</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Content Rating</div>
+                        <div class="task-description">Complete content rating questionnaire</div>
+                    </div>
+                    <div class="task-time">10 min</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Submit for Review</div>
+                        <div class="task-description">Final submission to Google Play</div>
+                    </div>
+                    <div class="task-time">5 min</div>
+                </li>
+            </ul>
+
+            <div class="info-box success">
+                <strong>✅ Review Process:</strong> Google Play review typically takes 1-3 days for new apps. The app will be available once approved.
+            </div>
+        </div>
+
+        <!-- Phase 5: Launch -->
+        <div class="phase">
+            <h2>
+                <div class="phase-icon">🚀</div>
+                Phase 5: Launch & Monitor
+            </h2>
+            
+            <ul class="task-list">
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Monitor App Store Listing</div>
+                        <div class="task-description">Check app goes live on Google Play Store</div>
+                    </div>
+                    <div class="task-time">Ongoing</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Launch Marketing Campaign</div>
+                        <div class="task-description">Activate social media and PR campaigns</div>
+                    </div>
+                    <div class="task-time">1 day</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Monitor User Feedback</div>
+                        <div class="task-description">Track reviews, ratings, and crash reports</div>
+                    </div>
+                    <div class="task-time">Ongoing</div>
+                </li>
+                <li class="task">
+                    <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                    <div class="task-content">
+                        <div class="task-title">Plan First Update</div>
+                        <div class="task-description">Based on user feedback and analytics</div>
+                    </div>
+                    <div class="task-time">1 week</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="phase">
+            <h2>
+                <div class="phase-icon">🔧</div>
+                Troubleshooting
+            </h2>
+
+            <div class="info-box error">
+                <strong>❌ Build Fails:</strong> Check that all API keys are set in EAS secrets and that package.json dependencies are compatible.
+            </div>
+
+            <div class="info-box warning">
+                <strong>⚠️ App Rejected:</strong> Common rejection reasons include missing privacy policy, inappropriate content ratings, or policy violations. Review Google Play policies carefully.
+            </div>
+
+            <div class="info-box info">
+                <strong>ℹ️ Slow Performance:</strong> If the app is slow on older devices, consider implementing progressive loading and reducing initial bundle size.
+            </div>
+
+            <h3>Common Commands</h3>
+            
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                # Clear Expo cache
+                expo r -c
+            </div>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                # Check build status
+                eas build:list
+            </div>
+
+            <div class="command-block">
+                <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                # Submit to Google Play (if configured)
+                eas submit --platform android
+            </div>
+        </div>
+
+        <!-- Success Metrics -->
+        <div class="phase">
+            <h2>
+                <div class="phase-icon">📊</div>
+                Success Metrics
+            </h2>
+
+            <p style="margin-bottom: 1rem; color: #e5e7eb;">Track these key metrics after launch:</p>
+
+            <ul style="color: #e5e7eb; line-height: 2; padding-left: 2rem;">
+                <li><strong>Downloads:</strong> Target 100+ in first week</li>
+                <li><strong>Ratings:</strong> Maintain 4.0+ average rating</li>
+                <li><strong>Reviews:</strong> Respond to all reviews within 24 hours</li>
+                <li><strong>Crashes:</strong> Keep crash rate below 1%</li>
+                <li><strong>Retention:</strong> Aim for 60% Day 1, 40% Day 7</li>
+                <li><strong>Conversion:</strong> Track user journey from download to first content creation</li>
+            </ul>
+
+            <div class="info-box success">
+                <strong>🎯 Launch Goal:</strong> Achieve a successful launch with positive user feedback and stable performance metrics within the first week.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTask(checkbox) {
+            checkbox.classList.toggle('completed');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const completed = document.querySelectorAll('.task-checkbox.completed').length;
+            const total = document.querySelectorAll('.task-checkbox').length;
+            const percentage = Math.round((completed / total) * 100);
+            
+            // Update progress line
+            const progressLine = document.querySelector('.progress-line::before');
+            if (progressLine) {
+                progressLine.style.width = percentage + '%';
+            }
+            
+            // Update step states
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                const stepPercentage = ((index + 1) / steps.length) * 100;
+                
+                step.classList.remove('completed', 'active', 'pending');
+                
+                if (percentage >= stepPercentage) {
+                    step.classList.add('completed');
+                } else if (percentage >= stepPercentage - 20) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.add('pending');
+                }
+            });
+        }
+
+        function copyCommand(button) {
+            const codeBlock = button.parentElement;
+            const text = codeBlock.textContent.replace('Copy', '').trim();
+            
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                button.style.background = 'rgba(16, 185, 129, 0.4)';
+                
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.style.background = 'rgba(59, 130, 246, 0.2)';
+                }, 2000);
+            });
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>

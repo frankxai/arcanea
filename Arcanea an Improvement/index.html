@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arcanea — Improvement Strategy Hub</title>
+    <style>
+      :root {
+        --bg: #0b0f17;
+        --fg: #e6e9f0;
+        --accent: #7c5cff;
+        --card: rgba(255,255,255,0.05);
+        --ring: rgba(124,92,255,.35);
+      }
+      body { background: radial-gradient(1200px 800px at 20% -10%, #1a1234 0%, transparent 50%),
+                          radial-gradient(800px 600px at 120% 10%, #0f2a3a 0%, transparent 50%),
+                          var(--bg); color: var(--fg); font: 15px/1.6 Inter, ui-sans-serif, system-ui; margin: 0; padding: 32px; }
+      h1 { font-size: 28px; margin: 0 0 16px; }
+      p.lead { color: #cbd5e1; margin: 0 0 24px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+      .card { background: var(--card); border-radius: 16px; padding: 16px; border: 1px solid rgba(255,255,255,0.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04); backdrop-filter: blur(10px); }
+      .card a { color: var(--fg); text-decoration: none; display: block; }
+      .card a:hover { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 12px; }
+      .muted { color: #9aa5b1; font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>Arcanea — Improvement Strategy Hub</h1>
+    <p class="lead">Start here to navigate the assessment, target architecture, design system, agent model, and the migration roadmap.</p>
+    <div class="grid">
+      <div class="card"><a href="00_Ecosystem_Assessment.md">Ecosystem Assessment</a><div class="muted">Current gaps and priorities</div></div>
+      <div class="card"><a href="01_Product_and_Repo_Architecture.md">Product & Repo Architecture</a><div class="muted">Target topology and domains</div></div>
+      <div class="card"><a href="02_Design_System_and_Branding.md">Design System & Branding</a><div class="muted">Aether UI stack and tokens</div></div>
+      <div class="card"><a href="03_Agent_Operating_Model_AGENTS.md">Agent Operating Model</a><div class="muted">Roles, guardrails, prompts</div></div>
+      <div class="card"><a href="04_Knowledge_Base_Governance.md">Knowledge Base Governance</a><div class="muted">Trust levels, headers, glossary</div></div>
+      <div class="card"><a href="05_Repo_Restructure_and_Migration.md">Repo Restructure Plan</a><div class="muted">Moves, rules, rollback</div></div>
+      <div class="card"><a href="06_Roadmap_and_Milestones.md">Roadmap & Milestones</a><div class="muted">Phases, weeks, deliverables</div></div>
+      <div class="card"><a href="07_Tomorrow_Plan.md">Tomorrow’s Plan</a><div class="muted">Day 1 tasks</div></div>
+      <div class="card"><a href="08_Standards_and_Templates.md">Standards & Templates</a><div class="muted">ADR, PR, glossary starter</div></div>
+      <div class="card"><a href="agents/ui-ux.md">Agent Prompts</a><div class="muted">UI/UX, FE, BE, DB, QA, etc.</div></div>
+    </div>
+  </body>
+  </html>
+

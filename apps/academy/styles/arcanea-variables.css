@@ -1,0 +1,540 @@
+/**
+ * 🎨 Arcanea Design System Variables
+ * Comprehensive CSS custom properties for the magical design system
+ */
+
+:root {
+  /* ===== FOUNDATION COLORS ===== */
+  
+  /* Void Color System */
+  --void-50: #f8fafc;
+  --void-100: #f1f5f9;
+  --void-200: #e2e8f0;
+  --void-300: #cbd5e1;
+  --void-400: #94a3b8;
+  --void-500: #64748b;
+  --void-600: #475569;
+  --void-700: #334155;
+  --void-800: #1e293b;
+  --void-900: #0f172a;
+  --void-950: #020617;
+
+  /* Mystic Primary Colors */
+  --mystic-50: #f0f4ff;
+  --mystic-100: #e0e9ff;
+  --mystic-200: #c7d6fe;
+  --mystic-300: #a5b8fc;
+  --mystic-400: #8b94f8;
+  --mystic-500: #7c6df2;
+  --mystic-600: #6d4de6;
+  --mystic-700: #5d3dcb;
+  --mystic-800: #4e32a3;
+  --mystic-900: #422b82;
+  --mystic-950: #2a1a4f;
+
+  /* ===== LUMINOR CHARACTER COLORS ===== */
+  
+  /* Harmonix - Music & Audio */
+  --harmonix-50: #fff1f2;
+  --harmonix-100: #ffe4e6;
+  --harmonix-200: #fecdd3;
+  --harmonix-300: #fda4af;
+  --harmonix-400: #fb7185;
+  --harmonix-500: #f43f5e;
+  --harmonix-600: #e11d48;
+  --harmonix-700: #be123c;
+  --harmonix-800: #9f1239;
+  --harmonix-900: #881337;
+  --harmonix-950: #4c0519;
+
+  /* Lumina - Visual Creation */
+  --lumina-50: #eff6ff;
+  --lumina-100: #dbeafe;
+  --lumina-200: #bfdbfe;
+  --lumina-300: #93c5fd;
+  --lumina-400: #60a5fa;
+  --lumina-500: #3b82f6;
+  --lumina-600: #2563eb;
+  --lumina-700: #1d4ed8;
+  --lumina-800: #1e40af;
+  --lumina-900: #1e3a8a;
+  --lumina-950: #172554;
+
+  /* Scripta - Writing & Narrative */
+  --scripta-50: #ecfdf5;
+  --scripta-100: #d1fae5;
+  --scripta-200: #a7f3d0;
+  --scripta-300: #6ee7b7;
+  --scripta-400: #34d399;
+  --scripta-500: #10b981;
+  --scripta-600: #059669;
+  --scripta-700: #047857;
+  --scripta-800: #065f46;
+  --scripta-900: #064e3b;
+  --scripta-950: #022c22;
+
+  /* Kinetix - Movement & Video */
+  --kinetix-50: #fefce8;
+  --kinetix-100: #fef9c3;
+  --kinetix-200: #fef08a;
+  --kinetix-300: #fde047;
+  --kinetix-400: #facc15;
+  --kinetix-500: #eab308;
+  --kinetix-600: #ca8a04;
+  --kinetix-700: #a16207;
+  --kinetix-800: #854d0e;
+  --kinetix-900: #713f12;
+  --kinetix-950: #422006;
+
+  /* Syntaxa - Code & Logic */
+  --syntaxa-50: #f5f3ff;
+  --syntaxa-100: #ede9fe;
+  --syntaxa-200: #ddd6fe;
+  --syntaxa-300: #c4b5fd;
+  --syntaxa-400: #a78bfa;
+  --syntaxa-500: #8b5cf6;
+  --syntaxa-600: #7c3aed;
+  --syntaxa-700: #6d28d9;
+  --syntaxa-800: #5b21b6;
+  --syntaxa-900: #4c1d95;
+  --syntaxa-950: #2e1065;
+
+  /* Nexus - Connection & Integration */
+  --nexus-50: #f0fdf4;
+  --nexus-100: #dcfce7;
+  --nexus-200: #bbf7d0;
+  --nexus-300: #86efac;
+  --nexus-400: #4ade80;
+  --nexus-500: #22c55e;
+  --nexus-600: #16a34a;
+  --nexus-700: #15803d;
+  --nexus-800: #166534;
+  --nexus-900: #14532d;
+  --nexus-950: #052e16;
+
+  /* ===== PREMIUM GRADIENTS ===== */
+  
+  /* Primary Brand Gradients */
+  --gradient-mystic-aurora: linear-gradient(135deg, var(--mystic-500) 0%, var(--mystic-400) 50%, var(--mystic-300) 100%);
+  --gradient-void-magic: linear-gradient(135deg, var(--void-950) 0%, var(--void-900) 50%, var(--void-800) 100%);
+  --gradient-ethereal-mist: linear-gradient(135deg, var(--mystic-50) 0%, var(--mystic-100) 50%, var(--mystic-200) 100%);
+  
+  /* Luminor Character Gradients */
+  --gradient-harmonix-flow: linear-gradient(135deg, var(--harmonix-500) 0%, var(--harmonix-400) 50%, var(--harmonix-300) 100%);
+  --gradient-lumina-glow: linear-gradient(135deg, var(--lumina-500) 0%, var(--lumina-400) 50%, var(--lumina-300) 100%);
+  --gradient-scripta-garden: linear-gradient(135deg, var(--scripta-500) 0%, var(--scripta-400) 50%, var(--scripta-300) 100%);
+  --gradient-kinetix-energy: linear-gradient(135deg, var(--kinetix-500) 0%, var(--kinetix-400) 50%, var(--kinetix-300) 100%);
+  --gradient-syntaxa-logic: linear-gradient(135deg, var(--syntaxa-500) 0%, var(--syntaxa-400) 50%, var(--syntaxa-300) 100%);
+  --gradient-nexus-connection: linear-gradient(135deg, var(--nexus-500) 0%, var(--nexus-400) 50%, var(--nexus-300) 100%);
+
+  /* Complex Multi-Stop Gradients */
+  --gradient-aurora-grained: linear-gradient(135deg, 
+    var(--mystic-600) 0%, 
+    var(--mystic-500) 25%, 
+    var(--harmonix-500) 50%, 
+    var(--lumina-500) 75%, 
+    var(--scripta-500) 100%);
+  
+  --gradient-cosmic-spectrum: linear-gradient(135deg,
+    var(--void-950) 0%,
+    var(--mystic-900) 20%,
+    var(--lumina-800) 40%,
+    var(--scripta-700) 60%,
+    var(--harmonix-600) 80%,
+    var(--kinetix-500) 100%);
+
+  --gradient-luminor-rainbow: linear-gradient(90deg,
+    var(--harmonix-500) 0%,
+    var(--lumina-500) 16.666%,
+    var(--scripta-500) 33.333%,
+    var(--kinetix-500) 50%,
+    var(--syntaxa-500) 66.666%,
+    var(--nexus-500) 83.333%,
+    var(--mystic-500) 100%);
+
+  /* Glass Background Effects */
+  --gradient-glass-light: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  
+  --gradient-glass-dark: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.2) 0%, 
+    rgba(0, 0, 0, 0.1) 100%);
+
+  /* Interactive State Gradients */
+  --gradient-hover-shimmer: linear-gradient(135deg, 
+    rgba(124, 109, 242, 0.1) 0%, 
+    rgba(167, 139, 250, 0.1) 100%);
+  
+  --gradient-active-glow: linear-gradient(135deg, 
+    rgba(124, 109, 242, 0.2) 0%, 
+    rgba(167, 139, 250, 0.2) 100%);
+  
+  --gradient-focus-ring: linear-gradient(135deg, 
+    rgba(124, 109, 242, 0.3) 0%, 
+    rgba(167, 139, 250, 0.3) 100%);
+
+  /* Animated Gradient Effects */
+  --gradient-shimmer: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%);
+  
+  --gradient-shimmer-colored: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(124, 109, 242, 0.4) 50%, 
+    transparent 100%);
+
+  /* Background Pattern Gradients */
+  --gradient-radial-void: radial-gradient(ellipse at center, 
+    var(--void-900) 0%, 
+    var(--void-950) 70%, 
+    #000000 100%);
+  
+  --gradient-radial-mystic: radial-gradient(ellipse at center, 
+    var(--mystic-500) 0%, 
+    var(--mystic-700) 50%, 
+    var(--void-900) 100%);
+
+  /* ===== SHADOWS & EFFECTS ===== */
+  
+  /* Standard Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Glass Morphism Shadows */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --shadow-glass-lg: 0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* Magical Glows */
+  --shadow-magical: 0 0 20px rgba(124, 109, 242, 0.3), 0 0 40px rgba(124, 109, 242, 0.1);
+  --shadow-magical-strong: 0 0 30px rgba(124, 109, 242, 0.6), 0 0 60px rgba(124, 109, 242, 0.2);
+
+  /* Luminor-Specific Glows */
+  --shadow-harmonix: 0 20px 40px rgba(244, 63, 94, 0.3);
+  --shadow-lumina: 0 20px 40px rgba(59, 130, 246, 0.3);
+  --shadow-scripta: 0 20px 40px rgba(16, 185, 129, 0.3);
+  --shadow-kinetix: 0 20px 40px rgba(234, 179, 8, 0.3);
+  --shadow-syntaxa: 0 20px 40px rgba(139, 92, 246, 0.3);
+  --shadow-nexus: 0 20px 40px rgba(34, 197, 94, 0.3);
+
+  /* Enhanced Luminor Glows */
+  --glow-harmonix: 0 0 20px rgba(244, 63, 94, 0.4), 0 0 40px rgba(244, 63, 94, 0.2), 0 0 80px rgba(244, 63, 94, 0.1);
+  --glow-lumina: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2), 0 0 80px rgba(59, 130, 246, 0.1);
+  --glow-scripta: 0 0 20px rgba(16, 185, 129, 0.4), 0 0 40px rgba(16, 185, 129, 0.2), 0 0 80px rgba(16, 185, 129, 0.1);
+  --glow-kinetix: 0 0 20px rgba(234, 179, 8, 0.4), 0 0 40px rgba(234, 179, 8, 0.2), 0 0 80px rgba(234, 179, 8, 0.1);
+  --glow-syntaxa: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2), 0 0 80px rgba(139, 92, 246, 0.1);
+  --glow-nexus: 0 0 20px rgba(34, 197, 94, 0.4), 0 0 40px rgba(34, 197, 94, 0.2), 0 0 80px rgba(34, 197, 94, 0.1);
+
+  /* ===== TYPOGRAPHY ===== */
+  
+  /* Font Families */
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Inter Display Variable', 'Inter Display', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', 'Fira Code', monospace;
+  --font-magical: 'Cinzel Decorative', 'Cinzel', serif;
+  --font-scroll: 'Playfair Display Variable', 'Playfair Display', serif;
+
+  /* Font Sizes with Line Heights */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+  --text-6xl: 3.75rem; /* 60px */
+  --text-7xl: 4.5rem; /* 72px */
+  --text-8xl: 6rem; /* 96px */
+  --text-9xl: 8rem; /* 128px */
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* ===== SPACING & SIZING ===== */
+  
+  /* Base Spacing Scale (0.25rem = 4px) */
+  --space-0: 0rem; /* 0px */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-7: 1.75rem; /* 28px */
+  --space-8: 2rem; /* 32px */
+  --space-9: 2.25rem; /* 36px */
+  --space-10: 2.5rem; /* 40px */
+  --space-11: 2.75rem; /* 44px */
+  --space-12: 3rem; /* 48px */
+  --space-14: 3.5rem; /* 56px */
+  --space-16: 4rem; /* 64px */
+  --space-18: 4.5rem; /* 72px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+  --space-28: 7rem; /* 112px */
+  --space-32: 8rem; /* 128px */
+  --space-36: 9rem; /* 144px */
+  --space-40: 10rem; /* 160px */
+  --space-44: 11rem; /* 176px */
+  --space-48: 12rem; /* 192px */
+  --space-52: 13rem; /* 208px */
+  --space-56: 14rem; /* 224px */
+  --space-60: 15rem; /* 240px */
+  --space-64: 16rem; /* 256px */
+  --space-72: 18rem; /* 288px */
+  --space-80: 20rem; /* 320px */
+  --space-96: 24rem; /* 384px */
+
+  /* Safe Area Insets for Mobile */
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-right: env(safe-area-inset-right);
+  --safe-area-bottom: env(safe-area-inset-bottom);
+  --safe-area-left: env(safe-area-inset-left);
+
+  /* ===== BORDER RADIUS ===== */
+  
+  --radius-none: 0rem;
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-3xl: 1.5rem; /* 24px */
+  --radius-4xl: 2rem; /* 32px */
+  --radius-full: 9999px;
+
+  /* ===== Z-INDEX SCALE ===== */
+  
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-30: 30;
+  --z-40: 40;
+  --z-50: 50;
+  --z-auto: auto;
+
+  /* Component-Specific Z-Index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* ===== BREAKPOINTS ===== */
+  
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* ===== ANIMATION DURATIONS ===== */
+  
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
+
+  /* ===== ANIMATION EASING ===== */
+  
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-magical: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+  /* ===== BLUR VALUES ===== */
+  
+  --blur-none: 0;
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 16px;
+  --blur-xl: 24px;
+  --blur-2xl: 40px;
+  --blur-3xl: 64px;
+
+  /* ===== GLASS MORPHISM PROPERTIES ===== */
+  
+  /* Primary Glass Effect */
+  --glass-bg-primary: rgba(255, 255, 255, 0.08);
+  --glass-backdrop-primary: blur(20px) saturate(180%);
+  --glass-border-primary: rgba(255, 255, 255, 0.16);
+  --glass-shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  /* Secondary Glass Effect */
+  --glass-bg-secondary: rgba(255, 255, 255, 0.05);
+  --glass-backdrop-secondary: blur(16px) saturate(150%);
+  --glass-border-secondary: rgba(255, 255, 255, 0.12);
+  --glass-shadow-secondary: 0 4px 16px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+  /* Subtle Glass Effect */
+  --glass-bg-subtle: rgba(255, 255, 255, 0.03);
+  --glass-backdrop-subtle: blur(12px) saturate(120%);
+  --glass-border-subtle: rgba(255, 255, 255, 0.08);
+  --glass-shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  /* Dark Glass Effect */
+  --glass-bg-dark: rgba(0, 0, 0, 0.2);
+  --glass-backdrop-dark: blur(20px) saturate(180%);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== DARK MODE OVERRIDES ===== */
+
+:root.dark {
+  /* Enhanced shadows for dark mode */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  
+  /* Enhanced glass effects for dark mode */
+  --glass-bg-primary: rgba(255, 255, 255, 0.1);
+  --glass-bg-secondary: rgba(255, 255, 255, 0.07);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== LIGHT MODE OVERRIDES ===== */
+
+:root.light {
+  /* Softer shadows for light mode */
+  --shadow-magical: 0 0 20px rgba(124, 109, 242, 0.2), 0 0 40px rgba(124, 109, 242, 0.05);
+  
+  /* Lighter glass effects */
+  --glass-bg-primary: rgba(255, 255, 255, 0.6);
+  --glass-bg-secondary: rgba(255, 255, 255, 0.4);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.3);
+  --glass-backdrop-primary: blur(20px) saturate(200%);
+  --glass-shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-75: 0ms;
+    --duration-100: 0ms;
+    --duration-150: 0ms;
+    --duration-200: 0ms;
+    --duration-300: 0ms;
+    --duration-500: 0ms;
+    --duration-700: 0ms;
+    --duration-1000: 0ms;
+  }
+  
+  /* Disable complex animations but keep essential transitions */
+  * {
+    animation-duration: 0ms !important;
+    animation-delay: 0ms !important;
+  }
+  
+  /* Keep focus and hover transitions for accessibility */
+  *:hover,
+  *:focus,
+  *:focus-visible {
+    transition-duration: 150ms !important;
+  }
+}
+
+/* ===== HIGH CONTRAST MODE SUPPORT ===== */
+
+@media (prefers-contrast: high) {
+  :root {
+    /* Increase opacity for better visibility */
+    --glass-bg-primary: rgba(255, 255, 255, 0.9);
+    --glass-bg-secondary: rgba(255, 255, 255, 0.8);
+    --glass-bg-subtle: rgba(255, 255, 255, 0.7);
+    
+    /* Remove blur effects that may reduce contrast */
+    --glass-backdrop-primary: saturate(180%);
+    --glass-backdrop-secondary: saturate(150%);
+    --glass-backdrop-subtle: saturate(120%);
+    
+    /* Strengthen borders */
+    --glass-border-primary: rgba(0, 0, 0, 0.5);
+    --glass-border-secondary: rgba(0, 0, 0, 0.3);
+    --glass-border-subtle: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ===== PRINT MODE OPTIMIZATIONS ===== */
+
+@media print {
+  :root {
+    /* Remove all glass effects and shadows for print */
+    --glass-bg-primary: #ffffff;
+    --glass-bg-secondary: #f8f9fa;
+    --glass-bg-subtle: #f1f3f4;
+    
+    --glass-backdrop-primary: none;
+    --glass-backdrop-secondary: none;
+    --glass-backdrop-subtle: none;
+    
+    --shadow-xs: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --shadow-xl: none;
+    --shadow-magical: none;
+  }
+}
+
+/* ===== UTILITY CLASSES USING VARIABLES ===== */
+
+.gradient-mystic { background: var(--gradient-mystic-aurora); }
+.gradient-void { background: var(--gradient-void-magic); }
+.gradient-harmonix { background: var(--gradient-harmonix-flow); }
+.gradient-lumina { background: var(--gradient-lumina-glow); }
+.gradient-scripta { background: var(--gradient-scripta-garden); }
+.gradient-kinetix { background: var(--gradient-kinetix-energy); }
+.gradient-syntaxa { background: var(--gradient-syntaxa-logic); }
+.gradient-nexus { background: var(--gradient-nexus-connection); }
+
+.glow-harmonix { box-shadow: var(--glow-harmonix); }
+.glow-lumina { box-shadow: var(--glow-lumina); }
+.glow-scripta { box-shadow: var(--glow-scripta); }
+.glow-kinetix { box-shadow: var(--glow-kinetix); }
+.glow-syntaxa { box-shadow: var(--glow-syntaxa); }
+.glow-nexus { box-shadow: var(--glow-nexus); }
+
+.shadow-magical { box-shadow: var(--shadow-magical); }
+.shadow-magical-strong { box-shadow: var(--shadow-magical-strong); }
+
+.text-magical { 
+  background: var(--gradient-luminor-rainbow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

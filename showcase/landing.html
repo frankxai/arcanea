@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arcanea Landing (Showcase)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --bg: #0b0e14; --panel:#121826; --text:#e6eefc; --muted:#9bb1d0; --accent:#78a6ff; --border:#233049; }
+    body { background: var(--bg); color: var(--text); }
+    .panel { background: var(--panel); border: 1px solid var(--border); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <main class="max-w-6xl mx-auto p-4">
+    <div class="panel rounded-2xl p-10 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-40" style="background:
+        radial-gradient(600px 400px at 20% 10%, rgba(127,255,212,.15), transparent),
+        radial-gradient(700px 500px at 80% 30%, rgba(120,166,255,.15), transparent)"></div>
+      <div class="relative">
+        <h1 class="text-4xl md:text-6xl font-bold">Where imagination becomes reality</h1>
+        <p class="text-lg text-[var(--muted)] mt-4 max-w-2xl">Forge your own realm, partner with AI Guardians, and manifest worlds across text, image, video, and code.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="#" class="px-5 py-3 rounded-md bg-[var(--accent)] text-black font-semibold">Try Chat</a>
+          <a href="#" class="px-5 py-3 rounded-md border border-[var(--accent)]">Open Studio</a>
+        </div>
+      </div>
+    </div>
+    <section class="grid md:grid-cols-3 gap-4 mt-8">
+      <div class="panel rounded-xl p-5">
+        <h3 class="font-semibold">Chat</h3>
+        <p class="text-[var(--muted)]">Conversational creation with Vercel AI SDK.</p>
+      </div>
+      <div class="panel rounded-xl p-5">
+        <h3 class="font-semibold">Studio</h3>
+        <p class="text-[var(--muted)]">Image + video adapters (OpenAI, Replicate, Fal).</p>
+      </div>
+      <div class="panel rounded-xl p-5">
+        <h3 class="font-semibold">Gallery</h3>
+        <p class="text-[var(--muted)]">Curated showcase with shareable embeds.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

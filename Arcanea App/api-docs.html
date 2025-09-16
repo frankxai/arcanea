@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea API Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            color: #9ca3af;
+            font-size: 1.2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #3b82f6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .nav-tab.active {
+            background: rgba(59, 130, 246, 0.4);
+            color: white;
+        }
+
+        /* API Sections */
+        .api-section {
+            display: none;
+        }
+
+        .api-section.active {
+            display: block;
+        }
+
+        .endpoint {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .method {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .method.get { background: #10b981; }
+        .method.post { background: #3b82f6; }
+        .method.put { background: #f59e0b; }
+        .method.delete { background: #ef4444; }
+
+        .endpoint-path {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: #e5e7eb;
+        }
+
+        .endpoint-description {
+            color: #9ca3af;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #0a0a0a;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #e5e7eb;
+            white-space: pre-wrap;
+        }
+
+        .code-label {
+            color: #3b82f6;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Parameters table */
+        .params-table {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+        }
+
+        .params-table th {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .params-table td {
+            padding: 0.75rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .param-name {
+            font-family: 'JetBrains Mono', monospace;
+            color: #3b82f6;
+        }
+
+        .param-type {
+            font-family: 'JetBrains Mono', monospace;
+            color: #10b981;
+            font-size: 0.875rem;
+        }
+
+        .param-required {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        /* Response examples */
+        .response-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .response-tab {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 4px;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .response-tab.active {
+            background: rgba(59, 130, 246, 0.3);
+            color: white;
+        }
+
+        .response-content {
+            display: none;
+        }
+
+        .response-content.active {
+            display: block;
+        }
+
+        /* Status codes */
+        .status-code {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+        }
+
+        .status-code.success { background: #10b981; }
+        .status-code.error { background: #ef4444; }
+
+        /* Try it out */
+        .try-it {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .try-it h4 {
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 6px;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .input-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Rate limits */
+        .rate-limit {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .rate-limit-title {
+            color: #ef4444;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Arcanea API Documentation</h1>
+            <p class="subtitle">Complete API reference for the Arcanea ecosystem</p>
+        </header>
+
+        <nav>
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="showSection('chat')">Chat API</div>
+                <div class="nav-tab" onclick="showSection('luminors')">Luminors API</div>
+                <div class="nav-tab" onclick="showSection('content')">Content API</div>
+                <div class="nav-tab" onclick="showSection('auth')">Authentication</div>
+                <div class="nav-tab" onclick="showSection('webhooks')">Webhooks</div>
+            </div>
+        </nav>
+
+        <!-- Chat API Section -->
+        <div class="api-section active" id="chat">
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/chat</span>
+                </div>
+                <p class="endpoint-description">
+                    Send a message to the Arcanea SuperAgent and receive an AI-generated response.
+                    Supports streaming responses and conversation context.
+                </p>
+
+                <h3>Request Parameters</h3>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="param-name">messages</td>
+                            <td class="param-type">Array</td>
+                            <td class="param-required">Yes</td>
+                            <td>Array of message objects with role and content</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">model</td>
+                            <td class="param-type">String</td>
+                            <td>No</td>
+                            <td>AI model to use (default: gpt-4-turbo-preview)</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">temperature</td>
+                            <td class="param-type">Number</td>
+                            <td>No</td>
+                            <td>Creativity level 0-1 (default: 0.7)</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">stream</td>
+                            <td class="param-type">Boolean</td>
+                            <td>No</td>
+                            <td>Enable streaming responses (default: true)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="code-label">Request Example</div>
+                <div class="code-block">
+                    <pre>{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Help me write a fantasy novel opening"
+    }
+  ],
+  "model": "gpt-4-turbo-preview",
+  "temperature": 0.8,
+  "stream": true
+}</pre>
+                </div>
+
+                <h3>Response</h3>
+                <div class="response-tabs">
+                    <div class="response-tab active" onclick="showResponse('chat-success')">Success 200</div>
+                    <div class="response-tab" onclick="showResponse('chat-error')">Error 400</div>
+                </div>
+
+                <div class="response-content active" id="chat-success">
+                    <div class="code-block">
+                        <pre>{
+  "id": "msg_abc123",
+  "object": "chat.completion",
+  "created": 1699999999,
+  "model": "gpt-4-turbo-preview",
+  "choices": [{
+    "message": {
+      "role": "assistant",
+      "content": "The mist rolled across the ancient bridge like..."
+    },
+    "finish_reason": "stop"
+  }]
+}</pre>
+                    </div>
+                </div>
+
+                <div class="response-content" id="chat-error">
+                    <div class="code-block">
+                        <pre>{
+  "error": {
+    "message": "Invalid request format",
+    "type": "invalid_request_error",
+    "code": "invalid_messages"
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="rate-limit">
+                    <div class="rate-limit-title">⚠️ Rate Limits</div>
+                    <p>60 requests per minute per user</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Luminors API Section -->
+        <div class="api-section" id="luminors">
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/luminors/scripta</span>
+                </div>
+                <p class="endpoint-description">
+                    Access Scripta, the book authoring Luminor for writing assistance and content generation.
+                </p>
+
+                <h3>Request Parameters</h3>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="param-name">action</td>
+                            <td class="param-type">String</td>
+                            <td class="param-required">Yes</td>
+                            <td>Action type: generate, edit, analyze, export</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">content</td>
+                            <td class="param-type">String</td>
+                            <td>No</td>
+                            <td>Existing content to work with</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">prompt</td>
+                            <td class="param-type">String</td>
+                            <td class="param-required">Yes</td>
+                            <td>Instructions for the Luminor</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">format</td>
+                            <td class="param-type">String</td>
+                            <td>No</td>
+                            <td>Output format: text, markdown, pdf, epub</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/luminors/lumina</span>
+                </div>
+                <p class="endpoint-description">
+                    Generate images using Lumina, the AI image generation Luminor powered by DALL-E 3.
+                </p>
+
+                <h3>Request Parameters</h3>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="param-name">prompt</td>
+                            <td class="param-type">String</td>
+                            <td class="param-required">Yes</td>
+                            <td>Image description prompt</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">style</td>
+                            <td class="param-type">String</td>
+                            <td>No</td>
+                            <td>Art style: photorealistic, digital-art, anime, etc.</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">size</td>
+                            <td class="param-type">String</td>
+                            <td>No</td>
+                            <td>Image size: 1024x1024, 1792x1024, 1024x1792</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">quality</td>
+                            <td class="param-type">String</td>
+                            <td>No</td>
+                            <td>Quality level: standard or hd</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/luminors/kinetix</span>
+                </div>
+                <p class="endpoint-description">
+                    Create videos using Kinetix, the AI video generation Luminor.
+                </p>
+
+                <h3>Request Parameters</h3>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="param-name">prompt</td>
+                            <td class="param-type">String</td>
+                            <td class="param-required">Yes</td>
+                            <td>Video scene description</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">duration</td>
+                            <td class="param-type">Number</td>
+                            <td>No</td>
+                            <td>Video duration in seconds (15, 30, 60)</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">style</td>
+                            <td class="param-type">String</td>
+                            <td>No</td>
+                            <td>Video style: cinematic, animation, documentary</td>
+                        </tr>
+                        <tr>
+                            <td class="param-name">resolution</td>
+                            <td class="param-type">String</td>
+                            <td>No</td>
+                            <td>Output resolution: 720p, 1080p, 4k</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Content API Section -->
+        <div class="api-section" id="content">
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/api/content/projects</span>
+                </div>
+                <p class="endpoint-description">
+                    Retrieve all user projects across different Luminors.
+                </p>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/content/save</span>
+                </div>
+                <p class="endpoint-description">
+                    Save project content to the Arcanea cloud storage.
+                </p>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/content/export</span>
+                </div>
+                <p class="endpoint-description">
+                    Export content in various formats (PDF, EPUB, MP4, etc.).
+                </p>
+            </div>
+        </div>
+
+        <!-- Authentication Section -->
+        <div class="api-section" id="auth">
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/auth/login</span>
+                </div>
+                <p class="endpoint-description">
+                    Authenticate user and receive access tokens.
+                </p>
+
+                <h3>Headers</h3>
+                <div class="code-block">
+                    <pre>Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json</pre>
+                </div>
+
+                <h3>API Key Management</h3>
+                <p style="color: #9ca3af; line-height: 1.6; margin-top: 1rem;">
+                    API keys can be generated from your Arcanea dashboard. Keep your API keys secure and never expose them in client-side code.
+                    Use environment variables to store sensitive credentials.
+                </p>
+
+                <div class="rate-limit">
+                    <div class="rate-limit-title">⚠️ Security Best Practices</div>
+                    <ul style="color: #e5e7eb; line-height: 1.8; padding-left: 1.5rem;">
+                        <li>Rotate API keys regularly</li>
+                        <li>Use separate keys for development and production</li>
+                        <li>Implement IP whitelisting when possible</li>
+                        <li>Monitor API usage for unusual patterns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Webhooks Section -->
+        <div class="api-section" id="webhooks">
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/api/webhooks/configure</span>
+                </div>
+                <p class="endpoint-description">
+                    Configure webhook endpoints to receive real-time updates about content generation, project changes, and system events.
+                </p>
+
+                <h3>Available Events</h3>
+                <ul style="color: #e5e7eb; line-height: 1.8; padding-left: 1.5rem; margin: 1rem 0;">
+                    <li><code style="color: #3b82f6;">content.generated</code> - When new content is created</li>
+                    <li><code style="color: #3b82f6;">project.updated</code> - When a project is modified</li>
+                    <li><code style="color: #3b82f6;">export.completed</code> - When export process finishes</li>
+                    <li><code style="color: #3b82f6;">luminor.response</code> - When a Luminor completes processing</li>
+                </ul>
+
+                <h3>Webhook Payload Example</h3>
+                <div class="code-block">
+                    <pre>{
+  "event": "content.generated",
+  "timestamp": "2024-01-15T10:30:00Z",
+  "data": {
+    "project_id": "proj_123",
+    "luminor": "scripta",
+    "content_type": "chapter",
+    "word_count": 2500
+  }
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.api-section').forEach(s => {
+                s.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(section).classList.add('active');
+            
+            // Update nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function showResponse(responseId) {
+            // Hide all responses in the same group
+            const parent = event.target.parentElement.parentElement;
+            parent.querySelectorAll('.response-content').forEach(r => {
+                r.classList.remove('active');
+            });
+            parent.querySelectorAll('.response-tab').forEach(t => {
+                t.classList.remove('active');
+            });
+            
+            // Show selected response
+            document.getElementById(responseId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

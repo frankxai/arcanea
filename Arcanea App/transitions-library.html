@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea - Transition Effects Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        /* Transition Demo Grid */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .demo-card {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        .demo-description {
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Transition Effects */
+
+        /* 1. Magical Fade */
+        .magic-fade {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: blur(5px);
+        }
+
+        .magic-fade.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* 2. Slide and Glow */
+        .slide-glow {
+            transform: translateX(-100px);
+            opacity: 0;
+            transition: all 0.6s ease-out;
+            box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+        }
+
+        .slide-glow.active {
+            transform: translateX(0);
+            opacity: 1;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* 3. Rotate Scale */
+        .rotate-scale {
+            transform: rotate(-10deg) scale(0.8);
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .rotate-scale.active {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
+
+        /* 4. Bounce In */
+        .bounce-in {
+            transform: scale(0.3) translateY(50px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .bounce-in.active {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* 5. Morphing Border */
+        .morphing-border {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)) padding-box,
+                       linear-gradient(135deg, #3b82f6, #8b5cf6) border-box;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease;
+        }
+
+        .morphing-border.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .morphing-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
+            background-size: 300% 300%;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            animation: gradient-border 3s ease infinite;
+        }
+
+        .morphing-border.active::before {
+            opacity: 1;
+        }
+
+        @keyframes gradient-border {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* 6. Flip Card */
+        .flip-card {
+            perspective: 1000px;
+            height: 200px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.active .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .flip-card-front {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, #ec4899, #06b6d4);
+            transform: rotateY(180deg);
+        }
+
+        /* 7. Particle Burst */
+        .particle-burst {
+            position: relative;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .particle-burst.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fbbf24;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-explode 1.5s ease-out forwards;
+        }
+
+        @keyframes particle-explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--dx), var(--dy)) scale(0.3);
+            }
+        }
+
+        /* 8. Wave Ripple */
+        .wave-ripple {
+            position: relative;
+            overflow: hidden;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .wave-ripple.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .wave-ripple::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: wave-sweep 2s ease-in-out;
+        }
+
+        .wave-ripple.active::before {
+            animation: wave-sweep 2s ease-in-out;
+        }
+
+        @keyframes wave-sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Controls */
+        .controls {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .control-button {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4);
+        }
+
+        /* CSS for Page Transitions */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .transition-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.5s ease;
+        }
+
+        .page-transition.active .transition-logo {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="pageTransition">
+        <div class="transition-logo">A</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">Transition Effects Library</h1>
+            <p class="subtitle">Beautiful animations for the Arcanea ecosystem</p>
+        </div>
+
+        <!-- Demo Grid -->
+        <div class="demo-grid">
+            <!-- Magic Fade -->
+            <div class="demo-card magic-fade" data-transition="magic-fade">
+                <h3 class="demo-title">🌟 Magical Fade</h3>
+                <p class="demo-description">Smooth fade with scale and blur effects that creates an enchanting entrance.</p>
+                <button class="demo-button" onclick="triggerTransition('magic-fade')">Activate</button>
+            </div>
+
+            <!-- Slide Glow -->
+            <div class="demo-card slide-glow" data-transition="slide-glow">
+                <h3 class="demo-title">✨ Slide & Glow</h3>
+                <p class="demo-description">Slides in from the left with a magical glow effect.</p>
+                <button class="demo-button" onclick="triggerTransition('slide-glow')">Activate</button>
+            </div>
+
+            <!-- Rotate Scale -->
+            <div class="demo-card rotate-scale" data-transition="rotate-scale">
+                <h3 class="demo-title">🔄 Rotate Scale</h3>
+                <p class="demo-description">Rotates and scales with an elastic bounce effect.</p>
+                <button class="demo-button" onclick="triggerTransition('rotate-scale')">Activate</button>
+            </div>
+
+            <!-- Bounce In -->
+            <div class="demo-card bounce-in" data-transition="bounce-in">
+                <h3 class="demo-title">⚡ Bounce In</h3>
+                <p class="demo-description">Bouncy entrance with elastic timing for playful interactions.</p>
+                <button class="demo-button" onclick="triggerTransition('bounce-in')">Activate</button>
+            </div>
+
+            <!-- Morphing Border -->
+            <div class="demo-card morphing-border" data-transition="morphing-border">
+                <h3 class="demo-title">🌈 Morphing Border</h3>
+                <p class="demo-description">Animated gradient border that shifts through multiple colors.</p>
+                <button class="demo-button" onclick="triggerTransition('morphing-border')">Activate</button>
+            </div>
+
+            <!-- Flip Card -->
+            <div class="demo-card">
+                <h3 class="demo-title">🃏 Flip Card</h3>
+                <p class="demo-description">3D flip effect revealing content on the back.</p>
+                <div class="flip-card" data-transition="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <p>Front Side</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Back Side</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="demo-button" onclick="triggerTransition('flip-card')">Flip</button>
+            </div>
+
+            <!-- Particle Burst -->
+            <div class="demo-card particle-burst" data-transition="particle-burst">
+                <h3 class="demo-title">💥 Particle Burst</h3>
+                <p class="demo-description">Explosive particle animation with scattered golden sparkles.</p>
+                <button class="demo-button" onclick="triggerParticleBurst()">Burst</button>
+            </div>
+
+            <!-- Wave Ripple -->
+            <div class="demo-card wave-ripple" data-transition="wave-ripple">
+                <h3 class="demo-title">🌊 Wave Ripple</h3>
+                <p class="demo-description">Smooth wave effect that sweeps across the element.</p>
+                <button class="demo-button" onclick="triggerTransition('wave-ripple')">Wave</button>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="control-button" onclick="activateAll()">🎭 Activate All</button>
+            <button class="control-button" onclick="resetAll()">🔄 Reset All</button>
+            <button class="control-button" onclick="showPageTransition()">📱 Page Transition</button>
+        </div>
+    </div>
+
+    <script>
+        // Transition Functions
+        function triggerTransition(transitionType) {
+            const elements = document.querySelectorAll(`[data-transition="${transitionType}"]`);
+            elements.forEach(element => {
+                element.classList.remove('active');
+                setTimeout(() => {
+                    element.classList.add('active');
+                }, 100);
+            });
+        }
+
+        function triggerParticleBurst() {
+            const element = document.querySelector('[data-transition="particle-burst"]');
+            element.classList.remove('active');
+            
+            // Clear existing particles
+            const existingParticles = element.querySelectorAll('.particle');
+            existingParticles.forEach(p => p.remove());
+            
+            // Create new particles
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const angle = (i / 20) * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const dx = Math.cos(angle) * distance;
+                const dy = Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--dx', dx + 'px');
+                particle.style.setProperty('--dy', dy + 'px');
+                particle.style.left = '50%';
+                particle.style.top = '50%';
+                particle.style.animationDelay = Math.random() * 0.3 + 's';
+                
+                element.appendChild(particle);
+            }
+            
+            setTimeout(() => {
+                element.classList.add('active');
+            }, 100);
+        }
+
+        function activateAll() {
+            const transitionTypes = ['magic-fade', 'slide-glow', 'rotate-scale', 'bounce-in', 'morphing-border', 'flip-card', 'wave-ripple'];
+            
+            transitionTypes.forEach((type, index) => {
+                setTimeout(() => {
+                    triggerTransition(type);
+                    if (type === 'particle-burst') {
+                        triggerParticleBurst();
+                    }
+                }, index * 200);
+            });
+            
+            // Trigger particle burst separately
+            setTimeout(() => {
+                triggerParticleBurst();
+            }, transitionTypes.length * 200);
+        }
+
+        function resetAll() {
+            const allElements = document.querySelectorAll('[data-transition]');
+            allElements.forEach(element => {
+                element.classList.remove('active');
+                
+                // Clear particles
+                const particles = element.querySelectorAll('.particle');
+                particles.forEach(p => p.remove());
+            });
+        }
+
+        function showPageTransition() {
+            const transition = document.getElementById('pageTransition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                transition.classList.remove('active');
+            }, 2000);
+        }
+
+        // Auto-activate on scroll
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const transitionType = element.getAttribute('data-transition');
+                        
+                        setTimeout(() => {
+                            element.classList.add('active');
+                        }, 200);
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            const animatedElements = document.querySelectorAll('[data-transition]');
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupScrollAnimations();
+            
+            // Auto-activate some elements after a delay
+            setTimeout(() => {
+                triggerTransition('magic-fade');
+            }, 1000);
+            
+            setTimeout(() => {
+                triggerTransition('slide-glow');
+            }, 1300);
+        });
+
+        // Export transition functions for use in other files
+        window.ArcaneaTransitions = {
+            triggerTransition,
+            triggerParticleBurst,
+            activateAll,
+            resetAll,
+            showPageTransition
+        };
+    </script>
+</body>
+</html>

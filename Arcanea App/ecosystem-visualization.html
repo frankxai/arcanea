@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Ecosystem - Interactive Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        #visualization {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .node:hover {
+            filter: brightness(1.3);
+        }
+
+        .node-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-anchor: middle;
+            fill: white;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .link {
+            fill: none;
+            stroke-opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+
+        .link:hover {
+            stroke-opacity: 0.8;
+            stroke-width: 3;
+        }
+
+        /* Info Panel */
+        .info-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 350px;
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .info-panel.active {
+            transform: translateX(0);
+        }
+
+        .info-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-description {
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .info-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info-link {
+            padding: 8px 12px;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 6px;
+            color: #3b82f6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .info-link:hover {
+            background: rgba(59, 130, 246, 0.4);
+            color: white;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            margin: 5px;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(59, 130, 246, 0.4);
+        }
+
+        .control-btn.active {
+            background: rgba(59, 130, 246, 0.6);
+        }
+
+        /* Legend */
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            border-radius: 6px;
+            padding: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="visualization"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <h3 style="margin-bottom: 10px;">View Mode</h3>
+        <button class="control-btn active" onclick="setView('all')">All Components</button>
+        <button class="control-btn" onclick="setView('core')">Core Only</button>
+        <button class="control-btn" onclick="setView('ai')">AI Systems</button>
+        <button class="control-btn" onclick="setView('platform')">Platform</button>
+        <button class="control-btn" onclick="resetZoom()">Reset View</button>
+    </div>
+
+    <!-- Info Panel -->
+    <div class="info-panel" id="infoPanel">
+        <h2 class="info-title" id="infoTitle">Select a Component</h2>
+        <p class="info-description" id="infoDescription">
+            Click on any node in the ecosystem to view details.
+        </p>
+        <div class="info-links" id="infoLinks"></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+        <h3 style="margin-bottom: 10px;">Component Types</h3>
+        <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);"></div>
+            <span>Core Systems</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, #14b8a6, #0d9488);"></div>
+            <span>AI Luminors</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, #ec4899, #db2777);"></div>
+            <span>Platform Features</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, #f59e0b, #d97706);"></div>
+            <span>Documentation</span>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // Ecosystem data structure
+        const ecosystemData = {
+            nodes: [
+                // Core Hub
+                { id: 'arcanea', label: 'Arcanea Core', type: 'core', size: 60, x: 400, y: 300,
+                  description: 'The central hub of the Arcanea ecosystem',
+                  links: ['index.html', 'README.md'] },
+                
+                // AI Luminors
+                { id: 'superagent', label: 'SuperAgent', type: 'ai', size: 40, parent: 'arcanea',
+                  description: 'Advanced conversational AI with multi-tool orchestration',
+                  links: ['app/(tabs)/index.tsx', 'app/api/chat/+api.ts'] },
+                { id: 'scripta', label: 'Scripta', type: 'ai', size: 35, parent: 'superagent',
+                  description: 'Book authoring and writing assistant',
+                  links: ['app/(tabs)/scripta.tsx'] },
+                { id: 'lumina', label: 'Lumina', type: 'ai', size: 35, parent: 'superagent',
+                  description: 'AI image generation with DALL-E 3',
+                  links: ['app/(tabs)/lumina.tsx'] },
+                { id: 'kinetix', label: 'Kinetix', type: 'ai', size: 35, parent: 'superagent',
+                  description: 'Video creation and production',
+                  links: ['app/(tabs)/kinetix.tsx'] },
+                
+                // Platform Components
+                { id: 'mobile-app', label: 'Mobile App', type: 'platform', size: 45, parent: 'arcanea',
+                  description: 'React Native Expo application',
+                  links: ['app.json', 'package.json'] },
+                { id: 'web-platform', label: 'Web Platform', type: 'platform', size: 40, parent: 'arcanea',
+                  description: 'Web-based creative platform',
+                  links: ['../premium-mockups/index.html'] },
+                { id: 'realm-builder', label: 'Realm Builder', type: 'platform', size: 35, parent: 'web-platform',
+                  description: 'World and narrative creation tools',
+                  links: ['../mockups/stage1-realm-builder.html'] },
+                { id: 'character-creator', label: 'Character Creator', type: 'platform', size: 35, parent: 'web-platform',
+                  description: 'AI-powered character development',
+                  links: ['../premium-mockups/character-creator/index.html'] },
+                { id: 'academies', label: 'Academies', type: 'platform', size: 35, parent: 'web-platform',
+                  description: 'Educational content and courses',
+                  links: ['../content/demos/academy-dashboard.html'] },
+                { id: 'community', label: 'Community', type: 'platform', size: 35, parent: 'web-platform',
+                  description: 'Social features and collaboration',
+                  links: ['../mockups/stage3-community-platform.html'] },
+                
+                // Documentation
+                { id: 'tech-docs', label: 'Technical Docs', type: 'docs', size: 30, parent: 'arcanea',
+                  description: 'Architecture and technical specifications',
+                  links: ['ARCANEA_MOBILE_TECHNICAL_ARCHITECTURE.md'] },
+                { id: 'product-docs', label: 'Product Docs', type: 'docs', size: 30, parent: 'arcanea',
+                  description: 'Product requirements and strategy',
+                  links: ['ARCANEA_MOBILE_PRD.md'] },
+                { id: 'design-docs', label: 'Design System', type: 'docs', size: 30, parent: 'arcanea',
+                  description: 'UX/UI design guidelines',
+                  links: ['ARCANEA_MOBILE_UX_DESIGN_SYSTEM.md'] },
+                { id: 'marketing-docs', label: 'Marketing', type: 'docs', size: 30, parent: 'arcanea',
+                  description: 'Marketing and growth strategy',
+                  links: ['ARCANEA_MARKETING_STRATEGY.md'] },
+                
+                // Infrastructure
+                { id: 'api-layer', label: 'API Layer', type: 'core', size: 35, parent: 'arcanea',
+                  description: 'Vercel Edge Functions and API routes',
+                  links: ['app/api/'] },
+                { id: 'database', label: 'Database', type: 'core', size: 30, parent: 'api-layer',
+                  description: 'Supabase PostgreSQL with real-time',
+                  links: [] },
+                { id: 'ai-models', label: 'AI Models', type: 'core', size: 35, parent: 'api-layer',
+                  description: 'OpenAI, Anthropic, and other LLMs',
+                  links: [] },
+                { id: 'storage', label: 'Storage', type: 'core', size: 30, parent: 'api-layer',
+                  description: 'Media and asset storage',
+                  links: [] },
+                
+                // Library
+                { id: 'library', label: 'Arcanea Library', type: 'platform', size: 40, parent: 'arcanea',
+                  description: 'Knowledge repository and wisdom teachings',
+                  links: ['../premium-mockups/library/arcanea-library.html', '../content/library/'] }
+            ],
+            
+            links: [
+                // Core connections
+                { source: 'arcanea', target: 'superagent' },
+                { source: 'arcanea', target: 'mobile-app' },
+                { source: 'arcanea', target: 'web-platform' },
+                { source: 'arcanea', target: 'library' },
+                { source: 'arcanea', target: 'tech-docs' },
+                { source: 'arcanea', target: 'product-docs' },
+                { source: 'arcanea', target: 'design-docs' },
+                { source: 'arcanea', target: 'marketing-docs' },
+                { source: 'arcanea', target: 'api-layer' },
+                
+                // AI connections
+                { source: 'superagent', target: 'scripta' },
+                { source: 'superagent', target: 'lumina' },
+                { source: 'superagent', target: 'kinetix' },
+                { source: 'superagent', target: 'ai-models' },
+                
+                // Platform connections
+                { source: 'web-platform', target: 'realm-builder' },
+                { source: 'web-platform', target: 'character-creator' },
+                { source: 'web-platform', target: 'academies' },
+                { source: 'web-platform', target: 'community' },
+                { source: 'mobile-app', target: 'superagent' },
+                
+                // Infrastructure connections
+                { source: 'api-layer', target: 'database' },
+                { source: 'api-layer', target: 'ai-models' },
+                { source: 'api-layer', target: 'storage' },
+                { source: 'mobile-app', target: 'api-layer' },
+                { source: 'web-platform', target: 'api-layer' },
+                
+                // Cross connections
+                { source: 'library', target: 'academies' },
+                { source: 'character-creator', target: 'realm-builder' },
+                { source: 'community', target: 'academies' }
+            ]
+        };
+
+        // Initialize D3 visualization
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        const svg = d3.select('#visualization')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Add zoom behavior
+        const g = svg.append('g');
+        const zoom = d3.zoom()
+            .scaleExtent([0.5, 3])
+            .on('zoom', (event) => {
+                g.attr('transform', event.transform);
+            });
+        svg.call(zoom);
+
+        // Color scales for different node types
+        const colorScale = {
+            core: 'url(#coreGradient)',
+            ai: 'url(#aiGradient)',
+            platform: 'url(#platformGradient)',
+            docs: 'url(#docsGradient)'
+        };
+
+        // Define gradients
+        const defs = svg.append('defs');
+
+        // Core gradient
+        const coreGradient = defs.append('linearGradient')
+            .attr('id', 'coreGradient')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '100%').attr('y2', '100%');
+        coreGradient.append('stop')
+            .attr('offset', '0%')
+            .attr('stop-color', '#3b82f6');
+        coreGradient.append('stop')
+            .attr('offset', '100%')
+            .attr('stop-color', '#8b5cf6');
+
+        // AI gradient
+        const aiGradient = defs.append('linearGradient')
+            .attr('id', 'aiGradient')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '100%').attr('y2', '100%');
+        aiGradient.append('stop')
+            .attr('offset', '0%')
+            .attr('stop-color', '#14b8a6');
+        aiGradient.append('stop')
+            .attr('offset', '100%')
+            .attr('stop-color', '#0d9488');
+
+        // Platform gradient
+        const platformGradient = defs.append('linearGradient')
+            .attr('id', 'platformGradient')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '100%').attr('y2', '100%');
+        platformGradient.append('stop')
+            .attr('offset', '0%')
+            .attr('stop-color', '#ec4899');
+        platformGradient.append('stop')
+            .attr('offset', '100%')
+            .attr('stop-color', '#db2777');
+
+        // Docs gradient
+        const docsGradient = defs.append('linearGradient')
+            .attr('id', 'docsGradient')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '100%').attr('y2', '100%');
+        docsGradient.append('stop')
+            .attr('offset', '0%')
+            .attr('stop-color', '#f59e0b');
+        docsGradient.append('stop')
+            .attr('offset', '100%')
+            .attr('stop-color', '#d97706');
+
+        // Create force simulation
+        const simulation = d3.forceSimulation(ecosystemData.nodes)
+            .force('link', d3.forceLink(ecosystemData.links)
+                .id(d => d.id)
+                .distance(100))
+            .force('charge', d3.forceManyBody().strength(-500))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(d => d.size + 10));
+
+        // Create links
+        const link = g.append('g')
+            .selectAll('line')
+            .data(ecosystemData.links)
+            .enter().append('line')
+            .attr('class', 'link')
+            .attr('stroke', '#3b82f6')
+            .attr('stroke-width', 2);
+
+        // Create nodes
+        const node = g.append('g')
+            .selectAll('g')
+            .data(ecosystemData.nodes)
+            .enter().append('g')
+            .attr('class', 'node')
+            .call(d3.drag()
+                .on('start', dragstarted)
+                .on('drag', dragged)
+                .on('end', dragended));
+
+        // Add circles to nodes
+        node.append('circle')
+            .attr('r', d => d.size)
+            .attr('fill', d => colorScale[d.type])
+            .attr('stroke', '#ffffff')
+            .attr('stroke-width', 2)
+            .style('filter', 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))');
+
+        // Add labels to nodes
+        node.append('text')
+            .attr('class', 'node-label')
+            .attr('dy', 5)
+            .text(d => d.label);
+
+        // Node click handler
+        node.on('click', function(event, d) {
+            showNodeInfo(d);
+        });
+
+        // Node hover effects
+        node.on('mouseenter', function(event, d) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.innerHTML = `<strong>${d.label}</strong><br>${d.description}`;
+            tooltip.classList.add('visible');
+            tooltip.style.left = event.pageX + 10 + 'px';
+            tooltip.style.top = event.pageY - 30 + 'px';
+        });
+
+        node.on('mouseleave', function() {
+            document.getElementById('tooltip').classList.remove('visible');
+        });
+
+        // Update positions on simulation tick
+        simulation.on('tick', () => {
+            link
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+
+        // Drag functions
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        // Show node information
+        function showNodeInfo(node) {
+            const panel = document.getElementById('infoPanel');
+            const title = document.getElementById('infoTitle');
+            const description = document.getElementById('infoDescription');
+            const links = document.getElementById('infoLinks');
+            
+            title.textContent = node.label;
+            description.textContent = node.description;
+            
+            // Clear and populate links
+            links.innerHTML = '';
+            if (node.links && node.links.length > 0) {
+                node.links.forEach(link => {
+                    const linkEl = document.createElement('a');
+                    linkEl.href = link;
+                    linkEl.className = 'info-link';
+                    linkEl.textContent = link.split('/').pop() || link;
+                    linkEl.target = '_blank';
+                    links.appendChild(linkEl);
+                });
+            } else {
+                links.innerHTML = '<p style="color: #6b7280;">No direct links available</p>';
+            }
+            
+            panel.classList.add('active');
+        }
+
+        // View filtering
+        function setView(viewType) {
+            // Update button states
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter nodes based on view type
+            let visibleNodes = ecosystemData.nodes;
+            if (viewType === 'core') {
+                visibleNodes = ecosystemData.nodes.filter(n => n.type === 'core');
+            } else if (viewType === 'ai') {
+                visibleNodes = ecosystemData.nodes.filter(n => n.type === 'ai' || n.id === 'arcanea' || n.id === 'superagent');
+            } else if (viewType === 'platform') {
+                visibleNodes = ecosystemData.nodes.filter(n => n.type === 'platform' || n.id === 'arcanea');
+            }
+
+            // Update node visibility
+            node.style('opacity', d => visibleNodes.includes(d) ? 1 : 0.2);
+            link.style('opacity', d => {
+                const sourceVisible = visibleNodes.find(n => n.id === d.source.id);
+                const targetVisible = visibleNodes.find(n => n.id === d.target.id);
+                return sourceVisible && targetVisible ? 0.4 : 0.05;
+            });
+        }
+
+        // Reset zoom
+        function resetZoom() {
+            svg.transition()
+                .duration(750)
+                .call(zoom.transform, d3.zoomIdentity);
+        }
+
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            svg.attr('width', width).attr('height', height);
+            simulation.force('center', d3.forceCenter(width / 2, height / 2));
+            simulation.alpha(0.3).restart();
+        });
+    </script>
+</body>
+</html>
