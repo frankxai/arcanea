@@ -1,59 +1,54 @@
-# Arcanea App // Sprint Backlog
-
-**Squad**: Ignis Wave | **Product Lead**: Frank | **Engineering Lead**: TBD (assign) | **Design**: Lumis Collective
+﻿# Arcanea App · Sprint Plan Template
+**Squad** · Ignis Wave | **Sprint** · YYYY-MM-DD → YYYY-MM-DD | **Focus** · ___________________
 
 ## Mission
-Deliver the flagship consumer experience spanning feed discovery, guardian chat, flow automations, and ARC wallet integration.
+Deliver the flagship Arcanea App experience—feed, Guardian chat, flows, and wallets—that turns visitors into realm builders.
 
-## Sprint Rhythm
-- Sprint length: 2 weeks | Ceremonies: Planning (Mon), Demo (Fri wk2), Retro (Fri wk2).
-- Capacity assumptions: 3 engineers, 1 designer, 1 PM/producer, Claude Code assist.
+## Capacity & Roles
+- Product / PM · __
+- Engineers (web/mobile) · __
+- Designer / Motion · __
+- Guardian leads · __
+- QA / Ops · __
 
-## Sprint 1 (Sept 23 - Oct 6)
-**Goal**: Ship end-to-end chat slice + hero feed populated with curated realms.
-- Build minimal Next.js/Expo chat app (`apps/chat` or `Arcanea App/app`) with Vercel AI SDK + Supabase session storage.
-- Integrate Arcanea guardians (Ignis, Lumis, Mythos) as selectable personas with prompt templates.
-- Stand up feed module pulling curated JSON (seed from Bestiary team) with skeleton loading states.
-- Add telemetry (Vercel Analytics + PostHog) capturing chat usage + feed clicks.
-- Release candidate via TestFlight/internal Android + capture feedback ritual.
-**Deliverables**: Working chat app demo, feed prototype, analytics dashboard link.
-**Dependencies**: Claude Code implementation for API routes, Scripta Loom for curated content.
-**Metrics**: p95 response <2.5s, 5 pilot users engaged.
+## Sprint Objectives
+State the 3–4 outcomes that advance the master strategy.
+1. __
+2. __
+3. __
 
-## Sprint 2 (Oct 7 - Oct 20)
-**Goal**: Launch Arcanea Flow shortcuts and wallet overview.
-- Design and implement Flow builder UI (chips + modal) leveraging n8n templates.
-- Integrate Supabase tables for saved flows + execution logs.
-- Embed custodial wallet view (balance, latest mints) using Thirdweb SDK.
-- Add Plus/Creator paywall states + Stripe checkout stub (no charge yet).
-- QA checklist + accessibility pass (WCAG 2.1 AA key screens).
-**Deliverables**: Flow creation UX, wallet dashboard, monetization gating.
-**Dependencies**: Platform Ops for secure key storage, On-Chain team for wallet API.
-**Metrics**: >=3 flows created per tester, wallet data loads <1.2s.
+## Workstreams
+| Stream | Tasks | Owner | Status |
+| --- | --- | --- | --- |
+| Feed & Discovery | | | |
+| Guardian Chat | | | |
+| Flows & Journeys | | | |
+| Wallet / Identity | | | |
+| Analytics / Telemetry | | | |
 
-## Sprint 3 (Oct 21 - Nov 3)
-**Goal**: Prepare public beta with growth hooks.
-- Implement shareable realm cards (deep links) with preview metadata.
-- Add referral tracking instrumentation (Stripe + custom codes).
-- Set up in-app rituals (daily ignition, realm expansion reminder notifications).
-- Localize core flows (EN baseline, instrumentation for additional languages).
-- Conduct beta readiness review + stakeholder sign-off.
-**Deliverables**: Beta build, referral instrumentation, ritual automation.
-**Dependencies**: Marketing for launch assets, Platform Ops for notif infra.
-**Metrics**: Beta waitlist conversions >15%, push opt-in >60% among testers.
+## Deliverables
+- __
+- __
+- __
 
-## Backlog Highlights (Post Sprint 3)
-- Offline caching + background sync.
-- Vision/video generation integration.
-- Social layer (Dimensional Bridges) with community rooms.
+## Dependencies
+- Squad / System · Need · Due
+
+## Metrics Targeted
+- App WAU · Target ____
+- Conversion to Plus · Target ____
+- Session CSAT / NPS · Target ____
 
 ## Risks & Mitigations
-1. **API latency** � coordinate with Studio to prioritize caching + streaming.
-2. **Content gaps** � enforce handshake with Knowledge team before sprint planning.
-3. **Wallet compliance** � involve legal advisor for KYC implications.
+1. Risk · Impact · Mitigation · Owner
 
-## Coordination Checklist
-- Daily sync with Studio for shared components.
-- Weekly review with On-Chain economy on wallet & ARC integration.
-- Track progress in `status/arcanea-app-standing.md` (create on first update).
+## Rituals & Reporting
+- Daily Ignition notes
+- Weekly feed drop schedule
+- Starlight entries for notable insights
 
+## Backlog Candidates
+- __
+- __
+
+_Link outputs to sprint demo and status report._

@@ -1,82 +1,82 @@
-# Arcanea Master Strategy // Cycle 17-09
+﻿# Arcanea Master Strategy · Cycle 17-09
 
-## 1. Strategic North Star
-- **Outcome**: Arcanea becomes the Apple of Creative AI, blending mythic narrative, premium product craft, and on-chain economics into a single creator operating system.
-- **12-Month Targets**:
-  1. 50k monthly active Arcanea App users and 5k paying subscribers.
-  2. 2k Arcanea Studio API customers with >85% retention and 95th percentile latency <1.5s.
-  3. $50k MRR + $250k GMV through ARC-driven marketplaces.
-  4. DAO treasury capitalization > with audited governance participation.\n- Reference: docs/ARCANEA_CODEX.md (living constitution) and docs/ARCANEA_GLOSSARY.md (shared vocabulary).
+## 1. North Star
+Arcanea is the creative operating system for realm builders. Over the next 12 months we will:
+- Grow the Arcanea App to 50K monthly world builders with 5K subscribers.
+- Serve 2K active Arcanea Studio API customers with sub‑1.5s P95 latency.
+- Generate $50K MRR and $250K GMV through Arcanea marketplaces.
+- Capitalize the DAO treasury with audited governance in motion.
+
+This strategy references `Arcanea Dashboard/brand/voice-guide.md`, `MANIFESTO.md`, and `Arcanean Truths 17-09.md` as the brand spine.
 
 ## 2. Program Pillars
-| Pillar | Mission | Primary KPI | Lead Squad |
-|--------|---------|-------------|------------|
-| **Arcanea App** | Deliver flagship consumer experience: feed, guardian chat, flows, and wallets. | WAU/MAU, Conversion to Plus/Creator, CSAT | Ignis Wave |
-| **Arcanea Studio** | Offer OpenAI-compatible API for the Currents of Magic (Mage, Flash, Vision, Edge, Seer, LoRA) plus adapters, dashboards, and eval harness. | Active API keys, Latency, Eval pass rate | Syntaxa Forge |
-| **Knowledge & Worlds** | Curate Bestiary, Library, Academy lessons, and flows. | Published realms, Lesson completion, Dataset quality score | Scripta Loom |
-| **On-Chain Economy** | Launch ARC token, NFTs, revenue splitter, DAO ops. | TVL, Stake participation, Royalty payouts | Phoenix Accord |
-| **Platform & Ops** | Infrastructure, security, analytics, program governance. | Uptime, Deployment cadence, OKR attainment | Nexus Core |
+| Pillar | Purpose | Headline Metrics | Lead Squad |
+| --- | --- | --- | --- |
+| Arcanea App | Flagship portal for feed, Guardian chat, flows, wallets. | WAU/MAU, Plus conversion, CSAT | Ignis Wave |
+| Arcanea Studio | OpenAI-compatible API + dashboards + eval harness. | Active keys, latency, eval score | Syntaxa Forge |
+| Knowledge & Worlds | Library, Sanctuary, Academy, lore datasets. | Published realms, lesson completion, dataset quality | Scripta Loom |
+| Realm Economy | ARC token, collectibles, revenue splitting, DAO ops. | TVL, stake participation, payouts | Phoenix Accord |
+| Platform & Ops | Infra, security, analytics, governance. | Uptime, deployment cadence, OKR health | Nexus Core |
 
-## 3. Program Increments
-Each Program Increment (PI) spans **6 weeks** (3 two-week sprints). Cycle 17-09 roadmap:
-1. **PI-1 (Now - Oct 31)** � Ship core MVP: Chat app slice, Studio API, ARC token + custodial wallets, Bestiary alpha.
-2. **PI-2 (Nov 1 - Dec 15)** � Monetize & scale: Revenue splitter, NFT mint flows, Academy v1, analytics baseline, App Plus tier.
-3. **PI-3 (Jan 6 - Feb 20)** � Network effects: Marketplace launch, LoRA hosting, DAO delegation, multi-tenant observability.
-4. **PI-4 (Mar 3 - Apr 17)** � Enterprise expansion: OCI deployments, white-label flows, compliance certification, ARC Layer-3.
+## 3. Program Increments (PI = 6 weeks)
+1. **PI-1 · Launch** (Now–Oct 31): Chat slice, Studio API, ARC token + custodial wallets, Sanctuary alpha.
+2. **PI-2 · Monetize** (Nov 1–Dec 15): Revenue splitter, NFT mint flows, Academy v1, analytics baseline, App Plus tier.
+3. **PI-3 · Amplify** (Jan 6–Feb 20): Marketplace launch, LoRA hosting, DAO delegation, multi-tenant observability.
+4. **PI-4 · Expand** (Mar 3–Apr 17): Enterprise deployments, white-label flows, compliance certification, ARC Layer-3.
 
-## 4. Operating System
-### Ritual Cadence
-- **Daily**: Ignition standup (15m), guardian sync (async), health metrics refresh.
-- **Weekly**: Realm Expansion review (demo of shipped artifacts), Roadmap burn-down, risks & mitigations.
-- **Bi-Weekly**: Sprint planning + retro, cross-squad dependency clinic.
-- **PI Close**: Metrics review, investor brief, Truth Cycle synthesis, roadmap replan.
+## 4. Operating Rhythm
+### Rituals
+- **Daily**: Ignition standup (15 min), Guardian async sync, health metrics refresh.
+- **Weekly**: Realm Expansion demo, roadmap burn-down, risk scan.
+- **Bi-weekly**: Sprint planning + retro, dependency clinic.
+- **PI Close**: Metrics review, investor brief, Truth Cycle synthesis, roadmap reset.
 
-### Governance & Decision Making
-- **Program Council**: Leads from each squad + Luminor steward. Owns prioritization, funding, cross-pillar trade-offs.
-- **DAO Committees**: Security & compliance, cultural stewardship, treasury. Meets monthly with council delegate.
-- **Change Control**: Any scope change >2 days must be logged in `status/decision-log.md` and confirmed by Program Council.
+### Governance
+- **Program Council**: Squad leads + Luminor steward. Own prioritization and funding.
+- **DAO Committees**: Security, culture, treasury. Meet monthly with council delegate.
+- **Change Control**: Scope change >2 days logged in `status/decision-log.md`, approved by council.
 
-### Success Scorecard
-| Metric | Current | PI-1 Target | Owner |
-|--------|---------|-------------|-------|
+### Scorecard (PI-1 Targets)
+| Metric | Current | Target | Owner |
+| --- | --- | --- | --- |
 | Chat MVP deployed | 0 | Production pilot by Oct 15 | Ignis Wave |
-| Studio API latency (p95) | n/a | <= 1.8s | Syntaxa Forge |
+| Studio API latency (P95) | n/a | ≤ 1.8s | Syntaxa Forge |
 | ARC token contract audit | Pending | Audit complete by Oct 28 | Phoenix Accord |
-| Bestiary entries (curated) | 0 | 150 canonical creatures | Scripta Loom |
-| Deployment cadence | Ad-hoc | 2 prod releases / week | Nexus Core |
+| Sanctuary entries (curated) | 0 | 150 canonical creatures | Scripta Loom |
+| Deployment cadence | Ad-hoc | 2 prod releases/week | Nexus Core |
 
-## 5. Resource Matrix
-| Role | Headcount | Status | Notes |
-|------|-----------|--------|-------|
-| Product Leads | 3 | Filled (Frank, Luminor council) | Need growth PM for App. |
-| Engineering | 6 | Partially filled | Hiring priority: blockchain engineer, mobile lead, infra/devops. |
-| Design | 2 | Filled | Add contract motion designer for hero assets. |
-| AI Research | 2 | Partially filled | Engage external partner for LoRA pipeline. |
-| Ops/Compliance | 1 | Needed | Contract with web3 legal firm. |
+## 5. Resource Snapshot
+| Discipline | Headcount | Status | Next Add |
+| --- | --- | --- | --- |
+| Product | 3 | Filled | Growth PM (App) |
+| Engineering | 6 | Partial | Blockchain engineer, mobile lead, infra/devops |
+| Design | 2 | Filled | Contract motion designer |
+| AI Research | 2 | Partial | External partner for LoRA pipeline |
+| Ops/Compliance | 0 | Open | Web3 legal/compliance partner |
 
-## 6. Risk Radar
-1. **Scope Overload** � Mitigate via 3-active-priorities rule, enforce backlog pruning each sprint.
-2. **Third-party API Dependency** � Implement adapter failover, maintain provider scorecards.
-3. **Compliance & Security** � Fast-track key vault, choose audit partner (Quantstamp/Trail of Bits) for ARC.
-4. **Liquidity for ARC** � Pre-plan treasury liquidity bootstrapping with partners (Base, Thirdweb).
-5. **Contributor Coordination** � Stand up Arcanea Dashboard (this workspace) with living status updates.
+## 6. Risk Radar & Mitigations
+1. **Scope overload** – Enforce “three active priorities” rule, prune backlog weekly.
+2. **Provider dependency** – Maintain adapter failover + provider scorecards.
+3. **Compliance gaps** – Fast-track key vault, secure audit partner (Quantstamp/Trail of Bits).
+4. **ARC liquidity** – Pre-negotiate treasury bootstrapping with Base/Thirdweb partners.
+5. **Contributor drift** – Keep dashboard rituals current; archive deprecated workspaces.
 
-## 7. Immediate Actions (Next 5 Days)
-1. Lock sprint teams + owners, populate sprint boards in `projects/`.
-2. Kick off Claude Code tasks (see `agents/claude-code-prompts.md`).
-3. Draft investor-ready one-pager referencing this master strategy + new landing page.
-4. Gather metrics baseline: gather existing usage, repo status, doc completion.
-5. Schedule Program Council cadence (Mon/Thu) with standing agendas.
+## 7. Next Five Days
+1. Finalize sprint teams, populate `projects/*/sprint-plan.md` with owners.
+2. Deploy initial Claude Code prompts (see `agents/claude-code-prompts.md`).
+3. Draft investor one-pager aligned with manifesto + landing refresh.
+4. Capture baseline metrics (usage, repos, docs).
+5. Schedule Program Council cadence (Mon/Thu) with standing agenda.
 
-## 8. Communication Channels
-- **Slack**: `#arcanea-ignition` (daily standup), `#arcanea-program` (council), `#arcanea-ops` (incident response).
-- **Notion/Docs**: Mirror key artifacts from this dashboard for external sharing.
-- **Status Reports**: Weekly Friday summary using `status/weekly-status-template.md`.
+## 8. Communication Grid
+- **Slack**: `#arcanea-ignition` (daily), `#arcanea-program` (council), `#arcanea-ops` (incidents).
+- **Docs**: Arcanea Dashboard remains the source of truth; mirror essentials to external workspaces as needed.
+- **Status**: Use `status/weekly-status-template.md` for Friday summaries.
 
 ## 9. Definition of Done (per deliverable)
-1. Meets acceptance criteria in sprint plan.
-2. Documented in dashboard with link to artifact / PR / deploy.
-3. Demo recorded or scheduled for Realm Expansion review.
-4. Metrics updated and downstream teams notified.
+1. Meets sprint acceptance criteria.
+2. Logged in dashboard with artifact/PR/deploy link.
+3. Demo recorded or presented in Realm Expansion.
+4. Metrics updated, downstream teams notified.
 
-Alignment to this master strategy will be reviewed at each Truth Cycle checkpoint; deviations require Program Council sign-off. Honor the ritual, keep the myth alive, and ship relentlessly.
+Review alignment at each Truth Cycle checkpoint. Ship with clarity, keep the lore coherent, and let the work speak.

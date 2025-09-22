@@ -1,43 +1,42 @@
-# Weekly Status Report Template
+﻿# Weekly Realm Report Template
+**Week Ending** · YYYY-MM-DD | **Prepared By** · ______ | **Audience** · Leadership · DAO Council · Investors
 
-**Week Ending**: YYYY-MM-DD | **Prepared by**: ____ | **Distribution**: Leadership, DAO Council, Investors
+## 1. Executive Pulse
+- One sentence per squad highlighting the win, risk, or insight.
+- Key metric movements (Δ vs. target).
+- Confidence rating (High · Medium · Low) with one-line rationale.
 
-## 1. Executive Summary
-- One sentence per squad.
-- Key metric movement (+/-).
-- Mood + confidence rating (High / Medium / Low).
-
-## 2. Progress Snapshot
-| Squad | Sprint Goal | Status (On Track / At Risk / Off Track) | Notes |
-|-------|-------------|-----------------------------------------|-------|
+## 2. Progress Grid
+| Squad | Sprint Goal | Status (On / At Risk / Off) | Notes |
+| --- | --- | --- | --- |
 | Arcanea App | | | |
 | Arcanea Studio | | | |
 | Knowledge & Worlds | | | |
-| On-Chain Economy | | | |
+| Realm Economy | | | |
 | Platform & Ops | | | |
 
 ## 3. Metrics & Signals
 | Metric | Target | Actual | Trend | Owner |
-|--------|--------|--------|-------|-------|
+| --- | --- | --- | --- | --- |
 | App WAU | | | | |
-| API Active Keys | | | | |
+| Studio Active Keys | | | | |
 | ARC TVL | | | | |
 | Content Shipments | | | | |
 | Deployment Cadence | | | | |
+| Resonance Index | | | | |
 
 ## 4. Blockers & Mitigations
-- Issue / Owner / ETA / Escalation path
+List Issue · Owner · ETA · Escalation path.
 
-## 5. Decisions & Approvals Needed
-- Decision / Context / Deadline / Approver
+## 5. Decisions Needed
+State Decision · Context · Deadline · Approver.
 
 ## 6. Upcoming Milestones
 | Date | Milestone | Squad | Status |
-|------|-----------|-------|--------|
-|      |           |       |        |
+| --- | --- | --- | --- |
 
-## 7. Appendices
-- Links to demos, PRs, dashboards.
-- Risk register updates.
+## 7. Links & References
+- Demos, PRs, dashboards, documentation updates.
+- Risk register changes.
 
-_Publish each Friday EOD; move signed-off reports into `status/archives/`._
+_Publish each Friday EOD. Archive signed-off reports in `status/archives/`._

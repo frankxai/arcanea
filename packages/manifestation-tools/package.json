@@ -1,0 +1,8 @@
+﻿{
+    "version":  "0.0.0",
+    "name":  "@arcanea/manifestation-tools",
+    "types":  "index.d.ts",
+    "description":  "Stub package for workspace development",
+    "license":  "UNLICENSED",
+    "main":  "index.js"
+}
