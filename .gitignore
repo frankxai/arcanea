@@ -41,9 +41,22 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
 # Local nested repos
 ai/
 
+# Asset uploads (development only)
+public/shared-assets/temp-uploads/
+apps/web/public/brand/temp/
+
+# Turbo
+.turbo/
+
+# TypeScript
+*.tsbuildinfo
+
+# Vercel
+.vercel
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
