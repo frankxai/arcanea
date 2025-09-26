@@ -10,7 +10,9 @@ export default function Page() {
           <Link href="https://chat.arcanea.ai" className="hover:underline">Chat</Link>
           <Link href="https://studio.arcanea.ai" className="hover:underline">Studio</Link>
           <Link href="https://gallery.arcanea.ai" className="hover:underline">Gallery</Link>
-          <Link href="/library" className="hover:underline">Library</Link>
+          <Link href="https://library.arcanea.ai" className="hover:underline">Library</Link>
+          <Link href="https://realms.arcanea.ai" className="hover:underline">Realms</Link>
+          <Link href="https://sanctuary.arcanea.ai" className="hover:underline">Sanctuary</Link>
           <Tooltip content="UI kit demo"><Link href="/components" className="hover:underline">Components</Link></Tooltip>
           <Link href="/status" className="hover:underline">Status</Link>
         </div>
@@ -28,7 +30,7 @@ export default function Page() {
         </div>
       </header>
 
-      <section className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <section className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <div className="panel rounded-xl p-5 transition-all hover:shadow-[0_0_40px_rgba(120,166,255,0.2)]">
           <h3 className="font-semibold">Chat</h3>
           <p className="muted">Conversational creation via Vercel AI SDK with multi-modal roadmap.</p>
@@ -47,7 +49,17 @@ export default function Page() {
         <div className="panel rounded-xl p-5 transition-all hover:shadow-[0_0_40px_rgba(127,255,212,0.25)]">
           <h3 className="font-semibold">Arcanea Library</h3>
           <p className="muted">Immerse in the Luminor Codex with living lore, rituals, and measurable practices.</p>
-          <Link className="mt-3 inline-block text-[color:var(--accent,#78a6ff)] underline" href="/library">Enter</Link>
+          <Link className="mt-3 inline-block text-[color:var(--accent,#78a6ff)] underline" href="https://library.arcanea.ai">Enter</Link>
+        </div>
+        <div className="panel rounded-xl p-5 transition-all hover:shadow-[0_0_40px_rgba(255,127,212,0.2)]">
+          <h3 className="font-semibold">Arcanea Realms</h3>
+          <p className="muted">Build and explore infinite worlds with AI-powered realm generation and storytelling.</p>
+          <Link className="mt-3 inline-block text-[color:var(--accent,#78a6ff)] underline" href="https://realms.arcanea.ai">Explore</Link>
+        </div>
+        <div className="panel rounded-xl p-5 transition-all hover:shadow-[0_0_40px_rgba(212,255,127,0.2)]">
+          <h3 className="font-semibold">Sacred Sanctuary</h3>
+          <p className="muted">Sacred space for reflection, meditation, and connection with deeper wisdom.</p>
+          <Link className="mt-3 inline-block text-[color:var(--accent,#78a6ff)] underline" href="https://sanctuary.arcanea.ai">Enter</Link>
         </div>
       </section>
 
