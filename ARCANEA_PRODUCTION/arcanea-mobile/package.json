@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "ulid": "^3.0.1"
-  },
-  "devDependencies": {
-    "@types/json5": "^0.0.30"
-  }
-}

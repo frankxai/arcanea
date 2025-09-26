@@ -1,1 +1,0 @@
-export { trackEvent } from './track';
