@@ -10,8 +10,8 @@ This doc keeps Codex, Gemini, and Claude aligned on how we build Arcanea day to 
 
 ## Agent Responsibilities
 ### Codex (Engineering & Delivery)
-- Maintain `ARCANEA_PRODUCTION/arcanea-mobile` and shared packages powering the chat MVP.
-- Own integration of Luminor orchestration (`lib/ai`, `hooks/useChat.ts`) and UI flows (`app/chat/*`).
+- Maintain `apps/mobile` and shared packages powering the chat MVP.
+- Orchestrate chat services and navigation (e.g. `apps/mobile/app/(tabs)/*`, upcoming `packages/agents`).
 - Keep build, lint, and test pipelines green; publish release notes when milestones land.
 - Surface technical debt or dependency risks to Gemini for research or Claude for comms support.
 
@@ -22,7 +22,7 @@ This doc keeps Codex, Gemini, and Claude aligned on how we build Arcanea day to 
 - Feed the weekly demo with insights or benchmarks that prove strategic differentiation.
 
 ### Claude (Narrative, UX Copy, Comms)
-- Guard Arcanea voice across product surfaces (`app/chat/components/*`, lifecycle emails, investor decks).
+- Guard Arcanea voice across product surfaces (`apps/mobile/app/(tabs)/*`, lifecycle emails, investor decks).
 - Translate feature drops into lore-driven release blurbs and community rituals.
 - Partner with Codex on UX microcopy and with Gemini on summarizing research signals for leadership.
 - Maintain `Arcanean Truths` and investor-facing briefs so strategy decks stay current.
@@ -53,7 +53,7 @@ Use `Arcanea Dashboard/standups/daily-ignition-template.md`.
 - **Handoff Notes**: Store in `agents/handoff-YYYYMMDD.md` when work spans multiple agents.
 
 ## Current Focus (Cycle 17-09)
-1. Ship chat module MVP inside `arcanea-mobile` with multi-module routing.
+1. Ship chat module MVP inside `apps/mobile` with multi-module routing.
 2. Compile provider comparison brief for Luminor orchestration (Gemini).
 3. Refresh investor narrative and Realm launch story for demo (Claude).
 
