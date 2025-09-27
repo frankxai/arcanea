@@ -1,13 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
+  FlatList,
   KeyboardAvoidingView,
   Platform,
   Alert,
+  Dimensions,
+  ListRenderItem,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
@@ -15,6 +17,7 @@ import * as Speech from 'expo-speech';
 import { useChat } from 'ai/react';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { ChatShimmer, MessageShimmer } from '@/components/ChatShimmer';
 
 interface Message {
   id: string;
@@ -27,12 +30,17 @@ export default function SuperAgentScreen() {
   const colorScheme = useColorScheme();
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
-  const scrollViewRef = useRef<ScrollView>(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const flatListRef = useRef<FlatList>(null);
+  const screenHeight = Dimensions.get('window').height;
 
   const { messages, append, isLoading } = useChat({
     api: '/api/chat',
     onError: (error) => {
       Alert.alert('Error', 'Failed to send message. Please try again.');
+    },
+    onFinish: () => {
+      setIsInitialLoad(false);
     },
   });
 
@@ -68,10 +76,85 @@ export default function SuperAgentScreen() {
 
   useEffect(() => {
     // Auto-scroll to bottom when new messages arrive
-    setTimeout(() => {
-      scrollViewRef.current?.scrollToEnd({ animated: true });
-    }, 100);
+    if (messages.length > 0) {
+      setTimeout(() => {
+        flatListRef.current?.scrollToEnd({ animated: true });
+      }, 100);
+      setIsInitialLoad(false);
+    }
   }, [messages]);
+
+  const renderMessage: ListRenderItem<typeof messages[0]> = useCallback(
+    ({ item: message }) => (
+      <View className="mb-4">
+        <View
+          className={`max-w-[85%] p-3 rounded-2xl ${
+            message.role === 'user'
+              ? `self-end ${isDark ? 'bg-blue-600' : 'bg-blue-500'}`
+              : `self-start ${isDark ? 'bg-dark-card' : 'bg-gray-100'}`
+          }`}
+        >
+          <Text
+            className={`text-base ${
+              message.role === 'user'
+                ? 'text-white'
+                : isDark
+                ? 'text-white'
+                : 'text-gray-900'
+            }`}
+          >
+            {message.content}
+          </Text>
+        </View>
+        {message.role === 'assistant' && (
+          <TouchableOpacity
+            onPress={() => speakMessage(message.content)}
+            className="mt-2 self-start"
+          >
+            <FontAwesome
+              name="volume-up"
+              size={16}
+              color={isDark ? '#9ca3af' : '#6b7280'}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
+    ),
+    [isDark]
+  );
+
+  const renderEmptyState = () => (
+    <View className="flex-1 justify-center items-center" style={{ minHeight: screenHeight * 0.6 }}>
+      <FontAwesome
+        name="magic"
+        size={48}
+        color={isDark ? '#3b82f6' : '#1d4ed8'}
+        className="mb-4"
+      />
+      <Text className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        Welcome to Arcanea
+      </Text>
+      <Text className={`text-center px-8 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+        Ask me anything about creative projects, book writing, image generation, or video creation!
+      </Text>
+    </View>
+  );
+
+  const renderFooter = () => {
+    if (isLoading) {
+      return <ChatShimmer />;
+    }
+    return null;
+  };
+
+  const getItemLayout = useCallback(
+    (data: any, index: number) => ({
+      length: 100, // Estimated item height
+      offset: 100 * index,
+      index,
+    }),
+    []
+  );
 
   return (
     <SafeAreaView className={`flex-1 ${isDark ? 'bg-dark-bg' : 'bg-white'}`}>
@@ -86,78 +169,31 @@ export default function SuperAgentScreen() {
       </View>
 
       {/* Messages */}
-      <ScrollView
-        ref={scrollViewRef}
-        className="flex-1 px-4 py-4"
-        showsVerticalScrollIndicator={false}
-      >
-        {messages.length === 0 ? (
-          <View className="flex-1 justify-center items-center">
-            <FontAwesome
-              name="magic"
-              size={48}
-              color={isDark ? '#3b82f6' : '#1d4ed8'}
-              className="mb-4"
-            />
-            <Text className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Welcome to Arcanea
-            </Text>
-            <Text className={`text-center px-8 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              Ask me anything about creative projects, book writing, image generation, or video creation!
-            </Text>
-          </View>
-        ) : (
-          messages.map((message) => (
-            <View key={message.id} className="mb-4">
-              <View
-                className={`max-w-[85%] p-3 rounded-2xl ${
-                  message.role === 'user'
-                    ? `self-end ${isDark ? 'bg-blue-600' : 'bg-blue-500'}`
-                    : `self-start ${isDark ? 'bg-dark-card' : 'bg-gray-100'}`
-                }`}
-              >
-                <Text
-                  className={`text-base ${
-                    message.role === 'user'
-                      ? 'text-white'
-                      : isDark
-                      ? 'text-white'
-                      : 'text-gray-900'
-                  }`}
-                >
-                  {message.content}
-                </Text>
-              </View>
-              {message.role === 'assistant' && (
-                <TouchableOpacity
-                  onPress={() => speakMessage(message.content)}
-                  className="mt-2 self-start"
-                >
-                  <FontAwesome
-                    name="volume-up"
-                    size={16}
-                    color={isDark ? '#9ca3af' : '#6b7280'}
-                  />
-                </TouchableOpacity>
-              )}
-            </View>
-          ))
-        )}
-
-        {isLoading && (
-          <View className="mb-4">
-            <View
-              className={`max-w-[85%] p-3 rounded-2xl self-start ${
-                isDark ? 'bg-dark-card' : 'bg-gray-100'
-              }`}
-            >
-              <Text className={isDark ? 'text-gray-400' : 'text-gray-600'}>
-                Thinking...
-              </Text>
-            </View>
-          </View>
-        )}
-      </ScrollView>
+      {isInitialLoad && messages.length === 0 ? (
+        <MessageShimmer count={2} />
+      ) : (
+        <FlatList
+          ref={flatListRef}
+          data={messages}
+          renderItem={renderMessage}
+          keyExtractor={(item) => item.id}
+          className="flex-1 px-4"
+          contentContainerStyle={{ paddingVertical: 16 }}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={renderEmptyState}
+          ListFooterComponent={renderFooter}
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={10}
+          updateCellsBatchingPeriod={50}
+          windowSize={10}
+          initialNumToRender={10}
+          getItemLayout={getItemLayout}
+          maintainVisibleContentPosition={{
+            minIndexForVisible: 0,
+            autoscrollToTopThreshold: 10,
+          }}
+        />
+      )}
 
       {/* Input Area */}
       <KeyboardAvoidingView
