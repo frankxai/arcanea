@@ -90,7 +90,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name='index'
         options={{
-          title: 'SuperAgent',
+          title: 'Luminor',
           tabBarIcon: ({ color }) => <TabBarIcon name='comments' color={color} />,
         }}
       />

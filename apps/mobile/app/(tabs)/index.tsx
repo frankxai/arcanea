@@ -192,7 +192,7 @@ export default function SuperAgentScreen() {
         Welcome to Arcanea
       </Text>
       <Text className={`text-center px-8 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-        Ask me anything about creative projects, book writing, image generation, or video creation!
+        Your AI creative companion for the mobile era. Chat with Luminor, create with Scripta, visualize with Lumina, and animate with Kinetix.
       </Text>
     </View>
   );
@@ -224,10 +224,10 @@ export default function SuperAgentScreen() {
       {/* Header */}
       <View className={`px-4 py-3 border-b ${isDark ? 'border-dark-border bg-dark-card' : 'border-gray-200 bg-white'}`}>
         <Text className={`text-xl font-bold text-center ${isDark ? 'text-white' : 'text-gray-900'}`}>
-          Arcanea SuperAgent
+          Luminor Chat
         </Text>
         <Text className={`text-sm text-center mt-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-          Your AI Creative Assistant
+          Your AI Creative Companion
         </Text>
       </View>
 
