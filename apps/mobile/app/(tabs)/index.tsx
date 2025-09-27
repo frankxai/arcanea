@@ -14,50 +14,59 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Speech from 'expo-speech';
-import { useChat } from 'ai/react';
 
 import { useColorScheme } from '@/components/useColorScheme';
 import { ChatShimmer, MessageShimmer } from '@/components/ChatShimmer';
+import { Toast } from '@/components/Toast';
+import { useOptimisticChat } from '@/hooks/useOptimisticChat';
 
-interface Message {
-  id: string;
-  content: string;
-  role: 'user' | 'assistant';
-  timestamp: Date;
-}
+// OptimisticMessage interface is now imported from useOptimisticChat hook
 
 export default function SuperAgentScreen() {
   const colorScheme = useColorScheme();
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error' | 'warning' | 'info'>('info');
   const flatListRef = useRef<FlatList>(null);
   const screenHeight = Dimensions.get('window').height;
 
-  const { messages, append, isLoading } = useChat({
-    api: '/api/chat',
-    onError: (error) => {
-      Alert.alert('Error', 'Failed to send message. Please try again.');
-    },
-    onFinish: () => {
-      setIsInitialLoad(false);
-    },
-  });
+  const {
+    messages,
+    isLoading,
+    error,
+    retryMessage,
+    sendMessage,
+    clearError,
+  } = useOptimisticChat();
 
   const isDark = colorScheme === 'dark';
 
   const handleSend = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || isLoading) return;
+
+    const messageContent = input.trim();
+    setInput(''); // Clear input immediately for better UX
 
     try {
-      await append({
-        role: 'user',
-        content: input,
-      });
-      setInput('');
+      await sendMessage(messageContent);
+      showToast('Message sent', 'success');
     } catch (error) {
-      Alert.alert('Error', 'Failed to send message. Please try again.');
+      console.error('Send error:', error);
+      showToast('Failed to send message', 'error');
     }
+  };
+
+  const showToast = (message: string, type: 'success' | 'error' | 'warning' | 'info') => {
+    setToastMessage(message);
+    setToastType(type);
+    setToastVisible(true);
+  };
+
+  const hideToast = () => {
+    setToastVisible(false);
   };
 
   const handleVoiceInput = () => {
@@ -84,28 +93,70 @@ export default function SuperAgentScreen() {
     }
   }, [messages]);
 
+  useEffect(() => {
+    // Show error toast when there's an error
+    if (error) {
+      showToast(error, 'error');
+    }
+  }, [error]);
+
   const renderMessage: ListRenderItem<typeof messages[0]> = useCallback(
     ({ item: message }) => (
       <View className="mb-4">
-        <View
-          className={`max-w-[85%] p-3 rounded-2xl ${
-            message.role === 'user'
-              ? `self-end ${isDark ? 'bg-blue-600' : 'bg-blue-500'}`
-              : `self-start ${isDark ? 'bg-dark-card' : 'bg-gray-100'}`
-          }`}
+        <TouchableOpacity
+          onPress={() => {
+            if (message.status === 'failed') {
+              retryMessage(message.id);
+              showToast('Retrying message...', 'info');
+            }
+          }}
+          disabled={message.status !== 'failed'}
         >
-          <Text
-            className={`text-base ${
+          <View
+            className={`max-w-[85%] p-3 rounded-2xl relative ${
               message.role === 'user'
-                ? 'text-white'
-                : isDark
-                ? 'text-white'
-                : 'text-gray-900'
+                ? `self-end ${
+                    message.status === 'failed'
+                      ? isDark ? 'bg-red-800' : 'bg-red-500'
+                      : message.status === 'sending' || message.status === 'retrying'
+                      ? isDark ? 'bg-blue-800/70' : 'bg-blue-500/70'
+                      : isDark ? 'bg-blue-600' : 'bg-blue-500'
+                  }`
+                : `self-start ${isDark ? 'bg-dark-card' : 'bg-gray-100'}`
             }`}
           >
-            {message.content}
-          </Text>
-        </View>
+            <Text
+              className={`text-base ${
+                message.role === 'user'
+                  ? 'text-white'
+                  : isDark
+                  ? 'text-white'
+                  : 'text-gray-900'
+              }`}
+            >
+              {message.content}
+            </Text>
+
+            {/* Status indicator */}
+            {message.role === 'user' && (
+              <View className="absolute -bottom-1 -right-1">
+                {message.status === 'sending' && (
+                  <FontAwesome name="clock-o" size={12} color="white" />
+                )}
+                {message.status === 'sent' && (
+                  <FontAwesome name="check" size={12} color="white" />
+                )}
+                {message.status === 'failed' && (
+                  <FontAwesome name="exclamation-triangle" size={12} color="white" />
+                )}
+                {message.status === 'retrying' && (
+                  <FontAwesome name="refresh" size={12} color="white" />
+                )}
+              </View>
+            )}
+          </View>
+        </TouchableOpacity>
+
         {message.role === 'assistant' && (
           <TouchableOpacity
             onPress={() => speakMessage(message.content)}
@@ -118,9 +169,15 @@ export default function SuperAgentScreen() {
             />
           </TouchableOpacity>
         )}
+
+        {message.status === 'failed' && message.role === 'user' && (
+          <Text className={`text-xs mt-1 self-end ${isDark ? 'text-red-400' : 'text-red-600'}`}>
+            Tap to retry
+          </Text>
+        )}
       </View>
     ),
-    [isDark]
+    [isDark, retryMessage]
   );
 
   const renderEmptyState = () => (
@@ -158,6 +215,12 @@ export default function SuperAgentScreen() {
 
   return (
     <SafeAreaView className={`flex-1 ${isDark ? 'bg-dark-bg' : 'bg-white'}`}>
+      <Toast
+        message={toastMessage}
+        type={toastType}
+        visible={toastVisible}
+        onHide={hideToast}
+      />
       {/* Header */}
       <View className={`px-4 py-3 border-b ${isDark ? 'border-dark-border bg-dark-card' : 'border-gray-200 bg-white'}`}>
         <Text className={`text-xl font-bold text-center ${isDark ? 'text-white' : 'text-gray-900'}`}>
