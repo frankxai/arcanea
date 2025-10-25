@@ -10,7 +10,8 @@
     "db:migrate": "prisma migrate dev"
   },
   "dependencies": {
-    "@prisma/client": "^5.7.1"
+    "@prisma/client": "^5.7.1",
+    "@supabase/supabase-js": "^2.39.0"
   },
   "devDependencies": {
     "prisma": "^5.7.1",

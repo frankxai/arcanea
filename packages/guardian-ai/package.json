@@ -1,8 +1,22 @@
-﻿{
-    "version":  "0.0.0",
-    "name":  "@arcanea/guardian-ai",
-    "types":  "index.d.ts",
-    "description":  "Stub package for workspace development",
-    "license":  "UNLICENSED",
-    "main":  "index.js"
+{
+  "name": "@arcanea/guardian-ai",
+  "version": "0.1.0",
+  "description": "Guardian and Luminor AI agents for Arcanea",
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "@arcanea/ai-core": "workspace:*",
+    "@anthropic-ai/sdk": "^0.60.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.5"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./core/*": "./core/*.ts",
+    "./luminors/*": "./luminors/*.ts",
+    "./tools/*": "./tools/*.ts"
+  }
 }

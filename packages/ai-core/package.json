@@ -6,7 +6,9 @@
   "dependencies": {
     "openai": "^4.24.1",
     "@anthropic-ai/sdk": "^0.60.0",
-    "zod": "^3.22.4"
+    "@google/generative-ai": "^0.21.0",
+    "zod": "^3.22.4",
+    "eventsource-parser": "^1.1.2"
   },
   "devDependencies": {
     "typescript": "5.3.3",

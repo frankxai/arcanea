@@ -12,10 +12,10 @@
   "dependencies": {
     "@ai-sdk/openai": "^0.0.44",
     "ai": "^3.3.6",
-    "next": "^14.2.4",
+    "next": "^16.0.0",
     "openai": "^4.47.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.12",
