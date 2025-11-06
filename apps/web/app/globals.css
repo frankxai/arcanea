@@ -2,21 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
-body { background: theme(colors.arcanean.bg); color: theme(colors.arcanean.text); }
+/* Import Arcanean Color System */
+@import '../styles/themes/arcanean-colors.css';
 
-.panel { background: theme(colors.arcanean.panel); border: 1px solid theme(colors.arcanean.border); }
-.muted { color: theme(colors.arcanean.muted); }
+@layer base {
+  html {
+    @apply antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
 
-.aurora-text {
-  background: linear-gradient(90deg, #78a6ff, #7fffd4);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  body {
+    @apply bg-cosmic-deep text-text-primary;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
 }
 
-.glass {
-  background: color-mix(in srgb, white 6%, transparent);
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
+@layer components {
+  /* Legacy support - kept for backward compatibility */
+  .panel {
+    @apply bg-cosmic-surface border border-cosmic-border rounded-lg p-4;
+  }
+
+  .muted {
+    @apply text-text-muted;
+  }
+
+  /* Aurora gradient text effect */
+  .aurora-text {
+    @apply bg-gradient-to-r from-atlantean-teal via-gold-bright to-draconic-crimson bg-clip-text text-transparent;
+  }
+
+  /* Enhanced glass morphism */
+  .glass {
+    background: rgba(18, 24, 38, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-light {
+    background: rgba(18, 24, 38, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .glass-heavy {
+    background: rgba(18, 24, 38, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  /* Cosmic button effects */
+  .btn-cosmic {
+    @apply bg-cosmic-surface border border-cosmic-border hover:bg-cosmic-raised hover:border-gold-medium shadow-glow-sm hover:shadow-glow-md transition-all duration-300;
+  }
+
+  /* Academy-specific utilities */
+  .academy-atlantean {
+    @apply border-atlantean-teal/30 hover:border-atlantean-teal/60 hover:shadow-atlantean;
+  }
+
+  .academy-draconic {
+    @apply border-draconic-gold/30 hover:border-draconic-gold/60 hover:shadow-draconic;
+  }
+
+  .academy-creation {
+    @apply border-creation-gold/30 hover:border-creation-gold/60 hover:shadow-creation;
+  }
+}
+
+/* Scrollbar Styling */
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-cosmic-deep;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-cosmic-border rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-cosmic-border-bright;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Selection styling */
+::selection {
+  @apply bg-gold-bright/30 text-text-primary;
+}
+
+::-moz-selection {
+  @apply bg-gold-bright/30 text-text-primary;
+}
+
+/* Focus visible styling for accessibility */
+:focus-visible {
+  @apply outline-none ring-2 ring-gold-medium ring-offset-2 ring-offset-cosmic-deep;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

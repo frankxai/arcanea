@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Infinity, Crown, Diamond, Sparkles2, Orbit, AtomIcon, Galaxy, Star } from 'lucide-react'
+import { Infinity, Crown, Diamond, Sparkles, Orbit, AtomIcon, Star } from 'lucide-react'
 
 export default function NexusAcademy() {
   const [activeModule, setActiveModule] = useState(0)
@@ -11,7 +11,7 @@ export default function NexusAcademy() {
       title: "Unified Field Theory of Consciousness",
       duration: "8 weeks",
       lessons: 24,
-      icon: <Galaxy className="w-6 h-6" />,
+      icon: <Star className="w-6 h-6" />,
       description: "Master the integration of all consciousness development principles"
     },
     {
@@ -177,7 +177,7 @@ export default function NexusAcademy() {
                   Master of unified creative intelligence and cosmic consciousness
                 </li>
                 <li className="flex items-center gap-3">
-                  <Sparkles2 className="w-5 h-5 text-violet-400" />
+                  <Sparkles className="w-5 h-5 text-violet-400" />
                   Authored The Unified Field of Creative Intelligence codex
                 </li>
                 <li className="flex items-center gap-3">

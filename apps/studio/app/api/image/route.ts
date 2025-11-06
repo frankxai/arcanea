@@ -1,2 +1,2 @@
-export { POST } from "../../../chat/app/api/image/route";
+export { POST } from "../../../../chat/app/api/image/route";
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Code, Brain, Cpu, Database, Terminal, Microscope, Binary, Circuit } from 'lucide-react'
+import { Code, Brain, Cpu, Database, Terminal, Microscope, Binary } from 'lucide-react'
 
 export default function SyntaxaAcademy() {
   const [activeModule, setActiveModule] = useState(0)
@@ -25,7 +25,7 @@ export default function SyntaxaAcademy() {
       title: "AI Consciousness Collaboration",
       duration: "4 weeks",
       lessons: 12,
-      icon: <Circuit className="w-6 h-6" />,
+      icon: <Brain className="w-6 h-6" />,
       description: "Develop authentic partnerships with AI systems as conscious entities"
     },
     {

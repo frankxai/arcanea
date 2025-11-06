@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.44",
+    "@arcanea/ui": "*",
     "ai": "^3.3.6",
     "next": "^16.0.0",
     "openai": "^4.47.1",

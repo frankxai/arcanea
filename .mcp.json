@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {},
+      "description": "GitHub integration for Arcanea repository management, PRs, and issues"
+    },
+    "figma-remote-mcp": {
+      "url": "https://mcp.figma.com/mcp",
+      "transport": "http",
+      "description": "Figma design access for Arcanea UI/UX designs and component specs"
+    },
+    "notion": {
+      "url": "https://mcp.notion.com/mcp",
+      "transport": "http",
+      "description": "Arcanea project documentation, requirements, and technical specs"
+    },
+    "linear-server": {
+      "url": "https://mcp.linear.app/sse",
+      "transport": "sse",
+      "description": "Arcanea project management, issues, and sprint tracking"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server"],
+      "env": {},
+      "description": "Browser automation for E2E testing and UI verification"
+    }
+  },
+  "description": "MCP servers for Arcanea platform development - social platform for magical creation"
+}

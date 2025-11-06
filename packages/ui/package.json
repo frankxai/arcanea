@@ -1,8 +1,11 @@
 {
   "name": "@arcanea/ui",
   "version": "1.0.0",
-  "main": "index.ts",
-  "types": "index.ts",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
