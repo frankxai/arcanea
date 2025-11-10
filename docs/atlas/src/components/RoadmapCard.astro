@@ -1,0 +1,88 @@
+---
+interface RoadmapCardProps {
+  era: string;
+  headline: string;
+  description: string;
+  quarter?: string;
+  alignment?: string;
+}
+
+const { era, headline, description, quarter, alignment } = Astro.props as RoadmapCardProps;
+---
+
+<article class="card">
+  <header>
+    <span class="era">{era}</span>
+    {quarter && <span class="quarter">{quarter}</span>}
+  </header>
+  <h3>{headline}</h3>
+  <p>{description}</p>
+  {alignment && (
+    <footer>
+      <span class="alignment">{alignment}</span>
+    </footer>
+  )}
+</article>
+
+<style>
+  .card {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: linear-gradient(160deg, rgba(16,18,36,0.9), rgba(8,9,25,0.8));
+    border: 1px solid rgba(110,107,255,0.25);
+    box-shadow: 0 20px 35px rgba(5,6,20,0.35);
+    transition: transform 240ms ease, box-shadow 240ms ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 50px rgba(110,107,255,0.25);
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .era {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(190,115,255,0.75);
+  }
+
+  .quarter {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(110,107,255,0.18);
+    border-radius: 999px;
+  }
+
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.3rem;
+    color: rgba(244,247,255,0.95);
+  }
+
+  p {
+    margin: 0;
+    color: rgba(200,210,240,0.78);
+    line-height: 1.6;
+  }
+
+  footer {
+    margin-top: 1.4rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .alignment {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244,247,255,0.6);
+  }
+</style>

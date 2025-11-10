@@ -1,0 +1,138 @@
+# Arcanean World Configuration
+# This file defines the basic parameters and metadata for your world
+
+world:
+  name: "Template World"
+  creator: "Your Name"
+  version: "1.0.0"
+  created: "2025-10-14"
+  last_modified: "2025-10-14"
+
+  # Brief tagline/hook for your world
+  tagline: "Where [unique element] meets [compelling tension]"
+
+  # Status: planning, active, complete, published
+  status: "planning"
+
+theme:
+  # Genres (can be multiple)
+  genre:
+    - "fantasy"          # fantasy, sci-fi, magical-realism, urban-fantasy, etc
+
+  # Overall tone
+  tone: "epic-optimistic"  # epic-heroic, dark-gritty, whimsical, realistic, mysterious, etc
+
+  # Inspiration sources
+  inspiration:
+    - "Middle-earth"
+    - "Avatar: The Last Airbender"
+    - "Arcanea Platform"
+
+structure:
+  # Detail levels: minimal, moderate, detailed, exhaustive
+  geography_depth: "moderate"
+  character_complexity: "detailed"
+  magic_system_rigor: "scientific"  # scientific, soft, hybrid, none
+  cultural_depth: "detailed"
+
+  # Scale: local, regional, continental, planetary, multiversal
+  geographic_scale: "continental"
+
+  # Scope: single-story, series, persistent-world
+  narrative_scope: "persistent-world"
+
+magic:
+  # Does magic exist in this world?
+  exists: true
+
+  # Source: divine, natural, internal, artifactual, combination
+  source: "natural"
+
+  # Prevalence: rare, uncommon, moderate, common, ubiquitous
+  prevalence: "moderate"
+
+  # System type: hard, soft, hybrid
+  system_type: "hard"
+
+cosmology:
+  # Universe type: single-world, multiple-planes, multiverse
+  universe_type: "single-world"
+
+  # Planet/world characteristics
+  world_type: "earth-like-planet"
+
+  # Celestial: number of moons, suns, etc
+  moons: 2
+  suns: 1
+
+  # Day/year length (in Earth hours/days)
+  day_length_hours: 24
+  year_length_days: 365
+
+integrations:
+  # Arcanean Academies integration
+  arcanean_academies:
+    enabled: false
+    primary_academy: null  # "Atlantean", "Draconic", "Creation & Light"
+
+  # Soul Guardians integration
+  soul_guardians:
+    enabled: false
+    characters: []  # List character IDs if integrated
+
+  # ARC/NEA economy
+  arcanean_economy:
+    enabled: false
+    arc_system: false
+    nea_governance: false
+
+collaboration:
+  # Is this world open for remixing/collaboration?
+  remixable: true
+
+  # License (MIT, CC-BY, CC-BY-SA, All Rights Reserved, etc)
+  license: "CC-BY-SA-4.0"
+
+  # Contributors
+  contributors:
+    - name: "Your Name"
+      role: "Original Creator"
+      date: "2025-10-14"
+
+export:
+  # Export formats supported
+  formats:
+    - "markdown"
+    - "pdf"
+    - "epub"
+    - "wiki-html"
+
+  # Bundle for sharing
+  bundle_name: "template-world-v1.arcanea"
+
+metadata:
+  # AI generation tracking
+  ai_assisted: true
+  primary_agent: "claude-sonnet-4.5"
+
+  # Quality scores (updated by consistency-validator)
+  consistency_score: 0.0
+  completeness_score: 0.0
+  integration_score: 0.0
+
+  # Statistics (auto-updated)
+  entity_count:
+    characters: 0
+    locations: 0
+    cultures: 0
+    artifacts: 0
+    conflicts: 0
+
+  # Last validation
+  last_validated: null
+  validation_status: "pending"
+
+notes: |
+  Additional notes about this world, design decisions, or future plans.
+
+  This is a template - customize all values for your specific world.

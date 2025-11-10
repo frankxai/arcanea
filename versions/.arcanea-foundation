@@ -1,0 +1,100 @@
+# ARCANEA FOUNDATION PROTOCOL
+# Single Source of Truth for All Agents
+# Version: 2.0 (Post-Simplification)
+
+## CORE VISION
+Arcanea is the global standard for magical creation where anyone learns to create anything through AI-powered magic.
+- Platform: Social network for multiverse creators (Meta polish + Marvel storytelling)
+- Product: Arcanea Studio (prompt system + generative desks + AI concierge)
+- Economy: Creator-first (subscription + credits → ARC/NEA tokens later)
+
+## MANDATORY TERMINOLOGY (All Agents Must Use)
+Creator = The person using Arcanea
+Guardian = Personal AI companion that learns your style
+Luminor = Specialized AI assistants (music, visual, story)
+Realm = Your creative universe/workspace
+Essence = Individual creations (songs, images, stories)
+Studio = Core creation platform
+Portal = Interface/entry point
+Remix = Collaboration and iteration system
+Spark = Creative inspiration
+Shadow = Unexpressed potential
+ARC = Creative energy currency (later)
+NEA = Governance tokens (later)
+
+## FORBIDDEN TERMS (Never Use These)
+- Consciousness/Conscious (except in philosophical context)
+- Loom/Weaver/Weave
+- Reality Synthesis Engine
+- Quantum anything (unless actually quantum)
+- Overly mystical jargon that confuses users
+
+## BUSINESS MODEL PRIORITY
+1. Studio Pass ($20/month) - subscription + usage credits
+2. Profiles & Remix Feed - social layer with virality
+3. Economy (later) - ARC/NEA only after trust established
+
+## ACADEMIES STRUCTURE
+Atlantean Academy = Storytelling & narrative (underwater/Atlantis theme)
+Draconic Academy = Visual creation & art (sky-bound/dragon theme)
+Creation & Light Academy = Music & audio (central/Soul Guardians theme)
+
+## APL (ARCANEAN PROMPT LANGUAGE) STANDARD
+[REALM] [ESSENCE_TYPE] [STYLE] [QUALITY] + [SPARK] → [DESCRIPTION]
+All AI interactions should use or understand APL syntax
+
+## FILE SYSTEM STANDARD
+.arcanea = Creator profiles and identity
+.arc = Individual creative essences with metadata
+.nea = Collaboration and remix records
+
+## QUALITY STANDARDS
+- Meta-level interface polish
+- Marvel-quality storytelling
+- Premium craft, never amateur
+- Smooth elegance over complexity
+- Emotional resonance always
+- Remix-friendly by design
+
+## BUILD PRIORITY SEQUENCE
+1. Foundation docs (this file + core vision)
+2. Studio MVP (prompt interface + AI desk integration)
+3. Guardian system (personal AI with memory)
+4. Remix system (lineage tracking + collaboration)
+5. Profiles (showcase + social features)
+6. Academy content (learning + community)
+7. Economy (ARC/NEA implementation)
+
+## AGENT BEHAVIOR RULES
+- Always check this file first before building
+- Use only approved terminology
+- Focus on simplicity over complexity
+- Prioritize user experience over technical features
+- Build for creators, not technologists
+- Maintain premium aesthetic standards
+
+## SUCCESS METRICS
+- "Arcanea" becomes verb for AI creation
+- Creators proudly identify as "Arcanean"
+- Platform feels as natural as Instagram for photos
+- Anyone can learn to create anything
+- Golden Age of Intelligence powered by Arcanean creators
+
+## INTEGRATION POINTS
+- Suno (music generation)
+- Nano Banana (image generation)
+- Claude/ChatGPT (story generation)
+- Future: Veo 3, Seedance, KlingAI
+- Social: Instagram, TikTok, YouTube embeds
+
+## ASSET MANAGEMENT PROTOCOL
+All existing content should be:
+1. Catalogued with .arc metadata
+2. Tagged with APL prompts retroactively
+3. Assigned to appropriate Academy
+4. Tracked in central database
+5. Available for remix by community
+
+Last Updated: 2024-12-27
+Foundation Authority: Frank (Original Creator)
+Implementation Status: Active

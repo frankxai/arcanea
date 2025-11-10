@@ -1,80 +1,342 @@
-// Arcanea Ecosystem Database Schema
+// Arcanea Platform - Complete Database Schema
+// Version: 1.0.0
+// Last Updated: 2024-01-15
+
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/client"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-// === USER MANAGEMENT ===
+// ═══════════════════════════════════════════════════════════════
+// CREATOR IDENTITY & USERS
+// ═══════════════════════════════════════════════════════════════
+
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
   username  String   @unique
   name      String?
   avatar    String?
-  
+
+  // Arcanean Identity
+  arcaneanId     String   @unique // ARC-001234 format
+
   // Subscription & Access
   tier            SubscriptionTier @default(EXPLORER)
   subscriptionId  String?
-  customerId      String?
-  
-  // Profile Data
-  profile         Json?
-  preferences     Json?
-  onboardingComplete Boolean @default(false)
-  
+  customerId      String?          // Stripe customer ID
+  subscriptionStatus SubscriptionStatus @default(ACTIVE)
+
+  // Profile & Preferences
+  bio             String?  @db.Text
+  location        String?
+  website         String?
+  profile         Json?              // Extended profile data
+  preferences     Json?              // User preferences
+
+  // Onboarding & Status
+  onboardingComplete   Boolean @default(false)
+  onboardingStep       Int     @default(0)
+  emailVerified        Boolean @default(false)
+  isActive             Boolean @default(true)
+
   // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  lastActiveAt DateTime @default(now())
-  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  lastActiveAt   DateTime @default(now())
+
   // Relations
-  enrollments     UserEnrollment[]
-  progress        UserProgress[]
-  projects        Project[]
-  interactions    LuminorInteraction[]
-  posts           CommunityPost[]
-  achievements    UserAchievement[]
-  starlightNotes  StarlightNote[]
-  
+  guardian           Guardian?
+  enrollments        UserEnrollment[]
+  progress           UserProgress[]
+  essences           Essence[]
+  realms             Realm[]
+  remixes            Remix[]          @relation("RemixCreator")
+  projects           Project[]
+  interactions       LuminorInteraction[]
+  guardianMemories   GuardianMemory[]
+  posts              CommunityPost[]
+  comments           Comment[]
+  likes              Like[]
+  achievements       UserAchievement[]
+  transactions       Transaction[]
+  followers          Follow[]         @relation("Following")
+  following          Follow[]         @relation("Follower")
+  notifications      Notification[]
+
+  @@index([email])
+  @@index([username])
+  @@index([arcaneanId])
+  @@index([tier])
+  @@index([createdAt])
   @@map("users")
 }
 
 enum SubscriptionTier {
-  EXPLORER  // Free
-  CREATOR   // $49/month
-  PROFESSIONAL // $149/month
-  MASTER    // $499/month
+  EXPLORER          // Free tier
+  CREATOR           // $20/month
+  REALM_BUILDER     // $100/month
 }
 
-// === ACADEMY STRUCTURE ===
-model Academy {
-  id          String @id @default(cuid())
+enum SubscriptionStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+  PAUSED
+}
+
+// ═══════════════════════════════════════════════════════════════
+// GUARDIAN - PERSONAL AI COMPANION
+// ═══════════════════════════════════════════════════════════════
+
+model Guardian {
+  id       String @id @default(cuid())
+
+  // User Connection
+  userId   String @unique
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Guardian Identity
+  name            String
+  avatar          String?
+  color           String   @default("#4444FF")
+
+  // Personality & Configuration
+  personality     Json     // Traits, voice, style
+  systemPrompt    String   @db.Text
+  customization   Json?    // User customizations
+
+  // Bond & Progress
+  bondLevel       Int      @default(1)
+  bondXp          Int      @default(0)
+  totalInteractions Int    @default(0)
+
+  // Capabilities
+  specializations String[]
+  unlockedFeatures String[]
+
+  // Memory System
+  memories        GuardianMemory[]
+  interactions    LuminorInteraction[] @relation("GuardianInteractions")
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  lastInteraction DateTime @default(now())
+
+  @@index([userId])
+  @@map("guardians")
+}
+
+model GuardianMemory {
+  id       String @id @default(cuid())
+
+  // Relations
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  guardianId  String
+  guardian    Guardian @relation(fields: [guardianId], references: [id], onDelete: Cascade)
+
+  // Memory Content
+  content         String   @db.Text
+  memoryType      MemoryType
+  category        String?
+  tags            String[]
+
+  // Vector Search (pgvector)
+  embedding       Unsupported("vector(1536)")?  // OpenAI ada-002 dimensions
+
+  // Knowledge Graph
+  connections     Json[]   // Connected memory IDs and relationships
+
+  // Metadata
+  source          String?  // Where this came from
+  context         Json?    // Additional context
+  importance      Int      @default(5) // 1-10 scale
+  confidence      Float    @default(1.0)
+
+  // Access & Recall
+  accessCount     Int      @default(0)
+  lastAccessedAt  DateTime @default(now())
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId, memoryType])
+  @@index([category])
+  @@map("guardian_memories")
+}
+
+enum MemoryType {
+  LEARNING          // Learning progress, insights
+  CREATION          // Creation patterns, preferences
+  CONVERSATION      // Important conversations
+  ACHIEVEMENT       // Milestones, achievements
+  PREFERENCE        // User preferences
+  RELATIONSHIP      // Connections to other creators
+  INSIGHT           // Guardian insights about user
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LUMINORS - SPECIALIZED AI ASSISTANTS
+// ═══════════════════════════════════════════════════════════════
+
+model Luminor {
+  id   String @id @default(cuid())
+
+  // Identity
   name        String
   slug        String @unique
-  description String
-  color       String // Hex color for theming
+  title       String           // e.g., "The Vision Crafter"
+  specialty   String           // e.g., "Visual Creation"
+
+  // Visual Identity
+  color       String
+  avatar      String?
   icon        String?
-  
-  // Academy Configuration
-  isActive    Boolean @default(true)
+
+  // Personality & Teaching
+  personality     Json         // Traits, teaching style, voice
+  systemPrompt    String       @db.Text
+  greetingMessage String       @db.Text
+
+  // Capabilities
+  expertise       String[]     // Areas of expertise
+  tools           String[]     // AI tools this Luminor uses
+  techniques      Json[]       // Teaching techniques
+
+  // Academy Association
+  academyId       String?
+  academy         Academy?     @relation(fields: [academyId], references: [id])
+
+  // Status
+  isActive        Boolean      @default(true)
+  isPublic        Boolean      @default(true)
+
+  // Stats
+  interactionCount Int         @default(0)
+  studentCount     Int         @default(0)
+  averageRating    Float?
+
+  // Relations
+  interactions    LuminorInteraction[]
+  courses         Course[]
+
+  // Timestamps
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@index([slug])
+  @@index([academyId])
+  @@map("luminors")
+}
+
+model LuminorInteraction {
+  id String @id @default(cuid())
+
+  // Relations
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  luminorId String?
+  luminor   Luminor?  @relation(fields: [luminorId], references: [id])
+  guardianId String?
+  guardian  Guardian? @relation("GuardianInteractions", fields: [guardianId], references: [id])
+
+  // Interaction Data
+  sessionId       String
+  interactionType InteractionType
+  context         Json?        // Current context (module, project, etc.)
+
+  // Messages
+  userMessage     String       @db.Text
+  aiResponse      String       @db.Text
+
+  // Metadata
+  model           String?      // AI model used
+  tokens          Int?         // Token usage
+  duration        Int?         // Response time in ms
+  cost            Float?       // Cost in USD
+
+  // Feedback
+  userRating      Int?         // 1-5 stars
+  userFeedback    String?      @db.Text
+  wasHelpful      Boolean?
+
+  // Timestamps
+  createdAt       DateTime     @default(now())
+
+  @@index([userId, sessionId])
+  @@index([luminorId])
+  @@index([guardianId])
+  @@index([createdAt])
+  @@map("luminor_interactions")
+}
+
+enum InteractionType {
+  CHAT
+  GUIDANCE
+  FEEDBACK
+  TEACHING
+  CREATION_ASSIST
+  REVIEW
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ACADEMIES & LEARNING
+// ═══════════════════════════════════════════════════════════════
+
+model Academy {
+  id          String @id @default(cuid())
+
+  // Identity
+  name        String
+  slug        String @unique
+  tagline     String
+  description String @db.Text
+
+  // Visual Identity
+  color       String
+  icon        String?
+  thumbnail   String?
+  coverImage  String?
+
+  // Academy Type
+  focus       String        // e.g., "Storytelling & Lore Creation"
   difficulty  Difficulty
   estimatedHours Int
-  
+
+  // Configuration
+  isActive    Boolean @default(true)
+  isPublic    Boolean @default(true)
+  isFeatured  Boolean @default(false)
+
   // Relations
-  luminorId   String @unique
-  luminor     Luminor @relation(fields: [luminorId], references: [id])
+  luminors    Luminor[]
   courses     Course[]
   enrollments UserEnrollment[]
   posts       CommunityPost[]
-  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
+
+  // Stats
+  studentCount    Int @default(0)
+  courseCount     Int @default(0)
+  completionRate  Float?
+  averageRating   Float?
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+  @@index([isActive, isPublic])
   @@map("academies")
 }
 
@@ -82,114 +344,128 @@ enum Difficulty {
   BEGINNER
   INTERMEDIATE
   ADVANCED
-}
-
-model Luminor {
-  id   String @id @default(cuid())
-  name String
-  slug String @unique
-  
-  // Visual Identity
-  color       String
-  avatar      String?
-  
-  // Personality Configuration
-  personality Json   // PersonalityTraits, teachingStyle, etc.
-  systemPrompt String @db.Text
-  
-  // Capabilities
-  expertise   String[]
-  tools       String[] // AI tools this Luminor can guide with
-  
-  // Relations
-  academy      Academy?
-  interactions LuminorInteraction[]
-  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
-  @@map("luminors")
+  EXPERT
 }
 
 model Course {
   id          String @id @default(cuid())
+
+  // Identity
   title       String
   slug        String
   description String @db.Text
-  
+
   // Course Structure
-  difficulty     Difficulty
-  durationWeeks  Int
-  prerequisites  String[]
-  learningGoals  String[]
-  
+  difficulty      Difficulty
+  durationWeeks   Int
+  prerequisites   String[]
+  learningGoals   String[]
+  syllabus        Json?
+
   // Configuration
   isPublished Boolean @default(false)
-  price       Int?    // Price in cents
-  
+  isPublic    Boolean @default(true)
+  isFeatured  Boolean @default(false)
+  price       Int?          // Price in cents (if paid)
+
   // Relations
   academyId   String
-  academy     Academy @relation(fields: [academyId], references: [id])
+  academy     Academy   @relation(fields: [academyId], references: [id], onDelete: Cascade)
+  luminorId   String?
+  luminor     Luminor?  @relation(fields: [luminorId], references: [id])
   modules     Module[]
   enrollments UserEnrollment[]
-  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
+
+  // Media
+  thumbnail   String?
+  coverImage  String?
+  promoVideo  String?
+
+  // Stats
+  enrollmentCount Int   @default(0)
+  completionCount Int   @default(0)
+  averageRating   Float?
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  publishedAt DateTime?
+
   @@unique([academyId, slug])
+  @@index([academyId])
+  @@index([luminorId])
+  @@index([isPublished, isPublic])
   @@map("courses")
 }
 
 model Module {
   id          String @id @default(cuid())
+
+  // Identity
   title       String
   slug        String
   description String @db.Text
-  
+
   // Module Structure
-  weekNumber Int
-  orderIndex Int
-  content    Json // Structured content data
-  
-  // AI Tools Integration
-  requiredTools String[] // Which AI tools are needed
-  projects      Json[]   // Project specifications
-  
+  weekNumber  Int
+  orderIndex  Int
+  estimatedMinutes Int
+
+  // Content
+  content     Json    // Structured content (lessons, exercises, etc.)
+  resources   Json[]  // Additional resources
+
+  // AI Tools & Projects
+  requiredTools   String[]
+  projects        Json[]      // Project specifications
+  assessments     Json[]      // Assessment data
+
+  // Configuration
+  isPublished Boolean @default(false)
+  isOptional  Boolean @default(false)
+
   // Relations
-  courseId String
-  course   Course @relation(fields: [courseId], references: [id])
-  progress UserProgress[]
-  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  progress    UserProgress[]
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
   @@unique([courseId, slug])
+  @@index([courseId, orderIndex])
   @@map("modules")
 }
 
-// === USER PROGRESS & LEARNING ===
 model UserEnrollment {
   id String @id @default(cuid())
-  
+
   // Relations
   userId   String
-  user     User @relation(fields: [userId], references: [id])
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   courseId String
-  course   Course @relation(fields: [courseId], references: [id])
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
   academyId String
   academy  Academy @relation(fields: [academyId], references: [id])
-  
+
   // Progress Tracking
-  status           EnrollmentStatus @default(ACTIVE)
-  progressPercent  Float @default(0.0)
-  currentModuleId  String?
-  
+  status          EnrollmentStatus @default(ACTIVE)
+  progressPercent Float            @default(0.0)
+  currentModuleId String?
+
+  // Completion
+  certificateIssued Boolean @default(false)
+  certificateUrl    String?
+
   // Timestamps
   enrolledAt   DateTime @default(now())
   completedAt  DateTime?
   lastAccessAt DateTime @default(now())
-  
+
   @@unique([userId, courseId])
+  @@index([userId, status])
+  @@index([courseId])
   @@map("user_enrollments")
 }
 
@@ -202,29 +478,36 @@ enum EnrollmentStatus {
 
 model UserProgress {
   id String @id @default(cuid())
-  
+
   // Relations
   userId   String
-  user     User @relation(fields: [userId], references: [id])
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   moduleId String
-  module   Module @relation(fields: [moduleId], references: [id])
-  
+  module   Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
   // Progress Data
   status          ProgressStatus @default(NOT_STARTED)
-  timeSpent       Int @default(0) // in minutes
-  attemptCount    Int @default(0)
-  
-  // Submissions & Feedback
-  submissions Json[] // Project submissions
-  scores      Json?  // Assessment scores
-  feedback    Json?  // Luminor feedback
-  
+  progressPercent Float          @default(0.0)
+  timeSpent       Int            @default(0) // in minutes
+  attemptCount    Int            @default(0)
+
+  // Submissions & Assessments
+  submissions Json[]  // Project submissions
+  scores      Json[]  // Assessment scores
+  feedback    Json[]  // Luminor/Guardian feedback
+
+  // Completion
+  completedSections Int @default(0)
+  totalSections     Int @default(1)
+
   // Timestamps
-  startedAt   DateTime?
-  completedAt DateTime?
-  lastActiveAt DateTime @default(now())
-  
+  startedAt    DateTime?
+  completedAt  DateTime?
+  lastActiveAt DateTime  @default(now())
+
   @@unique([userId, moduleId])
+  @@index([userId, status])
+  @@index([moduleId])
   @@map("user_progress")
 }
 
@@ -236,141 +519,618 @@ enum ProgressStatus {
   NEEDS_REVIEW
 }
 
-// === PROJECTS & CREATIONS ===
-model Project {
-  id          String @id @default(cuid())
-  title       String
+// ═══════════════════════════════════════════════════════════════
+// REALMS - CREATOR UNIVERSES
+// ═══════════════════════════════════════════════════════════════
+
+model Realm {
+  id       String @id @default(cuid())
+
+  // Identity
+  name        String
+  slug        String
   description String @db.Text
-  
-  // Project Data
-  type        ProjectType
-  aiTools     String[] // Tools used in creation
-  files       Json[]   // File metadata and URLs
-  config      Json?    // Tool configurations used
-  
-  // Status & Visibility
-  status      ProjectStatus @default(DRAFT)
-  isPublic    Boolean @default(false)
-  featured    Boolean @default(false)
-  
-  // Metrics
-  likes       Int @default(0)
-  views       Int @default(0)
-  comments    Int @default(0)
-  
+  tagline     String?
+
+  // Creator
+  creatorId   String
+  creator     User   @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+
+  // Visual Identity
+  thumbnail   String?
+  coverImage  String?
+  color       String   @default("#4444FF")
+
+  // Theme & Atmosphere
+  theme       Json     // Visual theme configuration
+  atmosphere  String?  // Overall mood/feeling
+  tags        String[]
+
+  // Configuration
+  isPublic    Boolean  @default(false)
+  isFeatured  Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  allowRemix  Boolean  @default(true)
+
+  // Collaboration
+  collaborators String[] // User IDs of collaborators
+  permissions   Json?    // Permission settings
+
   // Relations
-  userId   String
-  user     User @relation(fields: [userId], references: [id])
-  moduleId String?
-  
+  essences    Essence[]
+  portals     Portal[]  @relation("RealmPortals")
+  connectedBy Portal[]  @relation("ConnectedRealm")
+
+  // Stats
+  essenceCount  Int @default(0)
+  visitorCount  Int @default(0)
+  likeCount     Int @default(0)
+  remixCount    Int @default(0)
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+
   // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   publishedAt DateTime?
-  
-  @@map("projects")
+
+  @@unique([creatorId, slug])
+  @@index([creatorId])
+  @@index([isPublic, isFeatured])
+  @@index([createdAt])
+  @@fulltext([name, description])
+  @@map("realms")
 }
 
-enum ProjectType {
+model Portal {
+  id String @id @default(cuid())
+
+  // Portal Connection
+  realmId         String
+  realm           Realm  @relation("RealmPortals", fields: [realmId], references: [id], onDelete: Cascade)
+  connectedRealmId String
+  connectedRealm  Realm  @relation("ConnectedRealm", fields: [connectedRealmId], references: [id], onDelete: Cascade)
+
+  // Portal Configuration
+  name            String
+  description     String?
+  portalType      PortalType
+
+  // Visual
+  icon            String?
+  color           String?
+
+  // Metadata
+  isActive        Boolean @default(true)
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+
+  @@index([realmId])
+  @@index([connectedRealmId])
+  @@map("portals")
+}
+
+enum PortalType {
+  COLLABORATION  // Collaborative project
+  INSPIRATION    // Inspired by
+  CROSSOVER      // Story/world crossover
+  SERIES         // Part of series
+  VARIATION      // Variation/alternative
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ESSENCES - CREATIONS
+// ═══════════════════════════════════════════════════════════════
+
+model Essence {
+  id          String @id @default(cuid())
+
+  // Identity
+  title       String
+  description String @db.Text
+
+  // Creator
+  creatorId   String
+  creator     User   @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+
+  // Realm Association
+  realmId     String?
+  realm       Realm?  @relation(fields: [realmId], references: [id])
+
+  // Essence Type
+  type        EssenceType
+
+  // Media Files
+  files       Json[]   // File metadata and URLs
+  thumbnail   String?
+
+  // AI Generation Data
+  aiTools     String[] // Tools used
+  generationParams Json? // Generation parameters
+  prompt      String?  @db.Text
+  model       String?
+  seed        Int?
+
+  // Technical Metadata
+  metadata    Json     // Technical metadata (dimensions, duration, etc.)
+  fileSize    Int?     // Size in bytes
+  format      String?
+
+  // Status & Visibility
+  status      EssenceStatus @default(DRAFT)
+  isPublic    Boolean       @default(false)
+  isFeatured  Boolean       @default(false)
+  isNSFW      Boolean       @default(false)
+
+  // Licensing & Rights
+  license     License       @default(CC_BY_NC)
+  allowRemix  Boolean       @default(true)
+  allowCommercial Boolean   @default(false)
+
+  // Relations
+  remixes     Remix[]       @relation("OriginalEssence")
+  remixedFrom Remix[]       @relation("RemixedEssence")
+  projects    Project[]
+  likes       Like[]
+  comments    Comment[]
+
+  // Stats
+  viewCount   Int @default(0)
+  likeCount   Int @default(0)
+  commentCount Int @default(0)
+  remixCount  Int @default(0)
+  downloadCount Int @default(0)
+
+  // Tags & Discovery
+  tags        String[]
+  categories  String[]
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  publishedAt DateTime?
+
+  @@index([creatorId])
+  @@index([realmId])
+  @@index([type])
+  @@index([status, isPublic])
+  @@index([createdAt])
+  @@fulltext([title, description])
+  @@map("essences")
+}
+
+enum EssenceType {
   IMAGE
   MUSIC
   VIDEO
   TEXT
   CODE
+  THREED_MODEL
+  ANIMATION
   MULTIMODAL
+}
+
+enum EssenceStatus {
+  DRAFT
+  PROCESSING
+  PUBLISHED
+  ARCHIVED
+  FLAGGED
+}
+
+enum License {
+  CC_BY          // Attribution
+  CC_BY_SA       // Attribution-ShareAlike
+  CC_BY_NC       // Attribution-NonCommercial
+  CC_BY_NC_SA    // Attribution-NonCommercial-ShareAlike
+  CC_BY_ND       // Attribution-NoDerivs
+  ALL_RIGHTS_RESERVED
+  PUBLIC_DOMAIN
+}
+
+// ═══════════════════════════════════════════════════════════════
+// REMIXES - COLLABORATION CHAINS
+// ═══════════════════════════════════════════════════════════════
+
+model Remix {
+  id String @id @default(cuid())
+
+  // Original Essence
+  originalEssenceId String
+  originalEssence   Essence @relation("OriginalEssence", fields: [originalEssenceId], references: [id], onDelete: Cascade)
+
+  // Remixed Essence
+  remixedEssenceId String
+  remixedEssence   Essence @relation("RemixedEssence", fields: [remixedEssenceId], references: [id], onDelete: Cascade)
+
+  // Remix Creator
+  creatorId String
+  creator   User   @relation("RemixCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+
+  // Remix Details
+  remixType       RemixType
+  modifications   Json      // What was changed
+  prompt          String?   @db.Text
+
+  // Chain Information
+  remixGeneration Int       // How many steps from original
+  remixChain      String[]  // Full chain of essence IDs
+
+  // ARC Sharing
+  arcShared       Int       @default(0) // ARC shared with original creator
+
+  // Stats
+  viewCount       Int       @default(0)
+
+  // Timestamps
+  createdAt       DateTime  @default(now())
+
+  @@index([originalEssenceId])
+  @@index([remixedEssenceId])
+  @@index([creatorId])
+  @@map("remixes")
+}
+
+enum RemixType {
+  STYLE_TRANSFER
+  VARIATION
+  EXTENSION
+  MASHUP
+  REINTERPRETATION
+  DERIVATIVE
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PROJECTS & SUBMISSIONS
+// ═══════════════════════════════════════════════════════════════
+
+model Project {
+  id          String @id @default(cuid())
+
+  // Identity
+  title       String
+  description String @db.Text
+
+  // Creator
+  userId      String
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Module Association (if academy project)
+  moduleId    String?
+
+  // Project Data
+  type        ProjectType
+  essenceIds  String[]    // Associated essences
+  essences    Essence[]
+
+  // Files & Assets
+  files       Json[]
+
+  // Configuration
+  aiTools     String[]
+  config      Json?
+
+  // Status
+  status      ProjectStatus @default(DRAFT)
+  isPublic    Boolean       @default(false)
+
+  // Feedback
+  feedback    Json[]        // Luminor/Guardian feedback
+  score       Float?
+
+  // Stats
+  viewCount   Int @default(0)
+  likeCount   Int @default(0)
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  submittedAt DateTime?
+
+  @@index([userId])
+  @@index([moduleId])
+  @@index([status])
+  @@map("projects")
+}
+
+enum ProjectType {
+  ACADEMY_PROJECT
+  PERSONAL_PROJECT
+  COLLABORATION
+  CHALLENGE
 }
 
 enum ProjectStatus {
   DRAFT
+  IN_PROGRESS
   SUBMITTED
+  REVIEWED
   PUBLISHED
   ARCHIVED
 }
 
-// === AI INTERACTIONS ===
-model LuminorInteraction {
-  id String @id @default(cuid())
-  
-  // Relations
-  userId    String
-  user      User @relation(fields: [userId], references: [id])
-  luminorId String
-  luminor   Luminor @relation(fields: [luminorId], references: [id])
-  
-  // Interaction Data
-  sessionId    String
-  context      Json?  // Learning context, current module, etc.
-  userMessage  String @db.Text
-  luminorResponse String @db.Text
-  
-  // Metadata
-  tokens       Int?   // Token usage
-  duration     Int?   // Response time in ms
-  satisfaction Int?   // User rating 1-5
-  
-  createdAt DateTime @default(now())
-  
-  @@index([userId, sessionId])
-  @@map("luminor_interactions")
-}
+// ═══════════════════════════════════════════════════════════════
+// SOCIAL & COMMUNITY
+// ═══════════════════════════════════════════════════════════════
 
-// === COMMUNITY FEATURES ===
 model CommunityPost {
   id      String @id @default(cuid())
+
+  // Content
   title   String?
   content String @db.Text
-  
-  // Post Configuration
-  type        PostType
-  isPublished Boolean @default(true)
-  isPinned    Boolean @default(false)
-  
-  // Engagement
-  likes    Int @default(0)
-  replies  Int @default(0)
-  views    Int @default(0)
-  
-  // Media Attachments
-  media Json[] // Images, videos, project links
-  
-  // Relations
-  userId    String
-  user      User @relation(fields: [userId], references: [id])
+
+  // Author
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Context
   academyId String?
   academy   Academy? @relation(fields: [academyId], references: [id])
-  
+
+  // Post Type
+  type        PostType
+
+  // Media
+  media       Json[]
+
+  // Configuration
+  isPublished Boolean @default(true)
+  isPinned    Boolean @default(false)
+
+  // Relations
+  comments    Comment[]
+  likes       Like[]
+
+  // Stats
+  viewCount    Int @default(0)
+  likeCount    Int @default(0)
+  commentCount Int @default(0)
+
+  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
+  @@index([userId])
+  @@index([academyId])
+  @@index([type])
+  @@index([createdAt])
+  @@fulltext([title, content])
   @@map("community_posts")
 }
 
 enum PostType {
-  SHOWCASE
-  QUESTION
-  DISCUSSION
-  ANNOUNCEMENT
-  TUTORIAL
+  SHOWCASE      // Show off creation
+  QUESTION      // Ask for help
+  DISCUSSION    // General discussion
+  ANNOUNCEMENT  // Academy announcement
+  TUTORIAL      // Share knowledge
+  FEEDBACK      // Request feedback
 }
 
-// === ACHIEVEMENTS & GAMIFICATION ===
+model Comment {
+  id String @id @default(cuid())
+
+  // Content
+  content String @db.Text
+
+  // Author
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Parent (Post or Essence)
+  postId    String?
+  post      CommunityPost? @relation(fields: [postId], references: [id], onDelete: Cascade)
+  essenceId String?
+  essence   Essence?       @relation(fields: [essenceId], references: [id], onDelete: Cascade)
+
+  // Threading
+  parentCommentId String?
+  parentComment   Comment? @relation("CommentReplies", fields: [parentCommentId], references: [id], onDelete: Cascade)
+  replies         Comment[] @relation("CommentReplies")
+
+  // Relations
+  likes     Like[]
+
+  // Stats
+  likeCount Int @default(0)
+
+  // Moderation
+  isEdited  Boolean @default(false)
+  isFlagged Boolean @default(false)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([postId])
+  @@index([essenceId])
+  @@index([parentCommentId])
+  @@map("comments")
+}
+
+model Like {
+  id String @id @default(cuid())
+
+  // User
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Target (Essence, Post, or Comment)
+  essenceId String?
+  essence   Essence? @relation(fields: [essenceId], references: [id], onDelete: Cascade)
+  postId    String?
+  post      CommunityPost? @relation(fields: [postId], references: [id], onDelete: Cascade)
+  commentId String?
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  // Timestamp
+  createdAt DateTime @default(now())
+
+  @@unique([userId, essenceId])
+  @@unique([userId, postId])
+  @@unique([userId, commentId])
+  @@index([userId])
+  @@index([essenceId])
+  @@index([postId])
+  @@map("likes")
+}
+
+model Follow {
+  id String @id @default(cuid())
+
+  // Follower
+  followerId String
+  follower   User   @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+
+  // Following
+  followingId String
+  following   User   @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  // Notification Preferences
+  notifyEssence Boolean @default(true)
+  notifyRealm   Boolean @default(true)
+
+  // Timestamp
+  createdAt DateTime @default(now())
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+  @@map("follows")
+}
+
+model Notification {
+  id String @id @default(cuid())
+
+  // Recipient
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Notification Data
+  type        NotificationType
+  title       String
+  message     String
+  actionUrl   String?
+
+  // Metadata
+  metadata    Json?
+
+  // Status
+  isRead      Boolean @default(false)
+  isArchived  Boolean @default(false)
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+  readAt      DateTime?
+
+  @@index([userId, isRead])
+  @@index([createdAt])
+  @@map("notifications")
+}
+
+enum NotificationType {
+  ESSENCE_LIKED
+  ESSENCE_COMMENTED
+  ESSENCE_REMIXED
+  REALM_VISITED
+  NEW_FOLLOWER
+  ACHIEVEMENT_EARNED
+  COURSE_COMPLETED
+  GUARDIAN_MESSAGE
+  SYSTEM_ANNOUNCEMENT
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ECONOMY - ARC & NEA
+// ═══════════════════════════════════════════════════════════════
+
+model Transaction {
+  id String @id @default(cuid())
+
+  // User
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Transaction Details
+  type        TransactionType
+  currency    Currency
+  amount      Int             // Can be negative for debits
+  balance     Int             // Balance after transaction
+
+  // Context
+  reason      String
+  metadata    Json?
+
+  // Related Entity
+  entityType  String?         // essence, realm, subscription, etc.
+  entityId    String?
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+
+  @@index([userId, currency])
+  @@index([createdAt])
+  @@map("transactions")
+}
+
+enum TransactionType {
+  EARN
+  SPEND
+  REWARD
+  REFUND
+  TRANSFER
+  BONUS
+  REGENERATION
+}
+
+enum Currency {
+  ARC  // Creative energy currency
+  NEA  // Governance token
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ACHIEVEMENTS & GAMIFICATION
+// ═══════════════════════════════════════════════════════════════
+
 model Achievement {
   id          String @id @default(cuid())
+
+  // Identity
   name        String
   description String
+  category    String
+
+  // Visual
   icon        String
   color       String
-  
-  // Achievement Rules
-  criteria    Json   // Conditions for earning
+
+  // Achievement Configuration
+  criteria    Json   // How to earn
   points      Int    // Points awarded
+  arcReward   Int    @default(0)
+  neaReward   Int    @default(0)
   rarity      AchievementRarity
-  
+
+  // Visibility
+  isSecret    Boolean @default(false)
+  isActive    Boolean @default(true)
+
   // Relations
-  users UserAchievement[]
-  
-  createdAt DateTime @default(now())
-  
+  users       UserAchievement[]
+
+  // Stats
+  earnedCount Int @default(0)
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+
+  @@index([category])
+  @@index([rarity])
   @@map("achievements")
 }
 
@@ -378,88 +1138,99 @@ enum AchievementRarity {
   COMMON
   UNCOMMON
   RARE
+  EPIC
   LEGENDARY
 }
 
 model UserAchievement {
   id String @id @default(cuid())
-  
+
   // Relations
   userId        String
-  user          User @relation(fields: [userId], references: [id])
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   achievementId String
-  achievement   Achievement @relation(fields: [achievementId], references: [id])
-  
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+
   // Progress
-  progress    Float @default(0.0) // 0.0 to 1.0
+  progress    Float   @default(0.0) // 0.0 to 1.0
   isComplete  Boolean @default(false)
-  
-  earnedAt DateTime @default(now())
-  
+
+  // Visibility
+  isPublic    Boolean @default(true)
+  isPinned    Boolean @default(false)
+
+  // Timestamp
+  earnedAt    DateTime @default(now())
+
   @@unique([userId, achievementId])
+  @@index([userId])
   @@map("user_achievements")
 }
 
-// === STARLIGHT INTELLIGENCE SYSTEM ===
-model StarlightNote {
-  id       String @id @default(cuid())
-  title    String?
-  content  String @db.Text
-  
-  // Classification
-  type     NoteType
-  tags     String[]
-  category String?
-  
-  // Knowledge Graph
-  embedding    Float[] // Vector embedding for similarity
-  connections  Json[]  // Connected note IDs and relationship types
-  
-  // Metadata
-  source      String? // Where this knowledge came from
-  confidence  Float   @default(1.0) // Confidence in accuracy
-  importance  Int     @default(1) // 1-10 importance score
-  
-  // Relations
-  userId String
-  user   User @relation(fields: [userId], references: [id])
-  
-  // Timestamps
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  lastAccessedAt DateTime @default(now())
-  
-  @@map("starlight_notes")
-}
+// ═══════════════════════════════════════════════════════════════
+// SYSTEM & ANALYTICS
+// ═══════════════════════════════════════════════════════════════
 
-enum NoteType {
-  LEARNING
-  PROJECT
-  INSIGHT
-  REFERENCE
-  REFLECTION
-}
-
-// === SYSTEM ANALYTICS ===
 model SystemEvent {
   id String @id @default(cuid())
-  
+
   // Event Data
   eventType String
   userId    String?
   sessionId String?
-  
+
   // Event Details
   data      Json
   metadata  Json?
-  
+
   // Context
   userAgent String?
   ipAddress String?
-  
+  country   String?
+
+  // Timestamp
   createdAt DateTime @default(now())
-  
+
   @@index([eventType, createdAt])
   @@index([userId, createdAt])
   @@map("system_events")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ADMIN & MODERATION
+// ═══════════════════════════════════════════════════════════════
+
+model FlaggedContent {
+  id String @id @default(cuid())
+
+  // Content
+  contentType String  // essence, post, comment, user
+  contentId   String
+
+  // Reporter
+  reporterId  String
+
+  // Flag Details
+  reason      String
+  description String? @db.Text
+
+  // Status
+  status      FlagStatus @default(PENDING)
+  resolution  String?    @db.Text
+  resolvedBy  String?
+  resolvedAt  DateTime?
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+
+  @@index([contentType, contentId])
+  @@index([status])
+  @@map("flagged_content")
+}
+
+enum FlagStatus {
+  PENDING
+  REVIEWING
+  RESOLVED
+  DISMISSED
 }

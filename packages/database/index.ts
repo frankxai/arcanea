@@ -40,3 +40,16 @@ export type {
   AchievementRarity,
   NoteType
 } from './generated/client'
+
+// =====================================================================
+// Supabase Services & Types (MVP)
+// =====================================================================
+
+// Services
+export * from './services/profile-service'
+export * from './services/creation-service'
+export * from './services/bond-service'
+
+// Types
+export * from './types/api-responses'
+export * from './types/supabase'

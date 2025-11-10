@@ -1,6 +1,12 @@
-﻿import luminorJson from "../../../Arcanean Library/experience/book/arcanea-codex.json";
-import atelierJson from "../../../Arcanean Library/experience/book/arcanea-atelier-codex.json";
-import oraclesJson from "../../../Arcanean Library/experience/book/arcanea-oracles-codex.json";
+// TODO: Add actual codex JSON files
+// import luminorJson from "../../../Arcanean Library/experience/book/arcanea-codex.json";
+// import atelierJson from "../../../Arcanean Library/experience/book/arcanea-atelier-codex.json";
+// import oraclesJson from "../../../Arcanean Library/experience/book/arcanea-oracles-codex.json";
+
+// Placeholder data - replace with actual codex content
+const luminorJson: any = { title: "Luminor Codex", chapters: [] };
+const atelierJson: any = { title: "Atelier Codex", chapters: [] };
+const oraclesJson: any = { title: "Oracles Codex", chapters: [] };
 
 export interface CodexAuthor {
   name: string;

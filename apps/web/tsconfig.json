@@ -22,6 +22,9 @@
     ],
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "plugins": [
       {
         "name": "next"

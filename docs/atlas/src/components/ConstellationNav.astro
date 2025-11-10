@@ -1,0 +1,97 @@
+---
+import type { RealmSpec } from '@data/manifest';
+const { realms = [] } = Astro.props as { realms: RealmSpec[] };
+---
+
+<nav class="constellation">
+  {realms.map((realm, index) => (
+    <a class={`node node-${index}`} href={`#realm-${realm.id}`}>
+      <span class="label">{realm.name}</span>
+      <span class="glow"></span>
+    </a>
+  ))}
+  <div class="orbits"></div>
+</nav>
+
+<style>
+  .constellation {
+    position: relative;
+    width: min(480px, 90vw);
+    height: min(480px, 90vw);
+    margin: 0 auto;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(110,107,255,0.12), rgba(10,8,25,0.4));
+    border: 1px solid rgba(190,115,255,0.2);
+    box-shadow: 0 0 60px rgba(110,107,255,0.25);
+    overflow: hidden;
+  }
+
+  .orbits::before,
+  .orbits::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(190,115,255,0.18);
+    animation: pulse 12s linear infinite;
+  }
+
+  .orbits::before {
+    inset: 18%;
+    animation-delay: -4s;
+  }
+
+  .orbits::after {
+    inset: 32%;
+    animation-delay: -8s;
+  }
+
+  .node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: rgba(244,247,255,0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .label {
+    position: relative;
+    padding: 0.4rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(14,15,35,0.75);
+    border: 1px solid rgba(190,115,255,0.4);
+    backdrop-filter: blur(6px);
+  }
+
+  .glow {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,115,255,0.45), transparent 65%);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  .node:hover .glow,
+  .node:focus-visible .glow {
+    opacity: 1;
+  }
+
+  .node-0 { top: 12%; left: 50%; }
+  .node-1 { top: 28%; left: 82%; }
+  .node-2 { top: 65%; left: 87%; }
+  .node-3 { top: 88%; left: 50%; }
+  .node-4 { top: 64%; left: 15%; }
+
+  @keyframes pulse {
+    0% { opacity: 0.2; transform: rotate(0deg); }
+    50% { opacity: 0.45; }
+    100% { opacity: 0.2; transform: rotate(360deg); }
+  }
+
+  @media (max-width: 600px) {
+    .constellation { height: 360px; }
+    .label { font-size: 0.75rem; }
+  }
+</style>

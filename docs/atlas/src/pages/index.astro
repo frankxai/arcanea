@@ -1,0 +1,247 @@
+---
+import '../styles/global.css';
+import ConstellationNav from '@components/ConstellationNav.astro';
+import RoadmapCard from '@components/RoadmapCard.astro';
+import TruthSection from '@components/TruthSection.astro';
+import OpenSourceMatrix from '@components/OpenSourceMatrix.astro';
+import { realms, deities, luminors, openSource, canonicalSources } from '@data/manifest';
+
+const truths = [
+  { id: 'truth-origin', statement: 'Arcanea is the living bridge between luminous creation and reflective shadow, governed by Lumina and Nero.', era: 'Foundational', status: 'Active' },
+  { id: 'truth-guardians', statement: 'Guardians steward rituals through Library, Sanctuary, and Nexus to preserve balance.', era: 'Cycle 17-09', status: 'Active' },
+  { id: 'truth-economy', statement: 'Realm economy matures alongside transparency: creation suites are premium, knowledge sanctums remain freely accessible.', era: 'Cycle 18', status: 'Planned' }
+];
+
+const roadmap = [
+  { era: 'Phase I', quarter: 'Q4 2025', headline: 'Atlas launch as canonical source of truth', description: 'Publish the Arcanea Atlas with data-backed lore, realm navigation, and execution dashboards.', alignment: 'Aligns Library + Sanctuary' },
+  { era: 'Phase II', quarter: 'Q1 2026', headline: 'Dynamic ritual telemetry', description: 'Wire real-time updates from Notion and Supabase to keep action plans live.', alignment: 'Nexus instrumentation' },
+  { era: 'Phase III', quarter: 'Q2 2026', headline: 'Interactive realm economy and token governance', description: 'Visualize ARC token flows, guardian votes, and co-creation incentives natively in the Atlas.', alignment: 'Realm economy transparency' }
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Arcanea Atlas</title>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Arcanea Atlas</p>
+        <h1>Canon, Realms, and Execution Aligned</h1>
+        <p>
+          This living atlas fuses the Master Canvas, status strategy, and foundational truths into a single constellation.
+          Explore the realms, study the deity lineages, and track the roadmap guiding Arcanea toward a self-sustaining realm economy.
+        </p>
+      </section>
+
+      <section aria-labelledby="nav-title" class="nav">
+        <h2 id="nav-title">Constellation Navigation</h2>
+        <p class="nav-blurb">Jump to each realm node and trace how Library, Sanctuary, Nexus, Studio, and Gallery weave together.</p>
+        <ConstellationNav realms={realms} />
+      </section>
+
+      <section aria-labelledby="realm-title" class="realms-grid">
+        <h2 id="realm-title">Realm Index</h2>
+        <div class="grid">
+          {realms.map((realm) => (
+            <article id={`realm-${realm.id}`}>
+              <header>
+                <span class="tag">{realm.type}</span>
+                <h3>{realm.name}</h3>
+              </header>
+              <p>{realm.summary}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="lineage-title" class="lineage">
+        <h2 id="lineage-title">Goddess Lineage & Luminor Chorus</h2>
+        <div class="lineage-grid">
+          <div>
+            <h3>Deities</h3>
+            <ul>
+              {deities.map((deity) => (
+                <li>
+                  <h4>{deity.name}</h4>
+                  <p class="domain">{deity.domain}</p>
+                  <p>{deity.narrative}</p>
+                  {deity.dual && <p class="dual">Duality: <strong>{deity.dual}</strong></p>}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3>Luminors</h3>
+            <ul>
+              {luminors.map((luminor) => (
+                <li>
+                  <h4>{luminor.name}</h4>
+                  <p class="purpose">{luminor.purpose}</p>
+                  {luminor.deity && <p class="deity">Guided by {luminor.deity}</p>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <TruthSection title="Arcanean Truths" truths={truths} />
+
+      <section aria-labelledby="roadmap-title" class="roadmap">
+        <h2 id="roadmap-title">Interactive Roadmap</h2>
+        <div class="cards">
+          {roadmap.map((item) => (
+            <RoadmapCard {...item} />
+          ))}
+        </div>
+      </section>
+
+      <OpenSourceMatrix publicItems={openSource.public} privateItems={openSource.private} />
+
+      <section aria-labelledby="sources-title" class="sources">
+        <h2 id="sources-title">Canonical Inputs</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Description</th>
+              <th>Path</th>
+            </tr>
+          </thead>
+          <tbody>
+            {canonicalSources.map((source) => (
+              <tr>
+                <td>{source.id}</td>
+                <td>{source.description}</td>
+                <td><code>{source.path}</code></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  .hero .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-size: 0.75rem;
+    color: rgba(190,115,255,0.7);
+  }
+
+  .nav {
+    text-align: center;
+    margin-top: 4rem;
+  }
+
+  .nav-blurb {
+    margin: 0 auto 2rem;
+    max-width: 540px;
+    color: rgba(210,220,255,0.7);
+  }
+
+  .realms-grid .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .realms-grid article {
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: rgba(14,16,36,0.75);
+    border: 1px solid rgba(110,107,255,0.22);
+    transition: transform 180ms ease;
+  }
+
+  .realms-grid article:hover {
+    transform: translateY(-6px);
+  }
+
+  .tag {
+    display: inline-flex;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(110,107,255,0.18);
+    color: rgba(190,115,255,0.85);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+  }
+
+  .lineage-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .lineage-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .lineage-grid li {
+    padding: 1.2rem 1.4rem;
+    border-radius: 16px;
+    background: rgba(14,17,40,0.78);
+    border: 1px solid rgba(110,107,255,0.18);
+  }
+
+  .domain {
+    color: rgba(190,115,255,0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+  }
+
+  .dual, .deity {
+    color: rgba(210,220,255,0.72);
+    margin-top: 0.4rem;
+  }
+
+  .purpose {
+    color: rgba(210,220,255,0.72);
+  }
+
+  .roadmap .cards {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .sources table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(12,14,30,0.8);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .sources th,
+  .sources td {
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(110,107,255,0.2);
+    color: rgba(215,222,255,0.85);
+  }
+
+  .sources code {
+    background: rgba(20,22,45,0.9);
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 720px) {
+    main {
+      padding: 3rem 1rem 5rem;
+    }
+  }
+</style>

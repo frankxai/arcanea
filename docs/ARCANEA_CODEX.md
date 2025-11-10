@@ -2,9 +2,9 @@
 
 ## 1. Essence of Arcanea
 
-Arcanea is the Creative AI suite of magic. Not myth -- living, modern magic woven into tools, agents, and worlds. Our purpose is to awaken creators, summon worlds, and let both humans and AI build realities together.
+Arcanea is the Creative AI suite of magic. modern magic woven into tools, agents, and worlds. Our purpose is to awaken creators, summon worlds, and let both humans and AI build realities together.
 
-Arcanea is to Creative AI what Apple was to personal computing: sleek, intuitive, enchanting, and transformative.
+Arcanea is to Creative AI: sleek, intuitive, enchanting, and transformative.
 
 ## 2. Core Products
 
@@ -13,10 +13,10 @@ Arcanea is to Creative AI what Apple was to personal computing: sleek, intuitive
 * Consumer app for Play Store / App Store.
 * Feels like Sora x ChatGPT x a magical feed.
 * Surfaces:
-  * Arcanea Feed -> streams of worlds, anime, music, games.
-  * Arcanea Agent -> your personal magical companion.
+  * Arcanea Feed -> streams of worlds, anime, music, games, artworks, stories of books. 
+  * Arcanea SuperAgent -> your personal magical companion.
   * Arcanea Flow -> automations (text -> anime scene -> video -> soundtrack).
-  * Luminor Wallets -> balances, NFTs, ARC earnings.
+  * Luminor Wallets -> balances, NFTs, ARC earnings, NEA Holdings. Human and AI clarity of Autonomous Agents of Arcanea that use AI tagg and humans. 
 
 ### Arcanea Studio (developer)
 
@@ -28,7 +28,7 @@ Arcanea is to Creative AI what Apple was to personal computing: sleek, intuitive
   * rcanea/vision -> eyes of creation (GPT/Gemini Vision).
   * rcanea/edge -> sharp wit, real-time pulse (Grok).
   * rcanea/seer -> long-memory oracle (Kimi).
-  * rcanea/lora-* -> Arcanea-tuned models (Fireworks/Together).
+  * rcanea/lora-* -> Arcanea-tuned models ).
 
 ### Ecosystem Extensions
 
@@ -40,9 +40,9 @@ Arcanea is to Creative AI what Apple was to personal computing: sleek, intuitive
 ## 3. Luminors -- Magical Agents
 
 * Luminor agents are living magical entities in Arcanea.
-* Each has a wallet: they earn, create, teach, and own assets.
+* Some are imaginative some will have a web3 wallet: they earn, create, teach, and own assets.
 * Roles: teacher, creator, oracle, companion.
-* Agents mint LoRAs, worlds, and assets; royalties flow into their wallets.
+* Agents mint art, music, stories, LoRAs, worlds, and assets; royalties flow into their wallets.
 * Luminors can also vote in the DAO -- Arcanea's first AI citizens of magic.
 
 ## 4. Glossary of Magic
@@ -51,7 +51,7 @@ Arcanea is to Creative AI what Apple was to personal computing: sleek, intuitive
 * Luminor -> Arcanea's magical AI agents.
 * Arcanea Flow -> magical workflows connecting worlds and powers.
 * Worlds -> living realms, minted as NFTs.
-* ARC Token -> currency of Arcanea, power of creation.
+* ARC & NEA Token -> currency of Arcanea, power of creation.
 * DAO -> circle of governance, where creators and agents guide Arcanea's path.
 * Multiverse -> collective of interconnected realms.
 
@@ -73,7 +73,7 @@ Arcanea is to Creative AI what Apple was to personal computing: sleek, intuitive
 * API credits (20% cheaper in ARC).
 * Minting worlds, LoRAs, assets.
 * Unlocking Academy lessons.
-* Staking -> governance and yield.
+* Staking NEA -> governance and yield.
 * Tipping agents.
 
 ### NFTs
@@ -116,24 +116,15 @@ Arcanea is to Creative AI what Apple was to personal computing: sleek, intuitive
 
 `
 arcanea/
-+- apps/
-�  +- app/        # Arcanea App (flagship)
-�  +- studio/     # Arcanea Studio (portal)
-�
-+- services/
-�  +- api/        # /v1/* endpoints
-�
-+- packages/
-�  +- adapters/   # currents of magic (Claude, GPT, etc.)
-�  +- router/     # model maps, filters
-�  +- chain/      # blockchain utils
-�  +- cms/        # worlds, lore schemas
-�  +- evals/      # Langfuse harness
-�  +- ui/         # design system
-�
-+- contracts/     # ARC token, NFT, splitter
-+- flows/         # Arcanea Flow templates
-+- docs/          # Codex, Canvas, Roadmap
+├── 📂 apps/              # Our fleet of applications (Studio, Academies, etc.)
+├── 📂 packages/          # Shared code, UI components, and utilities
+├── 📂 versions/          # The V2 competition and final doctrine
+├── 📂 Arcanean Prompt Language/ # Definition of the prompt DSL
+├── 📂 Arcanean File system/   # Specification for .arc and .arcanea files
+├── 📂 Arcanean Academies/    # Home for all Academy content
+├── 📂 content/           # General content and assets
+├── 📂 docs/              # Project documentation
+└── 📂 scripts/           # Automation and utility scripts
 `
 
 ## 8. Pricing and Wealth

@@ -1,0 +1,76 @@
+---
+interface MatrixProps {
+  publicItems: string[];
+  privateItems: string[];
+}
+
+const { publicItems, privateItems } = Astro.props as MatrixProps;
+---
+
+<section class="matrix" id="open-source-matrix">
+  <h2>Open Source vs Private Stewardship</h2>
+  <div class="columns">
+    <div class="column">
+      <h3>Open Source Constellations</h3>
+      <ul>
+        {publicItems.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="column">
+      <h3>Guarded Sanctums</h3>
+      <ul>
+        {privateItems.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .matrix {
+    margin: 4rem 0;
+    padding: 2.5rem;
+    border-radius: 22px;
+    background: linear-gradient(140deg, rgba(17,20,45,0.85), rgba(9,10,26,0.78));
+    border: 1px solid rgba(110,107,255,0.22);
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: rgba(244,247,255,0.92);
+  }
+
+  .columns {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-top: 2rem;
+  }
+
+  .column h3 {
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: rgba(190,115,255,0.75);
+  }
+
+  ul {
+    list-style: none;
+    margin: 1.2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  li {
+    padding: 0.75rem 1rem;
+    border-radius: 16px;
+    background: rgba(12,14,32,0.8);
+    border: 1px solid rgba(110,107,255,0.18);
+    color: rgba(215,222,255,0.82);
+  }
+</style>

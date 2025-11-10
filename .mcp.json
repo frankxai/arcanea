@@ -1,5 +1,11 @@
 {
   "mcpServers": {
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"],
+      "env": {},
+      "description": "Next.js development tools - runtime errors, logs, and page metadata"
+    },
     "github": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-github"],
