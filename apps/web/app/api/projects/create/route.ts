@@ -4,16 +4,16 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { ProjectFlowEngine } from '@arcanea/ai-core/projects/flow-engine';
-import { projectStateManager } from '@arcanea/ai-core/projects/state-manager';
-import { getTemplateBySlug } from '@arcanea/ai-core/projects/templates';
-import { projectFlowOptimizer } from '@arcanea/ai-core/projects/optimizer';
 import {
+  ProjectFlowEngine,
+  projectStateManager,
+  getTemplateBySlug,
+  projectFlowOptimizer,
   ProjectContext,
   ProjectFlowState,
   ProjectFlowStatus,
   OptimizationContext,
-} from '@arcanea/ai-core/types/projects';
+} from '@arcanea/ai-core';
 
 export async function POST(request: NextRequest) {
   try {

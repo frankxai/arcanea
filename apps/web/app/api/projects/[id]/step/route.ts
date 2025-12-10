@@ -4,9 +4,11 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { ProjectFlowEngine } from '@arcanea/ai-core/projects/flow-engine';
-import { projectStateManager } from '@arcanea/ai-core/projects/state-manager';
-import { getTemplateById } from '@arcanea/ai-core/projects/templates';
+import {
+  ProjectFlowEngine,
+  projectStateManager,
+  getTemplateById,
+} from '@arcanea/ai-core';
 
 export async function POST(
   request: NextRequest,

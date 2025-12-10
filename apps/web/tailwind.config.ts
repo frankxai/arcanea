@@ -187,6 +187,11 @@ const config: Config = {
           '100%': { transform: 'rotate(360deg)' },
         },
         // Atlantean Animations (Water)
+        'water-flow': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
         'wave': {
           '0%, 100%': { transform: 'translateX(0) scaleY(1)' },
           '50%': { transform: 'translateX(-25%) scaleY(1.1)' },
@@ -212,6 +217,16 @@ const config: Config = {
           },
         },
         // Draconic Animations (Fire & Sky)
+        'fire-flicker': {
+          '0%, 100%': {
+            opacity: '1',
+            filter: 'brightness(1)',
+          },
+          '50%': {
+            opacity: '0.9',
+            filter: 'brightness(1.2)',
+          },
+        },
         'flame': {
           '0%, 100%': {
             transform: 'scaleY(1) translateY(0)',
@@ -321,10 +336,12 @@ const config: Config = {
         'float-slow': 'float-slow 6s ease-in-out infinite',
         'rotate-slow': 'rotate-slow 20s linear infinite',
         // Atlantean
+        'water-flow': 'water-flow 6s ease-in-out infinite',
         'wave': 'wave 4s ease-in-out infinite',
         'ripple': 'ripple 1.5s ease-out',
         'flow': 'flow 5s ease-in-out infinite',
         // Draconic
+        'fire-flicker': 'fire-flicker 2s ease-in-out infinite',
         'flame': 'flame 1.5s ease-in-out infinite',
         'soar': 'soar 3s ease-out',
         'ember': 'ember 2s ease-out infinite',
@@ -346,6 +363,8 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
+        cinzel: ['Cinzel', 'serif'], // Elegant display font for headings
+        crimson: ['Crimson Pro', 'serif'], // Refined body font
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],

@@ -14,11 +14,11 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type {
   ActivityItem,
-  ActivityType,
   ActivityFeedResponse,
   UserActivityResponse,
   PaginationParams,
 } from '../types/social-types';
+import { ActivityType } from '../types/social-types';
 
 /**
  * Get personalized activity feed for a user

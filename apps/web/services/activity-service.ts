@@ -1,8 +1,11 @@
 /**
- * Activity Service
+ * Activity Service - Web App Wrapper
  *
- * Stub implementation - TODO: Implement full functionality
+ * Wraps database service with Supabase client injection
  */
+
+import { supabaseServer } from '@/lib/supabase';
+import { getActivityFeed as dbGetActivityFeed } from '@arcanea/database/services/activity-service';
 
 export interface ActivityFeedOptions {
   page?: number;
@@ -13,17 +16,20 @@ export async function getPersonalizedFeed(
   userId: string,
   options: ActivityFeedOptions = {}
 ) {
-  console.warn('activity-service.getPersonalizedFeed not yet implemented - returning empty feed');
-
   const { page = 1, pageSize = 20 } = options;
 
+  const result = await dbGetActivityFeed(supabaseServer, userId, {
+    page,
+    pageSize,
+  });
+
   return {
-    activities: [],
+    activities: result.activities,
     pagination: {
-      page,
-      pageSize,
-      total: 0,
-      hasMore: false,
+      page: result.pagination.page,
+      pageSize: result.pagination.pageSize,
+      total: result.pagination.totalCount,
+      hasMore: result.pagination.hasMore,
     },
   };
 }

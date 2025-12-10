@@ -1,8 +1,14 @@
 /**
- * Comment Service
+ * Comment Service - Web App Wrapper
  *
- * Stub implementation - TODO: Implement full functionality
+ * Wraps database service with Supabase client injection
  */
+
+import { supabaseServer } from '@/lib/supabase';
+import {
+  createComment as dbCreateComment,
+  getComments as dbGetComments,
+} from '@arcanea/database/services/comment-service';
 
 export interface CommentOptions {
   page?: number;
@@ -20,28 +26,38 @@ export async function getCreationComments(
   creationId: string,
   options: CommentOptions = {}
 ) {
-  console.warn('comment-service.getCreationComments not yet implemented - returning empty comments');
-
   const { page = 1, pageSize = 20 } = options;
 
+  const result = await dbGetComments(supabaseServer, creationId, {
+    page,
+    pageSize,
+  });
+
   return {
-    comments: [],
+    comments: result.comments,
     pagination: {
-      page,
-      pageSize,
-      total: 0,
-      hasMore: false,
+      page: result.pagination.page,
+      pageSize: result.pagination.pageSize,
+      total: result.pagination.totalCount,
+      hasMore: result.pagination.hasMore,
     },
   };
 }
 
 export async function createComment(data: CreateCommentData) {
-  console.warn('comment-service.createComment not yet implemented - returning mock comment');
+  const comment = await dbCreateComment(supabaseServer, data.userId, {
+    creationId: data.creationId,
+    content: data.content,
+    parentId: data.parentId || null,
+  });
 
   return {
-    id: 'mock-comment-id',
-    ...data,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    id: comment.id,
+    userId: comment.userId,
+    creationId: comment.creationId,
+    content: comment.content,
+    parentId: comment.parentId || null,
+    createdAt: comment.createdAt,
+    updatedAt: comment.updatedAt,
   };
 }

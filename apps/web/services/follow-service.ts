@@ -1,20 +1,26 @@
 /**
- * Follow Service
- * 
- * Stub implementation - TODO: Implement full functionality
+ * Follow Service - Web App Wrapper
+ *
+ * Wraps database service with Supabase client injection
  */
 
+import { supabaseServer } from '@/lib/supabase';
+import {
+  followUser as dbFollowUser,
+  unfollowUser as dbUnfollowUser,
+} from '@arcanea/database/services/follow-service';
+
 export async function followUser(followerId: string, followingId: string) {
-  console.warn('follow-service.followUser not yet implemented');
+  const result = await dbFollowUser(supabaseServer, followerId, followingId);
   return {
-    id: 'mock-follow-id',
+    id: result.follow?.id || 'new-follow',
     followerId,
     followingId,
-    createdAt: new Date().toISOString(),
+    createdAt: result.follow?.createdAt || new Date().toISOString(),
   };
 }
 
 export async function unfollowUser(followerId: string, followingId: string) {
-  console.warn('follow-service.unfollowUser not yet implemented');
+  await dbUnfollowUser(supabaseServer, followerId, followingId);
   return { success: true };
 }

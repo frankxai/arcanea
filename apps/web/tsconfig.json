@@ -23,7 +23,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@arcanea/ai-core": ["../../packages/ai-core/src"],
+      "@arcanea/database": ["../../packages/database"]
     },
     "plugins": [
       {

@@ -1,8 +1,15 @@
 /**
- * Notification Service
- * 
- * Stub implementation - TODO: Implement full functionality
+ * Notification Service - Web App Wrapper
+ *
+ * Wraps database service with Supabase client injection
  */
+
+import { supabaseServer } from '@/lib/supabase';
+import {
+  getNotifications as dbGetNotifications,
+  markNotificationAsRead as dbMarkNotificationAsRead,
+  markAllNotificationsAsRead as dbMarkAllNotificationsAsRead,
+} from '@arcanea/database/services/notification-service';
 
 export interface NotificationOptions {
   page?: number;
@@ -10,16 +17,20 @@ export interface NotificationOptions {
 }
 
 export async function getNotifications(userId: string, options: NotificationOptions = {}) {
-  console.warn('notification-service.getNotifications not yet implemented');
   const { page = 1, pageSize = 20 } = options;
 
+  const result = await dbGetNotifications(supabaseServer, userId, {
+    page,
+    pageSize,
+  });
+
   return {
-    notifications: [],
+    notifications: result.notifications,
     pagination: {
-      page,
-      pageSize,
-      total: 0,
-      hasMore: false,
+      page: result.pagination.page,
+      pageSize: result.pagination.pageSize,
+      total: result.pagination.totalCount,
+      hasMore: result.pagination.hasMore,
     },
   };
 }
@@ -29,11 +40,11 @@ export async function getUserNotifications(userId: string, options: Notification
 }
 
 export async function markNotificationAsRead(notificationId: string, userId: string) {
-  console.warn('notification-service.markNotificationAsRead not yet implemented');
+  await dbMarkNotificationAsRead(supabaseServer, notificationId);
   return { success: true };
 }
 
 export async function markAllAsRead(userId: string) {
-  console.warn('notification-service.markAllAsRead not yet implemented');
+  await dbMarkAllNotificationsAsRead(supabaseServer, userId);
   return { success: true };
 }

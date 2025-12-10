@@ -256,7 +256,7 @@ export interface UpdateBondProgressRequest {
   userId: string;
   luminorId: string;
   xpGained: number;
-  interactionType?: 'message' | 'creation' | 'achievement';
+  interactionType?: 'message' | 'creation' | 'achievement' | 'daily_streak';
   metadata?: Record<string, any>;
 }
 

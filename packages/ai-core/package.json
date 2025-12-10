@@ -5,10 +5,16 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./providers/*": "./src/providers/*.ts",
-    "./streaming/*": "./src/streaming/*.ts",
-    "./projects/*": "./src/projects/*.ts",
-    "./types/*": "./src/types/*.ts"
+    "./providers/gemini-chat": "./src/providers/gemini-chat.ts",
+    "./providers/gemini-imagen": "./src/providers/gemini-imagen.ts",
+    "./providers/gemini-veo": "./src/providers/gemini-veo.ts",
+    "./streaming/gemini-stream": "./src/streaming/gemini-stream.ts",
+    "./projects/flow-engine": "./src/projects/flow-engine.ts",
+    "./projects/state-manager": "./src/projects/state-manager.ts",
+    "./projects/aggregator": "./src/projects/aggregator.ts",
+    "./projects/optimizer": "./src/projects/optimizer.ts",
+    "./projects/templates": "./src/projects/templates.ts",
+    "./types/projects": "./src/types/projects.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.19",

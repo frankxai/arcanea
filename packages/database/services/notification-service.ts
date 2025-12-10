@@ -20,11 +20,11 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type {
   Notification,
-  NotificationType,
   NotificationData,
   NotificationsListResponse,
   PaginationParams,
 } from '../types/social-types';
+import { NotificationType } from '../types/social-types';
 
 /**
  * Create a new notification
