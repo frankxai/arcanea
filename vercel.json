@@ -18,28 +18,9 @@
 
   "build": {
     "env": {
-      "TURBO_TOKEN": "@turbo_token",
-      "TURBO_TEAM": "@turbo_team",
-      "TURBO_REMOTE_CACHE_SIGNATURE_KEY": "@turbo_remote_cache_signature_key",
       "NEXT_PUBLIC_APP_NAME": "Arcanea",
       "NODE_ENV": "production"
     }
-  },
-
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
-    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
-
-    "GEMINI_API_KEY": "@gemini_api_key",
-    "ANTHROPIC_API_KEY": "@anthropic_api_key",
-    "OPENROUTER_API_KEY": "@openrouter_api_key",
-
-    "NEXTAUTH_URL": "@nextauth_url",
-    "NEXTAUTH_SECRET": "@nextauth_secret",
-
-    "DATABASE_URL": "@database_url",
-    "DIRECT_URL": "@direct_url"
   },
 
   "headers": [
@@ -130,12 +111,5 @@
     }
   ],
 
-  "regions": ["iad1"],
-
-  "crons": [
-    {
-      "path": "/api/cron/cleanup",
-      "schedule": "0 2 * * *"
-    }
-  ]
+  "regions": ["iad1"]
 }
