@@ -4,7 +4,7 @@
   "name": "arcanea-mvp",
   "framework": "nextjs",
   "buildCommand": "pnpm turbo run build --filter=@arcanea/web",
-  "installCommand": "pnpm install --frozen-lockfile",
+  "installCommand": "corepack enable && pnpm install --frozen-lockfile",
   "outputDirectory": "apps/web/.next",
   "devCommand": "pnpm dev:web",
 
