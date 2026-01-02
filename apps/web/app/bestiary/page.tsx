@@ -58,7 +58,7 @@ const CREATURES = [
       'A ghost that haunts creators by showing them only the polished work of others, never their struggles.',
     habitat: 'Social media, galleries, exhibitions',
     weakness: 'Focus on personal journey. Gratitude practice.',
-    symptoms: ['Why bother?', 'They're so much better', 'I'll never be that good'],
+    symptoms: ['Why bother?', "They're so much better", "I'll never be that good"],
     icon: '👻',
     color: '#6366f1',
   },
