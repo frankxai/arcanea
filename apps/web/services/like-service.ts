@@ -5,7 +5,7 @@
  */
 
 import { supabaseServer } from '@/lib/supabase';
-import { toggleLike } from '@arcanea/database/services/like-service';
+import { toggleLike } from '@/lib/database/services/like-service';
 
 export async function likeCreation(userId: string, creationId: string) {
   const result = await toggleLike(supabaseServer, userId, creationId);

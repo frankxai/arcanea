@@ -7,7 +7,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { supabaseServer } from '@/lib/supabase';
-import { updateBondProgress, getXpReward } from '@arcanea/database/services/bond-service';
+import { updateBondProgress, getXpReward } from '@/lib/database/services/bond-service';
 import {
   successResponse,
   errorResponse,

@@ -8,7 +8,7 @@ import { supabaseServer } from '@/lib/supabase';
 import {
   createComment as dbCreateComment,
   getComments as dbGetComments,
-} from '@arcanea/database/services/comment-service';
+} from '@/lib/database/services/comment-service';
 
 export interface CommentOptions {
   page?: number;

@@ -6,7 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabase';
-import { getUserBonds } from '@arcanea/database/services/bond-service';
+import { getUserBonds } from '@/lib/database/services/bond-service';
 import { successResponse, errorResponse, handleApiError } from '@/lib/api-utils';
 
 /**

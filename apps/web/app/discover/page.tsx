@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Search, TrendingUp, Clock, Users, Sparkles } from 'lucide-react';
 import { CreationCard } from '@/components/profile/creation-card';
 import { Creation } from '@/lib/types/profile';
-import { Button } from '@arcanea/ui';
+import { Button } from '@/lib/arcanea-ui';
 
 export default function DiscoverPage() {
   const [searchQuery, setSearchQuery] = useState('');

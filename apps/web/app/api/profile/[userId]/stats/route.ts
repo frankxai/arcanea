@@ -6,7 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseServer } from '@/lib/supabase';
-import { getProfileStats } from '@arcanea/database/services/profile-service';
+import { getProfileStats } from '@/lib/database/services/profile-service';
 import { successResponse, errorResponse, handleApiError } from '@/lib/api-utils';
 
 /**

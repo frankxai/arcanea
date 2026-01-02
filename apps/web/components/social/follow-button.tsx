@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { UserPlus, UserCheck } from 'lucide-react';
-import { Button } from '@arcanea/ui';
+import { Button } from '@/lib/arcanea-ui';
 
 interface FollowButtonProps {
   userId: string;

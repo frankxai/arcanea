@@ -12,14 +12,14 @@ import {
   getProfileWithStats,
   updateProfile,
   isUsernameAvailable,
-} from '@arcanea/database/services/profile-service';
+} from '@/lib/database/services/profile-service';
 import {
   successResponse,
   errorResponse,
   handleApiError,
   parseRequestBody,
 } from '@/lib/api-utils';
-import { VALIDATION_RULES } from '@arcanea/database/types/api-responses';
+import { VALIDATION_RULES } from '@/lib/database/types/api-responses';
 
 /**
  * GET /api/profile/[userId]

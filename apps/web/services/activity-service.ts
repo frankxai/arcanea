@@ -5,7 +5,7 @@
  */
 
 import { supabaseServer } from '@/lib/supabase';
-import { getActivityFeed as dbGetActivityFeed } from '@arcanea/database/services/activity-service';
+import { getActivityFeed as dbGetActivityFeed } from '@/lib/database/services/activity-service';
 
 export interface ActivityFeedOptions {
   page?: number;

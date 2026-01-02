@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Download, Heart, MessageCircle, Share2, Calendar, Sparkles } from 'lucide-react';
 import { Creation } from '@/lib/types/profile';
 import { useEffect, useState } from 'react';
-import { Button } from '@arcanea/ui';
+import { Button } from '@/lib/arcanea-ui';
 
 interface CreationModalProps {
   creation: Creation;

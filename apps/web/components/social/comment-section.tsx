@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Heart, Reply, MoreVertical } from 'lucide-react';
 import { Comment } from '@/lib/types/profile';
-import { Button } from '@arcanea/ui';
+import { Button } from '@/lib/arcanea-ui';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 
 interface CommentSectionProps {

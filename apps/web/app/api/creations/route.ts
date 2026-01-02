@@ -11,7 +11,7 @@ import { supabaseServer } from '@/lib/supabase';
 import {
   listCreations,
   createCreation,
-} from '@arcanea/database/services/creation-service';
+} from '@/lib/database/services/creation-service';
 import {
   successResponse,
   errorResponse,
@@ -20,7 +20,7 @@ import {
   parsePaginationParams,
   parseBoolean,
 } from '@/lib/api-utils';
-import { VALIDATION_RULES, type CreationFilters } from '@arcanea/database/types/api-responses';
+import { VALIDATION_RULES, type CreationFilters } from '@/lib/database/types/api-responses';
 
 /**
  * GET /api/creations

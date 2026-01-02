@@ -14,7 +14,7 @@ import {
   updateCreation,
   deleteCreation,
   incrementViewCount,
-} from '@arcanea/database/services/creation-service';
+} from '@/lib/database/services/creation-service';
 import {
   successResponse,
   errorResponse,
@@ -22,7 +22,7 @@ import {
   parseRequestBody,
   parseBoolean,
 } from '@/lib/api-utils';
-import { VALIDATION_RULES } from '@arcanea/database/types/api-responses';
+import { VALIDATION_RULES } from '@/lib/database/types/api-responses';
 
 /**
  * GET /api/creations/[id]

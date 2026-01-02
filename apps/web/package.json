@@ -13,8 +13,6 @@
     "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
-    "@arcanea/database": "workspace:*",
-    "@arcanea/ui": "workspace:*",
     "@ai-sdk/google": "^1.0.19",
     "@ai-sdk/react": "^2.0.26",
     "@radix-ui/react-alert-dialog": "^1.1.4",
@@ -37,13 +35,16 @@
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.34.0",
     "framer-motion": "^11.15.0",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.302.0",
-    "next": "^16.0.0",
+    "next": "^16.1.1",
     "next-auth": "^5.0.0-beta.25",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^9.0.1",
     "react-syntax-highlighter": "^15.6.6",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.25.76"

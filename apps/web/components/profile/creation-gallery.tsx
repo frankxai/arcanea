@@ -6,7 +6,7 @@ import { Grid, LayoutGrid, Filter, SortAsc } from 'lucide-react';
 import { Creation, FilterType, SortOption } from '@/lib/types/profile';
 import { CreationCard } from './creation-card';
 import { CreationModal } from './creation-modal';
-import { Button } from '@arcanea/ui';
+import { Button } from '@/lib/arcanea-ui';
 
 interface CreationGalleryProps {
   creations: Creation[];

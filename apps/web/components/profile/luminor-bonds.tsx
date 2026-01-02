@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, Sparkles, Heart, TrendingUp } from 'lucide-react';
 import { LuminorBond } from '@/lib/types/profile';
-import { Button } from '@arcanea/ui';
+import { Button } from '@/lib/arcanea-ui';
 import { Progress } from '@radix-ui/react-progress';
 
 interface LuminorBondsProps {

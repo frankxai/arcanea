@@ -8,7 +8,7 @@ import { supabaseServer } from '@/lib/supabase';
 import {
   followUser as dbFollowUser,
   unfollowUser as dbUnfollowUser,
-} from '@arcanea/database/services/follow-service';
+} from '@/lib/database/services/follow-service';
 
 export async function followUser(followerId: string, followingId: string) {
   const result = await dbFollowUser(supabaseServer, followerId, followingId);

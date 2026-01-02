@@ -9,7 +9,7 @@ import {
   getNotifications as dbGetNotifications,
   markNotificationAsRead as dbMarkNotificationAsRead,
   markAllNotificationsAsRead as dbMarkAllNotificationsAsRead,
-} from '@arcanea/database/services/notification-service';
+} from '@/lib/database/services/notification-service';
 
 export interface NotificationOptions {
   page?: number;

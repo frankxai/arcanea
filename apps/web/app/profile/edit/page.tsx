@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Camera, Save, X } from 'lucide-react';
-import { Button } from '@arcanea/ui';
+import { Button } from '@/lib/arcanea-ui';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 
 export default function EditProfilePage() {

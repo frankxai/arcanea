@@ -1,7 +1,7 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
-import { Button } from '@arcanea/ui';
+import { Button } from '@/lib/arcanea-ui';
 import { Share2, UserPlus, UserCheck, MessageCircle, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Profile } from '@/lib/types/profile';

@@ -9,7 +9,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import type { ApiResponse, ApiError, ErrorCode } from '@arcanea/database/types/api-responses';
+import type { ApiResponse, ApiError, ErrorCode } from '@/lib/database/types/api-responses';
 
 /**
  * Create success response
