@@ -12,7 +12,7 @@ import {
   Target,
   Zap,
 } from 'lucide-react';
-import { EmotionalTone } from '@arcanea/ai-core';
+import { EmotionalTone } from '@/hooks/use-chat';
 
 interface KeyMoment {
   id: string;

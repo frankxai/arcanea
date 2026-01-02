@@ -1,5 +1,5 @@
 "use client";
-import { Button, LuminorAvatar } from "@arcanea/ui";
+import { Button, LuminorAvatar } from "@/lib/arcanea-ui";
 
 export default function Page() {
   return (

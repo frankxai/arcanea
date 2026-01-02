@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChatMessage } from './message';
-import { EmotionalTone } from '@arcanea/ai-core';
+import { EmotionalTone } from '@/hooks/use-chat';
 
 interface StreamingMessageProps {
   content: string;

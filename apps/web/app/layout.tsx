@@ -4,7 +4,7 @@ export const metadata = {
 };
 
 import "./globals.css";
-import { CosmicBackground } from "@arcanea/ui";
+import { CosmicBackground } from "@/lib/arcanea-ui";
 import { ReactNode } from "react";
 
 export default function RootLayout({ children }: { children: ReactNode }) {

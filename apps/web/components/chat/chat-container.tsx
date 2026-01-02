@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { ChatMessage } from './message';
 import { StreamingMessage } from './streaming-message';
 import { ArrowDown, Loader2 } from 'lucide-react';
-import { EmotionalTone } from '@arcanea/ai-core';
+import { EmotionalTone } from '@/hooks/use-chat';
 
 interface Message {
   id: string;

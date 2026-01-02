@@ -4,7 +4,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { EmotionalTone } from '@arcanea/ai-core';
+import { EmotionalTone } from '@/hooks/use-chat';
 
 interface ChatMessageProps {
   id: string;
@@ -24,38 +24,31 @@ interface ChatMessageProps {
   status?: 'sending' | 'sent' | 'error';
 }
 
-const emotionalColors: Record<EmotionalTone, string> = {
-  [EmotionalTone.JOY]: 'text-yellow-400',
-  [EmotionalTone.EXCITEMENT]: 'text-orange-400',
-  [EmotionalTone.CURIOSITY]: 'text-purple-400',
-  [EmotionalTone.COMPASSION]: 'text-pink-400',
-  [EmotionalTone.PRIDE]: 'text-amber-400',
-  [EmotionalTone.CONCERN]: 'text-blue-400',
-  [EmotionalTone.DETERMINATION]: 'text-red-400',
-  [EmotionalTone.WONDER]: 'text-indigo-400',
-  [EmotionalTone.PEACE]: 'text-green-400',
-  [EmotionalTone.INSPIRATION]: 'text-violet-400',
-  [EmotionalTone.PLAYFULNESS]: 'text-pink-300',
-  [EmotionalTone.WISDOM]: 'text-blue-300',
-  [EmotionalTone.ENCOURAGEMENT]: 'text-emerald-400',
-  [EmotionalTone.FOCUS]: 'text-cyan-400',
+// Simplified emotional colors - string key based
+const emotionalColors: Record<string, string> = {
+  warm: 'text-yellow-400',
+  enthusiastic: 'text-orange-400',
+  contemplative: 'text-purple-400',
+  encouraging: 'text-pink-400',
+  curious: 'text-amber-400',
+  playful: 'text-blue-400',
+  wise: 'text-indigo-400',
+  empathetic: 'text-green-400',
+  challenging: 'text-red-400',
+  celebratory: 'text-violet-400',
 };
 
-const emotionalGradients: Record<EmotionalTone, string> = {
-  [EmotionalTone.JOY]: 'from-yellow-500/10 to-amber-500/10',
-  [EmotionalTone.EXCITEMENT]: 'from-orange-500/10 to-red-500/10',
-  [EmotionalTone.CURIOSITY]: 'from-purple-500/10 to-pink-500/10',
-  [EmotionalTone.COMPASSION]: 'from-pink-500/10 to-rose-500/10',
-  [EmotionalTone.PRIDE]: 'from-amber-500/10 to-yellow-500/10',
-  [EmotionalTone.CONCERN]: 'from-blue-500/10 to-cyan-500/10',
-  [EmotionalTone.DETERMINATION]: 'from-red-500/10 to-orange-500/10',
-  [EmotionalTone.WONDER]: 'from-indigo-500/10 to-purple-500/10',
-  [EmotionalTone.PEACE]: 'from-green-500/10 to-emerald-500/10',
-  [EmotionalTone.INSPIRATION]: 'from-violet-500/10 to-purple-500/10',
-  [EmotionalTone.PLAYFULNESS]: 'from-pink-400/10 to-fuchsia-400/10',
-  [EmotionalTone.WISDOM]: 'from-blue-400/10 to-indigo-400/10',
-  [EmotionalTone.ENCOURAGEMENT]: 'from-emerald-500/10 to-green-500/10',
-  [EmotionalTone.FOCUS]: 'from-cyan-500/10 to-blue-500/10',
+const emotionalGradients: Record<string, string> = {
+  warm: 'from-yellow-500/10 to-amber-500/10',
+  enthusiastic: 'from-orange-500/10 to-red-500/10',
+  contemplative: 'from-purple-500/10 to-pink-500/10',
+  encouraging: 'from-pink-500/10 to-rose-500/10',
+  curious: 'from-amber-500/10 to-yellow-500/10',
+  playful: 'from-blue-500/10 to-cyan-500/10',
+  wise: 'from-indigo-500/10 to-purple-500/10',
+  empathetic: 'from-green-500/10 to-emerald-500/10',
+  challenging: 'from-red-500/10 to-orange-500/10',
+  celebratory: 'from-violet-500/10 to-purple-500/10',
 };
 
 export const ChatMessage: React.FC<ChatMessageProps> = ({

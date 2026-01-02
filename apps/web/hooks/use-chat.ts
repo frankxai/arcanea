@@ -1,7 +1,19 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { EmotionalTone } from '@arcanea/ai-core';
+
+// Emotional tone type (inlined from ai-core)
+export type EmotionalTone =
+  | 'warm'
+  | 'enthusiastic'
+  | 'contemplative'
+  | 'encouraging'
+  | 'curious'
+  | 'playful'
+  | 'wise'
+  | 'empathetic'
+  | 'challenging'
+  | 'celebratory';
 
 interface Message {
   id: string;

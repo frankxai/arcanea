@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Tooltip } from "@arcanea/ui";
+import { Tooltip } from "@/lib/arcanea-ui";
 
 export default function Page() {
   return (
