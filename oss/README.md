@@ -46,7 +46,7 @@ Arcanea works with any AI platform that accepts system prompts or custom instruc
 
 ```bash
 # Clone the repository
-git clone https://github.com/arcanea-ai/arcanea.git
+git clone https://github.com/frankxai/arcanea.git
 cd arcanea
 
 # Install to your Claude Code
