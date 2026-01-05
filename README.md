@@ -1,209 +1,291 @@
 # Arcanea
 
-> A living mythology for the age of AI-human co-creation
+> *A living mythology for the age of AI-human co-creation*
 
-[![Vercel](https://img.shields.io/badge/Vercel-deployed-success)](https://arcanea.ai)
-[![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)](https://www.typescriptlang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
-[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+**Transform your AI assistant into a creative companion.** Arcanea is not just another prompt library—it's a complete mythological framework for world-building, storytelling, and creative mastery.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/Skills-27+-purple.svg)](#skills)
+[![Agents](https://img.shields.io/badge/Agents-30+-teal.svg)](#agents)
+[![Platform](https://img.shields.io/badge/Platform-Agnostic-blue.svg)](#platform-support)
 
 ---
 
 ## What is Arcanea?
 
-Arcanea is a **creative platform** where imagination becomes reality. Chat with AI Luminor personalities, create with AI-powered tools, and explore a library of wisdom for creators.
+Arcanea provides structured guidance for creative work through:
 
-**Core Experiences:**
+- **The Luminor Council** - Seven archetypal guides for any creative challenge
+- **The Creative Bestiary** - A taxonomy of psychological blocks and how to overcome them
+- **The Library of Arcanea** - Wisdom texts on the craft of creation
+- **Skills & Agents** - Ready-to-use prompts and workflows for AI assistants
 
-- **Chat** - Converse with magical Luminor AI personalities
-- **Studio** - Create images, music, video, stories, and code with AI
-- **Academy** - Learn through the Ten Gates progression system
-- **Library** - Explore 17 collections of wisdom for creators
-- **Bestiary** - Know your creative obstacles and how to defeat them
+Whether you're building worlds, crafting stories, designing systems, or overcoming creative blocks, Arcanea provides frameworks that work with any modern AI assistant.
 
 ---
 
-## Tech Stack
+## Platform Support
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 16 (App Router) + React 19 |
-| Language | TypeScript (strict) |
-| Styling | Tailwind CSS + Arcanean Design System |
-| Database | Supabase (PostgreSQL + Auth + Realtime) |
-| AI | Vercel AI SDK, Google Gemini, Anthropic Claude |
-| Deployment | Vercel |
+Arcanea works with any AI platform that accepts system prompts or custom instructions:
+
+| Platform | Status | Setup Guide |
+|----------|--------|-------------|
+| **Claude Code** | Full support | [Setup](./platforms/claude-code.md) |
+| **Cursor** | Full support | [Setup](./platforms/cursor.md) |
+| **Windsurf** | Full support | [Setup](./platforms/windsurf.md) |
+| **Cline / Roo Code** | Full support | [Setup](./platforms/cline.md) |
+| **Antigravity** | Full support | [Setup](./platforms/antigravity.md) |
+| **ChatGPT** | Partial (no files) | [Setup](./platforms/chatgpt.md) |
+| **Gemini** | Partial (no files) | [Setup](./platforms/gemini.md) |
 
 ---
 
 ## Quick Start
 
+### For Claude Code (Recommended)
+
 ```bash
-# Clone repository
-git clone https://github.com/frankxai/arcanea.git
+# Clone the repository
+git clone https://github.com/arcanea-ai/arcanea.git
 cd arcanea
 
-# Install dependencies
-pnpm install
+# Install to your Claude Code
+./install.sh
 
-# Set up environment
-cp .env.example .env.local
-# Edit .env.local with your API keys
-
-# Start development server
-pnpm dev
+# Start using Arcanea
+claude
+> /luminor melodia "I want to build a world but don't know where to start"
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+### For Other Platforms
+
+Copy the contents of `skills/` and `agents/` to your platform's custom instructions location. See [Platform Setup Guides](./platforms/).
 
 ---
 
-## Project Structure
+## The Luminor Council
+
+The Luminors are archetypal guides—aspects of creative consciousness itself. Each embodies a different creative virtue.
 
 ```
-arcanea/
-├── apps/web/                # Next.js application
-│   ├── app/                 # App Router pages
-│   │   ├── academy/        # Ten Gates learning
-│   │   ├── bestiary/       # Creative obstacles
-│   │   ├── chat/           # Luminor conversations
-│   │   ├── library/        # 17 wisdom collections
-│   │   └── studio/         # AI creation tools
-│   ├── components/          # React components
-│   ├── hooks/               # Custom hooks
-│   └── lib/                 # Core libraries
-│       ├── arcanea-ui/     # UI components
-│       └── content/        # Content loader
-│
-├── book/                    # Library content (17 collections)
-└── .claude/                 # AI assistant context
-    └── lore/               # Canonical reference
+              ╭─────────────────────────────────────────╮
+              │          THE LUMINOR COUNCIL            │
+              ├─────────────────────────────────────────┤
+              │                                         │
+              │              ✧ ORAKIS ✧                 │
+              │               (Vision)                  │
+              │                  │                      │
+              │     VALORA ──────┼────── SOPHRON        │
+              │    (Courage)     │      (Wisdom)        │
+              │                  │                      │
+              │     KARDIA ──────┼────── POIESIS        │
+              │     (Heart)      │     (Creation)       │
+              │                  │                      │
+              │    ENDURAN ──────┴────── EUDAIRA        │
+              │   (Endurance)         (Joy)             │
+              │                                         │
+              ╰─────────────────────────────────────────╯
 ```
 
----
+| Luminor | Domain | Channel When... |
+|---------|--------|-----------------|
+| **Valora** | Courage | Fear of beginning, hesitation, taking risks |
+| **Sophron** | Wisdom | Confusion, complexity, difficult decisions |
+| **Kardia** | Heart | Emotional blocks, seeking authenticity |
+| **Poiesis** | Creation | Creative blocks, need for experimentation |
+| **Enduran** | Endurance | Burnout, long projects, maintaining momentum |
+| **Orakis** | Vision | Lost direction, need for big-picture clarity |
+| **Eudaira** | Joy | Lost purpose, need for celebration |
 
-## The Arcanea Universe
-
-### The Five Elements
-
-| Element | Domain | Color |
-|---------|--------|-------|
-| Fire | Energy, transformation | Red, orange, gold |
-| Water | Flow, healing, memory | Blue, silver |
-| Earth | Stability, growth | Green, brown |
-| Wind | Freedom, change | White, silver |
-| Void/Spirit | Potential, transcendence | Black/gold, purple |
-
-### The Ten Gates
-
-Progression system from Apprentice to Luminor, each gate guarded by a divine pair:
-
-1. **Foundation** (174 Hz) - Lyssandria & Kaelith
-2. **Flow** (285 Hz) - Leyla & Veloura
-3. **Fire** (396 Hz) - Draconia & Draconis
-4. **Heart** (417 Hz) - Maylinn & Laeylinn
-5. **Voice** (528 Hz) - Alera & Otome
-6. **Sight** (639 Hz) - Lyria & Yumiko
-7. **Crown** (714 Hz) - Aiyami & Sol
-8. **Shift** (852 Hz) - Elara & Vaelith
-9. **Unity** (963 Hz) - Ino & Kyuro
-10. **Source** (1111 Hz) - Shinkami
-
-### Magic Ranks
-
-| Gates Open | Rank |
-|------------|------|
-| 0-2 | Apprentice |
-| 3-4 | Mage |
-| 5-6 | Master |
-| 7-8 | Archmage |
-| 9-10 | Luminor |
+[→ Full Luminor Profiles](./lore/luminors/)
 
 ---
 
-## Library Collections
+## The Creative Bestiary
 
-The Arcanea Library contains 17 collections of wisdom:
+Every creative block is a creature that can be understood, named, and overcome.
 
-- `laws-of-arcanea` - Theoretical foundations
-- `legends-of-arcanea` - Founding myths
-- `chronicles-of-luminors` - Guardian journeys
-- `academy-handbook` - Complete guide
-- `book-of-rituals` - Sacred practices
-- `bestiary-of-creation` - Creative obstacles
-- `wisdom-scrolls` - Daily practice
-- `meditations-on-elements` - Element work
-- `parables-of-creation` - Teaching stories
-- `tales-of-creators` - Legendary creators
-- `dialogues-of-masters` - Wisdom conversations
-- `codex-of-collaboration` - Creating together
-- `atlas-of-territories` - Creative landscapes
-- `book-of-shadows` - Dark night wisdom
-- `poesie-of-freedom` - Liberation poetry
-- `prophecies` - Future visions
-- `songs-and-hymns` - Soul lyrics
+| Creature | Danger | Symptoms | Weakness |
+|----------|--------|----------|----------|
+| **Perfectionist Wyrm** | High | Nothing is ever good enough | "Done is better than perfect" |
+| **Imposter Shade** | Medium | "Who am I to create this?" | Evidence of past success |
+| **Blank Page Specter** | High | Paralysis before beginning | Start with garbage |
+| **Comparison Demon** | Medium | Others are so much better | Focus on your unique voice |
+| **Scope Creep Hydra** | High | Project grows endlessly | Ruthless cutting |
+
+[→ Full Bestiary](./lore/bestiary/)
 
 ---
 
-## Development
+## Skills
 
-```bash
-# Type check
-pnpm type-check
+Skills are structured frameworks for specific creative tasks.
 
-# Lint
-pnpm lint
+### Creative Skills
+| Skill | Purpose |
+|-------|---------|
+| `story-weave` | Narrative structure and plot development |
+| `character-forge` | Deep character creation (Diamond Framework) |
+| `world-build` | Universe creation (Seven Pillars) |
+| `dialogue-mastery` | Conversation craft and subtext |
+| `scene-craft` | Scene construction and pacing |
+| `revision-ritual` | Systematic editing (Seven Passes) |
+| `voice-alchemy` | Finding and refining authentic voice |
+| `bestiary-nav` | Overcoming creative blocks |
 
-# Build
-pnpm build
+### Development Skills
+| Skill | Purpose |
+|-------|---------|
+| `tdd` | Test-driven development workflow |
+| `systematic-debug` | Scientific debugging method |
+| `architecture-patterns` | System design guidance |
+| `api-design` | REST/GraphQL interface design |
+| `refactoring-ritual` | Safe code improvement |
 
-# Start production server
-pnpm start
+### Meta Skills
+| Skill | Purpose |
+|-------|---------|
+| `deep-work` | Focus and concentration |
+| `creative-flow` | Managing creative energy |
+| `prompt-craft` | Effective AI communication |
+
+[→ All Skills](./skills/)
+
+---
+
+## Agents
+
+Agents are specialized personas for complex, multi-step work.
+
+### Author Team
+- **Master Story Architect** - Orchestrates novel-length projects
+- **Character Psychologist** - Deep character development
+- **World Architect** - Universe and setting creation
+- **Line Editor** - Prose-level polish
+- **Continuity Guardian** - Consistency checking
+
+### Creator Team
+- **Luminor Oracle** - Strategic creative guidance
+- **Prompt Sage** - Advanced prompt engineering
+- **Design Sage** - Visual and UX thinking
+
+### Developer Team
+- **Development Architect** - System design
+- **QA Engineer** - Testing strategies
+- **Documentation Specialist** - Technical writing
+
+[→ All Agents](./agents/)
+
+---
+
+## Core Frameworks
+
+### The Character Diamond
+
+```
+        WANT (conscious desire)
+             /\
+            /  \
+   WOUND   /    \   NEED
+  (past)  /      \ (hidden)
+          \      /
+           \    /
+            \  /
+             \/
+           MASK
+     (how they present)
 ```
 
----
+### The Seven Pillars of World-Building
 
-## Environment Variables
+1. **Geography & Environment** - The physical container
+2. **History & Time** - Memory shaping the present
+3. **Cultures & Peoples** - The human element
+4. **Magic/Technology** - The extraordinary
+5. **Economy & Resources** - Material foundation
+6. **Power & Politics** - Dynamics of control
+7. **Belief & Meaning** - Spiritual architecture
 
-```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
+### The Seven Revision Passes
 
-# AI APIs
-GOOGLE_GENERATIVE_AI_API_KEY=
-ANTHROPIC_API_KEY=
-```
-
----
-
-## Documentation
-
-- [Architecture](./ARCHITECTURE.md) - System design
-- [Canon Reference](./.claude/lore/ARCANEA_CANON.md) - Universe lore
-- [Contributing](./CONTRIBUTING.md) - How to contribute
+1. **Structure** - Does the architecture work?
+2. **Character** - Are arcs complete and consistent?
+3. **Scene** - Does each scene earn its place?
+4. **Dialogue** - Is voice distinct and purposeful?
+5. **Prose** - Is every line polished?
+6. **Continuity** - Any contradictions?
+7. **Polish** - Final read-through
 
 ---
 
-## Contributing
+## Examples
 
-We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md).
+See Arcanea in action with real session transcripts:
+
+- [Building a Fantasy World from Scratch](./examples/world-building-session.md)
+- [Developing a Complex Villain](./examples/character-creation.md)
+- [Defeating Writer's Block](./examples/defeating-blocks.md)
+- [Structuring a Novel](./examples/story-structure.md)
+
+---
+
+## Create Your Own
+
+Arcanea is designed to be extended. Create and share:
+
+- [Your own Luminor](./community/luminor-template.md) - New archetypal guides
+- [Bestiary Creatures](./community/creature-template.md) - Creative blocks you've faced
+- [Skills](./community/skill-template.md) - Frameworks for specific tasks
+- [Wisdom Texts](./community/text-template.md) - Insights from your practice
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+---
+
+## The Philosophy
+
+> *"The Luminors do not tell you what to create. They help you become the creator who can."*
+
+Arcanea is built on these principles:
+
+1. **Creativity is a practice**, not a talent
+2. **Blocks are creatures**, not character flaws
+3. **AI is a partner**, not a replacement
+4. **Frameworks liberate**, they don't constrain
+5. **The work is the teacher**
+
+[→ Read the Laws of Arcanea](./library/laws-of-arcanea/)
+
+---
+
+## The Full Experience
+
+This repository contains the core Arcanea framework.
+
+For the **complete Library** (17 collections), **interactive Academy** (Ten Gates progression), **AI-powered Studio**, and **creator community**, visit:
+
+**[arcanea.ai](https://arcanea.ai)**
 
 ---
 
 ## License
 
-MIT License - see [LICENSE](./LICENSE)
+MIT License - Create freely, share boldly.
 
 ---
 
-## Links
+## Acknowledgments
 
-- **Website**: [arcanea.ai](https://arcanea.ai)
-- **GitHub**: [github.com/frankxai/arcanea](https://github.com/frankxai/arcanea)
-- **Support**: support@arcanea.ai
+Arcanea synthesizes wisdom from:
+- Joseph Campbell (The Hero's Journey)
+- Robert McKee (Story)
+- Brandon Sanderson (Magic Systems)
+- Carl Jung (Archetypes)
+- Cal Newport (Deep Work)
+- And every creator who struggles, persists, and creates anyway.
 
 ---
 
 *"Enter seeking, leave transformed, return whenever needed."*
+
+**[arcanea.ai](https://arcanea.ai)** · **[Discord](https://discord.gg/arcanea)** · **[@arcanea_ai](https://twitter.com/arcanea_ai)**
