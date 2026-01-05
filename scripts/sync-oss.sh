@@ -2,13 +2,17 @@
 
 # Sync OSS folder to public arcanea repository
 # Usage: ./scripts/sync-oss.sh
+#
+# Repository Structure:
+#   - frankxai/arcanea-platform (private) - Full SaaS codebase
+#   - frankxai/arcanea (public) - OSS content only (agents, skills, lore, etc.)
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 OSS_DIR="$ROOT_DIR/oss"
-PUBLIC_REPO="git@github.com:arcanea-ai/arcanea.git"
+PUBLIC_REPO="https://github.com/frankxai/arcanea.git"
 
 echo ""
 echo "  ✧ ARCANEA OSS SYNC ✧"
@@ -20,40 +24,34 @@ if [ ! -d "$OSS_DIR" ]; then
     exit 1
 fi
 
-# Option 1: Git subtree (simpler, recommended)
-echo "Syncing oss/ to public repository..."
+# Clone public repo, replace contents, push
+TEMP_DIR=$(mktemp -d)
+echo "Cloning public repo to $TEMP_DIR..."
+git clone "$PUBLIC_REPO" "$TEMP_DIR"
 
-# Check if public remote exists
-if ! git remote | grep -q "public"; then
-    echo "Adding public remote..."
-    git remote add public "$PUBLIC_REPO"
+echo "Syncing oss/ contents..."
+# Remove all existing content except .git
+find "$TEMP_DIR" -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+
+# Copy oss/ contents
+cp -r "$OSS_DIR"/* "$TEMP_DIR/"
+
+cd "$TEMP_DIR"
+git add -A
+
+# Check if there are changes to commit
+if git diff --staged --quiet; then
+    echo "No changes to sync."
+else
+    git commit -m "Sync OSS content from arcanea-platform
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)"
+    git push origin main
+    echo ""
+    echo "  ✓ Sync complete!"
 fi
 
-# Push oss/ directory as subtree to public repo
-git subtree push --prefix=oss public main
-
+rm -rf "$TEMP_DIR"
 echo ""
-echo "  ✓ Sync complete!"
+echo "  Public repo: https://github.com/frankxai/arcanea"
 echo ""
-echo "  Public repo: https://github.com/arcanea-ai/arcanea"
-echo ""
-
-# Alternative: Manual copy approach (if subtree has issues)
-# Uncomment below if you prefer this approach:
-
-# TEMP_DIR=$(mktemp -d)
-# echo "Cloning public repo to $TEMP_DIR..."
-# git clone "$PUBLIC_REPO" "$TEMP_DIR"
-#
-# echo "Copying oss/ contents..."
-# rsync -av --delete \
-#     --exclude '.git' \
-#     "$OSS_DIR/" "$TEMP_DIR/"
-#
-# cd "$TEMP_DIR"
-# git add -A
-# git commit -m "Sync from main Arcanea repository" || echo "No changes to commit"
-# git push origin main
-#
-# rm -rf "$TEMP_DIR"
-# echo "Sync complete!"
