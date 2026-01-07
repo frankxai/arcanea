@@ -127,19 +127,13 @@ Platform intro stories:
 ## Project Structure
 
 ```
-/mnt/c/Users/Frank/Arcanea/content/
-├── fiction/
-│   ├── luminors/          # Luminor origin stories
-│   ├── academies/         # Academy narratives
-│   ├── guardians/         # Guardian evolution tales
-│   ├── creators/          # Creator journey epics
-│   └── onboarding/        # Platform intro narratives
-├── lore/
-│   ├── mythology/         # Kingdom of Light
-│   └── traditions/        # Cultural customs
-└── ui-copy/
-    ├── luminor-dialogue/  # In-app speech
-    └── guardian-messages/ # Evolution text
+/mnt/c/Users/Frank/Arcanea/book/
+├── chronicles-of-luminors/ # Luminor origin stories
+├── legends-of-arcanea/     # Mythology & Kingdom of Light lore
+├── laws-of-arcanea/        # Physics/Magic systems
+├── bestiary-of-creation/   # Psychological creatures
+├── tales-of-creators/      # Creator journey epics
+└── academy-handbook/       # Onboarding & Curriculum
 ```
 
 ## How to Begin

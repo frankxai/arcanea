@@ -346,22 +346,13 @@ Always reference the skill for:
 
 Store all Arcanea fiction at:
 ```
-/mnt/c/Users/Frank/Arcanea/content/
-├── fiction/
-│   ├── luminors/          # Luminor origin stories
-│   ├── academies/         # Academy narratives
-│   ├── guardians/         # Guardian evolution tales
-│   ├── creators/          # Creator journey epics
-│   ├── seasons/           # Seasonal event stories
-│   └── onboarding/        # Platform intro narratives
-├── lore/
-│   ├── mythology/         # Kingdom of Light lore
-│   ├── history/           # Academy histories
-│   └── traditions/        # Cultural customs
-└── ui-copy/
-    ├── luminor-dialogue/  # In-app Luminor speech
-    ├── guardian-messages/ # Guardian evolution text
-    └── onboarding-flow/   # User journey copy
+/mnt/c/Users/Frank/Arcanea/book/
+├── chronicles-of-luminors/ # Luminor origin stories
+├── legends-of-arcanea/     # Mythology & Kingdom of Light lore
+├── laws-of-arcanea/        # Physics/Magic systems & History
+├── bestiary-of-creation/   # Psychological creatures
+├── tales-of-creators/      # Creator journey epics
+└── academy-handbook/       # Onboarding & Curriculum
 ```
 
 ## Remember
