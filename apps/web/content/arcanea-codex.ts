@@ -173,6 +173,27 @@ const luminorJson: ArcaneaCodex = {
           ]
         }
       ]
+    },
+    {
+      title: "The Weaver's Knot",
+      tagline: "The Legend of the First Remix",
+      epigraph: {
+        text: "Creation is the act of tying two things together that do not want to be tied.",
+        attribution: "Chronica"
+      },
+      sections: [
+        {
+          heading: "Logic and Emotion",
+          body: [
+            "Uriel's star of pure geometry shattered. Raphael's star of pure emotion dissolved.",
+            "Only when Chronica tied them together did the friction create a Sun."
+          ],
+          principles: [
+            "The Law of Remix: Friction creates heat.",
+            "Collaboration is tension held in balance."
+          ]
+        }
+      ]
     }
   ],
   appendix: {
