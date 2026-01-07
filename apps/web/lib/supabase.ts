@@ -49,7 +49,8 @@ export function getSupabaseAdmin() {
     throw new Error('SUPABASE_SERVICE_ROLE_KEY is not set. Admin operations require service role key.');
   }
 
-  return createClient<Database>(supabaseUrl, supabaseServiceKey, {
+  // supabaseUrl is guaranteed to be defined due to the check at module initialization
+  return createClient<Database>(supabaseUrl!, supabaseServiceKey, {
     auth: {
       persistSession: false,
       autoRefreshToken: false,

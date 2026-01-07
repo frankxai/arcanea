@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "name": "arcanea-academy",
+  "framework": "nextjs",
+  "buildCommand": "cd ../.. && pnpm turbo run build --filter=@arcanea/academy",
+  "installCommand": "cd ../.. && corepack enable && pnpm install --frozen-lockfile",
+  "outputDirectory": ".next",
+  "regions": ["iad1"],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    }
+  ]
+}

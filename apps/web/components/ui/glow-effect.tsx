@@ -5,10 +5,14 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { type Academy } from '@/lib/theme-utils';
 
-export interface GlowEffectProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GlowEffectProps {
   variant?: Academy | 'cosmic';
   intensity?: 'low' | 'medium' | 'high';
   animated?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
 const GlowEffect = React.forwardRef<HTMLDivElement, GlowEffectProps>(
@@ -19,7 +23,8 @@ const GlowEffect = React.forwardRef<HTMLDivElement, GlowEffectProps>(
       intensity = 'medium',
       animated = true,
       children,
-      ...props
+      style,
+      onClick,
     },
     ref
   ) => {
@@ -40,37 +45,43 @@ const GlowEffect = React.forwardRef<HTMLDivElement, GlowEffectProps>(
     const { blur, spread } = intensityValues[intensity];
     const color = glowColors[variant];
 
-    const AnimatedWrapper = animated ? motion.div : 'div';
-    const animationProps = animated
-      ? {
-          animate: {
+    if (animated) {
+      return (
+        <motion.div
+          ref={ref}
+          className={cn('relative', className)}
+          style={style}
+          onClick={onClick}
+          animate={{
             boxShadow: [
               `0 0 ${blur}px ${spread}px ${color}`,
               `0 0 ${blur * 1.5}px ${spread * 1.5}px ${color}`,
               `0 0 ${blur}px ${spread}px ${color}`,
             ],
-          },
-          transition: {
+          }}
+          transition={{
             duration: 2,
             repeat: Infinity,
             ease: 'easeInOut',
-          },
-        }
-      : {
-          style: {
-            boxShadow: `0 0 ${blur}px ${spread}px ${color}`,
-          },
-        };
+          }}
+        >
+          {children}
+        </motion.div>
+      );
+    }
 
     return (
-      <AnimatedWrapper
+      <div
         ref={ref}
         className={cn('relative', className)}
-        {...animationProps}
-        {...props}
+        style={{
+          ...style,
+          boxShadow: `0 0 ${blur}px ${spread}px ${color}`,
+        }}
+        onClick={onClick}
       >
         {children}
-      </AnimatedWrapper>
+      </div>
     );
   }
 );

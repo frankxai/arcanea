@@ -9,6 +9,10 @@ export type ErrorCode =
   | 'INTERNAL_ERROR'
   | 'DATABASE_ERROR'
   | 'EXTERNAL_SERVICE_ERROR'
+  | 'ALREADY_EXISTS'
+  | 'INVALID_INPUT'
+  | 'METHOD_NOT_ALLOWED'
+  | 'CONFLICT'
 
 export interface ApiError {
   code: ErrorCode
@@ -25,6 +29,7 @@ export interface ApiResponse<T = unknown> {
     page?: number
     limit?: number
     hasMore?: boolean
+    timestamp?: string
   }
 }
 

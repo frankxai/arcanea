@@ -1,13 +1,11 @@
-// Profile Service - Stub implementation
-import { createClient } from '@supabase/supabase-js'
+// Profile Service - Stub implementation with Supabase client injection
+import type { SupabaseClient } from '@supabase/supabase-js'
 import type { Profile, ProfileStats } from '../types/api-responses'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-)
-
-export async function getProfile(userId: string): Promise<Profile | null> {
+export async function getProfile(
+  supabase: SupabaseClient,
+  userId: string
+): Promise<Profile | null> {
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
@@ -28,7 +26,10 @@ export async function getProfile(userId: string): Promise<Profile | null> {
   }
 }
 
-export async function getProfileByUsername(username: string): Promise<Profile | null> {
+export async function getProfileByUsername(
+  supabase: SupabaseClient,
+  username: string
+): Promise<Profile | null> {
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
@@ -49,7 +50,10 @@ export async function getProfileByUsername(username: string): Promise<Profile | 
   }
 }
 
-export async function getProfileStats(userId: string): Promise<ProfileStats> {
+export async function getProfileStats(
+  _supabase: SupabaseClient,
+  _userId: string
+): Promise<ProfileStats> {
   // This would normally aggregate from multiple tables
   return {
     creationsCount: 0,
@@ -60,7 +64,11 @@ export async function getProfileStats(userId: string): Promise<ProfileStats> {
   }
 }
 
-export async function updateProfile(userId: string, updates: Partial<Profile>): Promise<Profile | null> {
+export async function updateProfile(
+  supabase: SupabaseClient,
+  userId: string,
+  updates: Partial<Profile>
+): Promise<Profile | null> {
   const { data, error } = await supabase
     .from('profiles')
     .update({
@@ -85,4 +93,30 @@ export async function updateProfile(userId: string, updates: Partial<Profile>): 
     createdAt: data.created_at,
     updatedAt: data.updated_at
   }
+}
+
+export async function getProfileWithStats(
+  supabase: SupabaseClient,
+  userId: string
+): Promise<(Profile & { stats: ProfileStats }) | null> {
+  const profile = await getProfile(supabase, userId)
+  if (!profile) return null
+
+  const stats = await getProfileStats(supabase, userId)
+  return { ...profile, stats }
+}
+
+export async function isUsernameAvailable(
+  supabase: SupabaseClient,
+  username: string,
+  _excludeUserId?: string
+): Promise<boolean> {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('username', username)
+    .single()
+
+  // If error is "not found" or data is null, username is available
+  return !data || !!error
 }
