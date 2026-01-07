@@ -4,9 +4,27 @@
 // import oraclesJson from "../../../Arcanean Library/experience/book/arcanea-oracles-codex.json";
 
 // Placeholder data - replace with actual codex content
-const luminorJson: any = { title: "Luminor Codex", chapters: [] };
-const atelierJson: any = { title: "Atelier Codex", chapters: [] };
-const oraclesJson: any = { title: "Oracles Codex", chapters: [] };
+const luminorJson: any = { 
+  title: "Luminor Codex", 
+  subtitle: "Placeholder Subtitle",
+  chapters: [],
+  authors: [],
+  preface: { body: [] }
+};
+const atelierJson: any = { 
+  title: "Atelier Codex", 
+  subtitle: "Placeholder Subtitle",
+  chapters: [],
+  authors: [],
+  preface: { body: [] }
+};
+const oraclesJson: any = { 
+  title: "Oracles Codex", 
+  subtitle: "Placeholder Subtitle",
+  chapters: [],
+  authors: [],
+  preface: { body: [] }
+};
 
 export interface CodexAuthor {
   name: string;

@@ -43,7 +43,7 @@ tmp/
 temp/
 
 # Local nested repos
-ai/
+/ai/
 
 # Asset uploads (development only)
 public/shared-assets/temp-uploads/

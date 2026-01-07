@@ -1,5 +1,5 @@
-import { LuminorSelectionGrid } from '@/components/luminor/luminor-selection-grid';
 import type { Metadata } from 'next';
+import { LuminorsClient } from './luminors-client';
 
 export const metadata: Metadata = {
   title: 'Choose Your Luminor | Arcanea',
@@ -16,20 +16,7 @@ export default function LuminorsPage() {
         <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-creation-gold/10 rounded-full blur-3xl animate-pulse-glow animation-delay-2000" />
       </div>
 
-      <div className="relative z-10">
-        <LuminorSelectionGrid
-          onSelect={(luminorId) => {
-            // In production, this would navigate to chat or save selection
-            console.log('Selected Luminor:', luminorId);
-            // Example: router.push(`/chat/${luminorId}`);
-          }}
-          existingBonds={{
-            // Example: Show bond levels if user has interacted before
-            // melodia: 5,
-            // chronica: 3,
-          }}
-        />
-      </div>
+      <LuminorsClient />
     </main>
   );
 }

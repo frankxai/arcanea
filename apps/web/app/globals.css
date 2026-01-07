@@ -5,8 +5,306 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Arcanean Color System */
-@import '../styles/themes/arcanean-colors.css';
+/**
+ * Arcanean Color System
+ * Cosmic-themed color palette for the Arcanea MVP
+ * Based on the three academy identities from lore
+ */
+
+@layer base {
+  :root {
+    /* === GLOBAL ARCANEAN PALETTE === */
+
+    /* Cosmic Background - Deep space with subtle variation */
+    --cosmic-void: 217 19% 11%;           /* #0b0e14 - Deepest cosmic background */
+    --cosmic-deep: 217 32% 15%;           /* #121826 - Main background layer */
+    --cosmic-surface: 217 35% 20%;        /* #1a2332 - Elevated surfaces */
+    --cosmic-raised: 217 35% 25%;         /* #242f42 - Highest surfaces */
+
+    /* Cosmic Borders & Dividers */
+    --cosmic-border: 217 39% 18%;         /* #233049 - Subtle borders */
+    --cosmic-border-bright: 217 45% 25%;  /* #2a3f5f - Emphasized borders */
+
+    /* Text Hierarchy */
+    --text-primary: 217 69% 93%;          /* #e6eefc - Primary text */
+    --text-secondary: 217 45% 70%;        /* #9bb1d0 - Secondary text */
+    --text-muted: 217 30% 55%;            /* #708094 - Muted text */
+    --text-disabled: 217 20% 40%;         /* #515b6b - Disabled text */
+
+    /* Arcanean Gold - Universal accent */
+    --gold-light: 48 100% 88%;            /* #fff4d6 - Lightest gold */
+    --gold-medium: 48 95% 70%;            /* #ffd966 - Medium gold */
+    --gold-bright: 48 100% 60%;           /* #ffcc33 - Bright gold */
+    --gold-deep: 45 90% 50%;              /* #e6b800 - Deep gold */
+    --gold-dark: 42 85% 40%;              /* #b38600 - Darkest gold */
+
+    /* === ATLANTEAN ACADEMY (STORY/WATER) === */
+
+    /* Primary Blues - Deep ocean */
+    --atlantean-deepest: 212 80% 15%;     /* #081c3d - Deepest ocean */
+    --atlantean-deep: 212 75% 25%;        /* #0f3566 - Deep water */
+    --atlantean-primary: 212 70% 40%;     /* #1e5a99 - Primary blue */
+    --atlantean-medium: 212 65% 55%;      /* #3d7fcc - Medium blue */
+    --atlantean-light: 212 60% 70%;       /* #6ba5e5 - Light blue */
+
+    /* Teal Accents - Bioluminescent glow */
+    --atlantean-teal-deep: 180 65% 35%;   /* #1f9999 - Deep teal */
+    --atlantean-teal: 180 70% 50%;        /* #26cccc - Primary teal */
+    --atlantean-teal-light: 180 75% 65%;  /* #52e0e0 - Light teal */
+    --atlantean-aqua: 175 80% 70%;        /* #5ce6d9 - Aquamarine */
+
+    /* Special Effects */
+    --atlantean-glow: 180 100% 60%;       /* #00e6e6 - Bioluminescent glow */
+    --atlantean-shimmer: 185 85% 75%;     /* #73f0f0 - Water shimmer */
+
+    /* === DRACONIC ACADEMY (VISUAL/SKY) === */
+
+    /* Crimson - Dragon fire */
+    --draconic-crimson-deep: 355 75% 25%; /* #661428 - Deep crimson */
+    --draconic-crimson: 355 80% 45%;      /* #d92952 - Primary crimson */
+    --draconic-crimson-bright: 355 85% 60%; /* #f23d6b - Bright crimson */
+    --draconic-crimson-light: 355 80% 75%; /* #ff7799 - Light crimson */
+
+    /* Gold - Dragon scales */
+    --draconic-gold-deep: 40 90% 45%;     /* #d9a300 - Deep dragon gold */
+    --draconic-gold: 42 95% 55%;          /* #ffc61a - Primary gold */
+    --draconic-gold-bright: 45 100% 65%;  /* #ffdb4d - Bright gold */
+    --draconic-gold-light: 48 100% 80%;   /* #fff280 - Light gold */
+
+    /* Sky Blue - Soaring heights */
+    --draconic-sky-deep: 200 75% 40%;     /* #1a6bb8 - Deep sky */
+    --draconic-sky: 200 80% 55%;          /* #2d8fe6 - Primary sky */
+    --draconic-sky-bright: 200 85% 70%;   /* #5caef5 - Bright sky */
+    --draconic-sky-light: 200 90% 85%;    /* #a3d4ff - Light sky */
+
+    /* Storm Gray - Cloud accents */
+    --draconic-storm: 210 15% 45%;        /* #636e7a - Storm gray */
+    --draconic-cloud: 210 20% 70%;        /* #a3b3c2 - Cloud gray */
+
+    /* === CREATION & LIGHT ACADEMY (MUSIC/LIGHT) === */
+
+    /* Pure White - Foundation light */
+    --creation-pure: 0 0% 100%;           /* #ffffff - Pure white */
+    --creation-bright: 0 0% 98%;          /* #fafafa - Bright white */
+    --creation-soft: 0 0% 95%;            /* #f2f2f2 - Soft white */
+    --creation-warm: 40 50% 95%;          /* #f7f5ed - Warm white */
+
+    /* Radiant Gold - Divine light */
+    --creation-gold-pure: 45 100% 75%;    /* #ffe680 - Pure gold light */
+    --creation-gold: 42 100% 60%;         /* #ffcc33 - Primary gold */
+    --creation-gold-deep: 40 95% 50%;     /* #f2b800 - Deep gold */
+
+    /* Prismatic Rainbow - Refracted light */
+    --creation-prism-red: 0 85% 65%;      /* #f23d52 - Prism red */
+    --creation-prism-orange: 25 95% 60%;  /* #ff8c1a - Prism orange */
+    --creation-prism-yellow: 50 100% 60%; /* #ffe500 - Prism yellow */
+    --creation-prism-green: 145 75% 50%;  /* #20cc73 - Prism green */
+    --creation-prism-cyan: 185 85% 55%;   /* #26d9d9 - Prism cyan */
+    --creation-prism-blue: 220 85% 60%;   /* #2d85f5 - Prism blue */
+    --creation-prism-purple: 270 75% 60%; /* #8c3df5 - Prism purple */
+
+    /* Sound Waves - Visual frequency */
+    --creation-wave-light: 190 60% 75%;   /* #73d9f0 - Light wave */
+    --creation-wave-medium: 190 70% 60%;  /* #3dc4e6 - Medium wave */
+    --creation-wave-deep: 190 75% 45%;    /* #1f9eb8 - Deep wave */
+
+    /* === SEMANTIC COLORS === */
+
+    /* Success - Emerald green */
+    --success-light: 145 70% 75%;         /* #5ce68c - Light success */
+    --success: 145 75% 50%;               /* #20cc73 - Primary success */
+    --success-dark: 145 80% 35%;          /* #0f8c4d - Dark success */
+
+    /* Warning - Amber */
+    --warning-light: 40 100% 75%;         /* #ffd966 - Light warning */
+    --warning: 40 100% 55%;               /* #ffa500 - Primary warning */
+    --warning-dark: 35 90% 45%;           /* #d97700 - Dark warning */
+
+    /* Error - Rose red */
+    --error-light: 355 85% 75%;           /* #ff7799 - Light error */
+    --error: 355 85% 55%;                 /* #f52952 - Primary error */
+    --error-dark: 355 80% 40%;            /* #cc1f42 - Dark error */
+
+    /* Info - Cyan blue */
+    --info-light: 195 80% 75%;            /* #66d9f5 - Light info */
+    --info: 195 85% 55%;                  /* #26b8e6 - Primary info */
+    --info-dark: 195 80% 40%;             /* #1a85a8 - Dark info */
+
+    /* === SPECIAL EFFECTS === */
+
+    /* Glow Effects */
+    --glow-soft: 217 50% 70%;             /* Soft cosmic glow */
+    --glow-medium: 180 80% 60%;           /* Medium magical glow */
+    --glow-strong: 45 100% 60%;           /* Strong golden glow */
+
+    /* Shimmer Effects */
+    --shimmer-1: rgba(255, 255, 255, 0.1);
+    --shimmer-2: rgba(255, 204, 51, 0.1);
+    --shimmer-3: rgba(38, 204, 204, 0.1);
+
+    /* Backdrop Blur */
+    --blur-sm: blur(8px);
+    --blur-md: blur(16px);
+    --blur-lg: blur(24px);
+
+    /* === SHADCN/UI COMPATIBILITY === */
+
+    --background: var(--cosmic-deep);
+    --foreground: var(--text-primary);
+    --card: var(--cosmic-surface);
+    --card-foreground: var(--text-primary);
+    --popover: var(--cosmic-raised);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--gold-bright);
+    --primary-foreground: var(--cosmic-void);
+    --secondary: var(--atlantean-teal);
+    --secondary-foreground: var(--cosmic-void);
+    --muted: var(--cosmic-border);
+    --muted-foreground: var(--text-muted);
+    --accent: var(--draconic-crimson);
+    --accent-foreground: var(--text-primary);
+    --destructive: var(--error);
+    --destructive-foreground: var(--text-primary);
+    --border: var(--cosmic-border);
+    --input: var(--cosmic-border-bright);
+    --ring: var(--gold-medium);
+    --radius: 0.5rem;
+  }
+
+  /* === DARK MODE (Default) === */
+  .dark {
+    --background: var(--cosmic-deep);
+    --foreground: var(--text-primary);
+    /* Dark mode is our primary theme */
+  }
+
+  /* === LIGHT MODE (Optional) === */
+  .light {
+    --cosmic-void: 217 30% 98%;
+    --cosmic-deep: 217 30% 95%;
+    --cosmic-surface: 217 25% 90%;
+    --cosmic-raised: 217 20% 85%;
+
+    --text-primary: 217 50% 15%;
+    --text-secondary: 217 30% 35%;
+    --text-muted: 217 20% 50%;
+
+    --background: var(--cosmic-deep);
+    --foreground: var(--text-primary);
+    --card: var(--cosmic-surface);
+    --border: var(--cosmic-border);
+  }
+
+  /* === ACADEMY THEME CLASSES === */
+
+  .theme-atlantean {
+    --primary: var(--atlantean-teal);
+    --primary-foreground: var(--cosmic-void);
+    --accent: var(--atlantean-primary);
+    --accent-foreground: var(--text-primary);
+    --ring: var(--atlantean-glow);
+  }
+
+  .theme-draconic {
+    --primary: var(--draconic-gold);
+    --primary-foreground: var(--cosmic-void);
+    --accent: var(--draconic-crimson);
+    --accent-foreground: var(--text-primary);
+    --ring: var(--draconic-gold-bright);
+  }
+
+  .theme-creation {
+    --primary: var(--creation-gold);
+    --primary-foreground: var(--cosmic-void);
+    --accent: var(--creation-prism-blue);
+    --accent-foreground: var(--cosmic-void);
+    --ring: var(--creation-gold-pure);
+  }
+}
+
+/* === UTILITY CLASSES === */
+
+@layer utilities {
+  /* Glow Effects */
+  .glow-soft {
+    box-shadow: 0 0 20px rgba(var(--glow-soft), 0.3);
+  }
+
+  .glow-medium {
+    box-shadow: 0 0 30px rgba(var(--glow-medium), 0.5);
+  }
+
+  .glow-strong {
+    box-shadow: 0 0 40px rgba(var(--glow-strong), 0.7);
+  }
+
+  .glow-atlantean {
+    box-shadow: 0 0 30px hsl(var(--atlantean-glow) / 0.5);
+  }
+
+  .glow-draconic {
+    box-shadow: 0 0 30px hsl(var(--draconic-gold-bright) / 0.5);
+  }
+
+  .glow-creation {
+    box-shadow: 0 0 30px hsl(var(--creation-gold-pure) / 0.5);
+  }
+
+  /* Text Glow */
+  .text-glow-soft {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+
+  .text-glow-atlantean {
+    text-shadow: 0 0 15px hsl(var(--atlantean-glow) / 0.6);
+  }
+
+  .text-glow-draconic {
+    text-shadow: 0 0 15px hsl(var(--draconic-gold-bright) / 0.6);
+  }
+
+  .text-glow-creation {
+    text-shadow: 0 0 15px hsl(var(--creation-gold-pure) / 0.6);
+  }
+
+  /* Glass Morphism */
+  .glass {
+    background: rgba(18, 24, 38, 0.6);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-light {
+    background: rgba(18, 24, 38, 0.4);
+    backdrop-filter: var(--blur-sm);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-heavy {
+    background: rgba(18, 24, 38, 0.8);
+    backdrop-filter: var(--blur-lg);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Shimmer Effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--shimmer-1) 25%,
+      var(--shimmer-2) 50%,
+      var(--shimmer-3) 75%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}
 
 @layer base {
   html {
@@ -17,116 +315,5 @@
   body {
     @apply bg-cosmic-deep text-text-primary;
     font-feature-settings: 'rlig' 1, 'calt' 1;
-  }
-}
-
-@layer components {
-  /* Legacy support - kept for backward compatibility */
-  .panel {
-    @apply bg-cosmic-surface border border-cosmic-border rounded-lg p-4;
-  }
-
-  .muted {
-    @apply text-text-muted;
-  }
-
-  /* Aurora gradient text effect */
-  .aurora-text {
-    @apply bg-gradient-to-r from-atlantean-teal via-gold-bright to-draconic-crimson bg-clip-text text-transparent;
-  }
-
-  /* Enhanced glass morphism */
-  .glass {
-    background: rgba(18, 24, 38, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-
-  .glass-light {
-    background: rgba(18, 24, 38, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  .glass-heavy {
-    background: rgba(18, 24, 38, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-  }
-
-  /* Cosmic button effects */
-  .btn-cosmic {
-    @apply bg-cosmic-surface border border-cosmic-border hover:bg-cosmic-raised hover:border-gold-medium shadow-glow-sm hover:shadow-glow-md transition-all duration-300;
-  }
-
-  /* Academy-specific utilities */
-  .academy-atlantean {
-    @apply border-atlantean-teal/30 hover:border-atlantean-teal/60 hover:shadow-atlantean;
-  }
-
-  .academy-draconic {
-    @apply border-draconic-gold/30 hover:border-draconic-gold/60 hover:shadow-draconic;
-  }
-
-  .academy-creation {
-    @apply border-creation-gold/30 hover:border-creation-gold/60 hover:shadow-creation;
-  }
-}
-
-/* Scrollbar Styling */
-@layer utilities {
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-track {
-    @apply bg-cosmic-deep;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    @apply bg-cosmic-border rounded-full;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    @apply bg-cosmic-border-bright;
-  }
-
-  /* Hide scrollbar but keep functionality */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-/* Selection styling */
-::selection {
-  @apply bg-gold-bright/30 text-text-primary;
-}
-
-::-moz-selection {
-  @apply bg-gold-bright/30 text-text-primary;
-}
-
-/* Focus visible styling for accessibility */
-:focus-visible {
-  @apply outline-none ring-2 ring-gold-medium ring-offset-2 ring-offset-cosmic-deep;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
