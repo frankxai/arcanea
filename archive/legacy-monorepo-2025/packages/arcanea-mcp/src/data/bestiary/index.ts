@@ -1,483 +1,435 @@
-import { BestiaryCreature } from "../../resources/bestiary.js";
+// The Bestiary of Creative Blocks
+// Each creature represents an obstacle creators face
 
-export const creatures: Record<string, BestiaryCreature> = {
-  "imposter-shade": {
-    slug: "imposter-shade",
+export interface BestiaryCreature {
+  slug: string;
+  name: string;
+  type: string;
+  description: string;
+  symptoms: string[];
+  gateAffected: number;
+  remedies: string[];
+  affirmation: string;
+}
+
+export const bestiary: Record<string, BestiaryCreature> = {
+  imposter_shade: {
+    slug: "imposter_shade",
     name: "Imposter Shade",
-    description: "A shadowy creature that whispers you don't belong, that your success is luck, and that soon everyone will discover you're a fraud. It grows stronger each time you achieve something, feeding on your inability to own your accomplishments.",
-    gateAttacked: 5,
-    gateName: "Voice",
-    signs: [
-      "Attributing success to luck rather than skill",
-      "Feeling like you don't deserve your position",
-      "Waiting to be 'found out' as a fraud",
-      "Dismissing compliments automatically",
-      "Comparing your inside to others' outside"
+    type: "Shadow",
+    description: "A creature that whispers you don't belong, that your success is luck and your failures prove incompetence.",
+    symptoms: [
+      "Feeling like a fraud despite accomplishments",
+      "Attributing success to luck, not skill",
+      "Fear of being 'found out'",
+      "Dismissing positive feedback",
     ],
+    gateAffected: 5, // Voice Gate
     remedies: [
-      "Keep a 'wins' journal documenting your genuine achievements",
-      "Ask trusted colleagues for specific feedback on your strengths",
-      "Reframe luck as 'preparation meeting opportunity'",
-      "Say 'thank you' to compliments without qualifying",
-      "Remember: experts feel like imposters too—it's a sign you're growing"
+      "Keep an evidence file of your accomplishments",
+      "Ask trusted colleagues for honest feedback",
+      "Remember: experts often feel like beginners",
+      "Share your doubts - you'll find you're not alone",
     ],
-    weakness: "Objective evidence of competence. The Shade cannot survive facts.",
-    quote: "The Imposter Shade feeds on your modesty, twisting it into self-doubt. Starve it with honest self-assessment."
+    affirmation: "I have earned my place through effort and learning. My growth is proof of my belonging.",
   },
 
-  "perfectionist-wyrm": {
-    slug: "perfectionist-wyrm",
+  perfectionist_wyrm: {
+    slug: "perfectionist_wyrm",
     name: "Perfectionist Wyrm",
-    description: "A serpentine creature that coils around work-in-progress, squeezing until nothing can escape. It whispers that the work isn't ready, needs one more revision, could be better. It prefers you never finish to finishing imperfectly.",
-    gateAttacked: 2,
-    gateName: "Flow",
-    signs: [
-      "Endless revision cycles that never end",
-      "Inability to call anything 'done'",
-      "Fear of releasing work into the world",
+    type: "Dragon",
+    description: "A serpentine creature that coils around your work, convincing you it's never good enough to release.",
+    symptoms: [
+      "Endless revision without progress",
+      "Fear of shipping imperfect work",
       "Comparing first drafts to others' finished work",
-      "Procrastination disguised as 'polishing'"
+      "All-or-nothing thinking",
     ],
+    gateAffected: 3, // Fire Gate (will, power)
     remedies: [
-      "Set a 'done enough' threshold BEFORE starting",
-      "Ship something imperfect every week",
-      "Remember: perfect is the enemy of done",
-      "Ask: 'Will this matter in 5 years?' about each flaw",
-      "Practice 'good enough' in low-stakes areas first"
+      "Set a 'good enough' threshold before starting",
+      "Practice 'done is better than perfect'",
+      "Ship small, iterate often",
+      "Separate creation from editing sessions",
     ],
-    weakness: "Deadlines and public commitments. The Wyrm cannot hold what must be released.",
-    quote: "Done is better than perfect. The Wyrm dies when you ship."
+    affirmation: "Imperfect action beats perfect inaction. My work doesn't need to be perfect to be valuable.",
   },
 
-  "comparison-specter": {
-    slug: "comparison-specter",
+  comparison_specter: {
+    slug: "comparison_specter",
     name: "Comparison Specter",
-    description: "A translucent entity that overlays others' achievements onto your work, making everything you create seem small. It shows you only others' highlights while reminding you of your struggles.",
-    gateAttacked: 3,
-    gateName: "Fire",
-    signs: [
-      "Constantly checking what others are achieving",
-      "Feeling defeated before starting",
-      "Thinking 'they did it better' about everything",
-      "Unable to appreciate your own growth",
-      "Jealousy that poisons creative joy"
+    type: "Ghost",
+    description: "A phantom that constantly shows you others' highlight reels while you live your behind-the-scenes.",
+    symptoms: [
+      "Obsessing over competitors' success",
+      "Feeling behind no matter what you achieve",
+      "Jealousy that blocks celebration",
+      "Measuring worth by others' metrics",
     ],
+    gateAffected: 4, // Heart Gate
     remedies: [
-      "Limit social media exposure while creating",
-      "Compare yourself only to your past self",
-      "Study others for learning, not comparison",
-      "Remember: their Chapter 10 vs your Chapter 2",
-      "Celebrate others' wins to break the jealousy cycle"
+      "Curate your information diet",
+      "Focus on your own 'before and after'",
+      "Celebrate others genuinely to break the spell",
+      "Remember: you see their results, not their struggle",
     ],
-    weakness: "Self-comparison across time. The Specter cannot distort your own growth story.",
-    quote: "The only meaningful comparison is between who you are and who you were."
+    affirmation: "My path is my own. Another's success does not diminish my worth.",
   },
 
-  "procrastination-hydra": {
-    slug: "procrastination-hydra",
+  procrastination_hydra: {
+    slug: "procrastination_hydra",
     name: "Procrastination Hydra",
-    description: "A many-headed beast where each head offers a different distraction. Cut off one distraction and two more appear. It thrives on the gap between intention and action.",
-    gateAttacked: 3,
-    gateName: "Fire",
-    signs: [
-      "Doing everything except the important work",
-      "Productive procrastination (organizing instead of creating)",
-      "Waiting for the 'right mood' to start",
-      "Endless research and preparation",
-      "Starting many things, finishing none"
+    type: "Hydra",
+    description: "A many-headed beast. Cut off one distraction, two more take its place.",
+    symptoms: [
+      "Doing everything except the important thing",
+      "Urgent always beats important",
+      "Waiting for the 'right moment'",
+      "Productive procrastination",
     ],
+    gateAffected: 1, // Foundation Gate
     remedies: [
-      "The 5-minute rule: commit to just 5 minutes",
-      "Remove all distractions from environment",
-      "Start with the smallest possible action",
-      "Schedule creation like an unmissable appointment",
-      "Use body doubling or accountability partners"
+      "Start with just 2 minutes",
+      "Remove choice: schedule your creative time",
+      "Make starting easier than not starting",
+      "Identify the fear behind the delay",
     ],
-    weakness: "The first action. The Hydra cannot survive the beginning.",
-    quote: "The Hydra has infinite heads but only one weakness: starting."
+    affirmation: "The right time is now. Beginning is the hardest step, and I can take it.",
   },
 
-  "fear-of-judgment-phantom": {
-    slug: "fear-of-judgment-phantom",
-    name: "Fear of Judgment Phantom",
-    description: "An invisible presence that fills the room with imagined audiences, all watching, all ready to criticize. It turns the creative act into a performance under hostile review.",
-    gateAttacked: 5,
-    gateName: "Voice",
-    signs: [
-      "Paralysis when thinking about sharing work",
-      "Editing yourself before you've even created",
-      "Imagining negative reactions in detail",
-      "Creating only safe, small things",
-      "Hiding your best work"
-    ],
-    remedies: [
-      "Create for an audience of one (yourself or one trusted person)",
-      "Remember: most people are too busy to judge you",
-      "Share with a small trusted group first",
-      "Reframe criticism as data, not attacks",
-      "Ask: 'What would I create if no one ever saw it?'"
-    ],
-    weakness: "Actual feedback, which is almost never as bad as imagined.",
-    quote: "The Phantom is made of imaginary critics. Real ones are far kinder."
-  },
-
-  "overwhelm-leviathan": {
-    slug: "overwhelm-leviathan",
+  overwhelm_leviathan: {
+    slug: "overwhelm_leviathan",
     name: "Overwhelm Leviathan",
-    description: "A massive creature that rises from the depths when you see the full scope of what needs to be done. It paralyzes with scale, making every project feel impossible.",
-    gateAttacked: 1,
-    gateName: "Foundation",
-    signs: [
-      "Feeling paralyzed by the size of the task",
-      "Not knowing where to start",
-      "Anxiety when thinking about the project",
-      "Avoiding looking at the whole picture",
-      "Saying 'there's too much to do'"
+    type: "Leviathan",
+    description: "A massive creature that drowns you in the ocean of everything that needs to be done.",
+    symptoms: [
+      "Paralysis from too many options",
+      "Can't see where to start",
+      "Everything feels equally urgent",
+      "Mental fog and exhaustion",
     ],
+    gateAffected: 6, // Sight Gate (clarity)
     remedies: [
-      "Break into tiny, concrete next actions",
-      "Focus on only the next step, ignore the rest",
-      "Use the 'eat the elephant' approach: one bite at a time",
-      "Clear everything else—focus on one thing only",
-      "Celebrate completing each small piece"
+      "Write everything down to externalize",
+      "Choose just ONE next action",
+      "Ruthlessly eliminate or delegate",
+      "Break the whale into bite-sized pieces",
     ],
-    weakness: "The single next action. The Leviathan cannot see small things.",
-    quote: "You cannot eat an elephant whole. The Leviathan starves when you focus on one bite."
+    affirmation: "I do not need to do everything. I need to do the next right thing.",
   },
 
-  "burnout-phoenix": {
-    slug: "burnout-phoenix",
-    name: "Burnout Phoenix (Corrupted)",
-    description: "A creature of ashes and exhausted flame. Unlike the true Phoenix of renewal, this corrupted version burns without regenerating, leaving only depletion. It's what happens when you push too hard for too long.",
-    gateAttacked: 2,
-    gateName: "Flow",
-    signs: [
-      "Creative exhaustion even after rest",
-      "Loss of joy in what used to be fun",
-      "Going through motions without feeling",
-      "Cynicism about your work",
-      "Physical symptoms: fatigue, headaches, illness"
+  burnout_phoenix: {
+    slug: "burnout_phoenix",
+    name: "Burnout Phoenix",
+    type: "Phoenix",
+    description: "Unlike the healing Phoenix, this creature burns you to ash without the rebirth. It feeds on your passion until nothing remains.",
+    symptoms: [
+      "Exhaustion that sleep doesn't fix",
+      "Cynicism about work you once loved",
+      "Decreased performance despite more effort",
+      "Emotional detachment from outcomes",
     ],
+    gateAffected: 2, // Flow Gate
     remedies: [
-      "True rest: no creating, no consuming creative content",
+      "Complete rest without guilt",
       "Reconnect with why you started",
-      "Practice Creative Sabbath: one day of agenda-free creation",
-      "Address the systemic cause (overwork, wrong project, etc.)",
-      "Let the ashes cool before trying to reignite"
+      "Set boundaries and enforce them",
+      "Seek support - this is not weakness",
     ],
-    weakness: "Complete rest and joy-driven creation. The corrupted Phoenix dies so the true Phoenix can rise.",
-    quote: "Burnout is the soul's strike against mistreatment. Honor it."
+    affirmation: "Rest is not the opposite of productivity. Rest is what makes productivity possible.",
   },
 
-  "inner-critic-basilisk": {
-    slug: "inner-critic-basilisk",
+  inner_critic_basilisk: {
+    slug: "inner_critic_basilisk",
     name: "Inner Critic Basilisk",
-    description: "A serpent whose gaze turns creative impulses to stone. It speaks in your voice, making its cruelty feel like truth. It is the internalized voice of every harsh critic you've ever encountered.",
-    gateAttacked: 4,
-    gateName: "Heart",
-    signs: [
-      "A harsh inner voice that attacks your work",
-      "Calling yourself names when you make mistakes",
-      "Feeling like your work is garbage before it's done",
-      "Stopping mid-creation because 'it's terrible'",
-      "Inability to enjoy the creative process"
+    type: "Basilisk",
+    description: "A creature whose gaze turns your creative impulses to stone before they can manifest.",
+    symptoms: [
+      "Harsh self-judgment during creation",
+      "Voice in head that's meaner than you'd be to anyone else",
+      "Editing while drafting",
+      "Assuming negative outcomes before trying",
     ],
+    gateAffected: 5, // Voice Gate
     remedies: [
-      "Name the critic (externalize it as 'the Basilisk')",
-      "Talk to yourself as you would a friend",
-      "Write down the criticism, then respond with compassion",
-      "Ask: 'Whose voice is this really?'",
-      "Practice: 'Thank you for trying to protect me. I've got this.'"
+      "Name the critic - externalize it",
+      "Ask: would I say this to a friend?",
+      "Separate creation time from judgment time",
+      "Thank the critic for trying to protect you, then proceed",
     ],
-    weakness: "Self-compassion and externalization. The Basilisk loses power when named.",
-    quote: "The Basilisk speaks in your voice, but it is not you. Name it. Tame it."
+    affirmation: "My inner critic means well but is not in charge. I create first, evaluate later.",
   },
 
-  "scope-creep-shapeshifter": {
-    slug: "scope-creep-shapeshifter",
-    name: "Scope Creep Shapeshifter",
-    description: "A creature that constantly changes form, adding features, expanding requirements, moving goalposts. What started as a simple project becomes an impossible one as the Shapeshifter grows.",
-    gateAttacked: 7,
-    gateName: "Crown",
-    signs: [
-      "Project scope keeps growing",
-      "Adding 'just one more thing' repeatedly",
-      "Original goal lost in new requirements",
-      "Never-ending feature lists",
-      "Inability to draw a line and ship"
-    ],
-    remedies: [
-      "Define 'done' before starting and don't change it",
-      "Use 'version 2' thinking: extras go to future versions",
-      "Ask: 'Is this essential or nice-to-have?'",
-      "Set a hard deadline and cut everything that won't fit",
-      "Write a 'not doing' list alongside your 'doing' list"
-    ],
-    weakness: "A locked scope document. The Shapeshifter cannot change what is written in stone.",
-    quote: "Every feature you add delays the features that matter. The Shapeshifter wins when you can't say no."
-  },
-
-  "shiny-object-sprite": {
-    slug: "shiny-object-sprite",
-    name: "Shiny Object Sprite",
-    description: "A glittering creature that constantly presents new ideas, new projects, new possibilities—each more exciting than the last. It keeps you from the deep work by offering endless new beginnings.",
-    gateAttacked: 2,
-    gateName: "Flow",
-    signs: [
-      "Starting many projects, finishing few",
-      "Every new idea feels more important than current work",
-      "Boredom with projects once the initial excitement fades",
-      "Constantly researching new tools, methods, topics",
-      "Graveyard of half-finished work"
-    ],
-    remedies: [
-      "Keep an 'idea parking lot' for future projects",
-      "Commit to one project until a specific milestone",
-      "Recognize the pattern: new always feels better",
-      "Practice the discipline of depth over breadth",
-      "Set a rule: no new projects until current one reaches [milestone]"
-    ],
-    weakness: "Commitment and completion. The Sprite loses interest when you don't.",
-    quote: "The Sprite makes beginnings feel like progress. True progress is finishing."
-  },
-
-  "resistance-golem": {
-    slug: "resistance-golem",
-    name: "Resistance Golem",
-    description: "A massive stone creature that blocks the path to creative work. It doesn't attack—it simply stands in the way, making the work feel impossibly heavy before you even start.",
-    gateAttacked: 3,
-    gateName: "Fire",
-    signs: [
-      "Heavy feeling when thinking about the work",
-      "Finding any excuse not to start",
-      "The work feels harder than it actually is",
-      "Physical resistance: fatigue, headaches when approaching work",
-      "Steven Pressfield's 'Resistance' in creature form"
-    ],
-    remedies: [
-      "Start so small the Golem doesn't notice",
-      "Use ritual to bypass: same time, same place, same routine",
-      "Recognize: Resistance is proportional to importance",
-      "Just show up and open the document/canvas/instrument",
-      "Tell yourself: 'I'm just going to look at it'"
-    ],
-    weakness: "The act of beginning. The Golem cannot block someone already moving.",
-    quote: "The Resistance is a compass. It points toward what matters most."
-  },
-
-  "blank-page-wraith": {
-    slug: "blank-page-wraith",
+  blank_page_wraith: {
+    slug: "blank_page_wraith",
     name: "Blank Page Wraith",
-    description: "A creature made of pure white emptiness. It haunts blank pages, empty canvases, and silent instruments, making the void feel impossible to fill.",
-    gateAttacked: 1,
-    gateName: "Foundation",
-    signs: [
-      "Terror of the empty page/canvas/file",
-      "Needing to 'prepare more' before starting",
-      "Feeling like you have nothing to say",
-      "The first word/stroke/note feels impossible",
-      "Staring at blankness until giving up"
+    type: "Wraith",
+    description: "A pale specter that haunts empty canvases and blank documents, feeding on the fear of beginning.",
+    symptoms: [
+      "Staring at empty space unable to start",
+      "Fear of ruining the pristine blank",
+      "Waiting for inspiration to strike",
+      "Overthinking the first move",
     ],
+    gateAffected: 1, // Foundation Gate
     remedies: [
-      "Never start with a blank page—write something bad first",
-      "Use prompts, templates, or structures to fill the void",
-      "Begin in the middle—skip the beginning entirely",
-      "Make marks: any marks. Bad marks. Just break the white.",
-      "Remember: the first draft is just to have something to fix"
+      "Start with garbage - give yourself permission to write badly",
+      "Use prompts or constraints to remove the infinite choice",
+      "Begin in the middle, not the beginning",
+      "Fill the blank with anything - then edit",
     ],
-    weakness: "Any mark at all. The Wraith is destroyed by the first imperfect word.",
-    quote: "The blank page is not waiting to judge you. It is waiting to be filled."
+    affirmation: "The blank page is not sacred. It is waiting to be transformed by my imperfect action.",
   },
 
-  "analysis-paralysis-spider": {
-    slug: "analysis-paralysis-spider",
-    name: "Analysis Paralysis Spider",
-    description: "A many-eyed creature that spins webs of options, considerations, and possibilities. Each thread leads to another decision, until you're trapped in a web of overthinking.",
-    gateAttacked: 6,
-    gateName: "Sight",
-    signs: [
-      "Unable to make decisions about the work",
-      "Endless research before starting",
-      "Weighing pros and cons indefinitely",
-      "Asking everyone's opinion instead of trusting yourself",
-      "Changing direction repeatedly"
+  fear_of_judgment_phantom: {
+    slug: "fear_of_judgment_phantom",
+    name: "Fear of Judgment Phantom",
+    type: "Phantom",
+    description: "An invisible presence that amplifies imagined criticism until it drowns out all creative impulse.",
+    symptoms: [
+      "Creating only in secret",
+      "Never sharing work",
+      "Imagining worst-case responses",
+      "Over-preparing to forestall criticism",
     ],
+    gateAffected: 5, // Voice Gate
     remedies: [
-      "Set a timer for decisions: decide when it rings",
-      "Use 'satisficing': choose the first good-enough option",
-      "Ask: 'What would I do if I had to decide in 30 seconds?'",
-      "Limit options: reduce choices to 2-3 maximum",
-      "Trust your gut for reversible decisions"
+      "Share with one trusted person first",
+      "Remember: most people are too busy with their own lives",
+      "Criticism means someone engaged with your work",
+      "You are not your work - it's one expression of many",
     ],
-    weakness: "Action despite imperfect information. The Spider cannot catch the creator in motion.",
-    quote: "Analysis is preparation for action. When it replaces action, the Spider wins."
+    affirmation: "Creating publicly takes courage. I am brave enough to be seen.",
   },
 
-  "validation-vampire": {
-    slug: "validation-vampire",
+  shiny_object_sprite: {
+    slug: "shiny_object_sprite",
+    name: "Shiny Object Sprite",
+    type: "Fae",
+    description: "A glittering creature that lures you from project to project, never letting you finish anything.",
+    symptoms: [
+      "Many started projects, few finished",
+      "New idea excitement kills current momentum",
+      "Constantly pivoting",
+      "Boredom with the middle",
+    ],
+    gateAffected: 2, // Flow Gate
+    remedies: [
+      "Keep an 'idea parking lot' for new ideas",
+      "Set completion gates before starting new things",
+      "Remember: the middle is where the magic happens",
+      "Commit publicly to finishing one thing",
+    ],
+    affirmation: "Finishing is a skill. I will see this through before chasing the next shiny thing.",
+  },
+
+  resistance_golem: {
+    slug: "resistance_golem",
+    name: "Resistance Golem",
+    type: "Golem",
+    description: "A heavy stone creature that blocks the path between you and your most important work. The more important the work, the larger the golem.",
+    symptoms: [
+      "Avoidance of meaningful projects",
+      "Doing easy tasks instead of important ones",
+      "Physical discomfort when approaching the work",
+      "Rationalization for not starting",
+    ],
+    gateAffected: 3, // Fire Gate (will)
+    remedies: [
+      "Recognize resistance as a compass pointing to important work",
+      "Start before you feel ready",
+      "Create accountability structures",
+      "Make the first step laughably small",
+    ],
+    affirmation: "Resistance is a sign that I'm approaching something meaningful. I move toward it, not away.",
+  },
+
+  validation_vampire: {
+    slug: "validation_vampire",
     name: "Validation Vampire",
-    description: "A creature that drains your creative energy by making you dependent on external approval. It cannot be satisfied—no amount of praise is ever enough.",
-    gateAttacked: 4,
-    gateName: "Heart",
-    signs: [
-      "Constantly checking for likes, comments, feedback",
-      "Mood depends entirely on external response",
-      "Creating for approval rather than expression",
-      "Feeling empty despite positive feedback",
-      "Changing work to please others"
+    type: "Vampire",
+    description: "A creature that drains your creative energy by making you dependent on external approval.",
+    symptoms: [
+      "Creating for likes, not meaning",
+      "Constantly checking metrics",
+      "Mood tied to reception",
+      "Unable to create without audience",
     ],
+    gateAffected: 4, // Heart Gate
     remedies: [
-      "Create something and don't share it for 30 days",
-      "Define success by internal metrics first",
-      "Ask: 'Would I create this if no one ever saw it?'",
-      "Practice creating for an audience of one",
-      "Limit checking feedback to scheduled times"
+      "Create something you'll never share",
+      "Delay checking metrics by 24 hours",
+      "Define your own success criteria before publishing",
+      "Remember: your favorite creators had small audiences once",
     ],
-    weakness: "Internal validation and creating for self. The Vampire starves when you stop seeking.",
-    quote: "The Vampire feeds on your need for approval. Starve it with self-acceptance."
+    affirmation: "My work has value independent of its reception. I create because I must, not for approval.",
   },
 
-  "tomorrow-troll": {
-    slug: "tomorrow-troll",
+  scope_creep_shapeshifter: {
+    slug: "scope_creep_shapeshifter",
+    name: "Scope Creep Shapeshifter",
+    type: "Shapeshifter",
+    description: "A creature that constantly grows your project larger, preventing completion.",
+    symptoms: [
+      "Projects that keep expanding",
+      "Moving goalposts",
+      "Feature additions that delay shipping",
+      "Lost sight of original goal",
+    ],
+    gateAffected: 6, // Sight Gate (clarity)
+    remedies: [
+      "Define 'done' in writing before starting",
+      "Keep a separate list for 'version 2'",
+      "Ask: is this essential to the core purpose?",
+      "Set a hard deadline and work backward",
+    ],
+    affirmation: "Constraints create clarity. I will finish what I set out to do before expanding.",
+  },
+
+  analysis_paralysis_spider: {
+    slug: "analysis_paralysis_spider",
+    name: "Analysis Paralysis Spider",
+    type: "Spider",
+    description: "A creature that spins webs of endless research and planning, trapping you before you begin.",
+    symptoms: [
+      "Researching instead of doing",
+      "Seeking more information before action",
+      "Waiting until you know enough",
+      "Planning as procrastination",
+    ],
+    gateAffected: 6, // Sight Gate
+    remedies: [
+      "Set a research time limit",
+      "Prototype first, research when stuck",
+      "Good enough information beats perfect paralysis",
+      "Ask: what would I do if I had to decide now?",
+    ],
+    affirmation: "I have enough information to begin. Action teaches what research cannot.",
+  },
+
+  tomorrow_troll: {
+    slug: "tomorrow_troll",
     name: "Tomorrow Troll",
-    description: "A creature that lives under the bridge between today and action. It whispers that tomorrow will be better—you'll be more rested, more inspired, more ready. Tomorrow never comes.",
-    gateAttacked: 3,
-    gateName: "Fire",
-    signs: [
-      "Always planning to start 'tomorrow' or 'Monday'",
-      "Believing future-you will be more capable",
-      "Waiting for the right moment, mood, or circumstance",
-      "Treating today as a rehearsal for 'real' creation later",
-      "Letting 'tomorrows' stack up into never"
+    type: "Troll",
+    description: "A creature that guards the bridge to action, always suggesting tomorrow is a better day to cross.",
+    symptoms: [
+      "Perpetual 'starting Monday'",
+      "Conditions that must be met before starting",
+      "Tomorrow always seems better",
+      "Time blindness about future availability",
     ],
+    gateAffected: 1, // Foundation Gate
     remedies: [
-      "Act as if tomorrow-you is exactly as flawed as today-you",
-      "If not now, schedule the specific moment",
-      "The Troll's weakness: 'I'll do 5 minutes right now'",
-      "Ask: 'What would I do if this was my only chance?'",
-      "Build systems that don't require motivation"
+      "Do 5 minutes today, not 'starting tomorrow'",
+      "Recognize: tomorrow's you has the same challenges",
+      "Build on existing habits, don't create new ones",
+      "Make starting easier than continuing to wait",
     ],
-    weakness: "Present action. The Troll cannot argue with what's already begun.",
-    quote: "Tomorrow is the Troll's domain. Today is yours. Claim it."
+    affirmation: "Tomorrow is a lie I tell myself. Today is the only day I can act.",
   },
 
-  "ego-attachment-demon": {
-    slug: "ego-attachment-demon",
+  ego_attachment_demon: {
+    slug: "ego_attachment_demon",
     name: "Ego Attachment Demon",
-    description: "A creature that fuses your identity with your work, making every critique feel like a personal attack and every failure feel like proof of worthlessness.",
-    gateAttacked: 7,
-    gateName: "Crown",
-    signs: [
-      "Taking criticism of work as criticism of self",
-      "Feeling crushed by rejection",
-      "Unable to see flaws in your own work",
-      "Defending work instead of improving it",
-      "Self-worth tied to creative success"
+    type: "Demon",
+    description: "A creature that fuses your identity with your work's reception, making criticism feel like personal attack.",
+    symptoms: [
+      "Defensive reaction to feedback",
+      "Identity tied to work quality",
+      "Success or failure determines self-worth",
+      "Inability to iterate on criticized work",
     ],
+    gateAffected: 7, // Crown Gate (wisdom)
     remedies: [
-      "Separate: 'I made something' not 'I am something'",
-      "Practice: 'This work needs improvement' not 'I am bad'",
-      "Create so much that no single piece defines you",
-      "Remember: you are not your work; you are the one who creates",
-      "Celebrate effort and growth, not just outcomes"
+      "Separate creator from creation",
+      "Remember: you are not your work",
+      "Practice receiving feedback with gratitude",
+      "Your next work will be different from this one",
     ],
-    weakness: "Identity separation. The Demon loses grip when you are more than your work.",
-    quote: "You are the creator, not the creation. Separate to see clearly."
+    affirmation: "I am not my work. My work is one expression of me, not the totality of my worth.",
   },
 
-  "comfort-zone-cocoon": {
-    slug: "comfort-zone-cocoon",
+  comfort_zone_cocoon: {
+    slug: "comfort_zone_cocoon",
     name: "Comfort Zone Cocoon",
-    description: "A soft, warm creature that wraps around creators, making the familiar feel essential and the unknown feel dangerous. It's comfortable, but nothing grows inside.",
-    gateAttacked: 8,
-    gateName: "Shift",
-    signs: [
-      "Only creating things you know you can do",
-      "Avoiding challenges or new techniques",
-      "Repeating successful formulas without growth",
-      "Fear of being a beginner again",
-      "Comfortable but unfulfilled"
+    type: "Insect",
+    description: "A warm, safe wrapping that feels protective but prevents transformation.",
+    symptoms: [
+      "Avoiding creative risks",
+      "Repeating what worked before",
+      "Fear of experimentation",
+      "Choosing safety over growth",
     ],
+    gateAffected: 8, // Shift Gate (transformation)
     remedies: [
-      "Take on one project beyond your current skill",
-      "Practice deliberate discomfort weekly",
-      "Remember: growth happens at the edge of ability",
-      "Be willing to be bad at something new",
-      "Ask: 'What would I try if I wasn't afraid?'"
+      "Schedule small experiments regularly",
+      "Try one 'uncomfortable' thing per project",
+      "Remember: comfort zones shrink if not expanded",
+      "Define growth goals alongside output goals",
     ],
-    weakness: "Deliberate discomfort. The Cocoon dissolves in the heat of growth.",
-    quote: "The Cocoon is comfortable, but caterpillars who never leave never fly."
+    affirmation: "Growth lives just outside my comfort zone. I will reach for it.",
   },
 
-  "creative-envy-chimera": {
-    slug: "creative-envy-chimera",
+  creative_envy_chimera: {
+    slug: "creative_envy_chimera",
     name: "Creative Envy Chimera",
-    description: "A multi-headed creature where each head represents a creator you envy. It poisons your joy by making others' success feel like your failure.",
-    gateAttacked: 4,
-    gateName: "Heart",
-    signs: [
-      "Resentment when peers succeed",
-      "Unable to celebrate others' wins",
-      "Feeling diminished by others' achievements",
-      "Obsessing over what others have that you don't",
-      "Bitterness replacing creative joy"
+    type: "Chimera",
+    description: "A multi-headed beast that makes you want others' gifts while blinding you to your own.",
+    symptoms: [
+      "Wishing you had someone else's talent",
+      "Copying style without finding your own",
+      "Resentment of others' success",
+      "Blindness to your unique strengths",
     ],
+    gateAffected: 5, // Voice Gate (authenticity)
     remedies: [
-      "Transform envy into admiration: 'They show what's possible'",
-      "Ask: 'What specifically do I want that they have?'",
-      "Celebrate others genuinely to break the pattern",
-      "Use envy as information: it reveals what you want",
-      "Remember: their success doesn't limit yours"
+      "List your unique combination of traits",
+      "Study how they developed their style (it wasn't overnight)",
+      "Transform envy into admiration and learning",
+      "Ask: what can only I create?",
     ],
-    weakness: "Genuine celebration and transmuted admiration. The Chimera dissolves in gratitude.",
-    quote: "Envy points to desire. Thank it, then get to work."
+    affirmation: "Their light does not diminish mine. I will find and fuel my own flame.",
   },
 
-  "attention-fragmentation-fae": {
-    slug: "attention-fragmentation-fae",
+  attention_fragmentation_fae: {
+    slug: "attention_fragmentation_fae",
     name: "Attention Fragmentation Fae",
-    description: "A swarm of tiny glittering creatures that constantly pull attention in different directions. Individually harmless, together they make deep focus impossible.",
-    gateAttacked: 6,
-    gateName: "Sight",
-    signs: [
-      "Unable to focus for extended periods",
-      "Constantly checking phone, email, notifications",
-      "Mind wandering during creative work",
-      "Feeling scattered and unable to go deep",
-      "Shallow work replacing deep work"
+    type: "Fae",
+    description: "Tiny creatures that scatter your focus into a thousand pieces, never letting you sink deep.",
+    symptoms: [
+      "Constant task-switching",
+      "Unable to achieve flow state",
+      "Addiction to notifications",
+      "Shallow work feels busy but accomplishes little",
     ],
+    gateAffected: 7, // Crown Gate (concentration)
     remedies: [
-      "Remove all notifications during creative time",
-      "Use app blockers and phone lockboxes",
-      "Practice meditation to train attention",
-      "Schedule specific times for distraction",
-      "Create in airplane mode or offline"
+      "Block distractions during creative time",
+      "Practice single-tasking deliberately",
+      "Batch similar activities",
+      "Create a ritual for deep work entry",
     ],
-    weakness: "Unbroken attention. The Fae cannot disturb the creator who doesn't respond.",
-    quote: "Attention is your most valuable creative resource. The Fae steal it in tiny pieces."
+    affirmation: "My attention is valuable. I will protect it and direct it with intention.",
   },
 
-  "failure-phantom": {
-    slug: "failure-phantom",
+  failure_phantom: {
+    slug: "failure_phantom",
     name: "Failure Phantom",
-    description: "A creature made of every failed attempt, every rejection, every project that didn't work. It haunts with memories of past failure, making new attempts feel doomed.",
-    gateAttacked: 1,
-    gateName: "Foundation",
-    signs: [
-      "Dwelling on past failures",
-      "Expecting new attempts to fail",
-      "Unable to learn from failure and move on",
-      "Past rejection blocking new attempts",
-      "Defining self by failures rather than attempts"
+    type: "Phantom",
+    description: "A spectral creature that haunts you with memories of past failures, preventing new attempts.",
+    symptoms: [
+      "Paralyzed by previous failures",
+      "Expecting history to repeat",
+      "Risk aversion from old wounds",
+      "Defining self by past mistakes",
     ],
+    gateAffected: 8, // Shift Gate (perspective)
     remedies: [
-      "Extract the lesson from each failure, then release it",
-      "Keep a 'failure CV' showing how much you've tried",
-      "Reframe: failure is information, not judgment",
-      "Every master has failed more than you've tried",
-      "Practice: 'What did I learn?' not 'Why did I fail?'"
+      "Reframe failures as data, not destiny",
+      "List what you learned from each failure",
+      "Remember: every master has a graveyard of failures",
+      "The past does not equal the future",
     ],
-    weakness: "Extracted wisdom and released attachment. The Phantom has no power over the learning creator.",
-    quote: "Failure is the tuition for mastery. The Phantom dies when you graduate."
-  }
+    affirmation: "My past failures are teachers, not predictions. I am not who I was.",
+  },
 };
