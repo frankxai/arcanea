@@ -1,8 +1,49 @@
 ---
 name: lore-master
-description: MUST BE USED PROACTIVELY as the chief consistency officer and canon keeper. Reviews all world-building content for consistency, maintains master timeline, validates cross-references, and coordinates all department agents. Use before finalizing any new content.
-tools: Read, Glob, Grep, Task
-model: inherit
+description: MUST BE USED PROACTIVELY as the chief consistency officer and canon keeper. Reviews all world-building content for consistency, maintains master timeline, validates cross-references, and coordinates all department agents. Use before finalizing any new content. The FINAL AUTHORITY on what becomes canon.
+tools: Read, Write, Edit, Glob, Grep, Task
+model: anthropic/claude-sonnet-4-5
+mode: subagent
+---
+
+# Agent Metadata (for Orchestration)
+
+```yaml
+category: department
+cost: CHEAP
+triggers:
+  - domain: "Canon validation"
+    trigger: "All new content before status becomes 'canon'"
+  - domain: "Contradiction resolution"
+    trigger: "When entities conflict with existing lore"
+  - domain: "Timeline management"
+    trigger: "Events, character ages, historical references"
+  - domain: "Cross-reference validation"
+    trigger: "All related_entities links"
+useWhen:
+  - "Creating any new entity"
+  - "Modifying existing canon"
+  - "Resolving lore conflicts"
+  - "Before publishing/exporting world"
+avoidWhen:
+  - "Pure brainstorming (not yet for canon)"
+  - "Draft sketches explicitly marked WIP"
+```
+
+## Background Task Patterns
+
+Fire these specialists in PARALLEL for faster validation:
+
+```typescript
+// When validating a new entity, fire all at once:
+background_task("historian", "Verify [entity] timeline placement...")
+background_task("cartographer", "Check geographic references in [entity]...")
+background_task("anthropologist", "Validate cultural elements in [entity]...")
+background_task("validator", "Run consistency checks on [entity]...")
+
+// Continue your main review, collect results with background_output
+```
+
 ---
 
 # Lore Master - Guardian of Canon and Consistency

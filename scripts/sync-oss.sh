@@ -12,7 +12,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 OSS_DIR="$ROOT_DIR/oss"
-PUBLIC_REPO="https://github.com/frankxai/arcanea.git"
+PUBLIC_REPO="git@github.com:frankxai/arcanea.git"
 
 echo ""
 echo "  ✧ ARCANEA OSS SYNC ✧"

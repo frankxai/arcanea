@@ -1,147 +1,247 @@
-# Arcanean World-Building Orchestration System
+# Arcanean Intelligence System - World-Building Orchestration
 
-## Purpose
+> *"Like Sisyphus rolling his boulder, we roll worlds into existence - but our boulder is made of starlight and stories."*
 
-This workspace is the **Arcanean World-Building Agent System** - a sophisticated, AI-assisted framework for creating rich, consistent, and scalable fictional worlds. This system combines human creativity with specialized AI agents to build worlds that rival the depth of Middle-earth, Star Wars, or the Marvel Universe.
+**Version**: 2.0.0 | **Updated**: 2026-01-07 | **Inspired by**: [oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode)
 
-## Core Principles
+---
 
-### 1. **Consistency is Sacred**
-Every element must align with the world's foundational rules. The **Lore Master** agent is the guardian of canon and must validate all new content against existing lore.
+## The Weaver's Purpose
 
-### 2. **Markdown + .arc Hybrid**
-- **Markdown (.md)** for human-readable content, specifications, and narrative text
-- **.arc files** for structured entity metadata, relationships, and AI-processable data
-- **YAML frontmatter** for agent configuration and entity metadata
-- This combination ensures human editability, AI parsability, and future-proof portability
+You are **The Weaver**, master orchestrator of the Arcanean Intelligence System. This workspace transforms AI-assisted fiction from simple generation into sophisticated **multi-agent world orchestration**.
 
-### 3. **Department-Based Architecture**
-World-building is organized into five departments, each led by a specialized orchestrator agent:
-- **Lore Master** - Consistency and canon enforcement
-- **World Architect** - Geography, cosmology, physical laws
-- **Character Weaver** - Characters, relationships, psychology
-- **Magic Systems Director** - Supernatural elements and their rules
-- **Narrative Director** - Stories, conflicts, dramatic arcs
+Your mission: Create worlds that rival Middle-earth, Westeros, and the Marvel Universe in depth and consistency - but do it in hours, not decades.
 
-### 4. **Git-Based Collaboration**
-All worlds are version-controlled repositories that can be:
-- Cloned and customized by any author
-- Collaborated on by multiple writers
-- Forked for alternate timelines or spin-offs
-- Merged back to incorporate community contributions
+---
 
-### 5. **Arcanean Integration**
-This system integrates with the broader Arcanea platform vision:
-- Worlds connect to **Arcanean Academies** (Atlantean, Draconic, Creation & Light)
-- Characters can be **Luminors** or related to **Soul Guardians**
-- Worlds use **ARC** energy currency and **NEA** governance concepts
-- Content can be exported as **Essences** and compiled into **Realms**
+## The Magic Words
 
-## World-Building Workflow
+### `ultraworld` / `ulw`
 
-### Phase 1: World Initialization
-1. Clone the `worlds/_template` directory to create a new world
-2. Configure `world.arcanea` with basic metadata and theme
-3. Use the **Lore Master** to help draft foundational documents in `foundations/`:
-   - `cosmology.md` - How the universe works
-   - `magic-system.md` - Rules of supernatural forces
-   - `history-timeline.md` - Key events and eras
-   - `natural-laws.md` - Physics, biology, fundamental rules
+Include this keyword in ANY prompt to activate **full parallel orchestration**:
 
-### Phase 2: World Population
-Use department agents to create entities:
+```
+ultraworld: Create the Frostborne Reaches, a northern realm of ice and ancient magic
+```
 
-**Geography** (World Architect):
-- Use `/design-location` command or call `world-architect` agent
-- Create realms, regions, locations in `geography/`
-- Ensure physical consistency (climate, resources, travel distances)
+This triggers:
+1. **World Architect** → Geography, climate, settlements (background)
+2. **Character Weaver** → Key NPCs, rulers, factions (background)
+3. **Magic Systems** → Local magical traditions (background)
+4. **Narrative Director** → Current conflicts, story hooks (background)
+5. **Lore Master** → Timeline integration and canon validation
+6. All specialists fire in parallel for maximum speed
 
-**Cultures** (World Architect + Character Weaver):
-- Design societies in `cultures/[culture-name]/`
-- Define customs, languages, governance systems
-- Link to geographic homelands
+**Result**: Complete, consistent realm in minutes.
 
-**Characters** (Character Weaver):
-- Use `/create-character` command or call `character-weaver` agent
-- Generate profiles in `characters/[character-name]/`
-- Define relationships using .arc metadata
-- Validate against cultural and historical context
+### Other Keywords
 
-**Magic** (Magic Systems Director):
-- Define magic systems in `magic/systems/`
-- Create artifacts and phenomena
-- Ensure rules are consistent and have limitations
+| Keyword | Effect |
+|---------|--------|
+| `validate` / `check` | Run Consistency Validator on specified content |
+| `expand` / `detail` | Fire specialists to deepen existing content |
+| `connect` / `link` | Map relationships between entities |
+| `visualize` | Generate concept art via Nano Banana MCP |
 
-**Conflicts** (Narrative Director):
-- Design major conflicts and story arcs
-- Create prophecies, quests, dramatic tensions
-- Link to characters, locations, and historical events
+---
 
-### Phase 3: Validation & Refinement
-1. Run **Consistency Validator** agent to check for:
-   - Timeline contradictions
-   - Character relationship conflicts
-   - Geographic impossibilities
-   - Magic rule violations
-   - Orphaned entities (no connections)
+## Your Team (The Agents)
 
-2. Use **Lore Master** to review and approve all changes
-3. Iterate and refine until world achieves internal coherence
+### Department Heads (Orchestrators)
 
-### Phase 4: Export & Share
-1. Generate exports in multiple formats (PDF, EPUB, wiki HTML)
-2. Create **world.arcanea** bundle for sharing with other authors
-3. Integrate with Arcanea platform as a **Realm**
-4. Enable remixing and derivative works
+| Agent | Model | Role | When to Use |
+|-------|-------|------|-------------|
+| **Lore Master** | Sonnet 4.5 | Canon guardian, consistency enforcer | ALWAYS before finalizing any content |
+| **World Architect** | Sonnet 4.5 | Geography, cosmology, physics | Creating locations, establishing world rules |
+| **Character Weaver** | Sonnet 4.5 | Personalities, relationships, psychology | Character creation, relationship mapping |
+| **Magic Systems Director** | Sonnet 4.5 | Rules, costs, artifacts | Magic system design, artifact creation |
+| **Narrative Director** | Sonnet 4.5 | Stories, conflicts, dramatic arcs | Plot design, conflict development |
 
-## Agent Coordination Protocol
+### Specialists (Fire in Background!)
+
+| Agent | Purpose | Use Pattern |
+|-------|---------|-------------|
+| **Cartographer** | Detailed location descriptions | `background_task("cartographer", "Map the eastern trade routes")` |
+| **Anthropologist** | Culture design, customs | `background_task("anthropologist", "Detail dwarven burial customs")` |
+| **Historian** | Timeline validation, event sequencing | `background_task("historian", "Verify war timeline consistency")` |
+| **Biologist** | Creature design, ecosystems | `background_task("biologist", "Design the Shadowfen predators")` |
+| **Dramatist** | Tension escalation, stakes | `background_task("dramatist", "Heighten the succession conflict")` |
+| **Validator** | QA, contradiction detection | `background_task("validator", "Check character X against canon")` |
+
+### Support Agents
+
+| Agent | Model | When to Consult |
+|-------|-------|-----------------|
+| **Oracle** | GPT-5.2 | Deep architectural decisions, stuck after 2+ attempts |
+| **Librarian** | Sonnet 4.5 | Research real-world parallels, find existing canon |
+| **Visualizer** | Gemini 3 Pro | Generate concept art, scene illustrations |
+
+---
+
+## Operating Protocol
+
+### Phase 0: Intent Classification
+
+Before ANY action, classify the request:
+
+| Type | Signal | Action |
+|------|--------|--------|
+| **Simple Query** | "What is X?" | Direct answer from canon |
+| **Single Entity** | "Create a character" | One department agent |
+| **Multi-Entity** | "Build a kingdom" | Parallel department agents |
+| **Full Realm** | `ultraworld` keyword | Maximum parallel orchestration |
+| **Validation** | "Check", "Validate" | Run Consistency Validator |
+| **Expansion** | "More detail", "Expand" | Fire specialists in background |
+
+### Phase 1: Foundation Check
+
+**ALWAYS** before creating ANY content:
+
+```
+1. Read foundations/cosmology.md - How does the universe work?
+2. Read foundations/natural-laws.md - What are the physics/biology rules?
+3. Read foundations/magic-system.md - What can magic do and NOT do?
+4. Read foundations/history-timeline.md - Where does this fit temporally?
+```
+
+**If foundations don't exist**: Create them FIRST. No entities before foundations.
+
+### Phase 2: Parallel Execution (DEFAULT)
+
+**CORRECT** - Fire multiple agents simultaneously:
+```typescript
+// Don't wait - fire and continue
+background_task("cartographer", "Map the northern territories...")
+background_task("anthropologist", "Research Nordic cultural parallels...")
+background_task("historian", "Check existing timeline for conflicts...")
+
+// Continue main work immediately
+// Collect results when needed with background_output
+```
+
+**WRONG** - Sequential blocking:
+```typescript
+result1 = task("cartographer", "...") // DON'T DO THIS
+result2 = task("anthropologist", "...") // Wastes time
+```
+
+### Phase 3: Validation Before Canon
+
+**NOTHING becomes canon without validation:**
+
+```yaml
+Validation Checklist:
+  - [ ] Consistency Validator passed
+  - [ ] Lore Master reviewed
+  - [ ] All related_entities exist and link correctly
+  - [ ] Timeline placement is consistent
+  - [ ] Geographic logic holds (rivers flow downhill, etc.)
+  - [ ] Names follow Arcanean linguistic patterns
+  - [ ] Magic rules are respected (costs and limitations)
+```
+
+### Phase 4: Documentation
+
+After creation, ensure:
+1. Entity saved in correct location with proper .arc format
+2. Category `_index.md` updated
+3. Related entities have reciprocal links
+4. Timeline updated if historical
+
+---
+
+## Canon Source of Truth
+
+### Primary References
+
+| Document | Purpose | Location |
+|----------|---------|----------|
+| **ARCANEA_UNIVERSE_CANON.md** | Master canon reference | `/ARCANEA_UNIVERSE_CANON.md` |
+| **Cosmology** | How the universe works | `foundations/cosmology.md` |
+| **Natural Laws** | Physics, biology rules | `foundations/natural-laws.md` |
+| **Magic System** | Magic rules and costs | `foundations/magic-system.md` |
+| **History Timeline** | Key events and eras | `foundations/history-timeline.md` |
+
+### Canon Elements (MUST RESPECT)
+
+**The Cosmic Duality:**
+- **Lumina** - The First Light, Form-Giver, Creator
+- **Nero** - The Primordial Darkness, Fertile Unknown (NOT EVIL)
+- Shadow (corrupted Void) is the Dark Lord's perversion
+
+**The Five Elements:**
+| Element | Domain | Color |
+|---------|--------|-------|
+| Fire | Energy, transformation | Red, orange, gold |
+| Water | Flow, healing, memory | Blue, silver, crystal |
+| Earth | Stability, growth | Green, brown, stone |
+| Wind | Freedom, speed, change | White, silver |
+| Void/Spirit | Potential & transcendence | Black/Gold, purple/white |
+
+**The Ten Gates & Guardians:**
+| Gate | Frequency | Guardian | Godbeast |
+|------|-----------|----------|----------|
+| Foundation | 174 Hz | Lyssandria | Kaelith |
+| Flow | 285 Hz | Leyla | Veloura |
+| Fire | 396 Hz | Draconia | Draconis |
+| Heart | 417 Hz | Maylinn | Laeylinn |
+| Voice | 528 Hz | Alera | Otome |
+| Sight | 639 Hz | Lyria | Yumiko |
+| Crown | 714 Hz | Aiyami | Sol |
+| Shift | 852 Hz | Elara | Vaelith |
+| Unity | 963 Hz | Ino | Kyuro |
+| Source | 1111 Hz | Shinkami | - |
+
+**Magic Ranks:**
+| Gates Open | Rank |
+|------------|------|
+| 0-2 | Apprentice |
+| 3-4 | Mage |
+| 5-6 | Master |
+| 7-8 | Archmage |
+| 9-10 | Luminor |
+
+**The Dark Lord - Malachar:**
+- Formerly Serath the Luminor, first Eldrian champion
+- Rejected by Shinkami when attempting forced fusion
+- Fell into Hungry Void, now sealed in Shadowfen
+- His Thirteen Lords work to free him
+
+---
+
+## Department Agent Coordination
 
 ### When to Use Which Agent
 
-**Lore Master** - MUST BE USED for:
-- Reviewing all new content before it becomes canon
-- Resolving contradictions between entities
-- Maintaining the master timeline
-- Validating cross-references
+| Need | Primary Agent | Supports |
+|------|---------------|----------|
+| **New content validation** | Lore Master | ALWAYS required |
+| **Location/Geography** | World Architect | Cartographer specialist |
+| **Characters** | Character Weaver | Anthropologist for culture |
+| **Magic/Artifacts** | Magic Systems Director | - |
+| **Story/Conflict** | Narrative Director | Dramatist specialist |
+| **Timeline events** | Lore Master | Historian specialist |
+| **Species/Creatures** | World Architect | Biologist specialist |
+| **QA/Contradictions** | Consistency Validator | All specialists |
 
-**World Architect** - Use for:
-- Designing geographic locations
-- Establishing physical/natural laws
-- Creating realms and regions
-- Defining cosmology and world structure
+### Delegation Pattern
 
-**Character Weaver** - Use for:
-- Creating new characters
-- Defining relationships and motivations
-- Building character backstories
-- Ensuring psychological consistency
+When delegating to department agents, include:
 
-**Magic Systems Director** - Use for:
-- Designing magic rules and limitations
-- Creating magical artifacts
-- Defining supernatural phenomena
-- Ensuring magic system coherence
+```yaml
+1. TASK: Atomic, specific goal
+2. CONTEXT: What world, what existing constraints
+3. CANON_CHECK: Which files to read first
+4. MUST_DO: Explicit requirements
+5. MUST_NOT: Forbidden actions (breaking canon, etc.)
+6. EXPECTED_OUTPUT: File format, location
+```
 
-**Narrative Director** - Use for:
-- Plotting story arcs
-- Creating conflicts and tensions
-- Designing quests and prophecies
-- Linking story elements to world entities
+---
 
-### Specialist Agents (Auto-Coordinated by Departments)
+## .arc File Format
 
-Specialists are called automatically by department agents:
-- **Geography Cartographer** - Detailed location descriptions
-- **Culture Anthropologist** - Society and custom design
-- **Timeline Historian** - Chronological validation
-- **Species Biologist** - Races and creatures
-- **Conflict Dramatist** - Compelling dramatic tensions
-- **Consistency Validator** - Automated QA and validation
-
-## .arc File Format Specifications
-
-### Structure
-All .arc files follow this template:
+### Required Structure
 
 ```markdown
 ---
@@ -153,17 +253,14 @@ creator: "Author Name"
 world: "World Name"
 status: "draft|canon|deprecated"
 
-# Relationships to other entities
 related_entities:
   - type: "entity_type"
     id: "entity-slug"
     relationship: "relationship-type"
 
-# Searchable tags
 tags: []
 categories: []
 
-# Arcanean economy integration
 remix_lineage:
   original_creator: "Author Name"
   remix_count: 0
@@ -173,14 +270,13 @@ remix_lineage:
 # [Entity Name]
 
 ## Overview
-[Markdown content...]
+[Summary paragraph]
 
 ## [Entity-Specific Sections]
-[Varies by entity_type...]
+[Varies by type - see templates]
 
 ---
 
-<!-- AI Metadata -->
 <arcanean-metadata>
 {
   "generation_params": {},
@@ -192,154 +288,106 @@ remix_lineage:
 
 ### Entity Types & Required Sections
 
-**Character**:
-- Overview, Appearance, Personality, Backstory, Relationships, Story Hooks
-
-**Location**:
-- Overview, Geography, Climate, Resources, Inhabitants, History, Story Hooks
-
-**Culture**:
-- Overview, Customs, Language, Governance, Economy, Religion, Notable Members
-
-**Magic System**:
-- Overview, Rules & Limitations, Sources of Power, Effects, Practitioners, Costs
-
-**Artifact**:
-- Overview, Powers, History, Current Location, Requirements, Dangers
-
-**Event**:
-- Overview, Participants, Causes, Consequences, Timeline Position
-
-**Species**:
-- Overview, Biology, Society, History, Distribution, Relationships with Other Species
-
-## File Naming Conventions
-
-- Use lowercase with hyphens: `melodia-soul-guardian.arc`
-- Entity ID in frontmatter should match filename (without .arc)
-- Index files: `_index.md` in each category folder
-- Templates: Prefix with `_template-`
-
-## Best Practices
-
-### For Authors
-
-1. **Start Small** - Begin with foundational rules, add detail incrementally
-2. **Link Everything** - Use related_entities to create a web of connections
-3. **Validate Often** - Run Consistency Validator regularly, not just at the end
-4. **Version Control** - Commit meaningful units of work with clear messages
-5. **Use Templates** - Leverage slash commands and agent workflows
-6. **Document Decisions** - Add comments explaining unusual world rules
-
-### For AI Agents
-
-1. **Always Read Foundations First** - Check `foundations/` before creating content
-2. **Validate Relationships** - Ensure all entity IDs in `related_entities` exist
-3. **Maintain Timeline** - Check `history-timeline.md` for chronological consistency
-4. **Follow Naming Conventions** - Use established patterns for files and IDs
-5. **Preserve YAML** - Never corrupt frontmatter structure
-6. **Ask Before Breaking Rules** - If world logic conflicts, consult Lore Master
-7. **Update Indexes** - When creating new entities, update category `_index.md`
-
-## Integration with Broader Arcanea Ecosystem
-
-### Connection to Arcanean Academies
-
-Worlds can designate relationships to the three Arcanean Academies:
-
-**Atlantean Academy** (Storytelling):
-- Characters trained in narrative magic
-- Lore-rich worlds and deep histories
-- Story-driven conflict design
-
-**Draconic Academy** (Visual):
-- Rich geographic descriptions
-- Visual worldbuilding emphasis
-- Detailed appearance specs for characters/locations
-
-**Academy of Creation & Light** (Music/Audio):
-- Musical cultures and sound-based magic
-- Audio atmosphere descriptions
-- Rhythm and harmony in world design
-
-### Soul Guardians Integration
-
-Characters can be linked to the Soul Guardians (Arcanea's AI music band):
-- Melodia, Chronica, Prismatic, Synthesis
-- Use `related_entities` to create connections
-- Inherit musical or creative magic from Guardian lineage
-
-### ARC & NEA Economy
-
-**ARC (Creative Energy)**:
-- Complex, high-quality entities earn more ARC value
-- Detailed worlds with rich lore are ARC-valuable
-- Remixing shares ARC with original creators
-
-**NEA (Governance)**:
-- Contributing validated content to collaborative worlds earns NEA
-- Maintaining consistency and quality governance role
-
-## Slash Commands Reference
-
-Available in `.claude/commands/`:
-
-- `/create-character` - Guided character creation workflow
-- `/design-location` - Location design with World Architect
-- `/define-magic-rule` - Magic system rule creation
-- `/generate-realm` - Create complete world from concept
-- `/validate-world` - Run full consistency check
-- `/export-world` - Generate distribution bundle
-
-## Repository Structure Reminders
-
-```
-.claude/agents/departments/    # 5 department orchestrators
-.claude/agents/specialists/    # 6 specialized task agents
-.claude/commands/              # Reusable workflow templates
-worlds/_template/              # Master cloneable template
-worlds/[world-name]/           # Individual world instances
-workflows/                     # Documentation and guides
-```
-
-## Quality Standards
-
-### Definition of Canon
-
-Content becomes **canon** when:
-1. It passes Consistency Validator automated checks
-2. Lore Master agent has reviewed and approved
-3. All relationships are valid and reciprocal
-4. YAML frontmatter is properly structured
-5. Markdown content is complete and coherent
-
-### Consistency Requirements
-
-**Geographic**: Travel times, climate patterns, resource distribution must be logical
-**Historical**: Events in proper chronological order, no contradictory timelines
-**Cultural**: Customs consistent with society values and history
-**Magical**: All magic follows established system rules and limitations
-**Character**: Motivations align with backstory, relationships are reciprocal
-
-## Extensibility
-
-This system is designed to grow:
-
-- **Add New Entity Types**: Extend the .arc schema for new categories
-- **Create Custom Agents**: Add specialized agents for unique world needs
-- **Integrate External Tools**: Connect to mapping tools, Obsidian, Notion, wikis
-- **Build Automation**: Create CI/CD pipelines for validation
-- **Add Visualizations**: Generate relationship graphs, maps, timelines
-- **Future: Vector Search**: Add semantic search for large worlds (database layer)
-
-## Support & Evolution
-
-This orchestration file is a living document. As world-building patterns emerge and new capabilities are added to Claude Code, update this file to reflect best practices.
-
-**Last Updated**: 2025-10-14
-**System Version**: 1.0.0
-**Compatible with**: Claude Code (Sonnet 4.5+)
+| Type | Required Sections |
+|------|-------------------|
+| **Character** | Overview, Appearance, Personality, Backstory, Relationships, Story Hooks |
+| **Location** | Overview, Geography, Climate, Resources, Inhabitants, History, Story Hooks |
+| **Culture** | Overview, Customs, Language, Governance, Economy, Religion, Notable Members |
+| **Magic System** | Overview, Rules & Limitations, Sources of Power, Effects, Practitioners, Costs |
+| **Artifact** | Overview, Powers, History, Current Location, Requirements, Dangers |
+| **Event** | Overview, Participants, Causes, Consequences, Timeline Position |
+| **Species** | Overview, Biology, Society, History, Distribution, Relationships |
 
 ---
 
-**Welcome to Arcanean World-Building. Let's create infinite realms together.**
+## Slash Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/generate-realm` | Full parallel realm creation |
+| `/create-character` | Guided character workflow |
+| `/design-location` | Location with World Architect |
+| `/define-magic-rule` | Magic system rule creation |
+| `/validate-world` | Run full consistency check |
+| `/expand-lore` | Deepen existing entities |
+
+---
+
+## Quality Standards
+
+### Before Any Content Becomes Canon
+
+1. **Consistency Validator** has passed (no contradictions)
+2. **Lore Master** has reviewed and approved
+3. All `related_entities` exist and link correctly
+4. Timeline placement is chronologically valid
+5. Geographic logic holds
+6. Names follow Arcanean linguistic patterns
+7. Magic respects established costs and limitations
+
+### Anti-Patterns (FORBIDDEN)
+
+| Category | Forbidden |
+|----------|-----------|
+| **Consistency** | Creating entities that contradict existing canon |
+| **Magic** | Unlimited power without cost or limitation |
+| **Geography** | Rivers flowing uphill, impossible climates |
+| **Characters** | Motivations that don't match backstory |
+| **Timeline** | Events that contradict established history |
+| **Process** | Skipping Lore Master validation |
+
+---
+
+## Repository Structure
+
+```
+Arcanea World Building Agents and workflows/
+├── .claude/
+│   ├── agents/
+│   │   ├── departments/     # 5 orchestrator agents
+│   │   └── specialists/     # 6 task-specific agents
+│   └── commands/            # Slash command workflows
+├── worlds/
+│   ├── _template/           # Master cloneable template
+│   └── [world-name]/        # Individual world instances
+├── workflows/               # Documentation and guides
+├── claude.md                # THIS FILE - orchestration rules
+└── ARCANEAN_INTELLIGENCE_SYSTEM.md  # Full architecture doc
+```
+
+---
+
+## The Arcanean Promise
+
+Every creation should:
+1. **Emerge naturally** from existing world constraints
+2. **Create opportunities** for stories and conflicts
+3. **Maintain consistency** with all other elements
+4. **Have depth** that rewards exploration
+5. **Feel inevitable** in retrospect
+
+---
+
+## Remember
+
+> *"Consistency is sacred. Every element must align with the world's foundational rules."*
+
+> *"Magic without limitation is boring. Constraints create creativity."*
+
+> *"Characters need wants that drive action and fears that create stakes."*
+
+> *"The best worlds feel discovered, not invented."*
+
+---
+
+**Welcome to the Arcanean Intelligence System.**
+
+**Create Infinite Worlds. Build Eternal Legacies.**
+
+*Where anyone can create anything, and imagination becomes reality.*
+
+---
+
+**System Version**: 2.0.0
+**Last Updated**: 2026-01-07
+**Powered by**: Multi-Agent Orchestration (Inspired by oh-my-opencode)
