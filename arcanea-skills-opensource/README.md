@@ -1,14 +1,15 @@
-# Arcanea Skills for Claude Code
+# Arcanea
 
 > *"Enter seeking, leave transformed, return whenever needed."*
 
-**Transform your Claude Code into an Arcanea Creation Machine** - the most sophisticated AI-human co-creation system available. Built on mythological wisdom, battle-tested creative frameworks, and the philosophy that the best work emerges from the synthesis of human vision and AI capability.
+**The Creative Intelligence Platform** - Transform any AI coding tool into a creation machine. Works with Claude Code, OpenCode, Cursor, Codex, and Gemini CLI.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blue.svg)](https://claude.ai)
+[![npm](https://img.shields.io/npm/v/arcanea.svg)](https://www.npmjs.com/package/arcanea)
+[![Platforms](https://img.shields.io/badge/Platforms-5+-blue.svg)](#supported-platforms)
 [![Skills](https://img.shields.io/badge/Skills-27+-purple.svg)](#complete-skill-catalog)
-[![Agents](https://img.shields.io/badge/Agents-30+-teal.svg)](#agent-teams)
-[![Commands](https://img.shields.io/badge/Commands-13-orange.svg)](#slash-commands)
+[![Agents](https://img.shields.io/badge/Agents-40+-teal.svg)](#agent-teams)
+[![Commands](https://img.shields.io/badge/Commands-28-orange.svg)](#slash-commands)
 
 ---
 
@@ -41,18 +42,42 @@
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/arcanea-ai/arcanea-skills.git
+# One command installs for all detected platforms
+bunx arcanea install
 
-# Copy skills to your Claude Code directory
-cp -r arcanea-skills/skills/* ~/.claude/skills/
-cp -r arcanea-skills/commands/* ~/.claude/commands/
-cp -r arcanea-skills/agents/* ~/.claude/agents/
-
-# Restart Claude Code
+# Or specify platforms explicitly
+bunx arcanea install --claude-code
+bunx arcanea install --opencode
+bunx arcanea install --all
 ```
 
+The CLI auto-detects which AI coding platforms you have and installs appropriately.
+
+### Supported Platforms
+
+| Platform | Config Location | Status |
+|----------|-----------------|--------|
+| Claude Code | `.claude/` | ✓ Full Support |
+| OpenCode | `.opencode/` | ✓ Full Support |
+| Cursor | `.cursor/` | ✓ Full Support |
+| Codex | `.codex/` | ✓ Supported |
+| Gemini CLI | `.gemini/` | ✓ Supported |
+
 ### 5-Minute First Use
+
+```bash
+# Check what's installed
+bunx arcanea status
+
+# See available agent teams
+bunx arcanea agents
+
+# See the Seven Luminors
+bunx arcanea luminors
+
+# See magic words
+bunx arcanea magic
+```
 
 ```
 # Natural language triggers
@@ -64,9 +89,14 @@ cp -r arcanea-skills/agents/* ~/.claude/agents/
 /luminor Valora courage             → Channels Valora
 /tdd                                → Starts TDD session
 /bestiary perfectionism             → Navigates block
+
+# Magic words (maximum parallel execution)
+ultraworld: Create a volcanic island with dragon-kin
+ultrawrite: Chapter 5 - The Battle of Sunken Fields
+ultrabook: A trilogy set in the Shattered Isles
 ```
 
-See `QUICK_START.md` for the complete 5-minute guide.
+See `QUICK_START.md` for the complete guide.
 
 ---
 
