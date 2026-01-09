@@ -36,8 +36,11 @@ When creating content for Arcanea, this registry helps:
 - Mordor, Gondor, Rohan, Rivendell, Lothlórien, Mirkwood
 - Mithril, Palantír, Silmaril
 - Orc (Tolkien's specific usage), Hobbit (trademarked)
-- Khazad-dûm, Khazad (dwarvish word)
+- Khazad-dûm (specific place name)
 - Sauron, Morgoth, Balrog
+
+**INTENTIONAL Borrowing** (Arcanea uses these):
+- Khazad (dwarvish word for dwarves) → APPROVED for Arcanea's dwarf race name
 
 **ALLOWED Patterns** (Linguistic borrowing OK):
 - `-dell` suffix (Sindarin: valley) → Lúmendell ✓
@@ -53,7 +56,13 @@ When creating content for Arcanea, this registry helps:
 |------|---------|--------|--------|
 | Lúmendell | -dell (valley) | INTENTIONAL_BORROWING | APPROVED |
 | Silvamere | -mere (lake, also English) | GENERIC | APPROVED |
-| Khazad-Mor | Khazad- (dwarvish) | TOO_CLOSE | NEEDS_RENAME |
+| Khazad | Dwarvish race name | INTENTIONAL_BORROWING | APPROVED |
+| Eldrian | Eldar-inspired | INTENTIONAL_BORROWING | APPROVED |
+
+**Decision on Khazad**:
+- "Khazad" as race name for Arcanea's dwarves → **APPROVED** (linguistic borrowing)
+- "Khazad-dûm" specific place → **BLOCKED** (Tolkien's actual place)
+- Arcanea dwarf cities should use original names (e.g., "Irondeep", "Stonefather's Hall")
 
 ---
 
@@ -233,22 +242,19 @@ BEFORE PUBLISHING:
 
 ---
 
-## Tomorrow's Task: Rename Khazad-Mor
+## Resolved: Khazad Naming Decision (2026-01-09)
 
-**Current**: Khazad-Mor (Dwarf homeland)
-**Issue**: "Khazad" is Tolkien's actual Dwarvish word for "dwarves"
+**Decision Made**:
+- "Khazad" as RACE NAME for Arcanea's dwarves → **APPROVED**
+  - Linguistic borrowing of evocative dwarvish sound
+  - Used as Arcanea's equivalent of "dwarves"
+- "Khazad-dûm" (Tolkien's specific mountain) → **BLOCKED**
+- Arcanea dwarf CITIES should be original (Irondeep, Stonefather's Hall, etc.)
 
-**Proposed Alternatives**:
-1. **Kazarak-Mor** - Similar sound, different root
-2. **Durinholm** - Uses generic "Durin" (legendary dwarf, more generic)
-3. **Ironfather's Deep** - Descriptive, original
-4. **Khorum-Dar** - New construction
-5. **Stonehold** - Simple, descriptive
-
-**Decision needed**: Which alternative best fits Arcanea's dwarf culture?
+**Rationale**: The word "Khazad" sounds authentically dwarven and Arcanea intentionally uses Tolkien-inspired linguistic patterns. The race name is borrowed; place names should be original.
 
 ---
 
-*Registry Version: 1.0*
-*Last Updated: 2026-01-08*
+*Registry Version: 1.1*
+*Last Updated: 2026-01-09*
 *The Arc turns. Originality matters.*
