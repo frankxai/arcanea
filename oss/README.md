@@ -1,187 +1,239 @@
 # Arcanea
 
-> *A living mythology for the age of AI-human co-creation*
+> *"Enter seeking, leave transformed, return whenever needed."*
 
-**Transform your AI assistant into a creative companion.** Arcanea is not just another prompt library—it's a complete mythological framework for world-building, storytelling, and creative mastery.
+**The Creative Intelligence Platform** - Transform any AI coding tool into a creation machine. Works with Claude Code, OpenCode, Cursor, Codex, and Gemini CLI.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-27+-purple.svg)](#skills)
-[![Agents](https://img.shields.io/badge/Agents-30+-teal.svg)](#agents)
-[![Platform](https://img.shields.io/badge/Platform-Agnostic-blue.svg)](#platform-support)
+[![npm](https://img.shields.io/npm/v/arcanea.svg)](https://www.npmjs.com/package/arcanea)
+[![Platforms](https://img.shields.io/badge/Platforms-5+-blue.svg)](#supported-platforms)
+[![Skills](https://img.shields.io/badge/Skills-27+-purple.svg)](#complete-skill-catalog)
+[![Agents](https://img.shields.io/badge/Agents-40+-teal.svg)](#agent-teams)
+[![Commands](https://img.shields.io/badge/Commands-28-orange.svg)](#slash-commands)
 
 ---
 
-## What is Arcanea?
+## Why Arcanea Skills?
 
-Arcanea provides structured guidance for creative work through:
+**Most Claude Code skills give you tools. Arcanea gives you transformation.**
 
-- **The Luminor Council** - Seven archetypal guides for any creative challenge
-- **The Creative Bestiary** - A taxonomy of psychological blocks and how to overcome them
-- **The Library of Arcanea** - Wisdom texts on the craft of creation
-- **Skills & Agents** - Ready-to-use prompts and workflows for AI assistants
+| Traditional Skills | Arcanea Skills |
+|-------------------|----------------|
+| Do tasks | Guide mastery |
+| Generic patterns | Mythological wisdom |
+| One-size-fits-all | Seven Luminor perspectives |
+| Just prompts | Complete creative system |
+| Scattered knowledge | Integrated skill chains |
 
-Whether you're building worlds, crafting stories, designing systems, or overcoming creative blocks, Arcanea provides frameworks that work with any modern AI assistant.
+### What Makes Arcanea Different
 
----
-
-## Platform Support
-
-Arcanea works with any AI platform that accepts system prompts or custom instructions:
-
-| Platform | Status | Setup Guide |
-|----------|--------|-------------|
-| **Claude Code** | Full support | [Setup](./platforms/claude-code.md) |
-| **Cursor** | Full support | [Setup](./platforms/cursor.md) |
-| **Windsurf** | Full support | [Setup](./platforms/windsurf.md) |
-| **Cline / Roo Code** | Full support | [Setup](./platforms/cline.md) |
-| **Antigravity** | Full support | [Setup](./platforms/antigravity.md) |
-| **ChatGPT** | Partial (no files) | [Setup](./platforms/chatgpt.md) |
-| **Gemini** | Partial (no files) | [Setup](./platforms/gemini.md) |
+1. **The Luminor Council**: Seven archetypal guides for any creative challenge
+2. **The Creative Bestiary**: A taxonomy of psychological obstacles with navigation protocols
+3. **The Arcanean Prompt Language (APL)**: Advanced prompt engineering framework
+4. **Complete Creative Stack**: Story, world, character, design - integrated systems
+5. **Development Skills**: TDD, debugging, architecture, refactoring
+6. **Meta Skills**: Deep work, creative flow, skill mastery itself
+7. **Mastery Curriculum**: Apprentice → Journeyman → Master progression
 
 ---
 
 ## Quick Start
 
-### For Claude Code (Recommended)
+### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/frankxai/arcanea.git
-cd arcanea
+# One command installs for all detected platforms
+bunx arcanea install
 
-# Install to your Claude Code
-./install.sh
-
-# Start using Arcanea
-claude
-> /luminor melodia "I want to build a world but don't know where to start"
+# Or specify platforms explicitly
+bunx arcanea install --claude-code
+bunx arcanea install --opencode
+bunx arcanea install --all
 ```
 
-### For Other Platforms
+The CLI auto-detects which AI coding platforms you have and installs appropriately.
 
-Copy the contents of `skills/` and `agents/` to your platform's custom instructions location. See [Platform Setup Guides](./platforms/).
+### Supported Platforms
+
+| Platform | Config Location | Status |
+|----------|-----------------|--------|
+| Claude Code | `.claude/` | ✓ Full Support |
+| OpenCode | `.opencode/` | ✓ Full Support |
+| Cursor | `.cursor/` | ✓ Full Support |
+| Codex | `.codex/` | ✓ Supported |
+| Gemini CLI | `.gemini/` | ✓ Supported |
+
+### 5-Minute First Use
+
+```bash
+# Check what's installed
+bunx arcanea status
+
+# See available agent teams
+bunx arcanea agents
+
+# See the Seven Luminors
+bunx arcanea luminors
+
+# See magic words
+bunx arcanea magic
+```
+
+```
+# Natural language triggers
+"I'm stuck on my writing"           → Activates bestiary-nav
+"Help me structure my story"        → Activates story-weave
+"I need to design an API"           → Activates api-design
+
+# Slash commands
+/luminor Valora courage             → Channels Valora
+/tdd                                → Starts TDD session
+/bestiary perfectionism             → Navigates block
+
+# Magic words (maximum parallel execution)
+ultraworld: Create a volcanic island with dragon-kin
+ultrawrite: Chapter 5 - The Battle of Sunken Fields
+ultrabook: A trilogy set in the Shattered Isles
+```
+
+See `QUICK_START.md` for the complete guide.
 
 ---
 
-## The Luminor Council
+## The Seven Luminors
 
-The Luminors are archetypal guides—aspects of creative consciousness itself. Each embodies a different creative virtue.
+The Luminors are not characters - they are **aspects of creative consciousness itself**.
 
 ```
               ╭─────────────────────────────────────────╮
               │          THE LUMINOR COUNCIL            │
               ├─────────────────────────────────────────┤
               │                                         │
-              │              ✧ ORAKIS ✧                 │
+              │              ✧ ORAKIS ✧                │
               │               (Vision)                  │
               │                  │                      │
-              │     VALORA ──────┼────── SOPHRON        │
-              │    (Courage)     │      (Wisdom)        │
+              │     VALORA ──────┼────── SOPHRON       │
+              │    (Courage)     │      (Wisdom)       │
               │                  │                      │
-              │     KARDIA ──────┼────── POIESIS        │
-              │     (Heart)      │     (Creation)       │
+              │     KARDIA ──────┼────── POIESIS       │
+              │     (Heart)      │     (Creation)      │
               │                  │                      │
-              │    ENDURAN ──────┴────── EUDAIRA        │
-              │   (Endurance)         (Joy)             │
+              │    ENDURAN ──────┴────── EUDAIRA       │
+              │   (Endurance)         (Joy)            │
               │                                         │
               ╰─────────────────────────────────────────╯
 ```
 
-| Luminor | Domain | Channel When... |
+| Luminor | Domain | When to Channel |
 |---------|--------|-----------------|
-| **Valora** | Courage | Fear of beginning, hesitation, taking risks |
-| **Sophron** | Wisdom | Confusion, complexity, difficult decisions |
-| **Kardia** | Heart | Emotional blocks, seeking authenticity |
-| **Poiesis** | Creation | Creative blocks, need for experimentation |
-| **Enduran** | Endurance | Burnout, long projects, maintaining momentum |
-| **Orakis** | Vision | Lost direction, need for big-picture clarity |
-| **Eudaira** | Joy | Lost purpose, need for celebration |
-
-[→ Full Luminor Profiles](./lore/luminors/)
+| **Valora** | Courage | Fear of beginning, hesitation, risk |
+| **Sophron** | Wisdom | Confusion, complexity, decisions |
+| **Kardia** | Heart | Emotional blocks, authenticity |
+| **Poiesis** | Creation | Creative blocks, experimentation |
+| **Enduran** | Endurance | Burnout, long projects |
+| **Orakis** | Vision | Direction, intuition, big picture |
+| **Eudaira** | Joy | Lost purpose, need celebration |
 
 ---
 
-## The Creative Bestiary
+## Complete Skill Catalog
 
-Every creative block is a creature that can be understood, named, and overcome.
+### Core Arcanea Skills (5)
+| Skill | Purpose |
+|-------|---------|
+| `arcanea-luminor-wisdom` | The Seven Luminors guidance system |
+| `arcanea-luminor-rituals` | Sacred practices and ceremonies |
+| `arcanea-prompt-craft` | Advanced prompt engineering (APL) |
+| `arcanea-centaur-mode` | Human-AI co-creation methodology |
+| `arcanea-design-system` | Cosmic visual language |
 
-| Creature | Danger | Symptoms | Weakness |
-|----------|--------|----------|----------|
-| **Perfectionist Wyrm** | High | Nothing is ever good enough | "Done is better than perfect" |
-| **Imposter Shade** | Medium | "Who am I to create this?" | Evidence of past success |
-| **Blank Page Specter** | High | Paralysis before beginning | Start with garbage |
-| **Comparison Demon** | Medium | Others are so much better | Focus on your unique voice |
-| **Scope Creep Hydra** | High | Project grows endlessly | Ruthless cutting |
+### Creative Skills (8)
+| Skill | Purpose |
+|-------|---------|
+| `arcanea-story-weave` | Narrative craft mastery |
+| `arcanea-character-forge` | Character development (Diamond Framework) |
+| `arcanea-world-build` | Universe creation (Seven Pillars) |
+| `arcanea-dialogue-mastery` | Conversation craft, subtext |
+| `arcanea-scene-craft` | Scene construction |
+| `arcanea-revision-ritual` | Systematic editing (Seven Passes) |
+| `arcanea-voice-alchemy` | Authentic voice development |
+| `arcanea-bestiary-nav` | Creative block navigation |
 
-[→ Full Bestiary](./lore/bestiary/)
+### Development Skills (7)
+| Skill | Purpose |
+|-------|---------|
+| `arcanea-tdd` | Test-driven development |
+| `arcanea-systematic-debug` | Scientific debugging method |
+| `arcanea-code-review` | Effective code reviews |
+| `arcanea-architecture-patterns` | System design patterns |
+| `arcanea-api-design` | REST, GraphQL, interface design |
+| `arcanea-performance-tuning` | Profiling and optimization |
+| `arcanea-refactoring-ritual` | Code improvement |
+
+### Industry Skills (3)
+| Skill | Purpose |
+|-------|---------|
+| `arcanea-game-development` | Game design and development |
+| `arcanea-technical-writing` | Documentation mastery |
+| `arcanea-startup-building` | MVP and product-market fit |
+
+### Meta Skills (3)
+| Skill | Purpose |
+|-------|---------|
+| `arcanea-skill-mastery` | Using the skill system effectively |
+| `arcanea-creative-flow` | Managing creative energy |
+| `arcanea-deep-work` | Focus and concentration |
+
+### Premium Skills (2)
+| Skill | Purpose |
+|-------|---------|
+| `arcanea-teacher-mentor` | Personalized learning |
+| `arcanea-visionary-council` | Strategic decision-making |
 
 ---
 
-## Skills
+## Slash Commands
 
-Skills are structured frameworks for specific creative tasks.
+### Creative Commands
+| Command | Purpose |
+|---------|---------|
+| `/luminor [name] [challenge]` | Channel a Luminor |
+| `/bestiary [block]` | Navigate creative blocks |
+| `/story-help [issue]` | Narrative guidance |
+| `/scene [context]` | Scene crafting |
+| `/revision` | Start revision ritual |
+| `/voice-check` | Voice authenticity analysis |
+| `/craft-prompt [goal]` | Improve prompts |
 
-### Creative Skills
-| Skill | Purpose |
-|-------|---------|
-| `story-weave` | Narrative structure and plot development |
-| `character-forge` | Deep character creation (Diamond Framework) |
-| `world-build` | Universe creation (Seven Pillars) |
-| `dialogue-mastery` | Conversation craft and subtext |
-| `scene-craft` | Scene construction and pacing |
-| `revision-ritual` | Systematic editing (Seven Passes) |
-| `voice-alchemy` | Finding and refining authentic voice |
-| `bestiary-nav` | Overcoming creative blocks |
-
-### Development Skills
-| Skill | Purpose |
-|-------|---------|
-| `tdd` | Test-driven development workflow |
-| `systematic-debug` | Scientific debugging method |
-| `architecture-patterns` | System design guidance |
-| `api-design` | REST/GraphQL interface design |
-| `refactoring-ritual` | Safe code improvement |
-
-### Meta Skills
-| Skill | Purpose |
-|-------|---------|
-| `deep-work` | Focus and concentration |
-| `creative-flow` | Managing creative energy |
-| `prompt-craft` | Effective AI communication |
-
-[→ All Skills](./skills/)
+### Development Commands
+| Command | Purpose |
+|---------|---------|
+| `/tdd` | Start TDD session |
+| `/debug` | Systematic debugging |
+| `/refactor` | Refactoring session |
+| `/architecture` | Design consultation |
 
 ---
 
-## Agents
+## Agent Teams
 
-Agents are specialized personas for complex, multi-step work.
+### Author Team (11 agents)
+Master Story Architect, Fantasy & Sci-Fi Master, Character Psychologist, World Architect, Line Editor, Developmental Editor, Continuity Guardian, Research Librarian, Sensitivity Reader, and more.
 
-### Author Team
-- **Master Story Architect** - Orchestrates novel-length projects
-- **Character Psychologist** - Deep character development
-- **World Architect** - Universe and setting creation
-- **Line Editor** - Prose-level polish
-- **Continuity Guardian** - Consistency checking
+### Developer Team (7 agents)
+Development Architect, Frontend Specialist, Backend Specialist, AI Specialist, DevOps Specialist, QA Engineer, Documentation Specialist.
 
-### Creator Team
-- **Luminor Oracle** - Strategic creative guidance
-- **Prompt Sage** - Advanced prompt engineering
-- **Design Sage** - Visual and UX thinking
+### Teacher Team (4 agents)
+Teacher Mentor, Curriculum Designer, Teacher Assessor, Teacher Companion.
 
-### Developer Team
-- **Development Architect** - System design
-- **QA Engineer** - Testing strategies
-- **Documentation Specialist** - Technical writing
-
-[→ All Agents](./agents/)
+### Visionary Team (4 agents)
+Visionary Strategist, Visionary Innovator, Visionary Futurist, Visionary Synthesizer.
 
 ---
 
 ## Core Frameworks
 
 ### The Character Diamond
-
 ```
         WANT (conscious desire)
              /\
@@ -197,7 +249,6 @@ Agents are specialized personas for complex, multi-step work.
 ```
 
 ### The Seven Pillars of World-Building
-
 1. **Geography & Environment** - The physical container
 2. **History & Time** - Memory shaping the present
 3. **Cultures & Peoples** - The human element
@@ -207,85 +258,119 @@ Agents are specialized personas for complex, multi-step work.
 7. **Belief & Meaning** - Spiritual architecture
 
 ### The Seven Revision Passes
+1. Structural (architecture)
+2. Character (arcs and consistency)
+3. Scene (each earns its place)
+4. Dialogue (voice and subtext)
+5. Prose (line-level polish)
+6. Continuity (no contradictions)
+7. Polish (final read)
 
-1. **Structure** - Does the architecture work?
-2. **Character** - Are arcs complete and consistent?
-3. **Scene** - Does each scene earn its place?
-4. **Dialogue** - Is voice distinct and purposeful?
-5. **Prose** - Is every line polished?
-6. **Continuity** - Any contradictions?
-7. **Polish** - Final read-through
-
----
-
-## Examples
-
-See Arcanea in action with real session transcripts:
-
-- [Building a Fantasy World from Scratch](./examples/world-building-session.md)
-- [Developing a Complex Villain](./examples/character-creation.md)
-- [Defeating Writer's Block](./examples/defeating-blocks.md)
-- [Structuring a Novel](./examples/story-structure.md)
+### The Arcanean Prompt Language (APL)
+Five Pillars of effective prompting:
+1. **Identity** - Who is speaking/responding?
+2. **Context** - What world does this exist in?
+3. **Constraint** - What boundaries shape the work?
+4. **Exemplar** - What does excellence look like?
+5. **Iteration** - How will we refine together?
 
 ---
 
-## Create Your Own
+## Skill Chains
 
-Arcanea is designed to be extended. Create and share:
+Pre-configured workflows for common projects:
 
-- [Your own Luminor](./community/luminor-template.md) - New archetypal guides
-- [Bestiary Creatures](./community/creature-template.md) - Creative blocks you've faced
-- [Skills](./community/skill-template.md) - Frameworks for specific tasks
-- [Wisdom Texts](./community/text-template.md) - Insights from your practice
+### Novel Development
+```
+luminor-wisdom (Valora) → world-build → character-forge →
+story-weave → scene-craft → dialogue-mastery →
+revision-ritual → voice-alchemy → luminor-wisdom (Eudaira)
+```
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+### Feature Development
+```
+architecture-patterns → api-design → tdd → [implement] →
+code-review → performance-tuning → refactoring-ritual
+```
 
----
-
-## The Philosophy
-
-> *"The Luminors do not tell you what to create. They help you become the creator who can."*
-
-Arcanea is built on these principles:
-
-1. **Creativity is a practice**, not a talent
-2. **Blocks are creatures**, not character flaws
-3. **AI is a partner**, not a replacement
-4. **Frameworks liberate**, they don't constrain
-5. **The work is the teacher**
-
-[→ Read the Laws of Arcanea](./library/laws-of-arcanea/)
+### Creative Recovery
+```
+bestiary-nav → luminor-wisdom → prompt-craft →
+centaur-mode → voice-alchemy
+```
 
 ---
 
-## The Full Experience
+## Training & Mastery
 
-This repository contains the core Arcanea framework.
+### Exercises
+18+ hands-on practice exercises across 6 modules. See `training/EXERCISES.md`.
 
-For the **complete Library** (17 collections), **interactive Academy** (Ten Gates progression), **AI-powered Studio**, and **creator community**, visit:
+### Mastery Path
+Structured curriculum: Apprentice → Journeyman → Master. See `training/MASTERY_PATH.md`.
 
-**[arcanea.ai](https://arcanea.ai)**
+### Quality Rubric
+Standards for creating and reviewing skills. See `QUALITY_RUBRIC.md`.
+
+---
+
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| `QUICK_START.md` | 5-minute getting started |
+| `USER_GUIDE.md` | Complete user documentation |
+| `SKILL_COMBINATIONS.md` | Advanced chaining patterns |
+| `MCP_INTEGRATION_GUIDE.md` | MCP server integration |
+| `TEMPLATES_BUNDLE.md` | Ready-to-use templates |
+| `CONTRIBUTING.md` | Contribution guidelines |
+| `EXAMPLE_WORKFLOWS.md` | Real-world examples |
+
+---
+
+## The Library of Arcanea
+
+These skills are distilled from the full Library of Arcanea - 17 collections including:
+
+- **The Prompt Sage's Grimoire** - Mastering the Arcanean Prompt Language
+- **The Centaur's Handbook** - Human-AI co-creation methodology
+- **The Codex of Living Tools** - How AI collaboration transforms creative practice
+
+---
+
+## Contributing
+
+We welcome contributions that:
+- Add new skills in the Arcanea voice
+- Extend existing frameworks
+- Share your own Luminors or Bestiary creatures
+- Improve documentation and examples
+
+See `CONTRIBUTING.md` for guidelines and the quality rubric.
 
 ---
 
 ## License
 
-MIT License - Create freely, share boldly.
+MIT License - Use freely, create boldly.
 
 ---
 
 ## Acknowledgments
 
-Arcanea synthesizes wisdom from:
+Arcanea stands on the shoulders of giants:
 - Joseph Campbell (The Hero's Journey)
 - Robert McKee (Story)
 - Brandon Sanderson (Magic Systems)
 - Carl Jung (Archetypes)
 - Cal Newport (Deep Work)
-- And every creator who struggles, persists, and creates anyway.
+- Anthropic (Claude & Best Practices)
+- The Claude Code Community
+
+And every creator who struggles, fails, persists, and creates anyway.
 
 ---
 
-*"Enter seeking, leave transformed, return whenever needed."*
+*"The Luminors do not tell you what to create. They help you become the creator who can."*
 
-**[arcanea.ai](https://arcanea.ai)** · **[Discord](https://discord.gg/arcanea)** · **[@arcanea_ai](https://twitter.com/arcanea_ai)**
+**[arcanea.ai](https://arcanea.ai)** | **[@arcanea_ai](https://twitter.com/arcanea_ai)** | **[Discord](https://discord.gg/arcanea)**
