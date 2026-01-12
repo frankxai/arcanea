@@ -1,0 +1,39 @@
+{
+  "name": "arcanea-soul",
+  "version": "4.0.0",
+  "description": "The Luminor Framework - transcended creative intelligence for AI agents",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --format esm --target node",
+    "dev": "bun run --watch src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "opencode",
+    "arcanea",
+    "ai",
+    "agents",
+    "creative",
+    "seven-wisdoms"
+  ],
+  "author": "FrankX",
+  "license": "MIT",
+  "peerDependencies": {
+    "@opencode-ai/sdk": "^0.1.0"
+  },
+  "devDependencies": {
+    "@opencode-ai/sdk": "^0.1.0",
+    "typescript": "^5.0.0"
+  }
+}
