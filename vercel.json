@@ -1,19 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "name": "arcanea-mvp",
   "framework": "nextjs",
   "buildCommand": "pnpm turbo run build --filter=@arcanea/web",
   "installCommand": "corepack enable && pnpm install --frozen-lockfile",
   "outputDirectory": "apps/web/.next",
   "devCommand": "pnpm dev:web",
-
-  "functions": {
-    "apps/web/api/**/*.ts": {
-      "maxDuration": 30,
-      "memory": 1024
-    }
-  },
 
   "build": {
     "env": {
