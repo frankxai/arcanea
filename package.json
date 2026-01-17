@@ -29,6 +29,7 @@
     "release": "turbo run build --filter=!@arcanea/mobile && changeset publish"
   },
   "devDependencies": {
+    "next": "^16.1.1",
     "@changesets/cli": "^2.27.1",
     "@tailwindcss/typography": "^0.5.13",
     "@turbo/gen": "^2.3.0",
