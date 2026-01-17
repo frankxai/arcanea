@@ -3,7 +3,7 @@
   "version": 2,
   "framework": "nextjs",
   "buildCommand": "pnpm turbo run build --filter=@arcanea/web",
-  "installCommand": "corepack enable && pnpm install --frozen-lockfile",
+  "installCommand": "corepack enable && pnpm install",
   "outputDirectory": "apps/web/.next",
   "devCommand": "pnpm dev:web",
 
