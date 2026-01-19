@@ -5,6 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createGeminiChatProvider, createStreamResponse } from '@/lib/ai-core';
+import { ARCANEA_MAGIC_SYSTEM, ARCANEA_TONE_GUIDELINES, ACADEMY_LORE } from '@/lib/lore';
 import { createClient } from '@supabase/supabase-js';
 
 export const runtime = 'edge';
@@ -15,7 +16,7 @@ const RATE_LIMIT_WINDOW = 60000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 20;
 
 interface ChatRequest {
-  messages: Array<{
+  messages: Array<{ 
     role: 'user' | 'model';
     content: string;
     images?: string[];
@@ -90,13 +91,27 @@ export async function POST(req: NextRequest) {
 
     // Build context-aware system prompt
     let enhancedSystemPrompt = systemPrompt || '';
+    
+    // 1. Inject Global Lore (Magic + Tone)
+    const baseLore = `${ARCANEA_MAGIC_SYSTEM}\n\n${ARCANEA_TONE_GUIDELINES}`;
+    enhancedSystemPrompt = `${baseLore}\n\n${enhancedSystemPrompt}`;
+
+    // 2. Inject Academy Specific Lore
     if (academyContext) {
       const academyPrompts = {
-        atlantean: 'You are a wise guide from the Atlantean Academy, expert in storytelling and narrative creation. Speak with depth and poetic wisdom.',
-        draconic: 'You are a master of visual arts from the Draconic Academy, expert in image creation and artistic expression. Inspire creativity and visual thinking.',
-        'creation-light': 'You are a musical sage from the Academy of Creation & Light, expert in music and audio creation. Guide with harmony and creative energy.',
+        atlantean: ACADEMY_LORE.ATLANTEAN,
+        draconic: ACADEMY_LORE.DRACONIC,
+        'creation-light': ACADEMY_LORE.CREATION_LIGHT,
       };
-      enhancedSystemPrompt = `${academyPrompts[academyContext.type]}\n\n${enhancedSystemPrompt}`;
+      
+      const specificLore = academyPrompts[academyContext.type];
+      if (specificLore) {
+         enhancedSystemPrompt = `${specificLore}\n\n${enhancedSystemPrompt}`;
+      }
+      
+      if (academyContext.luminorName) {
+        enhancedSystemPrompt = `You are ${academyContext.luminorName}.\n${enhancedSystemPrompt}`;
+      }
     }
 
     // Get last user message and images
@@ -121,6 +136,7 @@ export async function POST(req: NextRequest) {
       });
 
       // Use Vercel AI SDK's built-in streaming response
+      // Note: result.toTextStreamResponse() handles the streaming headers
       return result.toTextStreamResponse();
     } else {
       // Non-streaming response
@@ -137,8 +153,8 @@ export async function POST(req: NextRequest) {
         user_id: userId,
         operation: 'chat',
         model: 'gemini-2.0-flash',
-        tokens_input: response.tokensUsed?.input || 0,
-        tokens_output: response.tokensUsed?.output || 0,
+        tokens_input: response.tokensUsed?.promptTokens || 0,
+        tokens_output: response.tokensUsed?.completionTokens || 0,
         cost: response.cost || 0,
         created_at: new Date().toISOString(),
       });
@@ -165,5 +181,6 @@ export async function GET() {
     status: 'ok',
     service: 'gemini-chat',
     model: 'gemini-2.0-flash',
+    version: '2.0.0-real'
   });
 }

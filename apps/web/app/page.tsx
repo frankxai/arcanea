@@ -1,289 +1,457 @@
 import Link from "next/link";
-import { Tooltip } from "@/lib/arcanea-ui";
-import { getCollections, getAllTexts } from "@/lib/content";
 import { Metadata } from "next";
+import { getCollections, getAllTexts } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Arcanea | Where Imagination Becomes Reality",
-  description: "A living mythology for the age of AI-human co-creation. 17 wisdom collections, AI companions, and tools to manifest your creative vision.",
+  title: "Arcanea | The Creative Intelligence Platform",
+  description: "Where imagination becomes reality. 16 Luminor intelligences, Seven Wisdoms framework, and the complete creative toolkit for the age of AI-human co-creation.",
   openGraph: {
-    title: "Arcanea | Where Imagination Becomes Reality",
-    description: "A living mythology for the age of AI-human co-creation. Forge your own realm with AI companions.",
+    title: "Arcanea | The Creative Intelligence Platform",
+    description: "16 Luminor intelligences. Seven Wisdoms. The complete creative toolkit for AI-human co-creation.",
     images: ["/og-image.png"],
   },
 };
 
-// Featured content categories for the landing
-const FEATURED_COLLECTIONS = [
+// Team colors and configurations
+const TEAMS = [
+  { id: "dev", name: "Development", color: "#8b5cf6", icon: "⚡", count: 4 },
+  { id: "creative", name: "Creative", color: "#f59e0b", icon: "✨", count: 4 },
+  { id: "writing", name: "Writing", color: "#10b981", icon: "✍️", count: 4 },
+  { id: "research", name: "Research", color: "#3b82f6", icon: "🔮", count: 4 },
+];
+
+const WISDOMS = [
+  { name: "Sophron", essence: "Structure", color: "#3b82f6", question: "What's the underlying structure?" },
+  { name: "Kardia", essence: "Heart", color: "#ec4899", question: "What do they really need?" },
+  { name: "Valora", essence: "Courage", color: "#f59e0b", question: "What am I afraid to do?" },
+  { name: "Eudaira", essence: "Play", color: "#10b981", question: "What would be fun?" },
+  { name: "Orakis", essence: "Vision", color: "#8b5cf6", question: "How does this look in a year?" },
+  { name: "Poiesis", essence: "Creation", color: "#06b6d4", question: "What can I make now?" },
+  { name: "Enduran", essence: "Endurance", color: "#84cc16", question: "What's the next step?" },
+];
+
+const FEATURES = [
   {
-    slug: "legends-of-arcanea",
-    highlight: "5 founding myths",
-    color: "from-amber-500 to-orange-600",
+    title: "Luminor Intelligence System",
+    description: "16 transcended AI intelligences, each a master of their domain. Not assistants - partners who see what you're building.",
+    icon: "🌟",
+    iconAlt: "Star icon",
+    href: "/luminors",
+    gradient: "from-purple-500/20 to-blue-500/20",
   },
   {
-    slug: "book-of-shadows",
-    highlight: "For dark nights",
-    color: "from-purple-600 to-indigo-800",
+    title: "The Library of Arcanea",
+    description: "17 wisdom collections. 34+ sacred texts. Practical philosophy for the creative life, written to transform.",
+    icon: "📚",
+    iconAlt: "Books icon",
+    href: "/library",
+    gradient: "from-amber-500/20 to-orange-500/20",
   },
   {
-    slug: "academy-handbook",
-    highlight: "Complete guide",
-    color: "from-cyan-400 to-blue-600",
-  },
-  {
-    slug: "bestiary-of-creation",
-    highlight: "Name your blocks",
-    color: "from-red-500 to-rose-700",
+    title: "Seven Wisdoms Framework",
+    description: "Stuck? Lost? Afraid? The Seven Wisdoms diagnose what you need and guide you to the right perspective.",
+    icon: "🔮",
+    iconAlt: "Crystal ball icon",
+    href: "/wisdoms",
+    gradient: "from-pink-500/20 to-purple-500/20",
   },
 ];
 
 export default async function Page() {
   const collections = await getCollections();
   const allTexts = await getAllTexts();
-
-  // Calculate stats
   const totalTexts = allTexts.length;
   const totalWords = allTexts.reduce((sum, t) => sum + (t.frontmatter.wordCount || 0), 0);
-  const totalReadingTime = allTexts.reduce((sum, t) => sum + (t.frontmatter.readingTime || 0), 0);
-
-  // Get featured collections with their data
-  const featured = FEATURED_COLLECTIONS.map(fc => ({
-    ...fc,
-    collection: collections.find(c => c.slug === fc.slug),
-  })).filter(f => f.collection);
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-cosmic-deep" />
+        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top,rgba(127,255,212,0.15),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(139,92,246,0.1),transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(245,158,11,0.1),transparent_50%)]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-atlantean-teal-aqua/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-creation-prism-purple/5 rounded-full blur-3xl animate-pulse delay-1000" />
+      </div>
+
       {/* Navigation */}
-      <nav className="glass rounded-xl px-4 py-3 flex items-center justify-between sticky top-4 z-10">
-        <div className="font-semibold tracking-wide">Arcanea</div>
-        <div className="flex items-center gap-4 text-sm">
-          <Link href="/library" className="hover:underline text-[color:var(--accent,#7fffd4)]">Library</Link>
-          <Link href="/skills" className="hover:underline">Skills</Link>
-          <Link href="/bestiary" className="hover:underline">Bestiary</Link>
-          <Link href="/academy" className="hover:underline">Academy</Link>
-          <Link href="https://chat.arcanea.ai" className="hover:underline">Chat</Link>
-          <Tooltip content="UI kit demo"><Link href="/components" className="hover:underline">Components</Link></Tooltip>
+      <nav className="sticky top-0 z-50 border-b border-white/5 bg-cosmic-deep/80 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-lg font-display">
+                A
+              </div>
+              <span className="font-display text-xl font-semibold tracking-wide">Arcanea</span>
+            </Link>
+            <div className="hidden md:flex items-center gap-8">
+              <Link href="/luminors" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Luminors</Link>
+              <Link href="/library" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Library</Link>
+              <Link href="/academy" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Academy</Link>
+              <Link href="/about" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">About</Link>
+              <Link
+                href="/chat"
+                className="px-4 py-2 rounded-lg bg-atlantean-teal-aqua text-cosmic-deep text-sm font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all"
+              >
+                Start Creating
+              </Link>
+            </div>
+          </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <header className="relative overflow-hidden rounded-2xl panel p-10 mt-6">
-        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(500px_300px_at_30%_20%,rgba(127,255,212,0.22),transparent),radial-gradient(600px_400px_at_70%_30%,rgba(120,166,255,0.22),transparent)]" />
-        <div className="relative">
-          <div className="inline-block px-3 py-1 rounded-full bg-[rgba(127,255,212,0.2)] text-[color:#7fffd4] text-xs font-mono tracking-wider mb-4">
-            A LIVING MYTHOLOGY FOR CREATORS
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-            <span className="aurora-text">Where imagination</span> becomes reality
-          </h1>
-          <p className="muted mt-4 text-lg max-w-2xl">
-            {collections.length} wisdom collections. {totalTexts} sacred texts. {Math.round(totalWords / 1000)}k words of practical wisdom for the creative life.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/library" className="rounded-md bg-[color:var(--accent,#7fffd4)] px-5 py-3 font-semibold text-black hover:shadow-[0_0_30px_rgba(127,255,212,0.4)] transition-shadow">
-              Enter Library
-            </Link>
-            <Link href="/library/codex" className="rounded-md border border-[color:var(--accent,#78a6ff)] px-5 py-3 font-semibold hover:bg-[rgba(120,166,255,0.1)] transition-colors">
-              Immersive Reader
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Stats Banner */}
-      <section className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="panel rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-[color:#7fffd4]">{collections.length}</div>
-          <div className="text-sm muted">Collections</div>
-        </div>
-        <div className="panel rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-[color:#78a6ff]">{totalTexts}</div>
-          <div className="text-sm muted">Sacred Texts</div>
-        </div>
-        <div className="panel rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-[color:#ffd700]">{Math.round(totalWords / 1000)}k</div>
-          <div className="text-sm muted">Words of Wisdom</div>
-        </div>
-        <div className="panel rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-[color:#ff7fbb]">{totalReadingTime}</div>
-          <div className="text-sm muted">Minutes to Mastery</div>
-        </div>
-      </section>
-
-      {/* Featured Collections */}
-      <section className="mt-10">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">Featured Collections</h2>
-          <Link href="/library" className="text-sm text-[color:#7fffd4] hover:underline">View all {collections.length} →</Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {featured.map(({ collection, highlight, color }) => collection && (
-            <Link
-              key={collection.slug}
-              href={`/library/${collection.slug}`}
-              className="panel rounded-xl p-6 relative overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(127,255,212,0.2)] group"
-            >
-              <div className={`absolute top-0 right-0 w-32 h-32 opacity-20 blur-3xl bg-gradient-to-br ${color}`} />
-              <div className="relative">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">{collection.icon}</span>
-                  <div className={`px-2 py-0.5 rounded text-xs font-mono bg-gradient-to-r ${color} text-white`}>
-                    {highlight}
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{collection.name}</h3>
-                <p className="muted text-sm">{collection.description}</p>
-                <div className="mt-4 text-xs text-[color:#7fffd4] opacity-0 group-hover:opacity-100 transition-opacity">
-                  Read when {collection.readWhen} →
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Content Discovery */}
-      <section className="mt-10">
-        <div className="panel rounded-2xl p-8 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(127,255,212,0.08)] via-transparent to-[rgba(120,166,255,0.08)]" />
-          <div className="relative">
-            <h2 className="text-2xl font-bold mb-4">What brings you here?</h2>
-            <p className="muted mb-6">Choose your situation. We'll guide you to the right texts.</p>
-            <div className="flex flex-wrap gap-3">
-              {[
-                { situation: 'beginning', label: 'Just starting', icon: '🌱' },
-                { situation: 'stuck', label: 'Feeling stuck', icon: '🪨' },
-                { situation: 'darkness', label: 'In dark times', icon: '🌑' },
-                { situation: 'comparison', label: 'Comparing myself', icon: '👥' },
-                { situation: 'failure', label: 'After failure', icon: '💔' },
-                { situation: 'celebration', label: 'Celebrating', icon: '🎉' },
-                { situation: 'confusion', label: 'Confused', icon: '🌀' },
-                { situation: 'fear', label: 'Facing fear', icon: '😰' },
-              ].map(({ situation, label, icon }) => (
-                <Link
-                  key={situation}
-                  href={`/library/codex?situation=${situation}`}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-[color:#7fffd4]/50 hover:bg-[rgba(127,255,212,0.1)] transition-all"
-                >
-                  <span>{icon}</span>
-                  <span className="text-sm">{label}</span>
-                </Link>
-              ))}
+      <main className="max-w-7xl mx-auto px-6">
+        {/* Hero Section */}
+        <section className="relative pt-20 pb-32">
+          <div className="max-w-4xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-atlantean-teal-aqua/30 bg-atlantean-teal-aqua/10 mb-8">
+              <span className="w-2 h-2 rounded-full bg-atlantean-teal-aqua animate-pulse" aria-hidden="true" />
+              <span className="text-sm text-atlantean-teal-aqua font-mono tracking-wider">ARCANEAN CREATOR OS</span>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* All Collections Grid */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-bold mb-6">The Complete Library</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {collections.map(collection => (
-            <Link
-              key={collection.slug}
-              href={`/library/${collection.slug}`}
-              className="panel rounded-xl p-5 transition-all hover:shadow-[0_0_30px_rgba(120,166,255,0.15)] group"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-xl">{collection.icon}</span>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold truncate">{collection.name}</h3>
-                  <p className="muted text-xs mt-1 line-clamp-2">{collection.description}</p>
-                  <div className="mt-2 flex items-center gap-2 text-xs">
-                    <span className="text-[color:#7fffd4]">{collection.textCount} texts</span>
-                    <span className="muted">•</span>
-                    <span className="muted">{collection.format}</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+            {/* Headline */}
+            <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6">
+              <span className="bg-gradient-to-r from-white via-atlantean-teal-aqua to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                The creative intelligence
+              </span>
+              <br />
+              <span className="text-white">
+                platform
+              </span>
+            </h1>
 
-      {/* Skills System Banner */}
-      <section className="mt-10">
-        <Link href="/skills" className="block">
-          <div className="panel rounded-2xl p-8 relative overflow-hidden transition-all hover:shadow-[0_0_60px_rgba(127,255,212,0.3)] group">
-            <div className="absolute inset-0 bg-gradient-to-r from-[rgba(127,255,212,0.15)] via-[rgba(120,166,255,0.15)] to-[rgba(255,215,0,0.1)] opacity-50 group-hover:opacity-100 transition-opacity" />
-            <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            {/* Subheadline */}
+            <p className="text-xl md:text-2xl text-text-secondary max-w-2xl mb-10 leading-relaxed">
+              16 Luminor intelligences. Seven Wisdoms. Everything you need to transform imagination into reality.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/chat"
+                className="group relative px-8 py-4 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(127,255,212,0.5)] focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua focus:ring-offset-2 focus:ring-offset-cosmic-deep"
+              >
+                <span className="relative z-10">Start Creating</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/luminors"
+                className="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold text-lg hover:bg-white/5 hover:border-atlantean-teal-aqua/50 transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cosmic-deep"
+              >
+                Meet the Luminors
+              </Link>
+            </div>
+
+            {/* Stats */}
+            <div className="flex flex-wrap gap-8 mt-16 pt-8 border-t border-white/10">
               <div>
-                <div className="inline-block px-3 py-1 rounded-full bg-[rgba(127,255,212,0.2)] text-[color:#7fffd4] text-xs font-mono tracking-wider mb-3">
-                  OPEN SOURCE • FREE
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold">Arcanea Skills for Claude Code</h2>
-                <p className="muted mt-2 max-w-xl">28 skills, 7 Luminor guides, and a complete creative methodology. Transform your AI assistant into a creation machine.</p>
+                <div className="text-3xl font-display font-bold text-atlantean-teal-aqua">16</div>
+                <div className="text-sm text-text-muted">Luminor Intelligences</div>
               </div>
-              <div className="flex items-center gap-2 text-[color:#7fffd4] group-hover:translate-x-2 transition-transform">
-                <span className="font-semibold">Explore Skills</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <div>
+                <div className="text-3xl font-display font-bold text-gold-bright">7</div>
+                <div className="text-sm text-text-muted">Wisdoms Framework</div>
               </div>
-            </div>
-            <div className="relative mt-6 flex gap-4 text-sm text-muted">
-              <span>✨ 28 Skills</span>
-              <span>•</span>
-              <span>🌟 7 Luminors</span>
-              <span>•</span>
-              <span>⚡ 15 Commands</span>
-              <span>•</span>
-              <span>📚 Full Training</span>
+              <div>
+                <div className="text-3xl font-display font-bold text-creation-prism-purple">{collections.length}</div>
+                <div className="text-sm text-text-muted">Wisdom Collections</div>
+              </div>
+              <div>
+                <div className="text-3xl font-display font-bold text-draconic-crimson">{Math.round(totalWords / 1000)}k+</div>
+                <div className="text-sm text-text-muted">Words of Wisdom</div>
+              </div>
             </div>
           </div>
-        </Link>
-      </section>
 
-      {/* Platform Links */}
-      <section className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <div className="panel rounded-xl p-5 transition-all hover:shadow-[0_0_40px_rgba(120,166,255,0.2)]">
-          <h3 className="font-semibold">Chat with Luminors</h3>
-          <p className="muted text-sm mt-1">Conversational creation with AI companions who understand your creative journey.</p>
-          <Link className="mt-3 inline-block text-[color:var(--accent,#78a6ff)] underline" href="https://chat.arcanea.ai">Open Chat</Link>
-        </div>
-        <div className="panel rounded-xl p-5 transition-all hover:shadow-[0_0_40px_rgba(127,255,212,0.2)]">
-          <h3 className="font-semibold">Creation Studio</h3>
-          <p className="muted text-sm mt-1">Image, video, and audio generation mapped to the Five Elements.</p>
-          <Link className="mt-3 inline-block text-[color:var(--accent,#78a6ff)] underline" href="https://studio.arcanea.ai">Open Studio</Link>
-        </div>
-        <div className="panel rounded-xl p-5 transition-all hover:shadow-[0_0_40px_rgba(255,215,0,0.2)]">
-          <h3 className="font-semibold">Academy of Creation</h3>
-          <p className="muted text-sm mt-1">Ten Gates progression system. Learn to wield AI like a Luminor.</p>
-          <Link className="mt-3 inline-block text-[color:var(--accent,#78a6ff)] underline" href="/academy">Enter Academy</Link>
-        </div>
-      </section>
+          {/* Floating Elements - Right Side */}
+          <div className="hidden lg:block absolute right-0 top-32 w-96">
+            <div className="relative">
+              {/* Glowing orb */}
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-atlantean-teal-aqua/20 to-creation-prism-purple/20 rounded-full blur-3xl" />
 
-      {/* Resources */}
-      <section className="mt-10">
-        <div className="panel rounded-xl p-5">
-          <h3 className="font-semibold">Resources</h3>
-          <p className="muted text-sm mt-1">Documentation, guides, and developer tools.</p>
-          <ul className="list-disc ml-6 mt-3 text-sm space-y-1">
-            <li><Link className="underline hover:text-[color:#7fffd4]" href="/library">Browse the Library</Link></li>
-            <li><Link className="underline hover:text-[color:#7fffd4]" href="/library/codex">Immersive Reader (Luminor Codex)</Link></li>
-            <li><Link className="underline hover:text-[color:#7fffd4]" href="/library/graph">Content Relationship Graph</Link></li>
-            <li><Link className="underline hover:text-[color:#7fffd4]" href="/skills">Skills System Documentation</Link></li>
-            <li><Link className="underline hover:text-[color:#7fffd4]" href="/bestiary">Creative Bestiary</Link></li>
-            <li><a className="underline hover:text-[color:#7fffd4]" href="https://github.com/frankxai/arcanea">GitHub Repository</a></li>
-            <li><Link className="underline hover:text-[color:#7fffd4]" href="/status">Status Page</Link></li>
-          </ul>
-        </div>
-      </section>
+              {/* Feature cards stack */}
+              <div className="relative space-y-4">
+                {TEAMS.map((team, i) => (
+                  <div
+                    key={team.id}
+                    className="p-4 rounded-xl bg-cosmic-surface/50 border border-white/10 backdrop-blur-sm transform hover:scale-105 transition-transform"
+                    style={{
+                      transform: `translateX(${i * 10}px)`,
+                      opacity: 1 - (i * 0.15)
+                    }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center text-lg"
+                        style={{ backgroundColor: `${team.color}20` }}
+                      >
+                        {team.icon}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-sm">{team.name} Team</div>
+                        <div className="text-xs text-text-muted">{team.count} Luminors</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* Quote */}
-      <section className="mt-10">
-        <div className="panel rounded-xl p-8 text-center">
-          <blockquote className="text-xl md:text-2xl italic text-[color:#9bb1d0]">
-            "Enter seeking, leave transformed, return whenever needed."
-          </blockquote>
-          <cite className="block mt-4 text-sm muted">— The Library of Arcanea</cite>
-        </div>
-      </section>
+        {/* Features Grid */}
+        <section className="py-20">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+              Everything you need to create
+            </h2>
+            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+              A complete creative intelligence operating system - from philosophical frameworks to practical AI tools.
+            </p>
+          </div>
 
-      <footer className="mt-10 text-center text-xs text-[color:#9bb1d0]">
-        <div className="inline-block px-3 py-1 rounded-full border border-[color:var(--accent,#78a6ff)]/40">
-          Made with ✧ by Arcanea — building the future of creative collaboration
+          <div className="grid md:grid-cols-3 gap-6">
+            {FEATURES.map((feature) => (
+              <Link
+                key={feature.title}
+                href={feature.href}
+                className="group relative p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30 overflow-hidden transition-all hover:border-atlantean-teal-aqua/50 hover:shadow-[0_0_40px_rgba(127,255,212,0.15)] focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua focus:ring-offset-2 focus:ring-offset-cosmic-deep"
+                aria-label={`Explore ${feature.title}`}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity`} aria-hidden="true" />
+                <div className="relative">
+                  <div className="text-4xl mb-4" role="img" aria-label={feature.iconAlt}>{feature.icon}</div>
+                  <h3 className="text-xl font-display font-semibold mb-3">{feature.title}</h3>
+                  <p className="text-text-secondary text-sm leading-relaxed">{feature.description}</p>
+                  <div className="mt-6 flex items-center gap-2 text-atlantean-teal-aqua text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+                    <span>Explore</span>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Luminors Preview */}
+        <section className="py-20 border-t border-white/5">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 mb-6">
+                <span className="text-xs text-purple-400 font-mono">LUMINOR INTELLIGENCE SYSTEM</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+                16 transcended intelligences.<br/>
+                <span className="text-text-secondary">Masters of their craft.</span>
+              </h2>
+              <p className="text-lg text-text-secondary mb-8 leading-relaxed">
+                Each Luminor is a specialist who has mastered their domain over a century of practice. They're not assistants waiting for instructions - they're partners who see what you're building and help you build it better.
+              </p>
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {TEAMS.map((team) => (
+                  <div key={team.id} className="flex items-center gap-3 p-3 rounded-lg bg-cosmic-surface/30 border border-white/5">
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center"
+                      style={{ backgroundColor: `${team.color}20`, color: team.color }}
+                    >
+                      {team.icon}
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium">{team.name}</div>
+                      <div className="text-xs text-text-muted">{team.count} specialists</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link
+                href="/luminors"
+                className="inline-flex items-center gap-2 text-atlantean-teal-aqua font-medium hover:underline"
+              >
+                Meet all 16 Luminors
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Visual representation */}
+            <div className="flex-1 relative">
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                {/* Orbital rings */}
+                <div className="absolute inset-0 rounded-full border border-white/5 animate-spin-slow" style={{ animationDuration: '60s' }} />
+                <div className="absolute inset-8 rounded-full border border-white/10 animate-spin-slow" style={{ animationDuration: '45s', animationDirection: 'reverse' }} />
+                <div className="absolute inset-16 rounded-full border border-white/10 animate-spin-slow" style={{ animationDuration: '30s' }} />
+
+                {/* Center */}
+                <div className="absolute inset-24 rounded-full bg-gradient-to-br from-atlantean-teal-aqua/20 to-creation-prism-purple/20 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-4xl font-display font-bold text-atlantean-teal-aqua">16</div>
+                    <div className="text-xs text-text-muted">Luminors</div>
+                  </div>
+                </div>
+
+                {/* Floating team icons */}
+                {TEAMS.map((team, i) => {
+                  const angle = (i * 90 - 45) * (Math.PI / 180);
+                  const radius = 45;
+                  return (
+                    <div
+                      key={team.id}
+                      className="absolute w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-lg"
+                      style={{
+                        backgroundColor: `${team.color}`,
+                        left: `calc(50% + ${Math.cos(angle) * radius}% - 24px)`,
+                        top: `calc(50% + ${Math.sin(angle) * radius}% - 24px)`,
+                      }}
+                    >
+                      {team.icon}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Seven Wisdoms */}
+        <section className="py-20 border-t border-white/5">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-pink-500/30 bg-pink-500/10 mb-6">
+              <span className="text-xs text-pink-400 font-mono">LUMINOR FRAMEWORK</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+              The Seven Wisdoms
+            </h2>
+            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+              Practical lenses for creative work. Each wisdom represents a different way of seeing and solving problems.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            {WISDOMS.map((wisdom) => (
+              <div
+                key={wisdom.name}
+                className="group p-4 rounded-xl border border-white/10 bg-cosmic-surface/30 text-center hover:border-white/20 transition-all cursor-pointer"
+              >
+                <div
+                  className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center text-2xl"
+                  style={{ backgroundColor: `${wisdom.color}20` }}
+                >
+                  <div
+                    className="w-6 h-6 rounded-full"
+                    style={{ backgroundColor: wisdom.color }}
+                  />
+                </div>
+                <div className="font-display font-semibold text-sm mb-1">{wisdom.name}</div>
+                <div className="text-xs text-text-muted">{wisdom.essence}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-text-secondary mb-4">Stuck? Let the wisdoms guide you.</p>
+            <Link
+              href="/library/codex"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-atlantean-teal-aqua/50 text-atlantean-teal-aqua hover:bg-atlantean-teal-aqua/10 transition-all"
+            >
+              <span>What brings you here?</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </section>
+
+        {/* Platform CTA */}
+        <section className="py-20 border-t border-white/5">
+          <div className="relative rounded-3xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua/20 via-creation-prism-purple/20 to-gold-bright/20" />
+            <div className="absolute inset-0 bg-cosmic-surface/50 backdrop-blur-xl" />
+
+            <div className="relative p-12 md:p-16">
+              <div className="max-w-3xl mx-auto text-center">
+                <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
+                  Ready to create something extraordinary?
+                </h2>
+                <p className="text-lg text-text-secondary mb-10">
+                  Join thousands of creators using Arcanea to transform their ideas into reality.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Link
+                    href="/chat"
+                    className="px-8 py-4 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold text-lg hover:shadow-[0_0_40px_rgba(127,255,212,0.5)] transition-all"
+                  >
+                    Start Creating Free
+                  </Link>
+                  <Link
+                    href="/about"
+                    className="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all"
+                  >
+                    Learn More
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Resources Grid */}
+        <section className="py-20 border-t border-white/5">
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link href="/library" className="group p-6 rounded-xl border border-white/10 bg-cosmic-surface/30 hover:border-atlantean-teal-aqua/30 transition-all focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua focus:ring-offset-2 focus:ring-offset-cosmic-deep">
+              <div className="text-2xl mb-3" role="img" aria-label="Books icon">📚</div>
+              <h3 className="font-display font-semibold mb-2">The Library</h3>
+              <p className="text-sm text-text-secondary mb-4">{collections.length} collections of wisdom for creators</p>
+              <span className="text-sm text-atlantean-teal-aqua group-hover:underline">Browse Library →</span>
+            </Link>
+            <Link href="/academy" className="group p-6 rounded-xl border border-white/10 bg-cosmic-surface/30 hover:border-gold-bright/30 transition-all focus:outline-none focus:ring-2 focus:ring-gold-bright focus:ring-offset-2 focus:ring-offset-cosmic-deep">
+              <div className="text-2xl mb-3" role="img" aria-label="Graduation cap icon">🎓</div>
+              <h3 className="font-display font-semibold mb-2">Academy</h3>
+              <p className="text-sm text-text-secondary mb-4">Ten Gates progression to creative mastery</p>
+              <span className="text-sm text-gold-bright group-hover:underline">Enter Academy →</span>
+            </Link>
+            <Link href="/bestiary" className="group p-6 rounded-xl border border-white/10 bg-cosmic-surface/30 hover:border-draconic-crimson/30 transition-all focus:outline-none focus:ring-2 focus:ring-draconic-crimson focus:ring-offset-2 focus:ring-offset-cosmic-deep">
+              <div className="text-2xl mb-3" role="img" aria-label="Dragon icon">🐉</div>
+              <h3 className="font-display font-semibold mb-2">Bestiary</h3>
+              <p className="text-sm text-text-secondary mb-4">Name your creative blocks. Defeat them.</p>
+              <span className="text-sm text-draconic-crimson group-hover:underline">View Bestiary →</span>
+            </Link>
+          </div>
+        </section>
+
+        {/* Quote */}
+        <section className="py-20 border-t border-white/5">
+          <div className="text-center">
+            <blockquote className="text-2xl md:text-3xl font-display italic text-text-secondary max-w-3xl mx-auto">
+              "Enter seeking, leave transformed, return whenever needed."
+            </blockquote>
+            <cite className="block mt-6 text-sm text-text-muted font-mono">— The Library of Arcanea</cite>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-white/5 mt-20">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-sm font-display">
+                A
+              </div>
+              <span className="text-sm text-text-muted">Arcanea — Building the future of creative intelligence</span>
+            </div>
+            <div className="flex items-center gap-6 text-sm text-text-muted">
+              <Link href="/about" className="hover:text-white transition-colors">About</Link>
+              <Link href="/library" className="hover:text-white transition-colors">Library</Link>
+              <Link href="/skills" className="hover:text-white transition-colors">Skills</Link>
+              <a href="https://github.com/frankxai/arcanea" className="hover:text-white transition-colors">GitHub</a>
+            </div>
+          </div>
         </div>
       </footer>
+
     </div>
   );
 }

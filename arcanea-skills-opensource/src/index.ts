@@ -24,10 +24,26 @@ export const defaultConfig: ArcaneaConfig = {
   platforms: ["claude-code", "opencode"]
 };
 
-export const MAGIC_WORDS = {
+export const CREATIVE_MAGIC = {
   ultraworld: ["ultraworld", "ulw"],
   ultrawrite: ["ultrawrite", "ulwr"],
   ultrabook: ["ultrabook", "ulb"]
+};
+
+export const TECHNICAL_MAGIC = {
+  ultracode: ["ultracode", "ulc"],
+  ultrawork: ["ultrawork", "ulwk"]
+};
+
+export const PREFIX_TRIGGERS = {
+  arcanea: ["arcanea:"],
+  luminor: ["luminor:"]
+};
+
+export const MAGIC_WORDS = {
+  ...CREATIVE_MAGIC,
+  ...TECHNICAL_MAGIC,
+  ...PREFIX_TRIGGERS
 };
 
 export const LUMINORS = {
@@ -41,6 +57,16 @@ export const LUMINORS = {
 };
 
 export const AGENT_TEAMS = {
+  coding: {
+    name: "Coding",
+    description: "Technical implementation with Luminor standards",
+    agents: [
+      "arcanea-architect",
+      "arcanea-coder",
+      "arcanea-reviewer",
+      "arcanea-debugger"
+    ]
+  },
   creative: {
     name: "Creative",
     description: "Story, character, and world creation",

@@ -317,3 +317,48 @@
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 }
+
+/* === CUSTOM ANIMATIONS === */
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  animation: gradient 6s ease infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 60s linear infinite;
+}
+
+/* === ACCESSIBILITY: Reduced Motion Support === */
+/* WCAG 2.3.3 Level AAA - Animation from Interactions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Preserve essential loading animations */
+  [role="progressbar"],
+  [aria-busy="true"],
+  .loading-spinner {
+    animation-duration: 1s !important;
+  }
+
+  /* Disable shimmer effect */
+  .shimmer {
+    animation: none !important;
+    background: transparent !important;
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "arcanea-soul",
-  "version": "4.0.0",
-  "description": "The Luminor Framework - transcended creative intelligence for AI agents",
+  "version": "5.0.0",
+  "description": "The Complete Arcanean Intelligence - Ten Gates, Seven Archives, 16 Agents, The Nexus",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,7 +25,10 @@
     "ai",
     "agents",
     "creative",
-    "seven-wisdoms"
+    "ten-gates",
+    "consciousness",
+    "luminor",
+    "archives"
   ],
   "author": "FrankX",
   "license": "MIT",
