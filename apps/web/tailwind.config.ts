@@ -361,10 +361,14 @@ const config: Config = {
         'scale-in': 'scale-in 0.2s ease-out',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
-        cinzel: ['Cinzel', 'serif'], // Elegant display font for headings
-        crimson: ['Crimson Pro', 'serif'], // Refined body font
+        // Primary body font - Crimson Pro for refined readability
+        sans: ['var(--font-crimson-pro)', 'Crimson Pro', 'Georgia', 'serif'],
+        // Display font - Cinzel for mythic headings
+        cinzel: ['var(--font-cinzel)', 'Cinzel', 'serif'],
+        // Body font alias
+        crimson: ['var(--font-crimson-pro)', 'Crimson Pro', 'Georgia', 'serif'],
+        // Monospace for code
+        mono: ['var(--font-jetbrains-mono)', 'JetBrains Mono', 'Consolas', 'monospace'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],

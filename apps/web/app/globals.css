@@ -267,23 +267,42 @@
     text-shadow: 0 0 15px hsl(var(--creation-gold-pure) / 0.6);
   }
 
-  /* Glass Morphism */
+  /* Glass Morphism - Using HSL variables for themability */
   .glass {
-    background: rgba(18, 24, 38, 0.6);
+    background: hsl(var(--cosmic-deep) / 0.6);
     backdrop-filter: var(--blur-md);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid hsl(var(--text-primary) / 0.1);
   }
 
   .glass-light {
-    background: rgba(18, 24, 38, 0.4);
+    background: hsl(var(--cosmic-deep) / 0.4);
     backdrop-filter: var(--blur-sm);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid hsl(var(--text-primary) / 0.05);
   }
 
   .glass-heavy {
-    background: rgba(18, 24, 38, 0.8);
+    background: hsl(var(--cosmic-deep) / 0.8);
     backdrop-filter: var(--blur-lg);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid hsl(var(--text-primary) / 0.15);
+  }
+
+  /* Academy-specific glass effects */
+  .glass-atlantean {
+    background: hsl(var(--atlantean-deep) / 0.6);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid hsl(var(--atlantean-teal) / 0.2);
+  }
+
+  .glass-draconic {
+    background: hsl(var(--draconic-crimson-deep) / 0.6);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid hsl(var(--draconic-gold) / 0.2);
+  }
+
+  .glass-creation {
+    background: hsl(var(--cosmic-surface) / 0.6);
+    backdrop-filter: var(--blur-md);
+    border: 1px solid hsl(var(--creation-gold) / 0.2);
   }
 
   /* Shimmer Effect */
@@ -335,6 +354,43 @@
 
 .animate-spin-slow {
   animation: spin-slow 60s linear infinite;
+}
+
+/* === ACCESSIBILITY: Touch Targets === */
+/* WCAG 2.5.5 Level AAA - Target Size (minimum 44x44px) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.touch-target-sm {
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.touch-target-lg {
+  min-width: 48px;
+  min-height: 48px;
+}
+
+/* Interactive elements should have minimum touch targets */
+button,
+[role="button"],
+a[href],
+input[type="button"],
+input[type="submit"],
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Inline links don't need minimum size */
+p a,
+span a,
+li a {
+  min-width: unset;
+  min-height: unset;
 }
 
 /* === ACCESSIBILITY: Reduced Motion Support === */
