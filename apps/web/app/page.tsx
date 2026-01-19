@@ -87,6 +87,7 @@ export default async function Page() {
               <Link href="/luminors" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Luminors</Link>
               <Link href="/library" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Library</Link>
               <Link href="/academy" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Academy</Link>
+              <Link href="/hub" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Hub</Link>
               <Link href="/about" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">About</Link>
               <Link
                 href="/chat"
@@ -445,7 +446,8 @@ export default async function Page() {
             <div className="flex items-center gap-6 text-sm text-text-muted">
               <Link href="/about" className="hover:text-white transition-colors">About</Link>
               <Link href="/library" className="hover:text-white transition-colors">Library</Link>
-              <Link href="/skills" className="hover:text-white transition-colors">Skills</Link>
+              <Link href="/hub" className="hover:text-white transition-colors">Hub</Link>
+              <Link href="/hub/updates" className="hover:text-white transition-colors">Updates</Link>
               <a href="https://github.com/frankxai/arcanea" className="hover:text-white transition-colors">GitHub</a>
             </div>
           </div>

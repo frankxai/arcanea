@@ -15,11 +15,12 @@ Arcanea is a **creative platform** where imagination becomes reality. Chat with 
 
 **Core Experiences:**
 
-- **Chat** - Converse with magical Luminor AI personalities
+- **Chat** - Converse with 16 specialized Luminor AI intelligences
 - **Studio** - Create images, music, video, stories, and code with AI
 - **Academy** - Learn through the Ten Gates progression system
 - **Library** - Explore 17 collections of wisdom for creators
 - **Bestiary** - Know your creative obstacles and how to defeat them
+- **Hub** - Resource center with updates, guides, and tools
 
 ---
 
@@ -62,22 +63,29 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ```
 arcanea/
-├── apps/web/                # Next.js application
+├── apps/web/                # Next.js 16 application
 │   ├── app/                 # App Router pages
 │   │   ├── academy/        # Ten Gates learning
 │   │   ├── bestiary/       # Creative obstacles
 │   │   ├── chat/           # Luminor conversations
+│   │   ├── hub/            # Resource center
+│   │   │   ├── updates/   # Daily activity log
+│   │   │   ├── guides/    # How-to guides
+│   │   │   └── tools/     # Available tools
 │   │   ├── library/        # 17 wisdom collections
+│   │   ├── luminors/       # Meet the 16 Luminors
 │   │   └── studio/         # AI creation tools
 │   ├── components/          # React components
 │   ├── hooks/               # Custom hooks
 │   └── lib/                 # Core libraries
 │       ├── arcanea-ui/     # UI components
-│       └── content/        # Content loader
+│       └── content/        # Content loader (759 lines)
 │
+├── packages/arcanea-mcp/    # MCP Server (30+ tools)
 ├── book/                    # Library content (17 collections)
 └── .claude/                 # AI assistant context
-    └── lore/               # Canonical reference
+    ├── lore/               # Canonical reference
+    └── skills/             # 77 AI skills
 ```
 
 ---
