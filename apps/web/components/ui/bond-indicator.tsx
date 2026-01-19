@@ -5,13 +5,13 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import * as Progress from '@radix-ui/react-progress';
 
-export interface BondIndicatorProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface BondIndicatorProps {
   level: number; // 1-50
   maxLevel?: number;
   showLabel?: boolean;
   animated?: boolean;
   variant?: 'compact' | 'detailed';
+  className?: string;
 }
 
 const BondIndicator = React.forwardRef<HTMLDivElement, BondIndicatorProps>(
@@ -23,7 +23,6 @@ const BondIndicator = React.forwardRef<HTMLDivElement, BondIndicatorProps>(
       showLabel = true,
       animated = true,
       variant = 'compact',
-      ...props
     },
     ref
   ) => {
@@ -82,7 +81,6 @@ const BondIndicator = React.forwardRef<HTMLDivElement, BondIndicatorProps>(
         <div
           ref={ref}
           className={cn('flex items-center gap-3', className)}
-          {...props}
         >
           {showLabel && (
             <div className="flex flex-col">
@@ -129,7 +127,6 @@ const BondIndicator = React.forwardRef<HTMLDivElement, BondIndicatorProps>(
         className={cn('space-y-3', className)}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        {...props}
       >
         <div className="flex items-center justify-between">
           <div>

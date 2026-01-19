@@ -7,13 +7,14 @@ import { cosmicSlideUp } from '@/lib/animations';
 import { type Academy, getAcademyClasses } from '@/lib/theme-utils';
 import { User, Sparkles } from 'lucide-react';
 
-export interface ChatMessageProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChatMessageProps {
   role: 'user' | 'assistant';
   content: string;
   academy?: Academy;
   luminorName?: string;
   timestamp?: Date;
   isStreaming?: boolean;
+  className?: string;
 }
 
 const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(
@@ -26,7 +27,6 @@ const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(
       luminorName,
       timestamp,
       isStreaming = false,
-      ...props
     },
     ref
   ) => {
@@ -44,7 +44,6 @@ const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(
           isUser ? 'flex-row-reverse' : 'flex-row',
           className
         )}
-        {...props}
       >
         {/* Avatar */}
         <div

@@ -13,7 +13,7 @@ interface Luminor {
   description: string;
   signature: string;
   traits: string[];
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   primaryColor: string;
   secondaryColor: string;
   accentColor: string;

@@ -5,12 +5,12 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { type Academy, getAcademyTheme } from '@/lib/theme-utils';
 
-export interface AcademyBadgeProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface AcademyBadgeProps {
   academy: Academy;
   size?: 'sm' | 'md' | 'lg';
   glow?: boolean;
   animated?: boolean;
+  className?: string;
 }
 
 const AcademyBadge = React.forwardRef<HTMLDivElement, AcademyBadgeProps>(
@@ -21,7 +21,6 @@ const AcademyBadge = React.forwardRef<HTMLDivElement, AcademyBadgeProps>(
       size = 'md',
       glow = true,
       animated = true,
-      ...props
     },
     ref
   ) => {
@@ -62,33 +61,36 @@ const AcademyBadge = React.forwardRef<HTMLDivElement, AcademyBadgeProps>(
 
     const styles = academyStyles[academy] || academyStyles.default;
 
-    const BadgeWrapper = animated ? motion.div : 'div';
-    const animationProps = animated
-      ? {
-          whileHover: { scale: 1.05 },
-          whileTap: { scale: 0.95 },
-        }
-      : {};
+    const baseClassName = cn(
+      'inline-flex items-center gap-2 rounded-full border font-medium backdrop-blur-sm transition-all',
+      sizeClasses[size],
+      styles.bg,
+      styles.border,
+      styles.text,
+      glow && styles.shadow,
+      'hover:scale-105 cursor-default',
+      className
+    );
+
+    if (animated) {
+      return (
+        <motion.div
+          ref={ref}
+          className={baseClassName}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="text-lg leading-none">{theme.icon}</span>
+          <span>{theme.displayName}</span>
+        </motion.div>
+      );
+    }
 
     return (
-      <BadgeWrapper
-        ref={ref}
-        className={cn(
-          'inline-flex items-center gap-2 rounded-full border font-medium backdrop-blur-sm transition-all',
-          sizeClasses[size],
-          styles.bg,
-          styles.border,
-          styles.text,
-          glow && styles.shadow,
-          'hover:scale-105 cursor-default',
-          className
-        )}
-        {...animationProps}
-        {...props}
-      >
+      <div ref={ref} className={baseClassName}>
         <span className="text-lg leading-none">{theme.icon}</span>
         <span>{theme.displayName}</span>
-      </BadgeWrapper>
+      </div>
     );
   }
 );

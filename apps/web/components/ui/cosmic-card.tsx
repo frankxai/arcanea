@@ -5,12 +5,13 @@ import { motion, HTMLMotionProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { cosmicFadeIn, cosmicGlow } from '@/lib/animations';
 
-export interface CosmicCardProps extends HTMLMotionProps<'div'> {
+export interface CosmicCardProps {
   glow?: boolean;
   shimmer?: boolean;
   glass?: boolean;
   academy?: 'atlantean' | 'draconic' | 'creation';
   children: React.ReactNode;
+  className?: string;
 }
 
 const CosmicCard = React.forwardRef<HTMLDivElement, CosmicCardProps>(
@@ -22,7 +23,6 @@ const CosmicCard = React.forwardRef<HTMLDivElement, CosmicCardProps>(
       glass = false,
       academy,
       children,
-      ...props
     },
     ref
   ) => {
@@ -49,7 +49,6 @@ const CosmicCard = React.forwardRef<HTMLDivElement, CosmicCardProps>(
           glow && 'hover:shadow-glow-md',
           className
         )}
-        {...props}
       >
         {children}
       </motion.div>

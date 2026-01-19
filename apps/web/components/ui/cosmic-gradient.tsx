@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { type Academy } from '@/lib/theme-utils';
 
-export interface CosmicGradientProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface CosmicGradientProps {
   variant?: 'cosmic' | Academy;
   animated?: boolean;
   opacity?: number;
+  className?: string;
 }
 
 const CosmicGradient = React.forwardRef<HTMLDivElement, CosmicGradientProps>(
@@ -19,7 +19,6 @@ const CosmicGradient = React.forwardRef<HTMLDivElement, CosmicGradientProps>(
       variant = 'cosmic',
       animated = true,
       opacity = 0.15,
-      ...props
     },
     ref
   ) => {
@@ -36,33 +35,33 @@ const CosmicGradient = React.forwardRef<HTMLDivElement, CosmicGradientProps>(
         'bg-gradient-to-br from-creation-gold via-creation-prism-blue to-creation-prism-purple',
     };
 
-    const AnimatedWrapper = animated ? motion.div : 'div';
-    const animationProps = animated
-      ? {
-          animate: {
+    const baseClassName = cn(
+      'absolute inset-0 -z-10',
+      gradientVariants[variant],
+      'bg-[length:200%_200%]',
+      className
+    );
+
+    if (animated) {
+      return (
+        <motion.div
+          ref={ref}
+          className={baseClassName}
+          style={{ opacity }}
+          animate={{
             backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
-          },
-          transition: {
+          }}
+          transition={{
             duration: 20,
             repeat: Infinity,
             ease: 'linear',
-          },
-        }
-      : {};
+          }}
+        />
+      );
+    }
 
     return (
-      <AnimatedWrapper
-        ref={ref}
-        className={cn(
-          'absolute inset-0 -z-10',
-          gradientVariants[variant],
-          'bg-[length:200%_200%]',
-          className
-        )}
-        style={{ opacity }}
-        {...animationProps}
-        {...props}
-      />
+      <div ref={ref} className={baseClassName} style={{ opacity }} />
     );
   }
 );
