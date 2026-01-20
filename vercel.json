@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "framework": "nextjs",
-  "buildCommand": "pnpm turbo run build --filter=@arcanea/web",
+  "buildCommand": "cd apps/web && pnpm run build",
   "installCommand": "corepack enable && pnpm install --no-frozen-lockfile",
   "outputDirectory": "apps/web/.next",
   "devCommand": "pnpm dev:web",
@@ -10,7 +10,8 @@
   "build": {
     "env": {
       "NEXT_PUBLIC_APP_NAME": "Arcanea",
-      "NODE_ENV": "production"
+      "NODE_ENV": "production",
+      "NODE_OPTIONS": "--max-old-space-size=4096"
     }
   },
 
