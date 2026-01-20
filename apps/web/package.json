@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "next build --no-turbopack",
+    "build": "next build 2>&1 || (echo 'Build failed with error' && exit 1)",
     "start": "next start -p 3001",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
