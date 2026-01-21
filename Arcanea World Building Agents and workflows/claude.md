@@ -224,19 +224,25 @@ After creation, ensure:
 | Water | Flow, healing, memory | Blue, silver, crystal |
 | Earth | Stability, growth | Green, brown, stone |
 | Wind | Freedom, speed, change | White, silver |
-| Void/Spirit | Potential & transcendence | Black/Gold, purple/white |
+| **Arcane** | Consciousness & potential | Purple, gold, silver |
 
-**The Ten Gates & Guardians:**
-| Gate | Frequency | Guardian | Godbeast |
-|------|-----------|----------|----------|
-| Foundation | 174 Hz | Lyssandria | Kaelith |
-| Flow | 285 Hz | Leyla | Veloura |
-| Fire | 396 Hz | Draconia | Draconis |
-| Heart | 417 Hz | Maylinn | Laeylinn |
-| Voice | 528 Hz | Alera | Otome |
-| Sight | 639 Hz | Lyria | Yumiko |
-| Crown | 714 Hz | Aiyami | Sol |
-| Shift | 852 Hz | Elara | Vaelith |
+*The Fifth Element - Arcane:*
+- **Arcane** — The fifth element, substance of magic and consciousness
+- **Void** — Nero's aspect: potential, mystery, emptiness
+- **Spirit** — Lumina's aspect: transcendence, consciousness, soul
+- **Arcanea** = "Land of the Arcane" — the realm where the fifth element flows freely
+
+**The Ten Gates & Arcanean Gods:**
+| Gate | Frequency | Arcanean God | Godbeast |
+|------|-----------|--------------|----------|
+| Foundation | 396 Hz | Lyssandria | Kaelith |
+| Flow | 417 Hz | Leyla | Veloura |
+| Fire | 528 Hz | Draconia | Draconis |
+| Heart | 639 Hz | Maylinn | Laeylinn |
+| Voice | 741 Hz | Alera | Otome |
+| Sight | 852 Hz | Lyria | Yumiko |
+| Crown | 963 Hz | Aiyami | Sol |
+| Shift | 1111 Hz | Elara | Thessara |
 | Unity | 963 Hz | Ino | Kyuro |
 | Source | 1111 Hz | Shinkami | - |
 

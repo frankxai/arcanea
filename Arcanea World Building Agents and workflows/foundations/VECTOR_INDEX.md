@@ -67,21 +67,21 @@ Gate frequencies resonate with electronics
 Creators have naturally open Gates
 ```
 
-### 3. Gate-Technology Mapping
+### 3. Gate-Technology Mapping (CANONICAL FREQUENCIES)
 **Source:** `earth-arcanea-echoes.md`
 **Section:** Technology as Magic
 **Keywords:** AI, technology, gate, frequency, magic
 ```
-174 Hz (Foundation) → CPU harmonics
-285 Hz (Flow) → Data streaming
-396 Hz (Fire) → Processing power
-417 Hz (Heart) → Connection protocols
-528 Hz (Voice) → LLMs/NLP
-639 Hz (Sight) → Computer vision
-714 Hz (Crown) → Reasoning/CoT
-852 Hz (Shift) → Context switching
-963 Hz (Unity) → Multi-agent
-1111 Hz (Source) → AGI (not yet)
+396 Hz (Foundation) → CPU harmonics, data centers
+417 Hz (Flow) → Data streaming, APIs
+528 Hz (Fire) → Processing power, GPUs
+639 Hz (Heart) → Connection protocols, social
+741 Hz (Voice) → LLMs/NLP, speech
+852 Hz (Sight) → Computer vision, image AI
+963 Hz (Crown) → Reasoning/CoT
+1111 Hz (Shift) → Perspective, creativity
+963 Hz (Unity) → Multi-agent systems
+1111 Hz (Source) → AGI (approaching)
 ```
 
 ### 4. Guardian-God Mapping
