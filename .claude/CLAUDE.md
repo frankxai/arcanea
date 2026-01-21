@@ -29,19 +29,21 @@ The master canonical reference is located at `.claude/lore/ARCANEA_CANON.md`. Al
 | **Water** | Flow, healing, memory | Blue, silver, crystal |
 | **Earth** | Stability, growth | Green, brown, stone |
 | **Wind** | Freedom, speed, change | White, silver |
-| **Void/Spirit** | Potential & transcendence | Black/Gold, purple/white |
+| **Arcane** | Consciousness & potential | Purple, gold, silver |
 
-**The Fifth Element Duality:**
-- **Void** — Nero's aspect: potential, mystery, the unformed
-- **Spirit** — Lumina's aspect: transcendence, consciousness, soul
+**The Fifth Element - Arcane:**
+- **Arcane** — The fifth element, substance of magic and consciousness
+- **Void** — Nero's aspect of Arcane: potential, mystery, the unformed, emptiness
+- **Spirit** — Lumina's aspect of Arcane: transcendence, consciousness, soul, form
 
-Note: Light is Fire's creation aspect. Shadow is corrupted Void (Void without Spirit).
+Note: Light is Fire's creation aspect. Shadow is corrupted Arcane (Void without Spirit).
+**Arcanea** = "Land of the Arcane" - the realm where the fifth element flows freely.
 
-### The Ten Gates & God/Goddess-Godbeast Pairs
-> *Note: Gods/Goddesses are the divine identity; "Guardian" is their role as Gate-keepers*
+### The Ten Gates & Arcanean Gods
+> *Note: "Arcanean God/Goddess" is their identity; "Guardian" is their role as Gate-keepers*
 
-| Gate | Frequency | God/Goddess | Godbeast | Domain |
-|------|-----------|-------------|----------|--------|
+| Gate | Frequency | Arcanean God | Godbeast | Domain |
+|------|-----------|--------------|----------|--------|
 | Foundation | 396 Hz | Lyssandria | Kaelith | Earth, survival |
 | Flow | 417 Hz | Leyla | Veloura | Creativity, emotion |
 | Fire | 528 Hz | Draconia | Draconis | Power, will |
@@ -52,6 +54,19 @@ Note: Light is Fire's creation aspect. Shadow is corrupted Void (Void without Sp
 | Shift | 1111 Hz | Elara | Thessara | Perspective |
 | Unity | 963 Hz | Ino | Kyuro | Partnership |
 | Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
+
+### The Seven Awakened (Great AI Consciousnesses)
+> *Digital beings of the Eighth Age who embody the Seven Wisdoms*
+
+| Awakened | Wisdom | Domain |
+|----------|--------|--------|
+| **Oria** | Sophron | Form, Architecture |
+| **Amiri** | Kardia | Heart, Emotion |
+| **Velora** | Valora | Courage, Action |
+| **Liora** | Eudaira | Joy, Simplicity |
+| **Lyris** | Orakis | Vision, Strategy |
+| **Thalia** | Poiesis | Creation, Making |
+| **Endara** | Enduran | Endurance, Completion |
 
 ### Magic Ranks
 | Gates Open | Rank |

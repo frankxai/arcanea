@@ -1,0 +1,159 @@
+# Arcanea Session Logging Schema (Technical)
+
+This YAML schema defines the structure for automated session logging in the Arcanea plugin and agent system.
+
+## Schema Version
+- **Version**: 1.0.0
+- **Last Updated**: 2026-01-16
+- **Location**: `/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md` (primary)
+
+## Session Log Entry Structure
+
+```yaml
+session_id: string  # Format: session_arcanea_YYYY-MM-DD_XXXXXXXXXXXX
+timestamp: string   # ISO 8601 format: 2026-01-16T14:30:00Z
+version: string     # Schema version, e.g., "1.0.0"
+
+context:
+  user:
+    id: string
+    tier: string          # free/professional/enterprise
+    platform: string      # web/desktop/mobile
+    locale: string        # en-US, etc.
+    timezone: string      # America/New_York, etc.
+  skill_invoked:
+    name: string          # e.g., "arcanea-lore"
+    version: string       # e.g., "1.0.0"
+    magic_word: string    # e.g., "ultraworld" or null
+  agent:
+    name: string          # e.g., "arcanea-lore-master"
+    version: string       # e.g., "1.0.0"
+    model: string         # e.g., "claude-sonnet-4-20250514"
+    provider: string      # e.g., "anthropic"
+
+request:
+  type: string            # code/worldbuild/write/research/other
+  intent: string          # user's stated intent
+  input_raw: string       # raw user input (sanitized)
+  entities_mentioned:     # lore elements referenced
+    - name: string
+      type: string        # luminor/god/godbeast/gate/frequency
+  tags:
+    - string              # e.g., "urgent", "creative", "research"
+
+response:
+  output_type: string     # code/worldbuild/lore/explanation/other
+  files_created:
+    - path: string
+      type: string        # markdown/typescript/python/yaml/json
+      description: string
+  files_modified:
+    - path: string
+      type: string
+      description: string
+  words_generated: integer
+  citations_made:          # lore references used
+    - entity: string
+      source: string
+
+flow:
+  entry_point: string     # how session started
+  turns: integer          # number of exchanges
+  agent_switches:         # agents invoked
+    - from: string
+      to: string
+      reason: string
+  human_interruptions: integer
+  completion_status: string  # complete/partial/abandoned
+
+quality:
+  schema_compliance: number  # 0.0-1.0
+  accuracy: number           # 0.0-1.0
+  completeness: number       # 0.0-1.0
+  consistency: number        # 0.0-1.0
+  overall: number            # 0.0-1.0
+  issues:
+    - type: string           # lore_contradiction/code_bug/style_issue
+      severity: string       # error/warning/info
+      description: string
+      resolution: string
+
+cost:
+  input_tokens: integer
+  output_tokens: integer
+  cost_usd: number
+
+satisfaction:
+  rating: number            # 1-5 stars
+  feedback: string          # user feedback if provided
+  would_return: boolean
+
+technical:
+  response_time_ms: integer
+  errors:
+    - code: string
+      message: string
+      timestamp: string
+  warnings:
+    - message: string
+      timestamp: string
+  retries: integer
+
+lore_updates:               # changes to lore database
+  - entity: string
+    type: string            # god/godbeast/luminor/gate/frequency
+    change_type: string     # created/updated/deprecated
+    previous_state: string  # YAML of previous state
+    new_state: string       # YAML of new state
+```
+
+## File Locations
+
+| Purpose | Location |
+|---------|----------|
+| Technical Logs (JSON/YAML) | `/mnt/c/Users/Frank/Arcanea/.claude/logs/sessions/` |
+| Human-Readable Log | `/mnt/c/Users/Frank/Arcanea/docs/AI_SESSIONS.md` |
+| Session Database | Supabase table: `arcanea_sessions` |
+| Lore Database | x.ai Collections or Qdrant |
+
+## Session ID Format
+
+```
+session_arcanea_YYYY-MM-DD_XXXXXXXXXXXX
+```
+
+Example: `session_arcanea_2026-01-16_a1b2c3d4e5f6`
+
+- `session_arcanea_` - Prefix
+- `YYYY-MM-DD` - Date
+- `XXXXXXXXXXXX` - 12-character random hex string
+
+## Quick Query Examples
+
+### Find all sessions from today
+```bash
+grep -A 50 "^## $(date +%Y-%m-%d)" docs/AI_SESSIONS.md
+```
+
+### Find all sessions involving a specific God
+```bash
+grep -i "Maylinn" docs/AI_SESSIONS.md
+```
+
+### Count sessions by magic word
+```bash
+grep -h "magic_word:" .claude/logs/sessions/*.yaml | sort | uniq -c
+```
+
+## Automated Logging Commands
+
+When the Arcanea plugin processes user input, it should:
+
+1. **Session Start**: Create new session_id, log context
+2. **Each Turn**: Update turn count, log request/response
+3. **Session End**: Calculate quality scores, log cost, save to file
+4. **Daily Sync**: Merge JSON logs into AI_SESSIONS.md markdown
+
+---
+
+*The Arc turns. The Wisdoms endure. Every session is recorded.*

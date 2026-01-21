@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Hero Banner Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+            color: #7fffd4;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(45, 27, 105, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(127, 255, 212, 0.2);
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #7fffd4 0%, #ffd700 50%, #7fffd4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3rem;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: #78a6ff;
+            font-size: 1.2rem;
+            letter-spacing: 0.2rem;
+        }
+
+        .banner-container {
+            margin-bottom: 3rem;
+            background: rgba(10, 10, 15, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid rgba(127, 255, 212, 0.3);
+            box-shadow: 0 0 30px rgba(127, 255, 212, 0.2);
+        }
+
+        .banner-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .banner-wrapper {
+            width: 100%;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: rgba(45, 27, 105, 0.2);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(127, 255, 212, 0.2);
+        }
+
+        .info-card h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(127, 255, 212, 0.1);
+        }
+
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .code-block {
+            background: rgba(10, 10, 15, 0.8);
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(127, 255, 212, 0.2);
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: #7fffd4;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(127, 255, 212, 0.2);
+            border: 1px solid #7fffd4;
+            color: #7fffd4;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(127, 255, 212, 0.3);
+            box-shadow: 0 0 20px rgba(127, 255, 212, 0.4);
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f0f0f5 0%, #e8e8f0 50%, #f0f0f5 100%);
+            color: #1a1a2e;
+        }
+
+        body.light-mode header,
+        body.light-mode .banner-container,
+        body.light-mode .info-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(45, 27, 105, 0.3);
+        }
+
+        body.light-mode .theme-toggle {
+            background: rgba(45, 27, 105, 0.1);
+            border-color: #2D1B69;
+            color: #2D1B69;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: #78a6ff;
+            font-style: italic;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #7fffd4 0%, #ffd700 100%);
+            color: #0a0a0f;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 1rem 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(127, 255, 212, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(127, 255, 212, 0.5);
+        }
+
+        .downloads {
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Light/Dark</button>
+
+    <div class="container">
+        <header>
+            <h1>ARCANEA</h1>
+            <p class="subtitle">Hero Banner Preview</p>
+        </header>
+
+        <div class="banner-container">
+            <h2 class="banner-title">SVG Placeholder Banner (Current)</h2>
+            <div class="banner-wrapper">
+                <img src="hero-banner-placeholder.svg" alt="Arcanea Hero Banner - SVG Placeholder">
+            </div>
+            <div class="downloads">
+                <a href="hero-banner-placeholder.svg" download class="download-btn">Download SVG</a>
+                <a href="hero-banner-prompt.md" download class="download-btn">AI Generation Guide</a>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Specifications</h3>
+                <ul>
+                    <li><strong>Dimensions:</strong> 3000 x 1000 px</li>
+                    <li><strong>Aspect Ratio:</strong> 3:1</li>
+                    <li><strong>Format:</strong> SVG (scalable)</li>
+                    <li><strong>File Size:</strong> ~11 KB</li>
+                    <li><strong>Status:</strong> Production Ready</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Design Elements</h3>
+                <ul>
+                    <li>Central luminous portal</li>
+                    <li>Seven Guardian constellation lights</li>
+                    <li>Mystical floating runes</li>
+                    <li>Deep space nebula background</li>
+                    <li>Cosmic star field</li>
+                    <li>"ARCANEA" integrated text</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Color Palette</h3>
+                <ul>
+                    <li><span class="color-swatch" style="background: #7fffd4;"></span> Atlantean Teal (#7fffd4)</li>
+                    <li><span class="color-swatch" style="background: #ffd700;"></span> Gold Bright (#ffd700)</li>
+                    <li><span class="color-swatch" style="background: #2D1B69;"></span> Deep Purple (#2D1B69)</li>
+                    <li><span class="color-swatch" style="background: #4A148C;"></span> Cosmic Purple (#4A148C)</li>
+                    <li><span class="color-swatch" style="background: #78a6ff;"></span> Cosmic Blue (#78a6ff)</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Usage Example</h3>
+                <div class="code-block">
+                    <code>&lt;div align="center"&gt;<br>
+  &lt;img src="./oss/assets/hero-banner-placeholder.svg"<br>
+       alt="Arcanea - Kingdom of Creation"<br>
+       width="100%"&gt;<br>
+&lt;/div&gt;</code>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>Next Steps</h3>
+                <ul>
+                    <li>✅ Use SVG placeholder immediately</li>
+                    <li>📝 Review AI generation prompt guide</li>
+                    <li>🎨 Generate enhanced AI version</li>
+                    <li>🔄 Replace with final PNG/WebP</li>
+                    <li>📱 Create mobile variants</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>File Locations</h3>
+                <ul>
+                    <li><code>hero-banner-placeholder.svg</code></li>
+                    <li><code>hero-banner-prompt.md</code></li>
+                    <li><code>README.md</code></li>
+                    <li><code>preview.html</code> (this file)</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>"Enter seeking, leave transformed, return whenever needed."</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Arcanea - Kingdom of Creation</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Add some cosmic sparkle effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.querySelector('.banner-wrapper img');
+            if (banner) {
+                banner.style.transition = 'transform 0.3s ease';
+                banner.addEventListener('mouseenter', () => {
+                    banner.style.transform = 'scale(1.02)';
+                });
+                banner.addEventListener('mouseleave', () => {
+                    banner.style.transform = 'scale(1)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

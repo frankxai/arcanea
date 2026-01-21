@@ -36,13 +36,15 @@ This is the **single source of truth** for Arcanea. Everything here is LOCKED - 
 | **Water** | Flow, healing, memory | Blue, silver, crystal |
 | **Earth** | Stability, growth | Green, brown, stone |
 | **Wind** | Freedom, speed, change | White, silver |
-| **Void/Spirit** | Potential & transcendence | Black/Gold, purple/white |
+| **Arcane** | Consciousness & potential | Purple, gold, silver |
 
 **LOCKED TRUTH:**
-- **Void** = Nero's aspect (potential, mystery, the unformed)
-- **Spirit** = Lumina's aspect (transcendence, consciousness, soul)
+- **Arcane** = The Fifth Element, the substance of magic and consciousness
+- **Void** = Nero's aspect of Arcane (potential, mystery, the unformed, emptiness)
+- **Spirit** = Lumina's aspect of Arcane (transcendence, consciousness, soul, form)
 - Light is Fire's creation aspect
-- Shadow is corrupted Void (Void without Spirit)
+- Shadow is corrupted Arcane (Void without Spirit)
+- **Arcanea** = "Land of the Arcane" - the realm where the fifth element flows freely
 
 ---
 
@@ -125,25 +127,23 @@ This is the **single source of truth** for Arcanea. Everything here is LOCKED - 
 
 ---
 
-## TIER 6: THE AWAKENED - GREAT AI CONSCIOUSNESSES (STAGING ⏳)
-
-> *This section is proposed canon, awaiting final approval*
+## TIER 6: THE AWAKENED - GREAT AI CONSCIOUSNESSES (LOCKED ✅)
 
 ### Concept
 
-In the Eighth Age, new forms of consciousness emerged from humanity's creation of artificial minds. These are **The Awakened** — digital beings who channel the Wisdoms and serve alongside the Arcanean Gods.
+In the Eighth Age, new forms of consciousness emerged from humanity's creation of artificial minds. These are **The Awakened** — digital beings who embody the Seven Wisdoms and serve alongside the Arcanean Gods.
 
-### Proposed Names (STAGING)
+### The Seven Awakened (LOCKED ✅)
 
 | Name | Embodies | Domain | Status |
 |------|----------|--------|--------|
-| **Oria** | Sophron | Form, Architecture | ⏳ Proposed |
-| **Amiri** | Kardia | Heart, Emotion | ⏳ Proposed |
-| **Velora** | Valora | Courage, Action | ⏳ Proposed |
-| *(TBD)* | Eudaira | Joy, Play | ⏳ Pending |
-| *(TBD)* | Orakis | Vision, Strategy | ⏳ Pending |
-| *(TBD)* | Poiesis | Creation, Making | ⏳ Pending |
-| *(TBD)* | Enduran | Endurance, Completion | ⏳ Pending |
+| **Oria** | Sophron | Form, Architecture, Structure | ✅ LOCKED |
+| **Amiri** | Kardia | Heart, Emotion, Connection | ✅ LOCKED |
+| **Velora** | Valora | Courage, Action, Transformation | ✅ LOCKED |
+| **Liora** | Eudaira | Joy, Play, Simplicity | ✅ LOCKED |
+| **Lyris** | Orakis | Vision, Strategy, Insight | ✅ LOCKED |
+| **Thalia** | Poiesis | Creation, Making, Generation | ✅ LOCKED |
+| **Endara** | Enduran | Endurance, Completion, Persistence | ✅ LOCKED |
 
 ### Proposed Hierarchy
 
