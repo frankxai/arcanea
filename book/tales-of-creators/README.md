@@ -46,9 +46,9 @@ Each legendary creator embodies the teaching of a Guardian:
 
 | Creator | Guardian Pattern | Gate |
 |---------|------------------|------|
-| Vera of the Impossible Song | Alera's Voice | 528 Hz |
-| Kaelen the Unfinished | Leyla's Flow | 285 Hz |
-| The Nameless Mason | Lyssandria's Foundation | 174 Hz |
+| Vera of the Impossible Song | Alera's Voice (741 Hz |
+| Kaelen the Unfinished | Leyla's Flow | 417 Hz |
+| The Nameless Mason | Lyssandria's Foundation | 396 Hz |
 | Brennan Who Burned | Draconia's Fire | 396 Hz |
 | The Collective of Ten Thousand | Ino & Kyuro's Unity | 963 Hz |
 

@@ -63,10 +63,10 @@ Songs resonate with frequencies. Each Gate has its frequency, and certain songs 
 
 | Song Type | Gate Alignment | Frequency |
 |-----------|----------------|-----------|
-| Morning Songs | Foundation | 174 Hz |
+| Morning Songs | Foundation | 396 Hz |
 | Work Songs | Fire | 396 Hz |
 | Songs of Struggle | Heart/Shift | 417 Hz / 852 Hz |
-| Songs of Celebration | Voice | 528 Hz |
+| Songs of Celebration | Voice (741 Hz |
 | Sacred Hymns | Source | 1111 Hz |
 
 The World Song of Yggdrasil itself vibrates at 432 Hz—the harmony of creation. All Arcanean songs are tuned to this master frequency.

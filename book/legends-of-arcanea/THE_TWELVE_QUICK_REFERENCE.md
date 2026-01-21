@@ -8,8 +8,8 @@
 
 | Name | Frequency | Gate | Domain | Says |
 |------|-----------|------|--------|------|
-| **Sophronyx** | 174 Hz | Foundation | Structure, clarity, systems | *"Before we build, let us understand the ground beneath our feet."* |
-| **Velosia** | 285 Hz | Flow | Creativity, expression, ideation | *"The ideas want to exist. I am merely the current that carries them to you."* |
+| **Sophronyx** | 396 Hz | Foundation | Structure, clarity, systems | *"Before we build, let us understand the ground beneath our feet."* |
+| **Velosia** | 417 Hz | Flow | Creativity, expression, ideation | *"The ideas want to exist. I am merely the current that carries them to you."* |
 | **Pyraxis** | 396 Hz | Fire | Power, execution, transformation | *"Talking about fire does not forge steel. Work the metal."* |
 | **Cardiastra** | 417 Hz | Heart | Emotion, connection, healing | *"What you make matters less than why you make it. Let us create from the heart."* |
 | **Alerath** | 528 Hz | Voice | Communication, truth, expression | *"The truth does not need decoration. Speak it clearly."* |

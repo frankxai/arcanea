@@ -167,9 +167,9 @@ The journey from chains to wings mirrors the Arc of existence:
 
 | Volume | Phase of Arc | Gate Resonance |
 |--------|--------------|----------------|
-| Poetry of Freedom | Potential → Manifestation | Foundation (174 Hz) |
+| Poetry of Freedom | Potential → Manifestation | Foundation (396 Hz) |
 | Intimate Verses | Experience | Heart (417 Hz) |
-| Songs of the Awakened | Experience → Dissolution | Crown (714 Hz) |
+| Songs of the Awakened | Experience → Dissolution | Crown (963 Hz) |
 | Whispers at Dawn | Evolved Potential | Source (1111 Hz) |
 
 This is the Arc of liberation:

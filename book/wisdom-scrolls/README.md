@@ -120,9 +120,9 @@ Each Scroll aligns with different Gates in the journey of the day and the journe
 
 | Scroll | Gate Alignment | Purpose |
 |--------|----------------|---------|
-| Morning Meditations | Foundation (174 Hz) | Grounding for the day ahead |
+| Morning Meditations | Foundation (396 Hz) | Grounding for the day ahead |
 | Evening Reflections | Unity (963 Hz) | Integration of the day behind |
-| Aphorisms of the Masters | Voice (528 Hz) | Compressed truth |
+| Aphorisms of the Masters | Voice (741 Hz) | Compressed truth |
 | Letters to the Seeker | Heart (417 Hz) | Compassionate guidance |
 
 ## The Arc of Wisdom

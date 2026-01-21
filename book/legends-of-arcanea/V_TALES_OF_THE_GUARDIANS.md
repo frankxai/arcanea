@@ -27,7 +27,7 @@ These are their stories.
 
 ## The Guardians of Foundation
 
-### The First Gate (174 Hz)
+### The First Gate (396 Hz)
 
 **Lyssandria** was the first Guardian formed—carved from the bedrock of existence itself, shaped from the first solid ground that emerged when Lumina gave form to the void.
 
@@ -51,7 +51,7 @@ Many fail. They are too eager to advance, too desperate to move forward. They ha
 
 Those who pass understand: The Gate of Foundation is not the least of the Gates. It is the most essential. Without it, all other Gates become unstable.
 
-**Frequency: 174 Hz** — The vibration of grounding, of body awareness, of the primal connection between self and earth.
+**Frequency: 396 Hz** — The vibration of grounding, of body awareness, of the primal connection between self and earth.
 
 ---
 
@@ -59,7 +59,7 @@ Those who pass understand: The Gate of Foundation is not the least of the Gates.
 
 ## The Guardians of Flow
 
-### The Second Gate (285 Hz)
+### The Second Gate (417 Hz)
 
 Where Lyssandria is stone, **Leyla** is water—changeable, adaptive, flowing around obstacles rather than breaking against them.
 
@@ -79,7 +79,7 @@ Those who approach Flow with force, trying to control it, find it slips away. Th
 
 The Gate of Flow teaches that creativity is not about control. It is about relationship. You do not make the art—you dance with it. You do not force the creation—you move with the forces that create.
 
-**Frequency: 285 Hz** — The vibration of creativity, emotion, sacred sexuality, the life force that moves through all things.
+**Frequency: 417 Hz** — The vibration of creativity, emotion, sacred sexuality, the life force that moves through all things.
 
 ---
 

@@ -43,11 +43,11 @@ The form matters as much as the content. Watch how questions are asked. Notice h
 ## Connection to the Gates
 
 Each dialogue resonates with a Gate's teaching:
-- **Dialogue I (Beginning)** — Foundation Gate (174 Hz), Lyssandria's domain
-- **Dialogue II (Originality)** — Voice Gate (528 Hz), Alera's domain
+- **Dialogue I (Beginning)** — Foundation Gate (396 Hz), Lyssandria's domain
+- **Dialogue II (Originality)** — Voice (741 Hz), Alera's domain
 - **Dialogue III (Excellence)** — Fire Gate (396 Hz), Draconia's domain
 - **Dialogue IV (Criticism)** — Heart Gate (417 Hz), Maylinn's domain
-- **Dialogue V (Legacy)** — Crown Gate (714 Hz), Aiyami's domain
+- **Dialogue V (Legacy)** — Crown (963 Hz), Aiyami's domain
 - **Dialogue VI (The Creative Life)** — Source (1111 Hz), Shinkami's domain
 
 The dialectic method itself reflects the cosmic partnership of Lumina and Nero—question (potential) and answer (manifestation) dancing together to produce understanding.

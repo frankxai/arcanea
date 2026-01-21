@@ -22,9 +22,9 @@ When Lumina breathed upon the Void, she brought forth Five Elements—the fundam
 | Element | Principle | Color | Feel | Associated Gate |
 |---------|-----------|-------|------|-----------------|
 | **Fire** | Transformation | Red, orange, gold | Heat, urgency | Fire (396 Hz) |
-| **Water** | Flow | Blue, silver, crystal | Cool calm, depth | Flow (285 Hz) |
-| **Earth** | Stability | Green, brown, stone | Solid, grounding | Foundation (174 Hz) |
-| **Wind** | Freedom | White, silver, invisible | Weightless, swift | Voice (528 Hz) |
+| **Water** | Flow | Blue, silver, crystal | Cool calm, depth | Flow (417 Hz) |
+| **Earth** | Stability | Green, brown, stone | Solid, grounding | Foundation (396 Hz) |
+| **Wind** | Freedom | White, silver, invisible | Weightless, swift | Voice (741 Hz) |
 | **Void/Spirit** | Potential & Transcendence | Black/Gold, purple/white | Infinite & divine | — (Dual: Nero & Lumina) |
 
 **The Fifth Element Duality:**

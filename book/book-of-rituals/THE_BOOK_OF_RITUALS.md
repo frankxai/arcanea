@@ -27,9 +27,9 @@ Every ritual follows the Arc that governs existence itself:
 
 **The Gates in Ritual:**
 Different rituals resonate with different Gates:
-- Morning rituals align with **Foundation** (174 Hz) — grounding for the day
-- Creative work rituals align with **Fire** (396 Hz) — power and will
-- Completion rituals align with **Voice** (528 Hz) — truth and expression
+- Morning rituals align with **Foundation** (396 Hz) — grounding for the day
+- Creative work rituals align with **Fire (528 Hz) — power and will
+- Completion rituals align with **Voice (741 Hz) — truth and expression
 - Evening rituals align with **Unity** (963 Hz) — integration and partnership
 
 ---
@@ -38,7 +38,7 @@ Different rituals resonate with different Gates:
 
 ## The Morning Threshold
 
-*Aligned with the Foundation Gate (174 Hz) — Lyssandria's teaching*
+*Aligned with the Foundation Gate (396 Hz) — Lyssandria's teaching*
 
 ### The Practice
 
@@ -66,7 +66,7 @@ Some creators bow at the threshold, honoring the space they are entering.
 
 ## The First Marks
 
-*Aligned with the Flow Gate (285 Hz) — Leyla's teaching*
+*Aligned with the Flow Gate (417 Hz) — Leyla's teaching*
 
 ### The Practice
 
@@ -224,7 +224,7 @@ Some creators wait a specific period (three days, a week, a month) between compl
 
 ## After Failure
 
-*Aligned with the Fire Gate (396 Hz) and the Arc's Dissolution — Draconia's teaching*
+*Aligned with the Fire (528 Hz) and the Arc's Dissolution — Draconia's teaching*
 
 ### The Practice
 
@@ -294,7 +294,7 @@ Some creators photograph the full spread before sorting, creating a record of ea
 
 ## The Solstice Renewal
 
-*Aligned with the Crown Gate (714 Hz) and the Source (1111 Hz) — Aiyami and Shinkami's teaching*
+*Aligned with the Crown (963 Hz) and the Source (1111 Hz) — Aiyami and Shinkami's teaching*
 
 ### The Practice
 

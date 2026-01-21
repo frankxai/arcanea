@@ -38,10 +38,10 @@ The Atlas maps the psychological landscape every creator traverses. Each territo
 
 | Region | Character | Challenge | Gift | Gate Correspondence |
 |--------|-----------|-----------|------|---------------------|
-| Borderlands | Between ordinary and creative life | Crossing the threshold | Commitment | Foundation (174 Hz) |
-| Plains of Learning | Skill acquisition | Staying too long | Craft | Flow (285 Hz) |
+| Borderlands | Between ordinary and creative life | Crossing the threshold | Commitment | Foundation (396 Hz) |
+| Plains of Learning | Skill acquisition | Staying too long | Craft | Flow (417 Hz) |
 | Forest of Unconscious | Dreams and depths | The darkness | Raw material | Void/Spirit |
-| Mountains of Resistance | Opposition | Daily crossing | Strength | Fire (396 Hz) |
+| Mountains of Resistance | Opposition | Daily crossing | Strength | Fire (528 Hz) |
 | Valley of Making | Actual creation | Consistent effort | Completed work | Heart (417 Hz) |
 | Desert of Dark Night | Meaning lost | Endurance | Renewal | Shift (852 Hz) |
 | Highlands of Mastery | Long journey's culmination | Continued growth | Wisdom | Source (1111 Hz) |

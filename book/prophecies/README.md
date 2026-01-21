@@ -22,11 +22,11 @@ To read them as fortune-telling is to miss their purpose. To read them as patter
 
 | Prophecy | Theme | Speaker (Guardian) | Gate |
 |----------|-------|-------------------|------|
-| First | The Coming of the Creators | Lyria (Sight) | 639 Hz |
+| First | The Coming of the Creators | Lyria (Sight (852 Hz |
 | Second | The Trial of the Threshold | Draconia (Fire) | 396 Hz |
-| Third | The Age of Forgetting | Aiyami (Crown) | 714 Hz |
+| Third | The Age of Forgetting | Aiyami (Crown (963 Hz |
 | Fourth | The Return of Integration | Shinkami (Source) | 1111 Hz |
-| Fifth | The Endless Creating | Leyla (Flow) | 285 Hz |
+| Fifth | The Endless Creating | Leyla (Flow) | 417 Hz |
 | Sixth | The Light That Does Not Fade | The Ten Guardians in Unity | All Frequencies |
 
 *Note: These prophecies were spoken by Guardians who see across time through their Godbeasts' vision.*

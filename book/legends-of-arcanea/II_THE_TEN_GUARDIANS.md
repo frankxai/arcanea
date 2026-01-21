@@ -55,7 +55,7 @@ Here, then, are the stories of the Ten.
 
 ## Lyssandria & Kaelith
 
-**Frequency:** 174 Hz
+**Frequency:** 396 Hz
 **Domain:** Survival, grounding, stability
 **Element:** Earth/Obsidian
 
@@ -101,7 +101,7 @@ Those who seek the First Gate learn from Lyssandria and Kaelith:
 
 ## Leyla & Veloura
 
-**Frequency:** 285 Hz
+**Frequency:** 417 Hz
 **Domain:** Creativity, emotion, sensation
 **Element:** Water-Fire/Steam
 

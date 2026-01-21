@@ -84,13 +84,13 @@ The story of the First Academy's transcendence during the siege of the Dark Lord
 
 Detailed tales of each Guardian and their Godbeast, their tests, their teachings, and the frequencies they protect.
 
-- Tale I: Lyssandria and Kaelith — Foundation (174 Hz)
-- Tale II: Leyla and Veloura — Flow (285 Hz)
+- Tale I: Lyssandria and Kaelith — Foundation (396 Hz)
+- Tale II: Leyla and Veloura — Flow (417 Hz)
 - Tale III: Draconia and Draconis — Fire (396 Hz)
 - Tale IV: Maylinn and Laeylinn — Heart (417 Hz)
-- Tale V: Alera and Otome — Voice (528 Hz)
-- Tale VI: Lyria and Yumiko — Sight (639 Hz)
-- Tale VII: Aiyami and Sol — Crown (714 Hz)
+- Tale V: Alera and Otome — Voice (741 Hz)
+- Tale VI: Lyria and Yumiko — Sight (852 Hz)
+- Tale VII: Aiyami and Sol — Crown (963 Hz)
 - Tale VIII: Elara and Vaelith — Shift (852 Hz)
 - Tale IX: Ino and Kyuro — Unity (963 Hz)
 - Tale X: Shinkami — Source (1111 Hz)
@@ -139,7 +139,7 @@ Read as you would any mythic literature—for the grandeur, for the cosmic scope
 Each legend contains embedded wisdom about the Arcane, the Gates, and the nature of consciousness. Pause at moments that resonate.
 
 **For Practice:**
-The frequencies mentioned (174 Hz through 1111 Hz) are not mere story elements. They correspond to actual vibrational states. Meditate on them.
+The frequencies mentioned (396 Hz through 1111 Hz) are not mere story elements. They correspond to actual vibrational states. Meditate on them.
 
 **For Context:**
 These legends are referenced throughout all other Arcanea texts. Knowing them unlocks deeper understanding of the Laws, the Chronicles, and the Wisdom Scrolls.

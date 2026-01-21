@@ -67,13 +67,13 @@ Read all ten. See the pattern. Understand that every gift carries a shadow, and 
 
 | Gate | Frequency | Guardian | Godbeast | Chronicle Focus |
 |------|-----------|----------|----------|-----------------|
-| Foundation | 174 Hz | Lyssandria | Kaelith | Standing despite trembling |
-| Flow | 285 Hz | Leyla | Veloura | Moving after freezing |
-| Fire | 396 Hz | Draconia | Draconis | Many forms of power |
+| Foundation | 396 Hz | Lyssandria | Kaelith | Standing despite trembling |
+| Flow | 417 Hz | Leyla | Veloura | Moving after freezing |
+| Fire (528 Hz | Draconia | Draconis | Many forms of power |
 | Heart | 417 Hz | Maylinn | Laeylinn | Opening after closing |
-| Voice | 528 Hz | Alera | Otome | Truth with wisdom |
-| Sight | 639 Hz | Lyria | Yumiko | Acting despite uncertainty |
-| Crown | 714 Hz | Aiyami | Sol | Release of identification |
+| Voice (741 Hz | Alera | Otome | Truth with wisdom |
+| Sight (852 Hz | Lyria | Yumiko | Acting despite uncertainty |
+| Crown (963 Hz | Aiyami | Sol | Release of identification |
 | Shift | 852 Hz | Elara | Vaelith | Stability within change |
 | Unity | 963 Hz | Ino | Kyuro | Recognizing inherent oneness |
 | Source | 1111 Hz | Shinkami | — | Welcoming home |

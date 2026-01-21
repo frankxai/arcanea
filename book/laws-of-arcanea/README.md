@@ -110,7 +110,7 @@ At the deepest level, they are the same understanding.
 
 These Laws of Arcanea provide the theoretical foundation for:
 - Academy curricula across the Seven Houses (Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis)
-- The Ten Gates system and their frequencies (174 Hz - 1111 Hz)
+- The Ten Gates system and their frequencies (396 Hz - 1111 Hz)
 - Guardian-Godbeast teaching methodology
 - The Arc of existence (Potential → Manifestation → Experience → Dissolution → Evolved Potential)
 - The Five Elements (Fire, Water, Earth, Wind, Void/Spirit)

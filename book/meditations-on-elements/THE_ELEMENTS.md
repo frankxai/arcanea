@@ -98,7 +98,7 @@ Water does not force. It finds the path of least resistance and flows. It does n
 
 This is Water: the principle of flow and healing. Water in creation is the ability to move with the work rather than against it, to feel into the depths, to cleanse what is blocked.
 
-Water's color is blue, silver, crystal. Its feel is cool calm and endless depth. Its Gate is the second—the Gate of Flow (285 Hz), where Leyla and Veloura teach the dance of adaptation.
+Water's color is blue, silver, crystal. Its feel is cool calm and endless depth. Its Gate is the second—the Gate of Flow (417 Hz), where Leyla and Veloura teach the dance of adaptation.
 
 **Contemplate:**
 - Where are you forcing when you should be flowing?
@@ -159,7 +159,7 @@ Earth is solid. Earth is patient. Earth holds, contains, supports. Without Earth
 
 This is Earth: the principle of manifestation and patience. Earth in creation is the final step—when vision becomes object, when inspiration becomes work. Earth is the labor that makes the invisible visible.
 
-Earth's color is green, brown, stone. Its feel is solid and grounding. Its Gate is the first—the Gate of Foundation (174 Hz), where Lyssandria and Kaelith teach the art of standing.
+Earth's color is green, brown, stone. Its feel is solid and grounding. Its Gate is the first—the Gate of Foundation (396 Hz), where Lyssandria and Kaelith teach the art of standing.
 
 **Contemplate:**
 - Where do you lack Earth—vision that never manifests?
@@ -218,7 +218,7 @@ Wind is invisible, but it is everywhere. It moves without being seen. It carries
 
 This is Wind: the principle of freedom and change. Wind in creation is the movement between ideas, the swift connection, the refusal to stay fixed. Wind is thought, breath, the liberation that refuses chains.
 
-Wind's color is white, silver, invisible. Its feel is weightless and swift. Its aspect is the Voice Gate (528 Hz) where Alera and Otome teach the power of expression.
+Wind's color is white, silver, invisible. Its feel is weightless and swift. Its aspect is the Voice (741 Hz) where Alera and Otome teach the power of expression.
 
 **Contemplate:**
 - Where is your Wind blocked—expression stuck, thoughts circling?

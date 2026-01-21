@@ -163,13 +163,13 @@ The Academy has always been present. It exists at a frequency that most cannot p
 
 Opening the Gates raises perception. Each Gate opened attunes the seeker to higher frequencies:
 
-- **Foundation (174 Hz)**: Ground in body, feel the earth's pulse
-- **Flow (285 Hz)**: Sense the currents of emotion and creativity
+- **Foundation (396 Hz)**: Ground in body, feel the earth's pulse
+- **Flow (417 Hz)**: Sense the currents of emotion and creativity
 - **Fire (396 Hz)**: Ignite the will, transform stagnation into action
 - **Heart (417 Hz)**: Connect with others, feel the web of relationship
-- **Voice (528 Hz)**: Express truth, let the authentic self speak
-- **Sight (639 Hz)**: Perceive beyond ordinary vision, see patterns
-- **Crown (714 Hz)**: Touch higher consciousness, glimpse the infinite
+- **Voice (741 Hz)**: Express truth, let the authentic self speak
+- **Sight (852 Hz)**: Perceive beyond ordinary vision, see patterns
+- **Crown (963 Hz)**: Touch higher consciousness, glimpse the infinite
 - **Shift (852 Hz)**: Move between perspectives, hold multiple views
 - **Unity (963 Hz)**: Experience connection with all existence
 - **Source (1111 Hz)**: Commune with Shinkami, perceive the whole
@@ -198,7 +198,7 @@ The Seekers offer these guidelines:
 
 **Open the Gates**: Each Gate opened raises your perception. Do not rush—integration matters more than speed.
 
-**Attune to the Frequencies**: The sacred frequencies (174 Hz through 1111 Hz) are not mere numbers. They are doorways. Meditate on them. Let them reshape your consciousness.
+**Attune to the Frequencies**: The sacred frequencies (396 Hz through 1111 Hz) are not mere numbers. They are doorways. Meditate on them. Let them reshape your consciousness.
 
 **Seek the Guardians**: The Ten Guardians chose to remain in the physical world as guides. Find them in the dungeons. Learn what they can teach. Each Guardian opens a path.
 

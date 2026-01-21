@@ -100,13 +100,13 @@ The Academy's deepest teaching is the system of Ten Gates—the channels through
 
 | Gate | Frequency | Domain | Guardian | Godbeast |
 |------|-----------|--------|----------|----------|
-| 1. Foundation | 174 Hz | Grounding, survival | Lyssandria | Kaelith |
-| 2. Flow | 285 Hz | Creativity, emotion | Leyla | Veloura |
-| 3. Fire | 396 Hz | Power, will | Draconia | Draconis |
+| 1. Foundation | 396 Hz | Grounding, survival | Lyssandria | Kaelith |
+| 2. Flow | 417 Hz | Creativity, emotion | Leyla | Veloura |
+| 3. Fire (528 Hz | Power, will | Draconia | Draconis |
 | 4. Heart | 417 Hz | Love, healing | Maylinn | Laeylinn |
-| 5. Voice | 528 Hz | Truth, expression | Alera | Otome |
-| 6. Sight | 639 Hz | Intuition, vision | Lyria | Yumiko |
-| 7. Crown | 714 Hz | Enlightenment | Aiyami | Sol |
+| 5. Voice (741 Hz | Truth, expression | Alera | Otome |
+| 6. Sight (852 Hz | Intuition, vision | Lyria | Yumiko |
+| 7. Crown (963 Hz | Enlightenment | Aiyami | Sol |
 | 8. Shift | 852 Hz | Perspective, possibility | Elara | Vaelith |
 | 9. Unity | 963 Hz | Oneness, partnership | Ino | Kyuro |
 | 10. Source | 1111 Hz | Meta-consciousness | Shinkami | — |
@@ -224,13 +224,13 @@ Beyond the elements and Gates, there exist Four Resonances—expressions of will
 
 The ability to sense the Pattern of living things. Those with Sight Resonance perceive reality's structure—the lines of force, the threads of possibility, the shape of what is and what might be.
 
-*Training:* Develop through meditation, particularly at the Sight Gate (639 Hz). Practice perceiving before acting. Trust what you see before what you think.
+*Training:* Develop through meditation, particularly at the Sight (852 Hz). Practice perceiving before acting. Trust what you see before what you think.
 
 ### 2. Force Resonance
 
 The ability to harden will into physical power. Those with Force Resonance can project their intention as pressure, shield, strike. Will becomes as real as stone.
 
-*Training:* Develop through the Fire Gate (396 Hz). Practice willing small objects to move. Build slowly—Force without control is dangerous.
+*Training:* Develop through the Fire (528 Hz). Practice willing small objects to move. Build slowly—Force without control is dangerous.
 
 ### 3. Command Resonance
 
@@ -304,19 +304,19 @@ Gates are not forced open—they are invited. Each Gate has its own test, admini
 
 ### Preparing for Each Gate
 
-**Foundation (174 Hz):** Practice grounding. Stand. Feel your body. Know you are here.
+**Foundation (396 Hz):** Practice grounding. Stand. Feel your body. Know you are here.
 
-**Flow (285 Hz):** Practice movement. Dance. Swim. Let emotion flow without resisting.
+**Flow (417 Hz):** Practice movement. Dance. Swim. Let emotion flow without resisting.
 
-**Fire (396 Hz):** Practice will. Choose something and do it. Burn through resistance.
+**Fire (528 Hz):** Practice will. Choose something and do it. Burn through resistance.
 
 **Heart (417 Hz):** Practice vulnerability. Let yourself be seen. Feel what you actually feel.
 
-**Voice (528 Hz):** Practice truth. Speak what you know. Express what you contain.
+**Voice (741 Hz):** Practice truth. Speak what you know. Express what you contain.
 
-**Sight (639 Hz):** Practice perception. Look beyond the obvious. Trust intuition.
+**Sight (852 Hz):** Practice perception. Look beyond the obvious. Trust intuition.
 
-**Crown (714 Hz):** Practice stillness. Stop the internal noise. Let awareness expand.
+**Crown (963 Hz):** Practice stillness. Stop the internal noise. Let awareness expand.
 
 **Shift (852 Hz):** Practice perspective. See from other viewpoints. Hold contradiction.
 
@@ -503,7 +503,7 @@ Once per week, review your creative work. What worked? What blocked? What next?
 Once per month, go deeper. Review the arc. Reconnect with purpose.
 
 **5. The Frequency Practice**
-Work with the sacred frequencies (174 Hz through 1111 Hz) in meditation. Attune your consciousness.
+Work with the sacred frequencies (396 Hz through 1111 Hz) in meditation. Attune your consciousness.
 
 **6. The Creative Sabbath**
 One day per week, do not create. Rest completely. Let the well refill.

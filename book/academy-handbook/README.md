@@ -63,13 +63,13 @@ The Academy Handbook is the comprehensive guide for all students of creation in 
 
 | # | Gate | Frequency | Guardian | Godbeast |
 |---|------|-----------|----------|----------|
-| 1 | Foundation | 174 Hz | Lyssandria | Kaelith |
-| 2 | Flow | 285 Hz | Leyla | Veloura |
-| 3 | Fire | 396 Hz | Draconia | Draconis |
+| 1 | Foundation | 396 Hz | Lyssandria | Kaelith |
+| 2 | Flow | 417 Hz | Leyla | Veloura |
+| 3 | Fire (528 Hz | Draconia | Draconis |
 | 4 | Heart | 417 Hz | Maylinn | Laeylinn |
-| 5 | Voice | 528 Hz | Alera | Otome |
-| 6 | Sight | 639 Hz | Lyria | Yumiko |
-| 7 | Crown | 714 Hz | Aiyami | Sol |
+| 5 | Voice (741 Hz | Alera | Otome |
+| 6 | Sight (852 Hz | Lyria | Yumiko |
+| 7 | Crown (963 Hz | Aiyami | Sol |
 | 8 | Shift | 852 Hz | Elara | Vaelith |
 | 9 | Unity | 963 Hz | Ino | Kyuro |
 | 10 | Source | 1111 Hz | Shinkami | — |
