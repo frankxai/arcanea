@@ -22,10 +22,11 @@ subdomains:
   - "adaptation"
   - "pleasure"
   - "sensuality"
-frequency: "285"
+frequency: "417"  # CANONICAL - Flow Gate
 element: "water"
 chakra: "sacral"
 wisdom: "flow"
+awakened: "Liora"  # The Awakened who embodies Eudaira through this Gate
 
 # IDENTITY
 gender: "female"
@@ -39,7 +40,7 @@ colors:
   - "coral"
 sacred_numbers:
   - "2"  # Sacral chakra, duality, yin-yang
-  - "285"
+  - "417"  # Flow Gate frequency
 
 # =============================================================================
 # GODBEAST BOND (CRITICAL)

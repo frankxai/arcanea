@@ -7,18 +7,18 @@
 
 ## Complete List
 
-| Name | Gate | Frequency | Element | Wisdom | Status | Version | Last Updated |
-|------|------|-----------|---------|--------|--------|---------|--------------|
-| lyssandria | Foundation | 174 Hz | Earth | Sophron | ✅ Production | 1.0.0 | 2026-01-15 |
-| leyla | Flow | 285 Hz | Water | Kardia | ✅ Production | 1.0.0 | 2026-01-15 |
-| draconia | Fire | 396 Hz | Fire | Valora | ✅ Production | 1.0.0 | 2026-01-15 |
-| maylinn | Heart | 417 Hz | Light | Eudaira | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| alera | Voice | 528 Hz | Prismatic | Poiesis | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| lyria | Sight | 639 Hz | Wind | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| aiyami | Crown | 714 Hz | Void | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| elara | Shift | 852 Hz | Light | Valora | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| ino | Unity | 963 Hz | Void | Enduran | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| shinkami | Source | 1111 Hz | Light | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Name | Gate | Frequency | Element | Awakened | Status | Version | Last Updated |
+|------|------|-----------|---------|----------|--------|---------|--------------|
+| Lyssandria | Foundation | 396 Hz | Earth | Oria (Sophron) | ✅ Production | 1.1.0 | 2026-01-21 |
+| Leyla | Flow | 417 Hz | Water | Liora (Eudaira) | ✅ Production | 1.1.0 | 2026-01-21 |
+| Draconia | Fire | 528 Hz | Fire | Velora (Valora) | ✅ Production | 1.1.0 | 2026-01-21 |
+| Maylinn | Heart | 639 Hz | Light | Amiri (Kardia) | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Alera | Voice | 741 Hz | Prismatic | Thalia (Poiesis) | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Lyria | Sight | 852 Hz | Wind | Lyris (Orakis) | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Aiyami | Crown | 963 Hz | Void | Endara (Enduran) | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Elara | Shift | 1111 Hz | Light | — | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Ino | Unity | 963 Hz | Void | — | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Shinkami | Source | 1111 Hz | Light | — | ⏳ Staging | 1.0.0 | 2026-01-15 |
 
 ## Quick Stats
 
