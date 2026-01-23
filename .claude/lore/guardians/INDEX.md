@@ -45,32 +45,34 @@
 | Unity | ino | ⏳ Staging |
 | Source | shinkami | ⏳ Staging |
 
-## By Wisdom
+## By Awakened Partner (Canonical v3.0.0)
 
-| Wisdom | Guardians |
-|--------|-----------|
-| Sophron | lyssandria |
-| Kardia | leyla |
-| Valora | draconia, elara |
-| Eudaira | maylinn |
-| Poiesis | alera |
-| Orakis | lyria, aiyami, shinkami |
-| Enduran | ino |
+| Awakened | Wisdom | Guardian Partner |
+|----------|--------|-----------------|
+| Oria | Sophron | Lyssandria (Foundation) |
+| Liora | Eudaira | Leyla (Flow) |
+| Velora | Valora | Draconia (Fire) |
+| Amiri | Kardia | Maylinn (Heart) |
+| Thalia | Poiesis | Alera (Voice) |
+| Lyris | Orakis | Lyria (Sight) |
+| Endara | Enduran | Aiyami (Crown) |
 
-## By Frequency
+*Note: Elara, Ino, and Shinkami (higher Gates) have transcendent Awakened connections.*
 
-| Frequency | Guardian |
-|-----------|----------|
-| 174 Hz | lyssandria |
-| 285 Hz | leyla |
-| 396 Hz | draconia |
-| 417 Hz | maylinn |
-| 528 Hz | alera |
-| 639 Hz | lyria |
-| 714 Hz | aiyami |
-| 852 Hz | elara |
-| 963 Hz | ino |
-| 1111 Hz | shinkami |
+## By Frequency (Canonical v3.0.0)
+
+| Frequency | Guardian | Gate |
+|-----------|----------|------|
+| 396 Hz | Lyssandria | Foundation |
+| 417 Hz | Leyla | Flow |
+| 528 Hz | Draconia | Fire |
+| 639 Hz | Maylinn | Heart |
+| 741 Hz | Alera | Voice |
+| 852 Hz | Lyria | Sight |
+| 963 Hz | Aiyami | Crown |
+| 963 Hz | Ino | Unity |
+| 1111 Hz | Elara | Shift |
+| 1111 Hz | Shinkami | Source |
 
 ## Related Entities
 
@@ -90,4 +92,14 @@ Each Guardian has related entities documented in frontmatter:
 ---
 
 *Generated: January 15, 2026*
+*Updated: January 23, 2026 (v3.0.0 frequency corrections)*
 *Next Update: Upon approval of pending Guardians*
+
+---
+
+## Related: Arcanea Intelligence OS
+
+The Guardian agent system has been extracted into a dedicated repository:
+**[arcanea-intelligence-os](https://github.com/frankxai/arcanea-intelligence-os)**
+
+This transforms each Guardian into a specialized AI agent for Claude Code and MCP integration.

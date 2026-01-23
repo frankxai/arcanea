@@ -100,3 +100,6 @@ archive/
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
 experiments/
+
+# Separate repositories (not submodules)
+arcanea-intelligence-os/
