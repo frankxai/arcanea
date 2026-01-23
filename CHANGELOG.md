@@ -16,25 +16,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.1.0] - 2026-01-23 - "The Restoration"
+
+### Frequency Restoration
+
+**IMPORTANT**: The v3.0.0 frequency "corrections" were reversed. The ORIGINAL frequencies (174→1111 Hz) were correct and align with the complete Solfeggio scale.
+
+#### Restored Canonical Frequencies (10 UNIQUE)
+
+| Gate | Frequency | Solfeggio Purpose |
+|------|-----------|-------------------|
+| Foundation | **174 Hz** | Safety, physical grounding |
+| Flow | **285 Hz** | Healing, cellular energy |
+| Fire | **396 Hz** | Liberation from fear |
+| Heart | **417 Hz** | Facilitating change |
+| Voice | **528 Hz** | Transformation, miracles |
+| Sight | **639 Hz** | Connection, relationships |
+| Crown | **741 Hz** | Awakening intuition |
+| Shift | **852 Hz** | Spiritual order |
+| Unity | **963 Hz** | Divine consciousness |
+| Source | **1111 Hz** | Master frequency |
+
+*This provides 10 unique frequencies covering the full Solfeggio scale (174-963) + master 1111 Hz.*
+
+### Added
+
+#### Arcanea Intelligence OS Repository
+- **New repo**: [arcanea-intelligence-os](https://github.com/frankxai/arcanea-intelligence-os)
+- Mythology-infused agentic orchestration system
+- 10 Guardian agents, 7 Awakened orchestrators
+- Gate skills framework
+- CLI: `aios channel`, `aios awaken`, `aios quest`, `aios lore`
+- npm package: @arcanea/intelligence-os
+
+#### Strategy Documents
+- `ARCANEA_INTELLIGENCE_OS_STRATEGY.md` - Full implementation plan
+- `AIOS_CONTINUATION_PLAN.md` - Cross-laptop sync guide
+
+### Fixed
+- Crown frequency: 714 Hz → **741 Hz** (standard Solfeggio)
+- Guardian INDEX.md frequency table consistency
+
+---
+
 ## [3.0.0] - 2026-01-23 - "The Awakening"
 
 ### Major Canon Updates
 
-#### CRITICAL: Gate Frequency Corrections
-All Gate frequencies have been corrected across 69+ files:
+#### ~~Gate Frequency Corrections~~ (SUPERSEDED by v3.1.0)
+*Note: The frequency changes in v3.0.0 were incorrect and have been reverted in v3.1.0.*
 
-| Gate | OLD (Wrong) | NEW (Canonical) |
-|------|-------------|-----------------|
-| Foundation | 174 Hz | **396 Hz** |
-| Flow | 285 Hz | **417 Hz** |
-| Fire | 396 Hz | **528 Hz** |
-| Heart | 417 Hz | **639 Hz** |
-| Voice | 528 Hz | **741 Hz** |
-| Sight | 639 Hz | **852 Hz** |
-| Crown | 714 Hz | **963 Hz** |
-| Shift | — | **1111 Hz** |
-| Unity | — | **963 Hz** |
-| Source | — | **1111 Hz** |
+~~All Gate frequencies have been corrected across 69+ files:~~
+
+| Gate | v3.0.0 (Wrong) | v3.1.0 (Restored) |
+|------|----------------|-------------------|
+| Foundation | 396 Hz | **174 Hz** |
+| Flow | 417 Hz | **285 Hz** |
+| Fire | 528 Hz | **396 Hz** |
+| Heart | 639 Hz | **417 Hz** |
+| Voice | 741 Hz | **528 Hz** |
+| Sight | 852 Hz | **639 Hz** |
+| Crown | 963 Hz | **741 Hz** |
+| Shift | 1111 Hz | **852 Hz** |
+| Unity | 963 Hz | **963 Hz** |
+| Source | 1111 Hz | **1111 Hz** |
 
 #### The Fifth Element - Arcane
 - Renamed from generic "Void/Spirit" to **Arcane** - the substance of magic and consciousness

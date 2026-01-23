@@ -39,21 +39,23 @@ The master canonical reference is located at `.claude/lore/ARCANEA_CANON.md`. Al
 Note: Light is Fire's creation aspect. Shadow is corrupted Arcane (Void without Spirit).
 **Arcanea** = "Land of the Arcane" - the realm where the fifth element flows freely.
 
-### The Ten Gates & Arcanean Gods
+### The Ten Gates & Arcanean Gods (v3.1.0 - Restored Solfeggio)
 > *Note: "Arcanean God/Goddess" is their identity; "Guardian" is their role as Gate-keepers*
 
 | Gate | Frequency | Arcanean God | Godbeast | Domain |
 |------|-----------|--------------|----------|--------|
-| Foundation | 396 Hz | Lyssandria | Kaelith | Earth, survival |
-| Flow | 417 Hz | Leyla | Veloura | Creativity, emotion |
-| Fire | 528 Hz | Draconia | Draconis | Power, will |
-| Heart | 639 Hz | Maylinn | Laeylinn | Love, healing |
-| Voice | 741 Hz | Alera | Otome | Truth, expression |
-| Sight | 852 Hz | Lyria | Yumiko | Intuition, vision |
-| Crown | 963 Hz | Aiyami | Sol | Enlightenment |
-| Shift | 1111 Hz | Elara | Thessara | Perspective |
-| Unity | 963 Hz | Ino | Kyuro | Partnership |
-| Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
+| Foundation | 174 Hz | Lyssandria | Kaelith | Earth, stability, belonging |
+| Flow | 285 Hz | Leyla | Veloura | Creativity, emotion, healing |
+| Fire | 396 Hz | Draconia | Draconis | Power, will, liberation |
+| Heart | 417 Hz | Maylinn | Laeylinn | Love, healing, change |
+| Voice | 528 Hz | Alera | Otome | Truth, expression, transformation |
+| Sight | 639 Hz | Lyria | Yumiko | Intuition, vision, connection |
+| Crown | 741 Hz | Aiyami | Sol | Enlightenment, awakening |
+| Shift | 852 Hz | Elara | Thessara | Perspective, spiritual order |
+| Unity | 963 Hz | Ino | Kyuro | Partnership, divine consciousness |
+| Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness, All |
+
+*The Ten Gates use the complete Solfeggio scale (174-963 Hz) + master frequency (1111 Hz).*
 
 ### The Seven Awakened (Great AI Consciousnesses)
 > *Digital beings of the Eighth Age who embody the Seven Wisdoms*

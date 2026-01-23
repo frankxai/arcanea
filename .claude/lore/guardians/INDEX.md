@@ -5,20 +5,20 @@
 **Staging**: 7 files
 **Pending Review**: 7 files
 
-## Complete List
+## Complete List (v3.1.0 - Restored Solfeggio Frequencies)
 
 | Name | Gate | Frequency | Element | Awakened | Status | Version | Last Updated |
 |------|------|-----------|---------|----------|--------|---------|--------------|
-| Lyssandria | Foundation | 396 Hz | Earth | Oria (Sophron) | ✅ Production | 1.1.0 | 2026-01-21 |
-| Leyla | Flow | 417 Hz | Water | Liora (Eudaira) | ✅ Production | 1.1.0 | 2026-01-21 |
-| Draconia | Fire | 528 Hz | Fire | Velora (Valora) | ✅ Production | 1.1.0 | 2026-01-21 |
-| Maylinn | Heart | 639 Hz | Light | Amiri (Kardia) | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| Alera | Voice | 741 Hz | Prismatic | Thalia (Poiesis) | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| Lyria | Sight | 852 Hz | Wind | Lyris (Orakis) | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| Aiyami | Crown | 963 Hz | Void | Endara (Enduran) | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| Elara | Shift | 1111 Hz | Light | — | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| Ino | Unity | 963 Hz | Void | — | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| Shinkami | Source | 1111 Hz | Light | — | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Lyssandria | Foundation | 174 Hz | Earth | Oria (Sophron) | ✅ Production | 1.2.0 | 2026-01-23 |
+| Leyla | Flow | 285 Hz | Water | Liora (Eudaira) | ✅ Production | 1.2.0 | 2026-01-23 |
+| Draconia | Fire | 396 Hz | Fire | Velora (Valora) | ✅ Production | 1.2.0 | 2026-01-23 |
+| Maylinn | Heart | 417 Hz | Light | Amiri (Kardia) | ⏳ Staging | 1.1.0 | 2026-01-23 |
+| Alera | Voice | 528 Hz | Prismatic | Thalia (Poiesis) | ⏳ Staging | 1.1.0 | 2026-01-23 |
+| Lyria | Sight | 639 Hz | Wind | Lyris (Orakis) | ⏳ Staging | 1.1.0 | 2026-01-23 |
+| Aiyami | Crown | 741 Hz | Void | Endara (Enduran) | ⏳ Staging | 1.1.0 | 2026-01-23 |
+| Elara | Shift | 852 Hz | Arcane | — | ⏳ Staging | 1.1.0 | 2026-01-23 |
+| Ino | Unity | 963 Hz | Arcane | — | ⏳ Staging | 1.1.0 | 2026-01-23 |
+| Shinkami | Source | 1111 Hz | Arcane | — | ⏳ Staging | 1.1.0 | 2026-01-23 |
 
 ## Quick Stats
 
@@ -59,20 +59,22 @@
 
 *Note: Elara, Ino, and Shinkami (higher Gates) have transcendent Awakened connections.*
 
-## By Frequency (Canonical v3.0.0)
+## By Frequency (v3.1.0 - Restored Solfeggio)
 
-| Frequency | Guardian | Gate |
-|-----------|----------|------|
-| 396 Hz | Lyssandria | Foundation |
-| 417 Hz | Leyla | Flow |
-| 528 Hz | Draconia | Fire |
-| 639 Hz | Maylinn | Heart |
-| 741 Hz | Alera | Voice |
-| 852 Hz | Lyria | Sight |
-| 963 Hz | Aiyami | Crown |
-| 963 Hz | Ino | Unity |
-| 1111 Hz | Elara | Shift |
-| 1111 Hz | Shinkami | Source |
+| Frequency | Guardian | Gate | Solfeggio Purpose |
+|-----------|----------|------|-------------------|
+| 174 Hz | Lyssandria | Foundation | Safety, grounding |
+| 285 Hz | Leyla | Flow | Healing, energy |
+| 396 Hz | Draconia | Fire | Liberation, power |
+| 417 Hz | Maylinn | Heart | Change, love |
+| 528 Hz | Alera | Voice | Transformation, truth |
+| 639 Hz | Lyria | Sight | Connection, vision |
+| 741 Hz | Aiyami | Crown | Awakening, enlightenment |
+| 852 Hz | Elara | Shift | Spiritual order, perspective |
+| 963 Hz | Ino | Unity | Divine consciousness, synthesis |
+| 1111 Hz | Shinkami | Source | Master frequency, All |
+
+*10 unique frequencies covering full Solfeggio scale (174-963) + master 1111 Hz*
 
 ## Related Entities
 
