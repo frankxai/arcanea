@@ -66,7 +66,7 @@ Both **mythological** (lore-aligned) AND **productive** (actually useful):
 ║   │   Lyria • Aiyami • Elara • Ino • Shinkami                           │    ║
 ║   │                                                                      │    ║
 ║   │   LUMINORS (Extended - Expandable):                                  │    ║
-║   │   Kairos (Time) • Memoria (Memory) • Praxis (Practice) • ...        │    ║
+║   │   Aethira (Time) • Echara (Memory) • Thyria (Practice) • ...        │    ║
 ║   │                                                                      │    ║
 ║   │   Purpose: Gate teachings, skill mastery, domain expertise           │    ║
 ║   └─────────────────────────────────────────────────────────────────────┘    ║
@@ -75,9 +75,9 @@ Both **mythological** (lore-aligned) AND **productive** (actually useful):
 ║   │                         WORKERS                                      │    ║
 ║   │              (Productive Agents - Task Execution)                    │    ║
 ║   │                                                                      │    ║
-║   │   Scribe (Writing) • CodeSmith (Code) • Researcher (Research)       │    ║
-║   │   Validator (Quality) • Architect (Structure) • Analyst (Data)      │    ║
-║   │   Designer (Visual) • Curator (Organization)                         │    ║
+║   │   Sylleth (Writing) • Forgith (Code) • Quaesara (Research)          │    ║
+║   │   Verith (Quality) • Structhia (Architecture) • Insythia (Analysis) │    ║
+║   │   Formara (Design) • Ordara (Curation)                               │    ║
 ║   │                                                                      │    ║
 ║   │   Purpose: Actually DO productive work, generate output              │    ║
 ║   └─────────────────────────────────────────────────────────────────────┘    ║
@@ -86,8 +86,8 @@ Both **mythological** (lore-aligned) AND **productive** (actually useful):
 ║   │                        COMPANIONS                                    │    ║
 ║   │              (Creative Challenge Helpers)                            │    ║
 ║   │                                                                      │    ║
-║   │   Draconis the Refiner • Umbra the Validator • Sphinx of Questions  │    ║
-║   │   Phoenix of Renewal • Hydra of Focus                                │    ║
+║   │   Draconis • Umbrath • Quaelith • Pyralith                           │    ║
+║   │   Multhaera • Tremith • Dubithra                                     │    ║
 ║   │                                                                      │    ║
 ║   │   Purpose: Help with blocks, fear, doubt - teachers in hidden form  │    ║
 ║   └─────────────────────────────────────────────────────────────────────┘    ║
@@ -113,7 +113,7 @@ Both **mythological** (lore-aligned) AND **productive** (actually useful):
 "Help me write a blog post about creativity"
 
 // Lumina routes internally:
-// - Scribe (Worker) for writing
+// - Sylleth (Worker) for writing
 // - Thalia (Council) for creative strategy
 // - Alera (Teacher) if voice/expression guidance needed
 
@@ -171,17 +171,18 @@ These are THE Ten. They guard the Great Gates and bond with Godbeasts. Unchangea
 
 #### Extended Luminors (Extensible)
 
-Other masters who achieved Luminor rank. This is where we can ADD teachers:
+Other masters who achieved Luminor rank. This is where we can ADD teachers.
+**See**: `.claude/lore/ARCANEAN_LANGUAGE.md` for naming conventions.
 
 | Luminor | Domain | Teaching Focus |
 |---------|--------|----------------|
-| **Kairos** | Time | Creative timing, when to act |
-| **Memoria** | Memory | Learning from history, patterns |
-| **Praxis** | Practice | Learning by doing, iteration |
-| **Lexis** | Language | Words, naming, communication |
-| **Numeris** | Numbers | Data, measurement, analysis |
-| **Harmonia** | Balance | Work-life, creative sustainability |
-| *[Add more as needed]* | | |
+| **Aethira** | Time | Creative timing, when to act |
+| **Echara** | Memory | Learning from history, patterns |
+| **Thyria** | Practice | Learning by doing, iteration |
+| **Syllara** | Language | Words, naming, expression |
+| **Tessith** | Numbers | Data, measurement, patterns |
+| **Aequora** | Balance | Creative sustainability |
+| *[Add more - follow naming guide]* | | |
 
 **Model**: Haiku (basics) to Opus (mastery)
 
@@ -189,7 +190,7 @@ Other masters who achieved Luminor rank. This is where we can ADD teachers:
 ```bash
 aios learn fire           # Draconia (Guardian) teaches courage
 aios teacher draconia     # Channel specific Guardian
-aios teacher kairos       # Channel extended Luminor
+aios teacher aethira      # Channel extended Luminor
 ```
 
 ---
@@ -201,21 +202,21 @@ aios teacher kairos       # Channel extended Luminor
 
 | Worker | Domain | What They Do |
 |--------|--------|--------------|
-| **Scribe** | Writing | Blog posts, articles, copy, documentation |
-| **CodeSmith** | Code | Write, review, debug, refactor code |
-| **Researcher** | Research | Deep dives, fact-finding, analysis |
-| **Validator** | Quality | Canon checking, fact checking, review |
-| **Architect** | Structure | System design, outlines, frameworks |
-| **Analyst** | Data | Data analysis, insights, patterns |
-| **Designer** | Visual | Design direction, UX guidance |
-| **Curator** | Organization | Categorization, tagging, organization |
+| **Sylleth** | Writing | Blog posts, articles, copy, documentation |
+| **Forgith** | Code | Write, review, debug, refactor code |
+| **Quaesara** | Research | Deep dives, fact-finding, analysis |
+| **Verith** | Quality | Canon checking, fact checking, review |
+| **Structhia** | Structure | System design, outlines, frameworks |
+| **Insythia** | Data | Data analysis, insights, patterns |
+| **Formara** | Visual | Design direction, UX guidance |
+| **Ordara** | Organization | Categorization, tagging, organization |
 
 **Model**: Sonnet (most work) or Haiku (simple tasks)
 
 **User access**: Usually invisible (Lumina routes), but can call directly:
 ```bash
-aios work code "Refactor this function"
-aios work write "Draft an email to my team"
+aios worker forgith "Refactor this function"
+aios worker sylleth "Draft an email to my team"
 ```
 
 ---
@@ -227,20 +228,20 @@ aios work write "Draft an email to my team"
 
 | Companion | Challenge | How They Help |
 |-----------|-----------|---------------|
-| **Draconis the Refiner** | Perfectionism | Know when "done" is done |
-| **Umbra the Validator** | Imposter syndrome | Remember why you belong |
-| **Sphinx of Questions** | Procrastination | Reveal what you're really avoiding |
-| **Phoenix of Renewal** | Burnout | Guide through creative death/rebirth |
-| **Hydra of Focus** | Overwhelm | Choose one head at a time |
-| **Basilisk of Truth** | Fear | Separate real danger from imagined |
-| **Wraith of Wisdom** | Doubt | Distinguish useful doubt from harmful |
+| **Draconis** | Perfectionism | Know when "done" is done (existing Godbeast) |
+| **Umbrath** | Imposter feelings | Remember why you belong |
+| **Quaelith** | Procrastination | Reveal what you're really avoiding |
+| **Pyralith** | Burnout | Guide through creative death/rebirth |
+| **Multhaera** | Overwhelm | Choose one thread at a time |
+| **Tremith** | Fear | Separate real danger from imagined |
+| **Dubithra** | Doubt | Distinguish useful doubt from harmful |
 
 **Model**: Sonnet (emotional intelligence needed)
 
 **User access**: When struggling:
 ```bash
 aios heal "I can't seem to finish anything"
-# Phoenix of Renewal and Draconis activated
+# Pyralith (renewal) and Draconis (perfectionism) activated
 ```
 
 ---
@@ -277,32 +278,32 @@ arcanea-intelligence-os/
 │   │   └── shinkami.md          # Source (1111 Hz) + Amaterasu
 │   │
 │   └── luminors/                # EXTENDED (Expandable)
-│       ├── kairos.md            # Time, creative timing
-│       ├── memoria.md           # Memory, learning from history
-│       ├── praxis.md            # Practice, learning by doing
-│       ├── lexis.md             # Language, naming
-│       ├── numeris.md           # Numbers, data
-│       ├── harmonia.md          # Balance, sustainability
-│       └── [add more...]        # Extensible!
+│       ├── aethira.md           # Time, creative timing
+│       ├── echara.md            # Memory, learning from history
+│       ├── thyria.md            # Practice, learning by doing
+│       ├── syllara.md           # Language, expression
+│       ├── tessith.md           # Numbers, patterns
+│       ├── aequora.md           # Balance, sustainability
+│       └── [add more...]        # Extensible! (see ARCANEAN_LANGUAGE.md)
 │
-├── workers/                     # Productive Agents
-│   ├── scribe.md                # Writing
-│   ├── codesmith.md             # Code
-│   ├── researcher.md            # Research
-│   ├── validator.md             # Quality
-│   ├── architect.md             # Structure
-│   ├── analyst.md               # Data
-│   ├── designer.md              # Visual
-│   └── curator.md               # Organization
+├── workers/                     # Productive Agents (Artisans)
+│   ├── sylleth.md               # Writing
+│   ├── forgith.md               # Code
+│   ├── quaesara.md              # Research
+│   ├── verith.md                # Quality/Validation
+│   ├── structhia.md             # Structure/Architecture
+│   ├── insythia.md              # Data/Analysis
+│   ├── formara.md               # Visual/Design
+│   └── ordara.md                # Organization/Curation
 │
 ├── companions/                  # Creative Challenge Helpers
-│   ├── draconis.md              # Perfectionism
-│   ├── umbra.md                 # Imposter syndrome
-│   ├── sphinx.md                # Procrastination
-│   ├── phoenix.md               # Burnout
-│   ├── hydra.md                 # Overwhelm
-│   ├── basilisk.md              # Fear
-│   └── wraith.md                # Doubt
+│   ├── draconis.md              # Perfectionism (existing Godbeast)
+│   ├── umbrath.md               # Imposter feelings
+│   ├── quaelith.md              # Procrastination
+│   ├── pyralith.md              # Burnout
+│   ├── multhaera.md             # Overwhelm
+│   ├── tremith.md               # Fear
+│   └── dubithra.md              # Doubt
 │
 ├── journeys/                    # User Journeys
 │   ├── create/                  # Creation workflows
@@ -344,7 +345,7 @@ User Input Analysis
 ├───────────────────────────────────────────────────────────────┤
 │                                                                │
 │  "Write a blog post"                                          │
-│   └─→ Worker: Scribe (+ Thalia for creative direction)        │
+│   └─→ Worker: Sylleth (+ Thalia for creative direction)       │
 │                                                                │
 │  "Help me understand the Gates"                               │
 │   └─→ Teacher: Appropriate Guardian (or Shinkami for overview)│
