@@ -12,13 +12,13 @@
  */
 
 // Types
-export * from './types';
+export * from './types/index.js';
 
 // Constants
-export * from './constants';
+export * from './constants/index.js';
 
 // Utilities
-export * from './utils';
+export * from './utils/index.js';
 
 // Version
 export const VERSION = '0.1.0';

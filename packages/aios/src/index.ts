@@ -9,10 +9,10 @@
 export * from '@arcanea/core';
 
 // Export adapters
-export * from './adapters';
+export * from './adapters/index.js';
 
 // Export swarm
-export * from './swarm';
+export * from './swarm/index.js';
 
 // Version
 export const VERSION = '0.1.0';

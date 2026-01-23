@@ -15,7 +15,7 @@ import type {
   MagicRankDefinition,
   DarkLord,
   CosmicDuality,
-} from '../types/mythology';
+} from '../types/mythology.js';
 
 // ============================================
 // COSMIC DUALITY

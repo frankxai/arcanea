@@ -4,7 +4,7 @@
  * Type definitions for user profiles, creations, and social features.
  */
 
-import type { LuminorId, AcademyHouse } from './mythology';
+import type { LuminorId, AcademyHouse } from './mythology.js';
 
 // ============================================
 // PROFILE

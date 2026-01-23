@@ -4,7 +4,7 @@
  * Type definitions for the Library of Arcanea content system.
  */
 
-import type { Element, LuminorId } from './mythology';
+import type { Element, LuminorId } from './mythology.js';
 
 // ============================================
 // CORE TYPES

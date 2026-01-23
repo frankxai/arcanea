@@ -27,7 +27,7 @@ export type {
   Luminor,
   DarkLord,
   ArcaneaWorld,
-} from './mythology';
+} from './mythology.js';
 
 // Content Types
 export type {
@@ -50,7 +50,7 @@ export type {
   ArcaneaTome,
   ContentQuery,
   SearchResult,
-} from './content';
+} from './content.js';
 
 // Profile Types
 export type {
@@ -72,7 +72,7 @@ export type {
   FilterType,
   SortOption,
   TabOption,
-} from './profile';
+} from './profile.js';
 
 // Agent Types
 export type {
@@ -91,4 +91,4 @@ export type {
   IntelligenceOSConfig,
   ChannelRequest,
   ChannelResponse,
-} from './agents';
+} from './agents.js';

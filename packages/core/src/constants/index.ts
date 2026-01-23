@@ -19,4 +19,4 @@ export {
   getGateByFrequency,
   getRankForGates,
   getElementByName,
-} from './mythology';
+} from './mythology.js';

@@ -4,8 +4,8 @@
  * Common utility functions for the Arcanea ecosystem.
  */
 
-import type { GateName, Element, MagicRank } from '../types/mythology';
-import { GATES, MAGIC_RANKS, ELEMENTS, GUARDIANS } from '../constants/mythology';
+import type { GateName, Element, MagicRank } from '../types/mythology.js';
+import { GATES, MAGIC_RANKS, ELEMENTS, GUARDIANS } from '../constants/mythology.js';
 
 // ============================================
 // FREQUENCY UTILITIES

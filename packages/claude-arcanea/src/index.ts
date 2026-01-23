@@ -9,7 +9,7 @@
 export * from '@arcanea/core';
 
 // Export skills
-export * from './skills';
+export * from './skills/index.js';
 
 // Version
 export const VERSION = '0.1.0';

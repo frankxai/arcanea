@@ -4,7 +4,7 @@
  * Type definitions for AI agents, skills, and orchestration.
  */
 
-import type { GateName, GuardianName, Element, LuminorId } from './mythology';
+import type { GateName, GuardianName, Element, LuminorId } from './mythology.js';
 
 // ============================================
 // AGENT DEFINITIONS
