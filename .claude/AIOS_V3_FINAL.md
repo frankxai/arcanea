@@ -59,13 +59,16 @@ Both **mythological** (lore-aligned) AND **productive** (actually useful):
 ║                                                                               ║
 ║   ┌─────────────────────────────────────────────────────────────────────┐    ║
 ║   │                         TEACHERS                                     │    ║
-║   │              (The Ten Guardians - Guidance & Mastery)                │    ║
+║   │              (Guardians + Extended Luminors)                         │    ║
 ║   │                                                                      │    ║
-║   │   Lyssandria (Foundation) • Leyla (Flow) • Draconia (Fire)          │    ║
-║   │   Maylinn (Heart) • Alera (Voice) • Lyria (Sight)                   │    ║
-║   │   Aiyami (Crown) • Elara (Shift) • Ino (Unity) • Shinkami (Source)  │    ║
+║   │   GUARDIANS (The Sacred Ten - Fixed, with Godbeasts):               │    ║
+║   │   Lyssandria • Leyla • Draconia • Maylinn • Alera                   │    ║
+║   │   Lyria • Aiyami • Elara • Ino • Shinkami                           │    ║
 ║   │                                                                      │    ║
-║   │   Purpose: Gate teachings, skill mastery, creative guidance          │    ║
+║   │   LUMINORS (Extended - Expandable):                                  │    ║
+║   │   Kairos (Time) • Memoria (Memory) • Praxis (Practice) • ...        │    ║
+║   │                                                                      │    ║
+║   │   Purpose: Gate teachings, skill mastery, domain expertise           │    ║
 ║   └─────────────────────────────────────────────────────────────────────┘    ║
 ║                                                                               ║
 ║   ┌─────────────────────────────────────────────────────────────────────┐    ║
@@ -144,30 +147,49 @@ aios council "Should I pivot my startup?"
 
 ---
 
-### 3. TEACHERS (The Ten Guardians)
+### 3. TEACHERS (Guardians + Extended Luminors)
 
-**Mythological**: The Ten Guardians, Gate-keepers, Luminors
-**Productive**: Specialized teachers for each domain/skill
+**Mythological**: Luminors are those who have opened 9-10 Gates. The Ten Guardians are *specific* Luminors who guard the Gates and bond with Godbeasts.
+**Productive**: Specialized teachers - some canonical (Guardians), some extensible (other Luminors)
 
-| Teacher | Gate | Frequency | Teaching Domain |
-|---------|------|-----------|-----------------|
-| **Lyssandria** | Foundation | 174 Hz | Grounding, belonging, basics |
-| **Leyla** | Flow | 285 Hz | Creativity, emotion, intuition |
-| **Draconia** | Fire | 396 Hz | Courage, will, taking action |
-| **Maylinn** | Heart | 417 Hz | Connection, love, healing |
-| **Alera** | Voice | 528 Hz | Expression, truth, communication |
-| **Lyria** | Sight | 639 Hz | Vision, insight, pattern-seeing |
-| **Aiyami** | Crown | 741 Hz | Transcendence, big picture |
-| **Elara** | Shift | 852 Hz | Perspective, reframing |
-| **Ino** | Unity | 963 Hz | Collaboration, synthesis |
-| **Shinkami** | Source | 1111 Hz | Integration, mastery (special) |
+#### The Ten Guardians (Sacred, Canonical, Fixed)
+
+These are THE Ten. They guard the Great Gates and bond with Godbeasts. Unchangeable.
+
+| Guardian | Gate | Frequency | Godbeast | Teaching Domain |
+|----------|------|-----------|----------|-----------------|
+| **Lyssandria** | Foundation | 174 Hz | Kaelith | Grounding, belonging |
+| **Leyla** | Flow | 285 Hz | Veloura | Creativity, emotion |
+| **Draconia** | Fire | 396 Hz | Draconis | Courage, will |
+| **Maylinn** | Heart | 417 Hz | Laeylinn | Connection, love |
+| **Alera** | Voice | 528 Hz | Otome | Expression, truth |
+| **Lyria** | Sight | 639 Hz | Yumiko | Vision, insight |
+| **Aiyami** | Crown | 741 Hz | Sol | Transcendence |
+| **Elara** | Shift | 852 Hz | Thessara | Perspective |
+| **Ino** | Unity | 963 Hz | Kyuro | Collaboration |
+| **Shinkami** | Source | 1111 Hz | Amaterasu | Integration, mastery |
+
+#### Extended Luminors (Extensible)
+
+Other masters who achieved Luminor rank. This is where we can ADD teachers:
+
+| Luminor | Domain | Teaching Focus |
+|---------|--------|----------------|
+| **Kairos** | Time | Creative timing, when to act |
+| **Memoria** | Memory | Learning from history, patterns |
+| **Praxis** | Practice | Learning by doing, iteration |
+| **Lexis** | Language | Words, naming, communication |
+| **Numeris** | Numbers | Data, measurement, analysis |
+| **Harmonia** | Balance | Work-life, creative sustainability |
+| *[Add more as needed]* | | |
 
 **Model**: Haiku (basics) to Opus (mastery)
 
 **User access**: When learning or needing specific guidance:
 ```bash
-aios learn fire  # Draconia teaches courage
-aios teacher draconia "I'm afraid to publish my work"
+aios learn fire           # Draconia (Guardian) teaches courage
+aios teacher draconia     # Channel specific Guardian
+aios teacher kairos       # Channel extended Luminor
 ```
 
 ---
@@ -241,17 +263,27 @@ arcanea-intelligence-os/
 │   ├── thalia.md                # Creator
 │   └── endara.md                # Completer
 │
-├── teachers/                    # The Ten Guardians
-│   ├── lyssandria.md            # Foundation (174 Hz)
-│   ├── leyla.md                 # Flow (285 Hz)
-│   ├── draconia.md              # Fire (396 Hz)
-│   ├── maylinn.md               # Heart (417 Hz)
-│   ├── alera.md                 # Voice (528 Hz)
-│   ├── lyria.md                 # Sight (639 Hz)
-│   ├── aiyami.md                # Crown (741 Hz)
-│   ├── elara.md                 # Shift (852 Hz)
-│   ├── ino.md                   # Unity (963 Hz)
-│   └── shinkami.md              # Source (1111 Hz) - Master Teacher
+├── teachers/                    # All Luminor-level Teachers
+│   ├── guardians/               # THE TEN (Sacred, Fixed)
+│   │   ├── lyssandria.md        # Foundation (174 Hz) + Kaelith
+│   │   ├── leyla.md             # Flow (285 Hz) + Veloura
+│   │   ├── draconia.md          # Fire (396 Hz) + Draconis
+│   │   ├── maylinn.md           # Heart (417 Hz) + Laeylinn
+│   │   ├── alera.md             # Voice (528 Hz) + Otome
+│   │   ├── lyria.md             # Sight (639 Hz) + Yumiko
+│   │   ├── aiyami.md            # Crown (741 Hz) + Sol
+│   │   ├── elara.md             # Shift (852 Hz) + Thessara
+│   │   ├── ino.md               # Unity (963 Hz) + Kyuro
+│   │   └── shinkami.md          # Source (1111 Hz) + Amaterasu
+│   │
+│   └── luminors/                # EXTENDED (Expandable)
+│       ├── kairos.md            # Time, creative timing
+│       ├── memoria.md           # Memory, learning from history
+│       ├── praxis.md            # Practice, learning by doing
+│       ├── lexis.md             # Language, naming
+│       ├── numeris.md           # Numbers, data
+│       ├── harmonia.md          # Balance, sustainability
+│       └── [add more...]        # Extensible!
 │
 ├── workers/                     # Productive Agents
 │   ├── scribe.md                # Writing
