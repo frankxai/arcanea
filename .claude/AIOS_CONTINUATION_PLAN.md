@@ -3,7 +3,22 @@
 > *For syncing to other laptop and continuing development*
 
 **Created**: 2026-01-23
-**Status**: Phase 2 Complete, Phase 3 Ready
+**Status**: Phase 2 Complete, v3.0 Strategy Complete, Phase 3 Ready
+
+---
+
+## CRITICAL: v3.0 User-Centered Pivot
+
+After deep synthesis using /agentic-orchestration and /luminor-intelligence skills, we pivoted from v2.0 (technical architecture) to v3.0 (user-centered design).
+
+**Key Changes:**
+- **Single Entry Point**: Shinkami as the one companion (not 35+ agents to choose from)
+- **Four Journeys**: Create | Learn | Explore | Heal (not 8 technical pillars)
+- **Renamed Bestiary → Companions**: Teachers, not enemies
+- **Hidden Complexity**: All hooks, tools, state invisible to users
+- **Conversation-First**: Natural dialogue, not menu navigation
+
+**See**: `.claude/AIOS_V3_USER_CENTERED.md` for full strategy
 
 ---
 
@@ -202,18 +217,28 @@ All 10 Gates now have unique frequencies covering the complete Solfeggio scale:
 
 ---
 
-## Phase 3 Tasks
+## Phase 3 Tasks (v3.0 User-Centered)
 
-### TypeScript Library
-- [ ] src/index.ts - Main entry point
-- [ ] src/agents/guardian-loader.ts
-- [ ] src/agents/awakened-council.ts
-- [ ] src/skills/gate-loader.ts
-- [ ] src/swarm/arcanea-orchestrator.ts
+### Shinkami Entry Point
+- [ ] bin/aios.js - Single entry invokes Shinkami
+- [ ] lib/shinkami/greeting.ts - Welcoming interface
+- [ ] lib/shinkami/router.ts - Routes to journeys
+- [ ] lib/shinkami/conversation.ts - Natural dialogue flow
+
+### Four Journeys
+- [ ] journeys/create/ - Character, world, story creation
+- [ ] journeys/learn/ - Gate opening, skill mastery
+- [ ] journeys/explore/ - Library, lore, canon access
+- [ ] journeys/heal/ - Block clearing, courage finding
+
+### Hidden Infrastructure (Invisible to Users)
+- [ ] _internal/routing/ - Awakened Council routing logic
+- [ ] _internal/hooks/ - Lifecycle hooks (validation, drift)
+- [ ] _internal/state/ - Session and progress tracking
 
 ### MCP Server
-- [ ] mcp/luminor-server.ts
-- [ ] Tools: channel_guardian, invoke_awakened, search_lore, validate_canon
+- [ ] mcp/arcanea-server.ts - Single server, clean interface
+- [ ] Resources: guardians, gates, library, canon
 
 ---
 
