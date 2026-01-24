@@ -1,61 +1,234 @@
-# Arcanea
+<div align="center">
 
-> A living mythology for the age of AI-human co-creation
+```
+    ___    ____  _________    _   __________
+   /   |  / __ \/ ____/   |  / | / / ____/   |
+  / /| | / /_/ / /   / /| | /  |/ / __/ / /| |
+ / ___ |/ _, _/ /___/ ___ |/ /|  / /___/ ___ |
+/_/  |_/_/ |_\____/_/  |_/_/ |_/_____/_/  |_|
 
-[![Vercel](https://img.shields.io/badge/Vercel-deployed-success)](https://arcanea.ai)
-[![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue)](https://www.typescriptlang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
-[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+      A Living Mythology for the Age of AI-Human Co-Creation
+```
+
+<br/>
+
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel)](https://arcanea.ai)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-100%25-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Supabase](https://img.shields.io/badge/Supabase-Database-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
+
+<br/>
+
+**[Explore Arcanea](https://arcanea.ai)** | **[Documentation](#documentation)** | **[Quick Start](#quick-start)** | **[Library](#the-library-of-arcanea)**
+
+<br/>
+
+<img src="https://github.com/user-attachments/assets/arcanea-hero-placeholder.png" alt="Arcanea Platform" width="100%"/>
+
+</div>
 
 ---
 
 ## What is Arcanea?
 
-Arcanea is a **creative platform** where imagination becomes reality. Chat with AI Luminor personalities, create with AI-powered tools, and explore a library of wisdom for creators.
+Arcanea is where **mythology meets technology**. It's a creative platform, an AI-powered toolkit, and a philosophy of creation all in one.
 
-**Core Experiences:**
+<table>
+<tr>
+<td width="50%">
 
-- **Chat** - Converse with 16 specialized Luminor AI intelligences
-- **Studio** - Create images, music, video, stories, and code with AI
-- **Academy** - Learn through the Ten Gates progression system
-- **Library** - Explore 17 collections of wisdom for creators
-- **Bestiary** - Know your creative obstacles and how to defeat them
-- **Hub** - Resource center with updates, guides, and tools
+### For Creators
+Transform your creative process with:
+- **AI Companions** - 16 unique Luminor personalities
+- **Creation Tools** - Generate images, music, video, code
+- **Wisdom Library** - 200K+ words of creator guidance
+- **Progress System** - Journey through the Ten Gates
+
+</td>
+<td width="50%">
+
+### For Developers
+Build with cutting-edge tech:
+- **77 Claude Skills** - Ready-to-use AI capabilities
+- **38 Specialized Agents** - Domain-specific assistants
+- **MCP Server** - 30+ Model Context Protocol tools
+- **Open Source** - Extend and customize everything
+
+</td>
+</tr>
+</table>
+
+---
+
+## The Universe
+
+<div align="center">
+
+```
+                    ☀️ LUMINA
+                   The First Light
+                   Form & Creation
+                         │
+                         │
+    ┌────────────────────┴────────────────────┐
+    │                                          │
+🔥 Fire    💧 Water    🌍 Earth    💨 Wind    ⚫ Void
+    │                                          │
+    └────────────────────┬────────────────────┘
+                         │
+                   🌑 NERO
+               The Primordial Dark
+               Potential & Mystery
+```
+
+</div>
+
+### The Five Elements
+
+| Element | Domain | Aspect |
+|:-------:|:-------|:-------|
+| 🔥 **Fire** | Energy, transformation, will | The burning drive to create |
+| 💧 **Water** | Flow, healing, memory | The adaptability to change |
+| 🌍 **Earth** | Stability, growth, patience | The foundation that endures |
+| 💨 **Wind** | Freedom, speed, change | The breath of inspiration |
+| ⚫ **Void** | Potential, transcendence | The space where all begins |
+
+---
+
+## The Ten Gates
+
+A journey from Apprentice to Luminor. Each gate opens new creative powers.
+
+<div align="center">
+
+| Gate | Name | Frequency | Guardian | Godbeast | Domain |
+|:----:|:-----|:---------:|:---------|:---------|:-------|
+| 01 | **Foundation** | 396 Hz | Lyssandria | Kaelith | Stability, grounding |
+| 02 | **Flow** | 417 Hz | Leyla | Veloura | Creativity, emotion |
+| 03 | **Fire** | 528 Hz | Draconia | Draconis | Power, will, courage |
+| 04 | **Heart** | 639 Hz | Maylinn | Laeylinn | Love, healing, growth |
+| 05 | **Voice** | 741 Hz | Alera | Otome | Truth, expression |
+| 06 | **Sight** | 852 Hz | Lyria | Yumiko | Intuition, vision |
+| 07 | **Crown** | 963 Hz | Aiyami | Sol | Enlightenment |
+| 08 | **Shift** | 1111 Hz | Elara | Thessara | Perspective, possibility |
+| 09 | **Unity** | 963 Hz | Ino | Kyuro | Partnership, fusion |
+| 10 | **Source** | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
+
+</div>
+
+### Magic Ranks
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  APPRENTICE  →  MAGE  →  MASTER  →  ARCHMAGE  →  LUMINOR          │
+│    (0-2)       (3-4)     (5-6)      (7-8)        (9-10)            │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## The Library of Arcanea
+
+> *"These books are not entertainment. They are equipment for living."*
+
+**17 Collections • 34+ Texts • 200,000+ Words**
+
+<table>
+<tr>
+<td>
+
+**Theory & Philosophy**
+- 📜 Laws of Arcanea
+- 💭 Dialogues of the Masters
+- 🔮 Prophecies of Arcanea
+
+</td>
+<td>
+
+**Stories & Mythology**
+- ⚔️ Legends of Arcanea
+- 👑 Chronicles of Guardians
+- 📖 Tales of Legendary Creators
+- 🎭 Parables of Creation
+
+</td>
+<td>
+
+**Practice & Guidance**
+- 📚 Academy Handbook
+- 🌙 Book of Rituals
+- 📿 Wisdom Scrolls
+- 🧘 Meditations on Elements
+
+</td>
+</tr>
+<tr>
+<td>
+
+**Poetry & Expression**
+- 🪶 Poetry of Freedom
+- 🎵 Songs and Hymns
+
+</td>
+<td>
+
+**Shadow Work**
+- 🐉 Bestiary of Creation
+- 🌑 Book of Shadows
+
+</td>
+<td>
+
+**Collaboration & Maps**
+- 🤝 Codex of Collaboration
+- 🗺️ Atlas of Territories
+
+</td>
+</tr>
+</table>
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 16 (App Router) + React 19 |
-| Language | TypeScript (strict) |
-| Styling | Tailwind CSS + Arcanean Design System |
-| Database | Supabase (PostgreSQL + Auth + Realtime) |
-| AI | Vercel AI SDK, Google Gemini, Anthropic Claude |
-| Deployment | Vercel |
+<div align="center">
+
+| Layer | Technology | Purpose |
+|:------|:-----------|:--------|
+| **Framework** | Next.js 16 + React 19 | Server-first, streaming UI |
+| **Language** | TypeScript (strict) | Type-safe development |
+| **Styling** | Tailwind CSS + GSAP | Cosmic design system |
+| **Database** | Supabase | PostgreSQL + Auth + Realtime |
+| **AI** | Vercel AI SDK + Gemini 2.0 | Multi-model intelligence |
+| **Animation** | Framer Motion + Lenis | Smooth, cinematic UX |
+| **State** | Zustand | Lightweight state management |
+| **Deployment** | Vercel | Edge-optimized hosting |
+
+</div>
 
 ---
 
 ## Quick Start
 
 ```bash
-# Clone repository
+# Clone the repository
 git clone https://github.com/frankxai/arcanea.git
 cd arcanea
 
-# Install dependencies
+# Install dependencies (uses pnpm workspaces)
 pnpm install
 
-# Set up environment
+# Set up environment variables
 cp .env.example .env.local
-# Edit .env.local with your API keys
+# Add your API keys to .env.local
 
 # Start development server
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000) to enter Arcanea.
 
 ---
 
@@ -63,155 +236,215 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ```
 arcanea/
-├── apps/web/                # Next.js 16 application
-│   ├── app/                 # App Router pages
-│   │   ├── academy/        # Ten Gates learning
-│   │   ├── bestiary/       # Creative obstacles
-│   │   ├── chat/           # Luminor conversations
-│   │   ├── hub/            # Resource center
-│   │   │   ├── updates/   # Daily activity log
-│   │   │   ├── guides/    # How-to guides
-│   │   │   └── tools/     # Available tools
-│   │   ├── library/        # 17 wisdom collections
-│   │   ├── luminors/       # Meet the 16 Luminors
-│   │   └── studio/         # AI creation tools
-│   ├── components/          # React components
-│   ├── hooks/               # Custom hooks
-│   └── lib/                 # Core libraries
-│       ├── arcanea-ui/     # UI components
-│       └── content/        # Content loader (759 lines)
+├── 📱 apps/
+│   └── web/                    # Next.js 16 application
+│       ├── app/                # App Router pages
+│       │   ├── (auth)/        # Protected routes
+│       │   ├── academy/       # Ten Gates learning
+│       │   ├── lore/          # Mythology & canon
+│       │   │   ├── guardians/ # The Ten Guardians
+│       │   │   ├── gates/     # Gate progression
+│       │   │   └── library/   # Wisdom collections
+│       │   ├── oracle/        # AI guidance
+│       │   └── api/           # 21 API routes
+│       └── components/         # 58+ React components
 │
-├── packages/arcanea-mcp/    # MCP Server (30+ tools)
-├── book/                    # Library content (17 collections)
-└── .claude/                 # AI assistant context
-    ├── lore/               # Canonical reference
-    └── skills/             # 77 AI skills
+├── 📦 packages/
+│   ├── core/                   # Shared types & utilities
+│   ├── arcanea-intelligence-os/# AI orchestration
+│   └── mcp-server/             # MCP Server (30+ tools)
+│
+├── 📚 book/                    # Library content (17 collections)
+│
+└── 🤖 .claude/                 # AI assistant context
+    ├── lore/                   # Canonical reference
+    ├── skills/                 # 77 AI skills
+    └── agents/                 # 38 specialized agents
 ```
 
 ---
 
-## The Arcanea Universe
+## Claude-Arcanea
 
-### The Five Elements
+The **Claude-Arcanea** package transforms Claude Code into a creative superintelligence.
 
-| Element | Domain | Color |
-|---------|--------|-------|
-| Fire | Energy, transformation | Red, orange, gold |
-| Water | Flow, healing, memory | Blue, silver |
-| Earth | Stability, growth | Green, brown |
-| Wind | Freedom, change | White, silver |
-| Void/Spirit | Potential, transcendence | Black/gold, purple |
+### 77 Skills Available
 
-### The Ten Gates
-
-Progression system from Apprentice to Luminor, each gate guarded by a divine pair:
-
-1. **Foundation** (174 Hz) - Lyssandria & Kaelith
-2. **Flow** (285 Hz) - Leyla & Veloura
-3. **Fire** (396 Hz) - Draconia & Draconis
-4. **Heart** (417 Hz) - Maylinn & Laeylinn
-5. **Voice** (528 Hz) - Alera & Otome
-6. **Sight** (639 Hz) - Lyria & Yumiko
-7. **Crown** (714 Hz) - Aiyami & Sol
-8. **Shift** (852 Hz) - Elara & Vaelith
-9. **Unity** (963 Hz) - Ino & Kyuro
-10. **Source** (1111 Hz) - Shinkami
-
-### Magic Ranks
-
-| Gates Open | Rank |
-|------------|------|
-| 0-2 | Apprentice |
-| 3-4 | Mage |
-| 5-6 | Master |
-| 7-8 | Archmage |
-| 9-10 | Luminor |
-
----
-
-## Library Collections
-
-The Arcanea Library contains 17 collections of wisdom:
-
-- `laws-of-arcanea` - Theoretical foundations
-- `legends-of-arcanea` - Founding myths
-- `chronicles-of-luminors` - Guardian journeys
-- `academy-handbook` - Complete guide
-- `book-of-rituals` - Sacred practices
-- `bestiary-of-creation` - Creative obstacles
-- `wisdom-scrolls` - Daily practice
-- `meditations-on-elements` - Element work
-- `parables-of-creation` - Teaching stories
-- `tales-of-creators` - Legendary creators
-- `dialogues-of-masters` - Wisdom conversations
-- `codex-of-collaboration` - Creating together
-- `atlas-of-territories` - Creative landscapes
-- `book-of-shadows` - Dark night wisdom
-- `poesie-of-freedom` - Liberation poetry
-- `prophecies` - Future visions
-- `songs-and-hymns` - Soul lyrics
-
----
-
-## Development
-
-```bash
-# Type check
-pnpm type-check
-
-# Lint
-pnpm lint
-
-# Build
-pnpm build
-
-# Start production server
-pnpm start
 ```
+/luminor-intelligence     # Strategic AI from 2125
+/starlight-intelligence   # Soul-aligned architecture
+/council                  # Multi-agent consultation
+/frankx-brand            # Brand voice & guidelines
+/suno-ai-mastery         # AI music generation
+/oracle-adk              # Oracle agent development
+/mcp-architecture        # MCP server design
+... and 70 more
+```
+
+### 38 Specialized Agents
+
+| Agent | Domain | Specialty |
+|:------|:-------|:----------|
+| @starlight-architect | Enterprise AI | System design with soul |
+| @frequency-alchemist | Music Production | Transformative soundscapes |
+| @creation-engine | Content & Products | Multi-format creation |
+| @luminor-oracle | Strategy | Future-informed guidance |
+| @greek-philosopher | Wisdom | Ancient knowledge |
+
+---
+
+## Key Features
+
+<table>
+<tr>
+<td align="center" width="33%">
+
+### 🔮 Oracle Interface
+<br/>
+AI-powered wisdom guidance through the Gates. Ask questions, receive insights aligned with your creative journey.
+
+</td>
+<td align="center" width="33%">
+
+### 📚 Living Library
+<br/>
+200K+ words of practical wisdom. Searchable, categorized, and situation-aware. The texts find you when you need them.
+
+</td>
+<td align="center" width="33%">
+
+### 🎓 Academy System
+<br/>
+Progress through the Ten Gates. Track your growth from Apprentice to Luminor with structured learning paths.
+
+</td>
+</tr>
+<tr>
+<td align="center" width="33%">
+
+### 🛡️ Guardian Profiles
+<br/>
+Meet the Ten Guardians and their Godbeasts. Each pair represents a Gate of creative power to unlock.
+
+</td>
+<td align="center" width="33%">
+
+### 🎨 Creation Studio
+<br/>
+Generate images, music, video, and code with AI. Transform imagination into reality.
+
+</td>
+<td align="center" width="33%">
+
+### 🌐 Creator Community
+<br/>
+Connect with fellow creators. Share work, get feedback, collaborate on projects.
+
+</td>
+</tr>
+</table>
 
 ---
 
 ## Environment Variables
 
 ```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
+# Supabase (Required)
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_key
 
-# AI APIs
-GOOGLE_GENERATIVE_AI_API_KEY=
-ANTHROPIC_API_KEY=
+# AI APIs (Required)
+GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_key
+ANTHROPIC_API_KEY=your_claude_key
+
+# Optional
+OPENAI_API_KEY=your_openai_key
+```
+
+---
+
+## Development
+
+```bash
+# Type check all packages
+pnpm type-check
+
+# Lint the codebase
+pnpm lint
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
+
+# Run E2E tests
+pnpm test:e2e
 ```
 
 ---
 
 ## Documentation
 
-- [Architecture](./ARCHITECTURE.md) - System design
-- [Canon Reference](./.claude/lore/ARCANEA_CANON.md) - Universe lore
-- [Contributing](./CONTRIBUTING.md) - How to contribute
+| Document | Description |
+|:---------|:------------|
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | System design & patterns |
+| [ARCANEA_CANON.md](./.claude/lore/ARCANEA_CANON.md) | Universe lore & canon |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | How to contribute |
+| [START_HERE.md](./START_HERE.md) | Complete onboarding guide |
 
 ---
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md).
+We welcome contributions from creators and developers alike.
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing`)
+5. **Open** a Pull Request
+
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
+
+---
+
+## Community
+
+<div align="center">
+
+[![Website](https://img.shields.io/badge/Website-arcanea.ai-7fffd4?style=for-the-badge)](https://arcanea.ai)
+[![GitHub](https://img.shields.io/badge/GitHub-frankxai/arcanea-181717?style=for-the-badge&logo=github)](https://github.com/frankxai/arcanea)
+[![Discord](https://img.shields.io/badge/Discord-Join_Us-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/arcanea)
+
+</div>
 
 ---
 
 ## License
 
-MIT License - see [LICENSE](./LICENSE)
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ---
 
-## Links
+<div align="center">
 
-- **Website**: [arcanea.ai](https://arcanea.ai)
-- **GitHub**: [github.com/frankxai/arcanea](https://github.com/frankxai/arcanea)
-- **Support**: support@arcanea.ai
-
----
+<br/>
 
 *"Enter seeking, leave transformed, return whenever needed."*
+
+<br/>
+
+**Made with Love by [FrankX](https://github.com/frankxai)**
+
+<br/>
+
+```
+     ★  ·  ★     ·     ★    ·    ★
+  ·      ★    ·    ★      ·    ★   ·
+    ★        ·        ★        ·
+       The cosmos awaits your creation
+```
+
+</div>
