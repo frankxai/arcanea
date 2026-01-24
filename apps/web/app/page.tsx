@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { getCollections, getAllTexts } from "@/lib/content";
-import { HeroV2, LuminorShowcase, FeaturesV2, WisdomsSection, SocialProof, CTASection } from "@/components/landing";
+import { HeroV3, LogosSection, LuminorShowcase, FeaturesV2, WisdomsSection, HowItWorks, SocialProof, CTASection } from "@/components/landing";
 import { Navbar } from "@/components/navigation";
 
 export const metadata: Metadata = {
@@ -30,8 +30,8 @@ export default async function Page() {
       <Navbar />
 
       <main>
-        {/* Hero Section - Premium V2 */}
-        <HeroV2
+        {/* Hero Section - Premium V3 */}
+        <HeroV3
           stats={{
             luminors: 16,
             wisdoms: 7,
@@ -39,6 +39,9 @@ export default async function Page() {
             words: totalWords,
           }}
         />
+
+        {/* Logos Section - Featured Publications */}
+        <LogosSection />
 
         {/* Social Proof - Trust Badges & Testimonials */}
         <SocialProof />
@@ -51,6 +54,9 @@ export default async function Page() {
 
         {/* Seven Wisdoms */}
         <WisdomsSection />
+
+        {/* How It Works - Interactive Process */}
+        <HowItWorks />
 
         {/* Resources Grid */}
         <section className="py-24 border-t border-white/5">
