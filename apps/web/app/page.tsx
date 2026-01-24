@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { getCollections, getAllTexts } from "@/lib/content";
-import { HeroV3, LogosSection, LuminorShowcase, FeaturesV2, WisdomsSection, HowItWorks, SocialProof, CTASection } from "@/components/landing";
+import { HeroV3, LogosSection, LuminorShowcase, FeaturesV2, WisdomsSection, HowItWorks, SocialProof, TestimonialsV2, PricingSection, FAQSection, CTASection } from "@/components/landing";
 import { Navbar } from "@/components/navigation";
 
 export const metadata: Metadata = {
@@ -57,6 +57,15 @@ export default async function Page() {
 
         {/* How It Works - Interactive Process */}
         <HowItWorks />
+
+        {/* Testimonials Carousel */}
+        <TestimonialsV2 />
+
+        {/* Pricing Section */}
+        <PricingSection />
+
+        {/* FAQ Section */}
+        <FAQSection />
 
         {/* Resources Grid */}
         <section className="py-24 border-t border-white/5">

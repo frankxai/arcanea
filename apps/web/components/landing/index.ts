@@ -9,3 +9,6 @@ export { SocialProof } from './social-proof';
 export { CTASection } from './cta-section';
 export { LogosSection } from './logos-section';
 export { HowItWorks } from './how-it-works';
+export { PricingSection } from './pricing-section';
+export { TestimonialsV2 } from './testimonials-v2';
+export { FAQSection } from './faq-section';
