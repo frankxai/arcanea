@@ -165,7 +165,7 @@ These are THE Ten. They guard the Great Gates and bond with Godbeasts. Unchangea
 | **Alera** | Voice | 528 Hz | Otome | Expression, truth |
 | **Lyria** | Sight | 639 Hz | Yumiko | Vision, insight |
 | **Aiyami** | Crown | 741 Hz | Sol | Transcendence |
-| **Elara** | Shift | 852 Hz | Thessara | Perspective |
+| **Elara** | Shift | 852 Hz | Vaelith | Perspective |
 | **Ino** | Unity | 963 Hz | Kyuro | Collaboration |
 | **Shinkami** | Source | 1111 Hz | Amaterasu | Integration, mastery |
 
@@ -273,7 +273,7 @@ arcanea-intelligence-os/
 │   │   ├── alera.md             # Voice (528 Hz) + Otome
 │   │   ├── lyria.md             # Sight (639 Hz) + Yumiko
 │   │   ├── aiyami.md            # Crown (741 Hz) + Sol
-│   │   ├── elara.md             # Shift (852 Hz) + Thessara
+│   │   ├── elara.md             # Shift (852 Hz) + Vaelith
 │   │   ├── ino.md               # Unity (963 Hz) + Kyuro
 │   │   └── shinkami.md          # Source (1111 Hz) + Amaterasu
 │   │

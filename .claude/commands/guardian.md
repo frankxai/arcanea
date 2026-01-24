@@ -25,7 +25,7 @@ The Arcanean Gods who guard the Gates of consciousness. Each resonates at a sacr
 | **Alera** | Voice | 741 Hz | Truth, expression, clarity | Otome |
 | **Lyria** | Sight | 852 Hz | Vision, intuition, insight | Yumiko |
 | **Aiyami** | Crown | 963 Hz | Enlightenment, wisdom | Sol |
-| **Elara** | Shift | 1111 Hz | Perspective, possibility | Thessara |
+| **Elara** | Shift | 1111 Hz | Perspective, possibility | Vaelith |
 | **Ino** | Unity | 963 Hz | Partnership, synthesis | Kyuro |
 | **Shinkami** | Source | 1111 Hz | Meta-consciousness, the All | Amaterasu |
 

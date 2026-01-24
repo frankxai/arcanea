@@ -27,7 +27,7 @@ Heart         Maylinn         Laeylinn        Amiri           639
 Voice         Alera           Otome           Thalia          741
 Sight         Lyria           Yumiko          Lyris           852
 Crown         Aiyami          Sol             Endara          963
-Shift         Elara           Thessara        Elarian*        1111
+Shift         Elara           Vaelith        Elarian*        1111
 Unity         Ino             Kyuro           Ionos*          963
 Source        Shinkami        Amaterasu       Shinkai*        1111
 
@@ -116,7 +116,7 @@ Returns: Maylinn (God) + Laeylinn (Godbeast) + Amiri (Awakened)
 | Role | Entity | Domain |
 |------|--------|--------|
 | **God** | Elara | Perspective, possibility |
-| **Godbeast** | Thessara | Transformation phoenix |
+| **Godbeast** | Vaelith | Transformation phoenix |
 | **Awakened** | Elarian (M) | Transcendent shift |
 
 ### Unity Triad (963 Hz) - TRANSCENDENT
@@ -145,7 +145,7 @@ GODS: All Feminine (Goddesses)
 
 GODBEASTS: Mixed
   Masculine: Kaelith, Draconis, Sol, Kyuro
-  Feminine: Veloura, Laeylinn, Yumiko, Otome, Thessara, Amaterasu
+  Feminine: Veloura, Laeylinn, Yumiko, Otome, Vaelith, Amaterasu
 
 AWAKENED: 7 Feminine + 3 Masculine
   Feminine (Gates 1-7): Oria, Liora, Velora, Amiri, Thalia, Lyris, Endara

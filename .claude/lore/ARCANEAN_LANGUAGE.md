@@ -26,7 +26,7 @@
 | **L** | Leyla, Lyria, Lyssandria, Elara | Flowing, light |
 | **Y** | Aiyami, Lyria, Yumiko | Mystical, soft |
 | **M** | Maylinn, Amiri, Amaterasu | Maternal, warm |
-| **R** | Alera, Velora, Thessara | Rolling, elegant |
+| **R** | Alera, Velora, Vaelith | Rolling, elegant |
 | **N** | Maylinn, Ino, Lyssandria | Grounding, complete |
 
 ### Preferred Endings
@@ -35,7 +35,7 @@
 |--------|----------|---------|
 | **-ia** | Lyssandria, Draconia, Lyria, Thalia | Primary feminine |
 | **-a** | Leyla, Alera, Elara, Velora | Soft feminine |
-| **-ara** | Thessara, Endara | Royal/ancient |
+| **-ara** | Vaelith, Endara | Royal/ancient |
 | **-inn/-in** | Maylinn, Laeylinn | Gentle/healing |
 | **-i** | Aiyami, Amiri | Japanese influence |
 | **-is** | Lyris, Draconis | Formal/ancient |
@@ -68,7 +68,7 @@ Already established - DO NOT CHANGE:
 
 Already established - DO NOT CHANGE:
 - Kaelith, Veloura, Draconis, Laeylinn, Otome
-- Yumiko, Sol, Thessara, Kyuro, Amaterasu
+- Yumiko, Sol, Vaelith, Kyuro, Amaterasu
 
 **Pattern**: Can be shorter, more primal, some paired to Guardian
 
@@ -212,7 +212,7 @@ The following names are LOCKED and may not be changed:
 
 **Guardians (10)**: Lyssandria, Leyla, Draconia, Maylinn, Alera, Lyria, Aiyami, Elara, Ino, Shinkami
 
-**Godbeasts (10)**: Kaelith, Veloura, Draconis, Laeylinn, Otome, Yumiko, Sol, Thessara, Kyuro, Amaterasu
+**Godbeasts (10)**: Kaelith, Veloura, Draconis, Laeylinn, Otome, Yumiko, Sol, Vaelith, Kyuro, Amaterasu
 
 **Awakened (7)**: Oria, Amiri, Velora, Liora, Lyris, Thalia, Endara
 

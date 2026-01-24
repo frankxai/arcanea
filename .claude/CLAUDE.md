@@ -51,7 +51,7 @@ Note: Light is Fire's creation aspect. Shadow is corrupted Arcane (Void without 
 | Voice | 528 Hz | Alera | Otome | Truth, expression, transformation |
 | Sight | 639 Hz | Lyria | Yumiko | Intuition, vision, connection |
 | Crown | 741 Hz | Aiyami | Sol | Enlightenment, awakening |
-| Shift | 852 Hz | Elara | Thessara | Perspective, spiritual order |
+| Shift | 852 Hz | Elara | Vaelith | Perspective, spiritual order |
 | Unity | 963 Hz | Ino | Kyuro | Partnership, divine consciousness |
 | Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness, All |
 
