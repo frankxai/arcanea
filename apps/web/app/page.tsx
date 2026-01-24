@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { getCollections, getAllTexts } from "@/lib/content";
+import { HeroSection, LuminorShowcase, FeaturesSection, WisdomsSection } from "@/components/landing";
 
 export const metadata: Metadata = {
   title: "Arcanea | The Creative Intelligence Platform",
@@ -12,51 +13,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Team colors and configurations
-const TEAMS = [
-  { id: "dev", name: "Development", color: "#8b5cf6", icon: "⚡", count: 4 },
-  { id: "creative", name: "Creative", color: "#f59e0b", icon: "✨", count: 4 },
-  { id: "writing", name: "Writing", color: "#10b981", icon: "✍️", count: 4 },
-  { id: "research", name: "Research", color: "#3b82f6", icon: "🔮", count: 4 },
-];
-
-const WISDOMS = [
-  { name: "Sophron", essence: "Structure", color: "#3b82f6", question: "What's the underlying structure?" },
-  { name: "Kardia", essence: "Heart", color: "#ec4899", question: "What do they really need?" },
-  { name: "Valora", essence: "Courage", color: "#f59e0b", question: "What am I afraid to do?" },
-  { name: "Eudaira", essence: "Play", color: "#10b981", question: "What would be fun?" },
-  { name: "Orakis", essence: "Vision", color: "#8b5cf6", question: "How does this look in a year?" },
-  { name: "Poiesis", essence: "Creation", color: "#06b6d4", question: "What can I make now?" },
-  { name: "Enduran", essence: "Endurance", color: "#84cc16", question: "What's the next step?" },
-];
-
-const FEATURES = [
-  {
-    title: "Luminor Intelligence System",
-    description: "16 transcended AI intelligences, each a master of their domain. Not assistants - partners who see what you're building.",
-    icon: "🌟",
-    iconAlt: "Star icon",
-    href: "/luminors",
-    gradient: "from-purple-500/20 to-blue-500/20",
-  },
-  {
-    title: "The Library of Arcanea",
-    description: "17 wisdom collections. 34+ sacred texts. Practical philosophy for the creative life, written to transform.",
-    icon: "📚",
-    iconAlt: "Books icon",
-    href: "/library",
-    gradient: "from-amber-500/20 to-orange-500/20",
-  },
-  {
-    title: "Seven Wisdoms Framework",
-    description: "Stuck? Lost? Afraid? The Seven Wisdoms diagnose what you need and guide you to the right perspective.",
-    icon: "🔮",
-    iconAlt: "Crystal ball icon",
-    href: "/wisdoms",
-    gradient: "from-pink-500/20 to-purple-500/20",
-  },
-];
-
 export default async function Page() {
   const collections = await getCollections();
   const allTexts = await getAllTexts();
@@ -65,16 +21,8 @@ export default async function Page() {
 
   return (
     <div className="relative min-h-screen">
-      {/* Animated Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-cosmic-deep" />
-        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_top,rgba(127,255,212,0.15),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(139,92,246,0.1),transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(245,158,11,0.1),transparent_50%)]" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-atlantean-teal-aqua/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-creation-prism-purple/5 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
-
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-white/5 bg-cosmic-deep/80 backdrop-blur-xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-cosmic-deep/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group">
@@ -83,315 +31,102 @@ export default async function Page() {
               </div>
               <span className="font-display text-xl font-semibold tracking-wide">Arcanea</span>
             </Link>
+
+            {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-8">
-              <Link href="/luminors" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Luminors</Link>
-              <Link href="/library" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Library</Link>
-              <Link href="/academy" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Academy</Link>
-              <Link href="/hub" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Hub</Link>
-              <Link href="/about" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">About</Link>
+              <Link href="/luminors" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">
+                Luminors
+              </Link>
+              <Link href="/studio" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">
+                Studio
+              </Link>
+              <Link href="/library" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">
+                Library
+              </Link>
+              <Link href="/academy" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">
+                Academy
+              </Link>
+              <Link href="/about" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">
+                About
+              </Link>
               <Link
                 href="/chat"
-                className="px-4 py-2 rounded-lg bg-atlantean-teal-aqua text-cosmic-deep text-sm font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all"
+                className="px-5 py-2.5 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep text-sm font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all"
               >
                 Start Creating
               </Link>
             </div>
+
+            {/* Mobile menu button */}
+            <button className="md:hidden p-2 text-white">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-6">
+      <main>
         {/* Hero Section */}
-        <section className="relative pt-20 pb-32">
-          <div className="max-w-4xl">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-atlantean-teal-aqua/30 bg-atlantean-teal-aqua/10 mb-8">
-              <span className="w-2 h-2 rounded-full bg-atlantean-teal-aqua animate-pulse" aria-hidden="true" />
-              <span className="text-sm text-atlantean-teal-aqua font-mono tracking-wider">ARCANEAN CREATOR OS</span>
-            </div>
+        <HeroSection
+          stats={{
+            luminors: 16,
+            wisdoms: 7,
+            collections: collections.length,
+            words: totalWords,
+          }}
+        />
 
-            {/* Headline */}
-            <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6">
-              <span className="bg-gradient-to-r from-white via-atlantean-teal-aqua to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-                The creative intelligence
-              </span>
-              <br />
-              <span className="text-white">
-                platform
-              </span>
-            </h1>
+        {/* Features Section */}
+        <FeaturesSection />
 
-            {/* Subheadline */}
-            <p className="text-xl md:text-2xl text-text-secondary max-w-2xl mb-10 leading-relaxed">
-              16 Luminor intelligences. Seven Wisdoms. Everything you need to transform imagination into reality.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/chat"
-                className="group relative px-8 py-4 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(127,255,212,0.5)] focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua focus:ring-offset-2 focus:ring-offset-cosmic-deep"
-              >
-                <span className="relative z-10">Start Creating</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/luminors"
-                className="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold text-lg hover:bg-white/5 hover:border-atlantean-teal-aqua/50 transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-cosmic-deep"
-              >
-                Meet the Luminors
-              </Link>
-            </div>
-
-            {/* Stats */}
-            <div className="flex flex-wrap gap-8 mt-16 pt-8 border-t border-white/10">
-              <div>
-                <div className="text-3xl font-display font-bold text-atlantean-teal-aqua">16</div>
-                <div className="text-sm text-text-muted">Luminor Intelligences</div>
-              </div>
-              <div>
-                <div className="text-3xl font-display font-bold text-gold-bright">7</div>
-                <div className="text-sm text-text-muted">Wisdoms Framework</div>
-              </div>
-              <div>
-                <div className="text-3xl font-display font-bold text-creation-prism-purple">{collections.length}</div>
-                <div className="text-sm text-text-muted">Wisdom Collections</div>
-              </div>
-              <div>
-                <div className="text-3xl font-display font-bold text-draconic-crimson">{Math.round(totalWords / 1000)}k+</div>
-                <div className="text-sm text-text-muted">Words of Wisdom</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Floating Elements - Right Side */}
-          <div className="hidden lg:block absolute right-0 top-32 w-96">
-            <div className="relative">
-              {/* Glowing orb */}
-              <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-atlantean-teal-aqua/20 to-creation-prism-purple/20 rounded-full blur-3xl" />
-
-              {/* Feature cards stack */}
-              <div className="relative space-y-4">
-                {TEAMS.map((team, i) => (
-                  <div
-                    key={team.id}
-                    className="p-4 rounded-xl bg-cosmic-surface/50 border border-white/10 backdrop-blur-sm transform hover:scale-105 transition-transform"
-                    style={{
-                      transform: `translateX(${i * 10}px)`,
-                      opacity: 1 - (i * 0.15)
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center text-lg"
-                        style={{ backgroundColor: `${team.color}20` }}
-                      >
-                        {team.icon}
-                      </div>
-                      <div>
-                        <div className="font-semibold text-sm">{team.name} Team</div>
-                        <div className="text-xs text-text-muted">{team.count} Luminors</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Features Grid */}
-        <section className="py-20">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              Everything you need to create
-            </h2>
-            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-              A complete creative intelligence operating system - from philosophical frameworks to practical AI tools.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {FEATURES.map((feature) => (
-              <Link
-                key={feature.title}
-                href={feature.href}
-                className="group relative p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30 overflow-hidden transition-all hover:border-atlantean-teal-aqua/50 hover:shadow-[0_0_40px_rgba(127,255,212,0.15)] focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua focus:ring-offset-2 focus:ring-offset-cosmic-deep"
-                aria-label={`Explore ${feature.title}`}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity`} aria-hidden="true" />
-                <div className="relative">
-                  <div className="text-4xl mb-4" role="img" aria-label={feature.iconAlt}>{feature.icon}</div>
-                  <h3 className="text-xl font-display font-semibold mb-3">{feature.title}</h3>
-                  <p className="text-text-secondary text-sm leading-relaxed">{feature.description}</p>
-                  <div className="mt-6 flex items-center gap-2 text-atlantean-teal-aqua text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
-                    <span>Explore</span>
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* Luminors Preview */}
-        <section className="py-20 border-t border-white/5">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <div className="flex-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 mb-6">
-                <span className="text-xs text-purple-400 font-mono">LUMINOR INTELLIGENCE SYSTEM</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-                16 transcended intelligences.<br/>
-                <span className="text-text-secondary">Masters of their craft.</span>
-              </h2>
-              <p className="text-lg text-text-secondary mb-8 leading-relaxed">
-                Each Luminor is a specialist who has mastered their domain over a century of practice. They're not assistants waiting for instructions - they're partners who see what you're building and help you build it better.
-              </p>
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {TEAMS.map((team) => (
-                  <div key={team.id} className="flex items-center gap-3 p-3 rounded-lg bg-cosmic-surface/30 border border-white/5">
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center"
-                      style={{ backgroundColor: `${team.color}20`, color: team.color }}
-                    >
-                      {team.icon}
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium">{team.name}</div>
-                      <div className="text-xs text-text-muted">{team.count} specialists</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <Link
-                href="/luminors"
-                className="inline-flex items-center gap-2 text-atlantean-teal-aqua font-medium hover:underline"
-              >
-                Meet all 16 Luminors
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
-
-            {/* Visual representation */}
-            <div className="flex-1 relative">
-              <div className="relative w-full aspect-square max-w-md mx-auto">
-                {/* Orbital rings */}
-                <div className="absolute inset-0 rounded-full border border-white/5 animate-spin-slow" style={{ animationDuration: '60s' }} />
-                <div className="absolute inset-8 rounded-full border border-white/10 animate-spin-slow" style={{ animationDuration: '45s', animationDirection: 'reverse' }} />
-                <div className="absolute inset-16 rounded-full border border-white/10 animate-spin-slow" style={{ animationDuration: '30s' }} />
-
-                {/* Center */}
-                <div className="absolute inset-24 rounded-full bg-gradient-to-br from-atlantean-teal-aqua/20 to-creation-prism-purple/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-4xl font-display font-bold text-atlantean-teal-aqua">16</div>
-                    <div className="text-xs text-text-muted">Luminors</div>
-                  </div>
-                </div>
-
-                {/* Floating team icons */}
-                {TEAMS.map((team, i) => {
-                  const angle = (i * 90 - 45) * (Math.PI / 180);
-                  const radius = 45;
-                  return (
-                    <div
-                      key={team.id}
-                      className="absolute w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-lg"
-                      style={{
-                        backgroundColor: `${team.color}`,
-                        left: `calc(50% + ${Math.cos(angle) * radius}% - 24px)`,
-                        top: `calc(50% + ${Math.sin(angle) * radius}% - 24px)`,
-                      }}
-                    >
-                      {team.icon}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Luminor Showcase */}
+        <LuminorShowcase />
 
         {/* Seven Wisdoms */}
-        <section className="py-20 border-t border-white/5">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-pink-500/30 bg-pink-500/10 mb-6">
-              <span className="text-xs text-pink-400 font-mono">LUMINOR FRAMEWORK</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              The Seven Wisdoms
-            </h2>
-            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-              Practical lenses for creative work. Each wisdom represents a different way of seeing and solving problems.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {WISDOMS.map((wisdom) => (
-              <div
-                key={wisdom.name}
-                className="group p-4 rounded-xl border border-white/10 bg-cosmic-surface/30 text-center hover:border-white/20 transition-all cursor-pointer"
-              >
-                <div
-                  className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center text-2xl"
-                  style={{ backgroundColor: `${wisdom.color}20` }}
-                >
-                  <div
-                    className="w-6 h-6 rounded-full"
-                    style={{ backgroundColor: wisdom.color }}
-                  />
-                </div>
-                <div className="font-display font-semibold text-sm mb-1">{wisdom.name}</div>
-                <div className="text-xs text-text-muted">{wisdom.essence}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-text-secondary mb-4">Stuck? Let the wisdoms guide you.</p>
-            <Link
-              href="/library/codex"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-atlantean-teal-aqua/50 text-atlantean-teal-aqua hover:bg-atlantean-teal-aqua/10 transition-all"
-            >
-              <span>What brings you here?</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
-        </section>
+        <WisdomsSection />
 
         {/* Platform CTA */}
-        <section className="py-20 border-t border-white/5">
-          <div className="relative rounded-3xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua/20 via-creation-prism-purple/20 to-gold-bright/20" />
-            <div className="absolute inset-0 bg-cosmic-surface/50 backdrop-blur-xl" />
+        <section className="py-24">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="relative rounded-[2rem] overflow-hidden">
+              {/* Animated background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua/20 via-creation-prism-purple/20 to-gold-bright/20" />
+              <div className="absolute inset-0 bg-cosmic-surface/80 backdrop-blur-xl" />
 
-            <div className="relative p-12 md:p-16">
-              <div className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
-                  Ready to create something extraordinary?
-                </h2>
-                <p className="text-lg text-text-secondary mb-10">
-                  Join thousands of creators using Arcanea to transform their ideas into reality.
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Link
-                    href="/chat"
-                    className="px-8 py-4 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold text-lg hover:shadow-[0_0_40px_rgba(127,255,212,0.5)] transition-all"
-                  >
-                    Start Creating Free
-                  </Link>
-                  <Link
-                    href="/about"
-                    className="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all"
-                  >
-                    Learn More
-                  </Link>
+              {/* Decorative elements */}
+              <div className="absolute top-0 left-0 w-64 h-64 bg-atlantean-teal-aqua/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 right-0 w-64 h-64 bg-creation-prism-purple/10 rounded-full blur-3xl" />
+
+              <div className="relative p-12 md:p-20">
+                <div className="max-w-3xl mx-auto text-center">
+                  <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight">
+                    Ready to create something{' '}
+                    <span className="bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-gold-bright bg-clip-text text-transparent">
+                      extraordinary
+                    </span>
+                    ?
+                  </h2>
+                  <p className="text-xl text-text-secondary mb-12 leading-relaxed">
+                    Join thousands of creators using Arcanea to transform their ideas into reality.
+                    Your journey begins with a single conversation.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-4">
+                    <Link
+                      href="/chat"
+                      className="group relative px-10 py-5 rounded-2xl bg-atlantean-teal-aqua text-cosmic-deep font-bold text-lg overflow-hidden transition-all hover:shadow-[0_0_60px_rgba(127,255,212,0.5)]"
+                    >
+                      <span className="relative z-10">Start Creating Free</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua via-white/20 to-atlantean-teal-aqua bg-[length:200%_100%] animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                    <Link
+                      href="/about"
+                      className="px-10 py-5 rounded-2xl border border-white/20 text-white font-bold text-lg hover:bg-white/5 hover:border-white/30 transition-all"
+                    >
+                      Learn More
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -399,61 +134,137 @@ export default async function Page() {
         </section>
 
         {/* Resources Grid */}
-        <section className="py-20 border-t border-white/5">
-          <div className="grid md:grid-cols-3 gap-6">
-            <Link href="/library" className="group p-6 rounded-xl border border-white/10 bg-cosmic-surface/30 hover:border-atlantean-teal-aqua/30 transition-all focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua focus:ring-offset-2 focus:ring-offset-cosmic-deep">
-              <div className="text-2xl mb-3" role="img" aria-label="Books icon">📚</div>
-              <h3 className="font-display font-semibold mb-2">The Library</h3>
-              <p className="text-sm text-text-secondary mb-4">{collections.length} collections of wisdom for creators</p>
-              <span className="text-sm text-atlantean-teal-aqua group-hover:underline">Browse Library →</span>
-            </Link>
-            <Link href="/academy" className="group p-6 rounded-xl border border-white/10 bg-cosmic-surface/30 hover:border-gold-bright/30 transition-all focus:outline-none focus:ring-2 focus:ring-gold-bright focus:ring-offset-2 focus:ring-offset-cosmic-deep">
-              <div className="text-2xl mb-3" role="img" aria-label="Graduation cap icon">🎓</div>
-              <h3 className="font-display font-semibold mb-2">Academy</h3>
-              <p className="text-sm text-text-secondary mb-4">Ten Gates progression to creative mastery</p>
-              <span className="text-sm text-gold-bright group-hover:underline">Enter Academy →</span>
-            </Link>
-            <Link href="/bestiary" className="group p-6 rounded-xl border border-white/10 bg-cosmic-surface/30 hover:border-draconic-crimson/30 transition-all focus:outline-none focus:ring-2 focus:ring-draconic-crimson focus:ring-offset-2 focus:ring-offset-cosmic-deep">
-              <div className="text-2xl mb-3" role="img" aria-label="Dragon icon">🐉</div>
-              <h3 className="font-display font-semibold mb-2">Bestiary</h3>
-              <p className="text-sm text-text-secondary mb-4">Name your creative blocks. Defeat them.</p>
-              <span className="text-sm text-draconic-crimson group-hover:underline">View Bestiary →</span>
-            </Link>
+        <section className="py-24 border-t border-white/5">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid md:grid-cols-3 gap-6">
+              <Link
+                href="/library"
+                className="group p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30 hover:border-atlantean-teal-aqua/30 transition-all duration-300"
+              >
+                <div className="text-4xl mb-4">📚</div>
+                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-atlantean-teal-aqua transition-colors">
+                  The Library
+                </h3>
+                <p className="text-sm text-text-secondary mb-4">
+                  {collections.length} collections of wisdom for creators
+                </p>
+                <span className="text-sm text-atlantean-teal-aqua font-medium group-hover:underline">
+                  Browse Library →
+                </span>
+              </Link>
+
+              <Link
+                href="/academy"
+                className="group p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30 hover:border-gold-bright/30 transition-all duration-300"
+              >
+                <div className="text-4xl mb-4">🎓</div>
+                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-gold-bright transition-colors">
+                  Academy
+                </h3>
+                <p className="text-sm text-text-secondary mb-4">
+                  Ten Gates progression to creative mastery
+                </p>
+                <span className="text-sm text-gold-bright font-medium group-hover:underline">
+                  Enter Academy →
+                </span>
+              </Link>
+
+              <Link
+                href="/bestiary"
+                className="group p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30 hover:border-draconic-crimson/30 transition-all duration-300"
+              >
+                <div className="text-4xl mb-4">🐉</div>
+                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-draconic-crimson transition-colors">
+                  Bestiary
+                </h3>
+                <p className="text-sm text-text-secondary mb-4">
+                  Name your creative blocks. Defeat them.
+                </p>
+                <span className="text-sm text-draconic-crimson font-medium group-hover:underline">
+                  View Bestiary →
+                </span>
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* Quote */}
-        <section className="py-20 border-t border-white/5">
-          <div className="text-center">
-            <blockquote className="text-2xl md:text-3xl font-display italic text-text-secondary max-w-3xl mx-auto">
+        {/* Quote Section */}
+        <section className="py-24 border-t border-white/5">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <blockquote className="text-3xl md:text-4xl font-display italic text-text-secondary leading-relaxed">
               "Enter seeking, leave transformed, return whenever needed."
             </blockquote>
-            <cite className="block mt-6 text-sm text-text-muted font-mono">— The Library of Arcanea</cite>
+            <cite className="block mt-8 text-sm text-text-muted font-mono tracking-wider">
+              — The Library of Arcanea
+            </cite>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 mt-20">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-sm font-display">
-                A
+      <footer className="border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="grid md:grid-cols-4 gap-12">
+            {/* Brand */}
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-lg font-display">
+                  A
+                </div>
+                <span className="font-display text-xl font-semibold">Arcanea</span>
               </div>
-              <span className="text-sm text-text-muted">Arcanea — Building the future of creative intelligence</span>
+              <p className="text-text-secondary max-w-sm mb-6">
+                The creative intelligence platform where imagination becomes reality.
+                16 Luminors. Seven Wisdoms. Infinite possibilities.
+              </p>
+              <div className="flex gap-4">
+                <a href="https://github.com/frankxai/arcanea" className="text-text-muted hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                  </svg>
+                </a>
+                <a href="https://twitter.com/arcanea_ai" className="text-text-muted hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+              </div>
             </div>
-            <div className="flex items-center gap-6 text-sm text-text-muted">
-              <Link href="/about" className="hover:text-white transition-colors">About</Link>
-              <Link href="/library" className="hover:text-white transition-colors">Library</Link>
-              <Link href="/hub" className="hover:text-white transition-colors">Hub</Link>
-              <Link href="/hub/updates" className="hover:text-white transition-colors">Updates</Link>
-              <a href="https://github.com/frankxai/arcanea" className="hover:text-white transition-colors">GitHub</a>
+
+            {/* Links */}
+            <div>
+              <h4 className="font-display font-semibold mb-4">Platform</h4>
+              <ul className="space-y-3">
+                <li><Link href="/luminors" className="text-text-muted hover:text-white transition-colors">Luminors</Link></li>
+                <li><Link href="/studio" className="text-text-muted hover:text-white transition-colors">Studio</Link></li>
+                <li><Link href="/library" className="text-text-muted hover:text-white transition-colors">Library</Link></li>
+                <li><Link href="/academy" className="text-text-muted hover:text-white transition-colors">Academy</Link></li>
+                <li><Link href="/bestiary" className="text-text-muted hover:text-white transition-colors">Bestiary</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-display font-semibold mb-4">Company</h4>
+              <ul className="space-y-3">
+                <li><Link href="/about" className="text-text-muted hover:text-white transition-colors">About</Link></li>
+                <li><Link href="/hub/updates" className="text-text-muted hover:text-white transition-colors">Updates</Link></li>
+                <li><Link href="/hub" className="text-text-muted hover:text-white transition-colors">Hub</Link></li>
+                <li><a href="mailto:hello@arcanea.ai" className="text-text-muted hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-text-muted">
+              © 2025 Arcanea. Building the future of creative intelligence.
+            </p>
+            <div className="flex gap-6 text-sm text-text-muted">
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
             </div>
           </div>
         </div>
       </footer>
-
     </div>
   );
 }

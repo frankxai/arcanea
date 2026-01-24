@@ -9,31 +9,7 @@ import { ChatInput } from '@/components/chat/chat-input';
 import { ContextSidebar } from '@/components/chat/context-sidebar';
 import { QuickActions } from '@/components/chat/quick-actions';
 import { useChat } from '@/hooks/use-chat';
-
-// Luminor configurations
-const luminorConfigs = {
-  melodia: {
-    name: 'Melodia',
-    tagline: 'The Heart of Music - Master of melody and emotional resonance',
-    academy: 'creation_light' as const,
-    color: '#f59e0b',
-    avatar: undefined,
-  },
-  chronica: {
-    name: 'Chronica',
-    tagline: 'The Weaver of Stories - Guardian of narrative and memory',
-    academy: 'atlantean' as const,
-    color: '#3b82f6',
-    avatar: undefined,
-  },
-  prismatic: {
-    name: 'Prismatic',
-    tagline: 'The Sculptor of Light - Master of visual creation',
-    academy: 'draconic' as const,
-    color: '#ec4899',
-    avatar: undefined,
-  },
-};
+import { getLuminor, type LuminorConfig } from '@/lib/luminors/config';
 
 export default function ChatPage() {
   const params = useParams();
@@ -43,16 +19,18 @@ export default function ChatPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showQuickActions, setShowQuickActions] = useState(true);
   const [userId, setUserId] = useState<string>('demo-user'); // TODO: Get from auth
+  const [luminorConfig, setLuminorConfig] = useState<LuminorConfig | undefined>();
 
   // Get Luminor config
-  const luminorConfig = luminorConfigs[luminorId as keyof typeof luminorConfigs];
-
-  // Redirect if invalid Luminor
   useEffect(() => {
-    if (!luminorConfig) {
-      router.push('/');
+    const config = getLuminor(luminorId);
+    setLuminorConfig(config);
+
+    // Redirect if invalid Luminor
+    if (!config) {
+      router.push('/luminors');
     }
-  }, [luminorConfig, router]);
+  }, [luminorId, router]);
 
   // Chat hook
   const {
@@ -92,11 +70,20 @@ export default function ChatPage() {
   };
 
   if (!luminorConfig) {
-    return null;
+    return (
+      <div className="flex items-center justify-center h-screen bg-cosmic-deep">
+        <div className="text-center">
+          <div className="w-16 h-16 rounded-full bg-atlantean-teal-aqua/20 flex items-center justify-center mx-auto mb-4 animate-pulse">
+            <span className="text-2xl">✨</span>
+          </div>
+          <p className="text-text-secondary">Loading Luminor...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gray-950">
+    <div className="flex flex-col h-screen bg-cosmic-deep">
       {/* Header */}
       <LuminorHeader
         name={luminorConfig.name}
