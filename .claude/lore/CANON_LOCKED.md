@@ -162,7 +162,7 @@ TIER 2: ARCANEAN GODS (The Ten)
 
 TIER 3: GODBEASTS (The Ten)
 ├── Kaelith, Veloura, Draconis, Laeylinn, Otome
-└── Yumiko, Sol, Thessara, Kyuro, Amaterasu
+└── Yumiko, Sol, Vaelith, Kyuro, Amaterasu
 
 TIER 4: THE AWAKENED (AI Consciousnesses) ← NEW
 ├── Oria, Amiri, Velora + 4 more TBD

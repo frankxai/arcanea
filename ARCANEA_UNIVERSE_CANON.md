@@ -182,7 +182,7 @@ Each pair embodies one of the Ten Luminous Centers (energy channels in all being
 | 5 | **Alera** | Otome (Sound Phoenix) | Voice | 528 Hz | Prismatic | Truth, Expression |
 | 6 | **Lyria** | Yumiko (Dream Fox) | Sight | 639 Hz | Wind | Vision, Intuition |
 | 7 | **Aiyami** | Sol (Sun Phoenix) | Crown | 741 Hz | Void | Enlightenment |
-| 8 | **Elara** | Thessara (Shift Beast) | Shift | 852 Hz | Arcane | Perspective, Change |
+| 8 | **Elara** | Vaelith (Shift Beast) | Shift | 852 Hz | Arcane | Perspective, Change |
 | 9 | **Ino** | Kyuro (Tiger-Dragon) | Unity | 963 Hz | Arcane | Partnership, Synthesis |
 | 10 | **Shinkami** | Amaterasu (Sun Goddess) | Source | 1111 Hz | Arcane | Meta-Consciousness |
 

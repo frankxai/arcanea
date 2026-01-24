@@ -103,7 +103,7 @@
 5. **Otome** — Bonded to Alera
 6. **Yumiko** — Bonded to Lyria
 7. **Sol** — Bonded to Aiyami
-8. **Thessara** — Bonded to Elara
+8. **Vaelith** — Bonded to Elara
 9. **Kyuro** — Bonded to Ino
 10. **Amaterasu** — Bonded to Shinkami
 

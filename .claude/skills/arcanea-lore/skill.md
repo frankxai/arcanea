@@ -39,7 +39,7 @@ ARCANEA
 │   ├── Alera (Voice, 741 Hz) → Sylphine
 │   ├── Lyria (Sight, 852 Hz) → Yumiko
 │   ├── Aiyami (Crown, 963 Hz) → Zenkai
-│   ├── Elara (Shift, 1111 Hz) → Thessara
+│   ├── Elara (Shift, 852 Hz) → Vaelith
 │   ├── Ino (Unity, 963 Hz) → Unara
 │   └── Shinkami (Source, 1111 Hz) → Amaterasu
 │
