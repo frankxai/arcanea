@@ -29,10 +29,10 @@ export async function GET(
     }
 
     const { searchParams } = new URL(request.url);
-    const luminorId = searchParams.get('luminorId') || undefined;
+    const luminorId = searchParams.get('luminorId');
 
     // Fetch memories
-    const memoriesData = await getMemories(supabaseServer, userId, luminorId);
+    const memoriesData = await getMemories(supabaseServer, userId, luminorId ?? '');
 
     return successResponse(memoriesData);
   } catch (error) {

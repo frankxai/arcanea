@@ -80,10 +80,15 @@ export async function POST(request: NextRequest) {
       metadata,
     });
 
+    if (!updatedBond) {
+      return errorResponse('NOT_FOUND', 'Bond not found', 404);
+    }
+
+    const bondLevel = updatedBond.bondLevel ?? updatedBond.level ?? 1;
     return successResponse({
       bond: updatedBond,
       xpGained: xp,
-      message: updatedBond.bondLevel > 1 ? `Bond level ${updatedBond.bondLevel}` : 'Progress updated',
+      message: bondLevel > 1 ? `Bond level ${bondLevel}` : 'Progress updated',
     });
   } catch (error) {
     return handleApiError(error);

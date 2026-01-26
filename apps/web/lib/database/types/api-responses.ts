@@ -38,12 +38,18 @@ export interface CreationFilters {
   luminorId?: string
   status?: string
   visibility?: string
+  isPublic?: boolean
   tags?: string[]
   createdAfter?: Date
   createdBefore?: Date
-  sortBy?: 'recent' | 'popular' | 'trending'
+  dateFrom?: string
+  dateTo?: string
+  sortBy?: 'recent' | 'popular' | 'trending' | 'created_at' | 'updated_at' | 'like_count' | 'view_count'
+  sortOrder?: 'asc' | 'desc'
   limit?: number
   offset?: number
+  page?: number
+  pageSize?: number
 }
 
 export const VALIDATION_RULES = {
@@ -114,6 +120,7 @@ export interface LuminorBond {
   userId: string
   luminorId: string
   level: number
+  bondLevel: number // Alias for level
   xp: number
   relationshipType: string
   memories: Memory[]

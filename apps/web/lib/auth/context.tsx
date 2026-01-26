@@ -78,7 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           display_name: authUser.user_metadata?.full_name || username,
           avatar_url: authUser.user_metadata?.avatar_url,
           email: authUser.email,
-        });
+        } as any);
       }
     } catch (error) {
       console.error('Error ensuring profile:', error);

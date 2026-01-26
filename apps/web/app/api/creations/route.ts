@@ -179,10 +179,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { userId, ...creationData } = validation.data;
+    const { userId, isPublic, ...restData } = validation.data;
 
-    // Create creation
-    const creation = await createCreation(supabaseServer, userId, creationData);
+    // Convert isPublic to visibility and ensure required fields
+    const creationData = {
+      ...restData,
+      visibility: (isPublic !== false ? 'public' : 'private') as 'public' | 'private' | 'unlisted',
+      userId,
+    };
+
+    // Create creation - use type assertion for flexibility
+    const creation = await createCreation(supabaseServer, userId, creationData as any);
 
     return successResponse({ creation }, 201);
   } catch (error) {

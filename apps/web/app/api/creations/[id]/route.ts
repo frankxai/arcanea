@@ -56,7 +56,7 @@ export async function GET(
     }
 
     // Increment view count asynchronously
-    if (incrementViews && creation.isPublic) {
+    if (incrementViews && creation.visibility === 'public') {
       incrementViewCount(supabaseServer, id).catch(console.error);
     }
 

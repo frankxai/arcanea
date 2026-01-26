@@ -5,7 +5,7 @@
  */
 
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import { generateText, streamText as aiStreamText } from 'ai';
+import { generateText, streamText as aiStreamText, type LanguageModel } from 'ai';
 
 interface GeminiConfig {
   apiKey?: string;
@@ -45,7 +45,7 @@ export function createGeminiChatProvider(config: GeminiConfig) {
   });
 
   const modelName = config.model || 'gemini-2.0-flash-exp';
-  const model = google(modelName);
+  const model = google(modelName) as unknown as LanguageModel;
 
   const defaultConfig = {
     temperature: config.temperature ?? 0.7,
@@ -73,15 +73,20 @@ export function createGeminiChatProvider(config: GeminiConfig) {
         system: options.systemPrompt,
         messages,
         temperature: options.temperature ?? defaultConfig.temperature,
-        maxTokens: options.maxTokens ?? defaultConfig.maxTokens,
+        maxOutputTokens: options.maxTokens ?? defaultConfig.maxTokens,
       });
+
+      // Handle both V1 and V2 SDK usage property names
+      const usage = result.usage as Record<string, number> | undefined;
+      const promptTokens = usage?.promptTokens ?? usage?.inputTokens ?? 0;
+      const completionTokens = usage?.completionTokens ?? usage?.outputTokens ?? 0;
 
       return {
         text: result.text,
         tokensUsed: {
-          promptTokens: result.usage?.promptTokens || 0,
-          completionTokens: result.usage?.completionTokens || 0,
-          totalTokens: (result.usage?.promptTokens || 0) + (result.usage?.completionTokens || 0),
+          promptTokens,
+          completionTokens,
+          totalTokens: promptTokens + completionTokens,
         },
         finishReason: result.finishReason || 'stop',
       };
@@ -107,7 +112,7 @@ export function createGeminiChatProvider(config: GeminiConfig) {
         system: options.systemPrompt,
         messages,
         temperature: options.temperature ?? defaultConfig.temperature,
-        maxTokens: options.maxTokens ?? defaultConfig.maxTokens,
+        maxOutputTokens: options.maxTokens ?? defaultConfig.maxTokens,
       });
 
       return result;

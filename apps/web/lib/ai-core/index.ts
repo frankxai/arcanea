@@ -1,5 +1,5 @@
 import { google } from '@ai-sdk/google';
-import { streamText, generateText } from 'ai';
+import { streamText, generateText, type LanguageModel } from 'ai';
 
 // Types for the config
 interface GeminiConfig {
@@ -9,7 +9,7 @@ interface GeminiConfig {
 }
 
 export const createGeminiChatProvider = (config: GeminiConfig) => {
-  const model = google('gemini-2.0-flash-exp'); // Using the latest Flash model
+  const model = google('gemini-2.0-flash-exp') as unknown as LanguageModel; // Using the latest Flash model
 
   return {
     generateResponse: async (messages: any[]) => {
@@ -46,7 +46,7 @@ export const createGeminiChatProvider = (config: GeminiConfig) => {
         messages,
         system: systemPrompt,
         temperature: temperature ?? config.temperature ?? 0.7,
-        maxTokens: maxTokens ?? config.maxTokens ?? 8192,
+        maxOutputTokens: maxTokens ?? config.maxTokens ?? 8192,
       });
     },
 
@@ -72,7 +72,7 @@ export const createGeminiChatProvider = (config: GeminiConfig) => {
         messages,
         system: systemPrompt,
         temperature: temperature ?? config.temperature ?? 0.7,
-        maxTokens: maxTokens ?? config.maxTokens ?? 8192,
+        maxOutputTokens: maxTokens ?? config.maxTokens ?? 8192,
       });
 
       return {
