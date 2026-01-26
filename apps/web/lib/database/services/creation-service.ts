@@ -2,13 +2,22 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type { Creation, CreationFilters } from '../types/api-responses'
 
-const defaultSupabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-)
+// Lazy-create Supabase client to avoid build-time errors
+let _defaultSupabase: SupabaseClient | null = null
+function getDefaultSupabase(): SupabaseClient {
+  if (!_defaultSupabase) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    if (!url || !key) {
+      throw new Error('Supabase environment variables not configured')
+    }
+    _defaultSupabase = createClient(url, key)
+  }
+  return _defaultSupabase
+}
 
 export async function getCreation(client: SupabaseClient, id: string, includePrivate: boolean = false): Promise<Creation | null> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   let query = supabase
     .from('creations')
     .select('*')
@@ -26,7 +35,7 @@ export async function getCreation(client: SupabaseClient, id: string, includePri
 }
 
 export async function getCreations(client: SupabaseClient, filters: CreationFilters = {}): Promise<Creation[]> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   let query = supabase.from('creations').select('*')
 
   if (filters.type) query = query.eq('type', filters.type)
@@ -50,7 +59,7 @@ export async function getCreations(client: SupabaseClient, filters: CreationFilt
 export const listCreations = getCreations
 
 export async function getUserCreations(client: SupabaseClient, userId: string, filters: CreationFilters = {}): Promise<Creation[]> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   let query = supabase
     .from('creations')
     .select('*')
@@ -69,7 +78,7 @@ export async function getUserCreations(client: SupabaseClient, userId: string, f
 }
 
 export async function createCreation(client: SupabaseClient, userId: string, creation: Omit<Creation, 'id' | 'createdAt' | 'updatedAt' | 'likesCount' | 'commentsCount' | 'viewsCount'>): Promise<Creation | null> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   // API passes userId separately, but it's likely also in the creation object or needs to be set
   // Ensure userId matches
   const payload = {
@@ -97,7 +106,7 @@ export async function createCreation(client: SupabaseClient, userId: string, cre
 }
 
 export async function updateCreation(client: SupabaseClient, id: string, userId: string, updates: Partial<Creation>): Promise<Creation | null> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   // userId parameter implies we should check ownership, but RLS/Supabase handles this usually.
   // We'll proceed with update.
   const { data, error } = await supabase
@@ -119,7 +128,7 @@ export async function updateCreation(client: SupabaseClient, id: string, userId:
 }
 
 export async function deleteCreation(client: SupabaseClient, id: string, userId: string): Promise<boolean> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   const { error } = await supabase
     .from('creations')
     .delete()
@@ -130,7 +139,7 @@ export async function deleteCreation(client: SupabaseClient, id: string, userId:
 }
 
 export async function incrementViewCount(client: SupabaseClient, id: string): Promise<void> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   const { error } = await supabase.rpc('increment_view_count', { row_id: id })
   if (error) {
     console.error('Error incrementing view count:', error)

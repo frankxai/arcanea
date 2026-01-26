@@ -2,13 +2,22 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type { LuminorBond, Memory } from '../types/api-responses'
 
-const defaultSupabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-)
+// Lazy-create Supabase client to avoid build-time errors
+let _defaultSupabase: SupabaseClient | null = null
+function getDefaultSupabase(): SupabaseClient {
+  if (!_defaultSupabase) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    if (!url || !key) {
+      throw new Error('Supabase environment variables not configured')
+    }
+    _defaultSupabase = createClient(url, key)
+  }
+  return _defaultSupabase
+}
 
 export async function getUserBonds(client: SupabaseClient, userId: string): Promise<LuminorBond[]> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   const { data, error } = await supabase
     .from('luminor_bonds')
     .select('*')
@@ -20,7 +29,7 @@ export async function getUserBonds(client: SupabaseClient, userId: string): Prom
 }
 
 export async function getBondWithLuminor(client: SupabaseClient, userId: string, luminorId: string): Promise<LuminorBond | null> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   const { data, error } = await supabase
     .from('luminor_bonds')
     .select('*')
@@ -34,7 +43,7 @@ export async function getBondWithLuminor(client: SupabaseClient, userId: string,
 }
 
 export async function createBond(client: SupabaseClient, userId: string, luminorId: string): Promise<LuminorBond | null> {
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   const { data, error } = await supabase
     .from('luminor_bonds')
     .insert({
@@ -65,7 +74,7 @@ export async function updateBondProgress(
   options: UpdateBondOptions
 ): Promise<LuminorBond | null> {
   const { userId, luminorId, xpGained } = options;
-  const supabase = client || defaultSupabase
+  const supabase = client || getDefaultSupabase()
   
   // Get current bond
   const bond = await getBondWithLuminor(supabase, userId, luminorId)

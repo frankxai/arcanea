@@ -8,17 +8,20 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '@/lib/database/types/supabase';
 
-// Validate required environment variables
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+// Environment variables - use placeholders during build if not set
+// This allows the build to complete; runtime will fail if not properly configured
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-if (!supabaseUrl) {
-  throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL environment variable');
-}
-
-if (!supabaseAnonKey) {
-  throw new Error('Missing NEXT_PUBLIC_SUPABASE_ANON_KEY environment variable');
+// Warn during development if env vars are missing
+if (typeof window === 'undefined' && process.env.NODE_ENV === 'development') {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+    console.warn('⚠️ NEXT_PUBLIC_SUPABASE_URL is not set - using placeholder');
+  }
+  if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    console.warn('⚠️ NEXT_PUBLIC_SUPABASE_ANON_KEY is not set - using placeholder');
+  }
 }
 
 /**
