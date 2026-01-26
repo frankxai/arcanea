@@ -91,18 +91,62 @@ export const createStreamResponse = (stream: any) => {
   return stream.toTextStreamResponse();
 };
 
+// Image Generation Types
+interface ImageGenerationOptions {
+  aspectRatio?: "1:1" | "16:9" | "9:16" | "4:3" | "3:4";
+  numberOfImages?: number;
+  negativePrompt?: string;
+}
+
+interface GeneratedImage {
+  id: string;
+  url: string;
+  base64?: string;
+  metadata: {
+    cost: number;
+    model: string;
+    prompt: string;
+  };
+}
+
 // Keeping Stubs for Image/Video for now, but marking them clearly
-export const createImagenProvider = (config: any) => {
+export const createImagenProvider = (config: { apiKey?: string }) => {
   return {
-    generateImage: async (prompt: string, options?: any) => {
-      console.warn("Imagen Provider is still a STUB");
-      return { url: "https://placehold.co/1024x1024/1a2332/e6eefc?text=Imagen+Stub" };
+    generateImage: async (prompt: string, options?: ImageGenerationOptions): Promise<GeneratedImage> => {
+      console.warn("Imagen Provider is still a STUB - connect to Gemini 2.5 Flash Image (Nano Banana)");
+      return {
+        id: `stub-${Date.now()}`,
+        url: "https://placehold.co/1024x1024/1a2332/e6eefc?text=Imagen+Stub",
+        metadata: {
+          cost: 0,
+          model: 'imagen-3-stub',
+          prompt,
+        }
+      };
     },
-    editImage: async (image: any, prompt: string, options?: any) => {
-      return { url: "https://placehold.co/1024x1024/1a2332/e6eefc?text=Edited+Image+Stub" };
+    editImage: async (imageUrl: string, prompt: string, options?: ImageGenerationOptions): Promise<GeneratedImage> => {
+      console.warn("Imagen Edit is still a STUB");
+      return {
+        id: `stub-edit-${Date.now()}`,
+        url: "https://placehold.co/1024x1024/1a2332/e6eefc?text=Edited+Image+Stub",
+        metadata: {
+          cost: 0,
+          model: 'imagen-3-stub',
+          prompt,
+        }
+      };
     },
-    generateVariations: async (image: any, prompt: string, options?: any) => {
-      return [{ url: "https://placehold.co/1024x1024/1a2332/e6eefc?text=Variation+Stub" }];
+    generateVariations: async (prompt: string, count: number, options?: ImageGenerationOptions): Promise<GeneratedImage[]> => {
+      console.warn("Imagen Variations is still a STUB");
+      return Array.from({ length: count }, (_, i) => ({
+        id: `stub-var-${Date.now()}-${i}`,
+        url: "https://placehold.co/1024x1024/1a2332/e6eefc?text=Variation+Stub",
+        metadata: {
+          cost: 0,
+          model: 'imagen-3-stub',
+          prompt,
+        }
+      }));
     }
   };
 };

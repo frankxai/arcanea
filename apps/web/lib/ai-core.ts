@@ -116,39 +116,149 @@ export function createGeminiChatProvider(config: GeminiConfig) {
 }
 
 /**
+ * Image Generation Types
+ */
+interface ImageGenerationOptions {
+  aspectRatio?: '1:1' | '16:9' | '9:16' | '4:3' | '3:4';
+  numberOfImages?: number;
+  negativePrompt?: string;
+}
+
+interface GeneratedImage {
+  id: string;
+  url: string;
+  base64?: string;
+  metadata: {
+    cost: number;
+    model: string;
+    prompt: string;
+  };
+}
+
+/**
  * Imagen Provider for image generation
+ * TODO: Connect to Gemini 2.5 Flash Image (Nano Banana) when available
  */
 export function createImagenProvider(config: { apiKey?: string } = {}) {
   const apiKey = config.apiKey || process.env.GEMINI_API_KEY;
 
   return {
-    async generateImage(prompt: string, options: {
-      aspectRatio?: '1:1' | '16:9' | '9:16' | '4:3' | '3:4';
-      numberOfImages?: number;
-      negativePrompt?: string;
-    } = {}) {
-      // Placeholder for Imagen 3 integration
-      // Requires Vertex AI or specific Imagen API access
-      throw new Error('Image generation requires Vertex AI / Imagen 3 API access. Configure GOOGLE_CLOUD_PROJECT.');
+    async generateImage(prompt: string, options: ImageGenerationOptions = {}): Promise<GeneratedImage> {
+      // Stub implementation - returns placeholder
+      console.warn('Imagen Provider is a STUB - connect to Gemini 2.5 Flash Image (Nano Banana)');
+      return {
+        id: `stub-${Date.now()}`,
+        url: 'https://placehold.co/1024x1024/1a2332/e6eefc?text=Imagen+Stub',
+        metadata: {
+          cost: 0,
+          model: 'imagen-3-stub',
+          prompt,
+        },
+      };
+    },
+
+    async editImage(imageUrl: string, prompt: string, options: ImageGenerationOptions = {}): Promise<GeneratedImage> {
+      console.warn('Imagen Edit is a STUB');
+      return {
+        id: `stub-edit-${Date.now()}`,
+        url: 'https://placehold.co/1024x1024/1a2332/e6eefc?text=Edited+Image+Stub',
+        metadata: {
+          cost: 0,
+          model: 'imagen-3-stub',
+          prompt,
+        },
+      };
+    },
+
+    async generateVariations(prompt: string, count: number, options: ImageGenerationOptions = {}): Promise<GeneratedImage[]> {
+      console.warn('Imagen Variations is a STUB');
+      return Array.from({ length: count }, (_, i) => ({
+        id: `stub-var-${Date.now()}-${i}`,
+        url: 'https://placehold.co/1024x1024/1a2332/e6eefc?text=Variation+Stub',
+        metadata: {
+          cost: 0,
+          model: 'imagen-3-stub',
+          prompt,
+        },
+      }));
     },
   };
 }
 
 /**
+ * Video Generation Types
+ */
+interface VideoGenerationOptions {
+  duration?: number;
+  resolution?: '480p' | '720p' | '1080p';
+  fps?: 24 | 30 | 60;
+  style?: string;
+  mood?: string;
+  cameraMovement?: 'static' | 'pan' | 'zoom' | 'tracking' | 'dolly' | 'crane';
+  pacing?: 'slow' | 'medium' | 'fast';
+  includeAudio?: boolean;
+  audioStyle?: 'ambient' | 'cinematic' | 'upbeat' | 'dramatic';
+  quality?: 'standard' | 'high';
+  academyTheme?: 'atlantean' | 'draconic' | 'creation-light';
+  aspectRatio?: '16:9' | '9:16';
+  imageUrl?: string;
+}
+
+interface GeneratedVideo {
+  id: string;
+  status: 'pending' | 'generating' | 'completed' | 'failed';
+  url?: string;
+  prompt: string;
+  cost: number;
+  estimatedCompletionTime?: Date;
+  metadata: {
+    duration: number;
+    resolution: string;
+    fps: number;
+  };
+}
+
+/**
  * Veo Provider for video generation
+ * TODO: Connect to Veo 3.1 API when available
  */
 export function createVeoProvider(config: { apiKey?: string } = {}) {
   const apiKey = config.apiKey || process.env.GEMINI_API_KEY;
 
   return {
-    async generateVideo(prompt: string, options: {
-      duration?: number;
-      aspectRatio?: '16:9' | '9:16';
-      imageUrl?: string;
-    } = {}) {
-      // Placeholder for Veo 2 integration
-      // Requires Vertex AI or specific Veo API access
-      throw new Error('Video generation requires Vertex AI / Veo 2 API access. Configure GOOGLE_CLOUD_PROJECT.');
+    async generateVideo(prompt: string, options: VideoGenerationOptions = {}): Promise<GeneratedVideo> {
+      // Stub implementation
+      console.warn('Veo Provider is a STUB - connect to Veo 3.1 API');
+      return {
+        id: `veo-stub-${Date.now()}`,
+        status: 'completed',
+        url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4',
+        prompt,
+        cost: 0,
+        estimatedCompletionTime: new Date(),
+        metadata: {
+          duration: options.duration || 5,
+          resolution: options.resolution || '720p',
+          fps: options.fps || 24,
+        },
+      };
+    },
+
+    async generateFromImage(imageUrl: string, prompt: string, options: VideoGenerationOptions = {}): Promise<GeneratedVideo> {
+      console.warn('Veo Image-to-Video is a STUB');
+      return {
+        id: `veo-i2v-stub-${Date.now()}`,
+        status: 'completed',
+        url: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4',
+        prompt,
+        cost: 0,
+        estimatedCompletionTime: new Date(),
+        metadata: {
+          duration: options.duration || 5,
+          resolution: options.resolution || '720p',
+          fps: options.fps || 24,
+        },
+      };
     },
   };
 }
