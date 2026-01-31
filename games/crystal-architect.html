@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Crystal Architect - Arcanea Structure Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <style>
+        :root {
+            --earth-primary: #8d6e63;
+            --earth-dark: #5d4037;
+            --earth-glow: #bcaaa4;
+            --gold-light: #ffd700;
+            --gold-medium: #ffb300;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-elevated: #1a1a28;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --crystal: #4fc3f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        .game-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(180deg, var(--bg-card) 0%, transparent 100%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.25rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--earth-primary);
+            border-color: var(--earth-primary);
+        }
+
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--earth-primary), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        #game-container {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-crystal {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin-bottom: 2rem;
+            animation: crystalPulse 2s ease infinite;
+        }
+
+        .crystal-layer {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-style: solid;
+            border-color: transparent;
+        }
+
+        .crystal-layer:nth-child(1) {
+            bottom: 0;
+            border-width: 0 30px 50px 30px;
+            border-bottom-color: var(--crystal);
+        }
+
+        .crystal-layer:nth-child(2) {
+            bottom: 30px;
+            border-width: 0 20px 35px 20px;
+            border-bottom-color: var(--earth-glow);
+        }
+
+        .crystal-layer:nth-child(3) {
+            bottom: 55px;
+            border-width: 0 12px 20px 12px;
+            border-bottom-color: var(--gold-light);
+        }
+
+        @keyframes crystalPulse {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.1); filter: brightness(1.3); }
+        }
+
+        .loading-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--earth-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .loading-subtext {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .agent-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 2px solid var(--earth-primary);
+            border-radius: 16px;
+            padding: 1rem;
+            z-index: 50;
+            display: none;
+            box-shadow: 0 0 30px rgba(141, 110, 99, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .agent-panel.active { display: block; }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .agent-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--earth-primary), var(--gold-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .agent-name {
+            font-weight: 600;
+            color: var(--earth-primary);
+        }
+
+        .agent-role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .agent-message {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.9375rem;
+        }
+
+        .agent-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
+
+        .toolbar {
+            position: fixed;
+            top: 70px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 40;
+            background: var(--bg-card);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tool-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: var(--bg-elevated);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-btn:hover, .tool-btn.active {
+            border-color: var(--earth-primary);
+            background: rgba(141, 110, 99, 0.2);
+        }
+
+        .tool-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .tool-count {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: var(--earth-primary);
+            color: #000;
+            font-size: 0.625rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .stats-panel {
+            position: fixed;
+            top: 70px;
+            right: 10px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            z-index: 40;
+            min-width: 150px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .stat-row:last-child {
+            margin-bottom: 0;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.25rem;
+        }
+
+        .stress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .stress-fill.low { background: var(--crystal); }
+        .stress-fill.medium { background: var(--gold-light); }
+        .stress-fill.high { background: #f44336; }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 150;
+            display: none;
+        }
+
+        .modal-overlay.active { display: block; }
+
+        .success-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: var(--bg-card);
+            border: 2px solid var(--gold-light);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            z-index: 200;
+            display: none;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .success-modal.active {
+            display: block;
+            animation: modalPop 0.5s ease forwards;
+        }
+
+        @keyframes modalPop {
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .success-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .xp-reward {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid var(--gold-light);
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .success-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-medium));
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .success-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .action-btns {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 40;
+        }
+
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .action-btn:hover {
+            border-color: var(--earth-primary);
+            color: var(--earth-primary);
+        }
+
+        .action-btn.primary {
+            background: var(--earth-primary);
+            color: #000;
+            border-color: var(--earth-primary);
+        }
+
+        .action-btn.primary:hover {
+            background: var(--earth-glow);
+        }
+
+        @media (max-width: 768px) {
+            .game-title { font-size: 1rem; }
+            .stat-pill { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+            .toolbar { flex-direction: row; top: auto; bottom: 80px; left: 10px; right: 10px; }
+            .stats-panel { top: 70px; right: 10px; left: auto; }
+            .agent-panel { left: 10px; right: 10px; bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-crystal">
+            <div class="crystal-layer"></div>
+            <div class="crystal-layer"></div>
+            <div class="crystal-layer"></div>
+        </div>
+        <div class="loading-text">Crystal Architect</div>
+        <div class="loading-subtext">Preparing the foundation...</div>
+    </div>
+
+    <header class="game-header">
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <div class="game-title">💎 Crystal Architect</div>
+        </div>
+        <div class="header-right">
+            <div class="stat-pill">
+                <span class="stat-icon">⭐</span>
+                <span class="stat-value" id="xpDisplay">0</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-icon">💎</span>
+                <span class="stat-value" id="crystalDisplay">50</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="toolbar" id="toolbar">
+        <button class="tool-btn active" data-type="stone" onclick="selectTool('stone')">
+            🪨
+            <span class="tool-count" id="count-stone">∞</span>
+        </button>
+        <button class="tool-btn" data-type="crystal" onclick="selectTool('crystal')">
+            💎
+            <span class="tool-count" id="count-crystal">20</span>
+        </button>
+        <button class="tool-btn" data-type="reinforced" onclick="selectTool('reinforced')">
+            🔩
+            <span class="tool-count" id="count-reinforced">10</span>
+        </button>
+        <button class="tool-btn" data-type="delete" onclick="selectTool('delete')">
+            🗑️
+        </button>
+    </div>
+
+    <div class="stats-panel">
+        <div class="stat-row">
+            <span>Height</span>
+            <span id="heightStat">0m</span>
+        </div>
+        <div class="stat-row">
+            <span>Blocks</span>
+            <span id="blocksStat">0</span>
+        </div>
+        <div class="stat-row">
+            <span>Stress</span>
+        </div>
+        <div class="stress-bar">
+            <div class="stress-fill low" id="stressBar" style="width: 0%;"></div>
+        </div>
+        <div class="stat-row" style="margin-top: 0.5rem;">
+            <span>Stability</span>
+            <span id="stabilityStat">100%</span>
+        </div>
+    </div>
+
+    <div class="action-btns">
+        <button class="action-btn" onclick="clearStructure()">Clear</button>
+        <button class="action-btn primary" onclick="testStructure()">Test Structure</button>
+    </div>
+
+    <div id="game-container"></div>
+
+    <div class="agent-panel" id="agentPanel">
+        <button class="agent-close" onclick="closeAgentPanel()">×</button>
+        <div class="agent-header">
+            <div class="agent-avatar" id="agentAvatar">💎</div>
+            <div>
+                <div class="agent-name" id="agentName">Crystal-Architect</div>
+                <div class="agent-role" id="agentRole">The Foundation Seer</div>
+            </div>
+        </div>
+        <div class="agent-message" id="agentMessage">
+            Welcome, architect. Build structures that can withstand the test of time. Select blocks from the toolbar and click to place them. Test your creation to see if it holds. Remember: a strong foundation is everything.
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="success-modal" id="successModal">
+        <div class="success-icon" id="successIcon">💎</div>
+        <div class="success-title" id="successTitle">Structure Complete!</div>
+        <div class="success-message" id="successMessage">
+            Your creation stands strong against the forces of gravity.
+        </div>
+        <div class="xp-reward">
+            <span>⭐</span>
+            <span id="xpReward">+75 XP</span>
+        </div>
+        <button class="success-btn" onclick="closeSuccessModal()">Continue Building</button>
+    </div>
+
+    <script>
+        const GameState = {
+            xp: 0,
+            crystals: 50,
+            inventory: {
+                stone: Infinity,
+                crystal: 20,
+                reinforced: 10
+            },
+            selectedTool: 'stone',
+            blocks: [],
+            gridSize: 20,
+            cellSize: 40,
+            stress: 0,
+            maxStress: 100,
+            tested: false
+        };
+
+        const BLOCK_TYPES = {
+            stone: { strength: 10, weight: 5, color: 0x8d6e63, cost: 0 },
+            crystal: { strength: 25, weight: 3, color: 0x4fc3f7, cost: 1 },
+            reinforced: { strength: 50, weight: 8, color: 0x90a4ae, cost: 2 }
+        };
+
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: window.innerWidth,
+            height: window.innerHeight - 60,
+            backgroundColor: '#0a0a0f',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 300 },
+                    debug: false
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            },
+            scale: {
+                mode: Phaser.Scale.RESIZE,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+
+        let game;
+        let gridGroup;
+        let blockGroup;
+        let ghostBlock;
+        let particles;
+
+        window.addEventListener('load', () => {
+            game = new Phaser.Game(config);
+            loadProgress();
+            updateInventoryDisplay();
+            
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+                showAgentMessage('Crystal-Architect', 'The Foundation Seer', '💎',
+                    'Welcome to Crystal Architect! Select blocks from the toolbar and build your structure. Place blocks on the grid - they must connect to the foundation or other blocks. Click "Test Structure" when ready!');
+            }, 2000);
+        });
+
+        function preload() {
+            const graphics = this.make.graphics();
+            
+            // Block textures
+            Object.keys(BLOCK_TYPES).forEach(type => {
+                graphics.fillStyle(BLOCK_TYPES[type].color);
+                graphics.fillRect(0, 0, 38, 38);
+                graphics.lineStyle(2, 0xffffff, 0.3);
+                graphics.strokeRect(0, 0, 38, 38);
+                graphics.generateTexture(`block_${type}`, 40, 40);
+                graphics.clear();
+            });
+
+            // Grid cell
+            graphics.fillStyle(0x1a1a28);
+            graphics.fillRect(0, 0, 40, 40);
+            graphics.lineStyle(1, 0x2a2a3a);
+            graphics.strokeRect(0, 0, 40, 40);
+            graphics.generateTexture('grid_cell', 40, 40);
+            graphics.clear();
+
+            // Ghost block
+            graphics.fillStyle(0xffffff, 0.3);
+            graphics.fillRect(0, 0, 38, 38);
+            graphics.lineStyle(2, 0x4fc3f7);
+            graphics.strokeRect(0, 0, 38, 38);
+            graphics.generateTexture('ghost', 40, 40);
+            graphics.clear();
+
+            // Particle
+            graphics.fillStyle(0xffd700);
+            graphics.fillCircle(4, 4, 4);
+            graphics.generateTexture('sparkle', 8, 8);
+            graphics.clear();
+        }
+
+        function create() {
+            const width = this.scale.width;
+            const height = this.scale.height;
+
+            // Background
+            const bg = this.add.graphics();
+            bg.fillGradientStyle(0x0a0a0f, 0x0a0a0f, 0x1a1510, 0x1a1510, 1);
+            bg.fillRect(0, 0, width, height);
+
+            // Grid
+            gridGroup = this.add.group();
+            const cols = Math.floor(width / GameState.cellSize);
+            const rows = Math.floor(height / GameState.cellSize);
+            
+            for (let y = 0; y < rows; y++) {
+                for (let x = 0; x < cols; x++) {
+                    const cell = this.add.image(
+                        x * GameState.cellSize + GameState.cellSize / 2,
+                        y * GameState.cellSize + GameState.cellSize / 2,
+                        'grid_cell'
+                    );
+                    cell.setAlpha(0.5);
+                    cell.setInteractive();
+                    cell.setData('gridX', x);
+                    cell.setData('gridY', y);
+                    
+                    cell.on('pointerover', () => onCellHover(x, y, this));
+                    cell.on('pointerout', () => onCellOut(this));
+                    cell.on('pointerdown', () => onCellClick(x, y, this));
+                    
+                    gridGroup.add(cell);
+                }
+            }
+
+            // Block group
+            blockGroup = this.physics.add.group();
+
+            // Ghost block
+            ghostBlock = this.add.image(0, 0, 'ghost');
+            ghostBlock.setVisible(false);
+            ghostBlock.setAlpha(0.5);
+
+            // Particles
+            particles = this.add.particles(0, 0, 'sparkle', {
+                speed: { min: 50, max: 100 },
+                scale: { start: 0.5, end: 0 },
+                blendMode: 'ADD',
+                lifespan: 800,
+                quantity: 3
+            });
+            particles.stop();
+
+            // Resize handler
+            this.scale.on('resize', (gameSize) => {
+                this.cameras.main.setViewport(0, 0, gameSize.width, gameSize.height);
+            });
+        }
+
+        function update() {
+            // Calculate stress
+            if (GameState.blocks.length > 0 && !GameState.tested) {
+                calculateStress();
+            }
+        }
+
+        function onCellHover(x, y, scene) {
+            if (GameState.tested) return;
+            
+            const px = x * GameState.cellSize + GameState.cellSize / 2;
+            const py = y * GameState.cellSize + GameState.cellSize / 2;
+            
+            ghostBlock.setPosition(px, py);
+            ghostBlock.setVisible(true);
+            
+            if (canPlaceBlock(x, y)) {
+                ghostBlock.setTint(0x4caf50);
+            } else {
+                ghostBlock.setTint(0xf44336);
+            }
+        }
+
+        function onCellOut(scene) {
+            ghostBlock.setVisible(false);
+        }
+
+        function onCellClick(x, y, scene) {
+            if (GameState.tested) {
+                // Reset if tested
+                resetStructure(scene);
+                return;
+            }
+            
+            if (GameState.selectedTool === 'delete') {
+                removeBlock(x, y, scene);
+                return;
+            }
+            
+            if (canPlaceBlock(x, y) && GameState.inventory[GameState.selectedTool] > 0) {
+                placeBlock(x, y, GameState.selectedTool, scene);
+            }
+        }
+
+        function canPlaceBlock(x, y) {
+            // Check if cell is occupied
+            if (GameState.blocks.some(b => b.x === x && b.y === y)) {
+                return false;
+            }
+            
+            // Check if touching ground (bottom row) or another block
+            const rows = Math.floor(game.config.height / GameState.cellSize);
+            const isGround = y === rows - 1;
+            
+            const hasNeighbor = GameState.blocks.some(b => 
+                (Math.abs(b.x - x) === 1 && b.y === y) ||
+                (Math.abs(b.y - y) === 1 && b.x === x)
+            );
+            
+            return isGround || hasNeighbor;
+        }
+
+        function placeBlock(x, y, type, scene) {
+            const px = x * GameState.cellSize + GameState.cellSize / 2;
+            const py = y * GameState.cellSize + GameState.cellSize / 2;
+            
+            const block = scene.physics.add.sprite(px, py, `block_${type}`);
+            block.setData('gridX', x);
+            block.setData('gridY', y);
+            block.setData('type', type);
+            block.setImmovable(true);
+            block.body.allowGravity = false;
+            
+            blockGroup.add(block);
+            
+            GameState.blocks.push({ x, y, type, sprite: block });
+            
+            if (GameState.inventory[type] !== Infinity) {
+                GameState.inventory[type]--;
+            }
+            
+            updateInventoryDisplay();
+            updateStats();
+            
+            // Particle effect
+            particles.emitParticleAt(px, py, 5);
+        }
+
+        function removeBlock(x, y, scene) {
+            const index = GameState.blocks.findIndex(b => b.x === x && b.y === y);
+            if (index !== -1) {
+                const block = GameState.blocks[index];
+                const type = block.type;
+                
+                block.sprite.destroy();
+                GameState.blocks.splice(index, 1);
+                
+                if (GameState.inventory[type] !== Infinity) {
+                    GameState.inventory[type]++;
+                }
+                
+                updateInventoryDisplay();
+                updateStats();
+            }
+        }
+
+        function calculateStress() {
+            let totalWeight = 0;
+            let totalStrength = 0;
+            
+            GameState.blocks.forEach(block => {
+                const type = BLOCK_TYPES[block.type];
+                totalWeight += type.weight;
+                totalStrength += type.strength;
+            });
+            
+            // Calculate stress based on weight distribution
+            const height = Math.max(...GameState.blocks.map(b => b.y), 0);
+            const heightFactor = height / 10; // More stress at higher heights
+            
+            GameState.stress = (totalWeight * heightFactor * 2) - totalStrength;
+            GameState.stress = Math.max(0, Math.min(100, GameState.stress));
+            
+            const stability = Math.max(0, 100 - GameState.stress);
+            
+            // Update UI
+            const stressBar = document.getElementById('stressBar');
+            stressBar.style.width = `${GameState.stress}%`;
+            stressBar.className = 'stress-fill ' + (GameState.stress < 30 ? 'low' : GameState.stress < 70 ? 'medium' : 'high');
+            document.getElementById('stabilityStat').textContent = `${Math.round(stability)}%`;
+        }
+
+        function testStructure() {
+            if (GameState.blocks.length === 0) return;
+            
+            GameState.tested = true;
+            
+            const scene = game.scene.scenes[0];
+            
+            // Enable physics
+            blockGroup.children.entries.forEach(block => {
+                block.body.allowGravity = true;
+                block.setImmovable(false);
+            });
+            
+            // Add ground collision
+            const ground = scene.physics.add.staticGroup();
+            const rows = Math.floor(game.config.height / GameState.cellSize);
+            for (let x = 0; x < 50; x++) {
+                const groundBlock = ground.create(
+                    x * GameState.cellSize + GameState.cellSize / 2,
+                    rows * GameState.cellSize + GameState.cellSize / 2,
+                    'grid_cell'
+                );
+                groundBlock.setAlpha(0);
+            }
+            
+            scene.physics.add.collider(blockGroup, ground);
+            scene.physics.add.collider(blockGroup, blockGroup);
+            
+            // Wait and check stability
+            setTimeout(() => {
+                checkTestResults(scene);
+            }, 3000);
+            
+            showAgentMessage('Crystal-Architect', 'The Foundation Seer', '💎',
+                'Testing structure... Watch to see if your creation withstands the forces of nature!');
+        }
+
+        function checkTestResults(scene) {
+            let fallen = 0;
+            let maxFallen = 0;
+            
+            GameState.blocks.forEach(block => {
+                const originalY = block.y * GameState.cellSize + GameState.cellSize / 2;
+                const currentY = block.sprite.y;
+                const diff = Math.abs(currentY - originalY);
+                
+                if (diff > 20) {
+                    fallen++;
+                }
+                maxFallen = Math.max(maxFallen, diff);
+            });
+            
+            const percentFallen = (fallen / GameState.blocks.length) * 100;
+            
+            if (percentFallen < 10) {
+                // Success
+                const xpGain = 75 + (GameState.blocks.length * 5);
+                GameState.xp += xpGain;
+                
+                document.getElementById('successIcon').textContent = '💎';
+                document.getElementById('successTitle').textContent = 'Structure Stable!';
+                document.getElementById('successMessage').textContent = `Excellent work! Your structure withstood the test with ${Math.round(100 - percentFallen)}% integrity.`;
+                document.getElementById('xpReward').textContent = `+${xpGain} XP`;
+                
+                syncWithArcanea(xpGain, 'stable_structure');
+                
+                showAgentMessage('Crystal-Architect', 'The Foundation Seer', '💎',
+                    'Magnificent! Your structure stands firm. True mastery of earth and stone!');
+            } else {
+                // Failure
+                document.getElementById('successIcon').textContent = '💥';
+                document.getElementById('successTitle').textContent = 'Structure Failed';
+                document.getElementById('successMessage').textContent = `Your structure collapsed with ${Math.round(percentFallen)}% failure. Try reinforcing weak points.`;
+                document.getElementById('xpReward').textContent = `+10 XP (Attempt)`;
+                
+                GameState.xp += 10;
+                syncWithArcanea(10, 'failed_structure');
+                
+                showAgentMessage('Crystal-Architect', 'The Foundation Seer', '💎',
+                    'The foundation was not strong enough. Study where it failed and rebuild with better materials!');
+            }
+            
+            document.getElementById('modalOverlay').classList.add('active');
+            document.getElementById('successModal').classList.add('active');
+            
+            saveProgress();
+            updateXPDisplay();
+        }
+
+        function resetStructure(scene) {
+            GameState.tested = false;
+            
+            blockGroup.clear(true, true);
+            GameState.blocks = [];
+            
+            // Reset inventory
+            GameState.inventory.crystal = 20;
+            GameState.inventory.reinforced = 10;
+            
+            updateInventoryDisplay();
+            updateStats();
+            
+            // Clear particles
+            particles.stop();
+        }
+
+        function clearStructure() {
+            const scene = game.scene.scenes[0];
+            resetStructure(scene);
+            
+            showAgentMessage('Crystal-Architect', 'The Foundation Seer', '💎',
+                'Structure cleared. Every architect learns from a fresh foundation.');
+        }
+
+        function selectTool(tool) {
+            GameState.selectedTool = tool;
+            
+            document.querySelectorAll('.tool-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-type="${tool}"]`).classList.add('active');
+        }
+
+        function updateInventoryDisplay() {
+            document.getElementById('count-stone').textContent = '∞';
+            document.getElementById('count-crystal').textContent = GameState.inventory.crystal;
+            document.getElementById('count-reinforced').textContent = GameState.inventory.reinforced;
+            document.getElementById('crystalDisplay').textContent = GameState.crystals;
+            
+            // Disable if out of stock
+            if (GameState.inventory.crystal <= 0) {
+                document.querySelector('[data-type="crystal"]').disabled = true;
+            }
+            if (GameState.inventory.reinforced <= 0) {
+                document.querySelector('[data-type="reinforced"]').disabled = true;
+            }
+        }
+
+        function updateStats() {
+            const height = GameState.blocks.length > 0 
+                ? Math.max(0, Math.floor(game.config.height / GameState.cellSize) - Math.min(...GameState.blocks.map(b => b.y)) - 1)
+                : 0;
+            
+            document.getElementById('heightStat').textContent = `${height * 2}m`;
+            document.getElementById('blocksStat').textContent = GameState.blocks.length;
+        }
+
+        function updateXPDisplay() {
+            document.getElementById('xpDisplay').textContent = GameState.xp.toLocaleString();
+        }
+
+        function showAgentMessage(name, role, avatar, message) {
+            document.getElementById('agentName').textContent = name;
+            document.getElementById('agentRole').textContent = role;
+            document.getElementById('agentAvatar').textContent = avatar;
+            document.getElementById('agentMessage').textContent = message;
+            document.getElementById('agentPanel').classList.add('active');
+            
+            setTimeout(() => {
+                closeAgentPanel();
+            }, 6000);
+        }
+
+        function closeAgentPanel() {
+            document.getElementById('agentPanel').classList.remove('active');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        function goBack() {
+            window.location.href = '../games-v2.html';
+        }
+
+        function saveProgress() {
+            const data = {
+                xp: GameState.xp,
+                crystals: GameState.crystals
+            };
+            localStorage.setItem('crystalArchitectData', JSON.stringify(data));
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem('crystalArchitectData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                GameState.xp = data.xp || 0;
+                GameState.crystals = data.crystals || 50;
+                updateXPDisplay();
+            }
+        }
+
+        function syncWithArcanea(xp, reason) {
+            if (window.Arcanea && window.Arcanea.awardXP) {
+                window.Arcanea.awardXP({
+                    gameId: 'crystal-architect',
+                    amount: xp,
+                    reason: reason,
+                    agent: '@crystal-architect'
+                });
+            }
+            
+            window.dispatchEvent(new CustomEvent('crystalArchitectProgress', {
+                detail: { xp, blocks: GameState.blocks.length, timestamp: Date.now() }
+            }));
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '1') selectTool('stone');
+            if (e.key === '2') selectTool('crystal');
+            if (e.key === '3') selectTool('reinforced');
+            if (e.key === 'Delete' || e.key === 'Backspace') selectTool('delete');
+            if (e.key === 'Escape') {
+                closeAgentPanel();
+                closeSuccessModal();
+            }
+            if (e.key === 'Enter') testStructure();
+        });
+
+        // Prevent double-tap zoom
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>

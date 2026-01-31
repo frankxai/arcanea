@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Arcanea custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 26, 46, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #9966ff, #7fffd4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #7a52cc, #5fe8c0);
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(127, 255, 212, 0.3);
+  color: #fff;
+}
+
+/* Premium animations */
+@keyframes portal-open {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes energy-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(127, 255, 212, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(127, 255, 212, 0.8);
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+/* Custom utilities */
+.glass-morphism {
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(127, 255, 212, 0.2);
+}
+
+.energy-field {
+  background: radial-gradient(ellipse at center, rgba(127, 255, 212, 0.3) 0%, transparent 70%);
+}
+
+.portal-effect {
+  animation: portal-open 2s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(127, 255, 212, 0.8);
+}
+
+/* 3D scene specific */
+canvas {
+  border-radius: 0 !important;
+}
+
+/* Loading states */
+.loading-crystal {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(45deg, #9966ff, #7fffd4);
+  animation: portal-open 2s infinite;
+  border-radius: 20%;
+}
+
+/* Premium hover effects */
+.premium-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.premium-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(127, 255, 212, 0.3);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .glass-morphism {
+    background: rgba(26, 26, 46, 0.95);
+    border: 2px solid rgba(127, 255, 212, 0.8);
+  }
+}

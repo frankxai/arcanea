@@ -1,0 +1,162 @@
+#!/bin/bash
+# Arcanea Workspace Management Script
+# Usage: ./arcanea <command> [options]
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WORKSPACE_ROOT="$(dirname "$(dirname "$SCRIPT_DIR")")"
+CONFIG_PATH="$SCRIPT_DIR/../config.json"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+GRAY='\033[0;90m'
+NC='\033[0m' # No Color
+
+banner() {
+    echo ""
+    echo -e "${CYAN}   ╔═══════════════════════════════════════════╗${NC}"
+    echo -e "${CYAN}   ║     ARCANEA WORKSPACE HUB v1.0.0          ║${NC}"
+    echo -e "${GRAY}   ║   'Through the Gates we rise'             ║${NC}"
+    echo -e "${CYAN}   ╚═══════════════════════════════════════════╝${NC}"
+    echo ""
+}
+
+get_repos() {
+    # Parse repos from config.json
+    cat "$CONFIG_PATH" | grep -A 20 '"repositories"' | grep -E '^\s+"[a-z-]+"' | tr -d ' ":' | head -7
+}
+
+resolve_alias() {
+    local target="$1"
+    local resolved=$(cat "$CONFIG_PATH" | grep -A 20 '"aliases"' | grep "\"$target\"" | cut -d'"' -f4)
+    if [ -n "$resolved" ]; then
+        echo "$resolved"
+    else
+        echo "$target"
+    fi
+}
+
+get_repo_path() {
+    local repo="$1"
+    local path=$(cat "$CONFIG_PATH" | grep -A 5 "\"$repo\"" | grep '"path"' | head -1 | cut -d'"' -f4)
+    echo "$WORKSPACE_ROOT/$path"
+}
+
+get_repo_remote() {
+    local repo="$1"
+    cat "$CONFIG_PATH" | grep -A 10 "\"$repo\"" | grep '"remote"' | head -1 | cut -d'"' -f4
+}
+
+status_cmd() {
+    banner
+    echo "Repository Status:"
+    echo ""
+
+    for repo in main intelligence-os platform labs claude-arcanea; do
+        local path=$(get_repo_path "$repo")
+        local remote=$(get_repo_remote "$repo")
+
+        if [ ! -d "$path" ]; then
+            echo -e "  ${GRAY}○ $repo (not cloned)${NC}"
+            continue
+        fi
+
+        cd "$path"
+        local branch=$(git branch --show-current 2>/dev/null)
+        local changes=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+
+        if [ "$changes" -gt 0 ]; then
+            echo -e "  ${YELLOW}● $repo${NC} [${CYAN}$branch${NC}] ${YELLOW}($changes changes)${NC}"
+        else
+            echo -e "  ${GREEN}✓ $repo${NC} [${CYAN}$branch${NC}] ${GREEN}(clean)${NC}"
+        fi
+    done
+
+    echo ""
+}
+
+sync_cmd() {
+    banner
+    echo "Syncing repositories..."
+    echo ""
+
+    for repo in main intelligence-os platform labs claude-arcanea; do
+        local path=$(get_repo_path "$repo")
+        local remote=$(get_repo_remote "$repo")
+
+        if [ -z "$remote" ] || [ "$remote" = "null" ]; then
+            continue
+        fi
+
+        echo -ne "  ${CYAN}→ $repo...${NC} "
+
+        if [ ! -d "$path" ]; then
+            echo -ne "${YELLOW}cloning...${NC} "
+            git clone "$remote" "$path" --quiet 2>/dev/null
+            echo -e "${GREEN}done${NC}"
+        else
+            cd "$path"
+            git fetch --quiet 2>/dev/null
+            if git pull --quiet 2>/dev/null; then
+                echo -e "${GREEN}up to date${NC}"
+            else
+                echo -e "${RED}conflicts${NC}"
+            fi
+        fi
+    done
+
+    echo ""
+}
+
+dev_cmd() {
+    local target="${1:-main}"
+    target=$(resolve_alias "$target")
+    local path=$(get_repo_path "$target")
+
+    banner
+    echo -e "Starting development server for: ${CYAN}$target${NC}"
+    echo -e "${GRAY}Path: $path${NC}"
+    echo ""
+
+    if [ -d "$path" ] && [ -f "$path/package.json" ]; then
+        cd "$path"
+        pnpm dev
+    else
+        echo -e "${RED}Repository not found or no package.json${NC}"
+    fi
+}
+
+help_cmd() {
+    banner
+    echo "Commands:"
+    echo ""
+    echo "  status              Show status of all repositories"
+    echo "  sync                Pull latest from all remotes"
+    echo "  dev [repo]          Start dev server (default: main)"
+    echo "  clone               Clone missing repositories"
+    echo "  cd <repo>           Print path to repository"
+    echo ""
+    echo "Aliases:"
+    echo "  web → main"
+    echo "  aios → intelligence-os"
+    echo "  cli → intelligence-os"
+    echo "  exp → platform"
+    echo "  org → labs"
+    echo "  claude → claude-arcanea"
+    echo ""
+}
+
+# Main
+case "$1" in
+    status) status_cmd ;;
+    sync|clone) sync_cmd ;;
+    dev) dev_cmd "$2" ;;
+    cd)
+        target=$(resolve_alias "$2")
+        get_repo_path "$target"
+        ;;
+    help|--help|-h|"") help_cmd ;;
+    *) help_cmd ;;
+esac

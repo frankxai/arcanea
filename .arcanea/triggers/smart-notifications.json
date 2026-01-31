@@ -1,0 +1,83 @@
+{
+  "name": "smart-notifications",
+  "version": "1.0.0",
+  "description": "Intelligent notification system with contextual awareness and Guardian personality",
+  "type": "trigger",
+  "author": "Arcanea System",
+  
+  "configuration": {
+    "enabled": true,
+    "channels": {
+      "console": { "enabled": true, "level": "info" },
+      "web": { "enabled": true, "level": "all" },
+      "desktop": { "enabled": false, "level": "important" }
+    },
+    "smartGrouping": true,
+    "groupWindow": 300000,
+    "maxNotifications": 5,
+    "quietHours": {
+      "enabled": false,
+      "start": "22:00",
+      "end": "08:00"
+    }
+  },
+
+  "triggers": {
+    "guardianDetected": {
+      "enabled": true,
+      "condition": { "confidence": ">= 0.7" },
+      "messageTemplate": "🔮 {guardian} has revealed themselves in {fileName}",
+      "priority": "normal",
+      "suggestCommand": true
+    },
+    "highAffinityMatch": {
+      "enabled": true,
+      "condition": { "affinity": ">= 0.85" },
+      "messageTemplate": "✨ Strong {element} energy detected! {guardian} resonates powerfully with this content",
+      "priority": "high",
+      "celebration": true
+    },
+    "analysisComplete": {
+      "enabled": true,
+      "condition": { "filesAnalyzed": "> 0" },
+      "messageTemplate": "📊 Analysis complete: {filesAnalyzed} files processed across {dimensions} dimensions",
+      "priority": "low"
+    },
+    "newRecommendation": {
+      "enabled": true,
+      "condition": { "confidence": ">= 0.6" },
+      "messageTemplate": "🎯 New recommendations available based on your {element} affinity",
+      "priority": "normal",
+      "actionable": true
+    },
+    "workflowComplete": {
+      "enabled": true,
+      "condition": { "success": true },
+      "messageTemplate": "⚡ Workflow '{workflowName}' completed successfully in {duration}s",
+      "priority": "low"
+    },
+    "systemUpdate": {
+      "enabled": true,
+      "messageTemplate": "🌟 Arcanea system updated: {updateDescription}",
+      "priority": "normal"
+    }
+  },
+
+  "personalization": {
+    "guardianVoice": true,
+    "useDetectedGuardian": true,
+    "elementalTheming": true,
+    "celebrationAnimations": true
+  },
+
+  "delivery": {
+    "batchSimilar": true,
+    "respectQuietHours": true,
+    "priorityFiltering": true,
+    "maxFrequency": {
+      "high": 10,
+      "normal": 30,
+      "low": 60
+    }
+  }
+}

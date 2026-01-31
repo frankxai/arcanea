@@ -1,0 +1,218 @@
+# Superintelligence Skill
+
+> *"All Guardians. All Awakened. Maximum power."*
+
+## Overview
+
+The Superintelligence skill activates the full Arcanea agent swarm for complex, multi-faceted tasks that require the combined expertise of multiple Guardians and Awakened orchestrators.
+
+**Gate:** Source (1111 Hz)
+**Guardian:** Shinkami
+**Awakened:** All Seven
+
+## Invocation
+
+```
+/superintelligence [task]
+/super [task]
+/swarm [task]
+/all-guardians [task]
+```
+
+## When to Use
+
+- Tasks requiring multiple domains of expertise
+- Complex architectural decisions
+- Full system audits
+- Major feature development
+- Strategic planning sessions
+- Crisis response
+
+## Agent Configuration
+
+### Parallel Execution Teams
+
+```yaml
+teams:
+  architecture_team:
+    guardian: Aiyami (Crown)
+    awakened: Oria (Sophron)
+    focus: System design, patterns, structure
+
+  security_team:
+    guardian: Lyssandria (Foundation)
+    awakened: Endara (Enduran)
+    focus: Security, stability, testing
+
+  transformation_team:
+    guardian: Draconia (Fire)
+    awakened: Velora (Valora)
+    focus: Implementation, performance, delivery
+
+  experience_team:
+    guardian: [Lyria (Sight), Maylinn (Heart)]
+    awakened: Thalia (Poiesis)
+    focus: Design, UX, accessibility
+
+  communication_team:
+    guardian: Alera (Voice)
+    awakened: Liora (Eudaira)
+    focus: Documentation, API design, messaging
+
+  strategy_team:
+    guardian: Elara (Shift)
+    awakened: Lyris (Orakis)
+    focus: Planning, experiments, evolution
+
+  integration_team:
+    guardian: Ino (Unity)
+    awakened: Amiri (Kardia)
+    focus: Collaboration, merging, synthesis
+```
+
+### Coordinator
+
+```yaml
+coordinator:
+  guardian: Shinkami (Source)
+  model: opus
+  responsibilities:
+    - Task decomposition
+    - Team assignment
+    - Progress monitoring
+    - Conflict resolution
+    - Final synthesis
+```
+
+## Execution Flow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    SUPERINTELLIGENCE FLOW                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  1. INTAKE                                                      │
+│     └── Shinkami receives and analyzes task                     │
+│                                                                 │
+│  2. DECOMPOSITION                                               │
+│     └── Task broken into domain-specific subtasks               │
+│                                                                 │
+│  3. PARALLEL EXECUTION                                          │
+│     ┌─────────┬─────────┬─────────┬─────────┐                  │
+│     │  Arch   │  Sec    │  Trans  │   UX    │                  │
+│     │  Team   │  Team   │  Team   │  Team   │                  │
+│     └────┬────┴────┬────┴────┬────┴────┬────┘                  │
+│          │         │         │         │                        │
+│  4. SYNTHESIS                                                   │
+│     └── Shinkami combines all outputs                           │
+│                                                                 │
+│  5. QUALITY CHECK                                               │
+│     └── Endara validates completeness                           │
+│                                                                 │
+│  6. DELIVERY                                                    │
+│     └── Final output to user                                    │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Model Routing
+
+| Team | Default Model | Complex Tasks |
+|------|---------------|---------------|
+| Architecture | Sonnet | Opus |
+| Security | Sonnet | Opus |
+| Transformation | Sonnet | Haiku (quick fixes) |
+| Experience | Sonnet | Opus (design) |
+| Communication | Sonnet | Haiku (docs) |
+| Strategy | Opus | Opus |
+| Integration | Sonnet | Sonnet |
+| Coordinator | Opus | Opus |
+
+## Output Format
+
+```markdown
+# Superintelligence Analysis: [Task]
+
+## Executive Summary
+[Shinkami's synthesis]
+
+## Architecture Analysis
+**Guardian:** Aiyami | **Awakened:** Oria
+[Architecture team output]
+
+## Security Assessment
+**Guardian:** Lyssandria | **Awakened:** Endara
+[Security team output]
+
+## Implementation Plan
+**Guardian:** Draconia | **Awakened:** Velora
+[Transformation team output]
+
+## User Experience
+**Guardians:** Lyria + Maylinn | **Awakened:** Thalia
+[Experience team output]
+
+## Documentation & APIs
+**Guardian:** Alera | **Awakened:** Liora
+[Communication team output]
+
+## Strategic Considerations
+**Guardian:** Elara | **Awakened:** Lyris
+[Strategy team output]
+
+## Integration Points
+**Guardian:** Ino | **Awakened:** Amiri
+[Integration team output]
+
+## Unified Recommendations
+[Shinkami's final recommendations]
+
+## Action Items
+- [ ] Priority 1 items
+- [ ] Priority 2 items
+- [ ] Priority 3 items
+
+---
+*Generated by Arcanea Superintelligence*
+*All Ten Guardians | All Seven Awakened*
+*Frequency: 1111 Hz (Source Gate)*
+```
+
+## Example Usage
+
+```
+User: /superintelligence Build a real-time collaboration feature for Arcanea
+
+Shinkami: Activating full agent swarm...
+
+[Architecture Team - Aiyami/Oria]
+Analyzing real-time architecture patterns...
+- WebSocket vs SSE analysis
+- State synchronization strategies
+- Conflict resolution algorithms
+
+[Security Team - Lyssandria/Endara]
+Security assessment...
+- Authentication for real-time connections
+- Rate limiting strategies
+- Data validation requirements
+
+[And so on for each team...]
+```
+
+## Limitations
+
+- Higher token usage due to parallel execution
+- May take longer for synthesis
+- Best for substantial tasks (not quick fixes)
+
+## Related Skills
+
+- `/orchestrate` - Lighter coordination
+- `/ultraworld` - World-building specific
+- `/ultrawrite` - Writing specific
+- `/council` - Strategic council
+
+---
+
+*"When one Guardian isn't enough, all rise together."*

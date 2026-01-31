@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solopreneur OS - Complete Workflow System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fire-primary: #ff6b35;
+            --fire-glow: #ff9e6d;
+            --water-primary: #4fc3f7;
+            --water-glow: #80d8ff;
+            --earth-primary: #8d6e63;
+            --earth-glow: #bcaaa4;
+            --wind-primary: #b39ddb;
+            --wind-glow: #d1c4e9;
+            --void-primary: #7c4dff;
+            --void-glow: #b388ff;
+            --gold-light: #ffd700;
+            --gold-medium: #ffb300;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-elevated: #1a1a28;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-medium));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-medium));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .stat-label {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 200px 1fr;
+            }
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            .left-sidebar {
+                display: none;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.875rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            border-left: 3px solid var(--gold-light);
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.125rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-badge {
+            padding: 0.375rem 0.875rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-success { background: rgba(76, 175, 80, 0.2); color: #81c784; }
+        .badge-warning { background: rgba(255, 152, 0, 0.2); color: #ffb74d; }
+        .badge-fire { background: rgba(255, 107, 53, 0.2); color: var(--fire-glow); }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Revenue Stats */
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .revenue-item {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .revenue-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .revenue-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .revenue-change {
+            font-size: 0.875rem;
+            color: var(--success);
+            margin-top: 0.25rem;
+        }
+
+        .revenue-change.negative {
+            color: var(--danger);
+        }
+
+        /* Task List */
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.2s ease;
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-item:hover {
+            background: var(--bg-elevated);
+        }
+
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .task-checkbox:hover {
+            border-color: var(--gold-light);
+        }
+
+        .task-checkbox.checked {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            transition: all 0.2s ease;
+        }
+
+        .task-item.completed .task-title {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .task-tag {
+            padding: 0.125rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tag-client { background: rgba(79, 195, 247, 0.2); color: var(--water-glow); }
+        .tag-product { background: rgba(255, 107, 53, 0.2); color: var(--fire-glow); }
+        .tag-marketing { background: rgba(179, 157, 219, 0.2); color: var(--wind-glow); }
+        .tag-admin { background: rgba(141, 110, 99, 0.2); color: var(--earth-glow); }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .project-card {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: var(--gold-light);
+            transform: translateX(5px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-name {
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .project-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-active { background: rgba(76, 175, 80, 0.2); color: #81c784; }
+        .status-pending { background: rgba(255, 152, 0, 0.2); color: #ffb74d; }
+        .status-completed { background: rgba(96, 96, 112, 0.2); color: var(--text-muted); }
+
+        .project-client {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .project-progress {
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold-light), var(--gold-medium));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* Client Section */
+        .client-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .client-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .client-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-medium));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .client-info {
+            flex: 1;
+        }
+
+        .client-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .client-status {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .client-revenue {
+            text-align: right;
+        }
+
+        .client-amount {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: var(--success);
+        }
+
+        /* Content Pipeline */
+        .pipeline-stage {
+            margin-bottom: 1.5rem;
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .stage-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stage-count {
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-elevated);
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .content-item {
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            padding: 0.875rem;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--gold-light);
+        }
+
+        .content-title {
+            font-weight: 500;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .content-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.25rem;
+            background: var(--bg-elevated);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            border-color: var(--gold-light);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .action-label {
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        /* Invoice Section */
+        .invoice-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .invoice-item:last-child {
+            border-bottom: none;
+        }
+
+        .invoice-info h4 {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .invoice-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .invoice-amount {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .invoice-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 1rem;
+        }
+
+        .status-paid { background: rgba(76, 175, 80, 0.2); color: #81c784; }
+        .status-pending { background: rgba(255, 152, 0, 0.2); color: #ffb74d; }
+        .status-overdue { background: rgba(244, 67, 54, 0.2); color: #e57373; }
+
+        /* Buttons */
+        .btn {
+            padding: 0.875rem 1.5rem;
+            border-radius: 10px;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-medium));
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Workflow Templates */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .template-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .template-card:hover {
+            border-color: var(--gold-light);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .template-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .template-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .template-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Time Tracking */
+        .timer-display {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            color: var(--gold-light);
+            margin: 2rem 0;
+        }
+
+        .timer-project {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+    </style>
+    
+    <!-- Arcanea Ecosystem Loader -->
+    <script src="supabase-config.js"></script>
+    <script src="arcanea-auth.js"></script>
+    <script src="auth-ui.js"></script>
+    <script src="sync-engine.js"></script>
+    <script src="arcanea-agents-live.js"></script>
+    <script src="mobile-integration.js"></script>
+    <script src="arcanea-loader.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">💼</div>
+                <div>
+                    <h1>Solopreneur OS</h1>
+                    <p>Complete Business Workflow System</p>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat">
+                    <div class="stat-value">$12.4K</div>
+                    <div class="stat-label">Monthly Revenue</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Active Clients</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Open Projects</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar left-sidebar">
+            <div class="sidebar-title">Workspaces</div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a class="nav-link active" onclick="showPage('dashboard')">
+                        <span>📊</span> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('projects')">
+                        <span>📁</span> Projects
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('clients')">
+                        <span>👥</span> Clients
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('invoices')">
+                        <span>💰</span> Invoices
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('time')">
+                        <span>⏱️</span> Time Tracking
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('content')">
+                        <span>📝</span> Content Pipeline
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('workflows')">
+                        <span>⚡</span> Workflow Templates
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-title" style="margin-top: 2rem;">Quick Start</div>
+            <div class="quick-actions">
+                <button class="action-btn" onclick="quickAction('project')">
+                    <div class="action-icon">📁</div>
+                    <div class="action-label">New Project</div>
+                </button>
+                <button class="action-btn" onclick="quickAction('invoice')">
+                    <div class="action-icon">💰</div>
+                    <div class="action-label">New Invoice</div>
+                </button>
+                <button class="action-btn" onclick="quickAction('client')">
+                    <div class="action-icon">👤</div>
+                    <div class="action-label">New Client</div>
+                </button>
+                <button class="action-btn" onclick="quickAction('timer')">
+                    <div class="action-icon">⏱️</div>
+                    <div class="action-label">Start Timer</div>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page active">
+                <h2 class="page-title">📊 Dashboard</h2>
+                <p class="page-subtitle">Overview of your solopreneur business</p>
+
+                <div class="dashboard-grid">
+                    <!-- Revenue Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span>💰</span> Revenue
+                            </div>
+                            <span class="card-badge badge-success">+12%</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="revenue-grid">
+                                <div class="revenue-item">
+                                    <div class="revenue-label">This Month</div>
+                                    <div class="revenue-value">$12.4K</div>
+                                    <div class="revenue-change">+8% vs last month</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Outstanding</div>
+                                    <div class="revenue-value">$8.2K</div>
+                                    <div class="revenue-change negative">3 invoices</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">YTD Revenue</div>
+                                    <div class="revenue-value">$89.3K</div>
+                                    <div class="revenue-change">+23% vs last year</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Projected</div>
+                                    <div class="revenue-value">$156K</div>
+                                    <div class="revenue-change">Annual goal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tasks Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span>✅</span> Today's Tasks
+                            </div>
+                            <span class="card-badge badge-warning">5 pending</span>
+                        </div>
+                        <div class="card-content" style="padding: 0;">
+                            <div class="task-item">
+                                <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                                <div class="task-content">
+                                    <div class="task-title">Review website mockups for TechCorp</div>
+                                    <div class="task-meta">
+                                        <span class="task-tag tag-client">Client Work</span>
+                                        <span>Due 2pm</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-item">
+                                <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                                <div class="task-content">
+                                    <div class="task-title">Write newsletter for product launch</div>
+                                    <div class="task-meta">
+                                        <span class="task-tag tag-marketing">Marketing</span>
+                                        <span>Due 4pm</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-item">
+                                <div class="task-checkbox" onclick="toggleTask(this)"></div>
+                                <div class="task-content">
+                                    <div class="task-title">Send invoice to StartupXYZ</div>
+                                    <div class="task-meta">
+                                        <span class="task-tag tag-admin">Admin</span>
+                                        <span>Due EOD</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-item completed">
+                                <div class="task-checkbox checked" onclick="toggleTask(this)">✓</div>
+                                <div class="task-content">
+                                    <div class="task-title">Morning standup with team</div>
+                                    <div class="task-meta">
+                                        <span>Completed 9am</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-item completed">
+                                <div class="task-checkbox checked" onclick="toggleTask(this)">✓</div>
+                                <div class="task-content">
+                                    <div class="task-title">Update project documentation</div>
+                                    <div class="task-meta">
+                                        <span>Completed 10:30am</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Projects -->
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span>📁</span> Active Projects
+                            </div>
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">View All</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="project-grid">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <div class="project-name">TechCorp Website Redesign</div>
+                                        <span class="project-status status-active">Active</span>
+                                    </div>
+                                    <div class="project-client">Client: TechCorp Inc.</div>
+                                    <div class="project-stats">
+                                        <span>💰 $15,000</span>
+                                        <span>📅 Due Jan 30</span>
+                                        <span>⏱️ 24h tracked</span>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 65%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <div class="project-name">E-commerce Platform</div>
+                                        <span class="project-status status-active">Active</span>
+                                    </div>
+                                    <div class="project-client">Client: StartupXYZ</div>
+                                    <div class="project-stats">
+                                        <span>💰 $28,000</span>
+                                        <span>📅 Due Feb 15</span>
+                                        <span>⏱️ 42h tracked</span>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 40%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <div class="project-name">Brand Identity System</div>
+                                        <span class="project-status status-pending">Pending</span>
+                                    </div>
+                                    <div class="project-client">Client: GreenLife Co</div>
+                                    <div class="project-stats">
+                                        <span>💰 $8,500</span>
+                                        <span>📅 Starts Feb 1</span>
+                                        <span>⏱️ 0h tracked</span>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 5%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Page -->
+            <div id="projects-page" class="page" style="display: none;">
+                <h2 class="page-title">📁 Projects</h2>
+                <p class="page-subtitle">Manage all your client projects and deliverables</p>
+                
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">All Projects</div>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ New Project</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="project-grid">
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <div class="project-name">TechCorp Website Redesign</div>
+                                        <span class="project-status status-active">Active</span>
+                                    </div>
+                                    <div class="project-client">Client: TechCorp Inc. • $15,000</div>
+                                    <div class="project-stats">
+                                        <span>📅 Due: Jan 30, 2026</span>
+                                        <span>⏱️ 24 hours tracked</span>
+                                        <span>💰 $9,750 paid</span>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 65%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <div class="project-name">E-commerce Platform Development</div>
+                                        <span class="project-status status-active">Active</span>
+                                    </div>
+                                    <div class="project-client">Client: StartupXYZ • $28,000</div>
+                                    <div class="project-stats">
+                                        <span>📅 Due: Feb 15, 2026</span>
+                                        <span>⏱️ 42 hours tracked</span>
+                                        <span>💰 $14,000 paid</span>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 40%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <div class="project-name">Brand Identity System</div>
+                                        <span class="project-status status-pending">Pending</span>
+                                    </div>
+                                    <div class="project-client">Client: GreenLife Co • $8,500</div>
+                                    <div class="project-stats">
+                                        <span>📅 Starts: Feb 1, 2026</span>
+                                        <span>⏱️ 0 hours tracked</span>
+                                        <span>💰 $4,250 deposit paid</span>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 5%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-card">
+                                    <div class="project-header">
+                                        <div class="project-name">Mobile App UI/UX</div>
+                                        <span class="project-status status-completed">Completed</span>
+                                    </div>
+                                    <div class="project-client">Client: AppVenture • $12,000</div>
+                                    <div class="project-stats">
+                                        <span>📅 Completed: Dec 15, 2025</span>
+                                        <span>⏱️ 38 hours tracked</span>
+                                        <span>💰 Fully paid</span>
+                                    </div>
+                                    <div class="project-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clients Page -->
+            <div id="clients-page" class="page" style="display: none;">
+                <h2 class="page-title">👥 Clients</h2>
+                <p class="page-subtitle">Manage your client relationships and communications</p>
+                
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">Client Directory</div>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ Add Client</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="client-list">
+                                <div class="client-item">
+                                    <div class="client-avatar">🏢</div>
+                                    <div class="client-info">
+                                        <div class="client-name">TechCorp Inc.</div>
+                                        <div class="client-status">2 active projects • Last contact: 2 days ago</div>
+                                    </div>
+                                    <div class="client-revenue">
+                                        <div class="client-amount">$35K</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-muted);">Total revenue</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="client-item">
+                                    <div class="client-avatar">🚀</div>
+                                    <div class="client-info">
+                                        <div class="client-name">StartupXYZ</div>
+                                        <div class="client-status">1 active project • Last contact: Yesterday</div>
+                                    </div>
+                                    <div class="client-revenue">
+                                        <div class="client-amount">$28K</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-muted);">Total revenue</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="client-item">
+                                    <div class="client-avatar">🌱</div>
+                                    <div class="client-info">
+                                        <div class="client-name">GreenLife Co</div>
+                                        <div class="client-status">1 pending project • Last contact: 1 week ago</div>
+                                    </div>
+                                    <div class="client-revenue">
+                                        <div class="client-amount">$8.5K</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-muted);">Total revenue</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="client-item">
+                                    <div class="client-avatar">📱</div>
+                                    <div class="client-info">
+                                        <div class="client-name">AppVenture</div>
+                                        <div class="client-status">0 active projects • Last contact: 1 month ago</div>
+                                    </div>
+                                    <div class="client-revenue">
+                                        <div class="client-amount">$12K</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-muted);">Total revenue</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoices Page -->
+            <div id="invoices-page" class="page" style="display: none;">
+                <h2 class="page-title">💰 Invoices</h2>
+                <p class="page-subtitle">Track payments and manage your cash flow</p>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Invoice Summary</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="revenue-grid" style="grid-template-columns: 1fr;">
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Total Outstanding</div>
+                                    <div class="revenue-value" style="color: var(--warning);">$8,250</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Paid (This Month)</div>
+                                    <div class="revenue-value">$18,500</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Overdue</div>
+                                    <div class="revenue-value" style="color: var(--danger);">$2,500</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Average Payment Time</div>
+                                    <div class="revenue-value" style="font-size: 1.25rem;">12 days</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">Recent Invoices</div>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ New Invoice</button>
+                        </div>
+                        <div class="card-content" style="padding: 0;">
+                            <div class="invoice-item">
+                                <div class="invoice-info">
+                                    <h4>INV-2026-0042</h4>
+                                    <div class="invoice-meta">TechCorp Inc. • Website Redesign - Milestone 2</div>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <div class="invoice-amount">$5,000</div>
+                                    <span class="invoice-status status-pending">Pending</span>
+                                </div>
+                            </div>
+                            <div class="invoice-item">
+                                <div class="invoice-info">
+                                    <h4>INV-2026-0041</h4>
+                                    <div class="invoice-meta">StartupXYZ • E-commerce Development - Milestone 1</div>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <div class="invoice-amount">$7,000</div>
+                                    <span class="invoice-status status-paid">Paid</span>
+                                </div>
+                            </div>
+                            <div class="invoice-item">
+                                <div class="invoice-info">
+                                    <h4>INV-2026-0038</h4>
+                                    <div class="invoice-meta">GreenLife Co • Brand Identity - Deposit</div>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <div class="invoice-amount">$4,250</div>
+                                    <span class="invoice-status status-paid">Paid</span>
+                                </div>
+                            </div>
+                            <div class="invoice-item">
+                                <div class="invoice-info">
+                                    <h4>INV-2026-0035</h4>
+                                    <div class="invoice-meta">AppVenture • Mobile App UI - Final Payment</div>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <div class="invoice-amount">$2,500</div>
+                                    <span class="invoice-status status-overdue">Overdue 15 days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time Tracking Page -->
+            <div id="time-page" class="page" style="display: none;">
+                <h2 class="page-title">⏱️ Time Tracking</h2>
+                <p class="page-subtitle">Track your hours and optimize your productivity</p>
+                
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">Active Timer</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="timer-display" id="timerDisplay">00:00:00</div>
+                            <div class="timer-project" id="timerProject">No active project</div>
+                            <div class="timer-controls">
+                                <button class="btn btn-primary" onclick="startTimer()">▶ Start</button>
+                                <button class="btn btn-secondary" onclick="pauseTimer()">⏸ Pause</button>
+                                <button class="btn btn-secondary" onclick="stopTimer()">⏹ Stop</button>
+                            </div>
+                            
+                            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                                <h4 style="margin-bottom: 1rem;">Select Project</h4>
+                                <select id="projectSelect" style="width: 100%; padding: 0.75rem; background: var(--bg-elevated); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: var(--text-primary);" onchange="selectProject(this.value)">
+                                    <option value="">Select a project...</option>
+                                    <option value="techcorp">TechCorp Website Redesign</option>
+                                    <option value="startup">StartupXYZ E-commerce</option>
+                                    <option value="greenlife">GreenLife Brand Identity</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">This Week's Hours</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="revenue-grid">
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Monday</div>
+                                    <div class="revenue-value" style="font-size: 1.5rem;">6.5h</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Tuesday</div>
+                                    <div class="revenue-value" style="font-size: 1.5rem;">8h</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Wednesday</div>
+                                    <div class="revenue-value" style="font-size: 1.5rem;">7.5h</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Thursday</div>
+                                    <div class="revenue-value" style="font-size: 1.5rem;">4h</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Friday</div>
+                                    <div class="revenue-value" style="font-size: 1.5rem;">2h</div>
+                                </div>
+                                <div class="revenue-item">
+                                    <div class="revenue-label">Total</div>
+                                    <div class="revenue-value" style="font-size: 1.5rem;">28h</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Pipeline Page -->
+            <div id="content-page" class="page" style="display: none;">
+                <h2 class="page-title">📝 Content Pipeline</h2>
+                <p class="page-subtitle">Manage your content creation workflow from idea to published</p>
+                
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Ideas</div>
+                            <span class="card-badge badge-fire">3 items</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="content-item">
+                                <div class="content-title">10 Tips for Productivity</div>
+                                <div class="content-meta">Added 3 days ago • Blog Post</div>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-title">Solopreneur Tools Guide</div>
+                                <div class="content-meta">Added 1 week ago • Guide</div>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-title">Client Communication Best Practices</div>
+                                <div class="content-meta">Added 2 weeks ago • Article</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Drafting</div>
+                            <span class="card-badge badge-warning">2 items</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="content-item">
+                                <div class="content-title">The Future of Freelancing</div>
+                                <div class="content-meta">60% complete • Newsletter</div>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-title">Pricing Strategy Guide</div>
+                                <div class="content-meta">30% complete • Guide</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Review</div>
+                            <span class="card-badge badge-success">1 item</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="content-item">
+                                <div class="content-title">Q1 Business Review</div>
+                                <div class="content-meta">Ready for review • Report</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Published</div>
+                            <span class="card-badge badge-success">12 items</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="content-item">
+                                <div class="content-title">How to Start Freelancing</div>
+                                <div class="content-meta">Published Jan 15 • 2.4K views</div>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-title">Tools I Use Daily</div>
+                                <div class="content-meta">Published Jan 10 • 1.8K views</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow Templates Page -->
+            <div id="workflows-page" class="page" style="display: none;">
+                <h2 class="page-title">⚡ Workflow Templates</h2>
+                <p class="page-subtitle">Pre-built workflows to streamline your business processes</p>
+                
+                <div class="template-grid">
+                    <div class="template-card" onclick="loadWorkflow('client-onboarding')">
+                        <div class="template-icon">👋</div>
+                        <div class="template-name">Client Onboarding</div>
+                        <div class="template-desc">Streamline the process of welcoming new clients with contracts, welcome packets, and project setup.</div>
+                        <div class="template-meta">
+                            <span>8 steps</span>
+                            <span>~2 hours</span>
+                        </div>
+                    </div>
+                    
+                    <div class="template-card" onclick="loadWorkflow('project-delivery')">
+                        <div class="template-icon">📦</div>
+                        <div class="template-name">Project Delivery</div>
+                        <div class="template-desc">Standardized workflow for delivering projects including review, revision, and handoff processes.</div>
+                        <div class="template-meta">
+                            <span>12 steps</span>
+                            <span>~4 hours</span>
+                        </div>
+                    </div>
+                    
+                    <div class="template-card" onclick="loadWorkflow('invoice-collection')">
+                        <div class="template-icon">💰</div>
+                        <div class="template-name">Invoice & Collection</div>
+                        <div class="template-desc">Automated workflow for invoicing, payment reminders, and collection procedures.</div>
+                        <div class="template-meta">
+                            <span>6 steps</span>
+                            <span>~30 min</span>
+                        </div>
+                    </div>
+                    
+                    <div class="template-card" onclick="loadWorkflow('content-creation')">
+                        <div class="template-icon">📝</div>
+                        <div class="template-name">Content Creation</div>
+                        <div class="template-desc">End-to-end workflow for creating blog posts, newsletters, and marketing content.</div>
+                        <div class="template-meta">
+                            <span>10 steps</span>
+                            <span>~3 hours</span>
+                        </div>
+                    </div>
+                    
+                    <div class="template-card" onclick="loadWorkflow('product-launch')">
+                        <div class="template-icon">🚀</div>
+                        <div class="template-name">Product Launch</div>
+                        <div class="template-desc">Complete workflow for launching a new product or service including marketing and sales.</div>
+                        <div class="template-meta">
+                            <span>15 steps</span>
+                            <span>~8 hours</span>
+                        </div>
+                    </div>
+                    
+                    <div class="template-card" onclick="loadWorkflow('quarterly-review')">
+                        <div class="template-icon">📊</div>
+                        <div class="template-name">Quarterly Review</div>
+                        <div class="template-desc">Systematic approach to reviewing your business performance and planning next quarter.</div>
+                        <div class="template-meta">
+                            <span>9 steps</span>
+                            <span>~3 hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar right-sidebar">
+            <div class="sidebar-title">Daily Insight</div>
+            <div style="background: var(--bg-elevated); padding: 1.25rem; border-radius: 12px; border-left: 3px solid var(--gold-light); margin-bottom: 2rem;">
+                <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    "The key to solopreneur success is not doing everything yourself, but building systems that work for you."
+                </p>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">
+                    — Arcanea Business Wisdom
+                </p>
+            </div>
+
+            <div class="sidebar-title">Upcoming Deadlines</div>
+            <div class="client-list" style="margin-bottom: 2rem;">
+                <div class="client-item" style="padding: 0.875rem;">
+                    <div class="client-info">
+                        <div class="client-name" style="font-size: 0.875rem;">TechCorp Mockups</div>
+                        <div class="client-status">Today, 2pm</div>
+                    </div>
+                </div>
+                <div class="client-item" style="padding: 0.875rem;">
+                    <div class="client-info">
+                        <div class="client-name" style="font-size: 0.875rem;">Newsletter Launch</div>
+                        <div class="client-status">Today, 4pm</div>
+                    </div>
+                </div>
+                <div class="client-item" style="padding: 0.875rem;">
+                    <div class="client-info">
+                        <div class="client-name" style="font-size: 0.875rem;">StartupXYZ Milestone</div>
+                        <div class="client-status">Tomorrow</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-title">Quick Stats</div>
+            <div class="revenue-grid" style="grid-template-columns: 1fr; gap: 0.75rem;">
+                <div class="revenue-item" style="padding: 1rem;">
+                    <div class="revenue-label">Hours This Week</div>
+                    <div class="revenue-value" style="font-size: 1.5rem;">28h</div>
+                </div>
+                <div class="revenue-item" style="padding: 1rem;">
+                    <div class="revenue-label">Avg Hourly Rate</div>
+                    <div class="revenue-value" style="font-size: 1.5rem;">$145</div>
+                </div>
+                <div class="revenue-item" style="padding: 1rem;">
+                    <div class="revenue-label">Client Retention</div>
+                    <div class="revenue-value" style="font-size: 1.5rem;">92%</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Navigation
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageName + '-page');
+            if (selectedPage) {
+                selectedPage.style.display = 'block';
+                selectedPage.classList.add('active');
+            }
+            
+            // Update nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        // Task Toggle
+        function toggleTask(checkbox) {
+            const taskItem = checkbox.closest('.task-item');
+            checkbox.classList.toggle('checked');
+            taskItem.classList.toggle('completed');
+            
+            if (checkbox.classList.contains('checked')) {
+                checkbox.innerHTML = '✓';
+            } else {
+                checkbox.innerHTML = '';
+            }
+        }
+
+        // Quick Actions
+        function quickAction(type) {
+            alert(`Opening ${type} creation modal...`);
+        }
+
+        // Workflow Loader
+        function loadWorkflow(workflowName) {
+            const workflows = {
+                'client-onboarding': 'Client Onboarding Workflow: 1) Send contract 2) Collect deposit 3) Welcome packet 4) Project brief 5) Kickoff call',
+                'project-delivery': 'Project Delivery Workflow: 1) Internal review 2) Client preview 3) Feedback collection 4) Revisions 5) Final delivery',
+                'invoice-collection': 'Invoice Workflow: 1) Generate invoice 2) Send to client 3) Set reminder 4) Follow up 5) Mark paid',
+                'content-creation': 'Content Workflow: 1) Research 2) Outline 3) Draft 4) Edit 5) Design 6) Schedule 7) Publish 8) Promote',
+                'product-launch': 'Launch Workflow: 1) Product development 2) Beta testing 3) Pricing 4) Marketing assets 5) Landing page 6) Email sequence 7) Launch 8) Support',
+                'quarterly-review': 'Review Workflow: 1) Gather metrics 2) Analyze performance 3) Client feedback 4) Financial review 5) Goal assessment 6) Next quarter planning'
+            };
+            
+            alert(workflows[workflowName] || 'Workflow template loaded!');
+        }
+
+        // Timer Functions
+        let timerInterval = null;
+        let seconds = 0;
+        let isRunning = false;
+
+        function startTimer() {
+            if (isRunning) return;
+            
+            const project = document.getElementById('projectSelect').value;
+            if (!project) {
+                alert('Please select a project first!');
+                return;
+            }
+            
+            isRunning = true;
+            timerInterval = setInterval(() => {
+                seconds++;
+                updateTimerDisplay();
+            }, 1000);
+            
+            document.getElementById('timerProject').textContent = 'Tracking: ' + getProjectName(project);
+        }
+
+        function pauseTimer() {
+            if (!isRunning) return;
+            isRunning = false;
+            clearInterval(timerInterval);
+            document.getElementById('timerProject').textContent += ' (Paused)';
+        }
+
+        function stopTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+            
+            const hours = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            
+            if (hours > 0 || mins > 0) {
+                alert(`Timer stopped! Tracked ${hours}h ${mins}m. Time saved to project.`);
+            }
+            
+            seconds = 0;
+            updateTimerDisplay();
+            document.getElementById('timerProject').textContent = 'No active project';
+        }
+
+        function updateTimerDisplay() {
+            const hours = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            
+            document.getElementById('timerDisplay').textContent = 
+                `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function selectProject(value) {
+            if (value && isRunning) {
+                document.getElementById('timerProject').textContent = 'Tracking: ' + getProjectName(value);
+            }
+        }
+
+        function getProjectName(value) {
+            const names = {
+                'techcorp': 'TechCorp Website Redesign',
+                'startup': 'StartupXYZ E-commerce',
+                'greenlife': 'GreenLife Brand Identity'
+            };
+            return names[value] || 'Unknown Project';
+        }
+    </script>
+</body>
+</html>

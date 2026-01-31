@@ -1,0 +1,49 @@
+{
+  "name": "arcanea-luminor",
+  "version": "5.0.0",
+  "description": "Arcanea Luminor Engine - The ultimate AI development ecosystem with Starlight Intelligence, 38 Guardian agents, and n8n automation",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "publish": "changeset publish",
+    "version": "changeset version",
+    "release": "npm run build && npm run publish",
+    "guardian:activate": "node packages/guardians/bin/activate.js",
+    "sis:start": "node packages/core/bin/sis.js",
+    "n8n:import": "node packages/n8n/bin/import-workflows.js"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "turbo": "^2.0.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "npm@10.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea-luminor.git"
+  },
+  "keywords": [
+    "arcanea",
+    "luminor",
+    "guardians",
+    "ai",
+    "automation",
+    "n8n",
+    "claude",
+    "starlight-intelligence",
+    "elemental-magic"
+  ],
+  "author": "FrankX - Arcanea Intelligence OS",
+  "license": "MIT"
+}

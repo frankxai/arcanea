@@ -1,0 +1,85 @@
+# Arcanea Testing Artifacts
+
+# Coverage reports
+coverage/
+.coverage
+*.lcov
+htmlcov/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Test results
+reports/
+test-results/
+playwright-report/
+playwright/.cache/
+junit.xml
+*.log
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Test data
+.arcanea/data/
+.arcanea/test-data/
+
+# Logs
+logs/
+*.log
+
+# Nested repos (separate projects)
+arcanea-game-development/RESEARCH/
+arcanea-infogenius/
+arcanea-mobile/
+arcanea-opencode/
+arcaneabot/
+claude-arcanea/
+claude-code-oracle-skills/
+codex-arcanea/
+gemini-arcanea/
+infogenius/
+intelligence-os/
+labs/
+Nano-Banana-MCP/
+oci-ai-architect-skills/
+node_modules/
+.next/
+dist/

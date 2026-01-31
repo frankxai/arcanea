@@ -1,0 +1,115 @@
+# Development Session Workflow
+# Invoke with: /dev [repo] [focus]
+
+name: development-session
+description: Initialize and manage development sessions
+guardian: Draconia
+awakened: Velora
+
+triggers:
+  - command: "/dev"
+  - command: "/dev-start"
+
+parameters:
+  - name: repo
+    type: string
+    default: main
+    options: [main, intelligence-os, platform, ultraworld, claude-arcanea]
+  - name: focus
+    type: string
+    optional: true
+    description: "Specific area of focus (e.g., 'api', 'ui', 'tests')"
+
+aliases:
+  web: main
+  aios: intelligence-os
+  ios: intelligence-os
+  exp: platform
+  ultra: ultraworld
+  claude: claude-arcanea
+
+context:
+  workspace: "C:/Users/frank/arcanea-hub"
+
+steps:
+  - id: resolve_repo
+    action: alias_resolve
+    input: "{params.repo}"
+    aliases: "{aliases}"
+
+  - id: environment_check
+    action: shell
+    commands:
+      - name: "Check .env"
+        cmd: "test -f {workspace}/{repo}/.env && echo 'ENV: OK' || echo 'ENV: Missing'"
+      - name: "Check node_modules"
+        cmd: "test -d {workspace}/{repo}/node_modules && echo 'Deps: OK' || echo 'Deps: Need install'"
+      - name: "Check TypeScript"
+        cmd: "cd {workspace}/{repo} && npx tsc --noEmit 2>&1 | tail -3"
+
+  - id: install_if_needed
+    action: conditional
+    condition: "{environment_check.deps} == 'Need install'"
+    then:
+      action: shell
+      cmd: "cd {workspace}/{repo} && pnpm install"
+
+  - id: load_context
+    action: ai_analysis
+    guardian: Lyria
+    prompt: |
+      Analyze the recent activity in {repo}:
+      - Recent commits (last 5)
+      - Open branches
+      - Modified files
+
+      Provide context for the development session.
+
+  - id: guardian_selection
+    action: route
+    rules:
+      - pattern: "focus:api"
+        guardian: Alera
+        reason: "API development needs Voice gate"
+      - pattern: "focus:ui"
+        guardian: Lyria
+        reason: "UI development needs Sight gate"
+      - pattern: "focus:tests"
+        guardian: Lyssandria
+        reason: "Testing needs Foundation gate"
+      - pattern: "focus:performance"
+        guardian: Draconia
+        reason: "Performance needs Fire gate"
+      - default:
+        guardian: Draconia
+        reason: "General development under Fire gate"
+
+  - id: start_dev_server
+    action: shell
+    background: true
+    cmd: "cd {workspace}/{repo} && pnpm dev"
+
+  - id: session_summary
+    action: display
+    template: |
+      ## Development Session Started
+
+      **Repository:** {repo}
+      **Focus:** {params.focus || 'General'}
+      **Guardian:** {guardian_selection.guardian}
+      **Reason:** {guardian_selection.reason}
+
+      **Environment:**
+      {environment_check.output}
+
+      **Recent Context:**
+      {load_context.summary}
+
+      **Dev Server:** Running in background
+
+      ---
+      *Ready for development. Guardian {guardian_selection.guardian} is channeled.*
+
+outputs:
+  - display: terminal
+  - session_state: active

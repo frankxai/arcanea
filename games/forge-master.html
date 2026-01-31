@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Forge Master - Arcanea Blacksmith</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <style>
+        :root {
+            --fire-primary: #ff6b35;
+            --fire-dark: #d84315;
+            --fire-glow: #ff9e6d;
+            --gold-light: #ffd700;
+            --gold-medium: #ffb300;
+            --gold-dark: #ff8f00;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-elevated: #1a1a28;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        /* Header */
+        .game-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(180deg, var(--bg-card) 0%, transparent 100%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.25rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--fire-primary), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+
+        .stat-icon {
+            font-size: 1rem;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        /* Game Container */
+        #game-container {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-forge {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .loading-ring {
+            position: absolute;
+            border: 3px solid transparent;
+            border-top-color: var(--fire-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-ring:nth-child(1) {
+            width: 100%;
+            height: 100%;
+            animation-duration: 2s;
+        }
+
+        .loading-ring:nth-child(2) {
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            animation-duration: 1.5s;
+            animation-direction: reverse;
+        }
+
+        .loading-ring:nth-child(3) {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            animation-duration: 1s;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--fire-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .loading-subtext {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Agent Advice Panel */
+        .agent-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 2px solid var(--fire-primary);
+            border-radius: 16px;
+            padding: 1rem;
+            z-index: 50;
+            display: none;
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .agent-panel.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .agent-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--fire-primary), var(--gold-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .agent-name {
+            font-weight: 600;
+            color: var(--fire-primary);
+        }
+
+        .agent-role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .agent-message {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.9375rem;
+        }
+
+        .agent-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: var(--bg-card);
+            border: 2px solid var(--gold-light);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            z-index: 200;
+            display: none;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .success-modal.active {
+            display: block;
+            animation: modalPop 0.5s ease forwards;
+        }
+
+        @keyframes modalPop {
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .success-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .xp-reward {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid var(--gold-light);
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .success-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .success-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 150;
+            display: none;
+        }
+
+        .modal-overlay.active {
+            display: block;
+        }
+
+        /* Inventory Panel */
+        .inventory-panel {
+            position: fixed;
+            top: 70px;
+            right: 10px;
+            width: 280px;
+            max-height: calc(100vh - 100px);
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1rem;
+            z-index: 40;
+            display: none;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .inventory-panel.active {
+            display: block;
+        }
+
+        .inventory-header {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .inventory-slot {
+            aspect-ratio: 1;
+            background: var(--bg-elevated);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .inventory-slot:hover {
+            border-color: var(--gold-light);
+            transform: scale(1.05);
+        }
+
+        .inventory-slot .count {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 0.625rem;
+            background: var(--fire-primary);
+            color: #000;
+            padding: 1px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 1rem;
+            }
+
+            .stat-pill {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.75rem;
+            }
+
+            .inventory-panel {
+                width: calc(100vw - 20px);
+                right: 10px;
+                left: 10px;
+            }
+
+            .agent-panel {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+            }
+        }
+
+        /* Touch optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .back-btn, .inventory-slot {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-forge">
+            <div class="loading-ring"></div>
+            <div class="loading-ring"></div>
+            <div class="loading-ring"></div>
+        </div>
+        <div class="loading-text">Forge Master</div>
+        <div class="loading-subtext">Heating the forge...</div>
+    </div>
+
+    <!-- Header -->
+    <header class="game-header">
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <div class="game-title">🔥 Forge Master</div>
+        </div>
+        <div class="header-right">
+            <div class="stat-pill">
+                <span class="stat-icon">⭐</span>
+                <span class="stat-value" id="xpDisplay">0</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-icon">🔥</span>
+                <span class="stat-value" id="tempDisplay">Cold</span>
+            </div>
+            <button class="back-btn" onclick="toggleInventory()" style="font-size: 1rem;">📦</button>
+        </div>
+    </header>
+
+    <!-- Game Container -->
+    <div id="game-container"></div>
+
+    <!-- Inventory Panel -->
+    <div class="inventory-panel" id="inventoryPanel">
+        <div class="inventory-header">📦 Inventory</div>
+        <div class="inventory-grid" id="inventoryGrid">
+            <!-- Slots generated by JS -->
+        </div>
+    </div>
+
+    <!-- Agent Advice Panel -->
+    <div class="agent-panel" id="agentPanel">
+        <button class="agent-close" onclick="closeAgentPanel()">×</button>
+        <div class="agent-header">
+            <div class="agent-avatar" id="agentAvatar">🐉</div>
+            <div>
+                <div class="agent-name" id="agentName">Dragon-Forge</div>
+                <div class="agent-role" id="agentRole">The Eternal Smith</div>
+            </div>
+        </div>
+        <div class="agent-message" id="agentMessage">
+            Welcome to the forge, apprentice. Gather materials and heat them to craft legendary items. 
+            Watch the temperature carefully - too cold and the metal won't shape, too hot and it will melt!
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="success-modal" id="successModal">
+        <div class="success-icon">⚔️</div>
+        <div class="success-title" id="craftTitle">Legendary Blade!</div>
+        <div class="success-message" id="craftMessage">
+            You have crafted a weapon of exceptional quality. The dragon's fire burns within it.
+        </div>
+        <div class="xp-reward">
+            <span>⭐</span>
+            <span id="xpReward">+150 XP</span>
+        </div>
+        <button class="success-btn" onclick="closeSuccessModal()">Continue</button>
+    </div>
+
+    <!-- Game Scripts -->
+    <script>
+        // Game State
+        const GameState = {
+            xp: 0,
+            level: 1,
+            temperature: 20,
+            inventory: {},
+            selectedMaterial: null,
+            isHeating: false,
+            isCrafting: false,
+            forgeLevel: 1,
+            recipes: {
+                'iron_sword': { materials: { iron: 3, wood: 1 }, temp: 800, time: 3000, xp: 50 },
+                'steel_axe': { materials: { steel: 4, wood: 2 }, temp: 1200, time: 4000, xp: 100 },
+                'golden_ring': { materials: { gold: 2, gem: 1 }, temp: 600, time: 2000, xp: 150 },
+                'dragon_blade': { materials: { steel: 5, dragon_scale: 2, gem: 3 }, temp: 1500, time: 5000, xp: 300 }
+            }
+        };
+
+        // Materials Database
+        const Materials = {
+            iron: { icon: '⬜', name: 'Iron Ore', rarity: 'common' },
+            steel: { icon: '⚪', name: 'Steel Ingot', rarity: 'uncommon' },
+            gold: { icon: '🟡', name: 'Gold Nugget', rarity: 'rare' },
+            wood: { icon: '🪵', name: 'Wood', rarity: 'common' },
+            gem: { icon: '💎', name: 'Gem', rarity: 'rare' },
+            dragon_scale: { icon: '🐉', name: 'Dragon Scale', rarity: 'legendary' }
+        };
+
+        // Phaser Game Config
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: window.innerWidth,
+            height: window.innerHeight - 60,
+            backgroundColor: '#0a0a0f',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 300 },
+                    debug: false
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            },
+            scale: {
+                mode: Phaser.Scale.RESIZE,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+
+        let game;
+        let forge;
+        let temperatureGauge;
+        let particles;
+        let materialButtons = [];
+        let craftButton;
+        let tempText;
+        let statusText;
+
+        // Initialize game when page loads
+        window.addEventListener('load', () => {
+            game = new Phaser.Game(config);
+            initInventory();
+            
+            // Hide loading screen after 2 seconds
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+                showAgentMessage('Dragon-Forge', 'The Eternal Smith', '🐉', 
+                    'Welcome to the forge, apprentice! Click on materials to add them to the crucible, then heat the forge to craft legendary items.');
+            }, 2000);
+        });
+
+        function preload() {
+            // Create textures programmatically
+            const graphics = this.make.graphics();
+            
+            // Forge texture
+            graphics.fillStyle(0x2a2a3a);
+            graphics.fillRect(0, 0, 200, 150);
+            graphics.fillStyle(0xff6b35);
+            graphics.fillCircle(100, 75, 50);
+            graphics.generateTexture('forge', 200, 150);
+            graphics.clear();
+
+            // Material textures
+            Object.keys(Materials).forEach(key => {
+                graphics.fillStyle(0x1a1a28);
+                graphics.fillRect(0, 0, 80, 80);
+                graphics.lineStyle(2, 0xffd700);
+                graphics.strokeRect(0, 0, 80, 80);
+                graphics.generateTexture(`mat_${key}`, 80, 80);
+                graphics.clear();
+            });
+
+            // Button texture
+            graphics.fillStyle(0xff6b35);
+            graphics.fillRoundedRect(0, 0, 150, 50, 10);
+            graphics.generateTexture('button', 150, 50);
+            graphics.clear();
+        }
+
+        function create() {
+            const width = this.scale.width;
+            const height = this.scale.height;
+
+            // Background gradient
+            const bg = this.add.graphics();
+            bg.fillGradientStyle(0x0a0a0f, 0x0a0a0f, 0x1a0a0f, 0x1a0a0f, 1);
+            bg.fillRect(0, 0, width, height);
+
+            // Forge center piece
+            forge = this.add.container(width / 2, height / 2 - 50);
+            
+            // Forge base
+            const forgeBase = this.add.image(0, 0, 'forge');
+            forgeBase.setScale(1.5);
+            forge.add(forgeBase);
+
+            // Temperature gauge
+            const gaugeBg = this.add.rectangle(0, -120, 200, 20, 0x2a2a3a);
+            gaugeBg.setStrokeStyle(2, 0xffd700);
+            forge.add(gaugeBg);
+
+            temperatureGauge = this.add.rectangle(-90, -120, 0, 16, 0xff6b35);
+            forge.add(temperatureGauge);
+
+            // Temperature labels
+            const coldLabel = this.add.text(-100, -145, 'Cold', { fontSize: '12px', color: '#4fc3f7' });
+            const hotLabel = this.add.text(70, -145, 'Hot', { fontSize: '12px', color: '#ff6b35' });
+            forge.add([coldLabel, hotLabel]);
+
+            // Status text
+            statusText = this.add.text(width / 2, height / 2 + 80, 'Tap materials to add to forge', {
+                fontSize: '18px',
+                color: '#a0a0b0',
+                fontFamily: 'Inter'
+            }).setOrigin(0.5);
+
+            // Create material buttons
+            const matKeys = Object.keys(Materials);
+            const startX = (width - (matKeys.length * 100)) / 2 + 40;
+            
+            matKeys.forEach((key, index) => {
+                const btn = this.add.container(startX + index * 100, height - 100);
+                
+                const bg = this.add.image(0, 0, `mat_${key}`);
+                bg.setInteractive({ useHandCursor: true });
+                
+                const icon = this.add.text(0, -5, Materials[key].icon, {
+                    fontSize: '32px'
+                }).setOrigin(0.5);
+
+                const count = this.add.text(0, 25, '0', {
+                    fontSize: '14px',
+                    color: '#ffd700',
+                    fontFamily: 'Inter'
+                }).setOrigin(0.5).setName('count');
+
+                const label = this.add.text(0, 45, Materials[key].name, {
+                    fontSize: '10px',
+                    color: '#a0a0b0',
+                    fontFamily: 'Inter'
+                }).setOrigin(0.5);
+
+                btn.add([bg, icon, count, label]);
+                btn.setName(key);
+
+                // Click handler
+                bg.on('pointerdown', () => {
+                    selectMaterial(key);
+                    animateButton(btn);
+                });
+
+                materialButtons.push(btn);
+            });
+
+            // Heat button
+            const heatBtn = this.add.container(width / 2 - 100, height - 180);
+            const heatBg = this.add.image(0, 0, 'button');
+            heatBg.setInteractive({ useHandCursor: true });
+            const heatText = this.add.text(0, 0, '🔥 HEAT', {
+                fontSize: '16px',
+                color: '#000',
+                fontFamily: 'Inter',
+                fontStyle: 'bold'
+            }).setOrigin(0.5);
+            heatBtn.add([heatBg, heatText]);
+            
+            heatBg.on('pointerdown', () => {
+                toggleHeating();
+                animateButton(heatBtn);
+            });
+
+            // Craft button
+            craftButton = this.add.container(width / 2 + 100, height - 180);
+            const craftBg = this.add.image(0, 0, 'button');
+            craftBg.setInteractive({ useHandCursor: true });
+            const craftText = this.add.text(0, 0, '⚒️ CRAFT', {
+                fontSize: '16px',
+                color: '#000',
+                fontFamily: 'Inter',
+                fontStyle: 'bold'
+            }).setOrigin(0.5);
+            craftButton.add([craftBg, craftText]);
+            
+            craftBg.on('pointerdown', () => {
+                attemptCraft();
+                animateButton(craftButton);
+            });
+
+            // Particle system for forge
+            particles = this.add.particles(0, 0, 'forge', {
+                speed: 100,
+                scale: { start: 0.1, end: 0 },
+                blendMode: 'ADD',
+                lifespan: 1000,
+                frequency: 100,
+                quantity: 2
+            });
+            particles.stop();
+
+            // Input handlers
+            this.input.on('pointerdown', (pointer) => {
+                if (GameState.isHeating) {
+                    createSpark(this, pointer.x, pointer.y);
+                }
+            });
+
+            // Window resize handler
+            this.scale.on('resize', (gameSize) => {
+                const newWidth = gameSize.width;
+                const newHeight = gameSize.height;
+                
+                forge.setPosition(newWidth / 2, newHeight / 2 - 50);
+                statusText.setPosition(newWidth / 2, newHeight / 2 + 80);
+                
+                // Reposition material buttons
+                const newStartX = (newWidth - (matKeys.length * 100)) / 2 + 40;
+                materialButtons.forEach((btn, index) => {
+                    btn.setPosition(newStartX + index * 100, newHeight - 100);
+                });
+                
+                heatBtn.setPosition(newWidth / 2 - 100, newHeight - 180);
+                craftButton.setPosition(newWidth / 2 + 100, newHeight - 180);
+            });
+        }
+
+        function update(time, delta) {
+            // Temperature management
+            if (GameState.isHeating) {
+                GameState.temperature = Math.min(1600, GameState.temperature + (delta * 0.5));
+                particles.emitParticleAt(forge.x, forge.y);
+            } else {
+                GameState.temperature = Math.max(20, GameState.temperature - (delta * 0.3));
+            }
+
+            // Update temperature gauge
+            const tempPercent = Math.min(100, (GameState.temperature / 1600) * 100);
+            temperatureGauge.width = (tempPercent / 100) * 196;
+            
+            // Change color based on temperature
+            if (GameState.temperature < 400) {
+                temperatureGauge.fillColor = 0x4fc3f7; // Cold blue
+            } else if (GameState.temperature < 1000) {
+                temperatureGauge.fillColor = 0xffd700; // Warm gold
+            } else {
+                temperatureGauge.fillColor = 0xff6b35; // Hot orange
+            }
+
+            // Update UI
+            updateTempDisplay();
+        }
+
+        // Game Functions
+        function animateButton(container) {
+            game.scene.scenes[0].tweens.add({
+                targets: container,
+                scaleX: 0.9,
+                scaleY: 0.9,
+                duration: 100,
+                yoyo: true
+            });
+        }
+
+        function createSpark(scene, x, y) {
+            const spark = scene.add.circle(x, y, 3, 0xffd700);
+            scene.tweens.add({
+                targets: spark,
+                y: y - 50,
+                alpha: 0,
+                duration: 500,
+                onComplete: () => spark.destroy()
+            });
+        }
+
+        function selectMaterial(material) {
+            GameState.selectedMaterial = material;
+            
+            // Add to inventory or increment
+            if (!GameState.inventory[material]) {
+                GameState.inventory[material] = 0;
+            }
+            GameState.inventory[material]++;
+            
+            updateInventoryDisplay();
+            statusText.setText(`Added ${Materials[material].name} to inventory`);
+            
+            // Agent advice for rare materials
+            if (Materials[material].rarity === 'legendary') {
+                showAgentMessage('Dragon-Forge', 'The Eternal Smith', '🐉',
+                    `A ${Materials[material].name}! This is a legendary material. Save it for crafting the most powerful items.`);
+            }
+        }
+
+        function toggleHeating() {
+            GameState.isHeating = !GameState.isHeating;
+            statusText.setText(GameState.isHeating ? 'Forge is heating...' : 'Forge cooling down');
+        }
+
+        function attemptCraft() {
+            if (GameState.isCrafting) return;
+            
+            // Check if any recipe can be crafted
+            let craftableRecipe = null;
+            let recipeName = null;
+            
+            for (const [name, recipe] of Object.entries(GameState.recipes)) {
+                let canCraft = true;
+                for (const [mat, count] of Object.entries(recipe.materials)) {
+                    if (!GameState.inventory[mat] || GameState.inventory[mat] < count) {
+                        canCraft = false;
+                        break;
+                    }
+                }
+                
+                if (canCraft && GameState.temperature >= recipe.temp) {
+                    craftableRecipe = recipe;
+                    recipeName = name;
+                    break;
+                }
+            }
+            
+            if (craftableRecipe) {
+                // Consume materials
+                for (const [mat, count] of Object.entries(craftableRecipe.materials)) {
+                    GameState.inventory[mat] -= count;
+                }
+                
+                GameState.isCrafting = true;
+                statusText.setText('Crafting...');
+                
+                // Show crafting animation
+                const scene = game.scene.scenes[0];
+                scene.tweens.add({
+                    targets: forge,
+                    scaleX: 1.1,
+                    scaleY: 1.1,
+                    duration: craftableRecipe.time / 2,
+                    yoyo: true,
+                    onComplete: () => {
+                        GameState.isCrafting = false;
+                        craftingComplete(recipeName, craftableRecipe);
+                    }
+                });
+            } else {
+                statusText.setText('No craftable recipe! Check materials and temperature.');
+                
+                // Agent advice
+                showAgentMessage('Dragon-Forge', 'The Eternal Smith', '🐉',
+                    'You need the right materials AND the right temperature. Check the recipes and heat the forge to the required temperature.');
+            }
+            
+            updateInventoryDisplay();
+        }
+
+        function craftingComplete(itemName, recipe) {
+            // Award XP
+            const xpGained = recipe.xp * GameState.forgeLevel;
+            GameState.xp += xpGained;
+            
+            // Update displays
+            updateXPDisplay();
+            
+            // Show success modal
+            const itemNames = {
+                'iron_sword': { title: 'Iron Sword', message: 'A sturdy blade for a beginner.' },
+                'steel_axe': { title: 'Steel Axe', message: 'Heavy and reliable for battle.' },
+                'golden_ring': { title: 'Golden Ring', message: 'A beautiful piece of jewelry.' },
+                'dragon_blade': { title: 'Dragon Blade', message: 'LEGENDARY! Contains dragon fire!' }
+            };
+            
+            const item = itemNames[itemName] || { title: 'Unknown Item', message: 'Mysterious creation.' };
+            showSuccessModal(item.title, item.message, xpGained);
+            
+            // Agent celebration for legendary items
+            if (itemName === 'dragon_blade') {
+                showAgentMessage('Dragon-Forge', 'The Eternal Smith', '🐉',
+                    'INCREDIBLE! You have forged a Dragon Blade! This is the work of a true master smith. The dragon fire burns within it!');
+            }
+            
+            statusText.setText(`Crafted ${item.title}!`);
+            
+            // Sync with Arcanea ecosystem
+            syncWithArcanea(xpGained, item.title);
+        }
+
+        // UI Functions
+        function initInventory() {
+            const grid = document.getElementById('inventoryGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < 16; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'inventory-slot';
+                slot.innerHTML = '<span style="opacity: 0.3;">⚪</span>';
+                grid.appendChild(slot);
+            }
+        }
+
+        function updateInventoryDisplay() {
+            const grid = document.getElementById('inventoryGrid');
+            grid.innerHTML = '';
+            
+            let index = 0;
+            for (const [key, count] of Object.entries(GameState.inventory)) {
+                if (count > 0 && index < 16) {
+                    const slot = document.createElement('div');
+                    slot.className = 'inventory-slot';
+                    slot.innerHTML = `
+                        ${Materials[key].icon}
+                        <span class="count">${count}</span>
+                    `;
+                    grid.appendChild(slot);
+                    index++;
+                }
+            }
+            
+            // Fill empty slots
+            while (index < 16) {
+                const slot = document.createElement('div');
+                slot.className = 'inventory-slot';
+                slot.innerHTML = '<span style="opacity: 0.3;">⚪</span>';
+                grid.appendChild(slot);
+                index++;
+            }
+        }
+
+        function updateXPDisplay() {
+            document.getElementById('xpDisplay').textContent = GameState.xp.toLocaleString();
+        }
+
+        function updateTempDisplay() {
+            let tempText = 'Cold';
+            if (GameState.temperature > 400) tempText = 'Warm';
+            if (GameState.temperature > 800) tempText = 'Hot';
+            if (GameState.temperature > 1200) tempText = 'Inferno';
+            
+            document.getElementById('tempDisplay').textContent = tempText;
+        }
+
+        function toggleInventory() {
+            document.getElementById('inventoryPanel').classList.toggle('active');
+        }
+
+        function showAgentMessage(name, role, avatar, message) {
+            document.getElementById('agentName').textContent = name;
+            document.getElementById('agentRole').textContent = role;
+            document.getElementById('agentAvatar').textContent = avatar;
+            document.getElementById('agentMessage').textContent = message;
+            document.getElementById('agentPanel').classList.add('active');
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                closeAgentPanel();
+            }, 10000);
+        }
+
+        function closeAgentPanel() {
+            document.getElementById('agentPanel').classList.remove('active');
+        }
+
+        function showSuccessModal(title, message, xp) {
+            document.getElementById('craftTitle').textContent = title;
+            document.getElementById('craftMessage').textContent = message;
+            document.getElementById('xpReward').textContent = `+${xp} XP`;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.getElementById('successModal').classList.add('active');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        function goBack() {
+            window.location.href = 'games-v2.html';
+        }
+
+        // Arcanea Integration
+        function syncWithArcanea(xp, item) {
+            // Save to localStorage
+            const forgeData = {
+                xp: GameState.xp,
+                level: GameState.level,
+                inventory: GameState.inventory,
+                lastSync: new Date().toISOString()
+            };
+            localStorage.setItem('forgeMasterData', JSON.stringify(forgeData));
+            
+            // Award XP to global Arcanea system if available
+            if (window.Arcanea && window.Arcanea.awardXP) {
+                window.Arcanea.awardXP({
+                    gameId: 'forge-master',
+                    amount: xp,
+                    reason: `crafted_${item.toLowerCase().replace(/\s/g, '_')}`,
+                    agent: '@dragon-forge'
+                });
+            }
+            
+            // Dispatch custom event for other systems
+            window.dispatchEvent(new CustomEvent('forgeMasterCraft', {
+                detail: { xp, item, timestamp: Date.now() }
+            }));
+        }
+
+        // Load saved data
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('forgeMasterData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                GameState.xp = data.xp || 0;
+                GameState.level = data.level || 1;
+                GameState.inventory = data.inventory || {};
+                updateXPDisplay();
+                updateInventoryDisplay();
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'i' || e.key === 'I') {
+                toggleInventory();
+            }
+            if (e.key === 'Escape') {
+                closeAgentPanel();
+                closeSuccessModal();
+                document.getElementById('inventoryPanel').classList.remove('active');
+            }
+        });
+
+        // Prevent zoom on double tap for mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Designer - Arcanea Multi-Reality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <style>
+        :root {
+            --void-primary: #7c4dff;
+            --void-dark: #311b92;
+            --void-glow: #b388ff;
+            --gold-light: #ffd700;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-elevated: #1a1a28;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); min-height: 100vh; overflow: hidden; }
+        .game-header { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: var(--bg-card); z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .back-btn { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.25rem; }
+        .game-title { font-family: 'Cinzel', serif; font-size: 1.25rem; background: linear-gradient(135deg, var(--void-primary), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-pill { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.875rem; }
+        .stat-value { font-weight: 600; color: var(--gold-light); }
+        #game-container { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; }
+        .timeline-container { display: flex; gap: 1rem; padding: 1rem; justify-content: center; flex-wrap: wrap; }
+        .timeline { background: var(--bg-elevated); border: 2px solid var(--void-primary); border-radius: 12px; padding: 1rem; width: 200px; }
+        .timeline-title { font-family: 'Cinzel', serif; color: var(--void-primary); margin-bottom: 0.5rem; text-align: center; }
+        .resource-bar { display: flex; justify-content: space-between; margin: 0.5rem 0; font-size: 0.875rem; }
+        .action-btn { width: 100%; padding: 0.5rem; margin: 0.25rem 0; background: rgba(124,77,255,0.2); border: 1px solid var(--void-primary); border-radius: 6px; color: var(--text-primary); cursor: pointer; transition: all 0.2s; }
+        .action-btn:hover { background: rgba(124,77,255,0.4); }
+        .merge-btn { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); padding: 1rem 2rem; background: linear-gradient(135deg, var(--void-primary), var(--gold-light)); border: none; border-radius: 12px; color: #000; font-weight: 600; cursor: pointer; z-index: 40; }
+        .agent-panel { position: fixed; bottom: 20px; left: 20px; right: 20px; background: var(--bg-card); border: 2px solid var(--void-primary); border-radius: 16px; padding: 1rem; z-index: 50; display: none; }
+        .agent-panel.active { display: block; }
+    </style>
+</head>
+<body>
+    <header class="game-header">
+        <div style="display:flex;align-items:center;gap:0.75rem">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <div class="game-title">⚛️ Quantum Designer</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem">
+            <div class="stat-pill"><span>⭐</span><span class="stat-value" id="xpDisplay">0</span></div>
+            <div class="stat-pill"><span>🌌</span><span class="stat-value" id="timelineDisplay">3</span></div>
+        </div>
+    </header>
+    <div id="game-container">
+        <div style="text-align:center;padding:1rem;color:var(--text-secondary)">Manage multiple timelines. Merge them for bonus rewards!</div>
+        <div class="timeline-container" id="timelineContainer"></div>
+    </div>
+    <button class="merge-btn" onclick="mergeTimelines()">🌌 Merge Timelines</button>
+    <div class="agent-panel" id="agentPanel">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem">
+            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--void-primary),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:1.25rem">⚛️</div>
+            <div><div style="font-weight:600;color:var(--void-primary)">Quantum-Designer</div><div style="font-size:0.75rem;color:var(--text-secondary)">The Multi-Reality Architect</div></div>
+        </div>
+        <div id="agentMessage" style="color:var(--text-secondary);line-height:1.5">Manage resources across parallel timelines!</div>
+    </div>
+    <script>
+        const GameState = { xp: 0, timelines: [], maxTimelines: 3, mergeBonus: 1 };
+        function initGame() {
+            // Create initial timelines
+            for (let i = 0; i < GameState.maxTimelines; i++) {
+                GameState.timelines.push({
+                    id: i,
+                    energy: 100,
+                    matter: 50,
+                    probability: 1.0
+                });
+            }
+            renderTimelines();
+            showAgentMessage('Welcome to the quantum realm! Manage your timelines wisely.');
+        }
+        function renderTimelines() {
+            const container = document.getElementById('timelineContainer');
+            container.innerHTML = '';
+            GameState.timelines.forEach((timeline, index) => {
+                const div = document.createElement('div');
+                div.className = 'timeline';
+                div.innerHTML = `
+                    <div class="timeline-title">Timeline ${index + 1}</div>
+                    <div class="resource-bar"><span>⚡ Energy</span><span>${Math.floor(timeline.energy)}</span></div>
+                    <div class="resource-bar"><span>🪨 Matter</span><span>${Math.floor(timeline.matter)}</span></div>
+                    <div class="resource-bar"><span>🎲 Probability</span><span>${(timeline.probability * 100).toFixed(0)}%</span></div>
+                    <button class="action-btn" onclick="gatherEnergy(${index})">⚡ Gather Energy</button>
+                    <button class="action-btn" onclick="convertMatter(${index})">🪨 Convert Matter</button>
+                    <button class="action-btn" onclick="shiftProbability(${index})">🎲 Shift Probability</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+        function gatherEnergy(index) {
+            const timeline = GameState.timelines[index];
+            timeline.energy += 20 * timeline.probability;
+            const xpGain = Math.round(5 * timeline.probability);
+            GameState.xp += xpGain;
+            document.getElementById('xpDisplay').textContent = GameState.xp;
+            renderTimelines();
+            syncWithArcanea(xpGain, 'gather_energy');
+        }
+        function convertMatter(index) {
+            const timeline = GameState.timelines[index];
+            if (timeline.energy >= 10) {
+                timeline.energy -= 10;
+                timeline.matter += 5 * timeline.probability;
+                renderTimelines();
+            }
+        }
+        function shiftProbability(index) {
+            const timeline = GameState.timelines[index];
+            if (timeline.matter >= 20) {
+                timeline.matter -= 20;
+                timeline.probability = Math.min(2.0, timeline.probability + 0.1);
+                renderTimelines();
+            }
+        }
+        function mergeTimelines() {
+            if (GameState.timelines.length < 2) return;
+            // Merge two timelines
+            const t1 = GameState.timelines[0];
+            const t2 = GameState.timelines[1];
+            const merged = {
+                id: 0,
+                energy: (t1.energy + t2.energy) * 1.5,
+                matter: (t1.matter + t2.matter) * 1.5,
+                probability: Math.max(t1.probability, t2.probability) * 1.2
+            };
+            GameState.timelines = [merged];
+            GameState.maxTimelines--;
+            const xpGain = 100 * GameState.mergeBonus;
+            GameState.xp += xpGain;
+            GameState.mergeBonus++;
+            document.getElementById('xpDisplay').textContent = GameState.xp;
+            document.getElementById('timelineDisplay').textContent = GameState.timelines.length;
+            renderTimelines();
+            showAgentMessage('Timelines merged! Power multiplied across dimensions! +' + xpGain + ' XP');
+            syncWithArcanea(xpGain, 'timeline_merge');
+        }
+        function showAgentMessage(msg) {
+            document.getElementById('agentMessage').textContent = msg;
+            document.getElementById('agentPanel').classList.add('active');
+            setTimeout(() => document.getElementById('agentPanel').classList.remove('active'), 5000);
+        }
+        function goBack() { window.location.href = '../games-v2.html'; }
+        function syncWithArcanea(xp, reason) {
+            if (window.Arcanea && window.Arcanea.awardXP) {
+                window.Arcanea.awardXP({ gameId: 'quantum-designer', amount: xp, reason: reason, agent: '@quantum-designer' });
+            }
+        }
+        initGame();
+    </script>
+</body>
+</html>
