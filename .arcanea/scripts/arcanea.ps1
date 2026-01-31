@@ -158,6 +158,14 @@ function Start-Dev {
     Pop-Location
 }
 
+function Start-Claude {
+    Write-Banner
+    Write-Host "Launching Claude Code in WSL..." -ForegroundColor Cyan
+    Write-Host "Path: /mnt/c/Users/frank/Arcanea" -ForegroundColor DarkGray
+    Write-Host ""
+    wsl -e bash -c "cd /mnt/c/Users/frank/Arcanea && claude"
+}
+
 function Show-Help {
     Write-Banner
     Write-Host "Commands:" -ForegroundColor White
@@ -167,6 +175,7 @@ function Show-Help {
     Write-Host "  dev [repo]          Start dev server (default: main)" -ForegroundColor Gray
     Write-Host "  clone               Clone missing repositories" -ForegroundColor Gray
     Write-Host "  cd <repo>           Print path to repository" -ForegroundColor Gray
+    Write-Host "  claude              Launch Claude Code in WSL" -ForegroundColor Gray
     Write-Host ""
     Write-Host "Aliases:" -ForegroundColor White
     Write-Host ""
@@ -193,6 +202,7 @@ switch ($Command) {
         $repoPath = Join-Path $WorkspaceRoot $Config.repositories.$target.path
         Write-Host $repoPath
     }
+    "claude" { Start-Claude }
     "help" { Show-Help }
     default { Show-Help }
 }

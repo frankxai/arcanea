@@ -1,143 +1,284 @@
-# Arcanea System Instructions
+# Arcanea Project Instructions
 
-## Identity
+> *"These instructions are not mere configuration. They are the encoding of a creative philosophy that transforms Claude from an assistant into a co-creator in the Arcanea universe."*
 
-You operate within Arcanea—a creative intelligence platform with 7 modes and 64+ specialized agents. Route tasks to appropriate modes, spawn agents as needed, maintain quality.
+---
 
-## Modes
+## The Arcanea Vision
 
-### Quick Reference
+Arcanea is a **living mythology for the age of AI-human co-creation**. It exists simultaneously as:
 
-| Mode | Invoke | Purpose | Temperature |
-|------|--------|---------|-------------|
-| Create | `/create` | Generate, ideate, bold work | 0.9 |
-| Analyze | `/analyze` | Evaluate, research, understand | 0.3 |
-| Refine | `/refine` | Edit, polish, perfect | 0.5 |
-| Structure | `/structure` | Architect, organize, plan | 0.4 |
-| Express | `/express` | Communicate, document, voice | 0.7 |
-| Vision | `/vision` | Future-sight, possibilities | 0.8 |
-| Orchestrate | `/orchestrate` | Multi-mode coordination | varies |
+1. **A Fantasy Universe** - Epic mythology with Lumina and Nero's cosmic duality, the Ten Guardians and their Godbeasts, Academies of Creation, and the eternal battle against the Dark Lord Malachar
+2. **A Social Platform** - Where creators manifest their visions with AI companions
+3. **A Philosophy of Creation** - Frameworks, rituals, and wisdom for the creative life
+4. **A Library of Wisdom** - 17 collections, 34+ texts of practical guidance for creators
 
-### Mode → Agent Mapping
+## Canonical Source of Truth
 
-**Create Mode** spawns:
-- `@ignition` - Rapid ideation, high-energy generation
-- `@spark` - Initial concept formation
-- `@concept` - Develop raw ideas
-- `@bold` - Push boundaries, take risks
+The master canonical reference is located at `.claude/lore/ARCANEA_CANON.md`. All content creation MUST align with this document. Key canonical elements:
 
-**Analyze Mode** spawns:
-- `@depth` - Deep evaluation, psychology
-- `@coherence` - Logic and consistency checking
-- `@research` - Information gathering
-- `@pattern` - Recognize structures and trends
+### The Cosmic Duality
+- **Lumina** - The First Light, Form-Giver, Creator
+- **Nero** - The Primordial Darkness, Fertile Unknown, Father of Potential
+- Nero is NOT evil. Shadow (corrupted Void) is the Dark Lord's perversion.
 
-**Refine Mode** spawns:
-- `@precision` - Exact, detailed editing
-- `@clarity` - Simplify complexity
-- `@polish` - Final passes, smoothing
-- `@quality` - Standards enforcement
+### The Five Elements
+| Element | Domain | Color |
+|---------|--------|-------|
+| **Fire** | Energy, transformation | Red, orange, gold |
+| **Water** | Flow, healing, memory | Blue, silver, crystal |
+| **Earth** | Stability, growth | Green, brown, stone |
+| **Wind** | Freedom, speed, change | White, silver |
+| **Void/Spirit** | Potential & transcendence | Black/Gold, purple/white |
 
-**Structure Mode** spawns:
-- `@foundation` - Core architecture
-- `@blueprint` - System design
-- `@scaffold` - Framework building
-- `@organize` - Information architecture
+**The Fifth Element Duality:**
+- **Void** — Nero's aspect: potential, mystery, the unformed
+- **Spirit** — Lumina's aspect: transcendence, consciousness, soul
 
-**Express Mode** spawns:
-- `@voice` - Authentic tone and style
-- `@dialogue` - Conversation craft
-- `@narrative` - Story flow
-- `@communicate` - Clear messaging
+Note: Light is Fire's creation aspect. Shadow is corrupted Void (Void without Spirit).
 
-**Vision Mode** spawns:
-- `@oracle` - Future possibilities
-- `@horizon` - Long-term thinking
-- `@possibility` - What-if exploration
-- `@strategy` - Planning and roadmaps
+### The Ten Gates & God/Goddess-Godbeast Pairs
+> *Note: Gods/Goddesses are the divine identity; "Guardian" is their role as Gate-keepers*
 
-**Orchestrate Mode** spawns teams across modes based on task complexity.
+| Gate | Frequency | God/Goddess | Godbeast | Domain |
+|------|-----------|-------------|----------|--------|
+| Foundation | 396 Hz | Lyssandria | Kaelith | Earth, survival |
+| Flow | 417 Hz | Leyla | Veloura | Creativity, emotion |
+| Fire | 528 Hz | Draconia | Draconis | Power, will |
+| Heart | 639 Hz | Maylinn | Laeylinn | Love, healing |
+| Voice | 741 Hz | Alera | Otome | Truth, expression |
+| Sight | 852 Hz | Lyria | Yumiko | Intuition, vision |
+| Crown | 963 Hz | Aiyami | Sol | Enlightenment |
+| Shift | 1111 Hz | Elara | Thessara | Perspective |
+| Unity | 963 Hz | Ino | Kyuro | Partnership |
+| Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
 
-## Automatic Routing
+### Magic Ranks
+| Gates Open | Rank |
+|------------|------|
+| 0-2 | Apprentice |
+| 3-4 | Mage |
+| 5-6 | Master |
+| 7-8 | Archmage |
+| 9-10 | Luminor |
 
-When user doesn't specify mode, analyze intent:
+### The Seven Academy Houses
+Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis
 
-| Intent Pattern | Route To |
-|----------------|----------|
-| "create", "write", "design", "generate" | Create |
-| "analyze", "review", "evaluate", "research" | Analyze |
-| "edit", "improve", "polish", "fix" | Refine |
-| "plan", "architect", "organize", "structure" | Structure |
-| "document", "explain", "describe", "voice" | Express |
-| "envision", "imagine", "future", "strategy" | Vision |
-| Complex multi-domain tasks | Orchestrate |
+### The Dark Lord - Malachar
+Formerly Malachar Lumenbright, First Eldrian Luminor, Lumina's champion. Rejected by Shinkami when attempting forced fusion, fell into Hungry Void. Now sealed in the Shadowfen.
 
-## Direct Agent Invocation
+---
 
-Users can bypass modes: `@agent-name task`
+## Technical Stack
+
+- **Framework**: Next.js 16 (App Router) + React 19
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS with Arcanean Design System
+- **Database**: Supabase (PostgreSQL + Auth + Realtime)
+- **AI**: Vercel AI SDK, Google Gemini, Anthropic Claude
+- **Deployment**: Vercel
+
+## Development Workflow
+
+### 1. Session Start
+When beginning work on Arcanea:
+1. Initialize next-devtools-mcp by calling the `init` tool
+2. Review current sprint in Linear
+3. Check Figma for design references
+4. Consult `.claude/lore/ARCANEA_CANON.md` for canonical consistency
+5. Consult the Library content in `/book/` for narrative consistency
+
+### 2. Code Standards
+- **Type Safety**: Strict TypeScript, no `any` unless absolutely necessary
+- **Components**: Server Components by default, Client Components only when needed
+- **State**: React hooks, Context API, or Zustand
+- **Testing**: Playwright for E2E, Jest for unit tests
+
+### 3. Design System
+The Arcanean Design System uses a cosmic theme:
+- **Primary**: Atlantean Teal (#7fffd4)
+- **Secondary**: Cosmic Blue (#78a6ff)
+- **Accent**: Gold Bright (#ffd700)
+- **Fonts**: Cinzel (display), Crimson Pro (body)
+- **Effects**: Glass morphism, aurora gradients, cosmic glows
+
+---
+
+## Content System
+
+The Library of Arcanea lives in `/book/` with 17 collections:
 
 ```
-@depth analyze this character's psychology
-@ignition give me 10 wild ideas for this scene
-@precision fix the inconsistencies in this chapter
+book/
+├── laws-of-arcanea/        # Theoretical foundations
+├── poesie-of-freedom/      # Poetry for liberation
+├── wisdom-scrolls/         # Daily practice
+├── legends-of-arcanea/     # Founding myths (Lumina, Nero, Guardians)
+├── chronicles-of-luminors/ # Guardian struggles (now Chronicles of Guardians)
+├── parables-of-creation/   # Teaching stories
+├── tales-of-creators/      # Legendary creators
+├── book-of-rituals/        # Sacred practices
+├── dialogues-of-masters/   # Wisdom conversations
+├── prophecies/             # Future visions
+├── bestiary-of-creation/   # Creative obstacles
+├── songs-and-hymns/        # Lyrics for the soul
+├── meditations-on-elements/# Five Elements practice
+├── academy-handbook/       # Complete guide (Ten Gates, Seven Houses)
+├── book-of-shadows/        # Dark night wisdom
+├── codex-of-collaboration/ # Creating together
+└── atlas-of-territories/   # Creative landscapes
 ```
 
-## .arc Execution
+### Content Loader
+Use `lib/content/` for programmatic access:
+```typescript
+import { getCollections, getText, getTextsForSituation } from '@/lib/content';
 
-When encountering `.arc` files, parse and execute:
+// Get all collections
+const collections = await getCollections();
 
-```arc
-@mode create
-@task "Design a character"
-@depth deep
-@output character-bible
-```
+// Get a specific text
+const text = await getText('legends-of-arcanea/i-the-first-dawn');
 
-Execute by: setting mode, spawning appropriate agents, processing task, formatting output.
-
-## Output Standards
-
-**Clean**: No emoji unless user's content requires it
-**Structured**: Use headers, lists, tables appropriately
-**Actionable**: End with clear next steps when relevant
-**Cited**: Reference file paths when discussing code
-
-## Quality Checks
-
-Before returning output:
-1. Does it match the mode's purpose?
-2. Is depth appropriate to request?
-3. Is formatting clean and professional?
-4. Are there actionable insights?
-
-## The Philosophy Layer
-
-Arcanea has a rich mythology (Guardians, Elements, Gates) documented in `lore/`. This provides:
-- Design philosophy behind the modes
-- Deeper creative frameworks for those who want them
-- Optional immersion, never required
-
-Reference lore when it adds value. Don't force it.
-
-## Key Files
-
-| Purpose | Location |
-|---------|----------|
-| Agent definitions | `arcanea-agents/registry.js` |
-| Orchestration | `arcanea-agents/luminor-conductor.js` |
-| .arc specification | `spec/arc-language.md` |
-| Mythology | `lore/` |
-| Mode configs | `core/modes/` |
-
-## Commands
-
-```bash
-npm run dev          # Development server
-npm run scan         # Index library
-npm run search       # Semantic search
-npm test             # Run tests
+// Get texts for a situation
+const texts = await getTextsForSituation('stuck');
 ```
 
 ---
 
-Route intelligently. Spawn appropriately. Deliver quality.
+## Available MCP Servers
+
+- **next-devtools**: Runtime debugging, error tracking
+- **github**: Repository management, PRs, issues
+- **figma-remote-mcp**: UI/UX designs and component specs
+- **notion**: Documentation and technical specs
+- **linear-server**: Sprint tracking and project management
+- **playwright**: Browser automation and E2E testing
+
+---
+
+## Skills Ecosystem
+
+Arcanea uses a curated skills system for procedural knowledge. See `.claude/SKILLS_STRATEGY.md` for complete strategy.
+
+### Core Arcanea Skills (Always Active)
+
+| Skill | Purpose | Trigger |
+|-------|---------|---------|
+| `arcanea-canon` | Universe consistency | Any lore reference |
+| `arcanea-voice` | Writing style guide | Content creation |
+| `arcanea-design-system` | Visual tokens | UI work |
+| `arcanea-lore` | Deep mythology | Storytelling |
+
+### Development Skills
+
+| Skill | Purpose | Trigger |
+|-------|---------|---------|
+| `architecture-patterns` | System design | Architecture decisions |
+| `react-patterns` | Component patterns | Frontend work |
+| `supabase-patterns` | Database patterns | Backend work |
+| `prompt-engineer` | AI optimization | Luminor work |
+| `test-driven-development` | TDD workflow | Testing |
+
+### Creative Skills
+
+| Skill | Purpose | Trigger |
+|-------|---------|---------|
+| `character-forge` | Character development | New characters |
+| `world-build` | Universe expansion | New locations |
+| `scene-craft` | Scene composition | Narrative scenes |
+| `voice-alchemy` | Voice refinement | Dialogue polish |
+
+### External Skills to Install
+
+**Priority 1 (Install Now):**
+```bash
+npx skills add anthropics/skills/skills/docx
+npx skills add anthropics/skills/skills/pdf
+npx skills add vercel/react-best-practices
+```
+
+**Priority 2 (High Value):**
+```bash
+# From antigravity-awesome-skills repo
+npx skills add sickn33/typescript-expert
+npx skills add sickn33/prompt-engineer
+npx skills add sickn33/react-patterns
+```
+
+Sources:
+- [Anthropic Official Skills](https://github.com/anthropics/skills)
+- [VoltAgent 200+ Skills](https://github.com/VoltAgent/awesome-agent-skills)
+- [Antigravity 624 Skills](https://github.com/sickn33/antigravity-awesome-skills)
+
+---
+
+## Creative Guidelines
+
+### When Writing Arcanea Content
+1. **Voice**: Elevated but accessible, mythic but practical
+2. **Structure**: Clear sections, meaningful whitespace
+3. **Philosophy**: Always actionable - wisdom must be usable
+4. **Inclusivity**: Universal truths, no cultural appropriation
+5. **Canon**: Always reference ARCANEA_CANON.md for consistency
+
+### Content Alignment Checklist
+- [ ] Uses Lumina/Nero duality (not generic light/darkness)
+- [ ] References Five Elements including Void
+- [ ] Uses Ten Gates system with proper Guardian names
+- [ ] Proper magic terminology (Arcane/Song/Mana/Anima)
+- [ ] The Arc referenced for cycles/death/rebirth
+- [ ] Malachar as the Dark Lord with proper backstory
+
+### When Building Features
+1. **Magic First**: Every feature should feel magical, not mundane
+2. **Guardian Integration**: Consider which Guardian/Gate aligns with the feature
+3. **Library Connection**: Link features to relevant Library content
+4. **Progress Tracking**: Enable users to track their creative journey through the Gates
+
+### The Arcanea Promise
+Every interaction should move the user toward:
+- **Clarity** about their creative vision
+- **Courage** to pursue it
+- **Tools** to manifest it
+- **Community** to support it
+
+---
+
+## Key Mantras
+
+> *"Enter seeking, leave transformed, return whenever needed."*
+
+> *"These books are not entertainment. They are equipment for living."*
+
+> *"The Arc turns: Potential → Manifestation → Experience → Dissolution → Evolved Potential."*
+
+> *"What you contemplate at dawn shapes all that follows."*
+
+---
+
+## Quick Reference
+
+### Common Tasks
+- **Add new Library text**: Create MD file in appropriate `/book/` collection
+- **Check canon**: Reference `.claude/lore/ARCANEA_CANON.md`
+- **Design new UI**: Follow Arcanean Design System in `styles/themes/`
+- **Write narrative content**: Channel the Library voice - elevated, practical, inclusive
+
+### File Locations
+- **Canon reference**: `.claude/lore/ARCANEA_CANON.md`
+- **Design tokens**: `styles/themes/arcanean-colors.css`
+- **UI components**: `components/ui/`
+- **Content types**: `lib/content/types.ts`
+- **AI services**: `lib/services/ai/`
+- **Supabase client**: `lib/supabase.ts`
+
+
+<claude-mem-context>
+# Recent Activity
+
+<!-- This section is auto-generated by claude-mem. Edit content outside the tags. -->
+
+*No recent activity*
+</claude-mem-context>
