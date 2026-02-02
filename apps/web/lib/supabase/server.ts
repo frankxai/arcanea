@@ -14,9 +14,11 @@ import type { Database } from '@/lib/database/types/supabase';
 /**
  * Create Supabase client for server-side usage
  * Respects RLS policies and user sessions via cookies
+ *
+ * Note: This is async because cookies() returns a Promise in Next.js 15+
  */
-export function createClient() {
-  const cookieStore = cookies();
+export async function createClient() {
+  const cookieStore = await cookies();
 
   return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -29,7 +31,7 @@ export function createClient() {
         set(name: string, value: string, options: CookieOptions) {
           try {
             cookieStore.set({ name, value, ...options });
-          } catch (error) {
+          } catch {
             // Server Component context - cannot set cookies
             // This is expected in initial render, cookies are set via middleware
           }
@@ -37,7 +39,7 @@ export function createClient() {
         remove(name: string, options: CookieOptions) {
           try {
             cookieStore.set({ name, value: '', ...options });
-          } catch (error) {
+          } catch {
             // Server Component context - cannot remove cookies
           }
         },

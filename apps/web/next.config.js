@@ -118,10 +118,8 @@ const nextConfig = {
 
   // TypeScript configuration
   typescript: {
-    // TEMPORARY: Ignore build errors until Supabase types are regenerated
-    // The likes table types are incomplete (returning 'never')
-    // TODO: Run `npx supabase gen types typescript` to fix
-    ignoreBuildErrors: true,
+    // All TypeScript errors fixed - strict checking enabled
+    ignoreBuildErrors: false,
   },
   // Note: eslint config moved to next.config.js CLI options in Next.js 16
   // Use `next lint` command directly for linting

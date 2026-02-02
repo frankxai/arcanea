@@ -11,6 +11,16 @@ import { ServiceError, handleSupabaseError, assertSuccess } from '../errors';
 
 export type TargetType = 'creation' | 'comment' | 'post';
 
+// Database row type (workaround for missing Supabase generated types)
+// TODO: Remove after running `npx supabase gen types typescript`
+interface LikeRow {
+  id: string;
+  user_id: string;
+  target_id: string;
+  target_type: string;
+  created_at: string;
+}
+
 export interface Like {
   id: string;
   userId: string;
@@ -201,7 +211,9 @@ export async function getUserLikes(
     return [];
   }
 
-  return data.map(like => ({
+  // Type assertion for missing Supabase types
+  const likes = data as unknown as LikeRow[];
+  return likes.map(like => ({
     id: like.id,
     userId: like.user_id,
     targetId: like.target_id,
@@ -239,7 +251,9 @@ export async function getLikers(
     return [];
   }
 
-  return data.map(like => like.user_id);
+  // Type assertion for missing Supabase types
+  const likes = data as unknown as Pick<LikeRow, 'user_id'>[];
+  return likes.map(like => like.user_id);
 }
 
 /**
@@ -272,7 +286,9 @@ export async function getBatchLikeCounts(
   targetIds.forEach(id => counts.set(id, 0));
 
   if (data) {
-    data.forEach(like => {
+    // Type assertion for missing Supabase types
+    const likes = data as unknown as Pick<LikeRow, 'target_id'>[];
+    likes.forEach(like => {
       const current = counts.get(like.target_id) || 0;
       counts.set(like.target_id, current + 1);
     });
@@ -315,7 +331,9 @@ export async function getBatchLikeStatus(
 
   // Mark liked targets
   if (data) {
-    data.forEach(like => {
+    // Type assertion for missing Supabase types
+    const likes = data as unknown as Pick<LikeRow, 'target_id'>[];
+    likes.forEach(like => {
       statuses.set(like.target_id, true);
     });
   }

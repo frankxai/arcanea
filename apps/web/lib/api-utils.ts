@@ -44,12 +44,12 @@ export function errorResponse(
   code: ErrorCode,
   message: string,
   status = 500,
-  details?: Record<string, unknown>
+  details?: Record<string, unknown> | { errors: unknown[] }
 ): NextResponse<ApiResponse> {
   const error: ApiError = {
     code,
     message,
-    ...(details ? { details } : {}),
+    ...(details ? { details: details as Record<string, unknown> } : {}),
   };
 
   return NextResponse.json(
