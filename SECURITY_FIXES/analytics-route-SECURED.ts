@@ -1,6 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { secureMCPManager } from '@/lib/secure-mcp-manager'
 import { AIRouter } from '@/lib/ai-router'
+import { z } from 'zod'
+
+// SECURITY FIX: Add authentication helpers
+async function verifyAdminAuth(request: NextRequest) {
+  const authHeader = request.headers.get('authorization')
+
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return { authorized: false, error: 'Missing or invalid authorization header' }
+  }
+
+  try {
+    const token = authHeader.substring(7)
+
+    // Verify JWT token (implement based on your auth system)
+    // This is a placeholder - replace with actual verification
+    const user = await verifyJWTToken(token)
+
+    if (!user) {
+      return { authorized: false, error: 'Invalid token' }
+    }
+
+    // Check if user has admin role
+    if (user.role !== 'admin' && user.role !== 'system_admin') {
+      return { authorized: false, error: 'Insufficient permissions. Admin access required.' }
+    }
+
+    return { authorized: true, user }
+  } catch (error) {
+    console.error('Auth verification error:', error)
+    return { authorized: false, error: 'Authentication failed' }
+  }
+}
+
+// Placeholder for JWT verification - implement based on your auth provider
+async function verifyJWTToken(token: string) {
+  // TODO: Implement JWT verification with your auth provider
+  // Example with Supabase:
+  // const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!)
+  // const { data: { user }, error } = await supabase.auth.getUser(token)
+  // return user
+
+  throw new Error('JWT verification not implemented')
+}
 
 // Analytics aggregation
 interface SystemMetrics {
@@ -29,28 +72,51 @@ interface SystemMetrics {
   }
 }
 
-// Real-time monitoring endpoint
+// SECURITY FIX: Protected real-time monitoring endpoint
 export async function GET(request: NextRequest) {
   try {
+    // SECURITY: Verify admin authentication
+    const authResult = await verifyAdminAuth(request)
+    if (!authResult.authorized) {
+      return NextResponse.json(
+        { error: 'Unauthorized', message: authResult.error },
+        { status: 401 }
+      )
+    }
+
+    // SECURITY: Validate query parameters
     const { searchParams } = new URL(request.url)
-    const timeframe = searchParams.get('timeframe') || 'hour' // hour, day, week, month
+    const timeframeSchema = z.enum(['hour', 'day', 'week', 'month'])
+    const timeframeResult = timeframeSchema.safeParse(searchParams.get('timeframe') || 'hour')
+
+    if (!timeframeResult.success) {
+      return NextResponse.json(
+        { error: 'Invalid timeframe parameter. Must be: hour, day, week, or month' },
+        { status: 400 }
+      )
+    }
+
+    const timeframe = timeframeResult.data
 
     // Collect metrics from all systems
     const systemMetrics = await collectSystemMetrics(timeframe)
-    
+
     // Guardian-specific metrics
     const guardianMetrics = await collectGuardianMetrics()
-    
+
     // Performance analytics
     const performanceMetrics = await collectPerformanceMetrics()
-    
+
     // Cost analysis
     const costAnalysis = await analyzeCosts(timeframe)
-    
+
     // Health status
     const healthStatus = await getSystemHealth()
 
     const alerts = await getActiveAlerts()
+
+    // SECURITY: Log access to sensitive analytics
+    console.log(`[SECURITY AUDIT] Analytics accessed by user ${authResult.user.id} (${authResult.user.email}) at ${new Date().toISOString()}`)
 
     return NextResponse.json({
       timestamp: new Date().toISOString(),
@@ -63,11 +129,16 @@ export async function GET(request: NextRequest) {
       alerts
     })
 
-  } catch (error: unknown) {
+  } catch (error: any) {
     console.error('Monitoring API error:', error)
-    const message = error instanceof Error ? error.message : 'Unknown error';
+
+    // SECURITY: Don't leak error details in production
+    const errorMessage = process.env.NODE_ENV === 'production'
+      ? 'Monitoring failed'
+      : error.message
+
     return NextResponse.json(
-      { error: 'Monitoring failed', message },
+      { error: errorMessage },
       { status: 500 }
     )
   }
@@ -145,7 +216,7 @@ async function collectGuardianMetrics() {
     lyssandria: {
       interactions: 276,
       avgPower: 72,
-      element: 'earth', 
+      element: 'earth',
       specialties: ['foundation', 'structure'],
       mood: 'grounded'
     },
@@ -229,7 +300,7 @@ async function analyzeCosts(timeframe: string) {
 
 async function getSystemHealth() {
   const healthChecks = await secureMCPManager?.getServerHealth() || []
-  
+
   return {
     overall: 'healthy',
     services: healthChecks.map(check => ({
@@ -259,18 +330,49 @@ async function getActiveAlerts() {
   ]
 }
 
-// Advanced analytics endpoint
+// SECURITY FIX: Advanced analytics endpoint with authentication
 export async function POST(request: NextRequest) {
   try {
+    // SECURITY: Verify admin authentication
+    const authResult = await verifyAdminAuth(request)
+    if (!authResult.authorized) {
+      return NextResponse.json(
+        { error: 'Unauthorized', message: authResult.error },
+        { status: 401 }
+      )
+    }
+
+    // SECURITY: Validate request body
+    const bodySchema = z.object({
+      query: z.enum(['usage_trends', 'cost_optimization', 'guardian_synergy', 'performance_forecasting']),
+      timeframe: z.enum(['hour', 'day', 'week', 'month']).optional(),
+      filters: z.record(z.any()).optional()
+    })
+
     const body = await request.json()
-    const { query, timeframe, filters } = body
+    const validationResult = bodySchema.safeParse(body)
+
+    if (!validationResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Invalid request body',
+          details: validationResult.error.errors.map(e => ({
+            field: e.path.join('.'),
+            message: e.message
+          }))
+        },
+        { status: 400 }
+      )
+    }
+
+    const { query, timeframe, filters } = validationResult.data
 
     // Complex analytics queries
     let result = {}
 
     switch (query) {
       case 'usage_trends':
-        result = await getUsageTrends(timeframe, filters)
+        result = await getUsageTrends(timeframe || 'day', filters)
         break
       case 'cost_optimization':
         result = await getCostOptimizationOpportunities()
@@ -285,13 +387,21 @@ export async function POST(request: NextRequest) {
         throw new Error('Invalid analytics query')
     }
 
+    // SECURITY: Log analytics query
+    console.log(`[SECURITY AUDIT] Analytics query '${query}' by user ${authResult.user.id} at ${new Date().toISOString()}`)
+
     return NextResponse.json(result)
 
-  } catch (error: unknown) {
+  } catch (error: any) {
     console.error('Analytics API error:', error)
-    const message = error instanceof Error ? error.message : 'Unknown error';
+
+    // SECURITY: Don't leak error details in production
+    const errorMessage = process.env.NODE_ENV === 'production'
+      ? 'Analytics query failed'
+      : error.message
+
     return NextResponse.json(
-      { error: 'Analytics failed', message },
+      { error: errorMessage },
       { status: 500 }
     )
   }

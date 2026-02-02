@@ -30,5 +30,5 @@ export interface SpatialInteraction {
   type: 'click' | 'hover' | 'drag' | 'gesture'
   position: [number, number, number]
   timestamp: Date
-  data?: any
+  data?: Record<string, unknown>
 }

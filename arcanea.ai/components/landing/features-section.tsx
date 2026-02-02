@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { 
@@ -13,8 +14,7 @@ import {
   Crown
 } from 'lucide-react'
 
-export default function FeaturesSection() {
-  const features = [
+const features = [
     {
       icon: Brain,
       title: 'Multi-LLM Superagent',
@@ -57,8 +57,38 @@ export default function FeaturesSection() {
       highlight: 'Save 40% on costs',
       color: 'from-arcane-earth to-arcane-gold'
     }
-  ]
+  ] as const;
 
+const FeatureCard = React.memo(function FeatureCard({
+  feature,
+  index
+}: {
+  feature: typeof features[0];
+  index: number;
+}) {
+  const Icon = feature.icon;
+  return (
+    <div
+      className="group relative bg-arcane-shadow/50 backdrop-blur-sm rounded-2xl border border-arcane-cosmic/30 p-8 hover:border-arcane-crystal/50 transition-all duration-300 hover:transform hover:scale-105"
+    >
+      <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
+      <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.color} mb-6`}>
+        <Icon className="w-6 h-6 text-white" />
+      </div>
+      <h3 className="text-xl font-display text-arcane-crystal mb-3">
+        {feature.title}
+      </h3>
+      <p className="text-arcane-300 leading-relaxed mb-4">
+        {feature.description}
+      </p>
+      <Badge variant="crystal" className="text-xs">
+        {feature.highlight}
+      </Badge>
+    </div>
+  );
+});
+
+export default function FeaturesSection() {
   return (
     <section id="features" className="py-24 bg-gradient-to-b from-transparent to-arcane-cosmic/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,36 +112,9 @@ export default function FeaturesSection() {
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => {
-            const Icon = feature.icon
-            return (
-              <div
-                key={index}
-                className="group relative bg-arcane-shadow/50 backdrop-blur-sm rounded-2xl border border-arcane-cosmic/30 p-8 hover:border-arcane-crystal/50 transition-all duration-300 hover:transform hover:scale-105"
-              >
-                {/* Glow Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
-                
-                {/* Feature Icon */}
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.color} mb-6`}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-                
-                {/* Feature Content */}
-                <h3 className="text-xl font-display text-arcane-crystal mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-arcane-300 leading-relaxed mb-4">
-                  {feature.description}
-                </p>
-                
-                {/* Highlight Badge */}
-                <Badge variant="crystal" className="text-xs">
-                  {feature.highlight}
-                </Badge>
-              </div>
-            )
-          })}
+          {features.map((feature, index) => (
+            <FeatureCard key={index} feature={feature} index={index} />
+          ))}
         </div>
 
         {/* Bottom CTA */}

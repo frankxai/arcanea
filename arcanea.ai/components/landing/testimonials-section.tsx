@@ -1,14 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle, Star, Users, Zap } from 'lucide-react'
 
-export default function TestimonialsSection() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0)
-
-  const testimonials = [
+const testimonials = [
     {
       name: 'Alex Chen',
       role: 'Fantasy Author',
@@ -41,7 +38,79 @@ export default function TestimonialsSection() {
       rating: 4,
       result: '200+ projects delivered'
     }
-  ]
+  ] as const;
+
+const TestimonialCard = React.memo(function TestimonialCard({
+  testimonial,
+  index,
+  isActive,
+  onClick
+}: {
+  testimonial: typeof testimonials[0];
+  index: number;
+  isActive: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <div
+      className={`p-8 bg-arcane-shadow/80 backdrop-blur-sm rounded-xl border border-arcane-cosmic/30 cursor-pointer transition-all hover:border-arcane-fire hover:shadow-lg ${
+        isActive ? 'border-arcane-fire' : ''
+      }`}
+      onClick={onClick}
+    >
+      <div className="flex items-start gap-6">
+        <div className="w-16 h-16 bg-arcane-crystal/10 rounded-full flex items-center justify-center text-2xl font-display text-arcane-crystal">
+          {testimonial.avatar}
+        </div>
+
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-4">
+            <div>
+              <h4 className="text-xl font-display text-arcane-crystal">
+                {testimonial.name}
+              </h4>
+              <p className="text-arcane-400 text-sm">{testimonial.role}</p>
+            </div>
+
+            <div className="flex items-center">
+              {[...Array(testimonial.rating)].map((_, i) => (
+                <Star
+                  key={i}
+                  className={`w-5 h-5 ${
+                    i < testimonial.rating
+                      ? 'text-arcane-gold fill-current'
+                      : 'text-arcane-300'
+                  }`}
+                />
+              ))}
+              <span className="ml-2 text-arcane-400">{testimonial.rating}</span>
+            </div>
+          </div>
+
+          <blockquote className="text-arcane-300 mb-6">
+            "{testimonial.content}"
+          </blockquote>
+
+          <div className="flex items-center gap-3 mt-4">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-arcane-fire" />
+              <span className="text-arcane-crystal font-medium">
+                {testimonial.result}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+export default function TestimonialsSection() {
+  const [activeTestimonial, setActiveTestimonial] = useState(0)
+
+  const handleTestimonialClick = React.useCallback((index: number) => {
+    setActiveTestimonial(index);
+  }, []);
 
   return (
     <section className="py-20">
@@ -81,57 +150,13 @@ export default function TestimonialsSection() {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div 
+            <TestimonialCard
               key={index}
-              className={`p-8 bg-arcane-shadow/80 backdrop-blur-sm rounded-xl border border-arcane-cosmic/30 cursor-pointer transition-all hover:border-arcane-fire hover:shadow-lg ${
-                activeTestimonial === index ? 'border-arcane-fire' : ''
-              }`}
-              onClick={() => setActiveTestimonial(index)}
-            >
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 bg-arcane-crystal/10 rounded-full flex items-center justify-center text-2xl font-display text-arcane-crystal">
-                  {testimonial.avatar}
-                </div>
-                
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div>
-                      <h4 className="text-xl font-display text-arcane-crystal">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-arcane-400 text-sm">{testimonial.role}</p>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className={`w-5 h-5 ${
-                            i < testimonial.rating 
-                              ? 'text-arcane-gold fill-current' 
-                              : 'text-arcane-300'
-                          }`}
-                        />
-                      ))}
-                      <span className="ml-2 text-arcane-400">{testimonial.rating}</span>
-                    </div>
-                  </div>
-
-                  <blockquote className="text-arcane-300 mb-6">
-                    "{testimonial.content}"
-                  </blockquote>
-
-                  <div className="flex items-center gap-3 mt-4">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-arcane-fire" />
-                      <span className="text-arcane-crystal font-medium">
-                        {testimonial.result}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              testimonial={testimonial}
+              index={index}
+              isActive={activeTestimonial === index}
+              onClick={() => handleTestimonialClick(index)}
+            />
           ))}
         </div>
 

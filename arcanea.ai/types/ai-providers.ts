@@ -55,6 +55,12 @@ export interface VisionModel {
   features: string[]
 }
 
+export interface ContextItem {
+  role: 'user' | 'assistant' | 'system'
+  content: string
+  timestamp?: number
+}
+
 export interface AIRequest {
   providerId: string
   modelId?: string
@@ -68,15 +74,29 @@ export interface AIRequest {
     quality?: 'standard' | 'hd'
     guardianId?: string
     autoEnhance?: boolean
-    context?: any[]
+    context?: ContextItem[]
   }
-  context?: any[]
+  context?: ContextItem[]
   guardianMode?: boolean
+}
+
+export interface GeneratedData {
+  text?: string
+  imageUrl?: string
+  videoUrl?: string
+  audioUrl?: string
+  metadata?: Record<string, unknown>
+}
+
+export interface MultimodalData {
+  type: 'text' | 'image' | 'video' | 'audio' | 'mixed'
+  content: string | string[]
+  metadata?: Record<string, unknown>
 }
 
 export interface AIResponse {
   success: boolean
-  data?: any
+  data?: GeneratedData
   error?: string
   providerId: string
   modelId: string
@@ -87,11 +107,11 @@ export interface AIResponse {
   }
   guardianInsight?: string
   metadata?: {
-    original?: any
+    original?: GeneratedData
     enhancements?: string[]
     confidence?: number
   }
-  multimodal?: any
+  multimodal?: MultimodalData
 }
 
 export interface GuardianPersonality {

@@ -13,6 +13,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,json}\"",
     "analyze": "cross-env ANALYZE=true next build",
     "deploy:prod": "npm run build && npm run start",
     "security:audit": "npm audit --audit-level=moderate",
@@ -46,14 +48,15 @@
     "zustand": "^4.4.0"
   },
   "devDependencies": {
-    "@types/node": "^20.8.0",
+    "@types/node": "^20.14.12",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "autoprefixer": "^10.4.0",
-    "eslint": "^9.0.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.39.2",
     "eslint-config-next": "16.1.1",
-    "postcss": "^8.4.0",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5.2.0"
+    "postcss": "^8.4.38",
+    "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.9",
+    "typescript": "^5.5.4"
   }
 }

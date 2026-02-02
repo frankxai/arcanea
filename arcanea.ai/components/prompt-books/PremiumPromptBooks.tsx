@@ -322,7 +322,7 @@ const PromptEditor: React.FC<{
         ].map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id as any)}
+            onClick={() => setActiveTab(tab.id as 'prompts' | 'history' | 'library')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               activeTab === tab.id
                 ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'

@@ -91,17 +91,18 @@ export async function POST(request: NextRequest) {
     logRequest(request, nextResponse)
     return nextResponse
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Worldbuilding API error:', error)
-    
+    const message = error instanceof Error ? error.message : 'Unknown error';
+
     const errorResponse = NextResponse.json(
-      { 
+      {
         error: 'Worldbuilding creation failed',
-        message: process.env.NODE_ENV === 'development' ? error.message : undefined
+        message: process.env.NODE_ENV === 'development' ? message : undefined
       },
       { status: 500 }
     )
-    
+
     logRequest(request, errorResponse)
     return errorResponse
   }
@@ -127,7 +128,7 @@ export async function GET(request: NextRequest) {
     const sessions = Array.from(worldbuildingStore.values())
     return NextResponse.json({ sessions: sessions.slice(0, 50) }) // Limit to 50
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Worldbuilding GET error:', error)
     return NextResponse.json(
       { error: 'Failed to retrieve worldbuilding data' },
@@ -173,7 +174,7 @@ export async function PUT(request: NextRequest) {
       node: session.nodes[nodeIndex]
     })
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Worldbuilding PUT error:', error)
     return NextResponse.json(
       { error: 'Failed to update worldbuilding data' },

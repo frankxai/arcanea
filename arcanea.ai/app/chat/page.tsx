@@ -7,11 +7,11 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { GUARDIAN_PERSONALITIES } from '@/lib/ai-providers'
-import { 
-  Send, 
-  Sparkles, 
-  Trash2, 
-  Download, 
+import {
+  Send,
+  Sparkles,
+  Trash2,
+  Download,
   Copy,
   Settings,
   Zap,
@@ -19,8 +19,23 @@ import {
   Crown
 } from 'lucide-react'
 
+interface ChatMessage {
+  role: 'user' | 'assistant' | 'error'
+  content: string
+  timestamp: number
+  id: string
+  providerId?: string
+  modelId?: string
+  guardianInsight?: string
+  usage?: {
+    tokens?: number
+    cost?: number
+    generationTime?: number
+  }
+}
+
 export default function ChatInterface() {
-  const [messages, setMessages] = useState<any[]>([])
+  const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState('')
   const [activeModel, setActiveModel] = useState('claude')
   const [activeGuardian, setActiveGuardian] = useState('')
@@ -42,9 +57,9 @@ export default function ChatInterface() {
   const handleSendMessage = async () => {
     if (!input.trim() || !aiRouter) return
 
-    const userMessage = { 
-      role: 'user', 
-      content: input, 
+    const userMessage: ChatMessage = {
+      role: 'user',
+      content: input,
       timestamp: Date.now(),
       id: Date.now().toString()
     }
@@ -78,9 +93,9 @@ export default function ChatInterface() {
         })
       }
 
-      const aiMessage = {
+      const aiMessage: ChatMessage = {
         role: 'assistant',
-        content: response.data,
+        content: typeof response.data === 'string' ? response.data : JSON.stringify(response.data),
         providerId: response.providerId,
         modelId: response.modelId,
         guardianInsight: response.guardianInsight,
@@ -90,10 +105,11 @@ export default function ChatInterface() {
       }
 
       setMessages(prev => [...prev, aiMessage])
-    } catch (error: any) {
-      const errorMessage = {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      const errorMessage: ChatMessage = {
         role: 'error',
-        content: `Error: ${error?.message || 'Unknown error'}`,
+        content: `Error: ${message}`,
         timestamp: Date.now(),
         id: Date.now().toString()
       }
@@ -135,7 +151,7 @@ export default function ChatInterface() {
 
   const totalCost = messages
     .filter(msg => msg.usage?.cost)
-    .reduce((sum, msg) => sum + msg.usage.cost, 0)
+    .reduce((sum, msg) => sum + (msg.usage?.cost ?? 0), 0)
 
   return (
     <div className="flex h-screen bg-gradient-to-br from-arcane-cosmic via-arcane-shadow to-arcane-cosmic">
@@ -174,6 +190,8 @@ export default function ChatInterface() {
                 <button
                   key={model.id}
                   onClick={() => setActiveModel(model.id)}
+                  aria-label={`Select ${model.name} model`}
+                  aria-pressed={activeModel === model.id}
                   className={`w-full text-left p-3 rounded-lg border transition-all ${
                     activeModel === model.id
                       ? 'bg-arcane-fire border-arcane-fire text-white'
@@ -417,22 +435,24 @@ export default function ChatInterface() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder={activeGuardian 
+                placeholder={activeGuardian
                   ? `Chat with ${GUARDIAN_PERSONALITIES[activeGuardian].name}...`
                   : 'Enter your prompt...'
                 }
+                aria-label="Chat message input"
                 className="flex-1 min-h-[60px] resize-none border-arcane-cosmic/30 focus:border-arcane-crystal/50"
                 disabled={isGenerating}
               />
-              <Button 
+              <Button
                 onClick={handleSendMessage}
                 disabled={!input.trim() || isGenerating}
+                aria-label={isGenerating ? 'Generating response' : 'Send message'}
                 className="bg-arcane-fire hover:bg-arcane-fire/80 h-12 px-6"
               >
                 {isGenerating ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" aria-hidden="true" />
                 ) : (
-                  <Send className="w-5 h-5" />
+                  <Send className="w-5 h-5" aria-hidden="true" />
                 )}
               </Button>
             </div>

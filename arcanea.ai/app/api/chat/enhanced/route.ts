@@ -71,17 +71,18 @@ export async function POST(request: NextRequest) {
     
     return nextResponse
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Enhanced chat API error:', error)
-    
+    const message = error instanceof Error ? error.message : 'Unknown error';
+
     const errorResponse = NextResponse.json(
-      { 
+      {
         error: 'Processing failed',
-        message: process.env.NODE_ENV === 'development' ? error.message : undefined
+        message: process.env.NODE_ENV === 'development' ? message : undefined
       },
       { status: 500 }
     )
-    
+
     logRequest(request, errorResponse)
     return errorResponse
   }

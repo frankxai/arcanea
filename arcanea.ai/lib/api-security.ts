@@ -41,18 +41,14 @@ async function performSecurityAudit(request: Request) {
     }
   }
   
-  return { safe: true }
-
   // Authentication check for protected routes
-  // TODO: Implement authentication when next-auth is added
+  // Note: Full authentication implementation pending (NextAuth.js or Supabase Auth integration)
+  // Currently blocking all /api/protected routes until auth is implemented
   if (url.pathname.startsWith('/api/protected')) {
-    return NextResponse.json(
-      { error: 'Authentication required' },
-      { status: 401 }
-    )
+    return { safe: false, threat: 'authentication_required' }
   }
 
-  return null // Continue to the actual handler
+  return { safe: true }
 }
 
 // CORS configuration
@@ -66,8 +62,16 @@ export const corsOptions = {
   maxAge: 86400 // 24 hours
 }
 
+// Extended request interface with start time
+interface TimedNextRequest extends NextRequest {
+  _startTime?: number
+}
+
 // Request logging
 export function logRequest(request: NextRequest, response?: NextResponse) {
+  const timedRequest = request as TimedNextRequest
+  const duration = timedRequest._startTime ? Date.now() - timedRequest._startTime : 0
+
   const log = {
     timestamp: new Date().toISOString(),
     method: request.method,
@@ -75,13 +79,13 @@ export function logRequest(request: NextRequest, response?: NextResponse) {
     userAgent: request.headers.get('user-agent'),
     ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
     status: response?.status,
-    duration: Date.now() - (request as any)._startTime
+    duration
   }
 
   console.log(`[API] ${log.method} ${log.url} - ${log.status} (${log.duration}ms)`)
-  
+
   // Send to monitoring service in production
   if (process.env.NODE_ENV === 'production') {
-    // Integration with monitoring service
+    // Integration with monitoring service (placeholder for future implementation)
   }
 }

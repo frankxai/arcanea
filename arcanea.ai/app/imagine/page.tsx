@@ -14,7 +14,21 @@ export default function ImagineInterface() {
   const [selectedStyle, setSelectedStyle] = useState('')
   const [selectedProvider, setSelectedProvider] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
-  const [generationHistory, setGenerationHistory] = useState<any[]>([])
+  interface GenerationHistoryItem {
+    id: string
+    type: 'text' | 'image' | 'video' | 'audio'
+    prompt: string
+    result: string
+    timestamp: number
+    provider: string
+    usage?: {
+      tokens?: number
+      cost?: number
+      generationTime?: number
+    }
+  }
+
+  const [generationHistory, setGenerationHistory] = useState<GenerationHistoryItem[]>([])
   const [aiRouter, setAiRouter] = useState<AIRouter | null>(null)
 
   useEffect(() => {
@@ -70,14 +84,14 @@ export default function ImagineInterface() {
           break
       }
 
-      const newGeneration = {
-        id: Date.now(),
+      const newGeneration: GenerationHistoryItem = {
+        id: Date.now().toString(),
         type: activeTab,
         prompt,
         provider: response.providerId,
-        result: response.data,
+        result: typeof response.data === 'string' ? response.data : JSON.stringify(response.data),
         usage: response.usage,
-        timestamp: new Date()
+        timestamp: Date.now()
       }
 
       setGenerationHistory(prev => [newGeneration, ...prev])
@@ -146,7 +160,7 @@ export default function ImagineInterface() {
               ].map(tab => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id as 'image' | 'video' | 'audio')}
                   className={`p-3 rounded-lg border transition-all ${
                     activeTab === tab.id
                       ? 'bg-arcane-fire border-arcane-fire text-white'
@@ -294,10 +308,10 @@ export default function ImagineInterface() {
 
                   <div className="mt-3 flex justify-between items-center">
                     <span className="text-xs text-arcane-400">
-                      {gen.timestamp.toLocaleTimeString()}
+                      {new Date(gen.timestamp).toLocaleTimeString()}
                     </span>
                     <span className="text-xs text-arcane-crystal">
-                      ${gen.usage?.cost.toFixed(4)}
+                      ${gen.usage?.cost?.toFixed(4) ?? '0.0000'}
                     </span>
                   </div>
                 </div>

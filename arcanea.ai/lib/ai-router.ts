@@ -180,10 +180,11 @@ export class AIRouter {
         }
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Auto-enhancement failed';
       return {
         success: false,
-        error: error?.message || 'Auto-enhancement failed',
+        error: message,
         providerId: request.providerId || 'unknown',
         modelId: request.modelId || 'unknown'
       }
@@ -393,10 +394,11 @@ export class AIRouter {
         guardianInsight: response.guardianInsight
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Text generation failed';
       return {
         success: false,
-        error: error?.message || 'Text generation failed',
+        error: message,
         providerId: request.providerId || 'unknown',
         modelId: request.modelId || 'unknown'
       }
@@ -425,10 +427,11 @@ export class AIRouter {
         }
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Image generation failed';
       return {
         success: false,
-        error: error?.message || 'Image generation failed',
+        error: message,
         providerId: request.providerId || 'unknown',
         modelId: request.modelId || 'unknown'
       }
@@ -457,10 +460,11 @@ export class AIRouter {
         }
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Video generation failed';
       return {
         success: false,
-        error: error?.message || 'Video generation failed',
+        error: message,
         providerId: request.providerId || 'unknown',
         modelId: request.modelId || 'unknown'
       }
@@ -489,10 +493,11 @@ export class AIRouter {
         }
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Audio generation failed';
       return {
         success: false,
-        error: error?.message || 'Audio generation failed',
+        error: message,
         providerId: request.providerId || 'unknown',
         modelId: request.modelId || 'unknown'
       }

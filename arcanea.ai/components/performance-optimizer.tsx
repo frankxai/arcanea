@@ -32,10 +32,21 @@ export function PerformanceMonitor({ onStatsUpdate }: PerformanceMonitorProps) {
     if (delta >= 1000) {
       const fps = Math.round((statsRef.current.frameCount * 1000) / delta)
       
-      // Memory usage (if available)
+      // Memory usage (if available in Chrome/Edge)
       let memory = 0
-      if ('memory' in performance) {
-        memory = Math.round((performance as any).memory.usedJSHeapSize / 1048576)
+      interface PerformanceMemory {
+        usedJSHeapSize: number
+        totalJSHeapSize: number
+        jsHeapSizeLimit: number
+      }
+
+      interface ExtendedPerformance extends Performance {
+        memory?: PerformanceMemory
+      }
+
+      const extPerformance = performance as ExtendedPerformance
+      if (extPerformance.memory) {
+        memory = Math.round(extPerformance.memory.usedJSHeapSize / 1048576)
       }
 
       const stats: PerformanceStats = {
@@ -118,7 +129,7 @@ export function PerformancePanel({ stats }: { stats: PerformanceStats }) {
         
         <div className="flex items-center gap-2">
           <span className="text-arcane-400">Quality:</span>
-          <Badge variant={getQualityColor(stats.quality) as any} className="text-xs">
+          <Badge variant={getQualityColor(stats.quality) as 'default' | 'secondary' | 'destructive' | 'outline'} className="text-xs">
             {stats.quality}
           </Badge>
         </div>
