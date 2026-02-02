@@ -133,8 +133,8 @@ export default function HomePage() {
         },
         {
           id: '3',
-          path: '/arcania_logo.svg',
-          filename: 'arcania_logo.svg',
+          path: '/arcanea_logo.svg',
+          filename: 'arcanea_logo.svg',
           size: 24576,
           type: 'vector',
           format: 'svg',
@@ -145,7 +145,7 @@ export default function HomePage() {
           },
           analysis: {
             description: 'Arcanea Library logo with aurora colors and mystical design',
-            tags: ['logo', 'brand', 'arcania', 'library', 'mystical'],
+            tags: ['logo', 'brand', 'arcanea', 'library', 'mystical'],
             guardian: 'elara',
             element: 'void',
             mood: 'mysterious',

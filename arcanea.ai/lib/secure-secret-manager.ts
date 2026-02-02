@@ -270,6 +270,9 @@ class SecureSecretManager {
 
     // Validate new secret
     const config = this.getProviderConfig(providerId)
+    if (!config) {
+      throw new Error(`Unknown provider: ${providerId}`)
+    }
     if (!this.validateSecret(newSecret, config)) {
       throw new Error('Invalid new secret format')
     }

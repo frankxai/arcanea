@@ -1,5 +1,5 @@
 {
-  "name": "arcania-library-superintelligence",
+  "name": "arcanea-library-superintelligence",
   "version": "1.0.0",
   "description": "🧠 Arcanea Library Superintelligence - The most intelligent file management system for visual assets",
   "private": true,
@@ -14,7 +14,7 @@
     "train": "node scripts/train-model.js"
   },
   "dependencies": {
-    "next": "15.1.6",
+    "next": "^16.1.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "@types/node": "20.17.10",
@@ -30,7 +30,6 @@
     "date-fns": "4.1.0",
     "fuse.js": "7.0.0",
     "sharp": "0.33.5",
-    "better-sqlite3": "^9.2.2",
     "chokidar": "4.0.1",
     "exifr": "7.1.3",
     "image-size": "1.1.1",
@@ -43,7 +42,7 @@
     "axios": "1.7.9"
   },
   "devDependencies": {
-    "eslint": "8.57.1",
-    "eslint-config-next": "15.1.6"
+    "eslint": "^9.17.0",
+    "eslint-config-next": "16.1.1"
   }
 }

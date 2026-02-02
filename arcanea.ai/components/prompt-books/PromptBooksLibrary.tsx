@@ -58,7 +58,7 @@ interface Guardian {
   element: string;
   frequency: number;
   color: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const GUARDIANS: Guardian[] = [

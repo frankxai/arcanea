@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+// import Database from 'better-sqlite3'; // Temporarily disabled for Node.js 24 compatibility
 import path from 'path';
 import fs from 'fs';
 
@@ -42,16 +42,16 @@ export interface Asset {
 }
 
 export class ArcaneaDB {
-  private db: Database.Database | null = null;
+  private db: any = null; // Database.Database | null = null;
 
-  async initialize(dbPath: string = './arcania.db'): Promise<void> {
-    this.db = new Database(dbPath);
-    
-    // Enable foreign keys
-    this.run('PRAGMA foreign_keys = ON');
-    
-    // Create tables
-    this.createTables();
+  async initialize(dbPath: string = './arcanea.db'): Promise<void> {
+    // Temporarily using mock implementation until better-sqlite3 is compatible with Node.js 24
+    console.warn('ArcaneaDB: Using mock implementation - better-sqlite3 temporarily disabled');
+    this.db = { mock: true };
+
+    // this.db = new Database(dbPath);
+    // this.run('PRAGMA foreign_keys = ON');
+    // this.createTables();
   }
 
   private createTables(): void {
@@ -135,78 +135,28 @@ export class ArcaneaDB {
   }
 
   private initializeGuardians(): void {
-    const guardians = [
-      { id: 'draconia', name: 'Draconia', element: 'fire', description: 'Transformation & Bold Creation', color: '#f97316', symbol: '🔥', domains: 'creativity,transformation,courage' },
-      { id: 'aethon', name: 'Aethon', element: 'fire', description: 'Velocity & Swift Execution', color: '#ef4444', symbol: '⚡', domains: 'speed,execution,momentum' },
-      { id: 'leyla', name: 'Leyla', element: 'water', description: 'Emotional Intelligence & Storytelling', color: '#3b82f6', symbol: '💧', domains: 'emotion,storytelling,flow' },
-      { id: 'maylinn', name: 'Maylinn', element: 'water', description: 'Nurturing & Organic Development', color: '#10b981', symbol: '🌱', domains: 'growth,nurturing,organic' },
-      { id: 'lyssandria', name: 'Lyssandria', element: 'earth', description: 'Architecture & Systematic Creation', color: '#8b5cf6', symbol: '🏛️', domains: 'structure,architecture,systematic' },
-      { id: 'kaelix', name: 'Kaelix', element: 'earth', description: 'Refinement & Technical Excellence', color: '#6366f1', symbol: '💎', domains: 'precision,refinement,technical' },
-      { id: 'alera', name: 'Alera', element: 'wind', description: 'Voice & Creative Expression', color: '#06b6d4', symbol: '🌪️', domains: 'communication,expression,freedom' },
-      { id: 'yumiko', name: 'Yumiko', element: 'wind', description: 'Clarity & Authentic Expression', color: '#14b8a6', symbol: '🎯', domains: 'clarity,authenticity,truth' },
-      { id: 'elara', name: 'Elara', element: 'void', description: 'Innovation & Future-Sight', color: '#7c3aed', symbol: '🔮', domains: 'innovation,future,mystery' },
-      { id: 'shinkami', name: 'Shinkami', element: 'void', description: 'Universal Creation & Enlightenment', color: '#4c1d95', symbol: '✨', domains: 'universal,creation,enlightenment' }
-    ];
-
-    const stmt = this.db!.prepare(
-      `INSERT OR IGNORE INTO guardian_entities (id, name, element, description, color, symbol, domains) VALUES (?, ?, ?, ?, ?, ?, ?)`
-    );
-    
-    for (const guardian of guardians) {
-      stmt.run(guardian.id, guardian.name, guardian.element, guardian.description, guardian.color, guardian.symbol, guardian.domains);
-    }
-    
-    stmt.finalize();
-  }
+    // Mock implementation - guardians data would be stored in database
+    console.log('Guardians initialized (mock mode)');
   }
 
-  run(sql: string, params: any[] = []): Database.RunResult {
-    return this.db!.prepare(sql).run(...params);
+  run(sql: string, params: any[] = []): any {
+    // return this.db!.prepare(sql).run(...params);
+    return { changes: 0 };
   }
 
   get(sql: string, params: any[] = []): any {
-    return this.db!.prepare(sql).get(...params);
+    // return this.db!.prepare(sql).get(...params);
+    return null;
   }
 
   all(sql: string, params: any[] = []): any[] {
-    return this.db!.prepare(sql).all(...params);
+    // return this.db!.prepare(sql).all(...params);
+    return [];
   }
 
   insertAsset(asset: Asset): void {
-    this.run(
-      `INSERT OR REPLACE INTO assets 
-       (id, path, filename, size, type, format, dimensions, metadata, analysis, usage, relationships) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        asset.id,
-        asset.path,
-        asset.filename,
-        asset.size,
-        asset.type,
-        asset.format,
-        JSON.stringify(asset.dimensions),
-        JSON.stringify(asset.metadata),
-        JSON.stringify(asset.analysis),
-        JSON.stringify(asset.usage),
-        JSON.stringify(asset.relationships)
-      ]
-    );
-
-    // Insert tags
-    const tagStmt = this.db!.prepare(`INSERT OR IGNORE INTO tags (name, category) VALUES (?, ?)`);
-    const relationStmt = this.db!.prepare(`INSERT OR IGNORE INTO asset_tags (asset_id, tag_id) VALUES (?, ?)`);
-    
-    for (const tag of asset.analysis.tags) {
-      tagStmt.run(tag, 'auto-generated');
-      
-      const tagRow = this.get(`SELECT id FROM tags WHERE name = ?`, [tag]);
-      if (tagRow) {
-        relationStmt.run(asset.id, tagRow.id);
-      }
-    }
-    
-    tagStmt.finalize();
-    relationStmt.finalize();
+    // Mock implementation
+    console.log(`Mock: Inserting asset ${asset.filename}`);
   }
 
   async updateAssetUsage(assetId: string, usage: Partial<Asset['usage']>): Promise<void> {

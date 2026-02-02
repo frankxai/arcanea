@@ -207,7 +207,7 @@ export class AssetScanner {
 
     for (const [type, keywords] of Object.entries(contentTypes)) {
       if (keywords.some(keyword => pathLower.includes(keyword) || filenameLower.includes(keyword))) {
-        asset.analysis.content.push(type);
+        asset.analysis.content?.push(type);
         break;
       }
     }
@@ -228,19 +228,19 @@ export class AssetScanner {
       ignoreInitial: true
     });
 
-    watcher.on('add', async (filePath) => {
+    watcher.on('add', async (filePath: string) => {
       if (this.supportedFormats.includes(path.extname(filePath).toLowerCase())) {
         console.log(`📝 New file detected: ${filePath}`);
         await this.processFile(filePath);
       }
     });
 
-    watcher.on('change', async (filePath) => {
+    watcher.on('change', async (filePath: string) => {
       console.log(`🔄 File modified: ${filePath}`);
       await this.processFile(filePath);
     });
 
-    watcher.on('unlink', async (filePath) => {
+    watcher.on('unlink', async (filePath: string) => {
       console.log(`🗑️  File deleted: ${filePath}`);
       await this.db.run(`DELETE FROM assets WHERE path = ?`, [filePath]);
     });

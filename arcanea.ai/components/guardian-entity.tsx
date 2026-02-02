@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, RootState } from '@react-three/fiber'
 import { Text, Float, PerspectiveCamera } from '@react-three/drei'
 import { Mesh, Vector3 } from 'three'
 import { cn } from '@/lib/utils'
@@ -31,7 +31,7 @@ export function GuardianEntity({
   const [hovered, setHovered] = useState(false)
   
   // Animate Guardian entity
-  useFrame((state) => {
+  useFrame((state: RootState) => {
     if (!meshRef.current) return
     
     // Floating animation
@@ -249,7 +249,7 @@ export function GuardianRealm({
 function ElementalParticles({ element }: { element: string }) {
   const particlesRef = useRef<Mesh>(null)
   
-  useFrame((state) => {
+  useFrame((state: RootState) => {
     if (!particlesRef.current) return
     particlesRef.current.rotation.y += 0.001
   })

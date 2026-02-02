@@ -4,7 +4,16 @@ const nextConfig = {
   experimental: {
   },
   images: {
-    domains: ['arcanea.ai', 'cdn.arcanea.ai'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'arcanea.ai',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.arcanea.ai',
+      },
+    ],
   },
   webpack: (config) => {
     // Enable WebAssembly for Three.js optimizations

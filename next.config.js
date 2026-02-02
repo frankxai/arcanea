@@ -1,15 +1,26 @@
-// Next.js Configuration for Arcanea Library
-const { withSuperbrain } = require('@superbrain/next');
+// Next.js 16 Configuration for Arcanea Library
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // FrankX Brand Performance Optimizations
   reactStrictMode: true,
-  swcMinify: true,
-  
-  // Image Optimization for FrankX Visual Standards
+
+  // Image Optimization for FrankX Visual Standards (Next.js 16 format)
   images: {
-    domains: ['localhost', 'arcanea.io'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'arcanea.io',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.arcanea.io',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -18,15 +29,17 @@ const nextConfig = {
   // Environment Variables for Arcanea Integration
   env: {
     ARCANEA_API_URL: process.env.ARCANEA_API_URL,
-    SUPERBRAIN_KEY: process.env.SUPERBRAIN_KEY,
   },
 
   // Webpack Configuration for Custom Animations
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      config.resolve.fallback.fs = false;
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
     }
-    
+
     // Custom animation and effects support
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag)$/,
@@ -40,7 +53,7 @@ const nextConfig = {
   // Performance Optimizations
   poweredByHeader: false,
   compress: true,
-  
+
   // Headers for Security and Performance
   async headers() {
     return [
@@ -79,5 +92,4 @@ const nextConfig = {
   },
 };
 
-// Superbrain Integration for AI Enhancement
-module.exports = withSuperbrain(nextConfig);
+module.exports = nextConfig;

@@ -18,10 +18,10 @@ async function scanAssets() {
     const scanner = new AssetScanner(db);
 
     // Scan Arcanea directory
-    const arcaniaPath = path.join(__dirname, '../..');
-    console.log(`📁 Scanning: ${arcaniaPath}`);
-    
-    await scanner.scanDirectory(arcaniaPath);
+    const arcaneaPath = path.join(__dirname, '../..');
+    console.log(`📁 Scanning: ${arcaneaPath}`);
+
+    await scanner.scanDirectory(arcaneaPath);
     
     console.log('🎉 Scan completed successfully!');
     

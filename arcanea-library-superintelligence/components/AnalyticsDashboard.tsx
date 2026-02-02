@@ -61,7 +61,7 @@ export default function AnalyticsDashboard({ className = '' }: AnalyticsDashboar
         totalCopies: 891,
         mostViewedAssets: [
           { id: '1', filename: 'draconia_guardian.png', views: 342, type: 'raster' },
-          { id: '2', filename: 'arcania_logo.svg', views: 256, type: 'vector' },
+          { id: '2', filename: 'arcanea_logo.svg', views: 256, type: 'vector' },
           { id: '3', filename: 'fire_element_banner.jpg', views: 198, type: 'raster' },
           { id: '4', filename: 'void_portal.gif', views: 187, type: 'raster' },
           { id: '5', filename: 'leyla_water_flow.png', views: 165, type: 'raster' }
@@ -82,7 +82,7 @@ export default function AnalyticsDashboard({ className = '' }: AnalyticsDashboar
         ],
         recentActivity: [
           { action: 'view', assetId: '1', filename: 'draconia_guardian.png', timestamp: new Date() },
-          { action: 'favorite', assetId: '2', filename: 'arcania_logo.svg', timestamp: new Date(Date.now() - 300000) },
+          { action: 'favorite', assetId: '2', filename: 'arcanea_logo.svg', timestamp: new Date(Date.now() - 300000) },
           { action: 'copy', assetId: '3', filename: 'fire_element_banner.jpg', timestamp: new Date(Date.now() - 600000) },
           { action: 'view', assetId: '4', filename: 'void_portal.gif', timestamp: new Date(Date.now() - 900000) }
         ],

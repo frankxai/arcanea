@@ -57,7 +57,7 @@ Arcanea Library Superintelligence is a sophisticated, AI-powered asset managemen
 ## 📁 Architecture
 
 ```
-arcania-library-superintelligence/
+arcanea-library-superintelligence/
 ├── app/                    # Next.js app directory
 │   ├── layout.tsx         # Root layout with aurora background
 │   ├── page.tsx          # Main dashboard page
@@ -186,7 +186,7 @@ The system understands relationships between assets:
 ### **Environment Variables**
 ```env
 # Database
-DATABASE_PATH=./arcania.db
+DATABASE_PATH=./arcanea.db
 
 # Claude Vision API (optional - uses simulated analysis without)
 ANTHROPIC_API_KEY=your-api-key-here

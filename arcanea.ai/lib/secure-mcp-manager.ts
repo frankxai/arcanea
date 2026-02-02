@@ -650,8 +650,8 @@ class SecureMCPManager {
     return Array.from(this.connections.values())
   }
 
-  getServerHealth(): MCPHealth[] {
-    const healthPromises = Array.from(this.connections.keys()).map(connectionId => 
+  async getServerHealth(): Promise<MCPHealth[]> {
+    const healthPromises = Array.from(this.connections.keys()).map(connectionId =>
       this.performHealthCheck(connectionId)
     )
 
@@ -704,7 +704,7 @@ class SecureMCPManager {
     return {
       totalConnections: connections.length,
       healthyConnections,
-      uptime: this.initialized ? Date.now() - new Date().setHours(0,0,0,0).getTime() : 0 // ms since midnight
+      uptime: this.initialized ? Date.now() - new Date().setHours(0,0,0,0) : 0 // ms since midnight
     }
   }
 }

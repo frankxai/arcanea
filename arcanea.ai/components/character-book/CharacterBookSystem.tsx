@@ -71,7 +71,7 @@ interface Guardian {
   element: string;
   specialty: string[];
   color: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const GUARDIANS: Guardian[] = [

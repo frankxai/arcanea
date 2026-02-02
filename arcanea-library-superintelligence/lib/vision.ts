@@ -147,7 +147,7 @@ Focus on what you can actually see in the image. Be specific but concise.`;
       element: asset.analysis.element || this.detectElement(filename, path),
       mood: this.detectMood(filename, path),
       style: this.detectStyle(filename, path),
-      content: asset.analysis.content.length > 0 ? asset.analysis.content : ['unknown'],
+      content: (asset.analysis.content && asset.analysis.content.length > 0) ? asset.analysis.content : ['unknown'],
       colors: this.extractColorsFromPath(filename, path),
       composition: 'centered',
       objects: [],

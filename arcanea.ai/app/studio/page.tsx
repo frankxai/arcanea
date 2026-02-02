@@ -225,9 +225,7 @@ function EnergyFlowNodes({ guardian }: { guardian: GuardianConfig }) {
         <bufferGeometry attach="geometry">
           <bufferAttribute
             attach="attributes-position"
-            count={2}
-            array={new Float32Array([0, 1, 0, 3, 0.5, -2])}
-            itemSize={3}
+            args={[new Float32Array([0, 1, 0, 3, 0.5, -2]), 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial color="#7fffd4" opacity={0.6} transparent />
@@ -237,21 +235,17 @@ function EnergyFlowNodes({ guardian }: { guardian: GuardianConfig }) {
         <bufferGeometry attach="geometry">
           <bufferAttribute
             attach="attributes-position"
-            count={2}
-            array={new Float32Array([0, 1, 0, -3, 0.5, -2])}
-            itemSize={3}
+            args={[new Float32Array([0, 1, 0, -3, 0.5, -2]), 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial color="#ffd700" opacity={0.6} transparent />
       </line>
-      
+
       <line>
         <bufferGeometry attach="geometry">
           <bufferAttribute
             attach="attributes-position"
-            count={2}
-            array={new Float32Array([0, 1, 0, 0, 0.5, -4])}
-            itemSize={3}
+            args={[new Float32Array([0, 1, 0, 0, 0.5, -4]), 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial color="#78a6ff" opacity={0.6} transparent />

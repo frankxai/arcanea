@@ -86,7 +86,7 @@ export default function AssetModal({ asset, onClose, onFavorite }: AssetModalPro
           exit={{ scale: 0.95, opacity: 0 }}
           transition={{ type: 'spring', damping: 20, stiffness: 300 }}
           className="bg-cosmic-900 border border-white/20 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e: React.MouseEvent) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">

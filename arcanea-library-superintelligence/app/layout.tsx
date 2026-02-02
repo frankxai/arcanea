@@ -12,7 +12,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Arcanea Library Superintelligence',
   description: '🧠 The most intelligent file management system for your visual assets',
-  keywords: 'arcania, library, superintelligence, file management, visual assets, AI',
+  keywords: 'arcanea, library, superintelligence, file management, visual assets, AI',
 };
 
 export default function RootLayout({
