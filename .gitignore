@@ -83,3 +83,25 @@ oci-ai-architect-skills/
 node_modules/
 .next/
 dist/
+
+# Nested Git Repositories (managed independently)
+arcanea-ecosystem/
+arcanea.ai/
+claude-arcanea/
+gemini-arcanea/
+codex-arcanea/
+arcanea-infogenius/
+arcanea-library-superintelligence/
+arcanea-mobile/
+arcanea-opencode/
+arcanea-luminor/
+arcanea-agents/
+arcaneabot/
+arcanea-game-development/
+infogenius/
+intelligence-os/
+labs/
+desktop/
+starlight-intelligence-system/
+apps/
+Nano-Banana-MCP/
