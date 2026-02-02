@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Comment } from '@/lib/types/profile';
 
 export function useLike(creationId: string, initialLikes: number, initialIsLiked: boolean) {
@@ -50,6 +50,7 @@ export function useComments(creationId: string) {
   const fetchComments = useCallback(async () => {
     try {
       setIsLoading(true);
+      setError(null);
       // TODO: Replace with actual API call
       const response = await fetch(`/api/creations/${creationId}/comments`);
       if (!response.ok) {
@@ -63,6 +64,11 @@ export function useComments(creationId: string) {
       setIsLoading(false);
     }
   }, [creationId]);
+
+  // Fetch comments on mount and when creationId changes
+  useEffect(() => {
+    fetchComments();
+  }, [fetchComments]);
 
   const addComment = useCallback(
     async (content: string) => {
@@ -199,8 +205,6 @@ export function useShare() {
         } else {
           // Fallback to clipboard
           await navigator.clipboard.writeText(url);
-          // You could show a toast notification here
-          console.log('Link copied to clipboard');
         }
 
         // Track share event

@@ -29,6 +29,7 @@
     "release": "turbo run build --filter=!@arcanea/mobile && changeset publish"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.8.0",
     "next": "^16.1.1"
   },
   "devDependencies": {
@@ -39,10 +40,10 @@
     "eslint": "^9.39.2",
     "postcss": "^8.4.38",
     "prettier": "^3.1.1",
-    "tailwindcss": "^3.4.7",
+    "tailwindcss": "^3.4.9",
     "tailwindcss-animate": "^1.0.7",
-    "turbo": "^2.3.0",
-    "typescript": "^5.3.3"
+    "turbo": "^2.7.3",
+    "typescript": "^5.5.4"
   },
   "engines": {
     "node": ">=18.0.0",

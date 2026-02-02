@@ -66,7 +66,7 @@ interface UpdateBondOptions {
   luminorId: string;
   xpGained: number;
   interactionType?: string;
-  metadata?: any;
+  metadata?: Record<string, unknown>;
 }
 
 export async function updateBondProgress(

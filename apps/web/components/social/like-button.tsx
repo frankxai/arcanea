@@ -58,6 +58,8 @@ export function LikeButton({
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={handleLike}
+      aria-label={isLiked ? `Unlike creation. Currently ${likes} likes` : `Like creation. Currently ${likes} likes`}
+      aria-pressed={isLiked}
       className={`flex items-center gap-2 transition-colors duration-300 ${
         isLiked ? 'text-pink-500' : 'text-slate-400 hover:text-pink-500'
       }`}
@@ -75,6 +77,7 @@ export function LikeButton({
       >
         <Heart
           className={`${sizeClasses[size]} ${isLiked ? 'fill-current' : ''}`}
+          aria-hidden="true"
         />
       </motion.div>
 

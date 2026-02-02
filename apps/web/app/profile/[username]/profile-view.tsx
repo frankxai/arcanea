@@ -37,8 +37,8 @@ export function ProfileView({
   };
 
   const handleMessage = () => {
-    // TODO: Implement messaging
-    console.log('Open message to', profile.username);
+    // TODO: Implement messaging - navigate to DM page
+    window.location.href = `/messages/${profile.username}`;
   };
 
   const handleShare = () => {

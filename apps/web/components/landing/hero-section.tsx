@@ -272,10 +272,18 @@ export function HeroSection({ stats }: HeroSectionProps) {
 }
 
 function StatItem({ value, label, color }: { value: number | string; label: string; color: string }) {
+  // Map color prop to actual Tailwind classes
+  const colorClass =
+    color === 'atlantean-teal-aqua' ? 'text-atlantean-aqua' :
+    color === 'gold-bright' ? 'text-gold-bright' :
+    color === 'creation-prism-purple' ? 'text-creation-prism-purple' :
+    color === 'draconic-crimson' ? 'text-draconic-crimson' :
+    'text-text-primary';
+
   return (
     <div className="group">
       <motion.div
-        className={`text-3xl font-display font-bold text-${color}`}
+        className={`text-3xl font-display font-bold ${colorClass}`}
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ type: 'spring', stiffness: 200, delay: 0.5 }}

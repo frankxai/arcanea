@@ -31,6 +31,17 @@ interface ImageGenerationRequest {
   variationCount?: number; // For variations
 }
 
+interface GeneratedImage {
+  id: string;
+  url: string;
+  base64?: string;
+  storageUrl?: string;
+  metadata: {
+    cost?: number;
+    [key: string]: unknown;
+  };
+}
+
 export async function POST(req: NextRequest) {
   try {
     // Authentication
@@ -157,7 +168,7 @@ export async function POST(req: NextRequest) {
 
     // Upload images to Supabase Storage
     const uploadedImages = await Promise.all(
-      images.map(async (img: any) => {
+      images.map(async (img: GeneratedImage) => {
         try {
           // Convert base64 to buffer
           const base64Data = img.base64 || img.url.split(',')[1];
@@ -195,7 +206,7 @@ export async function POST(req: NextRequest) {
     );
 
     // Log usage to database
-    const totalCost = images.reduce((sum: number, img: any) => sum + (img.metadata.cost || 0), 0);
+    const totalCost = images.reduce((sum: number, img: GeneratedImage) => sum + (img.metadata?.cost || 0), 0);
     await supabase.from('ai_usage').insert({
       user_id: userId,
       operation: `image_${operation}`,

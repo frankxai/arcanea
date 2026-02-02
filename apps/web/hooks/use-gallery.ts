@@ -50,10 +50,11 @@ export function useGallery(options: UseGalleryOptions = {}) {
     [userId, filter, sort, limit]
   );
 
+  // Reset and fetch when filter/sort/userId changes
   useEffect(() => {
     setPage(1);
     fetchCreations(1, true);
-  }, [fetchCreations]);
+  }, [userId, filter, sort, limit]); // Use primitive dependencies instead of fetchCreations
 
   const loadMore = useCallback(() => {
     if (!isLoading && hasMore) {
@@ -68,6 +69,10 @@ export function useGallery(options: UseGalleryOptions = {}) {
     fetchCreations(1, true);
   }, [fetchCreations]);
 
+  const clearError = useCallback(() => {
+    setError(null);
+  }, []);
+
   return {
     creations,
     isLoading,
@@ -75,6 +80,7 @@ export function useGallery(options: UseGalleryOptions = {}) {
     hasMore,
     loadMore,
     refresh,
+    clearError,
   };
 }
 
@@ -84,17 +90,26 @@ export function useCreation(creationId: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function fetchCreation() {
       try {
         setIsLoading(true);
+        setError(null);
         // TODO: Replace with actual API call
-        const response = await fetch(`/api/creations/${creationId}`);
+        const response = await fetch(`/api/creations/${creationId}`, {
+          signal: abortController.signal,
+        });
         if (!response.ok) {
           throw new Error('Failed to fetch creation');
         }
         const data = await response.json();
         setCreation(data);
       } catch (err) {
+        // Ignore abort errors
+        if (err instanceof Error && err.name === 'AbortError') {
+          return;
+        }
         setError(err instanceof Error ? err : new Error('Unknown error'));
       } finally {
         setIsLoading(false);
@@ -102,6 +117,10 @@ export function useCreation(creationId: string) {
     }
 
     fetchCreation();
+
+    return () => {
+      abortController.abort();
+    };
   }, [creationId]);
 
   return { creation, isLoading, error };

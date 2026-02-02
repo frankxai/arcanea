@@ -140,7 +140,7 @@ export async function PATCH(
         'VALIDATION_ERROR',
         'Invalid input',
         400,
-        validation.error.errors
+        { errors: validation.error.errors }
       );
     }
 
@@ -180,7 +180,7 @@ export async function DELETE(
       return errorResponse('INVALID_INPUT', 'User ID is required for authorization', 400);
     }
 
-    const { userId } = body;
+    const userId = body.userId as string;
 
     // Delete (archive) creation
     await deleteCreation(supabaseServer, id, userId);

@@ -106,3 +106,8 @@ export interface Like {
 export type FilterType = 'all' | 'image' | 'video' | 'project' | 'composition';
 export type SortOption = 'recent' | 'popular' | 'oldest';
 export type TabOption = 'gallery' | 'projects' | 'about' | 'stats';
+
+// Type aliases for backward compatibility
+export type UserProfile = Profile;
+export type UserStats = ProfileStats;
+export type UserSettings = PrivacySettings;

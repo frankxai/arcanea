@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import "./globals.css";
 import { CosmicBackground } from "@/lib/arcanea-ui";
 import { ReactNode } from "react";
@@ -23,9 +24,49 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Arcanea — Where Imagination Becomes Reality",
-  description: "Create realms, summon guardians, and build with AI.",
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://arcanea.com"),
+  title: {
+    default: "Arcanea — Where Imagination Becomes Reality",
+    template: "%s | Arcanea"
+  },
+  description: "Create realms, summon guardians, and build with AI. A social platform where creators manifest their visions with AI companions guided by the Ten Guardians.",
+  keywords: ["AI", "creativity", "world building", "guardians", "fantasy", "social platform", "creation", "Lumina", "Nero"],
+  authors: [{ name: "Arcanea" }],
+  creator: "Arcanea",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "Arcanea — Where Imagination Becomes Reality",
+    description: "Create realms, summon guardians, and build with AI.",
+    siteName: "Arcanea",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Arcanea — Where Imagination Becomes Reality",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arcanea — Where Imagination Becomes Reality",
+    description: "Create realms, summon guardians, and build with AI.",
+    images: ["/og-image.jpg"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

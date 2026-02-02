@@ -83,12 +83,8 @@ export function useChat({
   const eventSourceRef = useRef<EventSource | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
 
-  // Load initial chat history
-  useEffect(() => {
-    loadChatHistory();
-  }, [luminorId, userId]);
-
-  const loadChatHistory = async () => {
+  // Memoize loadChatHistory to prevent recreating on every render
+  const loadChatHistory = useCallback(async () => {
     try {
       const response = await fetch(
         `/api/chat/history?luminorId=${luminorId}&userId=${userId}&limit=50`
@@ -97,13 +93,23 @@ export function useChat({
 
       const data = await response.json();
       setMessages(data.messages || []);
-      setBondState(data.bondState || bondState);
+      setBondState(data.bondState || {
+        level: 1,
+        xp: 0,
+        xpToNextLevel: 100,
+        relationshipStatus: 'stranger',
+      });
       setHasMore(data.hasMore || false);
     } catch (err) {
       console.error('Failed to load chat history:', err);
       // Don't set error - just start with empty history
     }
-  };
+  }, [luminorId, userId]);
+
+  // Load initial chat history
+  useEffect(() => {
+    loadChatHistory();
+  }, [loadChatHistory]);
 
   const loadMore = useCallback(async () => {
     if (isLoadingMore || !hasMore) return;
@@ -244,10 +250,10 @@ export function useChat({
         setStreamingContent('');
         setThinkingState('idle');
         setIsConnected(true);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Failed to send message:', err);
 
-        if (err.name === 'AbortError') {
+        if (err instanceof Error && err.name === 'AbortError') {
           // Request was aborted, ignore
           return;
         }
@@ -276,7 +282,7 @@ export function useChat({
   const reconnect = useCallback(() => {
     setIsConnected(false);
     loadChatHistory();
-  }, [luminorId, userId]);
+  }, [loadChatHistory]);
 
   // Cleanup on unmount
   useEffect(() => {

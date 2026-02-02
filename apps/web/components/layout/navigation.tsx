@@ -48,7 +48,7 @@ export function Navigation({ academy = 'default', className }: NavigationProps) 
                 className="text-2xl"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
-                aria-hidden="true"
+                aria-hidden={true}
               >
                 ✨
               </motion.div>
@@ -170,7 +170,7 @@ function NavLink({ href, children }: NavLinkProps) {
         initial={{ scaleX: 0 }}
         whileHover={{ scaleX: 1 }}
         transition={{ duration: 0.3 }}
-        aria-hidden="true"
+        aria-hidden={true}
       />
     </Link>
   );

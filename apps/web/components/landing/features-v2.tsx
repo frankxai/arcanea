@@ -110,7 +110,12 @@ export function FeaturesV2() {
                 <p className="text-text-secondary leading-relaxed">{feature.description}</p>
 
                 {/* Learn more link */}
-                <div className={`mt-6 text-sm font-medium text-${feature.highlight} opacity-0 group-hover:opacity-100 transition-opacity`}>
+                <div className={`mt-6 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity ${
+                  feature.highlight === 'atlantean-teal-aqua' ? 'text-atlantean-aqua' :
+                  feature.highlight === 'gold-bright' ? 'text-gold-bright' :
+                  feature.highlight === 'creation-prism-purple' ? 'text-creation-prism-purple' :
+                  'text-text-primary'
+                }`}>
                   Learn more →
                 </div>
 

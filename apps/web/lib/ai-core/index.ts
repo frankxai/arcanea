@@ -1,42 +1,47 @@
 import { google } from '@ai-sdk/google';
-import { streamText, generateText, type LanguageModel } from 'ai';
-
-// Types for the config
-interface GeminiConfig {
-  apiKey?: string;
-  temperature?: number;
-  maxTokens?: number;
-}
+import { streamText, generateText, type LanguageModel, type CoreMessage } from 'ai';
+import type {
+  GeminiConfig,
+  ChatMessage,
+  ChatResponse,
+  ConversationHistory,
+  ChatOptions,
+  StreamTextResult,
+  ImageGenerationOptions,
+  GeneratedImage,
+  VideoGenerationOptions,
+  GeneratedVideo
+} from '@/lib/types/ai';
 
 export const createGeminiChatProvider = (config: GeminiConfig) => {
   const model = google('gemini-2.0-flash-exp') as unknown as LanguageModel; // Using the latest Flash model
 
   return {
-    generateResponse: async (messages: any[]) => {
+    generateResponse: async (messages: ChatMessage[]): Promise<ChatResponse> => {
       // Legacy wrapper if needed, but chat() is preferred
-      return { 
+      return {
         text: "Please use chat() or streamText()",
         tokensUsed: { input: 0, output: 0 },
         cost: 0,
         finishReason: 'stop'
       };
     },
-    
-    streamText: (prompt: string, options: any) => {
+
+    streamText: (prompt: string, options: ChatOptions): StreamTextResult => {
       const { systemPrompt, images, history, temperature, maxTokens } = options;
-      
+
       // Convert history to Vercel AI SDK format if needed
       // The SDK expects messages: CoreMessage[]
-      const messages = [
-        ...(history?.map((h: any) => ({
-          role: h.role,
+      const messages: CoreMessage[] = [
+        ...(history?.map((h: ConversationHistory) => ({
+          role: h.role as 'user' | 'assistant',
           content: h.parts[0].text
         })) || []),
         {
-          role: 'user',
+          role: 'user' as const,
           content: [
-            { type: 'text', text: prompt },
-            ...(images?.map((img: string) => ({ type: 'image', image: img })) || [])
+            { type: 'text' as const, text: prompt },
+            ...(images?.map((img: string) => ({ type: 'image' as const, image: img })) || [])
           ]
         }
       ];
@@ -47,22 +52,22 @@ export const createGeminiChatProvider = (config: GeminiConfig) => {
         system: systemPrompt,
         temperature: temperature ?? config.temperature ?? 0.7,
         maxOutputTokens: maxTokens ?? config.maxTokens ?? 8192,
-      });
+      }) as unknown as StreamTextResult;
     },
 
-    chat: async (prompt: string, options: any) => {
+    chat: async (prompt: string, options: ChatOptions): Promise<ChatResponse> => {
       const { systemPrompt, images, history, temperature, maxTokens } = options;
 
-      const messages = [
-        ...(history?.map((h: any) => ({
-          role: h.role,
+      const messages: CoreMessage[] = [
+        ...(history?.map((h: ConversationHistory) => ({
+          role: h.role as 'user' | 'assistant',
           content: h.parts[0].text
         })) || []),
         {
-          role: 'user',
+          role: 'user' as const,
           content: [
-            { type: 'text', text: prompt },
-            ...(images?.map((img: string) => ({ type: 'image', image: img })) || [])
+            { type: 'text' as const, text: prompt },
+            ...(images?.map((img: string) => ({ type: 'image' as const, image: img })) || [])
           ]
         }
       ];
@@ -80,34 +85,16 @@ export const createGeminiChatProvider = (config: GeminiConfig) => {
         tokensUsed: result.usage,
         finishReason: result.finishReason,
         // Approximate cost calculation (Gemini Flash is free-ish in preview, but let's be safe)
-        cost: 0 
+        cost: 0
       };
     }
   };
 };
 
 // Helper for consistency
-export const createStreamResponse = (stream: any) => {
+export const createStreamResponse = (stream: StreamTextResult): Response => {
   return stream.toTextStreamResponse();
 };
-
-// Image Generation Types
-interface ImageGenerationOptions {
-  aspectRatio?: "1:1" | "16:9" | "9:16" | "4:3" | "3:4";
-  numberOfImages?: number;
-  negativePrompt?: string;
-}
-
-interface GeneratedImage {
-  id: string;
-  url: string;
-  base64?: string;
-  metadata: {
-    cost: number;
-    model: string;
-    prompt: string;
-  };
-}
 
 // Keeping Stubs for Image/Video for now, but marking them clearly
 export const createImagenProvider = (config: { apiKey?: string }) => {
@@ -151,21 +138,21 @@ export const createImagenProvider = (config: { apiKey?: string }) => {
   };
 };
 
-export const createVeoProvider = (config: any) => {
+export const createVeoProvider = (config: { apiKey?: string }) => {
   return {
-    generateVideo: async (prompt: string, options?: any) => {
+    generateVideo: async (prompt: string, options?: VideoGenerationOptions): Promise<GeneratedVideo> => {
       console.warn("Veo Provider is still a STUB");
       return {
         id: 'mock-video-id',
         url: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4",
-        status: 'completed'
+        status: 'completed' as const
       };
     },
-    generateFromImage: async (image: any, prompt: string, options?: any) => {
+    generateFromImage: async (imageUrl: string, prompt: string, options?: VideoGenerationOptions): Promise<GeneratedVideo> => {
       return {
         id: 'mock-video-id',
         url: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4",
-        status: 'completed'
+        status: 'completed' as const
       };
     }
   };

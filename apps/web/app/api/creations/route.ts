@@ -175,7 +175,7 @@ export async function POST(request: NextRequest) {
         'VALIDATION_ERROR',
         'Invalid input',
         400,
-        validation.error.errors
+        { errors: validation.error.errors }
       );
     }
 

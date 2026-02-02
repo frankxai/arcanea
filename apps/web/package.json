@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
+    "build:check": "pnpm run check:env && pnpm run type-check && pnpm run build",
     "start": "next start -p 3001",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "check:env": "tsx ../../scripts/check-env.ts",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:migrate": "drizzle-kit migrate"
@@ -30,6 +32,7 @@
     "@radix-ui/react-tabs": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.1.6",
+    "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.39.0",
     "@vercel/postgres": "^0.10.0",
     "ai": "^5.0.26",
@@ -59,8 +62,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.12",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@types/react-syntax-highlighter": "^15.5.13",
     "autoprefixer": "^10.4.19",
     "drizzle-kit": "^0.25.0",
