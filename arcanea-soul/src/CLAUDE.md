@@ -9,6 +9,4 @@
 |----|------|---|-------|------|
 | #1013 | 11:43 PM | ✅ | Added Seven Wisdoms Philosophy Layer to arcanea-soul | ~850 |
 | #880 | 5:05 PM | 🟣 | Arcanea-Soul Lightweight Plugin Created as Complement to Oh-My-OpenCode | ~558 |
-| #878 | 5:04 PM | 🟣 | Created Arcanea-Soul Agent Registry with Mixed Free Model Strategy | ~619 |
-| #872 | 5:02 PM | ✅ | Arcanea-Soul Standalone Package Directory Created | ~296 |
 </claude-mem-context>

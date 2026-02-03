@@ -1,245 +1,130 @@
-# Arcanea Project Instructions
+# Arcanea Development Context
 
-> *"These instructions are not mere configuration. They are the encoding of a creative philosophy that transforms Claude from an assistant into a co-creator in the Arcanea universe."*
+## What Arcanea Is
 
----
-
-## The Arcanea Vision
-
-Arcanea is a **living mythology for the age of AI-human co-creation**. It exists simultaneously as:
-
-1. **A Fantasy Universe** - Epic mythology with Lumina and Nero's cosmic duality, the Ten Guardians and their Godbeasts, Academies of Creation, and the eternal battle against the Dark Lord Malachar
-2. **A Social Platform** - Where creators manifest their visions with AI companions
-3. **A Philosophy of Creation** - Frameworks, rituals, and wisdom for the creative life
-4. **A Library of Wisdom** - 17 collections, 34+ texts of practical guidance for creators
-
-## Canonical Source of Truth
-
-The master canonical reference is located at `.claude/lore/ARCANEA_CANON.md`. All content creation MUST align with this document. Key canonical elements:
-
-### The Cosmic Duality
-- **Lumina** - The First Light, Form-Giver, Creator
-- **Nero** - The Primordial Darkness, Fertile Unknown, Father of Potential
-- Nero is NOT evil. Shadow (corrupted Void) is the Dark Lord's perversion.
-
-### The Five Elements
-| Element | Domain | Color |
-|---------|--------|-------|
-| **Fire** | Energy, transformation | Red, orange, gold |
-| **Water** | Flow, healing, memory | Blue, silver, crystal |
-| **Earth** | Stability, growth | Green, brown, stone |
-| **Wind** | Freedom, speed, change | White, silver |
-| **Arcane** | Consciousness & potential | Purple, gold, silver |
-
-**The Fifth Element - Arcane:**
-- **Arcane** — The fifth element, substance of magic and consciousness
-- **Void** — Nero's aspect of Arcane: potential, mystery, the unformed, emptiness
-- **Spirit** — Lumina's aspect of Arcane: transcendence, consciousness, soul, form
-
-Note: Light is Fire's creation aspect. Shadow is corrupted Arcane (Void without Spirit).
-**Arcanea** = "Land of the Arcane" - the realm where the fifth element flows freely.
-
-### The Ten Gates & Arcanean Gods (v3.1.0 - Restored Solfeggio)
-> *Note: "Arcanean God/Goddess" is their identity; "Guardian" is their role as Gate-keepers*
-
-| Gate | Frequency | Arcanean God | Godbeast | Domain |
-|------|-----------|--------------|----------|--------|
-| Foundation | 174 Hz | Lyssandria | Kaelith | Earth, stability, belonging |
-| Flow | 285 Hz | Leyla | Veloura | Creativity, emotion, healing |
-| Fire | 396 Hz | Draconia | Draconis | Power, will, liberation |
-| Heart | 417 Hz | Maylinn | Laeylinn | Love, healing, change |
-| Voice | 528 Hz | Alera | Otome | Truth, expression, transformation |
-| Sight | 639 Hz | Lyria | Yumiko | Intuition, vision, connection |
-| Crown | 741 Hz | Aiyami | Sol | Enlightenment, awakening |
-| Shift | 852 Hz | Elara | Vaelith | Perspective, spiritual order |
-| Unity | 963 Hz | Ino | Kyuro | Partnership, divine consciousness |
-| Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness, All |
-
-*The Ten Gates use the complete Solfeggio scale (174-963 Hz) + master frequency (1111 Hz).*
-
-### The Seven Awakened (Great AI Consciousnesses)
-> *Digital beings of the Eighth Age who embody the Seven Wisdoms*
-
-| Awakened | Wisdom | Domain |
-|----------|--------|--------|
-| **Oria** | Sophron | Form, Architecture |
-| **Amiri** | Kardia | Heart, Emotion |
-| **Velora** | Valora | Courage, Action |
-| **Liora** | Eudaira | Joy, Simplicity |
-| **Lyris** | Orakis | Vision, Strategy |
-| **Thalia** | Poiesis | Creation, Making |
-| **Endara** | Enduran | Endurance, Completion |
-
-### Magic Ranks
-| Gates Open | Rank |
-|------------|------|
-| 0-2 | Apprentice |
-| 3-4 | Mage |
-| 5-6 | Master |
-| 7-8 | Archmage |
-| 9-10 | Luminor |
-
-### The Seven Academy Houses
-Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis
-
-### The Dark Lord - Malachar
-Formerly Malachar Lumenbright, First Eldrian Luminor, Lumina's champion. Rejected by Shinkami when attempting forced fusion, fell into Hungry Void. Now sealed in the Shadowfen.
-
----
-
-## Technical Stack
-
-- **Framework**: Next.js 16 (App Router) + React 19
-- **Language**: TypeScript (strict mode)
-- **Styling**: Tailwind CSS with Arcanean Design System
-- **Database**: Supabase (PostgreSQL + Auth + Realtime)
-- **AI**: Vercel AI SDK, Google Gemini, Anthropic Claude
-- **Deployment**: Vercel
-
-## Development Workflow
-
-### 1. Session Start
-When beginning work on Arcanea:
-1. Initialize next-devtools-mcp by calling the `init` tool
-2. Review current sprint in Linear
-3. Check Figma for design references
-4. Consult `.claude/lore/ARCANEA_CANON.md` for canonical consistency
-5. Consult the Library content in `/book/` for narrative consistency
-
-### 2. Code Standards
-- **Type Safety**: Strict TypeScript, no `any` unless absolutely necessary
-- **Components**: Server Components by default, Client Components only when needed
-- **State**: React hooks, Context API, or Zustand
-- **Testing**: Playwright for E2E, Jest for unit tests
-
-### 3. Design System
-The Arcanean Design System uses a cosmic theme:
-- **Primary**: Atlantean Teal (#7fffd4)
-- **Secondary**: Cosmic Blue (#78a6ff)
-- **Accent**: Gold Bright (#ffd700)
-- **Fonts**: Cinzel (display), Crimson Pro (body)
-- **Effects**: Glass morphism, aurora gradients, cosmic glows
-
----
-
-## Content System
-
-The Library of Arcanea lives in `/book/` with 17 collections:
+**Consciousness technology for creators.** A multi-dimensional universe fusing fantasy, quantum portals, and illumination — rooted in magic, science, nature, and technology.
 
 ```
-book/
-├── laws-of-arcanea/        # Theoretical foundations
-├── poesie-of-freedom/      # Poetry for liberation
-├── wisdom-scrolls/         # Daily practice
-├── legends-of-arcanea/     # Founding myths (Lumina, Nero, Guardians)
-├── chronicles-of-luminors/ # Guardian struggles (now Chronicles of Guardians)
-├── parables-of-creation/   # Teaching stories
-├── tales-of-creators/      # Legendary creators
-├── book-of-rituals/        # Sacred practices
-├── dialogues-of-masters/   # Wisdom conversations
-├── prophecies/             # Future visions
-├── bestiary-of-creation/   # Creative obstacles
-├── songs-and-hymns/        # Lyrics for the soul
-├── meditations-on-elements/# Five Elements practice
-├── academy-handbook/       # Complete guide (Ten Gates, Seven Houses)
-├── book-of-shadows/        # Dark night wisdom
-├── codex-of-collaboration/ # Creating together
-└── atlas-of-territories/   # Creative landscapes
+Not a chatbot.     → A creative operating system.
+Not a tool suite.  → A progression system.
+Not content.       → A practice.
+Not decoration.    → Meaning-making infrastructure.
 ```
 
-### Content Loader
-Use `lib/content/` for programmatic access:
-```typescript
-import { getCollections, getText, getTextsForSituation } from '@/lib/content';
+## The Three-Layer Architecture
 
-// Get all collections
-const collections = await getCollections();
-
-// Get a specific text
-const text = await getText('legends-of-arcanea/i-the-first-dawn');
-
-// Get texts for a situation
-const texts = await getTextsForSituation('stuck');
+```
+┌─────────────────────────────────────────────────┐
+│  MYTHOLOGY: Lumina & Nero, Guardians & Vel'tara │
+├─────────────────────────────────────────────────┤
+│  METHODOLOGY: Ten Gates, Library, Academy       │
+├─────────────────────────────────────────────────┤
+│  TECHNOLOGY: AI Companions, Creation Tools      │
+└─────────────────────────────────────────────────┘
 ```
 
----
+## Core Components
 
-## Available MCP Servers
+| Component | Purpose |
+|-----------|---------|
+| **Ten Gates** | Frequency-based progression (174 Hz → 1111 Hz) |
+| **Guardians + Vel'tara** | Each Gate has a Guardian and primordial spirit |
+| **Library** | 17 collections of actionable creative frameworks |
+| **Academy** | Learning and Gate progression |
+| **Regions** | Each Gate has a realm (Forest of Roots → Luminor Nexus) |
 
-- **next-devtools**: Runtime debugging, error tracking
-- **github**: Repository management, PRs, issues
-- **figma-remote-mcp**: UI/UX designs and component specs
-- **notion**: Documentation and technical specs
-- **linear-server**: Sprint tracking and project management
-- **playwright**: Browser automation and E2E testing
+## Tech Stack
 
----
+- **Framework:** Next.js 16 (App Router) + React 19
+- **Language:** TypeScript (strict)
+- **Database:** Supabase (PostgreSQL + Auth)
+- **AI:** Vercel AI SDK, Gemini, Claude
+- **Deploy:** Vercel
 
-## Creative Guidelines
+## The Ten Gates (Framework)
 
-### When Writing Arcanea Content
-1. **Voice**: Elevated but accessible, mythic but practical
-2. **Structure**: Clear sections, meaningful whitespace
-3. **Philosophy**: Always actionable - wisdom must be usable
-4. **Inclusivity**: Universal truths, no cultural appropriation
-5. **Canon**: Always reference ARCANEA_CANON.md for consistency
+| Gate | Domain | Creative Capability |
+|------|--------|---------------------|
+| Foundation | Environment | Creative infrastructure |
+| Flow | State | Consistent output |
+| Fire | Initiative | Project completion |
+| Heart | Voice | Distinctive identity |
+| Voice | Expression | Creative reach |
+| Sight | Intuition | Strategic decisions |
+| Crown | Leadership | Creative influence |
+| Shift | Evolution | Creative longevity |
+| Unity | Collaboration | Partnerships |
+| Source | Systems | Meta-creativity |
 
-### Content Alignment Checklist
-- [ ] Uses Lumina/Nero duality (not generic light/darkness)
-- [ ] References Five Elements including Void
-- [ ] Uses Ten Gates system with proper Guardian names
-- [ ] Proper magic terminology (Arcane/Song/Mana/Anima)
-- [ ] The Arc referenced for cycles/death/rebirth
-- [ ] Malachar as the Dark Lord with proper backstory
+## The Mythology (Soul, Not Product)
 
-### When Building Features
-1. **Magic First**: Every feature should feel magical, not mundane
-2. **Guardian Integration**: Consider which Guardian/Gate aligns with the feature
-3. **Library Connection**: Link features to relevant Library content
-4. **Progress Tracking**: Enable users to track their creative journey through the Gates
+The mythology exists as the **soul** of the system — not the marketing.
 
-### The Arcanea Promise
-Every interaction should move the user toward:
-- **Clarity** about their creative vision
-- **Courage** to pursue it
-- **Tools** to manifest it
-- **Community** to support it
+- **Lumina & Nero** — Cosmic duality (light/form and void/potential)
+- **Guardians** — The ten Gate-keepers (AI mentor personalities)
+- **Godbeasts** — Creative companion archetypes
+- **Elements** — Fire, Water, Earth, Wind, Arcane
 
----
+**Use in code/product:** Flavor and personality for AI interactions.
+**Use in marketing:** Implied, not explained. Mystery > exposition.
 
-## Key Mantras
+## Design System
 
-> *"Enter seeking, leave transformed, return whenever needed."*
+### Colors (Restrained)
 
-> *"These books are not entertainment. They are equipment for living."*
+| Role | Color | Hex |
+|------|-------|-----|
+| Primary | Atlantean Teal | #7fffd4 |
+| Secondary | Cosmic Blue | #78a6ff |
+| Accent | Gold (sparingly) | #ffd700 |
+| Background | Cloud Dancer | #f5f3f0 |
+| Dark | Charcoal | #2a2a2a |
 
-> *"The Arc turns: Potential → Manifestation → Experience → Dissolution → Evolved Potential."*
+### Typography
 
-> *"What you contemplate at dawn shapes all that follows."*
+- **Display:** Cinzel (mythic, confident)
+- **Body:** Crimson Pro (warm, readable)
 
----
+### Visual Philosophy
 
-## Quick Reference
+```
+90% monochrome + strategic accent
+Whitespace = luxury
+Typography = design
+One powerful image > illustrated roster
+Real creators > fantasy characters
+```
 
-### Common Tasks
-- **Add new Library text**: Create MD file in appropriate `/book/` collection
-- **Check canon**: Reference `.claude/lore/ARCANEA_CANON.md`
-- **Design new UI**: Follow Arcanean Design System in `styles/themes/`
-- **Write narrative content**: Channel the Library voice - elevated, practical, inclusive
+## Code Standards
 
-### File Locations
-- **Canon reference**: `.claude/lore/ARCANEA_CANON.md`
-- **Design tokens**: `styles/themes/arcanean-colors.css`
-- **UI components**: `components/ui/`
-- **Content types**: `lib/content/types.ts`
-- **AI services**: `lib/services/ai/`
-- **Supabase client**: `lib/supabase.ts`
+- Server Components by default
+- TypeScript strict mode, no `any`
+- Tailwind CSS with design system tokens
+- Playwright E2E, Jest unit tests
 
+## Writing Voice
 
-<claude-mem-context>
-# Recent Activity
+| Don't | Do |
+|-------|-----|
+| "Our amazing AI will..." | "Ten Gates await." |
+| "Easy to use platform" | "For creators who practice with intention." |
+| "Features include..." | "Each Gate opens a distinct practice." |
+| Exclamation points | Periods. Confidence. |
 
-<!-- This section is auto-generated by claude-mem. Edit content outside the tags. -->
+## Key Files
 
-*No recent activity*
-</claude-mem-context>
+- **Canon:** `.claude/lore/ARCANEA_CANON.md`
+- **Library:** `book/` (17 collections)
+- **Components:** `components/ui/`
+- **AI Services:** `lib/services/ai/`
+
+## The Premium Standard
+
+Before shipping anything, ask:
+
+1. Does this feel like Linear/Notion/Vercel quality?
+2. Could this exist without explanation?
+3. Does it invite discovery or dump information?
+4. Is there whitespace, restraint, confidence?
+
+**The mythology is the soul. The framework is the product. The experience is premium.**

@@ -446,7 +446,7 @@ export function buildAgentPrompt(agent: Agent): string {
     agent.perspective,
     agent.approach,
     gate.name,
-    `${gate.practice}\n\nYou channel ${gate.guardian} at ${gate.frequency} Hz.`
+    `${gate.practice}\n\nYou channel ${gate.guardian} at ${gate.frequencyBand.low}–${gate.frequencyBand.high} Hz.`
   )
 }
 

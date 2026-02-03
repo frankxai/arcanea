@@ -77,7 +77,7 @@ export const helpCreator = (state: string) => {
     gate: gate.name,
     question: gate.practice,
     guardian: gate.guardian,
-    frequency: gate.frequency
+    frequencyBand: `${gate.frequencyBand.low}–${gate.frequencyBand.high} Hz`
   }
 }
 export const getMagicAgents = Nexus.getMagicAgents

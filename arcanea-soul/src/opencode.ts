@@ -42,10 +42,12 @@ export function generateOpenCodeConfig(opts: OpenCodeConfigOptions = {}) {
       agentConfig.metadata = {
         gate: gate.name,
         gateNumber: gate.number,
-        frequency: gate.frequency,
+        frequencyBand: `${gate.frequencyBand.low}–${gate.frequencyBand.high} Hz`,
         guardian: gate.guardian,
-        godbeast: gate.godbeast,
-        energyCenter: gate.energyCenter,
+        veltara: gate.veltara,
+        chakra: gate.chakra,
+        region: gate.region,
+        coreEmotion: gate.coreEmotion,
         color: gate.color,
         team: a.team
       }

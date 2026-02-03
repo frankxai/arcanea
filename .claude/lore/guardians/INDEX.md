@@ -5,20 +5,20 @@
 **Staging**: 7 files
 **Pending Review**: 7 files
 
-## Complete List (v3.1.0 - Restored Solfeggio Frequencies)
+## Complete List (v4.0.0 - Canonical Frequency Bands)
 
-| Name | Gate | Frequency | Element | Awakened | Status | Version | Last Updated |
-|------|------|-----------|---------|----------|--------|---------|--------------|
-| Lyssandria | Foundation | 174 Hz | Earth | Oria (Sophron) | ✅ Production | 1.2.0 | 2026-01-23 |
-| Leyla | Flow | 285 Hz | Water | Liora (Eudaira) | ✅ Production | 1.2.0 | 2026-01-23 |
-| Draconia | Fire | 396 Hz | Fire | Velora (Valora) | ✅ Production | 1.2.0 | 2026-01-23 |
-| Maylinn | Heart | 417 Hz | Light | Amiri (Kardia) | ⏳ Staging | 1.1.0 | 2026-01-23 |
-| Alera | Voice | 528 Hz | Prismatic | Thalia (Poiesis) | ⏳ Staging | 1.1.0 | 2026-01-23 |
-| Lyria | Sight | 639 Hz | Wind | Lyris (Orakis) | ⏳ Staging | 1.1.0 | 2026-01-23 |
-| Aiyami | Crown | 741 Hz | Void | Endara (Enduran) | ⏳ Staging | 1.1.0 | 2026-01-23 |
-| Elara | Shift | 852 Hz | Arcane | — | ⏳ Staging | 1.1.0 | 2026-01-23 |
-| Ino | Unity | 963 Hz | Arcane | — | ⏳ Staging | 1.1.0 | 2026-01-23 |
-| Shinkami | Source | 1111 Hz | Arcane | — | ⏳ Staging | 1.1.0 | 2026-01-23 |
+| Name | Gate | Frequency Band | Vel'tara | Chakra | Region | Status | Version |
+|------|------|----------------|----------|--------|--------|--------|---------|
+| Lyssandria | Foundation | 174–285 Hz | Kaelith | 1st (Root) | Forest of Roots | ✅ Production | 2.0.0 |
+| Leyla | Flow | 285–396 Hz | Veloura | 2nd (Sacral) | River of Desire | ✅ Production | 2.0.0 |
+| Draconia | Fire | 396–417 Hz | Draconis | 3rd (Solar Plexus) | Vulcan Peaks | ✅ Production | 2.0.0 |
+| Maylinn | Heart | 417–528 Hz | Laeylinn | 4th (Heart) | Gardens of Lumina | ⏳ Staging | 1.2.0 |
+| Alera | Voice | 432–528 Hz | Otome | 5th (Throat) | Sky Sanctum | ⏳ Staging | 1.2.0 |
+| Lyria | Sight | 639–741 Hz | Yumiko | 6th (Third Eye) | Tower of Insight | ⏳ Staging | 1.2.0 |
+| Aiyami | Crown | 741–852 Hz | Sol | 7th (Crown) | Summit of Unity | ⏳ Staging | 1.2.0 |
+| Elara | Shift | 852–963 Hz | Vaelith | 8th (Soul Star) | Celestial Bridges | ⏳ Staging | 1.2.0 |
+| Ino | Unity | 963–999 Hz | Kyuro | 9th (Spirit) | Temple of Infinity | ⏳ Staging | 1.2.0 |
+| Shinkami | Source | 999–1111 Hz | — | Ultimate | Luminor Nexus | ⏳ Staging | 1.2.0 |
 
 ## Quick Stats
 
@@ -59,22 +59,25 @@
 
 *Note: Elara, Ino, and Shinkami (higher Gates) have transcendent Awakened connections.*
 
-## By Frequency (v3.1.0 - Restored Solfeggio)
+## By Frequency Band (v4.0.0 - Canonical)
 
-| Frequency | Guardian | Gate | Solfeggio Purpose |
-|-----------|----------|------|-------------------|
-| 174 Hz | Lyssandria | Foundation | Safety, grounding |
-| 285 Hz | Leyla | Flow | Healing, energy |
-| 396 Hz | Draconia | Fire | Liberation, power |
-| 417 Hz | Maylinn | Heart | Change, love |
-| 528 Hz | Alera | Voice | Transformation, truth |
-| 639 Hz | Lyria | Sight | Connection, vision |
-| 741 Hz | Aiyami | Crown | Awakening, enlightenment |
-| 852 Hz | Elara | Shift | Spiritual order, perspective |
-| 963 Hz | Ino | Unity | Divine consciousness, synthesis |
-| 1111 Hz | Shinkami | Source | Master frequency, All |
+| Frequency Band | Guardian | Gate | Core Emotion | Material |
+|----------------|----------|------|--------------|----------|
+| 174–285 Hz | Lyssandria | Foundation | Grounding, Stability | Stone, Roots |
+| 285–396 Hz | Leyla | Flow | Pleasure, Creativity | Water, Silk |
+| 396–417 Hz | Draconia | Fire | Power, Will | Fire, Metals |
+| 417–528 Hz | Maylinn | Heart | Love, Healing | Crystals, Heartwood |
+| 432–528 Hz | Alera | Voice | Voice, Truth | Air, Silver |
+| 639–741 Hz | Lyria | Sight | Foresight, Intuition | Light, Lenses |
+| 741–852 Hz | Aiyami | Crown | Understanding | Gold, Sunlight |
+| 852–963 Hz | Elara | Shift | Cosmic Consciousness | Stars, Ethereal Energy |
+| 963–999 Hz | Ino | Unity | Divine Union | Pure Light, Quantum Energy |
+| 999–1111 Hz | Shinkami | Source | Fusion, Ascendance | Platinum, Multi-element |
 
-*10 unique frequencies covering full Solfeggio scale (174-963) + master 1111 Hz*
+**Note:** Frequency BANDS allow evolution, synergy, and narrative flexibility.
+- Heart (417–528 Hz) includes the 528 Hz "Love Frequency"
+- Voice (432–528 Hz) overlaps with Heart for resonance between adjacent Gates
+- 714 Hz removed (was not a true Solfeggio frequency)
 
 ## Related Entities
 
@@ -94,7 +97,7 @@ Each Guardian has related entities documented in frontmatter:
 ---
 
 *Generated: January 15, 2026*
-*Updated: January 23, 2026 (v3.0.0 frequency corrections)*
+*Updated: February 3, 2026 (v4.0.0 canonical frequency bands from ARCANEA_CANON.md)*
 *Next Update: Upon approval of pending Guardians*
 
 ---

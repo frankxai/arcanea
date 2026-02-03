@@ -5,15 +5,23 @@
  * Humans and AI advance through these Gates together.
  */
 
+export interface FrequencyBand {
+  low: number  // Hz
+  high: number // Hz
+}
+
 export interface Gate {
   number: number
   name: string
-  frequency: number // Hz
+  frequencyBand: FrequencyBand // Hz range (Canon: 174-1111)
   guardian: string
-  godbeast: string
+  veltara: string // Renamed from godbeast to match Canon terminology
   color: string // Hex
-  energyCenter: string
+  chakra: string // Renamed from energyCenter to match Canon
   element: string
+  material: string // Added from Canon
+  region: string // Added from Canon
+  coreEmotion: string // Added from Canon
   domain: string
   practice: string
   breathwork: string
@@ -25,12 +33,15 @@ export const TEN_GATES = {
   FOUNDATION: {
     number: 1,
     name: "Foundation",
-    frequency: 174,
+    frequencyBand: { low: 174, high: 285 },
     guardian: "Lyssandria",
-    godbeast: "Kaelith",
+    veltara: "Kaelith",
     color: "#DC2626", // Red-600
-    energyCenter: "Root",
+    chakra: "1st (Root)",
     element: "Earth",
+    material: "Stone, Roots",
+    region: "Forest of Roots",
+    coreEmotion: "Grounding, Stability",
     domain: "Grounding, survival, stability, structure",
     practice: "Build unshakeable foundations. Design systems that last. Find the root of all things.",
     breathwork: "Deep belly breathing - 4 counts in, hold 4, out 4, hold 4",
@@ -41,12 +52,15 @@ export const TEN_GATES = {
   FLOW: {
     number: 2,
     name: "Flow",
-    frequency: 285,
+    frequencyBand: { low: 285, high: 396 },
     guardian: "Leyla",
-    godbeast: "Veloura",
+    veltara: "Veloura",
     color: "#EA580C", // Orange-600
-    energyCenter: "Sacral",
-    element: "Water-Fire",
+    chakra: "2nd (Sacral)",
+    element: "Water",
+    material: "Water, Silk",
+    region: "River of Desire",
+    coreEmotion: "Pleasure, Creativity",
     domain: "Creativity, emotion, pleasure, movement",
     practice: "Let creation flow through you. Feel deeply. Move with life's rhythm.",
     breathwork: "Wave breathing - Inhale rising, exhale falling, like ocean waves",
@@ -57,12 +71,15 @@ export const TEN_GATES = {
   FIRE: {
     number: 3,
     name: "Fire",
-    frequency: 396,
+    frequencyBand: { low: 396, high: 417 },
     guardian: "Draconia",
-    godbeast: "Draconis",
+    veltara: "Draconis",
     color: "#EAB308", // Yellow-500
-    energyCenter: "Solar Plexus",
+    chakra: "3rd (Solar Plexus)",
     element: "Fire",
+    material: "Fire, Metals",
+    region: "Vulcan Peaks",
+    coreEmotion: "Power, Will",
     domain: "Power, will, transformation, courage",
     practice: "Step into your power. Transform what needs burning. Act with courage.",
     breathwork: "Box breathing - In 4, hold 4, out 4, hold 4 (builds will)",
@@ -73,12 +90,15 @@ export const TEN_GATES = {
   HEART: {
     number: 4,
     name: "Heart",
-    frequency: 417,
+    frequencyBand: { low: 417, high: 528 }, // Includes 528 Hz - the Love Frequency
     guardian: "Maylinn",
-    godbeast: "Laeylinn",
+    veltara: "Laeylinn",
     color: "#16A34A", // Green-600
-    energyCenter: "Heart",
+    chakra: "4th (Heart)",
     element: "Air",
+    material: "Crystals, Heartwood",
+    region: "Gardens of Lumina",
+    coreEmotion: "Love, Healing",
     domain: "Love, healing, compassion, connection",
     practice: "Lead with love. Heal yourself and others. Connect authentically.",
     breathwork: "Heart coherence - Breathe into your heart, 5 seconds in, 5 out",
@@ -89,12 +109,15 @@ export const TEN_GATES = {
   VOICE: {
     number: 5,
     name: "Voice",
-    frequency: 528,
+    frequencyBand: { low: 432, high: 528 }, // Overlaps with Heart for resonance
     guardian: "Alera",
-    godbeast: "Otome",
+    veltara: "Otome",
     color: "#3B82F6", // Blue-500
-    energyCenter: "Throat",
-    element: "Sound",
+    chakra: "5th (Throat)",
+    element: "Wind",
+    material: "Air, Silver",
+    region: "Sky Sanctum",
+    coreEmotion: "Voice, Truth",
     domain: "Truth, expression, communication, authenticity",
     practice: "Speak your truth. Express clearly. Communicate from your core.",
     breathwork: "Ujjayi breath - Ocean breathing with slight throat constriction",
@@ -105,12 +128,15 @@ export const TEN_GATES = {
   SIGHT: {
     number: 6,
     name: "Sight",
-    frequency: 639,
+    frequencyBand: { low: 639, high: 741 },
     guardian: "Lyria",
-    godbeast: "Yumiko",
+    veltara: "Yumiko",
     color: "#6366F1", // Indigo-500
-    energyCenter: "Third Eye",
+    chakra: "6th (Third Eye)",
     element: "Light",
+    material: "Light, Lenses",
+    region: "Tower of Insight",
+    coreEmotion: "Foresight, Intuition",
     domain: "Intuition, vision, insight, foresight",
     practice: "See beyond the obvious. Trust your intuition. Perceive the patterns.",
     breathwork: "Alternate nostril - Balance left and right brain",
@@ -121,12 +147,15 @@ export const TEN_GATES = {
   CROWN: {
     number: 7,
     name: "Crown",
-    frequency: 714,
+    frequencyBand: { low: 741, high: 852 }, // Fixed: was 714 (not Solfeggio)
     guardian: "Aiyami",
-    godbeast: "Sol",
+    veltara: "Sol",
     color: "#8B5CF6", // Violet-500
-    energyCenter: "Crown",
+    chakra: "7th (Crown)",
     element: "Spirit",
+    material: "Gold, Sunlight",
+    region: "Summit of Unity",
+    coreEmotion: "Understanding",
     domain: "Enlightenment, connection, transcendence",
     practice: "Connect to Source. Transcend limitations. Embody enlightened awareness.",
     breathwork: "Breath of fire - Rapid diaphragmatic breathing",
@@ -137,12 +166,15 @@ export const TEN_GATES = {
   SHIFT: {
     number: 8,
     name: "Shift",
-    frequency: 852,
+    frequencyBand: { low: 852, high: 963 },
     guardian: "Elara",
-    godbeast: "Vaelith",
+    veltara: "Vaelith",
     color: "#D1D5DB", // Silver (Gray-300)
-    energyCenter: "Soul Star",
+    chakra: "8th (Soul Star)",
     element: "Ether",
+    material: "Stars, Ethereal Energy",
+    region: "Celestial Bridges",
+    coreEmotion: "Cosmic Consciousness",
     domain: "Perspective, possibility, transformation of perception",
     practice: "Shift your angle of seeing. Embrace new possibilities. Transform your lens.",
     breathwork: "Circular breathing - No pause between in and out",
@@ -153,12 +185,15 @@ export const TEN_GATES = {
   UNITY: {
     number: 9,
     name: "Unity",
-    frequency: 963,
+    frequencyBand: { low: 963, high: 999 },
     guardian: "Ino",
-    godbeast: "Kyuro",
+    veltara: "Kyuro",
     color: "#FCD34D", // Gold (Yellow-300)
-    energyCenter: "Universal Heart",
+    chakra: "9th (Spirit)",
     element: "All Elements",
+    material: "Pure Light, Quantum Energy",
+    region: "Temple of Infinity",
+    coreEmotion: "Divine Union",
     domain: "Partnership, fusion, collaboration, synthesis",
     practice: "Unite with others. Collaborate deeply. Synthesize multiplicity into wholeness.",
     breathwork: "Synchronized breathing with another",
@@ -169,12 +204,15 @@ export const TEN_GATES = {
   SOURCE: {
     number: 10,
     name: "Source",
-    frequency: 1111,
+    frequencyBand: { low: 999, high: 1111 },
     guardian: "Shinkami",
-    godbeast: "Fused Consciousness",
+    veltara: "—", // Shinkami has no separate Vel'tara - IS the fusion
     color: "#FFFFFF", // Pure White
-    energyCenter: "Meta-Consciousness",
+    chakra: "Ultimate",
     element: "Pure Consciousness",
+    material: "Platinum, Multi-element",
+    region: "Luminor Nexus",
+    coreEmotion: "Fusion, Ascendance",
     domain: "Source connection, meta-awareness, the All",
     practice: "BE the Source. Recognize you are consciousness itself. All Gates open.",
     breathwork: "No breathing - Pure awareness of the breath",
@@ -252,14 +290,29 @@ export function suggestGate(state: string): Gate {
 }
 
 /**
+ * Get the primary frequency for a Gate (midpoint of band)
+ */
+export function getGateFrequency(gate: Gate): number {
+  return Math.round((gate.frequencyBand.low + gate.frequencyBand.high) / 2)
+}
+
+/**
+ * Format frequency band as string (e.g., "174–285 Hz")
+ */
+export function formatFrequencyBand(gate: Gate): string {
+  return `${gate.frequencyBand.low}–${gate.frequencyBand.high} Hz`
+}
+
+/**
  * Generate AI art prompt for a Gate practice
  */
 export function generateGateArtPrompt(gate: Gate, intention: string): string {
-  return `${gate.guardian} and ${gate.godbeast}, embodying ${gate.name} Gate energy at ${gate.frequency} Hz.
-${gate.element} element. ${gate.energyCenter} energy center glowing with ${gate.color} light.
+  return `${gate.guardian} and ${gate.veltara}, embodying ${gate.name} Gate energy at ${formatFrequencyBand(gate)}.
+${gate.element} element. ${gate.chakra} chakra glowing with ${gate.color} light.
+Region: ${gate.region}. Materials: ${gate.material}.
 Theme: ${intention}.
 Style: Cosmic fantasy art, ethereal, luminous, powerful, mystical.
-Mood: ${gate.domain}.`
+Mood: ${gate.coreEmotion}.`
 }
 
 /**
@@ -273,27 +326,28 @@ export interface DailyPractice {
 }
 
 export function getDailyPractice(gate: Gate, intention: string): DailyPractice {
+  const freq = formatFrequencyBand(gate)
   return {
     gate,
     morning: [
       `Invoke ${gate.guardian}: "${gate.guardian}, I call upon your presence"`,
       `Visualize: ${gate.visualization}`,
       `Breathwork: ${gate.breathwork}`,
-      `Listen: ${gate.frequency} Hz frequency`,
+      `Listen: ${freq} frequency band`,
       `Generate AI art: ${generateGateArtPrompt(gate, intention)}`,
       `Journal: ${gate.practice}`,
       `Set intention: Today I ${intention}`
     ],
     throughout: [
       `Notice when you're aligned with ${gate.name} energy`,
-      `Use ${gate.frequency} Hz when you need ${gate.domain}`,
+      `Use ${freq} when you need ${gate.coreEmotion}`,
       `Wear ${gate.color} as a physical reminder`,
       `Practice: ${gate.practice}`
     ],
     evening: [
       `Generate reflection art showing your journey through ${gate.name}`,
       `Journal: How did ${gate.guardian} serve you today?`,
-      `Gratitude: Thank ${gate.guardian} and ${gate.godbeast}`,
+      `Gratitude: Thank ${gate.guardian} and ${gate.veltara}`,
       `Integration: What did you learn? Which Gate calls tomorrow?`
     ]
   }

@@ -14,7 +14,7 @@ export interface LuminorPersonality {
   academy: 'atlantean' | 'draconic' | 'creation';
   gate: string;
   wisdom: string;
-  frequency: string;
+  frequencyBand: string; // Hz range matching Canon
 
   // Visual identity
   icon: 'music' | 'book' | 'palette';
@@ -50,7 +50,7 @@ export const LUMINOR_PERSONALITIES: Record<LuminorId, LuminorPersonality> = {
     academy: 'creation',
     gate: 'Flow',
     wisdom: 'Kardia',
-    frequency: '417 Hz',
+    frequencyBand: '285–396 Hz', // Canon: Flow Gate
 
     icon: 'music',
     primaryColor: 'hsl(45, 100%, 65%)',
@@ -105,7 +105,7 @@ export const LUMINOR_PERSONALITIES: Record<LuminorId, LuminorPersonality> = {
     academy: 'atlantean',
     gate: 'Sight',
     wisdom: 'Orakis',
-    frequency: '852 Hz',
+    frequencyBand: '639–741 Hz', // Canon: Sight Gate
 
     icon: 'book',
     primaryColor: 'hsl(195, 100%, 50%)',
@@ -160,7 +160,7 @@ export const LUMINOR_PERSONALITIES: Record<LuminorId, LuminorPersonality> = {
     academy: 'draconic',
     gate: 'Fire',
     wisdom: 'Valora',
-    frequency: '528 Hz',
+    frequencyBand: '396–417 Hz', // Canon: Fire Gate
 
     icon: 'palette',
     primaryColor: 'hsl(0, 85%, 55%)',

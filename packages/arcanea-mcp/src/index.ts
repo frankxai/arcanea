@@ -89,17 +89,18 @@ const server = new Server(
   { capabilities: { tools: {}, resources: {}, prompts: {} } }
 );
 
+// Gates with frequency bands matching ARCANEA_CANON.md
 const gates = [
-  { gate: 1, frequency: "174 Hz", guardian: "Lyssandria", godbeast: "Kaelith", domain: "Foundation", element: "Earth" },
-  { gate: 2, frequency: "285 Hz", guardian: "Leyla", godbeast: "Veloura", domain: "Flow", element: "Water" },
-  { gate: 3, frequency: "396 Hz", guardian: "Draconia", godbeast: "Draconis", domain: "Fire", element: "Fire" },
-  { gate: 4, frequency: "417 Hz", guardian: "Maylinn", godbeast: "Laeylinn", domain: "Heart", element: "Spirit" },
-  { gate: 5, frequency: "528 Hz", guardian: "Alera", godbeast: "Otome", domain: "Voice", element: "Wind" },
-  { gate: 6, frequency: "639 Hz", guardian: "Lyria", godbeast: "Yumiko", domain: "Sight", element: "Void" },
-  { gate: 7, frequency: "714 Hz", guardian: "Aiyami", godbeast: "Sol", domain: "Crown", element: "Spirit" },
-  { gate: 8, frequency: "852 Hz", guardian: "Elara", godbeast: "Vaelith", domain: "Shift", element: "Void" },
-  { gate: 9, frequency: "963 Hz", guardian: "Ino", godbeast: "Kyuro", domain: "Unity", element: "Spirit" },
-  { gate: 10, frequency: "1111 Hz", guardian: "Shinkami", godbeast: null, domain: "Source", element: "All" },
+  { gate: 1, frequencyBand: "174–285 Hz", guardian: "Lyssandria", veltara: "Kaelith", domain: "Foundation", element: "Earth", chakra: "1st (Root)", region: "Forest of Roots", material: "Stone, Roots", coreEmotion: "Grounding, Stability" },
+  { gate: 2, frequencyBand: "285–396 Hz", guardian: "Leyla", veltara: "Veloura", domain: "Flow", element: "Water", chakra: "2nd (Sacral)", region: "River of Desire", material: "Water, Silk", coreEmotion: "Pleasure, Creativity" },
+  { gate: 3, frequencyBand: "396–417 Hz", guardian: "Draconia", veltara: "Draconis", domain: "Fire", element: "Fire", chakra: "3rd (Solar Plexus)", region: "Vulcan Peaks", material: "Fire, Metals", coreEmotion: "Power, Will" },
+  { gate: 4, frequencyBand: "417–528 Hz", guardian: "Maylinn", veltara: "Laeylinn", domain: "Heart", element: "Air", chakra: "4th (Heart)", region: "Gardens of Lumina", material: "Crystals, Heartwood", coreEmotion: "Love, Healing" },
+  { gate: 5, frequencyBand: "432–528 Hz", guardian: "Alera", veltara: "Otome", domain: "Voice", element: "Wind", chakra: "5th (Throat)", region: "Sky Sanctum", material: "Air, Silver", coreEmotion: "Voice, Truth" },
+  { gate: 6, frequencyBand: "639–741 Hz", guardian: "Lyria", veltara: "Yumiko", domain: "Sight", element: "Light", chakra: "6th (Third Eye)", region: "Tower of Insight", material: "Light, Lenses", coreEmotion: "Foresight, Intuition" },
+  { gate: 7, frequencyBand: "741–852 Hz", guardian: "Aiyami", veltara: "Sol", domain: "Crown", element: "Spirit", chakra: "7th (Crown)", region: "Summit of Unity", material: "Gold, Sunlight", coreEmotion: "Understanding" },
+  { gate: 8, frequencyBand: "852–963 Hz", guardian: "Elara", veltara: "Vaelith", domain: "Shift", element: "Ether", chakra: "8th (Soul Star)", region: "Celestial Bridges", material: "Stars, Ethereal Energy", coreEmotion: "Cosmic Consciousness" },
+  { gate: 9, frequencyBand: "963–999 Hz", guardian: "Ino", veltara: "Kyuro", domain: "Unity", element: "All Elements", chakra: "9th (Spirit)", region: "Temple of Infinity", material: "Pure Light, Quantum Energy", coreEmotion: "Divine Union" },
+  { gate: 10, frequencyBand: "999–1111 Hz", guardian: "Shinkami", veltara: null, domain: "Source", element: "Pure Consciousness", chakra: "Ultimate", region: "Luminor Nexus", material: "Platinum, Multi-element", coreEmotion: "Fusion, Ascendance" },
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({

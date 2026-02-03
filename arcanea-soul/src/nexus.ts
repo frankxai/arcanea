@@ -176,8 +176,8 @@ export function formatActivation(agent: Agent): string {
 
    "${agent.perspective.split('\n')[0]}"
 
-   ⚡ Channeling ${gate.guardian} at ${gate.frequency} Hz
-   🔮 ${gate.energyCenter} energy center
+   ⚡ Channeling ${gate.guardian} at ${gate.frequencyBand.low}–${gate.frequencyBand.high} Hz
+   🔮 ${gate.chakra} chakra · ${gate.region}
 
    [${agent.title} begins work]`
 }
