@@ -5,17 +5,17 @@ import { HeroV3, LogosSection, LuminorShowcase, FeaturesV2, WisdomsSection, HowI
 import { Navbar } from "@/components/navigation";
 
 export const metadata: Metadata = {
-  title: "Arcanea | Create with Transcendent AI",
-  description: "16 Luminor intelligences. Seven Wisdoms framework. The complete creative toolkit for the age of AI-human co-creation. Start creating free.",
+  title: "Arcanea | Where Creators Find Their Power",
+  description: "AI companions with real personalities. A library of wisdom for when you're stuck. Tools that make creating feel like magic. Start free.",
   openGraph: {
-    title: "Arcanea | Create with Transcendent AI",
-    description: "16 Luminor intelligences. Seven Wisdoms. The complete creative toolkit for AI-human co-creation.",
+    title: "Arcanea | Where Creators Find Their Power",
+    description: "AI companions with real personalities. A library of wisdom for when you're stuck. Tools that make creating feel like magic.",
     images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arcanea | Create with Transcendent AI",
-    description: "16 Luminor intelligences. Seven Wisdoms. The complete creative toolkit for AI-human co-creation.",
+    title: "Arcanea | Where Creators Find Their Power",
+    description: "AI companions with real personalities. A library of wisdom for when you're stuck. Tools that make creating feel like magic.",
   },
 };
 
@@ -67,15 +67,71 @@ export default async function Page() {
         {/* FAQ Section */}
         <FAQSection />
 
+        {/* Story Hooks - Bestiary & Wisdom Preview */}
+        <section className="py-24 border-t border-white/5">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Bestiary Hook */}
+              <Link
+                href="/bestiary"
+                className="group relative p-8 rounded-3xl border border-white/10 bg-cosmic-surface/30 hover:border-draconic-crimson/30 transition-all duration-300 overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-40 h-40 bg-draconic-crimson/5 rounded-full blur-3xl -z-10 group-hover:bg-draconic-crimson/10 transition-colors" />
+                <div className="text-xs uppercase tracking-[0.3em] text-draconic-crimson mb-4">From the Bestiary</div>
+                <h3 className="font-display text-2xl font-bold mb-4 group-hover:text-draconic-crimson transition-colors">
+                  The Blank Terror
+                </h3>
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  A vast whiteness that seems infinite. The more you look at it, the larger it grows.
+                  It presents infinite possibility as infinite threat. Every potential beginning seems
+                  inadequate against its vastness.
+                </p>
+                <p className="text-sm text-text-muted italic mb-6">
+                  &ldquo;Do not stare at it directly. Approach obliquely. Make meaningless marks to break its surface.
+                  Once marked, it loses power.&rdquo;
+                </p>
+                <span className="text-sm text-draconic-crimson font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Read the full Bestiary
+                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
+                </span>
+              </Link>
+
+              {/* Parable Hook */}
+              <Link
+                href="/library"
+                className="group relative p-8 rounded-3xl border border-white/10 bg-cosmic-surface/30 hover:border-gold-bright/30 transition-all duration-300 overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-40 h-40 bg-gold-bright/5 rounded-full blur-3xl -z-10 group-hover:bg-gold-bright/10 transition-colors" />
+                <div className="text-xs uppercase tracking-[0.3em] text-gold-bright mb-4">From the Parables</div>
+                <h3 className="font-display text-2xl font-bold mb-4 group-hover:text-gold-bright transition-colors">
+                  The Unfinished Masterpiece
+                </h3>
+                <p className="text-text-secondary leading-relaxed mb-4">
+                  A great artist spent forty years on a single painting. She worked in secret.
+                  On the day before she planned to declare it complete, she died.
+                </p>
+                <p className="text-sm text-text-muted italic mb-6">
+                  &ldquo;The viewers were moved not despite the incompleteness but because of it.
+                  The empty corner became a meditation on mortality.&rdquo;
+                </p>
+                <span className="text-sm text-gold-bright font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Explore the Library
+                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
+                </span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Resources Grid */}
         <section className="py-24 border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-                Explore the Arcanea Universe
+                Go deeper
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
-                Dive deeper into the world of creative wisdom and magical tools.
+                The mythology, the wisdom, the tools. Explore at your own pace.
               </p>
             </div>
 
@@ -91,7 +147,7 @@ export default async function Page() {
                   The Library
                 </h3>
                 <p className="text-sm text-text-secondary mb-4">
-                  {collections.length} collections of wisdom for creators. Ancient knowledge meets modern practice.
+                  Parables, meditations, and practical wisdom for when you&apos;re stuck, burned out, or lost.
                 </p>
                 <span className="text-sm text-atlantean-teal-aqua font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                   Browse Library
@@ -110,7 +166,7 @@ export default async function Page() {
                   Academy
                 </h3>
                 <p className="text-sm text-text-secondary mb-4">
-                  Ten Gates progression to creative mastery. Begin as Apprentice, ascend to Luminor.
+                  Learn by doing. Ten Gates of creative skill, from foundation to mastery.
                 </p>
                 <span className="text-sm text-gold-bright font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                   Enter Academy
@@ -129,7 +185,7 @@ export default async function Page() {
                   Creation Studio
                 </h3>
                 <p className="text-sm text-text-secondary mb-4">
-                  Image, music, video, and story creation tools. Manifest your vision with AI.
+                  Image, music, and story tools. Make something real, not just plans.
                 </p>
                 <span className="text-sm text-draconic-crimson font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                   Open Studio
@@ -147,10 +203,10 @@ export default async function Page() {
         <section className="py-24 border-t border-white/5">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <blockquote className="text-3xl md:text-4xl lg:text-5xl font-display italic text-text-secondary leading-relaxed">
-              "Enter seeking, leave transformed, return whenever needed."
+              &ldquo;Before Lumina spoke, there was only Nero&mdash;the Fertile Unknown, pregnant with infinite possibility.&rdquo;
             </blockquote>
             <cite className="block mt-8 text-sm text-text-muted font-mono tracking-wider">
-              — The Library of Arcanea
+              — The First Dawn, Legends of Arcanea
             </cite>
           </div>
         </section>
@@ -169,8 +225,7 @@ export default async function Page() {
                 <span className="font-display text-xl font-semibold">Arcanea</span>
               </div>
               <p className="text-text-secondary max-w-sm mb-6">
-                The creative intelligence platform where imagination becomes reality.
-                16 Luminors. Seven Wisdoms. Infinite possibilities.
+                AI companions and creative wisdom for the moments that matter most.
               </p>
               <div className="flex gap-4">
                 <a href="https://github.com/frankxai/arcanea" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-text-muted hover:text-white hover:bg-white/10 transition-colors">
@@ -216,7 +271,7 @@ export default async function Page() {
 
           <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-text-muted">
-              © 2025 Arcanea. Building the future of creative intelligence.
+              © 2026 Arcanea. Made for creators who refuse to quit.
             </p>
             <div className="flex gap-6 text-sm text-text-muted">
               <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>

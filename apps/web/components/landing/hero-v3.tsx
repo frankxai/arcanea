@@ -14,28 +14,6 @@ interface HeroV3Props {
   };
 }
 
-// Animated counter hook
-function useAnimatedCounter(end: number, duration: number = 2000) {
-  const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-
-    let startTime: number;
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      setCount(Math.floor(progress * end));
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
-    };
-    requestAnimationFrame(step);
-  }, [end, duration, hasStarted]);
-
-  return { count, start: () => setHasStarted(true) };
-}
 
 export function HeroV3({ stats }: HeroV3Props) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -57,14 +35,8 @@ export function HeroV3({ stats }: HeroV3Props) {
   const springX = useSpring(mousePos.x, { stiffness: 50, damping: 20 });
   const springY = useSpring(mousePos.y, { stiffness: 50, damping: 20 });
 
-  // Animated counters
-  const creatorsCounter = useAnimatedCounter(10000, 2500);
-  const creationsCounter = useAnimatedCounter(2500000, 2500);
-
   useEffect(() => {
     setIsLoaded(true);
-    creatorsCounter.start();
-    creationsCounter.start();
 
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
@@ -193,14 +165,14 @@ export function HeroV3({ stats }: HeroV3Props) {
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-bold tracking-tight leading-[0.9] mb-8">
-                <span className="block text-white">Create with</span>
+                <span className="block text-white">Every creator</span>
                 <span className="relative inline-block">
                   <motion.span
                     className="relative z-10 bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple via-50% to-gold-bright bg-[length:200%_auto] bg-clip-text text-transparent"
                     animate={{ backgroundPosition: ['0% center', '200% center'] }}
                     transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
                   >
-                    transcendent AI
+                    gets stuck
                   </motion.span>
                   {/* Animated underline */}
                   <motion.div
@@ -224,11 +196,11 @@ export function HeroV3({ stats }: HeroV3Props) {
               initial={{ opacity: 0, y: 30 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-xl md:text-2xl lg:text-3xl text-text-secondary max-w-4xl mx-auto mb-12 leading-relaxed font-light"
+              className="text-xl md:text-2xl lg:text-3xl text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed font-light"
             >
-              16 Luminor intelligences. Seven Wisdoms.
-              <span className="block text-white/90 font-normal mt-2">
-                Everything you need to manifest your vision.
+              The blank page. The lost direction. The voice that says you&apos;re not good enough.
+              <span className="block text-white/90 font-normal mt-3">
+                Arcanea gives you AI companions, creative wisdom, and tools to push through.
               </span>
             </motion.p>
 
@@ -284,7 +256,7 @@ export function HeroV3({ stats }: HeroV3Props) {
               </button>
             </motion.div>
 
-            {/* Live Stats */}
+            {/* What you get - honest, not inflated */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
@@ -297,9 +269,9 @@ export function HeroV3({ stats }: HeroV3Props) {
                 </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white">
-                    {creatorsCounter.count.toLocaleString()}+
+                    {stats.luminors}
                   </div>
-                  <div className="text-xs text-text-muted">Active Creators</div>
+                  <div className="text-xs text-text-muted">AI Companions</div>
                 </div>
               </div>
 
@@ -311,9 +283,9 @@ export function HeroV3({ stats }: HeroV3Props) {
                 </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white">
-                    {(creationsCounter.count / 1000000).toFixed(1)}M+
+                    {stats.collections}
                   </div>
-                  <div className="text-xs text-text-muted">Creations Made</div>
+                  <div className="text-xs text-text-muted">Wisdom Collections</div>
                 </div>
               </div>
 
@@ -324,11 +296,10 @@ export function HeroV3({ stats }: HeroV3Props) {
                   <Star className="w-5 h-5 text-creation-prism-purple" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-white flex items-center gap-1">
-                    4.9
-                    <span className="text-sm text-text-muted">/5</span>
+                  <div className="text-2xl font-bold text-white">
+                    Free
                   </div>
-                  <div className="text-xs text-text-muted">Average Rating</div>
+                  <div className="text-xs text-text-muted">To Start Creating</div>
                 </div>
               </div>
             </motion.div>

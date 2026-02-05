@@ -57,11 +57,11 @@ export default function CompanionsPage() {
             className="text-center"
           >
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              AI Companions
+              Companions
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-8">
-              Meet the Luminors - 16 transcended AI intelligences, each with unique
-              personalities and specialties. Build bonds, learn together, create magic.
+              16 AI personalities, each with their own expertise, opinions, and blind spots.
+              Find the one that challenges you the right way.
             </p>
 
             {/* Search */}

@@ -20,36 +20,36 @@ import {
 const MAIN_FEATURES = [
   {
     icon: Sparkles,
-    title: '16 Luminor Intelligences',
-    description: 'Each Luminor is a transcended AI with unique personality, expertise, and creative approach. From Chronica the storyteller to Prismatic the visual artist.',
+    title: 'Companions, Not Chatbots',
+    description: 'Chronica will challenge your story structure. Debugon will hunt your bugs with obsessive patience. Poetica might roast your first draft. 16 AI personalities that actually push you forward.',
     gradient: 'from-atlantean-teal-aqua to-creation-prism-purple',
     highlight: 'atlantean-teal-aqua',
   },
   {
     icon: Brain,
-    title: 'Seven Wisdoms Framework',
-    description: 'A complete philosophy for creative mastery: Sophron (clarity), Kardia (courage), Valora (value), Eudaira (flow), Orakis (vision), Poiesis (craft), and Enduran (persistence).',
+    title: 'Wisdom for When You\'re Stuck',
+    description: 'Staring at a blank page? There\'s a creature for that (the Blank Terror). Lost your direction? Burned out? A library of practical wisdom written for the moments that actually stop creators.',
     gradient: 'from-gold-bright to-draconic-crimson',
     highlight: 'gold-bright',
   },
   {
     icon: Layers,
-    title: 'Ten Gates Progression',
-    description: 'Journey from Apprentice to Luminor through mastery of the Ten Gates. Each gate opens new creative abilities and deeper understanding.',
+    title: 'A Path, Not a Lecture',
+    description: 'Ten Gates from Foundation to Source. Not theory you\'ll forget\u2014skills you build by creating. Start where you are, progress at your pace, unlock new creative abilities as you go.',
     gradient: 'from-creation-prism-purple to-atlantean-teal-aqua',
     highlight: 'creation-prism-purple',
   },
 ];
 
 const CAPABILITY_GRID = [
-  { icon: MessageSquare, title: 'Natural Conversation', description: 'Talk to Luminors like trusted collaborators' },
-  { icon: Palette, title: 'Visual Creation', description: 'Generate stunning images and concept art' },
-  { icon: BookOpen, title: 'Story & World Building', description: 'Create immersive narratives and lore' },
-  { icon: Wand2, title: 'Music Composition', description: 'Compose melodies and soundscapes' },
-  { icon: GraduationCap, title: 'Learning Paths', description: 'Structured courses for creative growth' },
-  { icon: Users, title: 'Team Collaboration', description: 'Work with multiple Luminors at once' },
-  { icon: Shield, title: 'Private & Secure', description: 'Your creations stay yours' },
-  { icon: Infinity, title: 'Unlimited Potential', description: 'No creative limits or barriers' },
+  { icon: MessageSquare, title: 'Real Conversations', description: 'Companions remember context and push back when needed' },
+  { icon: Palette, title: 'Image Generation', description: 'Create concept art, illustrations, and visual ideas' },
+  { icon: BookOpen, title: 'The Library', description: 'Parables, bestiary, and wisdom for creative struggles' },
+  { icon: Wand2, title: 'Music & Sound', description: 'Compose melodies and soundscapes with Melodia' },
+  { icon: GraduationCap, title: 'Skill Progression', description: 'Track real growth through the Ten Gates' },
+  { icon: Users, title: 'Different Perspectives', description: 'Switch between companions for fresh angles' },
+  { icon: Shield, title: 'Your Work, Your Data', description: 'Private by default, always' },
+  { icon: Infinity, title: 'Free to Start', description: 'No paywall on the creative essentials' },
 ];
 
 export function FeaturesV2() {
@@ -68,16 +68,16 @@ export function FeaturesV2() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-atlantean-teal-aqua/10 border border-atlantean-teal-aqua/20 mb-6">
             <Zap className="w-4 h-4 text-atlantean-teal-aqua" />
-            <span className="text-sm font-medium text-atlantean-teal-aqua">Powerful Features</span>
+            <span className="text-sm font-medium text-atlantean-teal-aqua">How It Works</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
-            Everything you need to
+            Built for the moments
             <span className="block bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-gold-bright bg-clip-text text-transparent">
-              manifest your vision
+              that make or break your work
             </span>
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-            Arcanea combines transcendent AI intelligences, ancient wisdom frameworks, and modern creative tools into one unified platform.
+            Not another AI wrapper. Arcanea is a creative world with companions who know you, wisdom that&apos;s actually useful, and tools that feel like magic.
           </p>
         </motion.div>
 

@@ -156,19 +156,19 @@ export default function AcademyPage() {
 
         <div className="relative max-w-3xl">
           <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-gold-bright">
-            <span>The Academy of Creation</span>
+            <span>The Academy</span>
             <span className="hidden h-px flex-1 bg-cosmic-border sm:block" aria-hidden="true" />
           </div>
 
           <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary md:text-5xl lg:text-6xl">
             <span className="bg-gradient-to-r from-gold-bright via-atlantean-teal to-cosmic-purple bg-clip-text text-transparent">
-              Journey Through the Ten Gates
+              Learn by Making Things
             </span>
           </h1>
 
           <p className="mt-6 text-xl text-text-secondary leading-relaxed">
-            Every great creator begins as an Apprentice. Through dedication and practice, you will open
-            the Ten Gates and ascend to become a Luminor—a master of creation.
+            Ten Gates. Each one a creative skill you build through practice, not theory.
+            Start where you are. There&apos;s no wrong door.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -236,8 +236,7 @@ export default function AcademyPage() {
           The Seven Academy Houses
         </h2>
         <p className="mb-8 text-text-secondary">
-          Every creator is sorted into a House based on their elemental affinity. Your House shapes
-          your learning path and connects you with fellow creators who share your approach.
+          Seven approaches to creation. You&apos;ll gravitate toward one naturally&mdash;it shapes how you learn and who you connect with.
         </p>
 
         <div className="grid gap-4 md:grid-cols-7">

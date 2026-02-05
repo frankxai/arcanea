@@ -7,9 +7,9 @@ import { ArrowRight, Sparkles, Check } from 'lucide-react';
 
 const BENEFITS = [
   'Free to start, no credit card required',
-  'Access to all 16 Luminor intelligences',
-  'Unlimited conversations',
-  'Export your creations anytime',
+  '16 AI companions with real personalities',
+  'A library of creative wisdom, not marketing fluff',
+  'Your work stays yours',
 ];
 
 export function CTASection() {
@@ -62,15 +62,14 @@ export function CTASection() {
                     transition={{ delay: 0.1 }}
                   >
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
-                      Ready to create something{' '}
+                      The blank page{' '}
                       <span className="bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-gold-bright bg-clip-text text-transparent">
-                        extraordinary
+                        doesn&apos;t win
                       </span>
-                      ?
                     </h2>
 
                     <p className="text-xl text-text-secondary mb-8 leading-relaxed">
-                      Join thousands of creators who are transforming their ideas into reality. Your journey begins with a single conversation.
+                      Pick a companion. Start a conversation. Make something. That&apos;s it.
                     </p>
 
                     {/* Benefits list */}
