@@ -1,123 +1,114 @@
 ---
-description: Generate premium UI components using v0 MCP with Arcanean Design System tokens
+description: Generate premium UI components using v0 MCP with v0's own design DNA + Arcanean Design System
 thinking: true
 ---
 
-# v0 Component Generation — Arcanean Design System
+# v0 Component Generation — Ultimate Design Pipeline
 
-You are generating UI components using the **v0 MCP server** with the Arcanean Design System v2.0 applied.
+You are generating UI components using the **v0 MCP server**, applying v0's design standards combined with the Arcanean Design System v2.0.
 
-## Step 1: Understand the Request
+## Before You Begin
 
-Parse what the user wants to generate. If unclear, ask:
-- What component type? (card, modal, form, nav, dashboard, etc.)
-- Which elemental affinity? (crystal, fire, void, gold, water, earth)
-- What complexity level? (simple component, compound component, full page section)
-
-## Step 2: Craft the v0 Prompt
-
-Build a prompt that includes the Arcanean Design System context:
-
-```
-DESIGN SYSTEM CONTEXT:
-
-Theme: Dark cosmic fantasy (Arcanea)
-Background: #0b0e14 (cosmic-void), #121826 (cosmic-deep), #1a2332 (cosmic-surface)
-Primary accent: #7fffd4 (arcane-crystal / teal)
-Secondary: #78a6ff (arcane-water / blue)
-Fire: #ff6b35, Void: #9966ff, Gold: #ffd700
-Text: #e6eefc (primary), #9bb1d0 (secondary), #708094 (muted)
-
-Glass morphism: background rgba(18,24,38,0.7), backdrop-filter blur(16px), border 1px solid rgba(127,255,212,0.15)
-Fonts: Cinzel (headings/display), Crimson Pro (body), Inter (UI elements), JetBrains Mono (code)
-
-REQUIREMENTS:
-- Use Tailwind CSS (no inline styles)
-- Use Framer Motion for animations
-- TypeScript with proper types
-- Accessible (WCAG 2.2 AA): focus-visible rings, keyboard nav, proper ARIA
-- Responsive (mobile-first, works at 375px)
-- Use shadcn/ui patterns (CVA for variants, Radix primitives for complex components)
-- Support reduced motion via prefers-reduced-motion
-
-COMPONENT: [user's component request]
-```
-
-## Step 3: Generate via v0 MCP
-
-Use the `v0_generate_ui` tool with the crafted prompt. If generating from a design image, use `v0_generate_from_image`.
-
-## Step 4: Post-Generation Quality Pass
-
-After v0 generates the component, apply these transformations:
-
-### Token Alignment
-Replace any raw colors with Arcanea tokens:
-- `#7fffd4` or similar teal → `arcane-crystal`
-- `#0b0e14` or dark bg → `cosmic-void`
-- `#121826` → `cosmic-deep`
-- `#1a2332` → `cosmic-surface`
-- White text on dark → `text-primary` / `text-secondary` / `text-muted`
-
-### CVA Variant Addition
-If the component doesn't have elemental variants, add them:
-```tsx
-const variants = cva('base-classes', {
-  variants: {
-    variant: {
-      crystal: 'border-arcane-crystal/20 text-arcane-crystal bg-arcane-crystal/10',
-      fire: 'border-arcane-fire/20 text-arcane-fire bg-arcane-fire/10',
-      void: 'border-arcane-void/20 text-arcane-void bg-arcane-void/10',
-      gold: 'border-arcane-gold/20 text-arcane-gold bg-arcane-gold/10',
-      water: 'border-arcane-water/20 text-arcane-water bg-arcane-water/10',
-      earth: 'border-arcane-earth/20 text-arcane-earth bg-arcane-earth/10',
-    },
-  },
-  defaultVariants: { variant: 'crystal' },
-})
-```
-
-### React Pattern Enforcement
-- Add `React.forwardRef` wrapper
-- Add `displayName`
-- Use `cn()` from `@/lib/utils`
-- Export both component and variants function
-
-### Animation Integration
-Import from `@/lib/animations` instead of inline variants:
-```tsx
-import { cosmicFadeIn, staggerContainer, staggerItem, fadeInViewport } from '@/lib/animations'
-```
-
-### Accessibility Check
-- Focus ring: `focus-visible:ring-2 focus-visible:ring-arcane-crystal/50 focus-visible:ring-offset-2 focus-visible:ring-offset-cosmic-void`
-- Touch targets: minimum `h-10 w-10` (44px)
-- ARIA labels on icon-only buttons
-- Keyboard navigation support
-
-## Step 5: Deliver
-
-Present the final component with:
-1. The component code (ready to paste into `components/ui/`)
-2. Usage example
-3. All variant previews
-4. Accessibility notes
-5. Where to place it in the codebase
-
-## v0 MCP Tools Available
-
-- `v0_generate_ui` — Generate from text description
-- `v0_generate_from_image` — Generate from design image/screenshot
-- `v0_chat_complete` — Iterate on a previous generation
-- `v0_setup_check` — Verify API configuration
-
-## V0_API_KEY
-
-The v0 API key must be set. If not configured, guide the user:
-1. Go to v0.dev → Settings → API Keys
-2. Generate a new key
-3. Set it: `claude mcp add v0-mcp --env V0_API_KEY=your_key -- node /tmp/v0-mcp/dist/main.js`
+Read these references:
+- `.claude/agents/departments/design/CLAUDE.md` — Department standards
+- `.claude/agents/departments/design/design-director.md` — Anti-slop protocol
+- `.claude/agents/departments/design/component-architect.md` — Component patterns
 
 ---
 
-*"Every component generated is a portal. Refine it until it feels like magic."*
+## Step 1: Understand the Request (v0 3-Input Framework)
+
+### Input 1: Product Surface
+- **Components**: What UI elements are needed?
+- **Data**: What information is displayed or collected?
+- **Actions**: What can the user do?
+
+### Input 2: Context of Use
+- **User persona**: Creator, explorer, admin, new user?
+- **Moment**: Discovery, creation, reflection, celebration?
+- **Device**: Mobile-first? Desktop dashboard? Both?
+
+### Input 3: Constraints & Taste
+- **Platform**: Next.js 16, React 19, Tailwind CSS 3.4, TypeScript
+- **Visual tone**: Dark cosmic (default) or other aesthetic
+- **Must avoid**: Generic AI patterns (Anti-Slop Protocol)
+
+If unclear, ask: component type, elemental affinity, complexity level.
+
+---
+
+## Step 2: Craft the v0 Prompt
+
+```
+Build [PRODUCT SURFACE].
+Used by [USER PERSONA], in [CONTEXT], to [OUTCOME].
+
+DESIGN SYSTEM:
+Theme: Dark cosmic (Arcanea)
+Backgrounds: #0b0e14 (void), #121826 (deep), #1a2332 (surface)
+Primary: #7fffd4 (arcane-crystal/teal)
+Secondary: #78a6ff (water), #9966ff (void)
+Accents: #ff6b35 (fire), #ffd700 (gold), #00ff88 (wind)
+Text: #e6eefc (primary), #9bb1d0 (secondary), #708094 (muted)
+Glass: bg rgba(18,24,38,0.7), blur(16px), border rgba(127,255,212,0.15)
+Fonts: Cinzel (headings), Crimson Pro (body), Inter (UI), JetBrains Mono (code)
+
+REQUIREMENTS:
+- React 19 + TypeScript strict, Tailwind CSS, Framer Motion
+- CVA variants (crystal/fire/void/gold/water/earth)
+- forwardRef + displayName, cn() utility
+- WCAG 2.2 AA, 44px touch targets, focus-visible rings
+- prefers-reduced-motion + prefers-contrast: high
+
+ANTI-SLOP: NO Inter for display, NO purple-on-white, NO cookie-cutter grids
+
+COMPONENT: [description]
+```
+
+---
+
+## Step 3: Generate via v0 MCP
+
+- `v0_generate_ui` — From text description
+- `v0_generate_from_image` — From design image/screenshot
+- `v0_chat_complete` — Iterate on generation
+- `v0_setup_check` — Verify API configuration
+
+V0_API_KEY setup: v0.dev > Settings > API Keys > `claude mcp add v0-mcp --env V0_API_KEY=key -- node /tmp/v0-mcp/dist/main.js`
+
+---
+
+## Step 4: Post-Generation Quality Pass
+
+### Token Alignment
+Replace raw colors with Arcanea tokens (teal->arcane-crystal, blue->arcane-water, purple->arcane-void, etc.)
+
+### CVA Variant Injection
+Add elemental variants if missing (crystal, fire, void, gold, water, earth)
+
+### React Patterns
+- [ ] forwardRef + displayName
+- [ ] Props interface with VariantProps
+- [ ] cn() for class composition
+- [ ] Export component + variants
+
+### Animation
+Import from `@/lib/animations` instead of inline values
+
+### Accessibility
+- [ ] Focus: `focus-visible:ring-2 focus-visible:ring-arcane-crystal/50`
+- [ ] Touch targets >= 44px, aria-label on icon buttons
+- [ ] Semantic HTML, prefers-reduced-motion
+
+---
+
+## Step 5: Deliver
+
+1. **Component Code** — Complete, paste into `components/ui/`
+2. **Usage Examples** — All variants, sizes, states
+3. **Accessibility Notes** — Keyboard nav, screen reader
+4. **File Placement** — Where in codebase
+
+---
+
+*"Every component should feel hand-crafted by a design studio — not assembled by an AI."*
