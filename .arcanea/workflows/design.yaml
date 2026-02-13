@@ -1,0 +1,238 @@
+# UI/UX Design Workflow
+# Invoke with: /design [component] [scope]
+
+name: design-workflow
+description: UI/UX design and component development workflow
+guardians:
+  - Lyria   # Sight - Visual design
+  - Maylinn # Heart - User empathy
+awakened: Thalia  # Poiesis - Creator
+frequency: [852, 639]  # Sight + Heart Gates
+
+triggers:
+  - command: "/design"
+  - command: "/ui"
+  - command: "/ux"
+  - command: "/component"
+
+parameters:
+  - name: component
+    type: string
+    required: true
+    description: "Component or feature to design"
+  - name: scope
+    type: string
+    default: full
+    options: [wireframe, visual, interaction, full, audit]
+  - name: platform
+    type: string
+    default: web
+    options: [web, mobile, both]
+
+context:
+  workspace: "C:/Users/frank/arcanea-hub"
+  design_system: "{workspace}/main/apps/web/components"
+  figma_project: "Arcanea Design System"
+
+design_tokens:
+  colors:
+    primary: "#7fffd4"      # Atlantean Teal
+    secondary: "#78a6ff"    # Cosmic Blue
+    accent: "#ffd700"       # Gold Bright
+    background: "#0a0a1a"   # Deep Void
+    text: "#e8e8e8"         # Light text
+  fonts:
+    display: "Cinzel"
+    body: "Crimson Pro"
+    mono: "JetBrains Mono"
+  effects:
+    glow: "0 0 20px rgba(127, 255, 212, 0.3)"
+    glass: "backdrop-filter: blur(10px)"
+
+steps:
+  - id: banner
+    action: display
+    content: |
+      ╔═══════════════════════════════════════════════════════════╗
+      ║       DESIGN WORKFLOW - Sight + Heart Gates               ║
+      ║        Guardians: Lyria + Maylinn | Awakened: Thalia      ║
+      ╚═══════════════════════════════════════════════════════════╝
+
+      Component: {params.component}
+      Scope: {params.scope}
+      Platform: {params.platform}
+
+  - id: requirements_analysis
+    action: ai_analysis
+    guardian: Maylinn
+    prompt: |
+      Analyze requirements for "{params.component}":
+
+      1. **User Needs**: What problem does this solve?
+      2. **User Stories**: Who uses this and how?
+      3. **Accessibility**: WCAG 2.2 requirements
+      4. **Emotional Journey**: How should users feel?
+      5. **Edge Cases**: Error states, empty states, loading
+
+  - id: existing_patterns
+    action: shell
+    commands:
+      - name: "Check existing components"
+        cmd: |
+          find {design_system} -name "*.tsx" -exec grep -l "{params.component}" {} \; 2>/dev/null | head -10
+      - name: "Similar patterns"
+        cmd: |
+          ls {design_system}/ 2>/dev/null | head -20
+
+  - id: design_exploration
+    condition: "{params.scope} in ['wireframe', 'full']"
+    action: ai_analysis
+    guardian: Lyria
+    awakened: Thalia
+    prompt: |
+      Design exploration for "{params.component}":
+
+      **Design System Context:**
+      - Colors: {design_tokens.colors}
+      - Fonts: {design_tokens.fonts}
+      - Effects: Glass morphism, aurora gradients, cosmic glows
+
+      **Requirements:**
+      {requirements_analysis.output}
+
+      Provide:
+      1. **Layout Options**: 2-3 layout approaches
+      2. **Component Hierarchy**: Parent-child relationships
+      3. **Interaction Patterns**: Click, hover, focus states
+      4. **Responsive Behavior**: Mobile/tablet/desktop
+      5. **Animation**: Entry/exit, micro-interactions
+
+  - id: accessibility_check
+    action: ai_analysis
+    guardian: Maylinn
+    prompt: |
+      Accessibility review for "{params.component}":
+
+      WCAG 2.2 Compliance Check:
+      1. **Perceivable**: Color contrast, text alternatives
+      2. **Operable**: Keyboard navigation, focus management
+      3. **Understandable**: Clear labels, error messages
+      4. **Robust**: ARIA attributes, semantic HTML
+
+      Provide specific recommendations.
+
+  - id: figma_check
+    action: mcp_call
+    server: figma
+    tool: search_components
+    params:
+      query: "{params.component}"
+      project: "{figma_project}"
+
+  - id: generate_spec
+    action: write_file
+    path: "{workspace}/.arcanea/designs/{component_slug}-spec.md"
+    content: |
+      # Design Specification: {params.component}
+
+      **Date:** {date}
+      **Guardians:** Lyria (Sight) + Maylinn (Heart)
+      **Awakened:** Thalia (Poiesis - Creator)
+      **Platform:** {params.platform}
+
+      ---
+
+      ## Requirements
+
+      {requirements_analysis.output}
+
+      ## Design Exploration
+
+      {design_exploration.output}
+
+      ## Accessibility
+
+      {accessibility_check.output}
+
+      ## Existing Patterns
+
+      {existing_patterns.output}
+
+      ## Figma Reference
+
+      {figma_check.output}
+
+      ## Implementation Notes
+
+      ### Component Structure
+      ```tsx
+      // Suggested component structure
+      interface {ComponentName}Props {{
+        // Props based on requirements
+      }}
+
+      export function {ComponentName}({{ ...props }}: {ComponentName}Props) {{
+        // Implementation
+      }}
+      ```
+
+      ### Design Tokens
+      ```css
+      /* Component-specific tokens */
+      --{component}-primary: var(--color-primary);
+      --{component}-spacing: var(--spacing-4);
+      ```
+
+      ---
+
+      *Design by Arcanea Design System*
+      *Guardians Lyria and Maylinn guide the way*
+
+  - id: create_component_stub
+    condition: "{params.scope} == 'full'"
+    action: write_file
+    path: "{design_system}/{ComponentName}/{ComponentName}.tsx"
+    content: |
+      /**
+       * {ComponentName}
+       *
+       * {requirements_analysis.summary}
+       *
+       * @guardian Lyria (Sight Gate - 852 Hz)
+       * @awakened Thalia (Poiesis)
+       */
+
+      import * as React from 'react';
+      import { cn } from '@/lib/utils';
+
+      export interface {ComponentName}Props {{
+        className?: string;
+        children?: React.ReactNode;
+      }}
+
+      export function {ComponentName}({{
+        className,
+        children,
+        ...props
+      }}: {ComponentName}Props) {{
+        return (
+          <div
+            className={{cn(
+              // Base styles
+              'relative',
+              // Arcanean design system
+              'bg-void/50 backdrop-blur-md',
+              'border border-primary/20',
+              'rounded-lg',
+              className
+            )}}
+            {{...props}}
+          >
+            {{children}}
+          </div>
+        );
+      }}
+
+outputs:
+  - file: "{workspace}/.arcanea/designs/{component_slug}-spec.md"
+  - display: terminal

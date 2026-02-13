@@ -1,0 +1,30 @@
+[package]
+name = "arcanea-desktop"
+version = "4.0.0"
+description = "Arcanea Creative Agent Desktop App"
+authors = ["Arcanea Team"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.70"
+
+[build-dependencies]
+tauri-build = { version = "1.5.0", features = [] }
+
+[dependencies]
+tauri = { version = "1.5.0", features = ["shell-open", "dialog-open", "dialog-save", "fs-all", "path-all", "os-all", "process-relaunch", "clipboard-all", "notification-all", "http-request"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.0", features = ["full"] }
+reqwest = { version = "0.11", features = ["json"] }
+sqlx = { version = "0.7", features = ["runtime-tokio", "sqlite"] }
+dirs = "5.0"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

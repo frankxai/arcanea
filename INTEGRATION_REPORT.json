@@ -1,0 +1,100 @@
+{
+  "filesChecked": [
+    {
+      "file": "games-v2.html",
+      "status": "pass",
+      "message": "All Arcanea scripts present"
+    },
+    {
+      "file": "games.html",
+      "status": "pass",
+      "message": "All Arcanea scripts present"
+    },
+    {
+      "file": "solopreneur-os.html",
+      "status": "pass",
+      "message": "All Arcanea scripts present"
+    },
+    {
+      "file": "game-designer-os.html",
+      "status": "pass",
+      "message": "All Arcanea scripts present"
+    },
+    {
+      "file": "portal.html",
+      "status": "pass",
+      "message": "All Arcanea scripts present"
+    },
+    {
+      "file": "index.html",
+      "status": "pass",
+      "message": "All Arcanea scripts present"
+    },
+    {
+      "file": "integrate-all.html",
+      "status": "pass",
+      "message": "All Arcanea scripts present"
+    },
+    {
+      "file": "arcanea-auth-ui.html",
+      "status": "pass",
+      "message": "All Arcanea scripts present"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "test": "integration-hooks",
+      "file": "sync-engine.js",
+      "warning": "Missing hooks: isConnected"
+    },
+    {
+      "test": "integration-hooks",
+      "file": "arcanea-agents-live.js",
+      "warning": "Missing hooks: register, invoke"
+    },
+    {
+      "test": "html-structure",
+      "file": "integrate-all.html",
+      "warning": "Issues: hasDoctype, hasHtmlTag, hasHead, hasBody, hasMetaCharset, hasViewport"
+    },
+    {
+      "test": "mobile-optimization",
+      "file": "integrate-all.html",
+      "warning": "Missing viewport meta tag"
+    }
+  ],
+  "tests": {
+    "htmlFiles": {
+      "passed": 8,
+      "failed": 0,
+      "total": 8
+    },
+    "jsFiles": {
+      "passed": 7,
+      "failed": 0,
+      "total": 7
+    },
+    "scriptOrder": {
+      "passed": 8,
+      "failed": 0,
+      "total": 8
+    },
+    "integrationHooks": {
+      "passed": 3,
+      "failed": 2,
+      "total": 5
+    },
+    "htmlStructure": {
+      "passed": 7,
+      "failed": 0,
+      "total": 8
+    },
+    "mobileOptimization": {
+      "passed": 7,
+      "failed": 1,
+      "total": 8
+    }
+  },
+  "timestamp": "2026-01-31T00:43:25.539Z"
+}

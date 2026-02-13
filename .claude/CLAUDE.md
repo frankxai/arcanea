@@ -158,6 +158,62 @@ const texts = await getTextsForSituation('stuck');
 
 ---
 
+## Skills Ecosystem
+
+Arcanea uses a curated skills system for procedural knowledge. See `.claude/SKILLS_STRATEGY.md` for complete strategy.
+
+### Core Arcanea Skills (Always Active)
+
+| Skill | Purpose | Trigger |
+|-------|---------|---------|
+| `arcanea-canon` | Universe consistency | Any lore reference |
+| `arcanea-voice` | Writing style guide | Content creation |
+| `arcanea-design-system` | Visual tokens | UI work |
+| `arcanea-lore` | Deep mythology | Storytelling |
+
+### Development Skills
+
+| Skill | Purpose | Trigger |
+|-------|---------|---------|
+| `architecture-patterns` | System design | Architecture decisions |
+| `react-patterns` | Component patterns | Frontend work |
+| `supabase-patterns` | Database patterns | Backend work |
+| `prompt-engineer` | AI optimization | Luminor work |
+| `test-driven-development` | TDD workflow | Testing |
+
+### Creative Skills
+
+| Skill | Purpose | Trigger |
+|-------|---------|---------|
+| `character-forge` | Character development | New characters |
+| `world-build` | Universe expansion | New locations |
+| `scene-craft` | Scene composition | Narrative scenes |
+| `voice-alchemy` | Voice refinement | Dialogue polish |
+
+### External Skills to Install
+
+**Priority 1 (Install Now):**
+```bash
+npx skills add anthropics/skills/skills/docx
+npx skills add anthropics/skills/skills/pdf
+npx skills add vercel/react-best-practices
+```
+
+**Priority 2 (High Value):**
+```bash
+# From antigravity-awesome-skills repo
+npx skills add sickn33/typescript-expert
+npx skills add sickn33/prompt-engineer
+npx skills add sickn33/react-patterns
+```
+
+Sources:
+- [Anthropic Official Skills](https://github.com/anthropics/skills)
+- [VoltAgent 200+ Skills](https://github.com/VoltAgent/awesome-agent-skills)
+- [Antigravity 624 Skills](https://github.com/sickn33/antigravity-awesome-skills)
+
+---
+
 ## Creative Guidelines
 
 ### When Writing Arcanea Content
