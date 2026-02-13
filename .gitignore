@@ -159,6 +159,7 @@ apps/web/app/page.js
 
 # Additional nested repos
 arcanea-companion/
+arcanea-flow/
 arcanea-onchain/
 
 # Research reports (local only)
