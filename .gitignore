@@ -144,3 +144,22 @@ junit.xml
 # Arcanea local data
 .arcanea/data/
 .arcanea/test-data/
+
+# Binary/generated assets
+*.pdf
+apps/web/demonstration.html
+apps/web/globals.css
+apps/web/package-lock.json
+
+# Legacy standalone code (not part of monorepo)
+pages/
+src/
+styles/
+apps/web/app/page.js
+
+# Additional nested repos
+arcanea-companion/
+arcanea-onchain/
+
+# Research reports (local only)
+BLOCKCHAIN_AI_RESEARCH_REPORT.md
