@@ -36,7 +36,7 @@ Most AI tools optimize for speed. Arcanea optimizes for **depth**.
 The problem with generative AI isn't capability &mdash; it's structure. Without frameworks for how to think, what to prioritize, and when to go deeper, AI assistance remains shallow. Arcanea solves this by providing three things most AI systems lack:
 
 1. **A reasoning ontology** &mdash; Five Elements and Ten Gates give AI agents a structured framework for creative decision-making, not just pattern matching
-2. **Composable intelligence** &mdash; 77 skills and 38 agents that combine dynamically based on task context, orchestrated by a constitutional protocol
+2. **Composable intelligence** &mdash; 65+ skills and 40+ agents that combine dynamically based on task context, orchestrated by a constitutional protocol
 3. **Accumulated wisdom** &mdash; 200,000+ words of authored creative guidance that inform AI responses with genuine depth, not generated filler
 
 The result: an AI system that doesn't just respond to prompts &mdash; it **thinks through a creative philosophy**.
@@ -49,8 +49,8 @@ The result: an AI system that doesn't just respond to prompts &mdash; it **think
 |:-------|:-------------|
 | **Multi-Model Orchestration** | Route tasks across Claude, Gemini, and custom models via Vercel AI SDK 6 Gateway &mdash; zero API keys on Vercel |
 | **10 Guardian Agents** | Specialized AI personalities with distinct reasoning patterns, element alignments, and model routing |
-| **77 Composable Skills** | Claude Code skills for development, design, content, strategy, and orchestration &mdash; auto-activated by context |
-| **38 Domain Agents** | Specialists spanning engineering, product, creative, and strategic intelligence |
+| **65+ Composable Skills** | Claude Code skills for development, design, content, strategy, and orchestration &mdash; auto-activated by context |
+| **40+ Domain Agents** | Specialists spanning engineering, product, creative, and strategic intelligence |
 | **200K+ Word Library** | 17 curated collections of creative guidance &mdash; searchable, situation-aware, cross-referenced |
 | **Ten Gate Progression** | A ranked developmental system from Apprentice to Luminor that tracks creative capability |
 | **30+ MCP Integrations** | GitHub, Vercel, Notion, Figma, Playwright, v0, Slack &mdash; connected through Model Context Protocol |
@@ -220,7 +220,7 @@ The system is situation-aware &mdash; it surfaces relevant texts based on where 
 
 | Layer | Stack | Purpose |
 |:------|:------|:--------|
-| **Starlight Protocol** | 5 layers, 9 agents, 5 strategies | Constitutional AI framework governing agent behavior |
+| **Starlight Protocol** | 5 layers, 7 agents, 6 strategies | Persistent context and memory architecture governing agent behavior |
 | **Runtime** | Next.js 16, React 19, TypeScript (strict) | Server-first rendering with streaming UI |
 | **Design System** | Tailwind CSS, Framer Motion, Radix UI | 89+ tokens, 40+ animations, cosmic glassmorphic theme |
 | **AI Intelligence** | Vercel AI SDK 6 + Gateway, Gemini 2.5, Claude | Multi-model routing, zero-key OIDC on Vercel |
@@ -235,13 +235,13 @@ The system is situation-aware &mdash; it surfaces relevant texts based on where 
 
 <br/>
 
-The constitutional framework governing all agent behavior. Five layers, each building on the last:
+The persistent context and memory architecture that defines agent identity, reasoning strategies, and knowledge vaults. Five layers, each building on the last:
 
 ```
 00_IDENTITY    → Luminor Constitution, User Profile, Core Values
 01_INTELLECT   → Tech Stack Vaults, Memory, Research, Task Management
-02_PROTOCOL    → Orchestrator, Strategies (First Principles, Swarm, Consensus)
-03_AGENCY      → 9 Agents across Engineering, Product, Creative
+02_PROTOCOL    → Strategies (First Principles, Systems Thinking), Orchestration Patterns
+03_AGENCY      → 7 Agents across Engineering, Product, Creative
 04_ARCANA      → Guardian Mappings, Element Alignment, Gate Progression
 ```
 
@@ -289,7 +289,7 @@ Arcanea is not a single repository. It's a coordinated system of projects, each 
 |:--------|:--------|:------:|
 | **[arcanea](https://github.com/frankxai/arcanea)** | Core monorepo &mdash; agents, skills, Library, lore, web application | Active |
 | **[arcanea.ai](https://arcanea.ai)** | Production platform &mdash; live at arcanea.ai | Live |
-| **[Starlight Intelligence System](https://github.com/frankxai/Starlight-Intelligence-System)** | Open multi-agent orchestration framework &mdash; the intelligence layer | v3.0 |
+| **[Starlight Intelligence System](https://github.com/frankxai/Starlight-Intelligence-System)** | Persistent context and memory architecture &mdash; identity, knowledge vaults, platform adapters | v3.0 |
 | **[arcanea-onchain](https://github.com/frankxai/arcanea-onchain)** | Blockchain strategy &mdash; Solana NFTs, Base L2, Story Protocol IP | Research |
 | **[arcanea-infogenius](https://github.com/frankxai/arcanea-infogenius)** | Knowledge-first visual generation MCP server | v5.1 |
 | **[Agentic Creator OS](https://github.com/frankxai/agentic-creator-os)** | Claude Code implementation of the Starlight framework | v6.0 |
@@ -354,9 +354,9 @@ arcanea/
 ├── starlight-protocol/        # Constitutional AI framework (5 layers)
 ├── arcanea-lore/              # Canonical universe reference
 ├── .claude/
-│   ├── agents/                # 38 specialized agents + 5 departments
-│   ├── skills/                # 77 Claude Code skills (auto-activated)
-│   ├── commands/              # 25+ slash commands
+│   ├── agents/                # 40+ specialized agents + 5 departments
+│   ├── skills/                # 65+ Claude Code skills (auto-activated)
+│   ├── commands/              # 50+ slash commands
 │   └── lore/                  # ARCANEA_CANON.md — the source of truth
 └── arcanea-flow/              # Agent orchestration engine (claude-flow fork)
 ```
@@ -371,9 +371,9 @@ arcanea/
 
 Arcanea ships with the most comprehensive Claude Code configuration we're aware of:
 
-**77 skills** &mdash; from `starlight-orchestrator` (multi-agent routing) to `premium-visual` (glassmorphic infographic generation) to `oracle-adk` (enterprise agent development). Skills auto-activate based on keywords, file patterns, and commands.
+**65+ skills** &mdash; from `starlight-orchestrator` (multi-agent routing) to `premium-visual` (glassmorphic infographic generation) to `infogenius` (knowledge-first visual intelligence). Skills auto-activate based on keywords, file patterns, and commands.
 
-**38 agents** across **5 departments** &mdash; Design (Lyria, Lyssandria, Leyla, Maylinn, Alera), Development, Content, Business, Marketing. Each with specialized knowledge and reasoning patterns.
+**40+ agents** across **5 departments** &mdash; Design (Lyria, Lyssandria, Leyla, Maylinn, Alera), Development, Content, Business, Marketing. Each with specialized knowledge and reasoning patterns.
 
 **7 Guardian agent files** &mdash; production-ready `.agent.md` definitions with element alignment, personality, preferred models, and structured reasoning.
 
