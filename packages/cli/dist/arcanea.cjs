@@ -26,9 +26,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/commander/lib/error.js
+// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/error.js
 var require_error = __commonJS({
-  "node_modules/commander/lib/error.js"(exports2) {
+  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/error.js"(exports2) {
     var CommanderError2 = class extends Error {
       /**
        * Constructs the CommanderError class
@@ -61,9 +61,9 @@ var require_error = __commonJS({
   }
 });
 
-// node_modules/commander/lib/argument.js
+// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/argument.js
 var require_argument = __commonJS({
-  "node_modules/commander/lib/argument.js"(exports2) {
+  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/argument.js"(exports2) {
     var { InvalidArgumentError: InvalidArgumentError2 } = require_error();
     var Argument2 = class {
       /**
@@ -188,9 +188,9 @@ var require_argument = __commonJS({
   }
 });
 
-// node_modules/commander/lib/help.js
+// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/help.js
 var require_help = __commonJS({
-  "node_modules/commander/lib/help.js"(exports2) {
+  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/help.js"(exports2) {
     var { humanReadableArgName } = require_argument();
     var Help2 = class {
       constructor() {
@@ -602,9 +602,9 @@ var require_help = __commonJS({
   }
 });
 
-// node_modules/commander/lib/option.js
+// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/option.js
 var require_option = __commonJS({
-  "node_modules/commander/lib/option.js"(exports2) {
+  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/option.js"(exports2) {
     var { InvalidArgumentError: InvalidArgumentError2 } = require_error();
     var Option2 = class {
       /**
@@ -874,9 +874,9 @@ var require_option = __commonJS({
   }
 });
 
-// node_modules/commander/lib/suggestSimilar.js
+// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/suggestSimilar.js
 var require_suggestSimilar = __commonJS({
-  "node_modules/commander/lib/suggestSimilar.js"(exports2) {
+  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/suggestSimilar.js"(exports2) {
     var maxDistance = 3;
     function editDistance(a, b) {
       if (Math.abs(a.length - b.length) > maxDistance)
@@ -954,9 +954,9 @@ var require_suggestSimilar = __commonJS({
   }
 });
 
-// node_modules/commander/lib/command.js
+// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/command.js
 var require_command = __commonJS({
-  "node_modules/commander/lib/command.js"(exports2) {
+  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/lib/command.js"(exports2) {
     var EventEmitter = require("node:events").EventEmitter;
     var childProcess = require("node:child_process");
     var path = require("node:path");
@@ -2997,9 +2997,9 @@ Expecting one of '${allowedValues.join("', '")}'`);
   }
 });
 
-// node_modules/commander/index.js
+// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/index.js
 var require_commander = __commonJS({
-  "node_modules/commander/index.js"(exports2) {
+  "../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/index.js"(exports2) {
     var { Argument: Argument2 } = require_argument();
     var { Command: Command2 } = require_command();
     var { CommanderError: CommanderError2, InvalidArgumentError: InvalidArgumentError2 } = require_error();
@@ -3019,9 +3019,9 @@ var require_commander = __commonJS({
   }
 });
 
-// node_modules/picocolors/picocolors.js
+// ../../node_modules/.pnpm/picocolors@1.1.1/node_modules/picocolors/picocolors.js
 var require_picocolors = __commonJS({
-  "node_modules/picocolors/picocolors.js"(exports2, module2) {
+  "../../node_modules/.pnpm/picocolors@1.1.1/node_modules/picocolors/picocolors.js"(exports2, module2) {
     var p = process || {};
     var argv = p.argv || [];
     var env = p.env || {};
@@ -3091,7 +3091,7 @@ var require_picocolors = __commonJS({
   }
 });
 
-// node_modules/commander/esm.mjs
+// ../../node_modules/.pnpm/commander@12.1.0/node_modules/commander/esm.mjs
 var import_index = __toESM(require_commander(), 1);
 var {
   program,
@@ -6018,7 +6018,8 @@ var SEVEN_PILLARS = [
 ];
 var worldCommand = new Command("world").description("Generate world-building templates using the Seven Pillars framework").argument("[aspect]", "Pillar to generate (geography, history, cultures, magic, economy, politics, belief)").option("-n, --name <name>", "Realm name", "MyRealm").option("-d, --dir <path>", "Output directory", process.cwd()).option("--all", "Generate all seven pillars").action(async (aspect, options) => {
   const realmName = options.name;
-  const outDir = (0, import_node_path10.join)(options.dir, ".arcanea", "worlds", realmName.toLowerCase().replace(/\s+/g, "-"));
+  const safeSlug = realmName.toLowerCase().replace(/[^a-z0-9\s-]+/g, "").replace(/\s+/g, "-").replace(/^-|-$/g, "") || "realm";
+  const outDir = (0, import_node_path10.join)(options.dir, ".arcanea", "worlds", safeSlug);
   if (!(0, import_node_fs10.existsSync)(outDir)) (0, import_node_fs10.mkdirSync)(outDir, { recursive: true });
   const pillarsToGenerate = options.all ? SEVEN_PILLARS : aspect ? SEVEN_PILLARS.filter((p) => p.name === aspect.toLowerCase()) : [];
   if (pillarsToGenerate.length === 0 && !options.all) {
@@ -6046,7 +6047,7 @@ var worldCommand = new Command("world").description("Generate world-building tem
     printSuccess(`${pillar.name} \u2014 guided by ${guardian?.displayName || pillar.guardian}`);
   }
   console.log(`
-  Files written to: .arcanea/worlds/${realmName.toLowerCase().replace(/\s+/g, "-")}/`);
+  Files written to: .arcanea/worlds/${safeSlug}/`);
   printInfo(`${pillarsToGenerate.length} pillar(s) generated`);
   if (!options.all && pillarsToGenerate.length < 7) {
     printInfo("Use --all to generate all seven pillars");

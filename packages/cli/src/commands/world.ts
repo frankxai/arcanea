@@ -315,7 +315,9 @@ export const worldCommand = new Command('world')
   .option('--all', 'Generate all seven pillars')
   .action(async (aspect: string | undefined, options: { name: string; dir: string; all?: boolean }) => {
     const realmName = options.name;
-    const outDir = join(options.dir, '.arcanea', 'worlds', realmName.toLowerCase().replace(/\s+/g, '-'));
+    // Sanitize realm name to prevent path traversal — strip everything except alphanumeric, spaces, hyphens
+    const safeSlug = realmName.toLowerCase().replace(/[^a-z0-9\s-]+/g, '').replace(/\s+/g, '-').replace(/^-|-$/g, '') || 'realm';
+    const outDir = join(options.dir, '.arcanea', 'worlds', safeSlug);
 
     if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
@@ -350,7 +352,7 @@ export const worldCommand = new Command('world')
       printSuccess(`${pillar.name} — guided by ${guardian?.displayName || pillar.guardian}`);
     }
 
-    console.log(`\n  Files written to: .arcanea/worlds/${realmName.toLowerCase().replace(/\s+/g, '-')}/`);
+    console.log(`\n  Files written to: .arcanea/worlds/${safeSlug}/`);
     printInfo(`${pillarsToGenerate.length} pillar(s) generated`);
 
     if (!options.all && pillarsToGenerate.length < 7) {
