@@ -1,133 +1,108 @@
-# ArcaneaBot Research Findings
+# Findings: SIS + AIOS Production Readiness Audit
 
-**Created:** 2026-01-29  
-**Project:** Hybrid ArcaneaBot Implementation  
-
-## 🏗️ **ARCHITECTURE ANALYSIS**
-
-### **Moltbot Core Components**
-- **Gateway:** WebSocket-based control plane (ws://127.0.0.1:18789)
-- **Agent Runtime:** Pi agent in RPC mode with tool streaming
-- **Channel System:** 10+ platform integrations (WhatsApp, Telegram, Discord, Slack, etc.)
-- **Skills System:** AgentSkills-compatible with YAML frontmatter
-- **Security:** Sandboxing, authentication, DM pairing system
-- **Multi-platform:** macOS app, iOS/Android nodes, Web interfaces
-
-### **Arcanea System Analysis**
-- **38 Elemental Agents:** Organized by Fire, Water, Earth, Wind, Void + Integration elements
-- **Guardian System:** Each element has 2 courts + Master agents
-- **Personality Depth:** Detailed personality profiles for each agent
-- **Thematic Structure:** Elemental magic theme with Courts and hierarchies
-- **Skills System:** Individual agent abilities vs. unified skill framework
-
-## 🔧 **TECHNICAL INTEGRATION POINTS**
-
-### **Agent Mapping Strategy**
-```
-Arcanea Agent → Moltbot Agent Format
-- Identity: name, emoji, elemental_affinity, court
-- Workspace: ~/arcanea/{element}/{court}/{agent}
-- Skills: Converted to AgentSkills YAML format
-- Personality: System prompt + personality profile
-- Model: Strategic model assignment per elemental type
-```
-
-### **Elemental Routing Logic**
-```
-User Message → Elemental Analysis → Agent Selection → Skill Invocation
-```
-
-**Elemental Detection Strategy:**
-1. **Keyword Analysis**: Fire=transform/create, Water=flow/emotion, Earth=structure/stability
-2. **Intent Classification**: ML-based intent to elemental mapping
-3. **User Preference**: Learn user's elemental patterns over time
-4. **Context Analysis**: Previous conversations and project type
-
-### **Skills Conversion Pattern**
-```yaml
-# Arcanea Skill → AgentSkill Format
-skill: draconia-transformation
-elemental: fire
-court: draconia
-tools: [create, transform, forge]
-personality: "Fierce, passionate, powerful"
-model: anthropic/claude-opus-4-5
-```
-
-## 📊 **COMPETITIVE ANALYSIS**
-
-### **Moltbot Advantages**
-- ✅ 87.8k GitHub stars (proven traction)
-- ✅ Production-ready security model
-- ✅ Multi-channel platform support
-- ✅ Extensible plugin architecture
-- ✅ MIT license (full commercial freedom)
-- ✅ Active development and community
-
-### **Arcanea Differentiators**
-- ✅ Rich narrative framework
-- ✅ 38 specialized personalities
-- ✅ Elemental magic theme
-- ✅ Character-driven interaction
-- ✅ Creative specialization
-
-## 🎯 **INTEGRATION OPPORTUNITIES**
-
-### **High-Value Features**
-1. **Elemental Channel Routing**: Different channels for different elements
-2. **Agent Collaboration**: Elemental agents working together
-3. **Personalized Guardians**: Users choose their primary Guardian
-4. **Evolution System**: Agents learn and evolve from interactions
-5. **Magical UI/UX**: Elemental themes throughout interface
-
-### **Technical Advantages**
-1. **Proven Scalability**: Moltbot handles thousands of users
-2. **Security Model**: Enterprise-ready authentication and sandboxing
-3. **Channel Ecosystem**: 10+ messaging platforms integrated
-4. **Skills Framework**: AgentSkills standard compatibility
-5. **Multi-platform**: Desktop + mobile + web support
-
-## 📝 **CODE PATTERNS DISCOVERED**
-
-### **Moltbot Configuration Structure**
-```typescript
-{
-  agent: { model: "anthropic/claude-opus-4-5" },
-  channels: {
-    discord: { token: "..." },
-    whatsapp: { allowFrom: ["..."] },
-    // ... other channels
-  },
-  gateway: { port: 18789 }
-}
-```
-
-### **AgentSkills Format**
-```yaml
----
-name: draconia-forge
-description: Intense creative transformation
-elemental: fire
-tools: [create, transform, forge]
----
-# Skill implementation...
-```
-
-## 🚨 **POTENTIAL CHALLENGES**
-
-### **Technical Risks**
-- **Complexity**: 38 agents vs. typical single-agent systems
-- **Performance**: Elemental routing overhead
-- **State Management**: Multi-agent coordination complexity
-- **User Experience**: Choosing right agent for task
-
-### **Mitigation Strategies**
-- **Smart Routing**: AI-powered agent selection
-- **Caching**: Elemental analysis results
-- **Fallback System**: Default agent for ambiguous requests
-- **User Learning**: Adaptive agent preferences
+## Date: 2026-02-14
 
 ---
 
-**Last Updated:** 2026-01-29  
-**Next Research:** Deep dive into Moltbot agent system codebase
+## 1. SIS TypeScript SDK
+
+**Location**: `starlight-intelligence-system/`
+**Code**: 5,076 lines across 10 TypeScript files
+**Package**: `@frankx/starlight-intelligence-system` v4.0.0
+
+### Modules
+
+| Module | Lines | Status |
+|--------|-------|--------|
+| `index.ts` | 253 | Built — main orchestrator class |
+| `context.ts` | 427 | Built — platform-specific context generation |
+| `memory.ts` | 229 | Built — file-based persistent memory with word index |
+| `agents.ts` | 203 | Built — keyword/file-pattern task routing |
+| `orchestrator.ts` | 954 | Built — 6 execution patterns |
+| `sync.ts` | 354 | Built — ACOS trajectory classification |
+| `score.ts` | 332 | Built — intelligence scoring (0-100) |
+| `cli.ts` | 536 | Built — init, generate, vault, sync, score, stats |
+| `types.ts` | 251 | Built — full type definitions |
+| `orchestrator.test.ts` | 1,537 | FAILING — 82 tests, import resolution broken |
+
+### Test Failure
+
+```
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '.../src/orchestrator.js'
+```
+
+Test imports `./orchestrator.js` (bundler moduleResolution). Node native test runner can't resolve `.js` → `.ts`.
+
+**Fix**: Add `tsx` as dev dependency, change test script to `node --import tsx --test src/**/*.test.ts`
+
+**Also**: `node_modules` empty — need `npm install` first.
+
+### Not Published
+
+- NOT on npm. Can't `npm install` it.
+- Package name inconsistency: `@frankx/` in package.json vs `@frankxai/` in old README examples
+
+---
+
+## 2. AIOS Hooks Infrastructure
+
+**Location**: `.claude/hooks/` (7 files, all executable)
+
+| Hook | What It Does | Status |
+|------|-------------|--------|
+| `session-start.sh` | Init Guardian (Shinkami), token tracking | Working |
+| `prompt-submit.sh` | Keyword-based Guardian routing (10 Guardians) | Working |
+| `pre-tool.sh` | Tool invocation logging | Working |
+| `post-tool.sh` | Tool completion logging | Working |
+| `model-route.sh` | Model tier recommendation (opus/sonnet/haiku) | Working |
+| `context-tracker.sh` | Token budget monitoring (quality zones) | Working |
+| `voice-check.sh` | Banned phrase detection per Voice Bible v2.0 | Working |
+
+All wired into `.claude/settings.local.json`.
+
+---
+
+## 3. AgentDB
+
+- **SQLite** via python3 at `/tmp/arcanea-agentdb.sqlite3`
+- **Tables**: agents (10 Guardians), tasks, memories, vault_entries, routing_log
+- **ISSUE**: `/tmp/` = wiped on reboot. Must move to persistent location.
+
+---
+
+## 4. Intelligence OS (Nested Repo)
+
+**Location**: `intelligence-os/`
+
+- `AIOSDaemon` class: HTTP API, MCP server, SQLite state, plugins
+- `bin/aios.js`: 108KB compiled CLI
+- RESTful routes: /status, /tools, /plugins, /journey, /drafts, /ws
+- **Untested** — unknown if daemon actually starts
+
+---
+
+## 5. What Works End-to-End
+
+1. CLAUDE.md loaded with full Arcanea context
+2. Session-start hook initializes Guardian state
+3. Every prompt → Guardian routing (keyword-based)
+4. Every tool use logged (pre/post hooks)
+5. Model routing by complexity
+6. Voice checking catches banned phrases
+7. Context tracker monitors token budget
+8. AgentDB stores state (but ephemeral)
+9. StatusLine shows real-time session state
+10. 65+ skills auto-activate
+11. 40+ agents available for Task tool
+12. SIS SDK compiles to working JS
+
+## 6. What Does NOT Work
+
+1. SIS tests broken (import resolution)
+2. SIS not on npm
+3. No automated vault consolidation
+4. No cross-project transmissions
+5. No LangGraph/CrewAI/Swarm adapters
+6. No web dashboard (markdown specs only)
+7. AgentDB data lost on reboot
+8. intelligence-os daemon untested

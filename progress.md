@@ -1,201 +1,83 @@
-# Arcanea Premium Games Suite - COMPLETE
+# Progress: SIS + AIOS Production Build
 
-**Date:** January 31, 2026
-**Session:** Built 8 Complete Phaser.js Games
-**Status:** ✅ COMPLETE - All Games Live
+## Session: 2026-02-14
 
----
+### Completed This Session
 
-## ✅ DELIVERED - 10 Premium Games
+1. **SIS README honesty update** (committed + pushed)
+   - Added "Current Status" section with honest assessment
+   - Fixed agent badge (8 → 7)
+   - Updated roadmap: Claude Code → SaaS → Framework adapters (backlog)
 
-### Fire Element (2 games)
-- **Forge Master** (37KB) - Full blacksmith crafting with materials, temperature, recipes
-- **Phoenix Rising** (45KB) - Roguelike dungeon crawler with combat, abilities, permadeath
+2. **Research completed** (2 parallel Explore agents)
+   - Full SIS TypeScript SDK audit: 5,076 lines, 10 files, all modules functional
+   - Full AIOS infrastructure audit: 7 hooks, AgentDB, StatusLine, 65+ skills, 40+ agents
 
-### Water Element (2 games)
-- **River Flow** (40KB) - 50-level pipe puzzle with water physics, story unlocks, 3 modes
-- **Ocean Memory** (31KB) - Deep sea exploration with 12 artifacts, bioluminescence
+3. **Phase 1: SIS SDK — Fix, Test, Publish** (mostly complete)
+   - `npm install` + `tsx` dev dependency added
+   - **82/82 tests pass** — all green in 1.6s
+   - Build clean — zero TypeScript errors
+   - `prepublishOnly` and `engines` added
+   - `npm pack --dry-run`: 85KB, 56 files, ready to publish
+   - **Blocked**: `npm adduser` required for publish
 
-### Earth Element (2 games)
-- **Crystal Architect** (37KB) - Physics-based building with stress simulation
-- **Mountain Builder** (7KB) - Idle/incremental with auto-mining, offline progress
+4. **Phase 2: AIOS Hardening** (COMPLETE)
+   - Moved AgentDB from `/tmp/` to `~/.arcanea/agentdb.sqlite3` (persistent)
+   - Updated ALL 8 hooks to use `~/.arcanea/sessions/current/`
+   - Added routing log writes to AgentDB (prompt-submit.sh → INSERT routing_log)
+   - Added memory writes to AgentDB (post-tool.sh → INSERT memories for significant ops)
+   - Added context-tracker zone transition writes to AgentDB
+   - Created session-end hook (Stop event): summary → vault_entries, archive session
+   - Wired session-start to auto-init AgentDB if missing
+   - Created `.claude/HOOKS.md` — complete pipeline documentation
+   - **Tested end-to-end**: All hooks fire, AgentDB persists, session archival works
 
-### Wind Element (2 games)
-- **Storm Scribe** (9KB) - Typing speed challenge with WPM tracking
-- **Cloud Navigator** (8KB) - Platformer with floating islands, artifacts
+5. **Phase 3: SIS ↔ AIOS Bridge** (COMPLETE)
+   - Created `bridge-agentdb-to-sis.sh` — Python bridge script
+   - Extracts: routing patterns, session summaries, significant memories
+   - Writes to SIS `.starlight/memory.json` with deduplication
+   - Wired into session-end hook for automatic execution
+   - **Tested**: 4 entries synced across 2 sessions, no duplicates on re-run
+   - Compound learning loop verified: session → AgentDB → SIS memory → next session
 
-### Void Element (2 games)
-- **Void Gazer** (9KB) - Pattern memory puzzle with progressive difficulty
-- **Quantum Designer** (9KB) - Multi-timeline strategy with merge mechanics
+6. **Phase 4: Intelligence OS Daemon** (MOSTLY COMPLETE)
+   - Audited all source files (23 TypeScript files, daemon/http/state/plugins/studio/artifact-flow/infogenius)
+   - Installed 278 dependencies, build clean
+   - **Root cause found**: Daemon's `startHttpServer()` used basic `net.createServer` only matching /health and /status. `initDatabase()` and `loadPlugins()` were no-ops.
+   - **Fixed**: Wired real `HttpApiServer` (36 routes), `StateStore` (JSON persistence), `PluginRegistry` into daemon
+   - **Added**: 5 AgentDB bridge routes (`/agentdb/stats`, `/guardians`, `/routing`, `/memories`, `/vault`) using Python sqlite3
+   - **14/14 HTTP endpoints**: All return 200 + success=true
+   - Journey CRUD works (create, unlock gates, query)
+   - Drafts CRUD works (create, update, delete, list)
+   - Settings read/write works, state persists to `~/.arcanea/state.json`
+   - AgentDB serves real data: 10 Guardians, 5 routing logs, 8 vault entries
 
----
+### Remaining
 
-## Technical Implementation
+- Phase 4.7: Connect daemon to SIS vaults (optional, SIS bridge already handles this)
+- Phase 4.9: Document API endpoints
 
-### Common Features (All Games):
-✅ Phaser.js 3.70 integration
-✅ Arcanea XP sync system
-✅ Agent companion integration
-✅ Mobile responsive design
-✅ Touch controls
-✅ localStorage persistence
-✅ Dark theme with gold accents
-✅ Consistent UI patterns
-✅ Loading screens
-✅ Success modals with XP rewards
+### Blocked on
 
-### Lines of Code Generated:
-- ~2,500 lines of HTML/CSS/JavaScript per game
-- ~20,000 total lines across all 8 new games
-- All files under 50KB for fast loading
+- npm publish: needs `npm adduser` to authenticate
 
----
+### Key Files Modified
 
-## Hub Integration
-✅ games-v2.html updated with all 10 games
-✅ All "Coming Soon" replaced with "✅ Live"
-✅ All cards link to working game files
-✅ Consistent branding and styling
-
----
-
-## Phase 1: Deep Analysis & Architecture
-
-### ✅ COMPLETED (100%)
-
-1. **Planning Infrastructure Setup** (15:00-16:00)
-   - ✓ Read planning-with-files skill templates
-   - ✓ Created EVOLUTION_SPECIFICATION.md (comprehensive technical spec)
-   - ✓ Analyzed all 8 major gaps in detail
-   - ✓ Documented implementation requirements
-   - ✓ Created 10-week roadmap with day-by-day breakdown
-
-2. **Gap Analysis** (16:00-17:00)
-   - ✓ Backend Infrastructure Gap (CRITICAL)
-   - ✓ MCP Integration Gap (CRITICAL)
-   - ✓ InfoGenius Integration Gap (HIGH)
-   - ✓ Mobile Experience Gap (HIGH)
-   - ✓ Testing Infrastructure Gap (HIGH)
-   - ✓ Performance Optimization Gap (MEDIUM)
-   - ✓ Security & Privacy Gap (HIGH)
-   - ✓ Unified Hub Gap (MEDIUM)
-
-3. **Architecture Design** (17:00-18:00)
-   - ✓ Data flow diagrams (current vs target)
-   - ✓ Integration points matrix
-   - ✓ Dependency graph
-   - ✓ API specification
-   - ✓ Database schema design
-
-### 🚧 IN PROGRESS
-
-4. **Implementation Phase Starting**
-   - Creating production-ready code files
-   - Implementing backend infrastructure
-   - Building resilient MCP client
-   - Setting up knowledge base system
-
----
-
-## Key Deliverables Created
-
-### Documentation
-- ✅ EVOLUTION_SPECIFICATION.md - 800+ line technical specification
-- ✅ Complete gap analysis with solutions
-- ✅ 10-week implementation roadmap
-- ✅ Resource requirements and costs
-- ✅ Risk mitigation strategies
-
-### Code Implementation (In Progress)
-- 🚧 arcanea-cloud-storage.js - Production storage with Supabase
-- 🚧 arcanea-mcp-client.py - Resilient MCP client
-- 🚧 arcanea-knowledge-base.py - Vector-based knowledge system
-- 🚧 Database schema SQL
-- 🚧 Service worker for PWA
-- 🚧 Mobile responsive CSS framework
-
----
-
-## Critical Findings
-
-### Gap Severity Analysis
-1. **Backend (CRITICAL)** - No cloud, single device only
-2. **MCP (CRITICAL)** - AI features simulated, not real
-3. **InfoGenius (HIGH)** - No learning, memory not persistent
-4. **Mobile (HIGH)** - 50%+ traffic excluded
-5. **Testing (HIGH)** - No automated testing
-
-### Implementation Priority
-1. Backend Infrastructure (Foundation for everything)
-2. MCP Integration (Enables AI features)
-3. InfoGenius (Enables personalization)
-4. Mobile Optimization (Expands user base)
-5. Testing (Ensures quality)
-
----
-
-## Next Actions (Immediate)
-
-### Starting Phase 2: Backend Infrastructure
-
-**Today:**
-- [ ] Create Supabase project
-- [ ] Set up database schema
-- [ ] Implement arcanea-cloud-storage.js
-- [ ] Add auth UI to index.html
-
-**This Week:**
-- [ ] Complete cloud sync implementation
-- [ ] Test cross-device functionality
-- [ ] Implement offline mode
-- [ ] Add conflict resolution
-
----
-
-## Resource Status
-
-### Available
-- ✓ All documentation reviewed
-- ✓ Complete technical specifications
-- ✓ Clear implementation path
-- ✓ 10-week roadmap defined
-
-### Needed
-- ⚠ Supabase credentials
-- ⚠ Nano Banana server details
-- ⚠ InfoGenius API documentation
-- ⚠ Mobile devices for testing
-
----
-
-## Time Tracking
-
-- Planning & Analysis: 3 hours
-- Specification Writing: 2 hours
-- **Total So Far:** 5 hours
-- **Estimated Remaining:** 295 hours
-
----
-
-## Success Metrics
-
-| Metric | Current | Target | Status |
-|--------|---------|--------|--------|
-| System Completion | 65% | 100% | In Progress |
-| Test Coverage | 0% | 90% | Not Started |
-| Documentation | 80% | 100% | In Progress |
-| Cloud Backend | 0% | 100% | Starting |
-| Mobile Support | 0% | 100% | Not Started |
-
----
-
-## Blockers
-
-**None Currently**
-
-Ready to proceed with implementation. All planning complete.
-
----
-
-*Phase 1 complete. Moving to Phase 2: Backend Infrastructure.*
-*Executing with excellence.*
+| File | Change |
+|------|--------|
+| `starlight-intelligence-system/package.json` | tsx, prepublishOnly, engines |
+| `.claude/agentdb/init.sh` | Persistent path `~/.arcanea/` |
+| `.claude/agentdb/query.sh` | Persistent path |
+| `.claude/hooks/session-start.sh` | Full rewrite: persistent paths, auto-init AgentDB |
+| `.claude/hooks/prompt-submit.sh` | Full rewrite: persistent paths, AgentDB routing writes |
+| `.claude/hooks/pre-tool.sh` | Updated to persistent paths |
+| `.claude/hooks/post-tool.sh` | Full rewrite: persistent paths, AgentDB memory writes |
+| `.claude/hooks/context-tracker.sh` | Persistent paths, zone transition AgentDB writes |
+| `.claude/hooks/model-route.sh` | Persistent paths |
+| `.claude/hooks/voice-check.sh` | Persistent paths |
+| `.claude/hooks/session-end.sh` | NEW: session summary, vault write, bridge call, archive |
+| `.claude/hooks/bridge-agentdb-to-sis.sh` | NEW: AgentDB → SIS memory bridge |
+| `.claude/settings.local.json` | Added Stop event hook |
+| `.claude/HOOKS.md` | NEW: complete pipeline documentation |
+| `intelligence-os/src/daemon/index.ts` | Wired HttpApiServer, StateStore, PluginRegistry (replaced net.createServer no-ops) |
+| `intelligence-os/src/http/index.ts` | Added 5 AgentDB bridge routes, Python sqlite3 runner |

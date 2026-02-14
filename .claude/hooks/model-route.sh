@@ -19,7 +19,10 @@
 set +e  # Do not exit on error — always produce a recommendation
 
 TASK="${1:-}"
-RECOMMENDATION_FILE="/tmp/arcanea-model-recommendation"
+ARCANEA_HOME="${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+RECOMMENDATION_FILE="$SESSION_DIR/model-recommendation"
+mkdir -p "$SESSION_DIR"
 
 # --------------------------------------------------------------------------
 # Guard: empty input

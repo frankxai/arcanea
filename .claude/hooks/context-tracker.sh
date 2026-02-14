@@ -27,8 +27,11 @@ set -euo pipefail
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-TOKENS_FILE="/tmp/arcanea-tokens.json"
-STATUS_FILE="/tmp/arcanea-context-status"
+ARCANEA_HOME="${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+TOKENS_FILE="$SESSION_DIR/tokens.json"
+STATUS_FILE="$SESSION_DIR/context-status"
+mkdir -p "$SESSION_DIR"
 MAX_TOKENS="${ARCANEA_MAX_TOKENS:-200000}"
 
 # ---------------------------------------------------------------------------
@@ -162,6 +165,25 @@ main() {
 
   # Write status file
   printf '%s|%d|%d|%d\n' "$zone" "$pct" "$total" "$MAX_TOKENS" > "$STATUS_FILE"
+
+  # Write token snapshot to AgentDB on zone transitions
+  local db_path="${ARCANEA_DB:-$ARCANEA_HOME/agentdb.sqlite3}"
+  local prev_zone=""
+  if [[ -f "$SESSION_DIR/prev-zone" ]]; then
+    prev_zone=$(cat "$SESSION_DIR/prev-zone" 2>/dev/null)
+  fi
+  if [[ "$zone" != "$prev_zone" ]] && [[ -f "$db_path" ]]; then
+    echo "$zone" > "$SESSION_DIR/prev-zone"
+    python3 -c "
+import sqlite3
+db = sqlite3.connect('$db_path')
+c = db.cursor()
+c.execute('INSERT INTO memories (agent_id, namespace, key, value) VALUES (?,?,?,?)',
+    ('shinkami', 'context-budget', 'zone-$zone-$(date +%s)', '$zone at ${pct}% (${total}/${MAX_TOKENS})'))
+db.commit()
+db.close()
+" 2>/dev/null || true
+  fi
 
   # Build status output
   local total_fmt max_fmt

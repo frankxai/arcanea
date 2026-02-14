@@ -20,7 +20,8 @@ set -euo pipefail
 # Configuration
 # ---------------------------------------------------------------------------
 
-LOG_DIR="/tmp/arcanea-session"
+ARCANEA_HOME="${ARCANEA_HOME:-$HOME/.arcanea}"
+LOG_DIR="$ARCANEA_HOME/sessions/current"
 LOG_FILE="${LOG_DIR}/voice-violations.log"
 TIMESTAMP="$(date '+%Y-%m-%d %H:%M:%S')"
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set +e
-DB_PATH="/tmp/arcanea-agentdb.sqlite3"
+DB_PATH="${ARCANEA_DB:-$HOME/.arcanea/agentdb.sqlite3}"
 
 run_query() {
     local query="$1"

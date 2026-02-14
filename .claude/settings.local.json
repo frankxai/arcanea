@@ -64,6 +64,13 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "timeout": 5000,
+        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-end.sh"
+      }
     ]
   }
 }

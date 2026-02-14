@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set +e
 
-DB_PATH="/tmp/arcanea-agentdb.sqlite3"
+DB_PATH="${ARCANEA_DB:-$HOME/.arcanea/agentdb.sqlite3}"
+mkdir -p "$(dirname "$DB_PATH")"
 SCHEMA_PATH="$(dirname "$0")/schema.sql"
 
 python3 << PYEOF
@@ -48,5 +49,5 @@ cursor.executemany(
 
 db.commit()
 db.close()
-print("AgentDB initialized at $DB_PATH with 10 Guardians and 6 vault entries.")
+print("AgentDB initialized at $DB_PATH")
 PYEOF

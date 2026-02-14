@@ -5,7 +5,8 @@ set +e
 
 TOOL_NAME="${1:-unknown}"
 TOOL_INPUT="${2:-}"
-SESSION_DIR="/tmp/arcanea-session"
+ARCANEA_HOME="${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
 TIMESTAMP="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 
 # Ensure session directory exists
