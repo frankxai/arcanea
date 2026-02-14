@@ -20,5 +20,11 @@ export * from './constants/index.js';
 // Utilities
 export * from './utils/index.js';
 
+// Generators
+export * from './generators/index.js';
+
+// Detection
+export * from './detection/index.js';
+
 // Version
 export const VERSION = '0.1.0';

@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "paths": {
+      "@arcanea/core": ["../core/dist"],
+      "@arcanea/auth": ["../auth/dist"],
+      "@arcanea/overlay-claude": ["../overlay-claude/dist"],
+      "@arcanea/overlay-chatgpt": ["../overlay-chatgpt/dist"],
+      "@arcanea/overlay-gemini": ["../overlay-gemini/dist"],
+      "@arcanea/overlay-copilot": ["../overlay-copilot/dist"],
+      "@arcanea/overlay-opencode": ["../overlay-opencode/dist"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

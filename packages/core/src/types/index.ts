@@ -74,6 +74,30 @@ export type {
   TabOption,
 } from './profile.js';
 
+// Overlay Types
+export type {
+  ProviderType,
+  OverlayLevel,
+  OverlayCapability,
+  AuthSession,
+  AuthAdapter,
+  Keystore,
+  OverlayConfig,
+  MCPServerConfig,
+  ToolDetection,
+  OverlayManifest,
+  InstallResult,
+  InstallPreview,
+  OverlayInstaller,
+  OverlayManifestFile,
+  LevelDefinition,
+} from './overlay.js';
+
+export {
+  PROVIDER_CAPABILITIES,
+  OVERLAY_LEVELS,
+} from './overlay.js';
+
 // Agent Types
 export type {
   AgentRole,
