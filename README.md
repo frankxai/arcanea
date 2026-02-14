@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/01-hero-banner.png" alt="Arcanea" width="100%"/>
+<img src="./assets/premium-r3/01-hero-banner.png" alt="Arcanea" width="100%"/>
 
 <br/><br/>
 
@@ -37,12 +37,6 @@ The core thesis: creativity scales when you give it **structure, intelligence, a
 
 <br/>
 
-<div align="center">
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/08-ai-human-merge.png" alt="AI-Human Creative Intelligence" width="80%"/>
-</div>
-
-<br/>
-
 ### Capabilities
 
 | Domain | What It Does |
@@ -68,12 +62,7 @@ Arcanea models creativity through a five-element system and ten developmental st
 <br/>
 
 <div align="center">
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/10-cosmic-duality.png" alt="Lumina and Nero - The Cosmic Duality" width="80%"/>
-
-<br/>
-
-*The Cosmic Duality: Lumina (form, creation, light) and Nero (potential, mystery, void).*
-*Neither is good or evil. Both are necessary for creation.*
+<img src="./assets/premium-r3/07-cosmic-duality.png" alt="The Cosmic Duality — Lumina and Nero" width="90%"/>
 </div>
 
 <br/>
@@ -81,6 +70,14 @@ Arcanea models creativity through a five-element system and ten developmental st
 ### Five Elements
 
 Each element represents a fundamental creative modality. Agents are aligned to elements, and the progression system develops all five.
+
+<br/>
+
+<div align="center">
+<img src="./assets/premium-r3/03-five-elements.png" alt="The Five Elements" width="90%"/>
+</div>
+
+<br/>
 
 | Element | Modality | Agent Archetype |
 |:--------|:---------|:----------------|
@@ -95,7 +92,7 @@ Each element represents a fundamental creative modality. Agents are aligned to e
 ### Ten Gates
 
 <div align="center">
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/06-ten-gates.png" alt="The Ten Gates" width="80%"/>
+<img src="./assets/premium-r3/02-ten-gates.png" alt="The Ten Gates" width="90%"/>
 </div>
 
 <br/>
@@ -124,7 +121,7 @@ A developmental progression from foundational skills to meta-creative mastery. E
 ## The Guardian System
 
 <div align="center">
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/03-guardian-council.png" alt="The Guardian Council" width="80%"/>
+<img src="./assets/premium-r3/05-guardian-council.png" alt="The Guardian Council" width="90%"/>
 </div>
 
 <br/>
@@ -153,7 +150,7 @@ Ino (Unity)          → Collaboration, partnership
 ## The Library
 
 <div align="center">
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/05-cosmic-library.png" alt="The Library of Arcanea" width="80%"/>
+<img src="./assets/premium-r3/06-library.png" alt="The Library of Arcanea" width="90%"/>
 </div>
 
 <br/>
@@ -192,18 +189,18 @@ Texts are situation-aware. The system surfaces relevant content based on where y
 ## Architecture
 
 <div align="center">
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/04-creation-studio.png" alt="Architecture" width="80%"/>
+<img src="./assets/premium-r3/04-architecture.png" alt="Architecture" width="90%"/>
 </div>
 
 <br/>
 
 | Layer | Stack | Purpose |
 |:------|:------|:--------|
+| **Starlight Protocol** | 5 layers, 9 agents, 5 strategies | Constitutional AI framework for agent behavior |
 | **Runtime** | Next.js 16, React 19, TypeScript (strict) | Server-first rendering, streaming UI |
-| **AI** | Vercel AI SDK 6 + Gateway, Gemini 2.5, Claude | Multi-model routing, zero-key deployment on Vercel |
+| **Design System** | Tailwind CSS, Framer Motion, Radix UI | Cosmic design system with 89+ tokens, 40+ animations |
+| **AI Intelligence** | Vercel AI SDK 6 + Gateway, Gemini 2.5, Claude | Multi-model routing, zero-key deployment on Vercel |
 | **Data** | Supabase (PostgreSQL + Auth + Realtime + RLS) | User state, content, real-time events |
-| **Design** | Tailwind CSS, Framer Motion, Radix UI | Cosmic design system with 89+ tokens, 40+ animations |
-| **Intelligence** | Starlight Protocol (5 layers, 9 agents, 5 strategies) | Constitutional AI framework for agent behavior |
 | **Deployment** | Vercel (Turbopack), GitHub Actions | Edge-optimized, CI/CD quality gates |
 
 ### Starlight Intelligence System
@@ -217,6 +214,34 @@ The constitutional framework governing all agent behavior:
 03_AGENCY      → 9 Agents across Engineering, Product, Creative
 04_ARCANA      → Guardian Mappings, Element Alignment
 ```
+
+<br/>
+
+---
+
+<br/>
+
+## The Academy
+
+<div align="center">
+<img src="./assets/premium-r3/08-academy.png" alt="The Academy" width="90%"/>
+</div>
+
+<br/>
+
+**Seven Houses. Ten Gates. Five Ranks.**
+
+The Academy is the structured learning environment. Each House specializes in a creative domain. Progress is tracked through Gate completion, unlocking new capabilities and AI interactions at each rank.
+
+| House | Domain | Element |
+|:------|:-------|:--------|
+| Lumina | Light, Creation | Spirit |
+| Nero | Potential, Mystery | Void |
+| Pyros | Energy, Will | Fire |
+| Aqualis | Flow, Memory | Water |
+| Terra | Growth, Foundation | Earth |
+| Ventus | Speed, Freedom | Wind |
+| Synthesis | Integration | All |
 
 <br/>
 
@@ -281,34 +306,6 @@ arcanea/
 
 <br/>
 
-## The Academy
-
-<div align="center">
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/09-academy.png" alt="The Academy" width="80%"/>
-</div>
-
-<br/>
-
-**Seven Houses. Ten Gates. Five Ranks.**
-
-The Academy is the structured learning environment. Each House specializes in a creative domain. Progress is tracked through Gate completion, unlocking new capabilities and AI interactions at each rank.
-
-| House | Domain | Element |
-|:------|:-------|:--------|
-| Lumina | Light, Creation | Spirit |
-| Nero | Potential, Mystery | Void |
-| Pyros | Energy, Will | Fire |
-| Aqualis | Flow, Memory | Water |
-| Terra | Growth, Foundation | Earth |
-| Ventus | Speed, Freedom | Wind |
-| Synthesis | Integration | All |
-
-<br/>
-
----
-
-<br/>
-
 ## Claude Code Integration
 
 Arcanea ships with a complete Claude Code configuration:
@@ -354,7 +351,7 @@ Read the [canonical lore](./.claude/lore/ARCANEA_CANON.md) before contributing c
 
 <div align="center">
 
-<img src="https://github.com/frankxai/arcanea/releases/download/v0.1.0-assets/07-spirit-mascot.png" alt="Mamoru" width="300"/>
+<img src="./assets/premium-r3/09-mamoru-mascot.png" alt="Mamoru" width="300"/>
 
 <br/><br/>
 
