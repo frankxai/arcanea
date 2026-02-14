@@ -76,5 +76,11 @@
   "bugs": {
     "url": "https://github.com/frankxai/arcanea/issues"
   },
-  "homepage": "https://arcanea.ai"
+  "homepage": "https://arcanea.ai",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19.0.0",
+      "@types/react-dom": "^19.0.0"
+    }
+  }
 }

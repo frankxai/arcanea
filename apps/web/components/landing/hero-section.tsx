@@ -323,7 +323,7 @@ function LuminorOrbit() {
             duration: 60 - ring * 15,
             repeat: Infinity,
             ease: 'linear',
-            direction: ring % 2 === 0 ? 'normal' : 'reverse',
+            repeatType: ring % 2 === 0 ? 'loop' : 'reverse',
           }}
         >
           {/* Ring glow points */}

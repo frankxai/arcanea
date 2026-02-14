@@ -65,12 +65,12 @@ export function AuroraText({ children, className = "" }: { children: ReactNode; 
       }}
     >
       {children}
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes aurora-shift {
           0%, 100% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
         }
-      `}</style>
+      ` }} />
     </span>
   );
 }
