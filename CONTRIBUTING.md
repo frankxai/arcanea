@@ -30,8 +30,8 @@ arcanea/
 ├── starlight-protocol/    # Constitutional AI framework (5 layers)
 ├── arcanea-lore/          # Canonical universe reference
 ├── .claude/
-│   ├── agents/            # 38 specialized agents + 5 departments
-│   ├── skills/            # 77 Claude Code skills
+│   ├── agents/            # 40+ specialized agents + 5 departments
+│   ├── skills/            # 65+ Claude Code skills
 │   ├── commands/          # 25+ slash commands
 │   └── lore/              # ARCANEA_CANON.md
 └── arcanea-flow/          # Agent orchestration engine
