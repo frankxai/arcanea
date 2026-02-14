@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-start.sh"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/prompt-submit.sh \"$PROMPT\""
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/pre-tool.sh \"$TOOL_NAME\" \"$TOOL_INPUT\""
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/post-tool.sh \"$TOOL_NAME\" \"$TOOL_OUTPUT\""
+      }
+    ]
+  }
+}
