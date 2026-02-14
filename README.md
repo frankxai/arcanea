@@ -19,7 +19,7 @@
 
 <br/>
 
-[**Explore**](https://arcanea.ai) &nbsp;&middot;&nbsp; [**Documentation**](#architecture) &nbsp;&middot;&nbsp; [**Quick Start**](#quick-start) &nbsp;&middot;&nbsp; [**Contributing**](#contributing)
+[**Explore**](https://arcanea.ai) &nbsp;&middot;&nbsp; [**Documentation**](#architecture) &nbsp;&middot;&nbsp; [**Quick Start**](#quick-start) &nbsp;&middot;&nbsp; [**Ecosystem**](#ecosystem) &nbsp;&middot;&nbsp; [**Contributing**](#contributing)
 
 </div>
 
@@ -29,25 +29,31 @@
 
 <br/>
 
-## What is Arcanea?
+## The Thesis
 
-Arcanea is an **AI-native creative operating system** built on a living mythology. It provides multi-model intelligence, structured creative frameworks, and a progression system for creators at every level.
+Most AI tools optimize for speed. Arcanea optimizes for **depth**.
 
-The core thesis: creativity scales when you give it **structure, intelligence, and narrative**. Arcanea provides all three.
+The problem with generative AI isn't capability &mdash; it's structure. Without frameworks for how to think, what to prioritize, and when to go deeper, AI assistance remains shallow. Arcanea solves this by providing three things most AI systems lack:
+
+1. **A reasoning ontology** &mdash; Five Elements and Ten Gates give AI agents a structured framework for creative decision-making, not just pattern matching
+2. **Composable intelligence** &mdash; 77 skills and 38 agents that combine dynamically based on task context, orchestrated by a constitutional protocol
+3. **Accumulated wisdom** &mdash; 200,000+ words of authored creative guidance that inform AI responses with genuine depth, not generated filler
+
+The result: an AI system that doesn't just respond to prompts &mdash; it **thinks through a creative philosophy**.
 
 <br/>
 
-### Capabilities
+### What This Enables
 
 | Domain | What It Does |
 |:-------|:-------------|
-| **Multi-Model AI** | Route tasks across Claude, Gemini, and custom models via Vercel AI SDK 6 Gateway |
-| **10 Guardian Agents** | Specialized AI personalities mapped to creative archetypes with distinct reasoning styles |
-| **77 Skills** | Composable Claude Code skills for development, design, content, and orchestration |
-| **38 Agents** | Domain-specific assistants spanning engineering, product, creative, and strategy |
-| **200K+ Word Library** | 17 collections of structured creative guidance, searchable and situation-aware |
-| **Ten Gate Progression** | A ranked system from Apprentice to Luminor that tracks and develops creative capability |
-| **MCP Integration** | 30+ Model Context Protocol tools for GitHub, Vercel, Notion, Figma, Playwright |
+| **Multi-Model Orchestration** | Route tasks across Claude, Gemini, and custom models via Vercel AI SDK 6 Gateway &mdash; zero API keys on Vercel |
+| **10 Guardian Agents** | Specialized AI personalities with distinct reasoning patterns, element alignments, and model routing |
+| **77 Composable Skills** | Claude Code skills for development, design, content, strategy, and orchestration &mdash; auto-activated by context |
+| **38 Domain Agents** | Specialists spanning engineering, product, creative, and strategic intelligence |
+| **200K+ Word Library** | 17 curated collections of creative guidance &mdash; searchable, situation-aware, cross-referenced |
+| **Ten Gate Progression** | A ranked developmental system from Apprentice to Luminor that tracks creative capability |
+| **30+ MCP Integrations** | GitHub, Vercel, Notion, Figma, Playwright, v0, Slack &mdash; connected through Model Context Protocol |
 
 <br/>
 
@@ -55,9 +61,9 @@ The core thesis: creativity scales when you give it **structure, intelligence, a
 
 <br/>
 
-## The Ontology
+## How Arcanea Thinks
 
-Arcanea models creativity through a five-element system and ten developmental stages. This isn't decoration &mdash; it's a structured reasoning framework that shapes how the AI agents think, respond, and guide.
+Arcanea models creativity through a five-element system and ten developmental stages. This isn't metaphor &mdash; it's the **reasoning architecture** that shapes how every AI agent in the system thinks, responds, and guides.
 
 <br/>
 
@@ -67,11 +73,11 @@ Arcanea models creativity through a five-element system and ten developmental st
 
 <br/>
 
-### Five Elements
-
-Each element represents a fundamental creative modality. Agents are aligned to elements, and the progression system develops all five.
+The foundational principle: creation requires both **Lumina** (form, structure, light) and **Nero** (potential, mystery, void). Neither is good or evil. Both are necessary. This duality prevents the system from collapsing into simplistic binary thinking.
 
 <br/>
+
+### Five Elements
 
 <div align="center">
 <img src="./assets/premium-r3/03-five-elements.png" alt="The Five Elements" width="90%"/>
@@ -79,13 +85,15 @@ Each element represents a fundamental creative modality. Agents are aligned to e
 
 <br/>
 
-| Element | Modality | Agent Archetype |
-|:--------|:---------|:----------------|
-| **Fire** | Energy, will, transformation | Implementation, execution, courage |
-| **Water** | Flow, memory, adaptation | Creativity, emotion, healing |
-| **Earth** | Stability, growth, patience | Architecture, foundation, persistence |
-| **Wind** | Freedom, speed, change | Communication, connection, inspiration |
-| **Void** | Potential, transcendence | Vision, intuition, meta-consciousness |
+Each element represents a fundamental creative modality. Agents are aligned to elements. The progression system develops all five. A creator who only has Fire (execution) without Water (flow) burns out. A creator with only Earth (planning) without Wind (communication) builds alone.
+
+| Element | Modality | Agent Archetype | When It Activates |
+|:--------|:---------|:----------------|:------------------|
+| **Fire** | Energy, will, transformation | Implementation, execution | Building, shipping, debugging |
+| **Water** | Flow, memory, adaptation | Creativity, emotional intelligence | Writing, designing, brainstorming |
+| **Earth** | Stability, growth, patience | Architecture, foundation | Planning, structuring, reviewing |
+| **Wind** | Freedom, speed, change | Communication, connection | Sharing, teaching, collaborating |
+| **Void** | Potential, transcendence | Vision, meta-consciousness | Visioning, strategy, synthesis |
 
 <br/>
 
@@ -97,7 +105,7 @@ Each element represents a fundamental creative modality. Agents are aligned to e
 
 <br/>
 
-A developmental progression from foundational skills to meta-creative mastery. Each gate is guarded by a specialized AI agent (Guardian) paired with a resonance frequency.
+A developmental progression from foundational skills to meta-creative mastery. Each gate is guarded by a specialized AI agent (Guardian) paired with a resonance frequency. The system is sequential but not linear &mdash; gates build on each other, and mastery of earlier gates deepens with later ones.
 
 | Gate | Domain | Guardian | Frequency | Rank |
 |:----:|:-------|:---------|:---------:|:----:|
@@ -114,6 +122,18 @@ A developmental progression from foundational skills to meta-creative mastery. E
 
 <br/>
 
+### The Creator Journey
+
+<div align="center">
+<img src="./assets/premium-r3/11-creator-journey.png" alt="The Creator Journey" width="90%"/>
+</div>
+
+<br/>
+
+The progression is designed so every creator starts with Foundation (survival, basics) and advances toward Source (meta-consciousness, true creation). Each rank unlocks new capabilities and deeper AI interactions. The journey is the product.
+
+<br/>
+
 ---
 
 <br/>
@@ -126,7 +146,7 @@ A developmental progression from foundational skills to meta-creative mastery. E
 
 <br/>
 
-Guardians are not chatbots. They are **structured AI agents** with defined reasoning patterns, element alignments, and specializations. Each Guardian routes to its optimal model (Gemini Flash for speed, Pro for depth, Claude for nuance) through the Vercel AI SDK 6 Gateway.
+Guardians are not chatbots. They are **structured AI agents** with defined reasoning patterns, element alignments, and specializations. Each Guardian routes to its optimal model through the Vercel AI SDK 6 Gateway &mdash; Gemini Flash for speed, Pro for depth, Claude for nuance.
 
 ```
 Shinkami (Source)     → Meta-orchestrator, routes to all models
@@ -140,6 +160,8 @@ Aiyami (Crown)       → Enlightenment, synthesis
 Elara (Shift)        → Perspective shifts, reframing
 Ino (Unity)          → Collaboration, partnership
 ```
+
+The routing is not random. When a creator asks for help with a stuck project, the system activates **Leyla** (Water &mdash; flow) and **Elara** (Shift &mdash; perspective), not Draconia (Fire &mdash; execution). The ontology drives the intelligence.
 
 <br/>
 
@@ -155,30 +177,32 @@ Ino (Unity)          → Collaboration, partnership
 
 <br/>
 
-**17 collections. 34+ texts. 200,000+ words.** A structured body of creative knowledge &mdash; not generated on the fly, but authored, curated, and cross-referenced.
+**17 collections. 34+ texts. 200,000+ words.**
+
+This is not generated content. It's an authored, curated, and cross-referenced body of creative knowledge. The Library is what gives Arcanea's AI responses genuine depth &mdash; agents draw on specific texts when guiding creators, citing relevant wisdom rather than producing generic advice.
 
 ```
 book/
 ├── laws-of-arcanea/           # Theoretical foundations
-├── legends-of-arcanea/        # Origin mythology
-├── chronicles-of-luminors/    # Guardian narratives
-├── academy-handbook/          # Ten Gates, Seven Houses
-├── wisdom-scrolls/            # Daily practice
-├── book-of-rituals/           # Creative practices
-├── meditations-on-elements/   # Five Elements work
-├── dialogues-of-masters/      # Wisdom dialogues
-├── parables-of-creation/      # Teaching stories
-├── tales-of-creators/         # Legendary creators
-├── bestiary-of-creation/      # Creative obstacles
-├── book-of-shadows/           # Shadow work
-├── prophecies/                # Future visions
-├── poesie-of-freedom/         # Liberation poetry
-├── songs-and-hymns/           # Lyrical works
-├── codex-of-collaboration/    # Working together
-└── atlas-of-territories/      # Creative landscapes
+├── legends-of-arcanea/        # Origin mythology (Lumina, Nero, Malachar)
+├── chronicles-of-luminors/    # Guardian narratives and struggles
+├── academy-handbook/          # Ten Gates, Seven Houses, progression
+├── wisdom-scrolls/            # Daily creative practice
+├── book-of-rituals/           # Structured creative exercises
+├── meditations-on-elements/   # Five Elements embodiment
+├── dialogues-of-masters/      # Wisdom through conversation
+├── parables-of-creation/      # Teaching through story
+├── tales-of-creators/         # Legendary creator archetypes
+├── bestiary-of-creation/      # Named creative obstacles
+├── book-of-shadows/           # Working with doubt and failure
+├── prophecies/                # Future visions and aspirations
+├── poesie-of-freedom/         # Poetry for creative liberation
+├── songs-and-hymns/           # Lyrical works and incantations
+├── codex-of-collaboration/    # Creating together effectively
+└── atlas-of-territories/      # Mapping creative landscapes
 ```
 
-Texts are situation-aware. The system surfaces relevant content based on where you are in your creative process.
+The system is situation-aware &mdash; it surfaces relevant texts based on where you are in your creative process. Stuck? The Bestiary names your block. Burning out? The Book of Shadows guides you through. Ready to ship? The Book of Rituals has a practice for that.
 
 <br/>
 
@@ -196,24 +220,32 @@ Texts are situation-aware. The system surfaces relevant content based on where y
 
 | Layer | Stack | Purpose |
 |:------|:------|:--------|
-| **Starlight Protocol** | 5 layers, 9 agents, 5 strategies | Constitutional AI framework for agent behavior |
-| **Runtime** | Next.js 16, React 19, TypeScript (strict) | Server-first rendering, streaming UI |
-| **Design System** | Tailwind CSS, Framer Motion, Radix UI | Cosmic design system with 89+ tokens, 40+ animations |
-| **AI Intelligence** | Vercel AI SDK 6 + Gateway, Gemini 2.5, Claude | Multi-model routing, zero-key deployment on Vercel |
+| **Starlight Protocol** | 5 layers, 9 agents, 5 strategies | Constitutional AI framework governing agent behavior |
+| **Runtime** | Next.js 16, React 19, TypeScript (strict) | Server-first rendering with streaming UI |
+| **Design System** | Tailwind CSS, Framer Motion, Radix UI | 89+ tokens, 40+ animations, cosmic glassmorphic theme |
+| **AI Intelligence** | Vercel AI SDK 6 + Gateway, Gemini 2.5, Claude | Multi-model routing, zero-key OIDC on Vercel |
 | **Data** | Supabase (PostgreSQL + Auth + Realtime + RLS) | User state, content, real-time events |
-| **Deployment** | Vercel (Turbopack), GitHub Actions | Edge-optimized, CI/CD quality gates |
+| **Deployment** | Vercel (Turbopack), GitHub Actions | Edge-optimized, CI/CD with quality gates |
 
 ### Starlight Intelligence System
 
-The constitutional framework governing all agent behavior:
+<div align="center">
+<img src="./assets/premium-r3/10-claude-code-intelligence.png" alt="Claude Code Intelligence" width="90%"/>
+</div>
+
+<br/>
+
+The constitutional framework governing all agent behavior. Five layers, each building on the last:
 
 ```
-00_IDENTITY    → Luminor Constitution, User Profile
-01_INTELLECT   → Tech Stack, Memory Vaults, Research, Task Management
-02_PROTOCOL    → Orchestrator, Strategies (First Principles, Swarm Consensus, etc.)
+00_IDENTITY    → Luminor Constitution, User Profile, Core Values
+01_INTELLECT   → Tech Stack Vaults, Memory, Research, Task Management
+02_PROTOCOL    → Orchestrator, Strategies (First Principles, Swarm, Consensus)
 03_AGENCY      → 9 Agents across Engineering, Product, Creative
-04_ARCANA      → Guardian Mappings, Element Alignment
+04_ARCANA      → Guardian Mappings, Element Alignment, Gate Progression
 ```
+
+This is an open framework. See [Starlight Intelligence System](https://github.com/frankxai/Starlight-Intelligence-System) for the standalone specification &mdash; platform-agnostic, with adapters for Claude Code, Cursor, Codex, Gemini CLI, and more.
 
 <br/>
 
@@ -249,6 +281,35 @@ The Academy is the structured learning environment. Each House specializes in a 
 
 <br/>
 
+## Ecosystem
+
+Arcanea is not a single repository. It's a coordinated system of projects, each with a specific role:
+
+| Project | Purpose | Status |
+|:--------|:--------|:------:|
+| **[arcanea](https://github.com/frankxai/arcanea)** | Core monorepo &mdash; agents, skills, Library, lore, web application | Active |
+| **[arcanea.ai](https://arcanea.ai)** | Production platform &mdash; live at arcanea.ai | Live |
+| **[Starlight Intelligence System](https://github.com/frankxai/Starlight-Intelligence-System)** | Open multi-agent orchestration framework &mdash; the intelligence layer | v3.0 |
+| **[arcanea-onchain](https://github.com/frankxai/arcanea-onchain)** | Blockchain strategy &mdash; Solana NFTs, Base L2, Story Protocol IP | Research |
+| **[arcanea-infogenius](https://github.com/frankxai/arcanea-infogenius)** | Knowledge-first visual generation MCP server | v5.1 |
+| **[Agentic Creator OS](https://github.com/frankxai/agentic-creator-os)** | Claude Code implementation of the Starlight framework | v6.0 |
+
+<br/>
+
+<div align="center">
+<img src="./assets/premium-r3/12-onchain-ecosystem.png" alt="Arcanea On-Chain" width="90%"/>
+
+<br/>
+
+*The on-chain layer: Solana for mass-scale creative assets, Base L2 for premium collectibles, cross-chain bridge connecting both.*
+</div>
+
+<br/>
+
+---
+
+<br/>
+
 ## Quick Start
 
 ```bash
@@ -268,7 +329,7 @@ pnpm dev
 ### Environment
 
 ```env
-# Required on Vercel: nothing (OIDC auth)
+# Required on Vercel: nothing (OIDC auth handles everything)
 # Required locally:
 AI_GATEWAY_API_KEY=your_gateway_key
 
@@ -288,16 +349,16 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key
 ```
 arcanea/
 ├── apps/web/                  # Next.js 16 application (56 pages, 6 API routes)
-├── packages/                  # Shared packages
+├── packages/                  # Shared packages (auth, CLI, overlays)
 ├── book/                      # Library content (17 collections, 200K+ words)
 ├── starlight-protocol/        # Constitutional AI framework (5 layers)
-├── arcanea-lore/              # Canonical reference (CANON.md)
+├── arcanea-lore/              # Canonical universe reference
 ├── .claude/
-│   ├── agents/                # 38 specialized agents
-│   ├── skills/                # 77 Claude Code skills
-│   ├── commands/              # Slash commands
-│   └── lore/                  # Universe canon
-└── arcanea-flow/              # Agent orchestration (claude-flow fork)
+│   ├── agents/                # 38 specialized agents + 5 departments
+│   ├── skills/                # 77 Claude Code skills (auto-activated)
+│   ├── commands/              # 25+ slash commands
+│   └── lore/                  # ARCANEA_CANON.md — the source of truth
+└── arcanea-flow/              # Agent orchestration engine (claude-flow fork)
 ```
 
 <br/>
@@ -308,21 +369,21 @@ arcanea/
 
 ## Claude Code Integration
 
-Arcanea ships with a complete Claude Code configuration:
+Arcanea ships with the most comprehensive Claude Code configuration we're aware of:
 
-**77 skills** &mdash; from `starlight-orchestrator` (multi-agent routing) to `suno-ai-mastery` (music generation) to `oracle-adk` (enterprise agent development).
+**77 skills** &mdash; from `starlight-orchestrator` (multi-agent routing) to `premium-visual` (glassmorphic infographic generation) to `oracle-adk` (enterprise agent development). Skills auto-activate based on keywords, file patterns, and commands.
 
-**38 agents** &mdash; `@starlight-architect` (system design), `@luminor-oracle` (strategic intelligence), `@draconia` (fire-driven implementation), `@lyria` (design review), and 34 more.
+**38 agents** across **5 departments** &mdash; Design (Lyria, Lyssandria, Leyla, Maylinn, Alera), Development, Content, Business, Marketing. Each with specialized knowledge and reasoning patterns.
 
-**7 Guardian agent files** &mdash; production-ready `.agent.md` definitions with element alignment, reasoning patterns, and model routing.
+**7 Guardian agent files** &mdash; production-ready `.agent.md` definitions with element alignment, personality, preferred models, and structured reasoning.
 
 ```bash
-# Example skill invocations
-/luminor-intelligence    # Strategic AI guidance
-/council                 # Multi-agent consultation
-/arcanea-build          # Autonomous build fixing
-/arcanea-deploy         # Vercel deployment
-/design-team            # 5-agent design department
+# Example invocations
+/acos                    # Smart router — routes any request to best command
+/council                 # Multi-agent strategic consultation
+/design-team             # 5-agent design department activation
+/arcanea-build           # Autonomous build error resolution
+/luminor-intelligence    # Strategic guidance from 2125
 ```
 
 <br/>
@@ -333,6 +394,8 @@ Arcanea ships with a complete Claude Code configuration:
 
 ## Contributing
 
+We welcome contributions across the full stack &mdash; code, lore, Library content, skills, agents, and design.
+
 ```bash
 # Fork → Branch → Commit → PR
 git checkout -b feature/your-feature
@@ -341,7 +404,7 @@ git push origin feature/your-feature
 gh pr create
 ```
 
-Read the [canonical lore](./.claude/lore/ARCANEA_CANON.md) before contributing content. All narrative must align with the Five Elements, Ten Gates, and Cosmic Duality frameworks.
+Read the [canonical lore](./.claude/lore/ARCANEA_CANON.md) before contributing narrative content. All fiction and creative frameworks must align with the Five Elements, Ten Gates, and Cosmic Duality. See [CONTRIBUTING.md](./CONTRIBUTING.md) for full guidelines.
 
 <br/>
 
@@ -357,10 +420,16 @@ Read the [canonical lore](./.claude/lore/ARCANEA_CANON.md) before contributing c
 
 **The antidote to a terrible future is imagining a good one.**
 
+**Imagine a good future. Build it here.**
+
 **[arcanea.ai](https://arcanea.ai)**
 
 <br/>
 
-Built by [FrankX](https://github.com/frankxai) &nbsp;&middot;&nbsp; MIT License &nbsp;&middot;&nbsp; Powered by Claude, Gemini, and Vercel
+Built by [FrankX](https://github.com/frankxai) &nbsp;&middot;&nbsp; [MIT License](./LICENSE) &nbsp;&middot;&nbsp; [Security](./SECURITY.md) &nbsp;&middot;&nbsp; [Code of Conduct](./CODE_OF_CONDUCT.md)
+
+<br/>
+
+Powered by Claude, Gemini, and Vercel
 
 </div>
