@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { motion } from 'framer-motion';
@@ -79,7 +79,6 @@ export function UserNav() {
       </Menu.Button>
 
       <Transition
-        as={Fragment}
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
