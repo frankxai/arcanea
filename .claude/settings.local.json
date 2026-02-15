@@ -12,18 +12,26 @@
   "hooks": {
     "SessionStart": [
       {
-        "type": "command",
-        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-start.sh"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-start.sh"
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
       {
-        "type": "command",
-        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/prompt-submit.sh \"$USER_PROMPT\""
-      },
-      {
-        "type": "command",
-        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/model-route.sh \"$USER_PROMPT\""
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/prompt-submit.sh \"$USER_PROMPT\""
+          },
+          {
+            "type": "command",
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/model-route.sh \"$USER_PROMPT\""
+          }
+        ]
       }
     ],
     "PreToolUse": [
@@ -67,9 +75,13 @@
     ],
     "Stop": [
       {
-        "type": "command",
-        "timeout": 5000,
-        "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-end.sh"
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 5000,
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-end.sh"
+          }
+        ]
       }
     ]
   }
