@@ -154,6 +154,8 @@ apps/web/package-lock.json
 # Legacy standalone code (not part of monorepo)
 pages/
 src/
+!packages/*/src/
+!packages/*/src/**
 styles/
 apps/web/app/page.js
 
