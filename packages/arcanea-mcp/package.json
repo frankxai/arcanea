@@ -1,7 +1,7 @@
 {
   "name": "@arcanea/mcp-server",
-  "version": "0.3.0",
-  "description": "Arcanea MCP Server - Worldbuilding toolkit, creative companion, and magic maker",
+  "version": "0.4.0",
+  "description": "Arcanea MCP Server — 30 tools, 7 resources, 6 prompts. Worldbuilding, Guardian routing, voice enforcement, design tokens, and agent orchestration.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -17,6 +17,7 @@
   "author": "FrankX",
   "license": "MIT",
   "dependencies": {
+    "@arcanea/core": "workspace:*",
     "@modelcontextprotocol/sdk": "^0.5.0"
   },
   "devDependencies": {

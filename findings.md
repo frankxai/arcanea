@@ -1,108 +1,127 @@
-# Findings: SIS + AIOS Production Readiness Audit
+# Findings: Arcanea — Every Surface Strategy
 
-## Date: 2026-02-14
+## Date: 2026-02-17
+## Question: How do we own EVERY surface — overlay + standalone CLI + VS Code + browser + desktop + mobile?
 
 ---
 
-## 1. SIS TypeScript SDK
+## Critical Discovery: OpenCode Is Now TypeScript
 
-**Location**: `starlight-intelligence-system/`
-**Code**: 5,076 lines across 10 TypeScript files
-**Package**: `@frankx/starlight-intelligence-system` v4.0.0
+The original OpenCode (Go, `opencode-ai/opencode`) was **archived September 2025**. It was rewritten in **TypeScript** and now lives at `anomalyco/opencode` (Anomaly Co, ex-SST team).
 
-### Modules
+| Attribute | OpenCode (TypeScript) |
+|:----------|:---------------------|
+| **Language** | TypeScript (50.7%) |
+| **Runtime** | Bun |
+| **TUI** | OpenTUI + SolidJS (custom, 60fps) |
+| **AI SDK** | Vercel AI SDK (SAME AS ARCANEA) |
+| **Architecture** | Client-server — TUI talks to local HTTP server |
+| **Models** | 75+ via Vercel AI SDK |
+| **MCP** | Full support (stdio + HTTP) |
+| **Plugin System** | Mature — TypeScript plugins, custom agents, custom commands |
+| **License** | MIT — fully forkable |
+| **Stars** | 105K |
+| **Monorepo** | packages/opencode (TUI+server), sdk/js, app (web), desktop (Tauri), plugin, ui, sdks/vscode |
 
-| Module | Lines | Status |
-|--------|-------|--------|
-| `index.ts` | 253 | Built — main orchestrator class |
-| `context.ts` | 427 | Built — platform-specific context generation |
-| `memory.ts` | 229 | Built — file-based persistent memory with word index |
-| `agents.ts` | 203 | Built — keyword/file-pattern task routing |
-| `orchestrator.ts` | 954 | Built — 6 execution patterns |
-| `sync.ts` | 354 | Built — ACOS trajectory classification |
-| `score.ts` | 332 | Built — intelligence scoring (0-100) |
-| `cli.ts` | 536 | Built — init, generate, vault, sync, score, stats |
-| `types.ts` | 251 | Built — full type definitions |
-| `orchestrator.test.ts` | 1,537 | FAILING — 82 tests, import resolution broken |
+### Why This Is Perfect For Arcanea
+1. **Same AI SDK** — Vercel AI SDK, already in our stack
+2. **Plugin system** — Arcanea OS becomes a plugin set (Guardian routing, voice, design tokens, lore)
+3. **Client-server split** — reskin TUI without touching AI logic
+4. **Multi-surface** — TUI + web + desktop + VS Code from ONE codebase
+5. **MIT license** — full freedom to fork, rebrand, commercialize
+6. **TypeScript** — our language
 
-### Test Failure
+### Alternative: Gemini CLI
+
+| Attribute | Gemini CLI |
+|:----------|:-----------|
+| **Language** | TypeScript (98.1%) |
+| **Runtime** | Node.js 20+ |
+| **TUI** | Ink + React 19 (we know React deeply) |
+| **AI SDK** | @google/genai (Gemini ONLY) |
+| **License** | Apache 2.0 |
+| **Stars** | 95K |
+| **Monorepo** | cli, core, a2a-server, vscode-ide-companion |
+
+**Pros**: React/Ink = our stack, cleaner architecture, smaller codebase
+**Cons**: Gemini-only (would need to rip out and replace AI layer), Google telemetry baked in
+
+### Verdict: Fork OpenCode
+
+OpenCode wins because of Vercel AI SDK (already our stack), MIT license, plugin system (cleanest integration), and multi-surface architecture (TUI + web + desktop + VS Code all from one server).
+
+---
+
+## The "ALL Surfaces" Architecture
 
 ```
-Error [ERR_MODULE_NOT_FOUND]: Cannot find module '.../src/orchestrator.js'
+┌────────────────────────────────────────────────────────┐
+│                     ARCANEA OS                          │
+│   @arcanea/os — Intelligence layer (npm package)        │
+│                                                         │
+│   Guardians · Voice Bible · Design System · Lore/Canon  │
+│   Session State · 65+ Skills · 40+ Agents · Types       │
+└────────┬──────────┬──────────┬──────────┬──────────────┘
+         │          │          │          │
+    ┌────┴───┐ ┌───┴────┐ ┌──┴────┐ ┌──┴──────────┐
+    │ Overlay│ │  MCP   │ │ VS    │ │  Standalone  │
+    │ Configs│ │ Server │ │ Code  │ │     CLI      │
+    │        │ │        │ │  Ext  │ │ (OpenCode    │
+    │.claude │ │30 tools│ │       │ │  fork)       │
+    │.cursor │ │7 rsrc  │ │       │ │              │
+    └───┬────┘ └───┬────┘ └──┬────┘ └──────┬───────┘
+        │          │         │              │
+   Enhances    Works in   VS Code      Standalone
+   existing    Claude,    Marketplace  "Arcanea Realm"
+   AI tools    Cursor,                 TUI + web + desktop
+               Windsurf,
+               Cline, Codex
 ```
 
-Test imports `./orchestrator.js` (bundler moduleResolution). Node native test runner can't resolve `.js` → `.ts`.
+### Product Line
 
-**Fix**: Add `tsx` as dev dependency, change test script to `node --import tsx --test src/**/*.test.ts`
+| Product | What It Is | Source |
+|:--------|:-----------|:-------|
+| **@arcanea/os** | Intelligence layer (npm) | `packages/core/` (rename) |
+| **@arcanea/cli** | Overlay installer ("Oh My Zsh for AI") | `packages/cli/` (slim down) |
+| **@arcanea/mcp-server** | Universal tool access | `packages/arcanea-mcp/` |
+| **Arcanea Realm CLI** | Standalone AI creation tool | Fork of `anomalyco/opencode` |
+| **Arcanea Realm VS Code** | VS Code extension | New package |
+| **Arcanea Realm Browser** | 5 browser overlays | `packages/overlay-*` |
+| **Arcanea Realm Desktop** | Desktop app | OpenCode's Tauri package |
+| **Arcanea Realm Web** | Web app | OpenCode's web package |
+| **arcanea.ai** | Marketing + platform | `arcanea-platform` repo |
 
-**Also**: `node_modules` empty — need `npm install` first.
+### How The Fork Works
 
-### Not Published
+1. Fork `anomalyco/opencode` → `frankxai/arcanea-realm`
+2. The OpenCode server already supports MCP → add `@arcanea/mcp-server` as default
+3. The OpenCode plugin system → install `@arcanea/os` as a plugin providing Guardians, voice, design
+4. Reskin TUI → Arcanea Design System colors, Guardian status in sidebar, Gate progression
+5. Custom agents → 10 Guardian agents in `.opencode/agents/`
+6. Custom commands → worldbuilding commands via plugin
+7. Rename binary → `arcanea` or `realm`
 
-- NOT on npm. Can't `npm install` it.
-- Package name inconsistency: `@frankx/` in package.json vs `@frankxai/` in old README examples
+### What Stays As Is
 
----
-
-## 2. AIOS Hooks Infrastructure
-
-**Location**: `.claude/hooks/` (7 files, all executable)
-
-| Hook | What It Does | Status |
-|------|-------------|--------|
-| `session-start.sh` | Init Guardian (Shinkami), token tracking | Working |
-| `prompt-submit.sh` | Keyword-based Guardian routing (10 Guardians) | Working |
-| `pre-tool.sh` | Tool invocation logging | Working |
-| `post-tool.sh` | Tool completion logging | Working |
-| `model-route.sh` | Model tier recommendation (opus/sonnet/haiku) | Working |
-| `context-tracker.sh` | Token budget monitoring (quality zones) | Working |
-| `voice-check.sh` | Banned phrase detection per Voice Bible v2.0 | Working |
-
-All wired into `.claude/settings.local.json`.
-
----
-
-## 3. AgentDB
-
-- **SQLite** via python3 at `/tmp/arcanea-agentdb.sqlite3`
-- **Tables**: agents (10 Guardians), tasks, memories, vault_entries, routing_log
-- **ISSUE**: `/tmp/` = wiped on reboot. Must move to persistent location.
+| Package | Keeps Its Role |
+|:--------|:---------------|
+| `@arcanea/os` | Intelligence library — used by ALL surfaces |
+| `@arcanea/mcp-server` | Tool layer — used by overlay CLI AND standalone fork |
+| `@arcanea/cli` | Overlay installer — for people who DON'T want a standalone tool |
+| The fork | Standalone product — for people who want Arcanea as their primary tool |
 
 ---
 
-## 4. Intelligence OS (Nested Repo)
+## Key Decision: Don't Choose. Ship Both.
 
-**Location**: `intelligence-os/`
+**Overlay path** (quick, wide reach):
+- `npx @arcanea/cli init` → enhances existing AI tools
+- No switching cost for users — they keep Claude Code/Cursor
 
-- `AIOSDaemon` class: HTTP API, MCP server, SQLite state, plugins
-- `bin/aios.js`: 108KB compiled CLI
-- RESTful routes: /status, /tools, /plugins, /journey, /drafts, /ws
-- **Untested** — unknown if daemon actually starts
+**Standalone path** (deep, owned UX):
+- `npx arcanea-realm` → full Arcanea experience
+- Custom TUI, Guardian sidebar, Gate progression, worldbuilding commands
+- All the UX we dream of
 
----
-
-## 5. What Works End-to-End
-
-1. CLAUDE.md loaded with full Arcanea context
-2. Session-start hook initializes Guardian state
-3. Every prompt → Guardian routing (keyword-based)
-4. Every tool use logged (pre/post hooks)
-5. Model routing by complexity
-6. Voice checking catches banned phrases
-7. Context tracker monitors token budget
-8. AgentDB stores state (but ephemeral)
-9. StatusLine shows real-time session state
-10. 65+ skills auto-activate
-11. 40+ agents available for Task tool
-12. SIS SDK compiles to working JS
-
-## 6. What Does NOT Work
-
-1. SIS tests broken (import resolution)
-2. SIS not on npm
-3. No automated vault consolidation
-4. No cross-project transmissions
-5. No LangGraph/CrewAI/Swarm adapters
-6. No web dashboard (markdown specs only)
-7. AgentDB data lost on reboot
-8. intelligence-os daemon untested
+Both powered by the same `@arcanea/os` intelligence and `@arcanea/mcp-server` tools.

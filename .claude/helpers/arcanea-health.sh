@@ -39,11 +39,22 @@ else
     warn "Session: Not started (hooks not triggered yet)"
 fi
 
-# Check hooks
-if [ -f /mnt/c/Users/frank/Arcanea/.claude/hooks.json ]; then
-    pass "Hooks: Configured"
+# Check hooks (in settings.local.json, not standalone hooks.json)
+if [ -f /mnt/c/Users/frank/Arcanea/.claude/settings.local.json ]; then
+    HOOK_COUNT=$(python3 -c "
+import json
+with open('/mnt/c/Users/frank/Arcanea/.claude/settings.local.json') as f:
+    data = json.load(f)
+hooks = data.get('hooks', {})
+print(len(hooks))
+" 2>/dev/null)
+    if [ "$HOOK_COUNT" -gt 0 ] 2>/dev/null; then
+        pass "Hooks: $HOOK_COUNT event types wired in settings.local.json"
+    else
+        warn "Hooks: settings.local.json exists but no hooks configured"
+    fi
 else
-    fail "Hooks: Missing hooks.json"
+    fail "Hooks: Missing settings.local.json"
 fi
 
 # Check statusline

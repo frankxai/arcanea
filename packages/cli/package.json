@@ -1,7 +1,8 @@
 {
   "name": "@arcanea/cli",
-  "version": "1.0.0",
-  "description": "Arcanea Intelligence OS — Universal CLI for AI overlay management",
+  "version": "0.2.0",
+  "description": "Arcanea Realm — Your AI Creation Realm. Overlay any AI tool with arcane intelligence.",
+  "homepage": "https://github.com/frankxai/arcanea/tree/main/packages/cli#readme",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

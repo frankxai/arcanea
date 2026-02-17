@@ -29,6 +29,74 @@
 
 <br/>
 
+## Install
+
+Arcanea runs on every surface. Pick yours:
+
+```bash
+# CLI — instant access
+npx @arcanea/cli route "design a character creation flow"
+
+# Or install globally
+npm install -g @arcanea/cli
+arcanea route "help me with database architecture"
+arcanea voice "Check this text for canon compliance" --fix
+arcanea tokens --format css --colors
+```
+
+### MCP Server — Claude Code, Cursor, Windsurf, Cline, Codex
+
+Add to your `.mcp.json` or MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "arcanea": {
+      "command": "npx",
+      "args": ["@arcanea/mcp-server"]
+    }
+  }
+}
+```
+
+30 tools, 7 resources, 6 prompts. Worldbuilding generators, Guardian routing, voice enforcement, design tokens, Luminor AI companions, creation graph, and agent orchestration.
+
+### Core SDK — for developers
+
+```bash
+npm install @arcanea/core
+```
+
+```typescript
+import { routeToGuardian, VoiceEnforcer, toCSSVariables } from '@arcanea/core';
+
+const route = routeToGuardian("design a flowing water-themed UI");
+// → { guardian: "Leyla", confidence: 0.92, element: "Water", ... }
+
+const voice = new VoiceEnforcer();
+const check = voice.check("Welcome users to our platform");
+// → { passed: false, violations: [{ rule: "term-user", ... }] }
+```
+
+### Web
+
+**[arcanea.ai](https://arcanea.ai)** — live now
+
+### Coming Soon
+
+| Surface | Status |
+|:--------|:------:|
+| VS Code Extension | In development |
+| Chrome Extension (5 overlays) | Ready to publish |
+| Desktop App (Tauri) | Planned |
+| Mobile App | Planned |
+
+<br/>
+
+---
+
+<br/>
+
 ## The Thesis
 
 Most AI tools optimize for speed. Arcanea optimizes for **depth**.

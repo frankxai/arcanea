@@ -28,12 +28,12 @@ function freshDir() {
 describe('CLI — help', () => {
   it('should show version', () => {
     const output = run('--version');
-    assert.ok(output.includes('1.0.0'));
+    assert.ok(output.includes('0.2.0'));
   });
 
   it('should list all 7 commands', () => {
     const output = run('--help');
-    const commands = ['init', 'auth', 'status', 'install', 'update', 'world', 'create'];
+    const commands = ['init', 'auth', 'status', 'install', 'update', 'world', 'create', 'route', 'voice', 'tokens'];
     for (const cmd of commands) {
       assert.ok(output.includes(cmd), `Missing command: ${cmd}`);
     }

@@ -1,7 +1,7 @@
 {
   "name": "@arcanea/core",
-  "version": "0.1.0",
-  "description": "Core types, constants, and utilities for the Arcanea ecosystem",
+  "version": "0.2.0",
+  "description": "The intelligence engine powering Arcanea — Guardian routing, voice enforcement, design tokens, and session management for AI creation tools",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -22,6 +22,10 @@
     "./utils": {
       "types": "./dist/utils/index.d.ts",
       "import": "./dist/utils/index.js"
+    },
+    "./engine": {
+      "types": "./dist/engine/index.d.ts",
+      "import": "./dist/engine/index.js"
     }
   },
   "files": [
@@ -34,12 +38,16 @@
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build"
   },
+  "homepage": "https://github.com/frankxai/arcanea/tree/main/packages/core#readme",
   "keywords": [
     "arcanea",
-    "mythology",
     "ai",
     "creative",
-    "types",
+    "guardian",
+    "intelligence",
+    "design-system",
+    "voice",
+    "mcp",
     "typescript"
   ],
   "author": "FrankX <frank@frankx.ai>",
@@ -50,6 +58,7 @@
     "directory": "packages/core"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
     "typescript": "^5.3.0"
   },
   "publishConfig": {

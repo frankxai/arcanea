@@ -307,6 +307,9 @@ importers:
 
   packages/arcanea-mcp:
     dependencies:
+      '@arcanea/core':
+        specifier: workspace:*
+        version: link:../core
       '@modelcontextprotocol/sdk':
         specifier: ^0.5.0
         version: 0.5.0
@@ -386,6 +389,9 @@ importers:
 
   packages/core:
     devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.17
       typescript:
         specifier: ^5.3.0
         version: 5.9.2

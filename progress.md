@@ -1,83 +1,160 @@
-# Progress: SIS + AIOS Production Build
+# Progress: Arcanea Multi-Surface Product Strategy
 
-## Session: 2026-02-14
+## Session: 2026-02-16
 
 ### Completed This Session
 
-1. **SIS README honesty update** (committed + pushed)
-   - Added "Current Status" section with honest assessment
-   - Fixed agent badge (8 → 7)
-   - Updated roadmap: Claude Code → SaaS → Framework adapters (backlog)
+#### Phase 0: Strategic Research & Planning
+- [x] Audited complete monorepo structure (23 nested repos, 12 packages, 2 apps)
+- [x] Researched competitive landscape:
+  - Claude Code: CLI + Agent SDK + IDE adapters (TypeScript/Ink/Bun)
+  - Cursor: VS Code fork (deep control, single surface)
+  - Windsurf: VS Code fork + lightweight plugins
+  - GitHub Copilot: Language Server pattern (GOLD STANDARD for multi-surface)
+  - OpenAI Codex: Rust binary, 52 crates, App Server mode
+  - v0: Cloud + MCP Server (lowest effort for reach)
+  - OpenCode: Go binary + thin adapters (70K stars, small team)
+  - Bolt/Lovable/Replit: Cloud walled gardens
+- [x] Identified winning architecture: Core SDK + MCP + VS Code Extension
+- [x] Gap analysis: NOTHING published to npm, no VS Code ext, no unified core
+- [x] Identified narrative problem: 3 repos confuses, should be 1 product
+- [x] Created task_plan.md with 7 phases
+- [x] Created findings.md with full analysis
+- [ ] Get user alignment on direction
 
-2. **Research completed** (2 parallel Explore agents)
-   - Full SIS TypeScript SDK audit: 5,076 lines, 10 files, all modules functional
-   - Full AIOS infrastructure audit: 7 hooks, AgentDB, StatusLine, 65+ skills, 40+ agents
+### Key Discoveries
 
-3. **Phase 1: SIS SDK — Fix, Test, Publish** (mostly complete)
-   - `npm install` + `tsx` dev dependency added
-   - **82/82 tests pass** — all green in 1.6s
-   - Build clean — zero TypeScript errors
-   - `prepublishOnly` and `engines` added
-   - `npm pack --dry-run`: 85KB, 56 files, ready to publish
-   - **Blocked**: `npm adduser` required for publish
+1. **GitHub Copilot's Language Server** is the gold standard for multi-surface delivery — one npm package (`@github/copilot-language-server`) powers ALL surfaces via JSON-RPC.
 
-4. **Phase 2: AIOS Hardening** (COMPLETE)
-   - Moved AgentDB from `/tmp/` to `~/.arcanea/agentdb.sqlite3` (persistent)
-   - Updated ALL 8 hooks to use `~/.arcanea/sessions/current/`
-   - Added routing log writes to AgentDB (prompt-submit.sh → INSERT routing_log)
-   - Added memory writes to AgentDB (post-tool.sh → INSERT memories for significant ops)
-   - Added context-tracker zone transition writes to AgentDB
-   - Created session-end hook (Stop event): summary → vault_entries, archive session
-   - Wired session-start to auto-init AgentDB if missing
-   - Created `.claude/HOOKS.md` — complete pipeline documentation
-   - **Tested end-to-end**: All hooks fire, AgentDB persists, session archival works
+2. **Claude Code Agent SDK** (`@anthropic-ai/claude-agent-sdk`) is the extraction of Claude Code's internals — anyone can build custom surfaces. 1.85M+ weekly downloads.
 
-5. **Phase 3: SIS ↔ AIOS Bridge** (COMPLETE)
-   - Created `bridge-agentdb-to-sis.sh` — Python bridge script
-   - Extracts: routing patterns, session summaries, significant memories
-   - Writes to SIS `.starlight/memory.json` with deduplication
-   - Wired into session-end hook for automatic execution
-   - **Tested**: 4 entries synced across 2 sessions, no duplicates on re-run
-   - Compound learning loop verified: session → AgentDB → SIS memory → next session
+3. **MCP is the universal adapter** — deploy one server to Vercel, instantly available in 7+ clients (Claude Code, Cursor, Windsurf, Cline, Roo Code, Codex CLI, Copilot Chat).
 
-6. **Phase 4: Intelligence OS Daemon** (MOSTLY COMPLETE)
-   - Audited all source files (23 TypeScript files, daemon/http/state/plugins/studio/artifact-flow/infogenius)
-   - Installed 278 dependencies, build clean
-   - **Root cause found**: Daemon's `startHttpServer()` used basic `net.createServer` only matching /health and /status. `initDatabase()` and `loadPlugins()` were no-ops.
-   - **Fixed**: Wired real `HttpApiServer` (36 routes), `StateStore` (JSON persistence), `PluginRegistry` into daemon
-   - **Added**: 5 AgentDB bridge routes (`/agentdb/stats`, `/guardians`, `/routing`, `/memories`, `/vault`) using Python sqlite3
-   - **14/14 HTTP endpoints**: All return 200 + success=true
-   - Journey CRUD works (create, unlock gates, query)
-   - Drafts CRUD works (create, update, delete, list)
-   - Settings read/write works, state persists to `~/.arcanea/state.json`
-   - AgentDB serves real data: 10 Guardians, 5 routing logs, 8 vault entries
+4. **OpenCode proves small teams can cover many surfaces** — Go binary + thin editor adapters = CLI + VS Code + JetBrains + Vim + Emacs. 70K GitHub stars.
 
-### Remaining
+5. **Arcanea already has more built than we realized** — 12 packages, 5 browser extensions, CLI, 2 web apps, mobile starter, bot. The gap is PUBLISHING, not building.
 
-- Phase 4.7: Connect daemon to SIS vaults (optional, SIS bridge already handles this)
-- Phase 4.9: Document API endpoints
+### Files Created/Modified
+- `findings.md` — Full strategic analysis (replaced previous SIS audit)
+- `task_plan.md` — 7-phase plan (replaced previous SIS build plan)
+- `progress.md` — This file (replaced previous session log)
 
-### Blocked on
+### Phase 1: Core SDK + CLI — COMPLETED
 
-- npm publish: needs `npm adduser` to authenticate
+#### @arcanea/core v0.2.0 (Intelligence Engine)
+- [x] Built `engine/guardian-router.ts` — Routes tasks to Guardians by keyword analysis
+- [x] Built `engine/voice.ts` — VoiceEnforcer checks text against Voice Bible v2.0
+- [x] Built `engine/design-tokens.ts` — Full design system as CSS vars, Tailwind config, JSON
+- [x] Built `engine/session.ts` — SessionManager tracks Guardian/Gate/Element state
+- [x] Built `engine/index.ts` — Clean re-exports
+- [x] Updated package.json (v0.2.0, new exports, homepage, keywords)
+- [x] All TypeScript compiles clean (strict mode, zero errors)
+- [x] Smoke test passed: Router correctly routes to Lyssandria for database tasks
 
-### Key Files Modified
+#### @arcanea/cli v0.2.0 (3 New Commands)
+- [x] Added `arcanea route <description>` — Guardian routing with confidence + alternatives
+- [x] Added `arcanea voice <text> [--fix]` — Voice Bible check with auto-fix
+- [x] Added `arcanea tokens [--format css|tailwind|json] [--colors]` — Design token export
+- [x] Updated version to 0.2.0
+- [x] Rebuilt bundle: 247KB single CJS file with shebang
+- [x] All 17 tests pass (updated for new version + 10 commands)
+- [x] End-to-end tested all 10 commands
 
-| File | Change |
-|------|--------|
-| `starlight-intelligence-system/package.json` | tsx, prepublishOnly, engines |
-| `.claude/agentdb/init.sh` | Persistent path `~/.arcanea/` |
-| `.claude/agentdb/query.sh` | Persistent path |
-| `.claude/hooks/session-start.sh` | Full rewrite: persistent paths, auto-init AgentDB |
-| `.claude/hooks/prompt-submit.sh` | Full rewrite: persistent paths, AgentDB routing writes |
-| `.claude/hooks/pre-tool.sh` | Updated to persistent paths |
-| `.claude/hooks/post-tool.sh` | Full rewrite: persistent paths, AgentDB memory writes |
-| `.claude/hooks/context-tracker.sh` | Persistent paths, zone transition AgentDB writes |
-| `.claude/hooks/model-route.sh` | Persistent paths |
-| `.claude/hooks/voice-check.sh` | Persistent paths |
-| `.claude/hooks/session-end.sh` | NEW: session summary, vault write, bridge call, archive |
-| `.claude/hooks/bridge-agentdb-to-sis.sh` | NEW: AgentDB → SIS memory bridge |
-| `.claude/settings.local.json` | Added Stop event hook |
-| `.claude/HOOKS.md` | NEW: complete pipeline documentation |
-| `intelligence-os/src/daemon/index.ts` | Wired HttpApiServer, StateStore, PluginRegistry (replaced net.createServer no-ops) |
-| `intelligence-os/src/http/index.ts` | Added 5 AgentDB bridge routes, Python sqlite3 runner |
+#### Publish Pipeline
+- [x] Created `.changeset/config.json` — Changesets configuration
+- [x] Created `.changeset/initial-engine-release.md` — First changeset
+- [x] Created `.github/workflows/publish-packages.yml` — CI/CD for npm publish
+- [x] Both packages have `publishConfig.access: "public"`
+
+### Files Created This Session
+- `packages/core/src/engine/guardian-router.ts` — Guardian routing engine
+- `packages/core/src/engine/voice.ts` — Voice enforcement
+- `packages/core/src/engine/design-tokens.ts` — Design system tokens
+- `packages/core/src/engine/session.ts` — Session state management
+- `packages/core/src/engine/index.ts` — Engine exports
+- `packages/cli/src/commands/route.ts` — Route CLI command
+- `packages/cli/src/commands/voice.ts` — Voice CLI command
+- `packages/cli/src/commands/tokens.ts` — Tokens CLI command
+- `.changeset/config.json` — Changesets config
+- `.changeset/initial-engine-release.md` — Initial changeset
+- `.github/workflows/publish-packages.yml` — Publish workflow
+
+### Test Results
+- @arcanea/core: Type-checks clean, smoke test passes
+- @arcanea/cli: 17/17 tests pass, all 10 commands functional
+- Guardian Router accuracy: 100% on test cases (Lyssandria/database, Draconia/fire, Leyla/design, Shinkami/meta)
+
+### Phase 2: MCP Server Engine Tools — COMPLETED
+
+#### @arcanea/mcp-server v0.4.0 (30 tools, 7 resources, 6 prompts)
+- [x] Added `@arcanea/core` as workspace dependency
+- [x] Imported Intelligence Engine (routeToGuardian, VoiceEnforcer, design tokens)
+- [x] Added `route_guardian` tool — routes tasks to optimal Guardian with confidence
+- [x] Added `check_voice` tool — validates text against Voice Bible v2.0, with auto-fix mode
+- [x] Added `get_design_tokens` tool — exports design system as CSS, Tailwind, or JSON
+- [x] Added `arcanea://design-tokens` resource — full token set
+- [x] Added `arcanea://voice-rules` resource — Voice Bible rules
+- [x] TypeScript compiles clean (strict mode, zero errors)
+- [x] Version bumped 0.3.0 → 0.4.0
+- [x] Created changeset for publish pipeline
+
+### Phase 5: README Rewrite — COMPLETED
+- [x] Added "Install" section with all surface install methods
+- [x] CLI quick start with `npx @arcanea/cli route`
+- [x] MCP server `.mcp.json` config for Claude Code/Cursor/Windsurf
+- [x] Core SDK developer example with routeToGuardian + VoiceEnforcer
+- [x] Web link to arcanea.ai
+- [x] Coming Soon table for VS Code, Chrome, Desktop, Mobile
+
+### Files Created This Session (Phase 2+5)
+- `.changeset/mcp-engine-tools.md` — MCP server changeset
+
+### Files Modified This Session (Phase 2+5)
+- `packages/arcanea-mcp/package.json` — Added @arcanea/core dep, v0.4.0, new description
+- `packages/arcanea-mcp/src/index.ts` — 3 new tools, 2 new resources, engine imports
+- `README.md` — Added Install section with all surfaces
+
+### Phase 3: Fork OpenCode → Arcanea Realm — IN PROGRESS
+
+#### Research (2026-02-17)
+- [x] Discovered OpenCode rewritten in TypeScript (was Go, archived Sep 2025)
+- [x] Repo: `anomalyco/opencode` — MIT, 105K stars, Vercel AI SDK, plugin system
+- [x] Also evaluated: Gemini CLI (React/Ink but Gemini-only), Claude Agent SDK (proprietary), Continue (too bloated), Cline (VS Code-only)
+- [x] Decision: Fork OpenCode — same AI SDK, MIT license, plugin system, multi-surface
+
+#### Fork Created
+- [x] Forked `anomalyco/opencode` → `frankxai/arcanea-realm`
+- [x] Cloned to `/mnt/c/Users/frank/arcanea-realm`
+- [x] Renamed package to `arcanea-realm`, added `realm` binary alias
+- [x] Replaced ASCII logo with ARCANEA REALM
+- [x] Replaced README with Arcanea product page
+- [x] Created `opencode.json` with 6 Guardian agents (Lyssandria, Leyla, Draconia, Maylinn, Lyria, Shinkami)
+- [x] Added `@arcanea/mcp-server` as default MCP connection
+- [x] Added Arcanea voice instructions
+- [x] Committed and pushed to `frankxai/arcanea-realm` dev branch
+
+#### Key Architecture Findings
+- **Client-server**: TUI (SolidJS/OpenTUI) talks to local HTTP server (Hono)
+- **Plugin system**: TypeScript plugins with hooks for events, tools, chat params, auth, commands
+- **Agent system**: Defined in config JSON (name, prompt, model, color, permissions)
+- **Config precedence**: remote → global → custom → project → .opencode/ → inline
+- **Built-in agents**: build (default), plan, general, explore
+- **75+ models**: via Vercel AI SDK — Anthropic, OpenAI, Google, Bedrock, Groq, xAI, etc.
+- **MCP support**: Full client via @modelcontextprotocol/sdk v1.25.2
+
+### Files Created/Modified (Phase 3)
+- `/mnt/c/Users/frank/arcanea-realm/README.md` — Arcanea product page
+- `/mnt/c/Users/frank/arcanea-realm/opencode.json` — 6 Guardian agents + MCP config
+- `/mnt/c/Users/frank/arcanea-realm/packages/opencode/package.json` — Renamed, binary aliases
+- `/mnt/c/Users/frank/arcanea-realm/packages/opencode/src/cli/logo.ts` — ARCANEA REALM ASCII
+
+### Planning Files Updated
+- `findings.md` — Full fork candidate analysis (OpenCode vs Gemini CLI vs Agent SDK vs Continue vs Cline)
+- `task_plan.md` — Revised "Every Surface" strategy with 9 phases
+
+### Next Steps
+1. **Build the fork** — `bun install && bun run build` (needs Bun runtime)
+2. **Test Guardian agent switching** — verify `opencode.json` agents load
+3. **Create Arcanea plugin** — TypeScript plugin for Guardian routing, voice, design tokens
+4. **Deeper TUI reskin** — Arcanea Design System colors throughout
+5. **npm publish** — Still blocked on @arcanea org on npmjs.com

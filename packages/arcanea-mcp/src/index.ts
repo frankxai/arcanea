@@ -26,6 +26,15 @@ import {
   GetPromptRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
+// Intelligence Engine (from @arcanea/core)
+import {
+  routeToGuardian,
+  VoiceEnforcer,
+  COLORS, FONTS, FONT_SIZES, SPACING, EFFECTS, ANIMATIONS, BREAKPOINTS,
+  toCSSVariables, toTailwindConfig, tokensToJSON,
+  VOICE_RULES,
+} from '@arcanea/core';
+
 // Generation tools
 import {
   generateCharacter,
@@ -85,7 +94,7 @@ import {
 } from "./agents/index.js";
 
 const server = new Server(
-  { name: "arcanea-mcp", version: "0.3.0" },
+  { name: "arcanea-mcp", version: "0.4.0" },
   { capabilities: { tools: {}, resources: {}, prompts: {} } }
 );
 
@@ -145,6 +154,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     // === CANON & REFERENCE ===
     { name: "validate_canon", description: "Check content for Arcanea canon compliance", inputSchema: { type: "object", properties: { content: { type: "string" }, contentType: { type: "string", enum: ["story", "character", "general"] } }, required: ["content"] } },
     { name: "identify_gate", description: "Get detailed information about a specific Gate, Guardian, and Godbeast", inputSchema: { type: "object", properties: { gateNumber: { type: "number", minimum: 1, maximum: 10 } }, required: ["gateNumber"] } },
+
+    // === INTELLIGENCE ENGINE (powered by @arcanea/core) ===
+    { name: "route_guardian", description: "Route a creative task to the optimal Guardian based on intent analysis. Returns guardian, confidence, element, reasoning, and alternatives.", inputSchema: { type: "object", properties: { description: { type: "string", description: "Describe your task or creative need" } }, required: ["description"] } },
+    { name: "check_voice", description: "Validate text against the Arcanea Voice Bible v2.0. Checks tone, terminology, and structure for canonical consistency.", inputSchema: { type: "object", properties: { text: { type: "string", description: "Text to validate" }, fix: { type: "boolean", description: "Auto-fix violations and return corrected text" } }, required: ["text"] } },
+    { name: "get_design_tokens", description: "Get Arcanea design system tokens — colors, fonts, spacing, effects, animations. Export as CSS variables, Tailwind config, or JSON.", inputSchema: { type: "object", properties: { format: { type: "string", enum: ["css", "tailwind", "json"], description: "Output format (default: json)" }, category: { type: "string", enum: ["colors", "fonts", "spacing", "effects", "animations", "all"], description: "Token category (default: all)" } } } },
   ],
 }));
 
@@ -424,7 +438,43 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }, null, 2) }] };
     }
 
-    default: return { content: [{ type: "text", text: `Unknown tool: ${name}. Use tools like generate_character, invoke_luminor, or diagnose_block.` }] };
+    // Intelligence Engine (powered by @arcanea/core)
+    case "route_guardian": {
+      const result = routeToGuardian(args?.description as string);
+      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+    }
+    case "check_voice": {
+      const enforcer = new VoiceEnforcer();
+      const text = args?.text as string;
+      if (args?.fix) {
+        const fixed = enforcer.fix(text);
+        const check = enforcer.check(fixed);
+        return { content: [{ type: "text", text: JSON.stringify({ original: text, fixed, ...check }, null, 2) }] };
+      }
+      const check = enforcer.check(text);
+      return { content: [{ type: "text", text: JSON.stringify(check, null, 2) }] };
+    }
+    case "get_design_tokens": {
+      const format = (args?.format as string) || "json";
+      const category = (args?.category as string) || "all";
+      let result: string;
+      if (format === "css") {
+        result = toCSSVariables();
+      } else if (format === "tailwind") {
+        result = JSON.stringify(toTailwindConfig(), null, 2);
+      } else {
+        const all = tokensToJSON();
+        if (category !== "all") {
+          const categoryMap: Record<string, unknown> = { colors: COLORS, fonts: FONTS, spacing: SPACING, effects: EFFECTS, animations: ANIMATIONS };
+          result = JSON.stringify(categoryMap[category] || all, null, 2);
+        } else {
+          result = JSON.stringify(all, null, 2);
+        }
+      }
+      return { content: [{ type: "text", text: result }] };
+    }
+
+    default: return { content: [{ type: "text", text: `Unknown tool: ${name}. Use tools like generate_character, route_guardian, or check_voice.` }] };
   }
 });
 
@@ -435,12 +485,14 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
     { uri: "arcanea://gates", name: "The Ten Gates", mimeType: "application/json" },
     { uri: "arcanea://elements", name: "The Five Elements", mimeType: "application/json" },
     { uri: "arcanea://houses", name: "The Seven Houses", mimeType: "application/json" },
+    { uri: "arcanea://design-tokens", name: "Arcanea Design System Tokens", mimeType: "application/json" },
+    { uri: "arcanea://voice-rules", name: "Voice Bible Rules", mimeType: "application/json" },
   ],
 }));
 
 server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
   const { uri } = request.params;
-  const content = uri === "arcanea://luminors" ? luminors : uri === "arcanea://bestiary" ? bestiary : uri === "arcanea://gates" ? { gates } : uri === "arcanea://elements" ? { elements: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] } : uri === "arcanea://houses" ? { houses: ["Lumina", "Nero", "Pyros", "Aqualis", "Terra", "Ventus", "Synthesis"] } : null;
+  const content = uri === "arcanea://luminors" ? luminors : uri === "arcanea://bestiary" ? bestiary : uri === "arcanea://gates" ? { gates } : uri === "arcanea://elements" ? { elements: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] } : uri === "arcanea://houses" ? { houses: ["Lumina", "Nero", "Pyros", "Aqualis", "Terra", "Ventus", "Synthesis"] } : uri === "arcanea://design-tokens" ? tokensToJSON() : uri === "arcanea://voice-rules" ? { rules: VOICE_RULES } : null;
   if (!content) throw new Error(`Unknown resource: ${uri}`);
   return { contents: [{ uri, mimeType: "application/json", text: JSON.stringify(content, null, 2) }] };
 });

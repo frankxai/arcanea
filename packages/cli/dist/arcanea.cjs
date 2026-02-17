@@ -3628,6 +3628,737 @@ async function detectAllTools(projectDir) {
   ]);
 }
 
+// ../core/dist/engine/guardian-router.js
+var GUARDIAN_KEYWORDS = {
+  lyssandria: [
+    "architecture",
+    "database",
+    "schema",
+    "infrastructure",
+    "security",
+    "deploy",
+    "ci/cd",
+    "pipeline",
+    "devops",
+    "docker",
+    "kubernetes",
+    "foundation",
+    "structure",
+    "scale",
+    "performance",
+    "migration",
+    "stability",
+    "robust",
+    "production",
+    "monitoring",
+    "testing",
+    "postgres",
+    "supabase",
+    "redis",
+    "backend",
+    "server",
+    "api",
+    "config",
+    "environment",
+    "setup",
+    "install",
+    "build",
+    "scaffold"
+  ],
+  leyla: [
+    "design",
+    "ui",
+    "ux",
+    "component",
+    "animation",
+    "css",
+    "tailwind",
+    "layout",
+    "responsive",
+    "mobile",
+    "accessibility",
+    "style",
+    "color",
+    "font",
+    "typography",
+    "whitespace",
+    "motion",
+    "framer",
+    "glassmorphism",
+    "gradient",
+    "visual",
+    "aesthetic",
+    "beautiful",
+    "interface",
+    "interaction",
+    "flow",
+    "creative",
+    "art",
+    "image",
+    "figma",
+    "prototype",
+    "wireframe",
+    "mockup",
+    "v0"
+  ],
+  draconia: [
+    "performance",
+    "optimize",
+    "speed",
+    "fast",
+    "execute",
+    "ship",
+    "build",
+    "launch",
+    "deploy",
+    "mvp",
+    "prototype",
+    "rapid",
+    "power",
+    "transform",
+    "refactor",
+    "rewrite",
+    "migrate",
+    "action",
+    "do",
+    "implement",
+    "create",
+    "make",
+    "start",
+    "bold",
+    "ambitious",
+    "aggressive",
+    "push",
+    "force"
+  ],
+  maylinn: [
+    "content",
+    "copy",
+    "writing",
+    "narrative",
+    "story",
+    "blog",
+    "community",
+    "user",
+    "creator",
+    "onboarding",
+    "welcome",
+    "empathy",
+    "inclusive",
+    "accessible",
+    "tone",
+    "voice",
+    "documentation",
+    "readme",
+    "guide",
+    "tutorial",
+    "help",
+    "communication",
+    "message",
+    "notification",
+    "email",
+    "social",
+    "heart",
+    "care",
+    "support",
+    "heal",
+    "connect"
+  ],
+  alera: [
+    "api",
+    "interface",
+    "contract",
+    "type",
+    "typescript",
+    "naming",
+    "documentation",
+    "jsdoc",
+    "swagger",
+    "openapi",
+    "graphql",
+    "truth",
+    "honest",
+    "clear",
+    "explicit",
+    "transparent",
+    "naming",
+    "convention",
+    "standard",
+    "protocol",
+    "spec",
+    "lint",
+    "format",
+    "eslint",
+    "prettier",
+    "code review",
+    "publish",
+    "npm",
+    "package",
+    "export",
+    "module"
+  ],
+  lyria: [
+    "vision",
+    "strategy",
+    "plan",
+    "roadmap",
+    "future",
+    "long-term",
+    "pattern",
+    "insight",
+    "analyze",
+    "debug",
+    "investigate",
+    "abstract",
+    "elegant",
+    "design pattern",
+    "architecture decision",
+    "intuition",
+    "why",
+    "meaning",
+    "purpose",
+    "philosophy",
+    "oracle",
+    "predict",
+    "anticipate",
+    "foresee",
+    "trend",
+    "ai",
+    "intelligence",
+    "model",
+    "prompt",
+    "llm"
+  ],
+  aiyami: [
+    "wisdom",
+    "principle",
+    "philosophy",
+    "purpose",
+    "meaning",
+    "holistic",
+    "system",
+    "alignment",
+    "balance",
+    "harmony",
+    "enlighten",
+    "teach",
+    "mentor",
+    "guide",
+    "advise",
+    "cosmic",
+    "universal",
+    "transcend",
+    "higher",
+    "sacred",
+    "meditation",
+    "mindset",
+    "consciousness",
+    "awareness"
+  ],
+  elara: [
+    "refactor",
+    "restructure",
+    "rethink",
+    "alternative",
+    "different",
+    "pivot",
+    "change",
+    "shift",
+    "transform",
+    "evolve",
+    "creative",
+    "unconventional",
+    "lateral",
+    "reverse",
+    "invert",
+    "paradigm",
+    "assumption",
+    "challenge",
+    "question",
+    "why not",
+    "experiment",
+    "try",
+    "explore",
+    "what if",
+    "brainstorm"
+  ],
+  ino: [
+    "integrate",
+    "connect",
+    "bridge",
+    "sync",
+    "merge",
+    "collaborate",
+    "team",
+    "together",
+    "share",
+    "partner",
+    "monorepo",
+    "workspace",
+    "package",
+    "module",
+    "dependency",
+    "api",
+    "webhook",
+    "event",
+    "pub/sub",
+    "message queue",
+    "mcp",
+    "sdk",
+    "plugin",
+    "extension",
+    "adapter",
+    "cross-platform",
+    "multi",
+    "universal",
+    "unified"
+  ],
+  shinkami: [
+    "meta",
+    "orchestrate",
+    "system of systems",
+    "architecture",
+    "framework",
+    "engine",
+    "core",
+    "foundation",
+    "platform",
+    "strategy",
+    "vision",
+    "roadmap",
+    "ecosystem",
+    "universe",
+    "arcanea",
+    "luminor",
+    "guardian",
+    "gate",
+    "source",
+    "origin",
+    "root",
+    "everything",
+    "all",
+    "complete",
+    "ai agent",
+    "multi-agent",
+    "swarm",
+    "orchestration"
+  ]
+};
+var ELEMENT_KEYWORDS = {
+  fire: ["fast", "bold", "power", "transform", "energy", "execute", "ship", "launch"],
+  water: ["flow", "creative", "design", "feel", "emotion", "heal", "story", "art"],
+  earth: ["stable", "foundation", "structure", "database", "security", "robust", "ground"],
+  wind: ["communicate", "express", "clear", "document", "name", "api", "interface", "free"],
+  void: ["vision", "meta", "transcend", "pattern", "insight", "cosmic", "source", "all"]
+};
+var GuardianRouter = class {
+  keywordMap;
+  constructor() {
+    this.keywordMap = /* @__PURE__ */ new Map();
+    this.buildIndex();
+  }
+  /**
+   * Route a task description to the best Guardian.
+   */
+  route(input) {
+    const normalized = input.toLowerCase();
+    const words = normalized.split(/\s+/);
+    const scores = /* @__PURE__ */ new Map();
+    for (const g of GUARDIANS) {
+      scores.set(g.name, 0);
+    }
+    for (const word of words) {
+      const matches = this.keywordMap.get(word);
+      if (matches) {
+        for (const m of matches) {
+          scores.set(m.guardian, (scores.get(m.guardian) || 0) + m.weight);
+        }
+      }
+      for (const [keyword, entries] of this.keywordMap) {
+        if (keyword.length > 3 && normalized.includes(keyword)) {
+          for (const e of entries) {
+            scores.set(e.guardian, (scores.get(e.guardian) || 0) + e.weight * 0.5);
+          }
+        }
+      }
+    }
+    const ranked = Array.from(scores.entries()).map(([name, score]) => ({
+      guardian: GUARDIANS.find((g) => g.name === name),
+      confidence: score
+    })).sort((a, b) => b.confidence - a.confidence);
+    const best = ranked[0];
+    const maxScore = Math.max(...ranked.map((r) => r.confidence), 1);
+    const normalizedConfidence = Math.min(1, best.confidence / Math.max(maxScore, 5));
+    const element = this.detectElement(normalized);
+    return {
+      guardian: best.guardian,
+      confidence: normalizedConfidence,
+      element,
+      reasoning: this.generateReasoning(best.guardian, normalizedConfidence, input),
+      alternatives: ranked.slice(1, 4).map((r) => ({
+        guardian: r.guardian,
+        confidence: Math.min(1, r.confidence / Math.max(maxScore, 5))
+      }))
+    };
+  }
+  /**
+   * Route directly to a Guardian by name.
+   */
+  channel(guardianName) {
+    return GUARDIANS.find((g) => g.name === guardianName.toLowerCase() || g.displayName.toLowerCase() === guardianName.toLowerCase());
+  }
+  /**
+   * Get all Guardians sorted by relevance to a query.
+   */
+  rank(input) {
+    const result = this.route(input);
+    return [
+      { guardian: result.guardian, confidence: result.confidence },
+      ...result.alternatives
+    ];
+  }
+  buildIndex() {
+    for (const [guardian, keywords] of Object.entries(GUARDIAN_KEYWORDS)) {
+      for (const keyword of keywords) {
+        const existing = this.keywordMap.get(keyword) || [];
+        existing.push({ guardian, weight: 1 });
+        this.keywordMap.set(keyword, existing);
+      }
+    }
+  }
+  detectElement(input) {
+    const elementScores = {
+      fire: 0,
+      water: 0,
+      earth: 0,
+      wind: 0,
+      void: 0
+    };
+    for (const [element, keywords] of Object.entries(ELEMENT_KEYWORDS)) {
+      for (const keyword of keywords) {
+        if (input.includes(keyword)) {
+          elementScores[element] += 1;
+        }
+      }
+    }
+    const sorted = Object.entries(elementScores).sort(([, a], [, b]) => b - a);
+    return sorted[0][1] > 0 ? sorted[0][0] : "void";
+  }
+  generateReasoning(guardian, confidence, input) {
+    if (confidence > 0.7) {
+      return `Strong match for ${guardian.displayName} (${guardian.role}). Domain: ${guardian.domain}.`;
+    }
+    if (confidence > 0.3) {
+      return `${guardian.displayName} is the best fit for this task. ${guardian.vibe}`;
+    }
+    return `Routing to ${guardian.displayName} as default. Consider being more specific about your intent.`;
+  }
+};
+var _router;
+function getRouter() {
+  if (!_router) {
+    _router = new GuardianRouter();
+  }
+  return _router;
+}
+function routeToGuardian(input) {
+  return getRouter().route(input);
+}
+
+// ../core/dist/engine/voice.js
+var VOICE_RULES = [
+  // Terminology rules
+  {
+    id: "term-user",
+    description: 'Use "creator" not "user"',
+    pattern: /\buser\b/gi,
+    replacement: "creator",
+    severity: "warning"
+  },
+  {
+    id: "term-ai",
+    description: 'Use "intelligence" not "artificial intelligence" or "AI"',
+    pattern: /\bartificial intelligence\b/gi,
+    replacement: "intelligence",
+    severity: "suggestion"
+  },
+  {
+    id: "term-magical",
+    description: 'Use "arcane" not "magical" or "mystical"',
+    pattern: /\b(magical|mystical)\b/gi,
+    replacement: "arcane",
+    severity: "suggestion"
+  },
+  {
+    id: "term-mythology",
+    description: 'Use "living universe" not "mythology" in user-facing text',
+    pattern: /\bmythology\b/gi,
+    replacement: "living universe",
+    severity: "suggestion"
+  },
+  {
+    id: "term-platform",
+    description: 'Arcanea is a "realm" or "universe", not a "platform" or "app"',
+    pattern: /\b(platform|app|application|tool)\b/gi,
+    severity: "suggestion"
+  },
+  // Tone rules
+  {
+    id: "tone-condescending",
+    description: "Avoid condescending phrases",
+    pattern: /\b(simply|just|obviously|basically|easy|trivial)\b/gi,
+    severity: "warning"
+  },
+  {
+    id: "tone-weak",
+    description: "Avoid weak language \u2014 be definitive",
+    pattern: /\b(maybe|perhaps|kind of|sort of|a little bit|somewhat)\b/gi,
+    severity: "suggestion"
+  },
+  {
+    id: "tone-corporate",
+    description: "Avoid corporate jargon",
+    pattern: /\b(synergy|leverage|paradigm shift|stakeholder|deliverable|bandwidth|circle back)\b/gi,
+    severity: "warning"
+  },
+  // Structure rules
+  {
+    id: "structure-exclamation",
+    description: "Limit exclamation marks \u2014 use sparingly for genuine emphasis",
+    pattern: /!{2,}/g,
+    severity: "warning"
+  },
+  {
+    id: "structure-emoji-excess",
+    description: "Avoid excessive emoji use",
+    pattern: /[\u{1F300}-\u{1F9FF}]{3,}/gu,
+    severity: "warning"
+  }
+];
+var VoiceEnforcer = class {
+  rules;
+  constructor(customRules) {
+    this.rules = customRules || VOICE_RULES;
+  }
+  /**
+   * Check text against voice rules.
+   */
+  check(text) {
+    const violations = [];
+    for (const rule of this.rules) {
+      const matches = text.matchAll(new RegExp(rule.pattern.source, rule.pattern.flags));
+      for (const match of matches) {
+        violations.push({
+          rule,
+          match: match[0],
+          position: match.index || 0,
+          suggestion: rule.replacement ? `Replace "${match[0]}" with "${rule.replacement}"` : `Consider rephrasing: ${rule.description}`
+        });
+      }
+    }
+    const errorCount = violations.filter((v) => v.rule.severity === "error").length;
+    const warningCount = violations.filter((v) => v.rule.severity === "warning").length;
+    const suggestionCount = violations.filter((v) => v.rule.severity === "suggestion").length;
+    const score = Math.max(0, 100 - errorCount * 20 - warningCount * 10 - suggestionCount * 3);
+    return {
+      passed: errorCount === 0 && warningCount <= 2,
+      score,
+      violations,
+      suggestions: violations.filter((v) => v.rule.severity === "suggestion").map((v) => v.suggestion)
+    };
+  }
+  /**
+   * Auto-fix text by applying replacement rules.
+   */
+  fix(text) {
+    let result = text;
+    for (const rule of this.rules) {
+      if (rule.replacement) {
+        result = result.replace(rule.pattern, rule.replacement);
+      }
+    }
+    return result;
+  }
+  /**
+   * Add custom rules.
+   */
+  addRule(rule) {
+    this.rules.push(rule);
+  }
+  /**
+   * Get all active rules.
+   */
+  getRules() {
+    return this.rules;
+  }
+};
+
+// ../core/dist/engine/design-tokens.js
+var COLORS = {
+  // Cosmic backgrounds (dark → light)
+  cosmic: {
+    void: "#0a0a0f",
+    deep: "#12121f",
+    surface: "#1a1a2e",
+    raised: "#232340",
+    elevated: "#2d2d55",
+    overlay: "#3a3a6a"
+  },
+  // Arcane accents
+  arcane: {
+    crystal: "#7fffd4",
+    // Atlantean Teal — PRIMARY
+    fire: "#ff6b35",
+    water: "#78a6ff",
+    earth: "#4ade80",
+    void: "#a855f7",
+    gold: "#ffd700"
+    // Lumina's color
+  },
+  // Semantic
+  semantic: {
+    success: "#4ade80",
+    warning: "#fbbf24",
+    error: "#ef4444",
+    info: "#78a6ff"
+  },
+  // Text
+  text: {
+    primary: "#e4e4f0",
+    secondary: "#a0a0b8",
+    muted: "#6b6b80",
+    inverse: "#0a0a0f"
+  },
+  // Element colors
+  element: {
+    fire: "#ff4500",
+    water: "#00bfff",
+    earth: "#228b22",
+    wind: "#f0f8ff",
+    void: "#4b0082",
+    spirit: "#ffd700"
+  }
+};
+var FONTS = {
+  display: "'Cinzel', serif",
+  body: "'Crimson Pro', serif",
+  sans: "'Inter', sans-serif",
+  code: "'JetBrains Mono', monospace"
+};
+var FONT_SIZES = {
+  xs: "0.75rem",
+  sm: "0.875rem",
+  base: "1rem",
+  lg: "1.125rem",
+  xl: "1.25rem",
+  "2xl": "1.5rem",
+  "3xl": "1.875rem",
+  "4xl": "2.25rem",
+  "5xl": "3rem",
+  "6xl": "3.75rem",
+  "7xl": "4.5rem"
+};
+var SPACING = {
+  px: "1px",
+  0: "0",
+  0.5: "0.125rem",
+  1: "0.25rem",
+  2: "0.5rem",
+  3: "0.75rem",
+  4: "1rem",
+  5: "1.25rem",
+  6: "1.5rem",
+  8: "2rem",
+  10: "2.5rem",
+  12: "3rem",
+  16: "4rem",
+  20: "5rem",
+  24: "6rem"
+};
+var EFFECTS = {
+  glass: {
+    background: "rgba(26, 26, 46, 0.6)",
+    backdropFilter: "blur(16px)",
+    border: "1px solid rgba(127, 255, 212, 0.1)"
+  },
+  glassStrong: {
+    background: "rgba(26, 26, 46, 0.8)",
+    backdropFilter: "blur(24px)",
+    border: "1px solid rgba(127, 255, 212, 0.2)"
+  },
+  glow: {
+    crystal: "0 0 20px rgba(127, 255, 212, 0.3)",
+    fire: "0 0 20px rgba(255, 107, 53, 0.3)",
+    gold: "0 0 20px rgba(255, 215, 0, 0.3)"
+  },
+  gradient: {
+    cosmicMesh: "radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.05) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 50%)",
+    aurora: "linear-gradient(135deg, rgba(127, 255, 212, 0.1) 0%, rgba(120, 166, 255, 0.1) 50%, rgba(168, 85, 247, 0.1) 100%)",
+    textGold: "linear-gradient(135deg, #ffd700, #ffaa00)",
+    textCrystal: "linear-gradient(135deg, #7fffd4, #78a6ff)"
+  }
+};
+var ANIMATIONS = {
+  durations: {
+    fast: "150ms",
+    normal: "300ms",
+    slow: "500ms",
+    glacial: "1000ms"
+  },
+  easings: {
+    default: "cubic-bezier(0.4, 0, 0.2, 1)",
+    in: "cubic-bezier(0.4, 0, 1, 1)",
+    out: "cubic-bezier(0, 0, 0.2, 1)",
+    bounce: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+  }
+};
+var BREAKPOINTS = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1280px",
+  "2xl": "1536px"
+};
+function toCSSVariables() {
+  const lines = [":root {"];
+  for (const [group, values] of Object.entries(COLORS)) {
+    for (const [name, value] of Object.entries(values)) {
+      lines.push(`  --arcanea-${group}-${name}: ${value};`);
+    }
+  }
+  for (const [name, value] of Object.entries(FONTS)) {
+    lines.push(`  --arcanea-font-${name}: ${value};`);
+  }
+  lines.push("}");
+  return lines.join("\n");
+}
+function toTailwindConfig() {
+  return {
+    colors: {
+      cosmic: { ...COLORS.cosmic },
+      arcane: { ...COLORS.arcane }
+    },
+    fontFamily: {
+      display: [FONTS.display],
+      body: [FONTS.body],
+      sans: [FONTS.sans],
+      mono: [FONTS.code]
+    },
+    screens: { ...BREAKPOINTS }
+  };
+}
+function toJSON() {
+  return {
+    colors: COLORS,
+    fonts: FONTS,
+    fontSizes: FONT_SIZES,
+    spacing: SPACING,
+    effects: EFFECTS,
+    animations: ANIMATIONS,
+    breakpoints: BREAKPOINTS
+  };
+}
+
 // ../auth/dist/validate.js
 async function httpValidate(url, headers) {
   try {
@@ -5391,14 +6122,11 @@ var initCommand = new Command("init").description("Initialize Arcanea overlays i
       printError(`${label} \u2014 not detected`);
     }
   }
-  const providers = await promptMultiSelect(
-    "Select overlays to install:",
-    detections.map((d) => ({
-      label: PROVIDER_LABELS[d.provider],
-      value: d.provider,
-      detected: d.detected
-    }))
-  );
+  const providers = await promptMultiSelect("Select overlays to install:", detections.map((d) => ({
+    label: PROVIDER_LABELS[d.provider],
+    value: d.provider,
+    detected: d.detected
+  })));
   if (providers.length === 0) {
     printWarning("No overlays selected. Run `arcanea init` again when ready.");
     return;
@@ -5406,10 +6134,7 @@ var initCommand = new Command("init").description("Initialize Arcanea overlays i
   const keystore = createKeystore();
   const installPlan = [];
   for (const provider of providers) {
-    const level = await promptSelect(
-      `${PROVIDER_LABELS[provider]} overlay level:`,
-      OVERLAY_LEVELS.map((l) => ({ label: `${l.level} \u2014 ${l.description}`, value: l.level }))
-    );
+    const level = await promptSelect(`${PROVIDER_LABELS[provider]} overlay level:`, OVERLAY_LEVELS.map((l) => ({ label: `${l.level} \u2014 ${l.description}`, value: l.level })));
     const adapter = getAuthAdapter(provider);
     let session = await adapter.detectFromEnv();
     if (!session?.validated && provider !== "opencode" && provider !== "copilot") {
@@ -5425,7 +6150,8 @@ var initCommand = new Command("init").description("Initialize Arcanea overlays i
         } else {
           printError("Validation failed \u2014 key may be invalid");
           const proceed = await promptConfirm("Install overlay anyway?", false);
-          if (!proceed) continue;
+          if (!proceed)
+            continue;
         }
       }
     } else if (session?.validated) {
@@ -5637,8 +6363,10 @@ var installCommand = new Command("install").description("Install a specific over
     console.log(`
   Preview for ${providerName} (${level}):
 `);
-    for (const f of preview.filesToCreate) console.log(`  + ${f.path} \u2014 ${f.description}`);
-    for (const f of preview.filesToModify) console.log(`  ~ ${f.path} \u2014 ${f.description}`);
+    for (const f of preview.filesToCreate)
+      console.log(`  + ${f.path} \u2014 ${f.description}`);
+    for (const f of preview.filesToModify)
+      console.log(`  ~ ${f.path} \u2014 ${f.description}`);
     console.log(`
   Estimated size: ${preview.estimatedSize}
 `);
@@ -5650,13 +6378,16 @@ var installCommand = new Command("install").description("Install a specific over
     printSuccess(`${providerName} overlay installed!`);
     printDivider();
     console.log("  Files created:");
-    for (const f of result.filesCreated) console.log(`    + ${f}`);
+    for (const f of result.filesCreated)
+      console.log(`    + ${f}`);
     if (result.filesModified.length) {
       console.log("  Files modified:");
-      for (const f of result.filesModified) console.log(`    ~ ${f}`);
+      for (const f of result.filesModified)
+        console.log(`    ~ ${f}`);
     }
     console.log("\n  Next steps:");
-    for (const step of result.nextSteps) printInfo(step);
+    for (const step of result.nextSteps)
+      printInfo(step);
     console.log("");
   } else {
     printError("Installation failed.");
@@ -5702,8 +6433,10 @@ var updateCommand = new Command("update").description("Update existing Arcanea o
       const preview = await installer.preview(projectDir, level);
       console.log(`
   ${providerKey} (${level}):`);
-      for (const f of preview.filesToCreate) console.log(`    + ${f.path}`);
-      for (const f of preview.filesToModify) console.log(`    ~ ${f.path}`);
+      for (const f of preview.filesToCreate)
+        console.log(`    + ${f.path}`);
+      for (const f of preview.filesToModify)
+        console.log(`    ~ ${f.path}`);
       continue;
     }
     const result = await installer.install(projectDir, level);
@@ -6020,7 +6753,8 @@ var worldCommand = new Command("world").description("Generate world-building tem
   const realmName = options.name;
   const safeSlug = realmName.toLowerCase().replace(/[^a-z0-9\s-]+/g, "").replace(/\s+/g, "-").replace(/^-|-$/g, "") || "realm";
   const outDir = (0, import_node_path10.join)(options.dir, ".arcanea", "worlds", safeSlug);
-  if (!(0, import_node_fs10.existsSync)(outDir)) (0, import_node_fs10.mkdirSync)(outDir, { recursive: true });
+  if (!(0, import_node_fs10.existsSync)(outDir))
+    (0, import_node_fs10.mkdirSync)(outDir, { recursive: true });
   const pillarsToGenerate = options.all ? SEVEN_PILLARS : aspect ? SEVEN_PILLARS.filter((p) => p.name === aspect.toLowerCase()) : [];
   if (pillarsToGenerate.length === 0 && !options.all) {
     console.log("\n  The Seven Pillars of World-Building:\n");
@@ -6291,7 +7025,8 @@ var createCommand2 = new Command("create").description("Generate creative templa
   }
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const outDir = (0, import_node_path11.join)(options.dir, ".arcanea", template.dir);
-  if (!(0, import_node_fs11.existsSync)(outDir)) (0, import_node_fs11.mkdirSync)(outDir, { recursive: true });
+  if (!(0, import_node_fs11.existsSync)(outDir))
+    (0, import_node_fs11.mkdirSync)(outDir, { recursive: true });
   const content = template.generate(name);
   const filePath = (0, import_node_path11.join)(outDir, `${slug}.md`);
   (0, import_node_fs11.writeFileSync)(filePath, content);
@@ -6300,14 +7035,105 @@ var createCommand2 = new Command("create").description("Generate creative templa
   console.log("");
 });
 
+// dist/commands/route.js
+var import_picocolors4 = __toESM(require_picocolors(), 1);
+var routeCommand = new Command("route").description("Route a task to the best Guardian").argument("<description...>", "Task description to route").action((descWords) => {
+  const description = descWords.join(" ");
+  const result = routeToGuardian(description);
+  const g = result.guardian;
+  console.log();
+  console.log(`  ${import_picocolors4.default.bold(import_picocolors4.default.cyan(g.displayName))} ${import_picocolors4.default.dim(`(${g.role})`)}`);
+  console.log(`  ${import_picocolors4.default.dim("Gate:")} ${g.gate} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Element:")} ${result.element} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Confidence:")} ${import_picocolors4.default.green((result.confidence * 100).toFixed(0) + "%")}`);
+  console.log(`  ${import_picocolors4.default.dim("Domain:")} ${g.domain}`);
+  console.log();
+  console.log(`  ${import_picocolors4.default.italic(import_picocolors4.default.dim(g.vibe))}`);
+  console.log();
+  console.log(`  ${import_picocolors4.default.dim("Reasoning:")} ${result.reasoning}`);
+  if (result.alternatives.length > 0) {
+    console.log();
+    printDivider();
+    console.log(`  ${import_picocolors4.default.dim("Alternatives:")}`);
+    for (const alt of result.alternatives) {
+      const pct = (alt.confidence * 100).toFixed(0);
+      console.log(`    ${import_picocolors4.default.dim(alt.guardian.displayName)} (${pct}%)`);
+    }
+  }
+  console.log();
+  console.log(`  ${import_picocolors4.default.dim(g.signOff)}`);
+  console.log();
+});
+
+// dist/commands/voice.js
+var import_picocolors5 = __toESM(require_picocolors(), 1);
+var voiceCommand = new Command("voice").description("Check text against the Arcanea Voice Bible").argument("<text...>", "Text to check").option("--fix", "Auto-fix violations where possible").action((textWords, opts) => {
+  const text = textWords.join(" ");
+  const enforcer = new VoiceEnforcer();
+  const result = enforcer.check(text);
+  console.log();
+  const scoreColor = result.score >= 80 ? import_picocolors5.default.green : result.score >= 50 ? import_picocolors5.default.yellow : import_picocolors5.default.red;
+  console.log(`  ${import_picocolors5.default.bold("Voice Score:")} ${scoreColor(result.score.toString())}/100  ${result.passed ? import_picocolors5.default.green("PASSED") : import_picocolors5.default.red("NEEDS WORK")}`);
+  if (result.violations.length > 0) {
+    console.log();
+    printDivider();
+    console.log(`  ${import_picocolors5.default.bold("Violations")} (${result.violations.length}):`);
+    console.log();
+    for (const v of result.violations) {
+      const icon = v.rule.severity === "error" ? import_picocolors5.default.red("x") : v.rule.severity === "warning" ? import_picocolors5.default.yellow("!") : import_picocolors5.default.dim("~");
+      console.log(`  ${icon} ${import_picocolors5.default.dim(`[${v.rule.severity}]`)} "${import_picocolors5.default.bold(v.match)}" \u2014 ${v.rule.description}`);
+      console.log(`    ${import_picocolors5.default.cyan("->")} ${v.suggestion}`);
+    }
+  }
+  if (opts.fix) {
+    console.log();
+    printDivider();
+    const fixed = enforcer.fix(text);
+    console.log(`  ${import_picocolors5.default.bold("Fixed:")}`);
+    console.log(`  ${fixed}`);
+  }
+  console.log();
+});
+
+// dist/commands/tokens.js
+var import_picocolors6 = __toESM(require_picocolors(), 1);
+var tokensCommand = new Command("tokens").description("Export Arcanea design system tokens").option("-f, --format <format>", "Output format: css, tailwind, json", "json").option("--colors", "Show color palette only").action((opts) => {
+  if (opts.colors) {
+    console.log();
+    console.log(`  ${import_picocolors6.default.bold("Arcanea Color Palette")}`);
+    console.log();
+    for (const [group, values] of Object.entries(COLORS)) {
+      console.log(`  ${import_picocolors6.default.bold(import_picocolors6.default.dim(group.toUpperCase()))}`);
+      for (const [name, value] of Object.entries(values)) {
+        console.log(`    ${import_picocolors6.default.dim(name.padEnd(12))} ${value}`);
+      }
+      console.log();
+    }
+    return;
+  }
+  switch (opts.format) {
+    case "css":
+      console.log(toCSSVariables());
+      break;
+    case "tailwind":
+      console.log(JSON.stringify(toTailwindConfig(), null, 2));
+      break;
+    case "json":
+    default:
+      console.log(JSON.stringify(toJSON(), null, 2));
+      break;
+  }
+});
+
 // dist/index.js
 var program2 = new Command();
-program2.name("arcanea").description("Arcanea Intelligence OS \u2014 Overlay any AI tool with arcane intelligence").version("1.0.0");
+program2.name("arcanea").description("Arcanea Realm \u2014 Overlay any AI tool with arcane intelligence").version("0.2.0");
 program2.addCommand(initCommand);
 program2.addCommand(authCommand);
 program2.addCommand(statusCommand);
 program2.addCommand(installCommand);
 program2.addCommand(updateCommand);
+program2.addCommand(routeCommand);
+program2.addCommand(voiceCommand);
+program2.addCommand(tokensCommand);
 program2.addCommand(worldCommand);
 program2.addCommand(createCommand2);
 program2.parse(process.argv);

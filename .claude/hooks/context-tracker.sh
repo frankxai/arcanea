@@ -223,12 +223,8 @@ db.close()
       ;;
   esac
 
-  # Return non-zero for warning zones (useful for hook integration)
-  if [[ "$zone" == "DEGRADING" || "$zone" == "REFRESH" ]]; then
-    return 1
-  fi
-
+  # Always return 0 to avoid hook errors — context tracking is advisory only
   return 0
 }
 
-main "$@"
+main "$@" || true
