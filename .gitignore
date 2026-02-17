@@ -2,6 +2,9 @@
 node_modules/
 .pnpm-store/
 
+# Claude Code worktrees
+.claude/worktrees/
+
 # Next.js
 .next/
 out/

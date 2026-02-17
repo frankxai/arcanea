@@ -1,5 +1,0 @@
-packages:
-  - "apps/*"
-  - "packages/*"
-  # - "oss/*" # Uncomment if you have packages in oss/
-  # Archive is excluded by default as it's not listed here

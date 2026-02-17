@@ -1,3 +1,0 @@
-"""
-Arcanea Python Integration Tests
-"""
