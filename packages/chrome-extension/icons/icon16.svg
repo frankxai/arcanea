@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg-grad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1a1d26"/>
+      <stop offset="100%" stop-color="#0b0e14"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7fffd4" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7fffd4" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow-filter">
+      <feGaussianBlur stdDeviation="0.64" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="16" height="16" rx="3.2" fill="url(#bg-grad)"/>
+
+  <!-- Outer ring -->
+  <circle cx="8" cy="8" r="6.56"
+    fill="none"
+    stroke="#7fffd4"
+    stroke-width="0.4"
+    stroke-opacity="0.3"/>
+
+  <!-- Glow -->
+  <circle cx="8" cy="8" r="4" fill="url(#glow)"/>
+
+  <!-- Star/Mark symbol -->
+  <text
+    x="8"
+    y="10.8"
+    text-anchor="middle"
+    font-family="system-ui, -apple-system, serif"
+    font-size="8"
+    fill="#7fffd4"
+    filter="url(#glow-filter)"
+    font-weight="bold">✦</text>
+</svg>

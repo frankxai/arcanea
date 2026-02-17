@@ -14,7 +14,7 @@ import { config } from 'dotenv';
 // Load environment variables
 config();
 
-const app = express();
+const app: ReturnType<typeof express> = express();
 const server = createServer(app);
 
 // 🌟 Premium Arcanea Configuration

@@ -1,0 +1,16 @@
+{
+  "name": "@arcanea/chrome-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Arcanea Intelligence OS for Chrome — Guardian-powered AI on every webpage",
+  "scripts": {
+    "dev": "node build.mjs --watch",
+    "build": "node build.mjs",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.36",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcanea — Guardian AI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void: #0b0e14;
+      --surface: #12151c;
+      --raised: #1a1d26;
+      --elevated: #21242f;
+      --overlay: #282b38;
+      --border: rgba(127, 255, 212, 0.1);
+      --border-hover: rgba(127, 255, 212, 0.3);
+      --teal: #7fffd4;
+      --gold: #ffd700;
+      --violet: #9966ff;
+      --text-primary: #e8e6e3;
+      --text-secondary: #8b8d93;
+      --text-muted: #555860;
+    }
+
+    body {
+      width: 380px;
+      min-height: 520px;
+      background: var(--void);
+      color: var(--text-primary);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px 14px;
+      background: linear-gradient(135deg, rgba(127,255,212,0.04) 0%, rgba(153,102,255,0.04) 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      opacity: 0.4;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-mark {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .logo-text {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, var(--teal), var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--teal);
+      background: var(--raised);
+    }
+
+    /* ── Active Guardian Panel ── */
+    .guardian-panel {
+      margin: 14px 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guardian-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: var(--guardian-color, rgba(127,255,212,0.04));
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .guardian-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .guardian-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--guardian-color-bg, rgba(127,255,212,0.1));
+      border: 2px solid var(--guardian-color, var(--teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .guardian-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .guardian-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--guardian-color, var(--teal));
+      line-height: 1.2;
+    }
+
+    .guardian-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .guardian-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ── Quick Actions ── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      padding: 0 16px 8px;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 0 16px;
+      margin-bottom: 14px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      text-align: left;
+    }
+
+    .action-btn:hover {
+      background: var(--raised);
+      border-color: var(--border-hover);
+      color: var(--teal);
+    }
+
+    .action-btn .action-icon {
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .action-btn .action-label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ── Guardian Selector ── */
+    .guardian-selector {
+      padding: 0 16px;
+      margin-bottom: 14px;
+    }
+
+    .guardian-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .guardian-chip {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      title: attr(data-name);
+      position: relative;
+    }
+
+    .guardian-chip:hover {
+      border-color: var(--chip-color, var(--teal));
+      transform: scale(1.1);
+    }
+
+    .guardian-chip.active {
+      border-color: var(--chip-color, var(--teal));
+      background: rgba(127,255,212,0.1);
+      box-shadow: 0 0 10px var(--chip-color, var(--teal)), 0 0 0 1px var(--chip-color, var(--teal));
+    }
+
+    /* ── Recent Conversations ── */
+    .recent-section {
+      padding: 0 16px;
+      margin-bottom: 14px;
+    }
+
+    .recent-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .recent-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .recent-item:hover {
+      background: var(--raised);
+      border-color: var(--border-hover);
+    }
+
+    .recent-avatar {
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .recent-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .recent-text {
+      font-size: 12px;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .recent-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .footer-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--teal);
+      background: rgba(127,255,212,0.04);
+    }
+
+    .provider-badge {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(127,255,212,0.08);
+      border: 1px solid rgba(127,255,212,0.15);
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 12px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* ── Pulse animation for guardian icon ── */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 8px var(--guardian-color, var(--teal)); }
+      50% { box-shadow: 0 0 18px var(--guardian-color, var(--teal)); }
+    }
+
+    .guardian-avatar {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <span class="logo-mark">✦</span>
+      <span class="logo-text">Arcanea</span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="open-sidepanel-btn" title="Open Side Panel">⊞</button>
+      <a class="icon-btn" href="options.html" target="_blank" id="settings-link" title="Settings">⚙</a>
+    </div>
+  </div>
+
+  <div class="guardian-panel" id="guardian-panel">
+    <div class="guardian-header">
+      <div class="guardian-avatar" id="guardian-avatar">👁️</div>
+      <div class="guardian-info">
+        <div class="guardian-name" id="guardian-name">Lyria</div>
+        <div class="guardian-meta" id="guardian-meta">Gate of Sight • Wind • 852 Hz</div>
+      </div>
+    </div>
+    <div class="guardian-desc" id="guardian-desc">Vision & Intuition — Strategy, design patterns, foresight.</div>
+  </div>
+
+  <div class="section-label">Quick Actions</div>
+  <div class="quick-actions">
+    <button class="action-btn" data-action="summarize">
+      <span class="action-icon">📖</span>
+      <span class="action-label">Summarize Page</span>
+    </button>
+    <button class="action-btn" data-action="ask">
+      <span class="action-icon">✦</span>
+      <span class="action-label">Ask Guardian</span>
+    </button>
+    <button class="action-btn" data-action="analyze">
+      <span class="action-icon">🔍</span>
+      <span class="action-label">Analyze</span>
+    </button>
+    <button class="action-btn" data-action="write">
+      <span class="action-icon">✏️</span>
+      <span class="action-label">Write / Edit</span>
+    </button>
+  </div>
+
+  <div class="section-label">Choose Guardian</div>
+  <div class="guardian-selector">
+    <div class="guardian-grid" id="guardian-grid">
+      <!-- Populated by popup.ts -->
+    </div>
+  </div>
+
+  <div class="section-label">Recent</div>
+  <div class="recent-section">
+    <div class="recent-list" id="recent-list">
+      <div class="empty-state">No recent conversations</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button class="footer-btn" id="provider-toggle">
+      <span>🤖</span>
+      <span id="provider-label">Claude</span>
+    </button>
+    <span class="provider-badge" id="model-badge">claude-opus-4-6</span>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

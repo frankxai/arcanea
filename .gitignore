@@ -159,6 +159,8 @@ pages/
 src/
 !packages/*/src/
 !packages/*/src/**
+!apps/*/src/
+!apps/*/src/**
 styles/
 apps/web/app/page.js
 

@@ -1,0 +1,15 @@
+/* Arcanea Content Script Styles
+   All rules are scoped with .arcanea- prefix to avoid conflicts.
+   The Shadow DOM in content.ts handles full style isolation,
+   but this file is available for any non-Shadow DOM elements. */
+
+#arcanea-extension-root {
+  all: unset;
+  position: fixed;
+  z-index: 2147483647;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
