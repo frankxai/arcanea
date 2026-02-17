@@ -5234,7 +5234,8 @@ function getTiersForLevel(level) {
 }
 function generateSkillFile(skillId, level = "standard") {
   const template = SKILL_TEMPLATES[skillId];
-  if (!template) return null;
+  if (!template)
+    return null;
   const frontmatter = `---
 name: ${template.name}
 description: ${template.description}
@@ -5412,7 +5413,8 @@ ${cmd.body}
   }
   async uninstall(projectDir) {
     const manifestPath = (0, import_node_path3.join)(projectDir, ".arcanea", "overlay-manifest.json");
-    if (!(0, import_node_fs3.existsSync)(manifestPath)) return;
+    if (!(0, import_node_fs3.existsSync)(manifestPath))
+      return;
     const manifest = JSON.parse((0, import_node_fs3.readFileSync)(manifestPath, "utf-8"));
     delete manifest.overlays?.claude;
     (0, import_node_fs3.writeFileSync)(manifestPath, JSON.stringify(manifest, null, 2));
@@ -5468,7 +5470,8 @@ var ChatGPTOverlayInstaller = class {
   async install(projectDir, level) {
     const filesCreated = [];
     const outDir = (0, import_node_path4.join)(projectDir, ".arcanea", "chatgpt");
-    if (!(0, import_node_fs4.existsSync)(outDir)) (0, import_node_fs4.mkdirSync)(outDir, { recursive: true });
+    if (!(0, import_node_fs4.existsSync)(outDir))
+      (0, import_node_fs4.mkdirSync)(outDir, { recursive: true });
     const prompt = generateSystemPrompt({ level, provider: "openai" });
     const promptPath = (0, import_node_path4.join)(outDir, "system-prompt.md");
     (0, import_node_fs4.writeFileSync)(promptPath, prompt);
@@ -5486,7 +5489,8 @@ var ChatGPTOverlayInstaller = class {
     }
     if (level === "full" || level === "luminor") {
       const guardiansDir = (0, import_node_path4.join)(outDir, "guardian-gpts");
-      if (!(0, import_node_fs4.existsSync)(guardiansDir)) (0, import_node_fs4.mkdirSync)(guardiansDir, { recursive: true });
+      if (!(0, import_node_fs4.existsSync)(guardiansDir))
+        (0, import_node_fs4.mkdirSync)(guardiansDir, { recursive: true });
       for (const g of GUARDIANS) {
         const guardianPrompt = generateSystemPrompt({
           level: "standard",
@@ -5548,7 +5552,8 @@ Create separate Custom GPTs for your most-used Guardians:
     (0, import_node_fs4.writeFileSync)(setupPath, setupContent);
     filesCreated.push((0, import_node_path4.relative)(projectDir, setupPath));
     const manifestDir = (0, import_node_path4.join)(projectDir, ".arcanea");
-    if (!(0, import_node_fs4.existsSync)(manifestDir)) (0, import_node_fs4.mkdirSync)(manifestDir, { recursive: true });
+    if (!(0, import_node_fs4.existsSync)(manifestDir))
+      (0, import_node_fs4.mkdirSync)(manifestDir, { recursive: true });
     const manifestPath = (0, import_node_path4.join)(manifestDir, "overlay-manifest.json");
     const now = (/* @__PURE__ */ new Date()).toISOString();
     let manifest = {};
@@ -5631,14 +5636,16 @@ var GeminiOverlayInstaller = class {
   async install(projectDir, level) {
     const filesCreated = [];
     const outDir = (0, import_node_path5.join)(projectDir, ".arcanea", "gemini");
-    if (!(0, import_node_fs5.existsSync)(outDir)) (0, import_node_fs5.mkdirSync)(outDir, { recursive: true });
+    if (!(0, import_node_fs5.existsSync)(outDir))
+      (0, import_node_fs5.mkdirSync)(outDir, { recursive: true });
     const prompt = generateSystemPrompt({ level, provider: "gemini" });
     const promptPath = (0, import_node_path5.join)(outDir, "system-instructions.md");
     (0, import_node_fs5.writeFileSync)(promptPath, prompt);
     filesCreated.push((0, import_node_path5.relative)(projectDir, promptPath));
     if (level !== "minimal") {
       const guardiansDir = (0, import_node_path5.join)(outDir, "guardian-prompts");
-      if (!(0, import_node_fs5.existsSync)(guardiansDir)) (0, import_node_fs5.mkdirSync)(guardiansDir, { recursive: true });
+      if (!(0, import_node_fs5.existsSync)(guardiansDir))
+        (0, import_node_fs5.mkdirSync)(guardiansDir, { recursive: true });
       for (const g of GUARDIANS) {
         const gPrompt = `# ${g.displayName} \u2014 Gemini System Instruction
 
@@ -5728,7 +5735,8 @@ const guardianPrompt = readFileSync(
     (0, import_node_fs5.writeFileSync)(setupPath, setupContent);
     filesCreated.push((0, import_node_path5.relative)(projectDir, setupPath));
     const manifestDir = (0, import_node_path5.join)(projectDir, ".arcanea");
-    if (!(0, import_node_fs5.existsSync)(manifestDir)) (0, import_node_fs5.mkdirSync)(manifestDir, { recursive: true });
+    if (!(0, import_node_fs5.existsSync)(manifestDir))
+      (0, import_node_fs5.mkdirSync)(manifestDir, { recursive: true });
     const manifestPath = (0, import_node_path5.join)(manifestDir, "overlay-manifest.json");
     const now = (/* @__PURE__ */ new Date()).toISOString();
     let manifest = (0, import_node_fs5.existsSync)(manifestPath) ? JSON.parse((0, import_node_fs5.readFileSync)(manifestPath, "utf-8")) : { arcanea: { coreVersion: "1.0.0", installedAt: now, updatedAt: now }, overlays: {} };
@@ -5801,7 +5809,8 @@ var CopilotOverlayInstaller = class {
     const filesCreated = [];
     const filesModified = [];
     const githubDir = (0, import_node_path6.join)(projectDir, ".github");
-    if (!(0, import_node_fs6.existsSync)(githubDir)) (0, import_node_fs6.mkdirSync)(githubDir, { recursive: true });
+    if (!(0, import_node_fs6.existsSync)(githubDir))
+      (0, import_node_fs6.mkdirSync)(githubDir, { recursive: true });
     const content = generateCopilotInstructions(level);
     const filePath = (0, import_node_path6.join)(githubDir, "copilot-instructions.md");
     if ((0, import_node_fs6.existsSync)(filePath)) {
@@ -5846,7 +5855,8 @@ package-lock.json
       }
     }
     const manifestDir = (0, import_node_path6.join)(projectDir, ".arcanea");
-    if (!(0, import_node_fs6.existsSync)(manifestDir)) (0, import_node_fs6.mkdirSync)(manifestDir, { recursive: true });
+    if (!(0, import_node_fs6.existsSync)(manifestDir))
+      (0, import_node_fs6.mkdirSync)(manifestDir, { recursive: true });
     const manifestPath = (0, import_node_path6.join)(manifestDir, "overlay-manifest.json");
     const now = (/* @__PURE__ */ new Date()).toISOString();
     let manifest = (0, import_node_fs6.existsSync)(manifestPath) ? JSON.parse((0, import_node_fs6.readFileSync)(manifestPath, "utf-8")) : { arcanea: { coreVersion: "1.0.0", installedAt: now, updatedAt: now }, overlays: {} };
@@ -5927,14 +5937,13 @@ ${prompt}
     filesCreated.push((0, import_node_path7.relative)(projectDir, cursorrulesPath));
     if (level !== "minimal") {
       const rulesDir = (0, import_node_path7.join)(projectDir, ".cursor", "rules");
-      if (!(0, import_node_fs7.existsSync)(rulesDir)) (0, import_node_fs7.mkdirSync)(rulesDir, { recursive: true });
-      const guardianSection = GUARDIANS.map(
-        (g) => `### ${g.displayName}
+      if (!(0, import_node_fs7.existsSync)(rulesDir))
+        (0, import_node_fs7.mkdirSync)(rulesDir, { recursive: true });
+      const guardianSection = GUARDIANS.map((g) => `### ${g.displayName}
 - **Gate**: ${g.gate} (${g.frequency} Hz)
 - **Element**: ${g.element || "void"}
 - **Domain**: ${g.domain}${g.signOff ? `
-- **Sign-off**: "${g.signOff}"` : ""}`
-      ).join("\n\n");
+- **Sign-off**: "${g.signOff}"` : ""}`).join("\n\n");
       const mdcContent = `---
 description: Arcanea Intelligence OS rules for Cursor
 globs: ["**/*"]
@@ -5961,7 +5970,8 @@ ${guardianSection}
       filesCreated.push((0, import_node_path7.relative)(projectDir, mdcPath));
     }
     const manifestDir = (0, import_node_path7.join)(projectDir, ".arcanea");
-    if (!(0, import_node_fs7.existsSync)(manifestDir)) (0, import_node_fs7.mkdirSync)(manifestDir, { recursive: true });
+    if (!(0, import_node_fs7.existsSync)(manifestDir))
+      (0, import_node_fs7.mkdirSync)(manifestDir, { recursive: true });
     const manifestPath = (0, import_node_path7.join)(manifestDir, "overlay-manifest.json");
     const now = (/* @__PURE__ */ new Date()).toISOString();
     let manifest = (0, import_node_fs7.existsSync)(manifestPath) ? JSON.parse((0, import_node_fs7.readFileSync)(manifestPath, "utf-8")) : { arcanea: { coreVersion: "1.0.0", installedAt: now, updatedAt: now }, overlays: {} };
