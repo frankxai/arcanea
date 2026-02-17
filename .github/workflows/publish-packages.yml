@@ -6,6 +6,7 @@ on:
     paths:
       - 'packages/core/**'
       - 'packages/cli/**'
+      - 'packages/arcanea-mcp/**'
       - '.changeset/**'
 
 concurrency:
@@ -40,6 +41,7 @@ jobs:
         run: |
           pnpm --filter @arcanea/os run build
           pnpm --filter @arcanea/cli run build
+          pnpm --filter @arcanea/mcp-server run build
 
       - name: Run tests
         run: |
