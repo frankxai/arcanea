@@ -42,6 +42,8 @@ jobs:
       - name: Build packages
         run: |
           pnpm --filter @arcanea/os run build
+          pnpm --filter @arcanea/auth run build
+          pnpm --filter "@arcanea/overlay-*" run build
           pnpm --filter @arcanea/cli run build
 
       - name: Run CLI tests
@@ -72,6 +74,8 @@ jobs:
       - name: Type check all packages
         run: |
           pnpm --filter @arcanea/os run build
+          pnpm --filter @arcanea/auth run build
+          pnpm --filter "@arcanea/overlay-*" run build
           pnpm --filter @arcanea/mcp-server run build
           pnpm --filter @arcanea/cli run build
 
