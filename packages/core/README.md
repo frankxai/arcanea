@@ -2,7 +2,7 @@
 
 > **The intelligence engine powering Arcanea** — Guardian routing, voice enforcement, design tokens, and session management for AI creation tools.
 
-[![npm version](https://badge.fury.io/js/%40arcanea%2Fcore.svg)](https://www.npmjs.com/package/@arcanea/os)
+[![npm version](https://badge.fury.io/js/%40arcanea%2Fos.svg)](https://www.npmjs.com/package/@arcanea/os)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
