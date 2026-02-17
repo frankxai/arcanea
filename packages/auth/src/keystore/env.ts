@@ -3,7 +3,7 @@
  * Reads credentials from environment variables.
  */
 
-import type { Keystore, ProviderType } from '@arcanea/core';
+import type { Keystore, ProviderType } from '@arcanea/os';
 import { getAuthAdapter } from '../adapters/index.js';
 
 export class EnvKeystore implements Keystore {

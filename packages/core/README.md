@@ -1,17 +1,17 @@
-# @arcanea/core
+# @arcanea/os
 
 > **The intelligence engine powering Arcanea** — Guardian routing, voice enforcement, design tokens, and session management for AI creation tools.
 
-[![npm version](https://badge.fury.io/js/%40arcanea%2Fcore.svg)](https://www.npmjs.com/package/@arcanea/core)
+[![npm version](https://badge.fury.io/js/%40arcanea%2Fcore.svg)](https://www.npmjs.com/package/@arcanea/os)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
 ```bash
-npm install @arcanea/core
+npm install @arcanea/os
 # or
-pnpm add @arcanea/core
+pnpm add @arcanea/os
 ```
 
 ## Intelligence Engine (v0.2.0)
@@ -21,7 +21,7 @@ pnpm add @arcanea/core
 Route any creative task to the optimal Guardian based on keyword analysis:
 
 ```typescript
-import { routeToGuardian } from '@arcanea/core';
+import { routeToGuardian } from '@arcanea/os';
 
 const route = routeToGuardian("design a flowing water-themed UI");
 // → {
@@ -39,7 +39,7 @@ const route = routeToGuardian("design a flowing water-themed UI");
 Validate text against the Arcanea Voice Bible v2.0:
 
 ```typescript
-import { VoiceEnforcer } from '@arcanea/core';
+import { VoiceEnforcer } from '@arcanea/os';
 
 const voice = new VoiceEnforcer();
 const check = voice.check("Welcome users to our platform");
@@ -58,7 +58,7 @@ const fixed = voice.fix("Welcome users to our platform");
 Export the full Arcanean Design System:
 
 ```typescript
-import { toCSSVariables, toTailwindConfig, toJSON } from '@arcanea/core';
+import { toCSSVariables, toTailwindConfig, toJSON } from '@arcanea/os';
 
 // CSS custom properties
 const css = toCSSVariables();
@@ -77,7 +77,7 @@ const tokens = toJSON();
 Track Guardian state, Gate progression, and element resonance:
 
 ```typescript
-import { SessionManager } from '@arcanea/core';
+import { SessionManager } from '@arcanea/os';
 
 const session = new SessionManager();
 session.activateGuardian("Leyla");
@@ -90,11 +90,11 @@ console.log(session.getState());
 ## Types & Constants
 
 ```typescript
-import type { Guardian, Gate, Element, Luminor } from '@arcanea/core';
-import { GATES, GUARDIANS, LUMINORS, ACADEMIES } from '@arcanea/core';
+import type { Guardian, Gate, Element, Luminor } from '@arcanea/os';
+import { GATES, GUARDIANS, LUMINORS, ACADEMIES } from '@arcanea/os';
 
 // Calculate rank based on gates opened
-import { calculateMagicRank, getElementColor, formatGateName } from '@arcanea/core';
+import { calculateMagicRank, getElementColor, formatGateName } from '@arcanea/os';
 
 const rank = calculateMagicRank(7); // → "Archmage"
 const color = getElementColor('water'); // → "#4169e1"
@@ -119,7 +119,7 @@ const color = getElementColor('water'); // → "#4169e1"
 
 | Package | Purpose |
 |:--------|:--------|
-| [`@arcanea/core`](https://github.com/frankxai/arcanea/tree/main/packages/core) | Intelligence engine (this package) |
+| [`@arcanea/os`](https://github.com/frankxai/arcanea/tree/main/packages/core) | Intelligence engine (this package) |
 | [`@arcanea/cli`](https://github.com/frankxai/arcanea/tree/main/packages/cli) | CLI with 10 commands |
 | [`@arcanea/mcp-server`](https://github.com/frankxai/arcanea/tree/main/packages/arcanea-mcp) | 30 MCP tools for any AI client |
 | [`arcanea.ai`](https://arcanea.ai) | Live web platform |

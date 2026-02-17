@@ -1,0 +1,223 @@
+<!--
+  Arcanea Integration Loader
+  Add this to the <head> section of all HTML files
+  Loads all required modules in correct order
+  Version: 3.0.0
+-->
+
+<!-- 1. Supabase CDN (required for auth and database) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
+
+<!-- 2. Arcanea Configuration (MUST be set before other modules) -->
+<script>
+  // Configure Arcanea with your Supabase credentials
+  // Replace these with your actual credentials from Supabase dashboard
+  window.ARCANEA_CONFIG = {
+    // Supabase credentials (REQUIRED)
+    SUPABASE_URL: 'https://your-project.supabase.co',
+    SUPABASE_ANON_KEY: 'your-anon-key',
+    
+    // AI API Keys (OPTIONAL but recommended)
+    OPENAI_API_KEY: 'sk-your-openai-key', // Get from https://platform.openai.com/api-keys
+    ANTHROPIC_API_KEY: 'sk-ant-your-claude-key', // Get from https://console.anthropic.com/
+    
+    // MCP Server (OPTIONAL)
+    MCP_SERVER_URL: 'http://localhost:3000', // Your MCP server URL
+    MCP_API_KEY: 'your-mcp-api-key',
+    
+    // App settings
+    APP_NAME: 'Arcanea',
+    DEBUG_MODE: false,
+    SYNC_INTERVAL: 5000, // 5 seconds
+    OFFLINE_MODE_ENABLED: true
+  };
+</script>
+
+<!-- 3. Core Modules (load in this specific order) -->
+<script src="supabase-config.js"></script>
+<script src="arcanea-auth.js"></script>
+<script src="auth-ui.js"></script>
+<script src="sync-engine.js"></script>
+<script src="arcanea-mcp-live.js"></script>
+<script src="arcanea-agents-live.js"></script>
+<script src="mobile-integration.js"></script>
+<script src="arcanea-storage.js"></script>
+
+<!-- 4. Arcanea Master Loader (initializes everything) -->
+<script src="arcanea-loader.js"></script>
+
+<!-- 5. Initialization -->
+<script>
+  document.addEventListener('DOMContentLoaded', async function() {
+    console.log('🌟 Arcanea Ecosystem Initializing...');
+    
+    // Check if configuration is set
+    if (!window.ARCANEA_CONFIG || !window.ARCANEA_CONFIG.SUPABASE_URL) {
+      console.warn('⚠️ Arcanea not configured. Please set window.ARCANEA_CONFIG with your Supabase credentials.');
+      console.warn('   See INTEGRATION.md for setup instructions.');
+      return;
+    }
+    
+    try {
+      // Initialize Supabase
+      const supabaseReady = await ArcaneaSupabase.Client.initialize();
+      if (supabaseReady) {
+        console.log('✅ Supabase connected');
+      } else {
+        console.warn('⚠️ Supabase connection failed - running in offline mode');
+      }
+      
+      // Initialize Auth
+      const authReady = await ArcaneaAuth.initialize();
+      if (authReady) {
+        console.log('✅ Auth system ready');
+        
+        // Update UI based on auth state
+        ArcaneaAuth.onAuthStateChange((event, data) => {
+          if (event === 'user_changed') {
+            if (data.user) {
+              console.log('👤 User authenticated:', data.user.email);
+              // Update UI for logged-in user
+              document.body.classList.add('user-authenticated');
+            } else {
+              console.log('👤 User signed out');
+              document.body.classList.remove('user-authenticated');
+            }
+          }
+        });
+      }
+      
+      // Initialize Sync Engine
+      await ArcaneaSync.initialize();
+      console.log('✅ Sync engine ready');
+      
+      // Initialize MCP Client
+      ArcaneaMCP.initialize();
+      console.log('✅ MCP client ready');
+      
+      // Initialize AI Agents
+      ArcaneaAI.initialize();
+      console.log('✅ AI agents ready');
+      
+      // Initialize Mobile Integration
+      ArcaneaMobile.initialize();
+      console.log('✅ Mobile optimization ready');
+      
+      // Initialize Auth UI
+      AuthUI.initialize();
+      
+      // Create user menu if container exists
+      const userMenuContainer = document.getElementById('user-menu-container');
+      if (userMenuContainer) {
+        AuthUI.createUserMenu('user-menu-container');
+      }
+      
+      // Create sync status indicator if container exists
+      const syncStatusContainer = document.getElementById('sync-status-container');
+      if (syncStatusContainer) {
+        ArcaneaSync.createStatusIndicator('sync-status-container');
+      }
+      
+      // Setup auto-save for games
+      if (typeof ArcaneaStorage !== 'undefined') {
+        // Hook into storage changes for cloud sync
+        const originalSave = ArcaneaStorage.saveGameState;
+        ArcaneaStorage.saveGameState = async function(state) {
+          // Save locally first
+          const result = originalSave.call(this, state);
+          
+          // Then sync to cloud
+          if (ArcaneaAuth.isAuthenticated()) {
+            await ArcaneaSync.saveGameState(state);
+          }
+          
+          return result;
+        };
+      }
+      
+      console.log('🎉 Arcanea Ecosystem fully initialized!');
+      console.log('   Status:', ArcaneaAuth.isAuthenticated() ? 'Authenticated' : 'Guest mode');
+      console.log('   Device:', ArcaneaMobile.getDeviceInfo().type);
+      
+      // Dispatch ready event
+      window.dispatchEvent(new CustomEvent('arcanea:ready', {
+        detail: {
+          authenticated: ArcaneaAuth.isAuthenticated(),
+          user: ArcaneaAuth.getUser(),
+          device: ArcaneaMobile.getDeviceInfo()
+        }
+      }));
+      
+    } catch (error) {
+      console.error('❌ Arcanea initialization failed:', error);
+    }
+  });
+  
+  // Helper function to summon an agent
+  window.summonAgent = async function(agentId, message) {
+    if (!ArcaneaAI) {
+      console.error('AI system not initialized');
+      return;
+    }
+    
+    const agent = ArcaneaAI.getAgent(agentId);
+    if (!agent) {
+      console.error('Agent not found:', agentId);
+      return;
+    }
+    
+    // Show loading indicator
+    console.log(`🔮 Summoning ${agent.name}...`);
+    
+    // Send message to agent
+    const response = await ArcaneaAI.sendMessage(agentId, message || 'Greetings, Guardian!');
+    
+    if (response.success) {
+      console.log(`${agent.name}: ${response.message}`);
+      return response;
+    } else {
+      console.error(`Failed to contact ${agent.name}:`, response.error);
+      return response;
+    }
+  };
+  
+  // Helper to check system status
+  window.checkArcaneaStatus = function() {
+    return {
+      supabase: ArcaneaSupabase?.Client?.isReady() || false,
+      auth: ArcaneaAuth?.isAuthenticated() || false,
+      user: ArcaneaAuth?.getUser() || null,
+      sync: ArcaneaSync?.getStatus() || null,
+      mcp: ArcaneaMCP?.getStatus() || null,
+      ai: ArcaneaAI?.getStatus() || null,
+      mobile: ArcaneaMobile?.getDeviceInfo() || null
+    };
+  };
+</script>
+
+<!-- 
+  NOTES:
+  
+  1. Configuration Required:
+     You MUST set window.ARCANEA_CONFIG with your actual Supabase credentials
+     before this script loads. Get them from your Supabase project dashboard.
+  
+  2. File Paths:
+     Ensure all JS files (supabase-config.js, arcanea-auth.js, etc.) are in 
+     the same directory as your HTML files, or update the paths above.
+  
+  3. Order Matters:
+     The scripts MUST load in the order shown above. Dependencies cascade:
+     - supabase-config depends on Supabase CDN
+     - arcanea-auth depends on supabase-config
+     - auth-ui depends on arcanea-auth
+     - sync-engine depends on arcanea-auth
+     - etc.
+  
+  4. Offline Mode:
+     If Supabase connection fails, the system falls back to offline mode
+     using localStorage. Changes will sync when connection is restored.
+  
+  5. For Help:
+     See INTEGRATION.md for detailed setup instructions.
+-->

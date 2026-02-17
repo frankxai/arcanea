@@ -27,7 +27,7 @@
     "directory": "packages/overlay-claude"
   },
   "dependencies": {
-    "@arcanea/core": "workspace:*"
+    "@arcanea/os": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

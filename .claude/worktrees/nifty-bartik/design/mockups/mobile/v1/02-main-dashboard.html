@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Mobile - Main Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            --accent: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --surface: rgba(255, 255, 255, 0.1);
+            --surface-hover: rgba(255, 255, 255, 0.15);
+            --success: #00ff88;
+            --warning: #ffaa00;
+        }
+
+        body {
+            background: var(--dark-gradient);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .mobile-container {
+            max-width: 375px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Header */
+        .header {
+            padding: 50px 20px 20px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .user-details h3 {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .user-details p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .notification-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: none;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background: var(--warning);
+            border-radius: 50%;
+            font-size: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .realm-status {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .realm-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--secondary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .realm-info h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .realm-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .energy-indicator {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .energy-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .energy-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            padding: 0 20px 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .action-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .action-card:hover, .action-card:active {
+            background: var(--surface-hover);
+            transform: translateY(-2px);
+        }
+
+        .action-card.primary {
+            background: var(--primary-gradient);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+        }
+
+        .action-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .action-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .action-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        /* Characters Section */
+        .characters-section {
+            padding: 0 20px 20px;
+        }
+
+        .characters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .view-all-btn {
+            font-size: 14px;
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .characters-list {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .character-card {
+            min-width: 120px;
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .character-card:hover {
+            transform: translateY(-4px);
+            background: var(--surface-hover);
+        }
+
+        .character-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--secondary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 12px;
+            position: relative;
+        }
+
+        .character-status {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #1a1a2e;
+        }
+
+        .status-online {
+            background: var(--success);
+        }
+
+        .status-busy {
+            background: var(--warning);
+        }
+
+        .character-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .character-activity {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Recent Activity */
+        .activity-section {
+            padding: 0 20px 20px;
+        }
+
+        .activity-list {
+            background: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .activity-item {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .activity-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 375px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 12px 20px 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 12px;
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-icon {
+            font-size: 20px;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .fab:hover, .fab:active {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .character-card, .action-card, .activity-item {
+            animation: slideUp 0.5s ease-out forwards;
+        }
+
+        .character-card:nth-child(2) { animation-delay: 0.1s; }
+        .character-card:nth-child(3) { animation-delay: 0.2s; }
+        .character-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .action-card:nth-child(2) { animation-delay: 0.1s; }
+        .action-card:nth-child(3) { animation-delay: 0.2s; }
+        .action-card:nth-child(4) { animation-delay: 0.3s; }
+
+        /* Scrollbar styling */
+        .characters-list::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .characters-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .characters-list::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Modal overlay for notifications */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--dark-gradient);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin: 20px;
+            max-width: 320px;
+            width: 100%;
+        }
+
+        .modal-header {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 320px) {
+            .mobile-container, .bottom-nav {
+                max-width: 320px;
+            }
+            
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <div class="user-info">
+                    <div class="user-avatar">F</div>
+                    <div class="user-details">
+                        <h3>Frank</h3>
+                        <p>Flame Weaver</p>
+                    </div>
+                </div>
+                <button class="notification-btn" onclick="showNotifications()">
+                    🔔
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+            
+            <div class="realm-status">
+                <div class="realm-icon">🏰</div>
+                <div class="realm-info">
+                    <h3>Arcanea Nexus</h3>
+                    <p>Your mystical realm is thriving</p>
+                </div>
+                <div class="energy-indicator">
+                    <div class="energy-value">847</div>
+                    <div class="energy-label">Energy</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="section-title">
+                ⚡ Quick Actions
+            </div>
+            <div class="actions-grid">
+                <div class="action-card primary" onclick="createCharacter()">
+                    <span class="action-icon">👤</span>
+                    <div class="action-title">Create Character</div>
+                    <div class="action-subtitle">Summon a new AI being</div>
+                </div>
+                <div class="action-card" onclick="generateContent()">
+                    <span class="action-icon">🎨</span>
+                    <div class="action-title">Generate Art</div>
+                    <div class="action-subtitle">Create visual magic</div>
+                </div>
+                <div class="action-card" onclick="exploreRealms()">
+                    <span class="action-icon">🌍</span>
+                    <div class="action-title">Explore Realms</div>
+                    <div class="action-subtitle">Visit other dimensions</div>
+                </div>
+                <div class="action-card" onclick="openAcademy()">
+                    <span class="action-icon">🎓</span>
+                    <div class="action-title">Academy</div>
+                    <div class="action-subtitle">Master new skills</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Characters Section -->
+        <div class="characters-section">
+            <div class="characters-header">
+                <div class="section-title">
+                    🤖 Your Characters
+                </div>
+                <button class="view-all-btn" onclick="viewAllCharacters()">View All</button>
+            </div>
+            <div class="characters-list">
+                <div class="character-card" onclick="openCharacter('luna')">
+                    <div class="character-avatar">
+                        🌙
+                        <div class="character-status status-online"></div>
+                    </div>
+                    <div class="character-name">Luna</div>
+                    <div class="character-activity">Creating music</div>
+                </div>
+                <div class="character-card" onclick="openCharacter('zephyr')">
+                    <div class="character-avatar">
+                        ⚡
+                        <div class="character-status status-busy"></div>
+                    </div>
+                    <div class="character-name">Zephyr</div>
+                    <div class="character-activity">Coding</div>
+                </div>
+                <div class="character-card" onclick="openCharacter('iris')">
+                    <div class="character-avatar">
+                        🌸
+                        <div class="character-status status-online"></div>
+                    </div>
+                    <div class="character-name">Iris</div>
+                    <div class="character-activity">Storytelling</div>
+                </div>
+                <div class="character-card" onclick="createCharacter()">
+                    <div class="character-avatar" style="background: var(--surface); border: 2px dashed var(--text-secondary);">
+                        ➕
+                    </div>
+                    <div class="character-name">Create New</div>
+                    <div class="character-activity">Summon being</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-section">
+            <div class="section-title">
+                📈 Recent Activity
+            </div>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon">🎵</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Luna released "Electric Dreams"</div>
+                        <div class="activity-subtitle">New synthwave track generated</div>
+                    </div>
+                    <div class="activity-time">2m ago</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🎨</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Artwork "Cosmic Gateway" completed</div>
+                        <div class="activity-subtitle">Visual realm expansion</div>
+                    </div>
+                    <div class="activity-time">1h ago</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">💬</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Zephyr responded to fan messages</div>
+                        <div class="activity-subtitle">Community engagement +12</div>
+                    </div>
+                    <div class="activity-time">3h ago</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🌟</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Realm energy increased</div>
+                        <div class="activity-subtitle">+47 creative force points</div>
+                    </div>
+                    <div class="activity-time">5h ago</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom spacing for nav -->
+        <div style="height: 100px;"></div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="quickCreate()" title="Quick Create">
+        ✨
+    </button>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item active">
+                <div class="nav-icon">🏠</div>
+                <div class="nav-label">Home</div>
+            </div>
+            <div class="nav-item" onclick="navigateToCharacters()">
+                <div class="nav-icon">👥</div>
+                <div class="nav-label">Characters</div>
+            </div>
+            <div class="nav-item" onclick="navigateToRealms()">
+                <div class="nav-icon">🌍</div>
+                <div class="nav-label">Realms</div>
+            </div>
+            <div class="nav-item" onclick="navigateToLibrary()">
+                <div class="nav-icon">📚</div>
+                <div class="nav-label">Library</div>
+            </div>
+            <div class="nav-item" onclick="navigateToProfile()">
+                <div class="nav-icon">👤</div>
+                <div class="nav-label">Profile</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal-overlay" id="notificationModal">
+        <div class="modal-content">
+            <div class="modal-header">✨ Notifications</div>
+            <div style="margin-bottom: 16px;">
+                <div class="activity-item" style="padding: 12px 0; border: none;">
+                    <div class="activity-icon" style="width: 32px; height: 32px; font-size: 14px;">🎵</div>
+                    <div class="activity-content">
+                        <div class="activity-title" style="font-size: 14px;">Luna's new track is trending!</div>
+                        <div class="activity-subtitle">847 plays in the first hour</div>
+                    </div>
+                </div>
+                <div class="activity-item" style="padding: 12px 0; border: none;">
+                    <div class="activity-icon" style="width: 32px; height: 32px; font-size: 14px;">👥</div>
+                    <div class="activity-content">
+                        <div class="activity-title" style="font-size: 14px;">5 new followers joined your realm</div>
+                        <div class="activity-subtitle">Welcome the new realm builders</div>
+                    </div>
+                </div>
+                <div class="activity-item" style="padding: 12px 0; border: none;">
+                    <div class="activity-icon" style="width: 32px; height: 32px; font-size: 14px;">💡</div>
+                    <div class="activity-content">
+                        <div class="activity-title" style="font-size: 14px;">Academy: New course available</div>
+                        <div class="activity-subtitle">"Advanced Character Psychology"</div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn" style="width: 100%; padding: 12px; background: var(--surface); border: none; border-radius: 8px; color: white; font-size: 14px; cursor: pointer;" onclick="closeNotifications()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functions
+        function showNotifications() {
+            document.getElementById('notificationModal').style.display = 'flex';
+            // Clear notification badge
+            document.querySelector('.notification-badge').style.display = 'none';
+        }
+
+        function closeNotifications() {
+            document.getElementById('notificationModal').style.display = 'none';
+        }
+
+        function createCharacter() {
+            window.location.href = '03-character-creator.html';
+        }
+
+        function generateContent() {
+            window.location.href = '04-content-creation.html';
+        }
+
+        function exploreRealms() {
+            window.location.href = '05-realm-explorer.html';
+        }
+
+        function openAcademy() {
+            window.location.href = '06-academy.html';
+        }
+
+        function openCharacter(characterId) {
+            window.location.href = `07-character-detail.html?id=${characterId}`;
+        }
+
+        function quickCreate() {
+            // Show quick creation menu
+            const menu = document.createElement('div');
+            menu.innerHTML = `
+                <div style="position: fixed; bottom: 160px; right: 30px; background: var(--dark-gradient); border: 1px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 16px; min-width: 180px; z-index: 200; animation: slideUp 0.3s ease-out;">
+                    <div style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">Quick Create</div>
+                    <div onclick="createCharacter()" style="padding: 8px 0; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.1);">👤 New Character</div>
+                    <div onclick="generateContent()" style="padding: 8px 0; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.1);">🎨 Generate Art</div>
+                    <div onclick="createStory()" style="padding: 8px 0; cursor: pointer;">📜 Write Story</div>
+                </div>
+            `;
+            document.body.appendChild(menu);
+            
+            // Auto-remove after 5 seconds or on click outside
+            setTimeout(() => {
+                if (menu.parentNode) menu.remove();
+            }, 5000);
+            
+            document.addEventListener('click', function(e) {
+                if (!menu.contains(e.target) && e.target !== document.querySelector('.fab')) {
+                    menu.remove();
+                }
+            }, { once: true });
+        }
+
+        function createStory() {
+            alert('Story creation feature coming soon! 📜');
+        }
+
+        function viewAllCharacters() {
+            window.location.href = '08-characters-list.html';
+        }
+
+        function navigateToCharacters() {
+            updateActiveNav(1);
+        }
+
+        function navigateToRealms() {
+            updateActiveNav(2);
+        }
+
+        function navigateToLibrary() {
+            updateActiveNav(3);
+        }
+
+        function navigateToProfile() {
+            updateActiveNav(4);
+        }
+
+        function updateActiveNav(index) {
+            document.querySelectorAll('.nav-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+        }
+
+        // Add interactive feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add touch feedback for mobile
+            document.querySelectorAll('.action-card, .character-card, .nav-item').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            });
+
+            // Simulate real-time updates
+            setInterval(() => {
+                const energy = document.querySelector('.energy-value');
+                const currentEnergy = parseInt(energy.textContent);
+                energy.textContent = currentEnergy + Math.floor(Math.random() * 5);
+            }, 30000); // Update energy every 30 seconds
+
+            // Auto-hide notification modal on outside click
+            document.getElementById('notificationModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeNotifications();
+                }
+            });
+        });
+
+        // Simulate character activity updates
+        const activityMessages = [
+            "Creating new melody...",
+            "Responding to fans...",
+            "Exploring ideas...",
+            "Collaborating...",
+            "Meditating...",
+            "Composing...",
+            "Dreaming..."
+        ];
+
+        setInterval(() => {
+            const characters = document.querySelectorAll('.character-activity');
+            characters.forEach((activity, index) => {
+                if (index < 3) { // Only update actual characters, not the "create new" card
+                    const randomMessage = activityMessages[Math.floor(Math.random() * activityMessages.length)];
+                    activity.textContent = randomMessage;
+                }
+            });
+        }, 45000); // Update character activities every 45 seconds
+    </script>
+</body>
+</html>

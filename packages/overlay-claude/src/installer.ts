@@ -13,8 +13,8 @@ import type {
   ToolDetection,
   InstallResult,
   InstallPreview,
-} from '@arcanea/core';
-import { generateClaudeMd, OVERLAY_LEVELS, GUARDIANS } from '@arcanea/core';
+} from '@arcanea/os';
+import { generateClaudeMd, OVERLAY_LEVELS, GUARDIANS } from '@arcanea/os';
 import { generateSkillFile, generateAgentFile } from './generators.js';
 
 const CORE_SKILLS = ['arcanea-canon', 'arcanea-voice', 'arcanea-design-system', 'arcanea-lore'];

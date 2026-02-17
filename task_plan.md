@@ -15,7 +15,7 @@ Ship Arcanea on EVERY surface: overlay (enhances existing AI tools), standalone 
 ---
 
 ## Phase 1: Core SDK + CLI — COMPLETE
-- [x] @arcanea/core v0.2.0 — Intelligence Engine (Guardian Router, Voice, Design Tokens, Session)
+- [x] @arcanea/os v0.2.0 — Intelligence Engine (Guardian Router, Voice, Design Tokens, Session)
 - [x] @arcanea/cli v0.2.0 — 10 commands, 17/17 tests pass
 - [x] Publish pipeline (Changesets + GitHub Actions)
 
@@ -58,7 +58,7 @@ Ship Arcanea on EVERY surface: overlay (enhances existing AI tools), standalone 
 
 ---
 
-## Phase 4: Rename @arcanea/core → @arcanea/os (Priority: HIGH)
+## Phase 4: Rename @arcanea/os → @arcanea/os (Priority: HIGH)
 **Status:** `pending`
 **Goal:** Reposition the intelligence layer as an "OS" — not just a library
 
@@ -160,7 +160,7 @@ Phase 9 (npm) ← blocked on npmjs.com setup
 | 2026-02-16 | MCP before VS Code extension | MCP gives 7+ surfaces instantly vs 1 |
 | 2026-02-17 | Fork OpenCode (TypeScript version) | MIT, same AI SDK, plugin system, multi-surface |
 | 2026-02-17 | Ship BOTH overlay + standalone | Overlay = wide reach, Standalone = deep UX |
-| 2026-02-17 | Rename @arcanea/core → @arcanea/os | "OS" positions it as intelligence layer, not just a lib |
+| 2026-02-17 | Rename @arcanea/os → @arcanea/os | "OS" positions it as intelligence layer, not just a lib |
 | 2026-02-17 | Don't fork Gemini CLI | Gemini-only AI layer, Google telemetry, harder to generalize |
 
 ---

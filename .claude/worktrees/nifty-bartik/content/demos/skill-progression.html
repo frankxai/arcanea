@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Progression - Arcanea Academy</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --arcanean-void: #0a0a0f;
+            --arcanean-deep: #1a1a2e;
+            --arcanean-midnight: #16213e;
+            --arcanean-cosmic: #1f2347;
+            --arcanean-nebula: #2a2d5a;
+            --arcanean-aurora: #3d4f73;
+            --arcanean-crystal: #4a6fa5;
+            --arcanean-luminous: #5c8bd9;
+            --arcanean-ethereal: #7ba3e3;
+            --arcanean-radiant: #9bb5e8;
+            --arcanean-celestial: #b8c6ed;
+            --arcanean-transcendent: #d6d9f2;
+            
+            --luminor-harmonix: #ff6b6b;
+            --luminor-scripta: #4ecdc4;
+            --luminor-lumina: #45b7d1;
+            --luminor-kinetix: #96ceb4;
+            --luminor-syntaxa: #feca57;
+            --luminor-nexus: #ff9ff3;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--arcanean-void);
+            color: var(--arcanean-transcendent);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Progression Gradient Background */
+        .progression-gradient-mesh {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(at 30% 20%, rgba(92, 139, 217, 0.12) 0%, transparent 50%),
+                radial-gradient(at 70% 30%, rgba(155, 181, 232, 0.08) 0%, transparent 50%),
+                radial-gradient(at 20% 70%, rgba(69, 183, 209, 0.1) 0%, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(255, 159, 243, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, var(--arcanean-void), var(--arcanean-deep));
+            animation: progressionMeshShift 35s ease-in-out infinite;
+        }
+        
+        @keyframes progressionMeshShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-15px, -10px) scale(1.03); }
+            50% { transform: translate(10px, 15px) scale(0.98); }
+            75% { transform: translate(-5px, 10px) scale(1.01); }
+        }
+        
+        /* Premium Glass Card */
+        .premium-glass-card {
+            background: rgba(31, 35, 71, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(92, 139, 217, 0.2);
+            border-radius: 16px;
+            box-shadow: 
+                0 8px 32px rgba(92, 139, 217, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Skill Constellation Map */
+        .skill-constellation-map {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: radial-gradient(circle at center, 
+                rgba(92, 139, 217, 0.05) 0%, 
+                transparent 70%);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .skill-node {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            z-index: 10;
+        }
+        
+        .skill-node.locked {
+            background: rgba(61, 79, 115, 0.3);
+            border: 2px solid rgba(61, 79, 115, 0.5);
+            color: var(--arcanean-aurora);
+        }
+        
+        .skill-node.available {
+            background: rgba(92, 139, 217, 0.2);
+            border: 2px solid var(--arcanean-luminous);
+            color: var(--arcanean-luminous);
+            box-shadow: 0 0 20px rgba(92, 139, 217, 0.3);
+            animation: skill-pulse 2s ease-in-out infinite;
+        }
+        
+        .skill-node.completed {
+            background: linear-gradient(135deg, var(--arcanean-luminous), var(--arcanean-radiant));
+            border: 2px solid var(--arcanean-radiant);
+            color: var(--arcanean-void);
+            box-shadow: 0 0 25px rgba(155, 181, 232, 0.5);
+        }
+        
+        .skill-node.mastered {
+            background: linear-gradient(135deg, var(--luminor-nexus), var(--arcanean-radiant));
+            border: 2px solid var(--luminor-nexus);
+            color: var(--arcanean-void);
+            box-shadow: 0 0 30px rgba(255, 159, 243, 0.6);
+            animation: mastery-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes skill-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes mastery-glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 159, 243, 0.6); }
+            50% { box-shadow: 0 0 40px rgba(255, 159, 243, 0.8); }
+        }
+        
+        .skill-node:hover {
+            transform: scale(1.2);
+            z-index: 20;
+        }
+        
+        /* Skill Connections */
+        .skill-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(92, 139, 217, 0.3) 20%, 
+                rgba(92, 139, 217, 0.3) 80%, 
+                transparent 100%);
+            transform-origin: left center;
+            z-index: 1;
+        }
+        
+        .skill-connection.active {
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(92, 139, 217, 0.6) 20%, 
+                rgba(92, 139, 217, 0.6) 80%, 
+                transparent 100%);
+            animation: connection-flow 2s ease-in-out infinite;
+        }
+        
+        @keyframes connection-flow {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        /* Skill Details Panel */
+        .skill-details-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background: rgba(31, 35, 71, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(92, 139, 217, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            z-index: 30;
+        }
+        
+        .skill-details-panel.active {
+            transform: translateX(0);
+        }
+        
+        /* Progress Ring */
+        .progress-ring {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+        
+        .progress-ring-svg {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring-circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+            r: 52;
+            cx: 60;
+            cy: 60;
+        }
+        
+        .progress-ring-bg {
+            stroke: rgba(61, 79, 115, 0.3);
+        }
+        
+        .progress-ring-fill {
+            stroke: var(--arcanean-luminous);
+            stroke-dasharray: 327;
+            stroke-dashoffset: 327;
+            transition: stroke-dashoffset 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .progress-ring-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .progress-ring-percentage {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--arcanean-luminous);
+        }
+        
+        .progress-ring-label {
+            font-size: 12px;
+            color: var(--arcanean-aurora);
+            margin-top: 4px;
+        }
+        
+        /* Achievement Badges */
+        .achievement-badge {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, 
+                rgba(92, 139, 217, 0.2), 
+                rgba(155, 181, 232, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .achievement-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 32px rgba(92, 139, 217, 0.3);
+        }
+        
+        .achievement-badge.unlocked {
+            background: linear-gradient(135deg, 
+                var(--arcanean-luminous), 
+                var(--arcanean-radiant));
+            box-shadow: 0 0 25px rgba(92, 139, 217, 0.5);
+        }
+        
+        .achievement-badge::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background: var(--arcanean-cosmic);
+            z-index: 1;
+        }
+        
+        .achievement-badge-icon {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Skill Tree Branches */
+        .skill-branch {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .skill-branch-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--arcanean-luminous);
+            margin-bottom: 20px;
+        }
+        
+        .skill-branch-nodes {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+        }
+        
+        .skill-branch-connector {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(92, 139, 217, 0.3) 20%, 
+                rgba(92, 139, 217, 0.3) 80%, 
+                transparent 100%);
+            transform: translateY(-50%);
+        }
+        
+        /* Mastery Levels */
+        .mastery-level {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(31, 35, 71, 0.3);
+            border: 1px solid rgba(92, 139, 217, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mastery-level:hover {
+            background: rgba(31, 35, 71, 0.5);
+            border-color: rgba(92, 139, 217, 0.4);
+        }
+        
+        .mastery-level.current {
+            background: linear-gradient(135deg, 
+                rgba(92, 139, 217, 0.2), 
+                rgba(92, 139, 217, 0.1));
+            border-color: var(--arcanean-luminous);
+        }
+        
+        .mastery-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            background: rgba(92, 139, 217, 0.2);
+            border: 1px solid rgba(92, 139, 217, 0.3);
+        }
+        
+        .mastery-level.completed .mastery-icon {
+            background: linear-gradient(135deg, var(--arcanean-luminous), var(--arcanean-radiant));
+            color: var(--arcanean-void);
+        }
+        
+        /* Floating Skill Particles */
+        .skill-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--arcanean-luminous);
+            border-radius: 50%;
+            opacity: 0;
+            animation: skill-particle-float 10s ease-in-out infinite;
+        }
+        
+        @keyframes skill-particle-float {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            20% {
+                opacity: 0.6;
+                transform: translateY(-40px) scale(1);
+            }
+            80% {
+                opacity: 0.6;
+                transform: translateY(-160px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progression Gradient Background -->
+    <div class="progression-gradient-mesh"></div>
+    
+    <!-- Navigation -->
+    <nav class="relative z-20 border-b border-white/5">
+        <div class="premium-glass-card rounded-none border-x-0 border-t-0">
+            <div class="max-w-7xl mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-semibold">Skill Progression</span>
+                    </div>
+                    
+                    <!-- Navigation Items -->
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="academy-dashboard.html" class="text-arcanean-aurora hover:text-arcanean-luminous transition-colors">Dashboard</a>
+                        <a href="#" class="text-arcanean-luminous">Skills</a>
+                        <a href="#" class="text-arcanean-aurora hover:text-arcanean-luminous transition-colors">Achievements</a>
+                        <a href="#" class="text-arcanean-aurora hover:text-arcanean-luminous transition-colors">Progress</a>
+                    </div>
+                    
+                    <!-- User Avatar -->
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center font-semibold text-arcanean-void">
+                        U
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl font-bold mb-4">
+                        <span class="bg-gradient-to-r from-arcanean-luminous to-arcanean-radiant bg-clip-text text-transparent">
+                            Your Learning Journey
+                        </span>
+                    </h1>
+                    <p class="text-lg" style="color: var(--arcanean-celestial);">
+                        Track your progress across all Arcanea Academy disciplines
+                    </p>
+                </div>
+                
+                <!-- Overall Progress -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- Total Progress -->
+                    <div class="premium-glass-card p-8 text-center">
+                        <div class="progress-ring mb-4">
+                            <svg class="progress-ring-svg" width="120" height="120">
+                                <circle class="progress-ring-circle progress-ring-bg" />
+                                <circle class="progress-ring-circle progress-ring-fill" style="stroke-dashoffset: 163.5;" />
+                            </svg>
+                            <div class="progress-ring-text">
+                                <div class="progress-ring-percentage">65%</div>
+                                <div class="progress-ring-label">Overall</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Total Progress</h3>
+                        <p class="text-sm" style="color: var(--arcanean-celestial);">42 skills mastered</p>
+                    </div>
+                    
+                    <!-- Current Level -->
+                    <div class="premium-glass-card p-8 text-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center">
+                            <span class="text-2xl font-bold text-arcanean-void">7</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Creator Level</h3>
+                        <p class="text-sm mb-2" style="color: var(--arcanean-celestial);">2,450 XP to Level 8</p>
+                        <div class="w-full bg-arcanean-aurora/30 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-arcanean-luminous to-arcanean-radiant h-2 rounded-full" style="width: 73%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Streak Counter -->
+                    <div class="premium-glass-card p-8 text-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-luminor-harmonix/20 to-luminor-harmonix/10 flex items-center justify-center border-2 border-luminor-harmonix">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <path d="M16 4L8 16H16L14 28L24 16H16L16 4Z" stroke="var(--luminor-harmonix)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Learning Streak</h3>
+                        <p class="text-sm" style="color: var(--arcanean-celestial);">15 days strong</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skill Constellation -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Visual Synthesis Skills</h2>
+                
+                <div class="premium-glass-card p-8 relative">
+                    <!-- Skill Details Panel -->
+                    <div class="skill-details-panel" id="skillDetailsPanel">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold" id="skillTitle">Color Theory</h3>
+                            <button class="p-2 hover:bg-white/10 rounded-lg transition-colors" onclick="closeSkillDetails()">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="text-sm mb-2" style="color: var(--arcanean-celestial);">Progress</div>
+                            <div class="w-full bg-arcanean-aurora/30 rounded-full h-2 mb-2">
+                                <div class="bg-gradient-to-r from-arcanean-luminous to-arcanean-radiant h-2 rounded-full" style="width: 85%;" id="skillProgress"></div>
+                            </div>
+                            <div class="text-xs" style="color: var(--arcanean-aurora);" id="skillProgressText">85% Complete</div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="text-sm mb-2" style="color: var(--arcanean-celestial);">Description</div>
+                            <p class="text-sm" style="color: var(--arcanean-aurora);" id="skillDescription">
+                                Master the psychology of color and create emotionally resonant palettes
+                            </p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="text-sm mb-2" style="color: var(--arcanean-celestial);">Prerequisites</div>
+                            <div class="flex flex-wrap gap-2" id="skillPrerequisites">
+                                <span class="px-2 py-1 text-xs rounded bg-arcanean-aurora/20 text-arcanean-luminous">Design Basics</span>
+                                <span class="px-2 py-1 text-xs rounded bg-arcanean-aurora/20 text-arcanean-luminous">Visual Perception</span>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gradient-to-r from-arcanean-luminous to-arcanean-radiant text-arcanean-void py-2 px-4 rounded-lg font-semibold hover:scale-105 transition-transform" id="skillAction">
+                            Continue Learning
+                        </button>
+                    </div>
+                    
+                    <!-- Skill Constellation Map -->
+                    <div class="skill-constellation-map">
+                        <!-- Connections -->
+                        <div class="skill-connection active" style="left: 15%; top: 30%; width: 120px; transform: rotate(25deg);"></div>
+                        <div class="skill-connection active" style="left: 35%; top: 45%; width: 100px; transform: rotate(-15deg);"></div>
+                        <div class="skill-connection" style="left: 55%; top: 35%; width: 80px; transform: rotate(45deg);"></div>
+                        <div class="skill-connection active" style="left: 25%; top: 65%; width: 150px; transform: rotate(-35deg);"></div>
+                        <div class="skill-connection" style="left: 45%; top: 75%; width: 120px; transform: rotate(20deg);"></div>
+                        <div class="skill-connection active" style="left: 65%; top: 60%; width: 100px; transform: rotate(-25deg);"></div>
+                        
+                        <!-- Skill Nodes -->
+                        <div class="skill-node completed" style="left: 10%; top: 25%;" data-skill="design-basics" title="Design Basics">
+                            ✓
+                        </div>
+                        <div class="skill-node completed" style="left: 30%; top: 40%;" data-skill="visual-perception" title="Visual Perception">
+                            ✓
+                        </div>
+                        <div class="skill-node available" style="left: 50%; top: 30%;" data-skill="color-theory" title="Color Theory">
+                            🎨
+                        </div>
+                        <div class="skill-node locked" style="left: 70%; top: 45%;" data-skill="composition" title="Composition">
+                            📐
+                        </div>
+                        <div class="skill-node completed" style="left: 20%; top: 60%;" data-skill="typography" title="Typography">
+                            ✓
+                        </div>
+                        <div class="skill-node locked" style="left: 40%; top: 70%;" data-skill="digital-painting" title="Digital Painting">
+                            🖌️
+                        </div>
+                        <div class="skill-node locked" style="left: 60%; top: 55%;" data-skill="3d-modeling" title="3D Modeling">
+                            🔷
+                        </div>
+                        <div class="skill-node locked" style="left: 80%; top: 35%;" data-skill="animation" title="Animation">
+                            ✨
+                        </div>
+                        <div class="skill-node mastered" style="left: 5%; top: 80%;" data-skill="fundamentals" title="Art Fundamentals">
+                            ⭐
+                        </div>
+                        <div class="skill-node locked" style="left: 75%; top: 75%;" data-skill="portfolio" title="Portfolio Development">
+                            📁
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mastery Levels -->
+        <section class="py-12">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Mastery Levels</h2>
+                
+                <div class="premium-glass-card p-8">
+                    <div class="space-y-6">
+                        <!-- Level 1 -->
+                        <div class="mastery-level completed">
+                            <div class="mastery-icon">
+                                1
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold mb-1">Novice Creator</h3>
+                                <p class="text-sm" style="color: var(--arcanean-celestial);">Learn the fundamentals of visual design</p>
+                                <div class="mt-2 text-xs" style="color: var(--arcanean-aurora);">
+                                    Requirements: Complete 5 basic skills
+                                </div>
+                            </div>
+                            <div class="text-sm text-right">
+                                <div class="text-luminor-kinetix">✓ Completed</div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">Jan 15, 2024</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Level 2 -->
+                        <div class="mastery-level completed">
+                            <div class="mastery-icon">
+                                2
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold mb-1">Apprentice Designer</h3>
+                                <p class="text-sm" style="color: var(--arcanean-celestial);">Develop intermediate design skills</p>
+                                <div class="mt-2 text-xs" style="color: var(--arcanean-aurora);">
+                                    Requirements: Complete 10 skills, 2 projects
+                                </div>
+                            </div>
+                            <div class="text-sm text-right">
+                                <div class="text-luminor-kinetix">✓ Completed</div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">Feb 28, 2024</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Level 3 -->
+                        <div class="mastery-level current">
+                            <div class="mastery-icon">
+                                3
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold mb-1">Skilled Artist</h3>
+                                <p class="text-sm" style="color: var(--arcanean-celestial);">Master advanced techniques and tools</p>
+                                <div class="mt-2 text-xs" style="color: var(--arcanean-aurora);">
+                                    Requirements: Complete 20 skills, 5 projects, 1 portfolio piece
+                                </div>
+                                <div class="mt-2 w-full bg-arcanean-aurora/30 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-arcanean-luminous to-arcanean-radiant h-2 rounded-full" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <div class="text-sm text-right">
+                                <div class="text-arcanean-luminous">In Progress</div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">75% Complete</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Level 4 -->
+                        <div class="mastery-level">
+                            <div class="mastery-icon">
+                                4
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold mb-1">Expert Creator</h3>
+                                <p class="text-sm" style="color: var(--arcanean-celestial);">Specialize in advanced visual synthesis</p>
+                                <div class="mt-2 text-xs" style="color: var(--arcanean-aurora);">
+                                    Requirements: Complete 35 skills, 10 projects, 3 portfolio pieces
+                                </div>
+                            </div>
+                            <div class="text-sm text-right">
+                                <div style="color: var(--arcanean-aurora);">Locked</div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">Est. May 2024</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Level 5 -->
+                        <div class="mastery-level">
+                            <div class="mastery-icon">
+                                5
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold mb-1">Master Visualist</h3>
+                                <p class="text-sm" style="color: var(--arcanean-celestial);">Achieve mastery in visual synthesis</p>
+                                <div class="mt-2 text-xs" style="color: var(--arcanean-aurora);">
+                                    Requirements: Complete all skills, 20 projects, full portfolio
+                                </div>
+                            </div>
+                            <div class="text-sm text-right">
+                                <div style="color: var(--arcanean-aurora);">Locked</div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">Est. Aug 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Achievement Gallery -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Achievement Gallery</h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    <!-- Achievement 1 -->
+                    <div class="text-center">
+                        <div class="achievement-badge unlocked mb-3">
+                            <div class="achievement-badge-icon">🎨</div>
+                        </div>
+                        <h3 class="text-sm font-semibold mb-1">Color Master</h3>
+                        <p class="text-xs" style="color: var(--arcanean-aurora);">Mastered color theory</p>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="text-center">
+                        <div class="achievement-badge unlocked mb-3">
+                            <div class="achievement-badge-icon">⚡</div>
+                        </div>
+                        <h3 class="text-sm font-semibold mb-1">Quick Learner</h3>
+                        <p class="text-xs" style="color: var(--arcanean-aurora);">Completed 5 skills in a week</p>
+                    </div>
+                    
+                    <!-- Achievement 3 -->
+                    <div class="text-center">
+                        <div class="achievement-badge unlocked mb-3">
+                            <div class="achievement-badge-icon">🔥</div>
+                        </div>
+                        <h3 class="text-sm font-semibold mb-1">Streak Champion</h3>
+                        <p class="text-xs" style="color: var(--arcanean-aurora);">15-day learning streak</p>
+                    </div>
+                    
+                    <!-- Achievement 4 -->
+                    <div class="text-center">
+                        <div class="achievement-badge mb-3">
+                            <div class="achievement-badge-icon">🏆</div>
+                        </div>
+                        <h3 class="text-sm font-semibold mb-1">Portfolio Pro</h3>
+                        <p class="text-xs" style="color: var(--arcanean-aurora);">Create 10 portfolio pieces</p>
+                    </div>
+                    
+                    <!-- Achievement 5 -->
+                    <div class="text-center">
+                        <div class="achievement-badge mb-3">
+                            <div class="achievement-badge-icon">🎯</div>
+                        </div>
+                        <h3 class="text-sm font-semibold mb-1">Precision Expert</h3>
+                        <p class="text-xs" style="color: var(--arcanean-aurora);">Perfect composition scores</p>
+                    </div>
+                    
+                    <!-- Achievement 6 -->
+                    <div class="text-center">
+                        <div class="achievement-badge mb-3">
+                            <div class="achievement-badge-icon">🌟</div>
+                        </div>
+                        <h3 class="text-sm font-semibold mb-1">Lumina's Choice</h3>
+                        <p class="text-xs" style="color: var(--arcanean-aurora);">Featured work by Luminor</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Floating Skill Particles -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="skill-particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="skill-particle" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="skill-particle" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="skill-particle" style="left: 40%; animation-delay: 6s;"></div>
+        <div class="skill-particle" style="left: 50%; animation-delay: 1s;"></div>
+        <div class="skill-particle" style="left: 60%; animation-delay: 3s;"></div>
+        <div class="skill-particle" style="left: 70%; animation-delay: 5s;"></div>
+        <div class="skill-particle" style="left: 80%; animation-delay: 7s;"></div>
+        <div class="skill-particle" style="left: 90%; animation-delay: 1.5s;"></div>
+    </div>
+    
+    <script>
+        // Skill data
+        const skillData = {
+            'design-basics': {
+                title: 'Design Basics',
+                description: 'Learn fundamental principles of visual design including balance, contrast, and hierarchy.',
+                progress: 100,
+                prerequisites: [],
+                status: 'completed'
+            },
+            'visual-perception': {
+                title: 'Visual Perception',
+                description: 'Understand how humans perceive and process visual information.',
+                progress: 100,
+                prerequisites: ['design-basics'],
+                status: 'completed'
+            },
+            'color-theory': {
+                title: 'Color Theory',
+                description: 'Master the psychology of color and create emotionally resonant palettes.',
+                progress: 85,
+                prerequisites: ['design-basics', 'visual-perception'],
+                status: 'available'
+            },
+            'composition': {
+                title: 'Composition',
+                description: 'Learn advanced composition techniques and visual hierarchy principles.',
+                progress: 0,
+                prerequisites: ['color-theory'],
+                status: 'locked'
+            },
+            'typography': {
+                title: 'Typography',
+                description: 'Master the art of type selection, spacing, and hierarchy.',
+                progress: 100,
+                prerequisites: ['design-basics'],
+                status: 'completed'
+            },
+            'digital-painting': {
+                title: 'Digital Painting',
+                description: 'Advanced digital painting techniques and brush dynamics.',
+                progress: 0,
+                prerequisites: ['color-theory', 'composition'],
+                status: 'locked'
+            },
+            '3d-modeling': {
+                title: '3D Modeling',
+                description: 'Introduction to 3D modeling and dimensional design thinking.',
+                progress: 0,
+                prerequisites: ['composition'],
+                status: 'locked'
+            },
+            'animation': {
+                title: 'Animation',
+                description: 'Bring your designs to life with motion and animation.',
+                progress: 0,
+                prerequisites: ['digital-painting', '3d-modeling'],
+                status: 'locked'
+            },
+            'fundamentals': {
+                title: 'Art Fundamentals',
+                description: 'Master the core principles that underpin all visual arts.',
+                progress: 100,
+                prerequisites: [],
+                status: 'mastered'
+            },
+            'portfolio': {
+                title: 'Portfolio Development',
+                description: 'Create a professional portfolio that showcases your skills.',
+                progress: 0,
+                prerequisites: ['digital-painting', 'animation'],
+                status: 'locked'
+            }
+        };
+        
+        // Skill node interaction
+        document.querySelectorAll('.skill-node').forEach(node => {
+            node.addEventListener('click', function() {
+                const skillId = this.dataset.skill;
+                const skill = skillData[skillId];
+                
+                if (!skill) return;
+                
+                // Update details panel
+                document.getElementById('skillTitle').textContent = skill.title;
+                document.getElementById('skillDescription').textContent = skill.description;
+                document.getElementById('skillProgress').style.width = skill.progress + '%';
+                document.getElementById('skillProgressText').textContent = skill.progress + '% Complete';
+                
+                // Update prerequisites
+                const prereqContainer = document.getElementById('skillPrerequisites');
+                prereqContainer.innerHTML = '';
+                skill.prerequisites.forEach(prereq => {
+                    const prereqSkill = skillData[prereq];
+                    if (prereqSkill) {
+                        const span = document.createElement('span');
+                        span.className = 'px-2 py-1 text-xs rounded bg-arcanean-aurora/20 text-arcanean-luminous';
+                        span.textContent = prereqSkill.title;
+                        prereqContainer.appendChild(span);
+                    }
+                });
+                
+                // Update action button
+                const actionButton = document.getElementById('skillAction');
+                switch (skill.status) {
+                    case 'completed':
+                        actionButton.textContent = 'Review Skill';
+                        break;
+                    case 'available':
+                        actionButton.textContent = 'Continue Learning';
+                        break;
+                    case 'mastered':
+                        actionButton.textContent = 'View Mastery';
+                        break;
+                    default:
+                        actionButton.textContent = 'Unlock Prerequisites';
+                }
+                
+                // Show panel
+                document.getElementById('skillDetailsPanel').classList.add('active');
+            });
+        });
+        
+        // Close skill details panel
+        function closeSkillDetails() {
+            document.getElementById('skillDetailsPanel').classList.remove('active');
+        }
+        
+        // Animate progress rings on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressRings = document.querySelectorAll('.progress-ring-fill');
+            progressRings.forEach(ring => {
+                const offset = ring.style.strokeDashoffset;
+                ring.style.strokeDashoffset = '327';
+                setTimeout(() => {
+                    ring.style.strokeDashoffset = offset;
+                }, 500);
+            });
+        });
+        
+        // Achievement hover effects
+        document.querySelectorAll('.achievement-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            badge.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>

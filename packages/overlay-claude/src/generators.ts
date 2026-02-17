@@ -2,7 +2,7 @@
  * File generators for Claude Code overlay.
  */
 
-import type { OverlayLevel, Guardian } from '@arcanea/core';
+import type { OverlayLevel, Guardian } from '@arcanea/os';
 import { SKILL_TEMPLATES, generateAgentContent, COMMAND_TEMPLATE } from './templates.js';
 import { SKILL_EXTENSIONS } from './content-depth.js';
 

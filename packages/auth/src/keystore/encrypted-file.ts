@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { homedir } from 'node:os';
 import { createCipheriv, createDecipheriv, randomBytes, createHash } from 'node:crypto';
-import type { Keystore, ProviderType } from '@arcanea/core';
+import type { Keystore, ProviderType } from '@arcanea/os';
 
 const ARCANEA_DIR = join(homedir(), '.arcanea');
 const CREDS_FILE = join(ARCANEA_DIR, 'credentials.enc');

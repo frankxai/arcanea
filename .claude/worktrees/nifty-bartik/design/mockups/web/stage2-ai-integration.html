@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea - Stage 2: AI Integration & Marketplace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #151521;
+            --bg-tertiary: #1e1e2e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b8;
+            --accent-primary: #7c3aed;
+            --accent-secondary: #a855f7;
+            --accent-gold: #fbbf24;
+            --accent-green: #10b981;
+            --border: #2a2a3e;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        
+        /* Enhanced Navigation with AI Status */
+        nav {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .ai-status-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--glass);
+            border-radius: 20px;
+        }
+        
+        .ai-credit-meter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .credit-bar {
+            width: 100px;
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .credit-fill {
+            height: 100%;
+            width: 75%;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-primary));
+        }
+        
+        /* Split View Layout */
+        .split-container {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+        
+        /* Native AI Studio */
+        .ai-studio {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+        }
+        
+        .studio-header {
+            padding: 1.5rem;
+            background: var(--glass);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .ai-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .ai-option {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .ai-option.active {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+        
+        .ai-option:hover {
+            border-color: var(--accent-secondary);
+        }
+        
+        .studio-workspace {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        /* Generation Interface */
+        .generation-panel {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .prompt-area {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .generation-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .parameter-chips {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .chip {
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+        
+        .chip.active {
+            background: var(--accent-secondary);
+            border-color: var(--accent-secondary);
+        }
+        
+        /* Generation Results */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .result-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+        
+        .result-preview {
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .result-type-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-primary);
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        
+        .result-actions {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* Marketplace Sidebar */
+        .marketplace {
+            width: 400px;
+            background: var(--bg-secondary);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .marketplace-header {
+            padding: 1.5rem;
+            background: var(--glass);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .marketplace-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .marketplace-tab {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .marketplace-tab.active {
+            background: var(--accent-primary);
+            color: var(--text-primary);
+        }
+        
+        .marketplace-content {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .asset-listing {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .asset-listing:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(-5px);
+        }
+        
+        .asset-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .asset-price {
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .asset-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* AI Personas Panel */
+        .personas-panel {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 50;
+        }
+        
+        .persona-card {
+            width: 80px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .persona-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .persona-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .persona-avatar.flame {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+        }
+        
+        .persona-avatar.form {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .persona-avatar.lore {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+        
+        .persona-avatar.resonance {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+        
+        .persona-avatar.synthesis {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+        
+        .persona-avatar.manifestation {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+        }
+        
+        .persona-name {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Collaboration Features */
+        .collab-indicator {
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1rem;
+            min-width: 250px;
+        }
+        
+        .collab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .online-users {
+            display: flex;
+            margin-bottom: 0.5rem;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            margin-right: -10px;
+            border: 2px solid var(--bg-primary);
+        }
+        
+        /* Floating Generation Button */
+        .generate-fab {
+            position: fixed;
+            bottom: 100px;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .generate-fab:hover {
+            transform: scale(1.05);
+        }
+        
+        .generating {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        /* Template Gallery */
+        .template-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .template-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .template-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+        
+        .template-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .template-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .template-description {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🌌 Arcanea</div>
+            
+            <div class="ai-status-bar">
+                <span style="color: var(--text-secondary);">AI Credits:</span>
+                <div class="ai-credit-meter">
+                    <div class="credit-bar">
+                        <div class="credit-fill"></div>
+                    </div>
+                    <span>750/1000</span>
+                </div>
+                <button style="padding: 0.25rem 0.75rem; background: var(--accent-green); border: none; border-radius: 4px; color: white; cursor: pointer;">
+                    + Add Credits
+                </button>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="color: var(--accent-gold);">Professional Tier</span>
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), var(--accent-gold));"></div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Split View Container -->
+    <div class="split-container">
+        <!-- Native AI Studio -->
+        <div class="ai-studio">
+            <div class="studio-header">
+                <h2 style="margin-bottom: 1rem;">AI Creation Studio</h2>
+                <div class="ai-selector">
+                    <div class="ai-option active">
+                        <span>📝</span>
+                        <span>Text</span>
+                    </div>
+                    <div class="ai-option">
+                        <span>🎨</span>
+                        <span>Image</span>
+                    </div>
+                    <div class="ai-option">
+                        <span>🎵</span>
+                        <span>Music</span>
+                    </div>
+                    <div class="ai-option">
+                        <span>💻</span>
+                        <span>Code</span>
+                    </div>
+                    <div class="ai-option">
+                        <span>🎬</span>
+                        <span>Video</span>
+                    </div>
+                </div>
+                
+                <div class="parameter-chips">
+                    <div class="chip active">GPT-4</div>
+                    <div class="chip">Claude 3</div>
+                    <div class="chip">Llama 3</div>
+                    <div class="chip">Custom Fine-tune</div>
+                </div>
+            </div>
+            
+            <div class="studio-workspace">
+                <!-- Generation Panel -->
+                <div class="generation-panel">
+                    <h3 style="margin-bottom: 1rem;">Create with AI</h3>
+                    <textarea class="prompt-area" placeholder="Describe what you want to create... Be specific about style, mood, and purpose within your realm."></textarea>
+                    
+                    <div class="generation-controls">
+                        <div class="parameter-chips">
+                            <div class="chip">Epic</div>
+                            <div class="chip">Mystical</div>
+                            <div class="chip">Dark</div>
+                            <div class="chip">Philosophical</div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <span style="color: var(--text-secondary);">Est. cost: 5 credits</span>
+                            <button class="generate-fab" style="position: static; bottom: auto; right: auto;">
+                                ⚡ Generate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Template Gallery -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Quick Templates</h3>
+                    <div class="template-gallery">
+                        <div class="template-card">
+                            <div class="template-icon">📖</div>
+                            <div class="template-name">Origin Story</div>
+                            <div class="template-description">Create your realm's beginning</div>
+                        </div>
+                        <div class="template-card">
+                            <div class="template-icon">🗺️</div>
+                            <div class="template-name">World Map</div>
+                            <div class="template-description">Design your realm's geography</div>
+                        </div>
+                        <div class="template-card">
+                            <div class="template-icon">👤</div>
+                            <div class="template-name">Character</div>
+                            <div class="template-description">Build a realm inhabitant</div>
+                        </div>
+                        <div class="template-card">
+                            <div class="template-icon">🏛️</div>
+                            <div class="template-name">Location</div>
+                            <div class="template-description">Describe a landmark</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Generation Results -->
+                <h3 style="margin-bottom: 1rem;">Recent Generations</h3>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-preview">
+                            <span class="result-type-badge">Text</span>
+                            <div style="padding: 1rem; text-align: center;">
+                                <p style="font-style: italic;">"In the beginning, there was only the Void..."</p>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <span style="font-size: 0.875rem;">The Genesis Scroll</span>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button style="padding: 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); cursor: pointer;">Edit</button>
+                                <button style="padding: 0.5rem; background: var(--accent-primary); border: none; border-radius: 4px; color: white; cursor: pointer;">Use</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-preview">
+                            <span class="result-type-badge">Image</span>
+                            <div style="font-size: 3rem;">🏰</div>
+                        </div>
+                        <div class="result-actions">
+                            <span style="font-size: 0.875rem;">Mystic Citadel</span>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button style="padding: 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); cursor: pointer;">Refine</button>
+                                <button style="padding: 0.5rem; background: var(--accent-primary); border: none; border-radius: 4px; color: white; cursor: pointer;">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-preview">
+                            <span class="result-type-badge">Audio</span>
+                            <div style="font-size: 3rem;">🎵</div>
+                        </div>
+                        <div class="result-actions">
+                            <span style="font-size: 0.875rem;">Realm Anthem</span>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button style="padding: 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); cursor: pointer;">Play</button>
+                                <button style="padding: 0.5rem; background: var(--accent-primary); border: none; border-radius: 4px; color: white; cursor: pointer;">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Marketplace Sidebar -->
+        <div class="marketplace">
+            <div class="marketplace-header">
+                <h3 style="margin-bottom: 1rem;">Realm Marketplace</h3>
+                <div class="marketplace-tabs">
+                    <button class="marketplace-tab active">Assets</button>
+                    <button class="marketplace-tab">Templates</button>
+                    <button class="marketplace-tab">Services</button>
+                    <button class="marketplace-tab">My Sales</button>
+                </div>
+            </div>
+            
+            <div class="marketplace-content">
+                <!-- Asset Listings -->
+                <div class="asset-listing">
+                    <div class="asset-header">
+                        <div>
+                            <h4>Fantasy Character Pack</h4>
+                            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                                50 unique character profiles with backstories
+                            </p>
+                        </div>
+                        <span class="asset-price">$29</span>
+                    </div>
+                    <div class="asset-stats">
+                        <span>⭐ 4.8</span>
+                        <span>💾 234 sales</span>
+                        <span>👤 by RealmCrafter</span>
+                    </div>
+                </div>
+                
+                <div class="asset-listing">
+                    <div class="asset-header">
+                        <div>
+                            <h4>Cyberpunk City Soundscape</h4>
+                            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                                2 hours of ambient audio for futuristic realms
+                            </p>
+                        </div>
+                        <span class="asset-price">$15</span>
+                    </div>
+                    <div class="asset-stats">
+                        <span>⭐ 4.9</span>
+                        <span>💾 567 sales</span>
+                        <span>👤 by AudioMage</span>
+                    </div>
+                </div>
+                
+                <div class="asset-listing">
+                    <div class="asset-header">
+                        <div>
+                            <h4>Complete Magic System</h4>
+                            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                                Rules, spells, and lore for magical realms
+                            </p>
+                        </div>
+                        <span class="asset-price">$49</span>
+                    </div>
+                    <div class="asset-stats">
+                        <span>⭐ 5.0</span>
+                        <span>💾 892 sales</span>
+                        <span>👤 by MysticForge</span>
+                    </div>
+                </div>
+                
+                <div class="asset-listing">
+                    <div class="asset-header">
+                        <div>
+                            <h4>Realm Economy Framework</h4>
+                            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                                Build complex economic systems
+                            </p>
+                        </div>
+                        <span class="asset-price">FREE</span>
+                    </div>
+                    <div class="asset-stats">
+                        <span>⭐ 4.7</span>
+                        <span>💾 2.3k downloads</span>
+                        <span>👤 by Arcanea</span>
+                    </div>
+                </div>
+                
+                <!-- Sell Your Assets Section -->
+                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--glass); border: 1px solid var(--accent-primary); border-radius: 12px;">
+                    <h4 style="margin-bottom: 0.5rem;">Start Selling</h4>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                        Turn your creations into income. List your assets in the marketplace.
+                    </p>
+                    <button style="width: 100%; padding: 0.75rem; background: var(--accent-primary); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer;">
+                        List New Asset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI Personas Panel -->
+    <div class="personas-panel">
+        <div class="persona-card">
+            <div class="persona-avatar flame">🔥</div>
+            <div class="persona-name">Ignis</div>
+        </div>
+        <div class="persona-card">
+            <div class="persona-avatar form">🎨</div>
+            <div class="persona-name">Lumis</div>
+        </div>
+        <div class="persona-card">
+            <div class="persona-avatar lore">📜</div>
+            <div class="persona-name">Mythos</div>
+        </div>
+        <div class="persona-card">
+            <div class="persona-avatar resonance">🎵</div>
+            <div class="persona-name">Echo</div>
+        </div>
+        <div class="persona-card">
+            <div class="persona-avatar synthesis">⚡</div>
+            <div class="persona-name">Nexus</div>
+        </div>
+        <div class="persona-card">
+            <div class="persona-avatar manifestation">🚀</div>
+            <div class="persona-name">Phoenix</div>
+        </div>
+    </div>
+    
+    <!-- Collaboration Indicator -->
+    <div class="collab-indicator">
+        <div class="collab-header">
+            <h4>Realm Collaborators</h4>
+            <span style="color: var(--accent-green); font-size: 0.875rem;">3 online</span>
+        </div>
+        <div class="online-users">
+            <div class="user-avatar"></div>
+            <div class="user-avatar" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);"></div>
+            <div class="user-avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--text-secondary);">
+            Sarah is editing "Chapter 3"<br>
+            Marcus is generating visuals<br>
+            Elena is reviewing lore
+        </p>
+    </div>
+    
+    <script>
+        // Simulate AI generation
+        document.querySelector('.generate-fab').addEventListener('click', function() {
+            this.classList.add('generating');
+            this.innerHTML = '⚡ Generating...';
+            
+            setTimeout(() => {
+                this.classList.remove('generating');
+                this.innerHTML = '⚡ Generate';
+                
+                // Update credits
+                document.querySelector('.credit-fill').style.width = '70%';
+                document.querySelector('.ai-credit-meter span').textContent = '700/1000';
+            }, 3000);
+        });
+        
+        // Tab switching
+        document.querySelectorAll('.marketplace-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.marketplace-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+        
+        // AI option switching
+        document.querySelectorAll('.ai-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.ai-option').forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
+            });
+        });
+        
+        // Persona interactions
+        document.querySelectorAll('.persona-card').forEach(persona => {
+            persona.addEventListener('click', () => {
+                const name = persona.querySelector('.persona-name').textContent;
+                alert(`${name} is ready to assist with your creation!`);
+            });
+        });
+    </script>
+</body>
+</html>

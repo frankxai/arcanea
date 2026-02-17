@@ -96,14 +96,14 @@ Each overlay adds Guardian routing, voice enforcement, design tokens, and Arcane
 
 - **Bundle**: Single 247KB CJS file with shebang
 - **Runtime**: Node.js 18+
-- **Dependencies**: `@arcanea/core` (intelligence engine), `commander`, `picocolors`
+- **Dependencies**: `@arcanea/os` (intelligence engine), `commander`, `picocolors`
 - **Tests**: 17/17 passing
 
 ## Ecosystem
 
 | Package | Purpose |
 |:--------|:--------|
-| [`@arcanea/core`](https://github.com/frankxai/arcanea/tree/main/packages/core) | Intelligence engine |
+| [`@arcanea/os`](https://github.com/frankxai/arcanea/tree/main/packages/core) | Intelligence engine |
 | [`@arcanea/mcp-server`](https://github.com/frankxai/arcanea/tree/main/packages/arcanea-mcp) | 30 MCP tools |
 | [`arcanea.ai`](https://arcanea.ai) | Live web platform |
 

@@ -399,12 +399,12 @@ When you reach an XP threshold:
 
 #### Installation
 ```bash
-npm install @arcanea/core
+npm install @arcanea/os
 ```
 
 #### Basic Usage
 ```typescript
-import { Arcanea } from '@arcanea/core';
+import { Arcanea } from '@arcanea/os';
 
 const arcanea = new Arcanea({
   apiKey: process.env.ARCANEA_API_KEY

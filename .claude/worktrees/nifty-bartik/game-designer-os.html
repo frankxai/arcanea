@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Designer OS - Professional Game Development Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --fire-primary: #ff6b35;
+            --water-primary: #4fc3f7;
+            --earth-primary: #8d6e63;
+            --wind-primary: #b39ddb;
+            --void-primary: #7c4dff;
+            --gold-light: #ffd700;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-elevated: #1a1a28;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --success: #4caf50;
+            --warning: #ff9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--void-primary), var(--gold-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--void-primary), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .stat-label {
+            font-size: 0.625rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 260px 1fr 320px;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 200px 1fr;
+            }
+            .right-panel {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.875rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            border-left: 3px solid var(--void-primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.125rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Game Project Card */
+        .game-project {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-project:hover {
+            border-color: var(--void-primary);
+            transform: translateY(-3px);
+        }
+
+        .game-cover {
+            height: 150px;
+            background: linear-gradient(135deg, var(--void-primary), var(--bg-elevated));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .game-info {
+            padding: 1.25rem;
+        }
+
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-genre {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .game-progress {
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--void-primary), var(--gold-light));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* Asset Grid */
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+
+        .asset-item {
+            aspect-ratio: 1;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .asset-item:hover {
+            border-color: var(--gold-light);
+            transform: scale(1.05);
+        }
+
+        .asset-icon {
+            font-size: 2rem;
+        }
+
+        .asset-name {
+            font-size: 0.625rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Level Editor Preview */
+        .level-preview {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-height: 300px;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 4px;
+        }
+
+        .tile {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tile:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tile.wall { background: var(--earth-primary); }
+        .tile.player { background: var(--gold-light); }
+        .tile.enemy { background: var(--fire-primary); }
+        .tile.item { background: var(--water-primary); }
+
+        /* GDD Sections */
+        .gdd-section {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--void-primary);
+        }
+
+        .gdd-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .gdd-content {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .gdd-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.625rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .status-draft { background: rgba(255, 152, 0, 0.2); color: #ffb74d; }
+        .status-review { background: rgba(79, 195, 247, 0.2); color: #81d4fa; }
+        .status-approved { background: rgba(76, 175, 80, 0.2); color: #81c784; }
+
+        /* Character Card */
+        .character-card {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .character-card:hover {
+            border-color: var(--gold-light);
+        }
+
+        .character-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--void-primary), var(--gold-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .character-info {
+            flex: 1;
+        }
+
+        .character-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .character-role {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .character-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Playtest Results */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-item {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.75rem;
+            color: var(--gold-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Bug List */
+        .bug-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--fire-primary);
+        }
+
+        .bug-item.resolved {
+            border-left-color: var(--success);
+            opacity: 0.6;
+        }
+
+        .bug-severity {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 600;
+        }
+
+        .severity-critical { background: rgba(244, 67, 54, 0.2); color: #e57373; }
+        .severity-high { background: rgba(255, 152, 0, 0.2); color: #ffb74d; }
+        .severity-medium { background: rgba(255, 235, 59, 0.2); color: #fff176; }
+        .severity-low { background: rgba(76, 175, 80, 0.2); color: #81c784; }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .tool-btn {
+            aspect-ratio: 1;
+            background: var(--bg-elevated);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .tool-btn:hover {
+            border-color: var(--void-primary);
+            color: var(--text-primary);
+            transform: scale(1.05);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+        }
+
+        .tool-name {
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.875rem 1.5rem;
+            border-radius: 10px;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--void-primary), var(--gold-light));
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 77, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+        }
+
+        /* Right Panel */
+        .right-panel {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+        }
+
+        .panel-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.875rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Version History */
+        .version-item {
+            padding: 0.875rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.875rem;
+        }
+
+        .version-number {
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        .version-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .metric-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+    
+    <!-- Arcanea Ecosystem Loader -->
+    <script src="supabase-config.js"></script>
+    <script src="arcanea-auth.js"></script>
+    <script src="auth-ui.js"></script>
+    <script src="sync-engine.js"></script>
+    <script src="arcanea-agents-live.js"></script>
+    <script src="mobile-integration.js"></script>
+    <script src="arcanea-loader.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🎮</div>
+                <div>
+                    <h1>Game Designer OS</h1>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Active Games</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">147</div>
+                    <div class="stat-label">Total Assets</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">Playtests</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-title">Development</div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a class="nav-link active" onclick="showPage('games')">
+                        <span>🎮</span> My Games
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('gdd')">
+                        <span>📋</span> Game Design Docs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('assets')">
+                        <span>🎨</span> Asset Library
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('level')">
+                        <span>🏗️</span> Level Editor
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('characters')">
+                        <span>👤</span> Characters
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('playtest')">
+                        <span>🎯</span> Playtesting
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showPage('bugs')">
+                        <span>🐛</span> Bug Tracker
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-title" style="margin-top: 2rem;">Tools</div>
+            <div class="tools-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="tool-btn" onclick="openTool('tilemap')">
+                    <div class="tool-icon">🗺️</div>
+                    <div class="tool-name">Tilemap</div>
+                </div>
+                <div class="tool-btn" onclick="openTool('sprite')">
+                    <div class="tool-icon">🎨</div>
+                    <div class="tool-name">Sprites</div>
+                </div>
+                <div class="tool-btn" onclick="openTool('audio')">
+                    <div class="tool-icon">🎵</div>
+                    <div class="tool-name">Audio</div>
+                </div>
+                <div class="tool-btn" onclick="openTool('script')">
+                    <div class="tool-icon">📜</div>
+                    <div class="tool-name">Scripts</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Games Page -->
+            <div id="games-page" class="page active">
+                <h2 class="page-title">My Games</h2>
+                <p class="page-subtitle">Manage your game projects and development progress</p>
+
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">🎮 Active Projects</div>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ New Game</button>
+                        </div>
+                        <div class="card-content">
+                            <div style="display: grid; gap: 1.5rem;">
+                                <div class="game-project">
+                                    <div class="game-cover">⚔️</div>
+                                    <div class="game-info">
+                                        <div class="game-title">Crystal Quest</div>
+                                        <div class="game-genre">RPG • Adventure</div>
+                                        <div class="game-stats">
+                                            <span>🎨 45 assets</span>
+                                            <span>👤 12 characters</span>
+                                            <span>🎯 8 levels</span>
+                                        </div>
+                                        <div class="game-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 65%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="game-project">
+                                    <div class="game-cover">🚀</div>
+                                    <div class="game-info">
+                                        <div class="game-title">Void Runner</div>
+                                        <div class="game-genre">Action • Platformer</div>
+                                        <div class="game-stats">
+                                            <span>🎨 32 assets</span>
+                                            <span>👤 6 characters</span>
+                                            <span>🎯 15 levels</span>
+                                        </div>
+                                        <div class="game-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 40%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="game-project">
+                                    <div class="game-cover">🌊</div>
+                                    <div class="game-info">
+                                        <div class="game-title">Ocean's Mystery</div>
+                                        <div class="game-genre">Puzzle • Exploration</div>
+                                        <div class="game-stats">
+                                            <span>🎨 18 assets</span>
+                                            <span>👤 4 characters</span>
+                                            <span>🎯 5 levels</span>
+                                        </div>
+                                        <div class="game-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 25%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GDD Page -->
+            <div id="gdd-page" class="page" style="display: none;">
+                <h2 class="page-title">Game Design Document</h2>
+                <p class="page-subtitle">Crystal Quest - Complete design documentation</p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📋 Document Sections</div>
+                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">Export PDF</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="gdd-section">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="gdd-title">🎯 Game Overview</div>
+                                <span class="gdd-status status-approved">Approved</span>
+                            </div>
+                            <div class="gdd-content">
+                                Crystal Quest is a 2D action RPG where players explore mystical realms, collect powerful crystals, and battle ancient guardians. Core gameplay focuses on exploration, combat, and character progression.
+                            </div>
+                        </div>
+
+                        <div class="gdd-section">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="gdd-title">🎮 Core Mechanics</div>
+                                <span class="gdd-status status-approved">Approved</span>
+                            </div>
+                            <div class="gdd-content">
+                                Real-time combat system with combo attacks, dodge mechanics, and special abilities. Crystal fusion system allows players to combine gems for enhanced powers.
+                            </div>
+                        </div>
+
+                        <div class="gdd-section">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="gdd-title">📖 Story & Narrative</div>
+                                <span class="gdd-status status-review">In Review</span>
+                            </div>
+                            <div class="gdd-content">
+                                The world of Aetheria faces destruction as the Crystal Heart fades. Players must journey through 5 realms to restore the light and defeat the Shadow Lord.
+                            </div>
+                        </div>
+
+                        <div class="gdd-section">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="gdd-title">🎨 Art Direction</div>
+                                <span class="gdd-status status-draft">Draft</span>
+                            </div>
+                            <div class="gdd-content">
+                                Hand-painted 2D art style with vibrant colors and ethereal lighting. Each realm has distinct visual identity: Forest, Desert, Ice, Fire, and Void.
+                            </div>
+                        </div>
+
+                        <div class="gdd-section">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div class="gdd-title">🎵 Audio Design</div>
+                                <span class="gdd-status status-draft">Draft</span>
+                            </div>
+                            <div class="gdd-content">
+                                Orchestral soundtrack with dynamic music system. Sound effects emphasize crystal resonance and elemental powers.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assets Page -->
+            <div id="assets-page" class="page" style="display: none;">
+                <h2 class="page-title">Asset Library</h2>
+                <p class="page-subtitle">Manage sprites, textures, audio, and other game assets</p>
+
+                <div class="dashboard-grid">
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">🎨 Visual Assets</div>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ Upload Asset</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="asset-grid">
+                                <div class="asset-item">
+                                    <div class="asset-icon">🧝‍♀️</div>
+                                    <div class="asset-name">Hero_Sprite.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">🐉</div>
+                                    <div class="asset-name">Dragon_Boss.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">💎</div>
+                                    <div class="asset-name">Crystal_Blue.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">🌲</div>
+                                    <div class="asset-name">Forest_Tile.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">⛰️</div>
+                                    <div class="asset-name">Mountain_BG.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">⚔️</div>
+                                    <div class="asset-name">Sword_Icon.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">🛡️</div>
+                                    <div class="asset-name">Shield_Icon.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">❤️</div>
+                                    <div class="asset-name">Heart_UI.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">⭐</div>
+                                    <div class="asset-name">Star_Particle.png</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">🔮</div>
+                                    <div class="asset-name">Magic_Orb.png</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">🎵 Audio Assets</div>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ Upload Audio</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="asset-grid">
+                                <div class="asset-item">
+                                    <div class="asset-icon">🎼</div>
+                                    <div class="asset-name">Main_Theme.mp3</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">🥁</div>
+                                    <div class="asset-name">Battle_Music.mp3</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">🔔</div>
+                                    <div class="asset-name">Crystal_Collect.wav</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">⚔️</div>
+                                    <div class="asset-name">Sword_Swing.wav</div>
+                                </div>
+                                <div class="asset-item">
+                                    <div class="asset-icon">👣</div>
+                                    <div class="asset-name">Footstep_Grass.wav</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Editor Page -->
+            <div id="level-page" class="page" style="display: none;">
+                <h2 class="page-title">Level Editor</h2>
+                <p class="page-subtitle">Design and build game levels - Forest Realm: Level 3</p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🏗️ Level Grid (10x10)</div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">Clear</button>
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">Save Level</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div style="display: flex; gap: 2rem;">
+                            <div class="level-preview" style="flex: 1;">
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">💎</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">👹</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🪨</div>
+                                <div class="tile wall">🪨</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">💎</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🪨</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile">💎</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile player">🧝‍♀️</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">👹</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🪨</div>
+                                <div class="tile wall">🪨</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">💎</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">👹</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🪨</div>
+                                <div class="tile">💎</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">👹</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🌿</div>
+                                <div class="tile">🚪</div>
+                                <div class="tile wall">🌲</div>
+                                
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                                <div class="tile wall">🌲</div>
+                            </div>
+                            
+                            <div style="width: 200px;">
+                                <h4 style="margin-bottom: 1rem; font-size: 0.875rem;">Tile Palette</h4>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                                    <div class="tool-btn" style="aspect-ratio: 1;" onclick="selectTile('empty')">
+                                        <div class="tool-icon">⬜</div>
+                                        <div class="tool-name">Empty</div>
+                                    </div>
+                                    <div class="tool-btn" style="aspect-ratio: 1;" onclick="selectTile('wall')">
+                                        <div class="tool-icon">🌲</div>
+                                        <div class="tool-name">Wall</div>
+                                    </div>
+                                    <div class="tool-btn" style="aspect-ratio: 1;" onclick="selectTile('floor')">
+                                        <div class="tool-icon">🌿</div>
+                                        <div class="tool-name">Floor</div>
+                                    </div>
+                                    <div class="tool-btn" style="aspect-ratio: 1;" onclick="selectTile('player')">
+                                        <div class="tool-icon">🧝‍♀️</div>
+                                        <div class="tool-name">Player</div>
+                                    </div>
+                                    <div class="tool-btn" style="aspect-ratio: 1;" onclick="selectTile('enemy')">
+                                        <div class="tool-icon">👹</div>
+                                        <div class="tool-name">Enemy</div>
+                                    </div>
+                                    <div class="tool-btn" style="aspect-ratio: 1;" onclick="selectTile('item')">
+                                        <div class="tool-icon">💎</div>
+                                        <div class="tool-name">Item</div>
+                                    </div>
+                                    <div class="tool-btn" style="aspect-ratio: 1;" onclick="selectTile('rock')">
+                                        <div class="tool-icon">🪨</div>
+                                        <div class="tool-name">Rock</div>
+                                    </div>
+                                    <div class="tool-btn" style="aspect-ratio: 1;" onclick="selectTile('door')">
+                                        <div class="tool-icon">🚪</div>
+                                        <div class="tool-name">Exit</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Characters Page -->
+            <div id="characters-page" class="page" style="display: none;">
+                <h2 class="page-title">Character Database</h2>
+                <p class="page-subtitle">Manage NPCs, enemies, and playable characters</p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">👤 Characters</div>
+                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ New Character</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="character-card">
+                            <div class="character-avatar">🧝‍♀️</div>
+                            <div class="character-info">
+                                <div class="character-name">Ariella Moonwhisper</div>
+                                <div class="character-role">Playable Character • Hero</div>
+                                <div class="character-stats">
+                                    <span>❤️ HP: 100</span>
+                                    <span>⚔️ ATK: 25</span>
+                                    <span>🛡️ DEF: 15</span>
+                                    <span>⚡ SPD: 20</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="character-card">
+                            <div class="character-avatar">🧙‍♂️</div>
+                            <div class="character-info">
+                                <div class="character-name">Elder Thorne</div>
+                                <div class="character-role">NPC • Quest Giver</div>
+                                <div class="character-stats">
+                                    <span>📍 Forest Village</span>
+                                    <span>🗣️ 12 dialogues</span>
+                                    <span>📜 4 quests</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="character-card">
+                            <div class="character-avatar">👹</div>
+                            <div class="character-info">
+                                <div class="character-name">Forest Goblin</div>
+                                <div class="character-role">Enemy • Minion</div>
+                                <div class="character-stats">
+                                    <span>❤️ HP: 30</span>
+                                    <span>⚔️ ATK: 8</span>
+                                    <span>🛡️ DEF: 5</span>
+                                    <span>💰 Drop: 5-10g</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="character-card">
+                            <div class="character-avatar">🐉</div>
+                            <div class="character-info">
+                                <div class="character-name">Shadow Drake</div>
+                                <div class="character-role">Boss • Realm Guardian</div>
+                                <div class="character-stats">
+                                    <span>❤️ HP: 500</span>
+                                    <span>⚔️ ATK: 50</span>
+                                    <span>🛡️ DEF: 30</span>
+                                    <span>⚡ Special: Fire Breath</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Playtest Page -->
+            <div id="playtest-page" class="page" style="display: none;">
+                <h2 class="page-title">Playtesting & Analytics</h2>
+                <p class="page-subtitle">Test your game and analyze player behavior</p>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">🎯 Session Metrics</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="metric-grid">
+                                <div class="metric-item">
+                                    <div class="metric-value">42</div>
+                                    <div class="metric-label">Total Sessions</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-value">24m</div>
+                                    <div class="metric-label">Avg Session</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-value">68%</div>
+                                    <div class="metric-label">Completion Rate</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">⚡ Performance</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="metric-grid">
+                                <div class="metric-item">
+                                    <div class="metric-value">58</div>
+                                    <div class="metric-label">Avg FPS</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-value">1.2s</div>
+                                    <div class="metric-label">Load Time</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-value">12</div>
+                                    <div class="metric-label">Crashes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div class="card-title">💬 Recent Feedback</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="gdd-section">
+                                <div class="gdd-title">Player #37 - Session 12m</div>
+                                <div class="gdd-content">"Combat feels great! But the third level is too hard compared to level 2. Maybe add a checkpoint?"</div>
+                            </div>
+                            <div class="gdd-section">
+                                <div class="gdd-title">Player #41 - Session 28m</div>
+                                <div class="gdd-content">"Love the crystal collection mechanic! The music is beautiful but could use more variety in the forest realm."</div>
+                            </div>
+                            <div class="gdd-section">
+                                <div class="gdd-title">Player #38 - Session 8m</div>
+                                <div class="gdd-content">"UI is confusing at first. Took me a while to figure out how to equip items. Tutorial needs work."</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bugs Page -->
+            <div id="bugs-page" class="page" style="display: none;">
+                <h2 class="page-title">Bug Tracker</h2>
+                <p class="page-subtitle">Track and manage issues during development</p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🐛 Active Issues</div>
+                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ Report Bug</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="bug-item">
+                            <span class="bug-severity severity-high">HIGH</span>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">Player falls through floor in Level 3</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">Collision detection issue near waterfall area</div>
+                            </div>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">2 days ago</span>
+                        </div>
+
+                        <div class="bug-item">
+                            <span class="bug-severity severity-medium">MED</span>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">Audio cuts out during boss fight</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">Happens after 2 minutes of combat</div>
+                            </div>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">3 days ago</span>
+                        </div>
+
+                        <div class="bug-item">
+                            <span class="bug-severity severity-low">LOW</span>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600;">Typo in dialogue with Elder Thorne</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">Line 3: "crystle" should be "crystal"</div>
+                            </div>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">5 days ago</span>
+                        </div>
+
+                        <div class="bug-item resolved">
+                            <span class="bug-severity severity-critical">CRIT</span>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; text-decoration: line-through;">Game crashes on startup</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">✓ Fixed: Memory allocation issue in asset loader</div>
+                            </div>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Resolved yesterday</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Panel -->
+        <aside class="right-panel">
+            <div class="panel-title">Development Notes</div>
+            <div style="background: var(--bg-elevated); padding: 1rem; border-radius: 12px; margin-bottom: 2rem;">
+                <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">
+                    Remember to test the crystal fusion mechanic thoroughly. Players are reporting it's confusing in the current build.
+                </p>
+            </div>
+
+            <div class="panel-title">Version History</div>
+            <div class="version-item">
+                <div class="version-number">v0.4.2</div>
+                <div class="version-date">Today, 2:30 PM</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Added Level 3, fixed collision</div>
+            </div>
+            <div class="version-item">
+                <div class="version-number">v0.4.1</div>
+                <div class="version-date">Yesterday</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Bug fixes, UI improvements</div>
+            </div>
+            <div class="version-item">
+                <div class="version-number">v0.4.0</div>
+                <div class="version-date">3 days ago</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Major: Combat system overhaul</div>
+            </div>
+
+            <div class="panel-title" style="margin-top: 2rem;">Next Milestone</div>
+            <div style="background: linear-gradient(135deg, rgba(124, 77, 255, 0.2), rgba(255, 215, 0, 0.2)); border-radius: 12px; padding: 1.25rem; border: 1px solid rgba(124, 77, 255, 0.3);">
+                <div style="font-weight: 600; margin-bottom: 0.5rem;">Alpha Release</div>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">Complete first 3 realms with all mechanics</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Due: February 15, 2026</div>
+                <div class="progress-bar" style="margin-top: 1rem;">
+                    <div class="progress-fill" style="width: 65%;"></div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Navigation
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+                page.classList.remove('active');
+            });
+
+            const selectedPage = document.getElementById(pageName + '-page');
+            if (selectedPage) {
+                selectedPage.style.display = 'block';
+                selectedPage.classList.add('active');
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        // Tool opener
+        function openTool(tool) {
+            const tools = {
+                'tilemap': 'Opening Tilemap Editor...',
+                'sprite': 'Opening Sprite Editor...',
+                'audio': 'Opening Audio Mixer...',
+                'script': 'Opening Script Editor...'
+            };
+            alert(tools[tool] || 'Opening tool...');
+        }
+
+        // Tile selection
+        let selectedTileType = 'empty';
+
+        function selectTile(type) {
+            selectedTileType = type;
+            alert(`Selected: ${type}. Click on the grid to place.`);
+        }
+
+        // Add click handlers to tiles
+        document.querySelectorAll('.tile').forEach(tile => {
+            tile.addEventListener('click', function() {
+                if (selectedTileType === 'empty') {
+                    this.className = 'tile';
+                    this.textContent = '';
+                } else if (selectedTileType === 'wall') {
+                    this.className = 'tile wall';
+                    this.textContent = '🌲';
+                } else if (selectedTileType === 'floor') {
+                    this.className = 'tile';
+                    this.textContent = '🌿';
+                } else if (selectedTileType === 'player') {
+                    // Remove existing player
+                    document.querySelectorAll('.tile.player').forEach(t => {
+                        t.className = 'tile';
+                        t.textContent = '🌿';
+                    });
+                    this.className = 'tile player';
+                    this.textContent = '🧝‍♀️';
+                } else if (selectedTileType === 'enemy') {
+                    this.className = 'tile enemy';
+                    this.textContent = '👹';
+                } else if (selectedTileType === 'item') {
+                    this.className = 'tile item';
+                    this.textContent = '💎';
+                } else if (selectedTileType === 'rock') {
+                    this.className = 'tile wall';
+                    this.textContent = '🪨';
+                } else if (selectedTileType === 'door') {
+                    this.className = 'tile';
+                    this.textContent = '🚪';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

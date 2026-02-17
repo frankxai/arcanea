@@ -1,0 +1,20 @@
+{
+  "name": "arcanea-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "generate:data": "tsx scripts/build-data.ts"
+  },
+  "dependencies": {
+    "astro": "^4.14.2",
+    "@astrojs/mdx": "^3.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "tsx": "^4.15.7"
+  }
+}

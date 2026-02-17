@@ -1,0 +1,32 @@
+{
+  "name": "@starlight/runtime",
+  "version": "0.1.0",
+  "description": "The Universal Runtime for playing Starlight Protocol context files",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "keywords": [
+    "starlight",
+    "agent",
+    "protocol",
+    "context",
+    "ai",
+    "llm",
+    "runtime"
+  ],
+  "author": "FrankX (Arcanea)",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.22.4",
+    "ai": "^3.0.19",
+    "@ai-sdk/anthropic": "^0.0.9",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.19"
+  }
+}

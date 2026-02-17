@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import { getAuthAdapter, createKeystore, maskCredential } from '@arcanea/auth';
-import type { ProviderType } from '@arcanea/core';
+import type { ProviderType } from '@arcanea/os';
 import { printSuccess, printError, printInfo, printDivider } from '../ui/banner.js';
 import { promptPassword } from '../ui/prompts.js';
 

@@ -27,7 +27,7 @@ Add to your `.mcp.json` or MCP settings:
 
 ### Intelligence Engine Tools (v0.4.0)
 
-Powered by `@arcanea/core`:
+Powered by `@arcanea/os`:
 
 | Tool | Description |
 |:-----|:------------|
@@ -127,7 +127,7 @@ pnpm --filter @arcanea/mcp-server start
 
 | Package | Purpose |
 |:--------|:--------|
-| [`@arcanea/core`](https://github.com/frankxai/arcanea/tree/main/packages/core) | Intelligence engine |
+| [`@arcanea/os`](https://github.com/frankxai/arcanea/tree/main/packages/core) | Intelligence engine |
 | [`@arcanea/cli`](https://github.com/frankxai/arcanea/tree/main/packages/cli) | CLI with 10 commands |
 | [`arcanea.ai`](https://arcanea.ai) | Live web platform |
 

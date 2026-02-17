@@ -13,8 +13,8 @@ import type {
   ToolDetection,
   InstallResult,
   InstallPreview,
-} from '@arcanea/core';
-import { generateCopilotInstructions } from '@arcanea/core';
+} from '@arcanea/os';
+import { generateCopilotInstructions } from '@arcanea/os';
 
 export class CopilotOverlayInstaller implements OverlayInstaller {
   async canInstall(projectDir: string): Promise<boolean> {

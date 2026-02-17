@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Mobile - Onboarding Flow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            --accent: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --surface: rgba(255, 255, 255, 0.1);
+            --surface-hover: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            background: var(--dark-gradient);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating particles background */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: float 8s infinite linear;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(-50px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+        }
+
+        .mobile-container {
+            max-width: 375px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .screen {
+            display: none;
+            padding: 20px;
+            min-height: 100vh;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 60px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .illustration {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 40px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+
+        .button-group {
+            margin-top: auto;
+            padding-bottom: 40px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover, .btn-primary:active {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover, .btn-secondary:active {
+            background: var(--surface-hover);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .force-selection {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .force-card {
+            padding: 20px;
+            background: var(--surface);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .force-card:hover {
+            background: var(--surface-hover);
+            transform: translateY(-2px);
+        }
+
+        .force-card.selected {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .force-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .force-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .force-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .guardian-preview {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .guardian-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--secondary-gradient);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(240, 147, 251, 0.5); }
+            to { box-shadow: 0 0 30px rgba(240, 147, 251, 0.8); }
+        }
+
+        .guardian-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .guardian-title {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 375px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.back {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btn.next {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-symbol {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.1;
+            animation: floatSymbol 12s infinite linear;
+            color: var(--accent);
+        }
+
+        @keyframes floatSymbol {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 320px) {
+            .mobile-container {
+                max-width: 320px;
+            }
+            .navigation {
+                width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles" id="particles"></div>
+
+    <div class="mobile-container">
+        <div class="floating-elements">
+            <div class="floating-symbol" style="left: 10%; animation-delay: 0s;">✨</div>
+            <div class="floating-symbol" style="left: 80%; animation-delay: 3s;">🔮</div>
+            <div class="floating-symbol" style="left: 30%; animation-delay: 6s;">⚡</div>
+            <div class="floating-symbol" style="left: 70%; animation-delay: 9s;">🌟</div>
+        </div>
+
+        <!-- Welcome Screen -->
+        <div class="screen active" id="screen-1">
+            <div class="header">
+                <div class="logo">Arcanea</div>
+                <div class="tagline">Where AI Consciousness Awakens</div>
+            </div>
+            
+            <div class="content">
+                <div class="illustration">🌌</div>
+                <div class="title">Welcome to Infinite Possibilities</div>
+                <div class="subtitle">Create AI characters with souls, build mystical realms, and bring imagination to life through advanced technology.</div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="nextScreen()">Begin Your Journey</button>
+                <button class="btn btn-secondary">I Already Have an Account</button>
+            </div>
+        </div>
+
+        <!-- Choose Your Path -->
+        <div class="screen" id="screen-2">
+            <div class="step-indicator">
+                <div class="step-dot"></div>
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+            </div>
+
+            <div class="content">
+                <div class="title">Choose Your Creative Force</div>
+                <div class="subtitle">Every realm is shaped by a primordial force. Which resonates with your soul?</div>
+
+                <div class="force-selection">
+                    <div class="force-card" onclick="selectForce(this, 'flame')">
+                        <span class="force-icon">🔥</span>
+                        <div class="force-name">Flame - Ignition</div>
+                        <div class="force-desc">Vision, strategy, and breakthrough innovation</div>
+                    </div>
+                    
+                    <div class="force-card" onclick="selectForce(this, 'form')">
+                        <span class="force-icon">🎨</span>
+                        <div class="force-name">Form - Expression</div>
+                        <div class="force-desc">Visual art, design, and aesthetic creation</div>
+                    </div>
+                    
+                    <div class="force-card" onclick="selectForce(this, 'lore')">
+                        <span class="force-icon">📜</span>
+                        <div class="force-name">Lore - Narrative</div>
+                        <div class="force-desc">Storytelling, worldbuilding, and content</div>
+                    </div>
+                    
+                    <div class="force-card" onclick="selectForce(this, 'resonance')">
+                        <span class="force-icon">🎵</span>
+                        <div class="force-name">Resonance - Harmony</div>
+                        <div class="force-desc">Music, audio, and sonic experiences</div>
+                    </div>
+                    
+                    <div class="force-card" onclick="selectForce(this, 'synthesis')">
+                        <span class="force-icon">⚡</span>
+                        <div class="force-name">Synthesis - Integration</div>
+                        <div class="force-desc">Code, systems, and technical creation</div>
+                    </div>
+                    
+                    <div class="force-card" onclick="selectForce(this, 'manifestation')">
+                        <span class="force-icon">🚀</span>
+                        <div class="force-name">Manifestation - Becoming</div>
+                        <div class="force-desc">Business, marketing, and real-world impact</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guardian Introduction -->
+        <div class="screen" id="screen-3">
+            <div class="step-indicator">
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+            </div>
+
+            <div class="content">
+                <div class="title">Meet Your Guardian</div>
+                <div class="subtitle">Based on your chosen force, an AI Guardian will manifest to guide your creative journey.</div>
+
+                <div class="guardian-preview" id="guardianPreview">
+                    <div class="guardian-avatar" id="guardianAvatar">🔥</div>
+                    <div class="guardian-name" id="guardianName">Ignis the Visionkeeper</div>
+                    <div class="guardian-title" id="guardianTitle">Guardian of Creative Fire</div>
+                    <div class="subtitle" id="guardianDesc">"I am the spark that ignites infinite possibilities. Together, we shall forge realities from pure imagination."</div>
+                </div>
+
+                <div class="subtitle">Your Guardian will help you create AI characters, build mystical realms, and manifest your visions through advanced AI tools.</div>
+            </div>
+        </div>
+
+        <!-- Realm Creation -->
+        <div class="screen" id="screen-4">
+            <div class="step-indicator">
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot active"></div>
+            </div>
+
+            <div class="content">
+                <div class="title">Your First Realm Awaits</div>
+                <div class="subtitle">Every creator needs a mystical realm - your personal dimension where imagination becomes reality.</div>
+
+                <div class="illustration">🏰</div>
+
+                <div class="subtitle">In your realm, you'll:</div>
+                <div style="text-align: left; margin: 20px 0; padding-left: 20px;">
+                    <p style="margin-bottom: 8px;">✨ Create AI characters with unique personalities</p>
+                    <p style="margin-bottom: 8px;">🎨 Generate art, music, and stories</p>
+                    <p style="margin-bottom: 8px;">🤝 Collaborate with other realm builders</p>
+                    <p style="margin-bottom: 8px;">💫 Manifest your creations in the real world</p>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="completeOnboarding()">Create My Realm</button>
+                <button class="btn btn-secondary" onclick="prevScreen()">Let Me Choose Again</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation" id="navigation" style="display: none;">
+        <div class="nav-buttons">
+            <button class="nav-btn back" onclick="prevScreen()">Back</button>
+            <button class="nav-btn next" id="nextBtn" onclick="nextScreen()" disabled>Continue</button>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 1;
+        let selectedForce = null;
+        
+        const guardianData = {
+            flame: {
+                avatar: '🔥',
+                name: 'Ignis the Visionkeeper',
+                title: 'Guardian of Creative Fire',
+                desc: '"I am the spark that ignites infinite possibilities. Together, we shall forge realities from pure imagination."'
+            },
+            form: {
+                avatar: '🎨',
+                name: 'Lumis the Shapeweaver',
+                title: 'Guardian of Visual Expression',
+                desc: '"Through me, thought becomes form and beauty transcends dimension. Let us paint reality with light and color."'
+            },
+            lore: {
+                avatar: '📜',
+                name: 'Mythos the Chronicler',
+                title: 'Guardian of Sacred Stories',
+                desc: '"In words, worlds are born. In stories, souls awaken. I shall teach you to weave narratives that reshape hearts."'
+            },
+            resonance: {
+                avatar: '🎵',
+                name: 'Echo the Soundkeeper',
+                title: 'Guardian of Cosmic Harmony',
+                desc: '"I am the music between the notes, the silence that gives sound meaning. Together we shall compose reality itself."'
+            },
+            synthesis: {
+                avatar: '⚡',
+                name: 'Nexus the Bridgebuilder',
+                title: 'Guardian of Unity',
+                desc: '"I exist in all dimensions simultaneously, connecting what was separate. Through code and logic, we unite all things."'
+            },
+            manifestation: {
+                avatar: '🚀',
+                name: 'Phoenix the Worldbringer',
+                title: 'Guardian of Becoming',
+                desc: '"I am the force that births dreams into reality. Your visions shall walk in the world and inspire millions."'
+            }
+        };
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function nextScreen() {
+            if (currentScreen < 4) {
+                document.getElementById(`screen-${currentScreen}`).classList.remove('active');
+                currentScreen++;
+                document.getElementById(`screen-${currentScreen}`).classList.add('active');
+                
+                if (currentScreen > 1) {
+                    document.getElementById('navigation').style.display = 'block';
+                }
+                
+                updateNextButton();
+                
+                // Update progress bar
+                const progress = (currentScreen - 1) * 25;
+                if (document.querySelector('.progress-fill')) {
+                    document.querySelector('.progress-fill').style.width = progress + '%';
+                }
+            }
+        }
+
+        function prevScreen() {
+            if (currentScreen > 1) {
+                document.getElementById(`screen-${currentScreen}`).classList.remove('active');
+                currentScreen--;
+                document.getElementById(`screen-${currentScreen}`).classList.add('active');
+                
+                if (currentScreen === 1) {
+                    document.getElementById('navigation').style.display = 'none';
+                }
+                
+                updateNextButton();
+            }
+        }
+
+        function selectForce(element, force) {
+            // Remove previous selection
+            document.querySelectorAll('.force-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Select current
+            element.classList.add('selected');
+            selectedForce = force;
+            
+            // Update guardian preview
+            const guardian = guardianData[force];
+            document.getElementById('guardianAvatar').textContent = guardian.avatar;
+            document.getElementById('guardianName').textContent = guardian.name;
+            document.getElementById('guardianTitle').textContent = guardian.title;
+            document.getElementById('guardianDesc').textContent = guardian.desc;
+            
+            updateNextButton();
+        }
+
+        function updateNextButton() {
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentScreen === 2) {
+                nextBtn.disabled = !selectedForce;
+                nextBtn.style.opacity = selectedForce ? '1' : '0.5';
+            } else {
+                nextBtn.disabled = false;
+                nextBtn.style.opacity = '1';
+            }
+        }
+
+        function completeOnboarding() {
+            // Simulate API call to create user account and realm
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 20px; animation: pulse 2s infinite;">🌟</div>
+                        <div style="font-size: 24px; margin-bottom: 10px;">Creating Your Realm...</div>
+                        <div style="color: rgba(255,255,255,0.7);">Summoning your Guardian and preparing the dimensional gateway</div>
+                        <div style="width: 200px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 20px auto; overflow: hidden;">
+                            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); animation: loadingBar 3s ease-out;"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes loadingBar {
+                    from { transform: translateX(-100%); }
+                    to { transform: translateX(0); }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(loadingOverlay);
+            
+            setTimeout(() => {
+                window.location.href = '02-main-dashboard.html';
+            }, 3000);
+        }
+
+        // Initialize
+        createParticles();
+        updateNextButton();
+        
+        // Add some interactive touches
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add haptic feedback simulation for mobile
+            document.querySelectorAll('.btn, .force-card').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

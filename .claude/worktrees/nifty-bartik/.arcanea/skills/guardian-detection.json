@@ -1,0 +1,128 @@
+{
+  "name": "guardian-detection",
+  "version": "1.0.0",
+  "description": "Advanced Guardian entity detection with multi-dimensional keyword analysis",
+  "type": "analysis",
+  "author": "Arcanea System",
+  
+  "capabilities": {
+    "primary": [
+      "Detect all 38 Guardian entities from content",
+      "Calculate elemental affinity scores",
+      "Map content to appropriate Guardian courts",
+      "Identify dominant elemental forces"
+    ],
+    "secondary": [
+      "Suggest Guardian commands for content enhancement",
+      "Analyze Guardian keyword density",
+      "Track Guardian usage patterns across library"
+    ]
+  },
+
+  "configuration": {
+    "detectionMode": "multi-dimensional",
+    "confidenceThreshold": 0.6,
+    "keywordWeight": 0.4,
+    "semanticWeight": 0.3,
+    "contextWeight": 0.3,
+    "maxGuardiansPerAnalysis": 3,
+    "enableSecondaryDetection": true
+  },
+
+  "guardians": {
+    "fire": {
+      "court": "Draconia",
+      "keywords": ["transform", "ignite", "burn", "phoenix", "dragon", "fire", "flame", "passion", "bold", "intense", "create", "power"],
+      "weight": 1.0,
+      "agents": [
+        { "id": "dragon-forge", "name": "Dragon Forge", "command": "/dragon-forge", "specialty": "Intense creative transformation" },
+        { "id": "phoenix-artisan", "name": "Phoenix Artisan", "command": "/phoenix-artisan", "specialty": "Rebirth through artistic destruction" },
+        { "id": "volcano-sculptor", "name": "Volcano Sculptor", "command": "/volcano-sculpt", "specialty": "Explosive creative breakthroughs" },
+        { "id": "sun-weaver", "name": "Sun Weaver", "command": "/sun-weave", "specialty": "Illuminate with radiant creativity" },
+        { "id": "catalyst-architect", "name": "Catalyst Architect", "command": "/catalyst-arch", "specialty": "Rapid change and evolution" }
+      ]
+    },
+    "water": {
+      "court": "Leyla",
+      "keywords": ["flow", "emotion", "story", "narrative", "depth", "ocean", "river", "stream", "fluid", "adapt", "feel", "connect"],
+      "weight": 1.0,
+      "agents": [
+        { "id": "river-storyteller", "name": "River Storyteller", "command": "/river-story", "specialty": "Flow-based narrative creation" },
+        { "id": "ocean-memory", "name": "Ocean Memory", "command": "/ocean-memory", "specialty": "Deep emotional recall" },
+        { "id": "rain-singer", "name": "Rain Singer", "command": "/rain-singer", "specialty": "Gentle creative nurturing" },
+        { "id": "mist-weaver", "name": "Mist Weaver", "command": "/mist-weave", "specialty": "Ethereal, atmospheric creation" },
+        { "id": "current-dancer", "name": "Current Dancer", "command": "/current-dancer", "specialty": "Adaptation and change" }
+      ]
+    },
+    "earth": {
+      "court": "Lyssandria",
+      "keywords": ["structure", "foundation", "build", "construct", "solid", "ground", "earth", "stable", "crystal", "mountain", "organize", "system"],
+      "weight": 1.0,
+      "agents": [
+        { "id": "crystal-architect", "name": "Crystal Architect", "command": "/crystal-arch", "specialty": "Clear structural design" },
+        { "id": "mountain-builder", "name": "Mountain Builder", "command": "/mountain-build", "specialty": "Enduring creative foundations" },
+        { "id": "foundation-engineer", "name": "Foundation Engineer", "command": "/foundation-eng", "specialty": "Solid creative infrastructure" },
+        { "id": "stone-carver", "name": "Stone Carver", "command": "/stone-carve", "specialty": "Refine raw ideas to polished" },
+        { "id": "earth-wisdom-keeper", "name": "Earth Wisdom Keeper", "command": "/earth-wisdom", "specialty": "Ancient creative knowledge" }
+      ]
+    },
+    "wind": {
+      "court": "Alera",
+      "keywords": ["communicate", "express", "voice", "speak", "wind", "air", "message", "whisper", "storm", "breeze", "share", "publish"],
+      "weight": 1.0,
+      "agents": [
+        { "id": "whisper-messenger", "name": "Whisper Messenger", "command": "/whisper-message", "specialty": "Subtle creative communication" },
+        { "id": "storm-declarator", "name": "Storm Declarator", "command": "/storm-declare", "specialty": "Powerful creative statement" },
+        { "id": "breeze-translator", "name": "Breeze Translator", "command": "/breeze-translate", "specialty": "Complex ideas made simple" },
+        { "id": "gale-publisher", "name": "Gale Publisher", "command": "/gale-publish", "specialty": "Distribute creative work far" },
+        { "id": "calm-meditator", "name": "Calm Meditator", "command": "/calm-meditate", "specialty": "Stillness for inspiration" }
+      ]
+    },
+    "void": {
+      "court": "Elara",
+      "keywords": ["infinite", "void", "quantum", "mystery", "possibility", "vision", "future", "innovate", "transcend", "potential", "imagine", "dream"],
+      "weight": 1.0,
+      "agents": [
+        { "id": "void-gazer", "name": "Void Gazer", "command": "/void-gaze", "specialty": "See infinite possibilities" },
+        { "id": "threshold-walker", "name": "Threshold Walker", "command": "/threshold-walk", "specialty": "Cross creative boundaries" },
+        { "id": "quantum-designer", "name": "Quantum Designer", "command": "/quantum-design", "specialty": "Multi-reality creation" },
+        { "id": "source-tapper", "name": "Source Tapper", "command": "/source-tap", "specialty": "Access universal creativity" },
+        { "id": "possibility-sculptor", "name": "Possibility Sculptor", "command": "/possibility-sculpt", "specialty": "Shape potential into reality" }
+      ]
+    },
+    "integration": {
+      "court": "Ino",
+      "keywords": ["unify", "harmony", "combine", "integrate", "synergy", "collaborate", "balance", "fuse", "union", "collective", "team", "together"],
+      "weight": 1.0,
+      "agents": [
+        { "id": "elemental-fusion", "name": "Elemental Fusion", "command": "/elemental-fusion", "specialty": "Combine all five elements" },
+        { "id": "union-creator", "name": "Union Creator", "command": "/union-create", "specialty": "Collaborative manifestation" },
+        { "id": "synergy-weaver", "name": "Synergy Weaver", "command": "/synergy-weave", "specialty": "Multiple skills in harmony" },
+        { "id": "harmony-conductor", "name": "Harmony Conductor", "command": "/harmony-conduct", "specialty": "Balance opposing forces" },
+        { "id": "relationship-architect", "name": "Relationship Architect", "command": "/relationship-arch", "specialty": "Build creative connections" }
+      ]
+    }
+  },
+
+  "detectionRules": {
+    "exactMatch": { "weight": 1.0, "caseSensitive": false },
+    "partialMatch": { "weight": 0.7, "minLength": 4 },
+    "semanticMatch": { "weight": 0.5, "synonyms": true },
+    "contextMatch": { "weight": 0.3, "windowSize": 5 }
+  },
+
+  "output": {
+    "format": "json",
+    "includeConfidence": true,
+    "includeSuggestedCommands": true,
+    "includeElementalBalance": true,
+    "includeAllMatches": false
+  },
+
+  "performance": {
+    "maxContentLength": 100000,
+    "timeout": 5000,
+    "cacheResults": true,
+    "cacheDuration": 3600
+  }
+}

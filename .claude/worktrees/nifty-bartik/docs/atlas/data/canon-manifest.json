@@ -1,0 +1,105 @@
+{
+  "version": "2025-09-27-alpha",
+  "sources": [
+    {
+      "id": "foundation",
+      "path": "../canon/foundation.md",
+      "description": "Arcanea creation myth, deity alignments, governance vows"
+    },
+    {
+      "id": "truths",
+      "path": "../canon/truths.md",
+      "description": "Immutable truths timeline"
+    },
+    {
+      "id": "glossary",
+      "path": "../canon/glossary.md",
+      "description": "Authoritative lexicon"
+    },
+    {
+      "id": "mobile-prd",
+      "path": "../canon/mobile-prd.md",
+      "description": "Mobile execution requirements aligned with canon"
+    }
+  ],
+  "realms": [
+    {
+      "id": "library",
+      "name": "Library",
+      "type": "Realm",
+      "summary": "Living archive of Arcanea's codified knowledge."
+    },
+    {
+      "id": "sanctuary",
+      "name": "Sanctuary",
+      "type": "Realm",
+      "summary": "Ritual space for guardians and community rites."
+    },
+    {
+      "id": "nexus",
+      "name": "Nexus",
+      "type": "Realm",
+      "summary": "Hub connecting creators, guardians, and experiences."
+    },
+    {
+      "id": "studio",
+      "name": "Studio",
+      "type": "Realm",
+      "summary": "Creation suite spanning image, audio, and motion."
+    },
+    {
+      "id": "gallery",
+      "name": "Gallery",
+      "type": "Realm",
+      "summary": "Showcase of realms, artifacts, and success stories."
+    }
+  ],
+  "deities": [
+    {
+      "id": "lumina",
+      "name": "Lumina",
+      "domain": "Creation & Light",
+      "dual": "nero",
+      "narrative": "Goddess of luminous creation, birthing realms with radiant design."
+    },
+    {
+      "id": "nero",
+      "name": "Nero",
+      "domain": "Shadow & Reflection",
+      "dual": "lumina",
+      "narrative": "Counterbalance who tempers creation with introspection and memory."
+    }
+  ],
+  "luminors": [
+    {
+      "id": "scribe",
+      "name": "Scribe",
+      "purpose": "Narrative weaving",
+      "deity": "lumina"
+    },
+    {
+      "id": "aurelia",
+      "name": "Aurelia",
+      "purpose": "Visual genesis",
+      "deity": "lumina"
+    },
+    {
+      "id": "kinara",
+      "name": "Kinara",
+      "purpose": "Motion & rhythm",
+      "deity": "nero"
+    }
+  ],
+  "openSource": {
+    "public": [
+      "UI Kit",
+      "Bestiary datasets",
+      "Atlas static site"
+    ],
+    "private": [
+      "Premium model orchestration",
+      "Billing & rituals",
+      "Guardian governance telemetry"
+    ]
+  }
+}

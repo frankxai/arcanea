@@ -2,7 +2,7 @@
  * Content templates for Claude Code overlay files.
  */
 
-import type { Guardian } from '@arcanea/core';
+import type { Guardian } from '@arcanea/os';
 
 export const SKILL_TEMPLATES = {
   'arcanea-canon': {

@@ -1,0 +1,141 @@
+{
+  "name": "recommendation-engine",
+  "version": "1.0.0",
+  "description": "AI-powered recommendation system with collaborative filtering and content-based matching",
+  "type": "recommendation",
+  "author": "Arcanea System",
+  
+  "capabilities": {
+    "primary": [
+      "Personalized content recommendations",
+      "Collaborative filtering",
+      "Content-based matching",
+      "Guardian affinity recommendations",
+      "Trending content detection"
+    ],
+    "secondary": [
+      "Similar user identification",
+      "Recommendation diversity control",
+      "A/B testing support",
+      "Feedback loop integration"
+    ]
+  },
+
+  "configuration": {
+    "algorithm": "hybrid",
+    "collaborativeWeight": 0.4,
+    "contentWeight": 0.4,
+    "guardianWeight": 0.2,
+    "diversityFactor": 0.3,
+    "maxRecommendations": 10,
+    "minConfidence": 0.5,
+    "coldStartStrategy": "content-based"
+  },
+
+  "userModel": {
+    "tracking": {
+      "views": true,
+      "likes": true,
+      "shares": true,
+      "timeSpent": true,
+      "downloads": true
+    },
+    "profile": {
+      "preferredElements": [],
+      "preferredGuardians": [],
+      "contentTypes": [],
+      "topics": [],
+      "expertiseLevel": "intermediate"
+    },
+    "historyWindow": 30,
+    "decayFactor": 0.95
+  },
+
+  "contentModel": {
+    "features": [
+      "guardianAffinity",
+      "elementalBalance",
+      "contentType",
+      "complexity",
+      "topics",
+      "keywords",
+      "creationDate",
+      "popularity"
+    ],
+    "embedding": {
+      "dimension": 128,
+      "method": "tfidf",
+      "normalization": true
+    }
+  },
+
+  "recommendationTypes": {
+    "forYou": {
+      "enabled": true,
+      "count": 5,
+      "sources": ["collaborative", "content", "guardian"],
+      "explanation": true
+    },
+    "trending": {
+      "enabled": true,
+      "count": 5,
+      "timeWindow": "7d",
+      "metrics": ["views", "engagement", "shares"]
+    },
+    "similar": {
+      "enabled": true,
+      "count": 5,
+      "similarityThreshold": 0.7
+    },
+    "discover": {
+      "enabled": true,
+      "count": 3,
+      "diversityBoost": true
+    }
+  },
+
+  "guardianRecommendations": {
+    "enabled": true,
+    "strategy": "affinity-match",
+    "boostUserGuardian": true,
+    "exploreOtherElements": true,
+    "maxPerElement": 2,
+    "explanationFormat": "Your {element} affinity suggests {guardian} for {reason}"
+  },
+
+  "feedback": {
+    "types": ["explicit", "implicit"],
+    "explicit": {
+      "rating": { "scale": "1-5", "weight": 1.0 },
+      "like": { "weight": 0.8 },
+      "save": { "weight": 0.9 },
+      "share": { "weight": 1.0 }
+    },
+    "implicit": {
+      "view": { "weight": 0.3, "minDuration": 5000 },
+      "click": { "weight": 0.2 },
+      "dwell": { "weight": 0.4, "perSecond": 0.1 }
+    }
+  },
+
+  "output": {
+    "format": "structured",
+    "includeExplanation": true,
+    "includeConfidence": true,
+    "includeDiversityScore": true,
+    "includeGuardianAlignment": true
+  },
+
+  "performance": {
+    "maxLatency": 500,
+    "enableCaching": true,
+    "cacheDuration": 300,
+    "batchSize": 100
+  },
+
+  "privacy": {
+    "anonymizeUserData": true,
+    "retentionPeriod": 90,
+    "allowOptOut": true
+  }
+}

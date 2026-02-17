@@ -70,7 +70,7 @@ C:\Users\frank\arcanea-hub\
 | @arcanea/gemini | npmjs.com/@arcanea/gemini | 1.0.0 | **PUBLISH** |
 | @arcanea/codex | npmjs.com/@arcanea/codex | 1.0.0 | **PUBLISH** |
 | @arcanea/intelligence-os | npmjs.com/@arcanea/intelligence-os | 1.0.0 | Active |
-| @arcanea/core | npmjs.com/@arcanea/core | 1.0.0 | Active |
+| @arcanea/os | npmjs.com/@arcanea/os | 1.0.0 | Active |
 
 ---
 

@@ -31,7 +31,7 @@ export type { AuthConfig, ValidationResult, KeystoreEntry } from './types.js';
 export { httpValidate, maskCredential } from './validate.js';
 
 // Re-export core types for convenience
-export type { AuthSession, AuthAdapter, Keystore, ProviderType } from '@arcanea/core';
+export type { AuthSession, AuthAdapter, Keystore, ProviderType } from '@arcanea/os';
 
 // Version
 export const VERSION = '1.0.0';

@@ -5,7 +5,7 @@
 import { Command } from 'commander';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { GUARDIANS } from '@arcanea/core';
+import { GUARDIANS } from '@arcanea/os';
 import { printSuccess, printInfo, printDivider } from '../ui/banner.js';
 
 interface WorldPillar {

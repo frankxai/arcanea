@@ -1,7 +1,7 @@
 {
-  "name": "@arcanea/core",
+  "name": "@arcanea/os",
   "version": "0.2.0",
-  "description": "The intelligence engine powering Arcanea — Guardian routing, voice enforcement, design tokens, and session management for AI creation tools",
+  "description": "Arcanea Intelligence OS — Guardian routing, voice enforcement, design tokens, and session management for AI creation surfaces",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

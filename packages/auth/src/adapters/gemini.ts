@@ -2,7 +2,7 @@
  * Google Gemini Auth Adapter
  */
 
-import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/core';
+import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/os';
 import { httpValidate } from '../validate.js';
 
 export class GeminiAuthAdapter implements AuthAdapter {

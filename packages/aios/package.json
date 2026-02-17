@@ -54,7 +54,7 @@
   },
   "homepage": "https://github.com/frankxai/arcanea-intelligence-os#readme",
   "dependencies": {
-    "@arcanea/core": "workspace:*"
+    "@arcanea/os": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

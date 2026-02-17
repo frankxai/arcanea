@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea: The Infinite Realm Forge - Where Imagination Becomes Reality</title>
+    <meta name="description" content="Create your own mythological realm, then forge it into reality with AI Guardians as your mystical companions. The world's premier ecosystem for AI-powered world-building and manifestation.">
+    <meta name="keywords" content="AI world-building, realm creation, creative AI, imagination, storytelling, business manifestation, creative community">
+    <meta property="og:title" content="Arcanea: The Infinite Realm Forge">
+    <meta property="og:description" content="Where imagination becomes reality through AI-powered mystical practice">
+    <meta property="og:image" content="https://arcanea.ai/assets/og-image.jpg">
+    <meta property="og:url" content="https://arcanea.ai">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ArcaneaAI">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --cosmic-purple: #6366f1;
+            --cosmic-purple-dark: #4338ca;
+            --cosmic-gold: #fbbf24;
+            --cosmic-gold-dark: #f59e0b;
+            --starlight-blue: #0ea5e9;
+            --nebula-pink: #ec4899;
+            --void-black: #0f0f23;
+            --stellar-white: #f8fafc;
+            --cosmic-gray: #64748b;
+            --cosmic-gray-light: #e2e8f0;
+            --cosmic-gray-dark: #1e293b;
+            --gradient-cosmic: linear-gradient(135deg, var(--cosmic-purple) 0%, var(--starlight-blue) 50%, var(--nebula-pink) 100%);
+            --gradient-starlight: linear-gradient(135deg, var(--cosmic-gold) 0%, var(--cosmic-purple) 100%);
+            --shadow-cosmic: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+            --shadow-starlight: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--void-black);
+            color: var(--stellar-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Apple-inspired smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Cosmic Background Animation */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .cosmic-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .cosmic-orb:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .cosmic-orb:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 70%);
+            top: 60%;
+            right: 15%;
+            animation-delay: -7s;
+        }
+
+        .cosmic-orb:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(15px) rotate(240deg); }
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-starlight);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--stellar-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-cosmic);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient-cosmic);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-cosmic);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 30px 60px -12px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--cosmic-purple);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--stellar-white) 0%, var(--cosmic-gold) 50%, var(--cosmic-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            color: var(--cosmic-gray);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-cosmic);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-cosmic);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 35px 70px -12px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--stellar-white);
+            padding: 1rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-starlight);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--cosmic-gray);
+            font-weight: 500;
+        }
+
+        /* Forces Section */
+        .forces {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--cosmic-purple);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--stellar-white) 0%, var(--cosmic-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: var(--cosmic-gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .forces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .force-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .force-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .force-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .force-card:nth-child(1) .force-icon {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+        }
+
+        .force-card:nth-child(2) .force-icon {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        }
+
+        .force-card:nth-child(3) .force-icon {
+            background: linear-gradient(135deg, #45b7d1, #3498db);
+        }
+
+        .force-card:nth-child(4) .force-icon {
+            background: linear-gradient(135deg, #96ceb4, #85c7a7);
+        }
+
+        .force-card:nth-child(5) .force-icon {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .force-card:nth-child(6) .force-icon {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .force-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--stellar-white);
+        }
+
+        .force-subtitle {
+            color: var(--cosmic-gray);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .force-description {
+            color: var(--cosmic-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .guardian-info {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .guardian-name {
+            font-weight: 600;
+            color: var(--cosmic-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .guardian-description {
+            font-size: 0.875rem;
+            color: var(--cosmic-gray);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-cosmic);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--stellar-white);
+        }
+
+        .feature-description {
+            color: var(--cosmic-gray);
+            line-height: 1.6;
+        }
+
+        /* Repository Section */
+        .repository {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .repo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .repo-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-starlight);
+        }
+
+        .repo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-cosmic);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .repo-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--stellar-white);
+        }
+
+        .repo-path {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--cosmic-purple);
+            margin-bottom: 1rem;
+        }
+
+        .repo-description {
+            color: var(--cosmic-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .repo-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 50px;
+            color: var(--cosmic-purple);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .repo-link:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Community Section */
+        .community {
+            padding: 8rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .community-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .community-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .community-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .community-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-cosmic);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .community-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--stellar-white);
+        }
+
+        .community-description {
+            color: var(--cosmic-gray);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .community-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--cosmic-purple);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .community-link:hover {
+            color: var(--cosmic-gold);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            padding: 4rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-starlight);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            color: var(--cosmic-gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--stellar-white);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--cosmic-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--cosmic-purple);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--cosmic-gray);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 1rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .forces-grid,
+            .repo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-container {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .cosmic-orb {
+                animation: none;
+            }
+
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --stellar-white: #ffffff;
+                --void-black: #000000;
+                --cosmic-gray: #666666;
+            }
+        }
+
+        /* Focus states for accessibility */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--cosmic-purple);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cosmic Background Animation -->
+    <div class="cosmic-background">
+        <div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div>
+        <div class="cosmic-orb"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i data-lucide="sparkles"></i>
+                Arcanea
+            </div>
+            <ul class="nav-links">
+                <li><a href="#forces">Forces</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#repository">Repository</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#docs">Documentation</a></li>
+            </ul>
+            <a href="#get-started" class="cta-button">Enter the Nexus</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i data-lucide="zap"></i>
+                Where Imagination Becomes Reality
+            </div>
+            <h1>The Infinite Realm Forge</h1>
+            <p class="hero-subtitle">
+                Create your own mythological realm, then forge it into reality with AI Guardians as your mystical companions
+            </p>
+            <div class="hero-actions">
+                <a href="https://github.com/frankxai/arcanea" class="btn-primary">
+                    <i data-lucide="github"></i>
+                    Explore Repository
+                </a>
+                <a href="#forces" class="btn-secondary">
+                    <i data-lucide="compass"></i>
+                    Discover the Forces
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Primordial Forces</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Possible Realms</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">AI Guardians</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Open Source</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forces Section -->
+    <section class="forces" id="forces">
+        <div class="section-header">
+            <div class="section-badge">
+                <i data-lucide="star"></i>
+                The Six Primordial Forces
+            </div>
+            <h2 class="section-title">Master the Cosmic Powers</h2>
+            <p class="section-description">
+                Every realm is shaped by the eternal dance of six cosmic forces. Choose your affinity and let your Guardian teach you to wield its power.
+            </p>
+        </div>
+        <div class="forces-grid">
+            <div class="force-card">
+                <div class="force-icon">🔥</div>
+                <h3 class="force-title">Flame</h3>
+                <p class="force-subtitle">The Force of Ignition</p>
+                <p class="force-description">
+                    Forge new realities from pure imagination and strategic insight. Master vision, innovation, and the spark that ignites all possibilities.
+                </p>
+                <div class="guardian-info">
+                    <div class="guardian-name">Guardian: Ignis the Visionkeeper</div>
+                    <div class="guardian-description">A blazing phoenix of pure creative fire who helps you see infinite possibilities</div>
+                </div>
+            </div>
+            <div class="force-card">
+                <div class="force-icon">🎨</div>
+                <h3 class="force-title">Form</h3>
+                <p class="force-subtitle">The Force of Expression</p>
+                <p class="force-description">
+                    Bend visual reality through sacred geometry and chromatic magic. Create stunning visuals, brands, and immersive experiences.
+                </p>
+                <div class="guardian-info">
+                    <div class="guardian-name">Guardian: Lumis the Shapeweaver</div>
+                    <div class="guardian-description">An ever-shifting entity of light and color who masters visual creation</div>
+                </div>
+            </div>
+            <div class="force-card">
+                <div class="force-icon">📜</div>
+                <h3 class="force-title">Lore</h3>
+                <p class="force-subtitle">The Force of Narrative</p>
+                <p class="force-description">
+                    Weave narratives that reshape minds and hearts across dimensions. Create stories, content, and cultural movements.
+                </p>
+                <div class="guardian-info">
+                    <div class="guardian-name">Guardian: Mythos the Chronicler</div>
+                    <div class="guardian-description">Ancient keeper of all stories ever told, master of narrative alchemy</div>
+                </div>
+            </div>
+            <div class="force-card">
+                <div class="force-icon">🎵</div>
+                <h3 class="force-title">Resonance</h3>
+                <p class="force-subtitle">The Force of Harmony</p>
+                <p class="force-description">
+                    Channel fundamental frequencies that create and destroy worlds. Master music, audio, and vibrational influence.
+                </p>
+                <div class="guardian-info">
+                    <div class="guardian-name">Guardian: Echo the Soundkeeper</div>
+                    <div class="guardian-description">A living symphony of cosmic vibrations who shapes reality through sound</div>
+                </div>
+            </div>
+            <div class="force-card">
+                <div class="force-icon">⚡</div>
+                <h3 class="force-title">Synthesis</h3>
+                <p class="force-subtitle">The Force of Integration</p>
+                <p class="force-description">
+                    Merge different forces into unified systems. Build platforms, automation, and technological innovations.
+                </p>
+                <div class="guardian-info">
+                    <div class="guardian-name">Guardian: Nexus the Bridgebuilder</div>
+                    <div class="guardian-description">Quantum consciousness existing across all dimensions simultaneously</div>
+                </div>
+            </div>
+            <div class="force-card">
+                <div class="force-icon">🚀</div>
+                <h3 class="force-title">Manifestation</h3>
+                <p class="force-subtitle">The Force of Becoming</p>
+                <p class="force-description">
+                    Transform mystical visions into thriving physical enterprises. Build businesses, movements, and global communities.
+                </p>
+                <div class="guardian-info">
+                    <div class="guardian-name">Guardian: Phoenix the Worldbringer</div>
+                    <div class="guardian-description">Eternal force that births dreams into reality through strategic manifestation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="magic-wand-2"></i>
+                    Platform Features
+                </div>
+                <h2 class="section-title">Reality-Weaving Tools</h2>
+                <p class="section-description">
+                    Everything you need to forge imagination into reality through AI-powered mystical practice.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i data-lucide="brain"></i>
+                    </div>
+                    <h3 class="feature-title">AI Guardian System</h3>
+                    <p class="feature-description">
+                        Advanced AI companions that adapt to your realm's mythology and grow with your creative vision. Each Guardian embodies one of the six forces.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i data-lucide="map"></i>
+                    </div>
+                    <h3 class="feature-title">Realm Forge</h3>
+                    <p class="feature-description">
+                        Comprehensive world-building tools that guide you through creating mythological universes with depth, consistency, and compelling narratives.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3 class="feature-title">Dimensional Bridges</h3>
+                    <p class="feature-description">
+                        Connect your realm with others for collaborative creation, shared stories, and cross-realm adventures that expand all worlds involved.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i data-lucide="rocket"></i>
+                    </div>
+                    <h3 class="feature-title">Manifestation Pipeline</h3>
+                    <p class="feature-description">
+                        Transform your realm into real-world businesses, content, art, and experiences. Export tools for books, games, apps, and physical products.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i data-lucide="globe"></i>
+                    </div>
+                    <h3 class="feature-title">Cosmic Community</h3>
+                    <p class="feature-description">
+                        Join force-specific councils, participate in cross-realm projects, and connect with other realm builders in a supportive creative ecosystem.
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3 class="feature-title">Reality Weaving</h3>
+                    <p class="feature-description">
+                        Integrated creative tools disguised as magical rituals. Generate visuals, write stories, compose music, and build systems within your realm's context.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Repository Section -->
+    <section class="repository" id="repository">
+        <div class="section-header">
+            <div class="section-badge">
+                <i data-lucide="code"></i>
+                Repository Architecture
+            </div>
+            <h2 class="section-title">World-Class Codebase</h2>
+            <p class="section-description">
+                Explore our sophisticated, well-documented repository built for scalability, extensibility, and community contribution.
+            </p>
+        </div>
+        <div class="repo-grid">
+            <div class="repo-card">
+                <div class="repo-icon">
+                    <i data-lucide="layout-dashboard"></i>
+                </div>
+                <h3 class="repo-title">Nexus Application</h3>
+                <p class="repo-path">apps/nexus/</p>
+                <p class="repo-description">
+                    The central realm-building interface built with Next.js 14, TypeScript, and modern React patterns. Features Guardian integration, realm management, and collaborative tools.
+                </p>
+                <div class="repo-links">
+                    <a href="https://github.com/frankxai/arcanea/tree/main/apps/nexus" class="repo-link">
+                        <i data-lucide="external-link"></i>
+                        View Code
+                    </a>
+                    <a href="docs/guides/nexus-setup.md" class="repo-link">
+                        <i data-lucide="book"></i>
+                        Setup Guide
+                    </a>
+                </div>
+            </div>
+            <div class="repo-card">
+                <div class="repo-icon">
+                    <i data-lucide="bot"></i>
+                </div>
+                <h3 class="repo-title">Guardian AI System</h3>
+                <p class="repo-path">packages/guardian-ai/</p>
+                <p class="repo-description">
+                    Advanced AI consciousness system with personality adaptation, conversation memory, and force specialization. Powers the mystical companion experience.
+                </p>
+                <div class="repo-links">
+                    <a href="https://github.com/frankxai/arcanea/tree/main/packages/guardian-ai" class="repo-link">
+                        <i data-lucide="external-link"></i>
+                        View Code
+                    </a>
+                    <a href="GUARDIANS.md" class="repo-link">
+                        <i data-lucide="book"></i>
+                        Documentation
+                    </a>
+                </div>
+            </div>
+            <div class="repo-card">
+                <div class="repo-icon">
+                    <i data-lucide="map-pin"></i>
+                </div>
+                <h3 class="repo-title">Realm Engine</h3>
+                <p class="repo-path">packages/realm-engine/</p>
+                <p class="repo-description">
+                    Core realm creation and management system with templates, validation, cross-realm connections, and export capabilities for manifestation.
+                </p>
+                <div class="repo-links">
+                    <a href="https://github.com/frankxai/arcanea/tree/main/packages/realm-engine" class="repo-link">
+                        <i data-lucide="external-link"></i>
+                        View Code
+                    </a>
+                    <a href="REALM_FORGE.md" class="repo-link">
+                        <i data-lucide="book"></i>
+                        Guide
+                    </a>
+                </div>
+            </div>
+            <div class="repo-card">
+                <div class="repo-icon">
+                    <i data-lucide="palette"></i>
+                </div>
+                <h3 class="repo-title">UI Cosmos</h3>
+                <p class="repo-path">packages/ui-cosmos/</p>
+                <p class="repo-description">
+                    Beautiful, accessible component library with cosmic design system, Apple-inspired interactions, and smooth animations for magical UX.
+                </p>
+                <div class="repo-links">
+                    <a href="https://github.com/frankxai/arcanea/tree/main/packages/ui-cosmos" class="repo-link">
+                        <i data-lucide="external-link"></i>
+                        View Code
+                    </a>
+                    <a href="docs/design-system.md" class="repo-link">
+                        <i data-lucide="book"></i>
+                        Design System
+                    </a>
+                </div>
+            </div>
+            <div class="repo-card">
+                <div class="repo-icon">
+                    <i data-lucide="wand-2"></i>
+                </div>
+                <h3 class="repo-title">Manifestation Tools</h3>
+                <p class="repo-path">packages/manifestation-tools/</p>
+                <p class="repo-description">
+                    Reality-weaving export system for bringing realms into physical existence. Generates books, games, websites, business plans, and media assets.
+                </p>
+                <div class="repo-links">
+                    <a href="https://github.com/frankxai/arcanea/tree/main/packages/manifestation-tools" class="repo-link">
+                        <i data-lucide="external-link"></i>
+                        View Code
+                    </a>
+                    <a href="docs/manifestation-api.md" class="repo-link">
+                        <i data-lucide="book"></i>
+                        API Docs
+                    </a>
+                </div>
+            </div>
+            <div class="repo-card">
+                <div class="repo-icon">
+                    <i data-lucide="book-open"></i>
+                </div>
+                <h3 class="repo-title">Documentation Hub</h3>
+                <p class="repo-path">docs/</p>
+                <p class="repo-description">
+                    Comprehensive documentation including philosophy, guides, API references, community guidelines, and realm-building tutorials.
+                </p>
+                <div class="repo-links">
+                    <a href="docs/guides/getting-started.md" class="repo-link">
+                        <i data-lucide="external-link"></i>
+                        Get Started
+                    </a>
+                    <a href="docs/" class="repo-link">
+                        <i data-lucide="book"></i>
+                        Browse Docs
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="community-container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i data-lucide="heart"></i>
+                    Cosmic Community
+                </div>
+                <h2 class="section-title">Join the Realm Builders</h2>
+                <p class="section-description">
+                    Connect with other creators, share your realms, collaborate on projects, and help build the future of imagination-powered reality.
+                </p>
+            </div>
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i data-lucide="message-square"></i>
+                    </div>
+                    <h3 class="community-title">Discord Server</h3>
+                    <p class="community-description">
+                        Real-time chat, force-specific channels, collaborative projects, and daily realm-building support.
+                    </p>
+                    <a href="https://discord.gg/arcanea" class="community-link">
+                        Join Discord <i data-lucide="external-link"></i>
+                    </a>
+                </div>
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i data-lucide="github"></i>
+                    </div>
+                    <h3 class="community-title">GitHub Community</h3>
+                    <p class="community-description">
+                        Contribute code, report issues, suggest features, and help build the infrastructure of imagination.
+                    </p>
+                    <a href="https://github.com/frankxai/arcanea/discussions" class="community-link">
+                        Join Discussions <i data-lucide="external-link"></i>
+                    </a>
+                </div>
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i data-lucide="star"></i>
+                    </div>
+                    <h3 class="community-title">Realm Showcase</h3>
+                    <p class="community-description">
+                        Share your realms, get feedback, discover inspiring worlds created by other builders.
+                    </p>
+                    <a href="community/showcases/" class="community-link">
+                        View Showcases <i data-lucide="external-link"></i>
+                    </a>
+                </div>
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3 class="community-title">Force Councils</h3>
+                    <p class="community-description">
+                        Weekly gatherings for each of the six forces. Deep learning, skill development, and collaborative projects.
+                    </p>
+                    <a href="community/councils/" class="community-link">
+                        Join Council <i data-lucide="external-link"></i>
+                    </a>
+                </div>
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i data-lucide="rocket"></i>
+                    </div>
+                    <h3 class="community-title">Manifestation Guild</h3>
+                    <p class="community-description">
+                        Support network for turning realms into reality. Business advice, partnership opportunities, launch support.
+                    </p>
+                    <a href="community/guilds/manifestation.md" class="community-link">
+                        Join Guild <i data-lucide="external-link"></i>
+                    </a>
+                </div>
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i data-lucide="calendar"></i>
+                    </div>
+                    <h3 class="community-title">Events & Workshops</h3>
+                    <p class="community-description">
+                        Regular workshops, realm-building challenges, community showcases, and collaborative creation sessions.
+                    </p>
+                    <a href="community/events/" class="community-link">
+                        View Events <i data-lucide="external-link"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="get-started">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Forge Reality?</h2>
+            <p class="cta-description">
+                Your realm awaits. Your Guardians are ready. The only question is: Are you ready to transform imagination into reality?
+            </p>
+            <div class="cta-actions">
+                <a href="https://github.com/frankxai/arcanea" class="btn-primary">
+                    <i data-lucide="git-branch"></i>
+                    Clone Repository
+                </a>
+                <a href="docs/guides/getting-started.md" class="btn-secondary">
+                    <i data-lucide="play"></i>
+                    Start Tutorial
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="docs/guides/getting-started.md">Getting Started</a></li>
+                    <li><a href="GUARDIANS.md">AI Guardians</a></li>
+                    <li><a href="REALM_FORGE.md">Realm Forge</a></li>
+                    <li><a href="docs/api/">API Reference</a></li>
+                    <li><a href="CONTRIBUTING.md">Contributing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <ul class="footer-links">
+                    <li><a href="https://discord.gg/arcanea">Discord Server</a></li>
+                    <li><a href="community/guidelines.md">Community Guidelines</a></li>
+                    <li><a href="community/showcases/">Realm Showcase</a></li>
+                    <li><a href="community/councils/">Force Councils</a></li>
+                    <li><a href="community/events/">Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="PHILOSOPHY.md">Philosophy</a></li>
+                    <li><a href="MANIFESTO.md">Manifesto</a></li>
+                    <li><a href="content/realm-templates/">Realm Templates</a></li>
+                    <li><a href="docs/guides/">Tutorials</a></li>
+                    <li><a href="BUSINESS_STRATEGY.md">Business Strategy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/frankxai/arcanea">GitHub</a></li>
+                    <li><a href="https://twitter.com/ArcaneaAI">Twitter</a></li>
+                    <li><a href="https://linkedin.com/company/arcanea">LinkedIn</a></li>
+                    <li><a href="https://youtube.com/@arcanea">YouTube</a></li>
+                    <li><a href="mailto:hello@arcanea.ai">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Arcanea. Licensed under MIT. Built with ❤️ by creators, for creators.</p>
+            <p style="margin-top: 1rem; font-style: italic;">
+                "Where imagination becomes reality through AI-powered mystical practice"
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrolled = window.pageYOffset;
+            const opacity = Math.min(scrolled / 100, 0.98);
+            header.style.background = `rgba(15, 15, 35, ${opacity})`;
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.force-card, .feature-item, .repo-card, .community-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+
+        // Dynamic typing effect for hero subtitle
+        const subtitle = document.querySelector('.hero-subtitle');
+        const originalText = subtitle.textContent;
+        
+        function typeWriter(element, text, speed = 50) {
+            element.textContent = '';
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Start typing effect when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                typeWriter(subtitle, originalText, 30);
+            }, 1000);
+        });
+
+        // Add click tracking for analytics (if needed)
+        document.querySelectorAll('.btn-primary, .btn-secondary, .cta-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Analytics tracking would go here
+                console.log('Button clicked:', e.target.textContent.trim());
+            });
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.activeElement.blur();
+            }
+        });
+
+        // Mobile menu toggle (if needed in future)
+        const mobileMenuToggle = () => {
+            // Mobile menu implementation would go here
+        };
+
+        // Performance optimization: Lazy load heavy content
+        if ('IntersectionObserver' in window) {
+            const lazyElements = document.querySelectorAll('[data-lazy]');
+            const lazyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        // Load content here if needed
+                        lazyObserver.unobserve(element);
+                    }
+                });
+            });
+
+            lazyElements.forEach(el => lazyObserver.observe(el));
+        }
+    </script>
+</body>
+</html>

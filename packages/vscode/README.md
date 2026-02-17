@@ -51,7 +51,7 @@
 
 | Package | Role |
 |:--------|:-----|
-| `@arcanea/core` | Intelligence Engine — Guardian routing, voice, design tokens |
+| `@arcanea/os` | Intelligence Engine — Guardian routing, voice, design tokens |
 | `@arcanea/cli` | CLI overlay — installs into Claude Code, Cursor, etc. |
 | `@arcanea/mcp-server` | 30 tools, 7 resources, 6 prompts |
 | `arcanea-realm` | VS Code Extension (this) |

@@ -13,8 +13,8 @@ import type {
   ToolDetection,
   InstallResult,
   InstallPreview,
-} from '@arcanea/core';
-import { generateSystemPrompt, GUARDIANS } from '@arcanea/core';
+} from '@arcanea/os';
+import { generateSystemPrompt, GUARDIANS } from '@arcanea/os';
 
 export class ChatGPTOverlayInstaller implements OverlayInstaller {
   async canInstall(): Promise<boolean> {

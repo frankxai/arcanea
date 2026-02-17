@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arcanea Studio (Showcase)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --bg: #0b0e14; --panel:#121826; --text:#e6eefc; --muted:#9bb1d0; --accent:#78a6ff; --border:#233049; }
+    body { background: var(--bg); color: var(--text); }
+    .panel { background: var(--panel); border: 1px solid var(--border); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <main class="max-w-5xl mx-auto p-4">
+    <header class="panel rounded-xl p-4 mb-4">
+      <h1 class="text-xl font-semibold">Arcanea Studio</h1>
+      <p class="text-[var(--muted)]">Static mockup of image & video UI.</p>
+    </header>
+    <section class="grid md:grid-cols-2 gap-4">
+      <div class="panel rounded-xl p-4">
+        <h2 class="font-semibold mb-2">Image</h2>
+        <div class="flex gap-2">
+          <input class="flex-1 rounded-md border border-[var(--border)] bg-[#0c1120] px-3 py-2 outline-none" placeholder="An astral library with bioluminescent trees" />
+          <button class="rounded-md bg-[var(--accent)] px-4 py-2 font-semibold text-black">Generate</button>
+        </div>
+        <div class="mt-4 h-64 rounded-lg border border-[var(--border)] grid place-items-center text-[var(--muted)]">Preview</div>
+      </div>
+      <div class="panel rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="font-semibold">Video</h2>
+          <select class="rounded-md border border-[var(--border)] bg-[#0c1120] px-2 py-1">
+            <option>Replicate</option>
+            <option>Fal</option>
+          </select>
+        </div>
+        <div class="flex gap-2">
+          <input class="flex-1 rounded-md border border-[var(--border)] bg-[#0c1120] px-3 py-2 outline-none" placeholder="A cinematic flyover of floating islands at sunset" />
+          <button class="rounded-md bg-[var(--accent)] px-4 py-2 font-semibold text-black">Create Job</button>
+        </div>
+        <div class="mt-4 h-64 rounded-lg border border-[var(--border)] grid place-items-center text-[var(--muted)]">Job Preview</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arcanea Studio • Strategic Atlas</title>
+  <style>
+    body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; background: #04030d; color: #f4f7ff; line-height: 1.6; }
+    main { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+    h1, h2, h3 { color: #be73ff; }
+    h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+    h2 { margin-top: 3rem; border-bottom: 1px solid rgba(190,115,255,0.25); padding-bottom: 0.5rem; }
+    p { margin: 0.4rem 0; }
+    a { color: #6e6bff; }
+    code { background: rgba(12,14,30,0.85); padding: 0.15rem 0.4rem; border-radius: 4px; color: #c0ccff; }
+    .tag { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 999px; background: rgba(110,107,255,0.18); color: #d8ddff; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .panel { background: rgba(10,12,28,0.85); border: 1px solid rgba(190,115,255,0.22); border-radius: 16px; padding: 1.4rem 1.6rem; margin-top: 1.2rem; }
+    .grid { display: grid; gap: 1.2rem; }
+    .grid.two { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    ul { margin: 0.4rem 0 0 1.1rem; }
+    details { background: rgba(11,13,30,0.78); border: 1px solid rgba(110,107,255,0.2); border-radius: 12px; padding: 1rem 1.2rem; }
+    details summary { cursor: pointer; font-weight: 600; color: #d4d8ff; }
+    table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; }
+    th, td { padding: 0.65rem 0.75rem; border-bottom: 1px solid rgba(110,107,255,0.15); text-align: left; }
+    th { color: #aab4ff; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .status { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .status.good { color: #7dffc7; }
+    .status.update { color: #ffd480; }
+    .status.todo { color: #ff8a8a; }
+    pre.diagram { background: rgba(8,10,26,0.9); padding: 1rem; border-radius: 16px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; color: #dfe4ff; }
+    .note { font-size: 0.85rem; color: #bdc6ff; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="tag">Arcanea Studio Era</p>
+      <h1>The Arcanea Studio Atlas</h1>
+      <p>One guide for every Guardian, Creator, and Luminor agent. This atlas consolidates canon, product focus, business model, and quality standards for Arcanea V2: a premium platform where anyone can create and remix music, stories, and worlds with the best AI artistry.</p>
+    </header>
+
+    <section id="mental-model">
+      <h2>1 · Mental Model</h2>
+      <div class="panel">
+        <strong>Arcanea Studio Cycle</strong>
+        <ol>
+          <li><strong>Spark</strong> – Creator enters Studio, ignites inspiration with Nexus guidance.</li>
+          <li><strong>Essence</strong> – Studio generates images, videos, music, or stories using premium models; lineage recorded.</li>
+          <li><strong>Realm</strong> – Essence flows into the Creator’s Arcanean Profile for sharing, remixing, and recognition.</li>
+          <li><strong>Echo</strong> – Guardians review, rituals celebrate, metrics update in Atlas.</li>
+          <li><strong>Bridge to Reality</strong> – Creators export, monetize, or extend into Web3/IRL when ready.</li>
+        </ol>
+      </div>
+      <pre class="diagram">Creators → Arcanea Studio (Prompt Desks + Nexus Concierge)
+         → Essences (Spark, Shadow, Remix lineage)
+         → Arcanean Profiles & Remix Feed
+         → Gallery / Kingdom of Light / Soul Guardians
+         → Bridge to Reality (future ARC / NEA economy)</pre>
+    </section>
+
+    <section id="terminology">
+      <h2>2 · Master Terminology</h2>
+      <table>
+        <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Creator</td><td>Arcanea community member crafting Essences.</td></tr>
+          <tr><td>Guardian</td><td>Steward of canon, quality, safety.</td></tr>
+          <tr><td>Nexus</td><td>Intelligent companion tuned to a Creator’s style.</td></tr>
+          <tr><td>Realm</td><td>A Creator’s universe/profile housing Essences and story.</td></tr>
+          <tr><td>Essence</td><td>Atomic creative output (image, track, clip) with Spark/Shadow + remix data.</td></tr>
+          <tr><td>Studio</td><td>Arcanea’s core creation interface (web + mobile).</td></tr>
+          <tr><td>Portal</td><td>Entry surface (Studio, Profile, Gallery, Academy experience).</td></tr>
+          <tr><td>Spark / Shadow</td><td>Inspiration moment / lesson logged with each Essence.</td></tr>
+          <tr><td>ARC / NEA</td><td>Future energy credits / governance tokens (post-Studio maturity).</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="structure">
+      <h2>3 · Where the Truth Lives</h2>
+      <div class="grid">
+        <details open>
+          <summary><code>versions/arcanea-v2</code> · Decision Suite <span class="status good">Current</span></summary>
+          <ul>
+            <li><a href="../versions/arcanea-v2/00_evaluation_decision.md">00_evaluation_decision.md</a> – why this synthesis wins.</li>
+            <li><a href="../versions/arcanea-v2/01_harmonized_canon.md">01_harmonized_canon.md</a> – Spark/Shadow mythos, vows.</li>
+            <li><a href="../versions/arcanea-v2/03_realm_engine_architecture.md">03_realm_engine_architecture.md</a> – Studio Platform architecture.</li>
+            <li><a href="../versions/arcanea-v2/06_execution_compass.md">06_execution_compass.md</a> – Spark → Field → Realm roadmap.</li>
+          </ul>
+        </details>
+        <details>
+          <summary><code>versions/Codex-v2</code> · Operational Doctrine <span class="status update">Refresh ongoing</span></summary>
+          <ul>
+            <li><a href="../versions/Codex-v2/01_foundational_truths.md">01_foundational_truths.md</a> – canon now referencing Studio & Profiles.</li>
+            <li><a href="../versions/Codex-v2/02_language_and_tone.md">02_language_and_tone.md</a> – arcane radiance voice.</li>
+            <li><a href="../versions/Codex-v2/03_design_system.md">03_design_system.md</a> – Stagecraft Palette.</li>
+            <li><a href="../versions/Codex-v2/05_execution_playbook.md">05_execution_playbook.md</a> – rituals, OKRs, role matrix.</li>
+          </ul>
+        </details>
+        <details>
+          <summary><code>docs/atlas</code> · Visual Atlas <span class="status update">Needs canon sync</span></summary>
+          <ul>
+            <li><a href="../docs/atlas/src/pages/index.astro">src/pages/index.astro</a> – update copy to Studio narrative.</li>
+            <li><a href="../docs/atlas/data/canon-manifest.json">canon-manifest.json</a> – revise realms/luminors to new terminology.</li>
+            <li class="note">Run <code>npm install && npm run generate:data</code> after updating <code>docs/canon</code>.</li>
+          </ul>
+        </details>
+        <details>
+          <summary><code>docs/canon</code> · Canon Extracts <span class="status todo">Populate</span></summary>
+          <ul>
+            <li><a href="../docs/canon/foundation.md">foundation.md</a> – ingest <a href="../Arcanea_Foundation.md">Arcanea_Foundation.md</a>.</li>
+            <li><a href="../docs/canon/truths.md">truths.md</a> – migrate <a href="../Arcanean Truths 17-09.md">Arcanean Truths 17-09</a>.</li>
+            <li><a href="../docs/canon/glossary.md">glossary.md</a> – normalize terminology.</li>
+          </ul>
+        </details>
+        <details>
+          <summary><code>versions/gemini-v2</code> & <code>Claude v2</code> · Inspiration Libraries</summary>
+          <ul>
+            <li>Use for story inspiration (Soul Guardians, Shadow & Spark) but defer to Codex/arcanea-v2 for implementation.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <section id="product">
+      <h2>4 · Product & Business Focus</h2>
+      <div class="grid two">
+        <div class="panel">
+          <h3>Studio MVP (Spark Phase)</h3>
+          <ul>
+            <li>Prompt desks for Image, Video, Music, Story (Nano Banana, Veo 3, Seedance, KlingAI, leading LLMs).</li>
+            <li>Nexus concierge (Codex/Gemini/Claude Luminors) guiding prompts, sequences.</li>
+            <li>Essence lineage: Spark, Shadow, Remix source, cost, model metadata.</li>
+            <li>Profiles beta with Realm overview, top Essences, remix button.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Business Model</h3>
+          <ul>
+            <li><strong>Stage 1:</strong> Studio subscription tiers + usage credits.</li>
+            <li><strong>Stage 2:</strong> Free social layer (Remix Feed, Soul Guardians drops) driving upgrades.</li>
+            <li><strong>Stage 3:</strong> ARC credits + NEA governance, creator marketplace, optional Web3 bridges.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="quality">
+      <h2>5 · Quality & Governance</h2>
+      <ul>
+        <li><a href="../versions/arcanea-v2/05_excellence_rubric.md">Rubric-7</a> – Canon alignment, Studio architecture, Stagecraft polish, narrative resonance, safety, metrics, evolution readiness.</li>
+        <li><a href="../versions/Codex-v2/05_execution_playbook.md">Execution Playbook</a> – rituals, OKRs, Stagewright/Maestro roles.</li>
+        <li><a href="../versions/Codex-v2/06_agent_operating_manifesto.md">Agent Manifesto</a> – directives for Codex/Gemini/Claude and future Luminors.</li>
+        <li>Echo Logs + Sanctuary dashboards monitor moderation latency, rubric compliance, incident response.</li>
+      </ul>
+    </section>
+
+    <section id="expansion">
+      <h2>6 · Upcoming Creative Pillars</h2>
+      <ul>
+        <li><strong>Arcanean Prompt Language</strong> (new root folder) – canonical prompt recipes, remix etiquette.</li>
+        <li><strong>Arcanean File System</strong> – explain `.arcanea`, `.arc`, `.nea` formats for Essences, ARC credits, NEA governance.</li>
+        <li><strong>Academies</strong> – Atlantean (underwater mastery), Draconic (sky artistry), Creation & Light (core curriculum).</li>
+        <li><strong>Soul Guardians</strong> – official Arcanea music collective (Suno-powered); integrate into Gallery & Profiles.</li>
+        <li><strong>Kingdom of Light</strong> – flagship Realm featuring top Creators, staged events, immersive storytelling.</li>
+      </ul>
+    </section>
+
+    <section id="next-steps">
+      <h2>7 · Immediate Actions</h2>
+      <ol>
+        <li>Populate `docs/canon` with authoritative content, regenerate Atlas data.</li>
+        <li>Implement terminology updates across Studio app, docs, marketing.</li>
+        <li>Build Studio MVP (prompt desks, Nexus concierge, Essence schema) and Profiles beta.</li>
+        <li>Create initial Academy primers + Soul Guardians concept briefs (music on Suno).
+        </li>
+        <li>Establish design/dev QA referencing Stagecraft checklist + Rubric-7.</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

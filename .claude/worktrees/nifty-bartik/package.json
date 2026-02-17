@@ -1,0 +1,86 @@
+{
+  "name": "arcanea",
+  "version": "1.0.0",
+  "description": "AI-powered creative ecosystem empowering the next generation of creators",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:academy": "turbo run dev --filter=@arcanea/academy",
+    "dev:web": "turbo run dev --filter=@arcanea/web",
+    "dev:chat": "turbo run dev --filter=@arcanea/chat",
+    "dev:studio": "turbo run dev --filter=@arcanea/studio",
+    "dev:gallery": "turbo run dev --filter=@arcanea/gallery",
+    "dev:library": "turbo run dev --filter=@arcanea/library",
+    "dev:realms": "turbo run dev --filter=@arcanea/realms",
+    "dev:sanctuary": "turbo run dev --filter=@arcanea/sanctuary",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,json}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=!@arcanea/mobile && changeset publish"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.8.0",
+    "next": "^16.1.1"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@tailwindcss/typography": "^0.5.13",
+    "@turbo/gen": "^2.3.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.39.2",
+    "postcss": "^8.4.38",
+    "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.9",
+    "tailwindcss-animate": "^1.0.7",
+    "turbo": "^2.7.3",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "keywords": [
+    "ai",
+    "creativity",
+    "education",
+    "community",
+    "creators",
+    "artificial-intelligence",
+    "creative-tools",
+    "learning-platform",
+    "next-js",
+    "react-native",
+    "typescript"
+  ],
+  "author": {
+    "name": "Frank Riemer",
+    "email": "frank@arcanea.ai",
+    "url": "https://github.com/frankxai"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frankxai/arcanea/issues"
+  },
+  "homepage": "https://arcanea.ai",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19.0.0",
+      "@types/react-dom": "^19.0.0"
+    }
+  }
+}

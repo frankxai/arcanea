@@ -1,0 +1,54 @@
+{
+  "name": "arcanea",
+  "version": "3.0.0",
+  "description": "Arcanea - The Creative Intelligence Platform. Skills, agents, and tools for AI-human co-creation.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "arcanea": "./dist/cli/index.js"
+  },
+  "files": [
+    "dist",
+    "agents",
+    "skills", 
+    "commands",
+    "CLAUDE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target bun --format esm && tsc --emitDeclarationOnly && bun build src/cli/index.ts --outdir dist/cli --target bun --format esm",
+    "prepublishOnly": "bun run build"
+  },
+  "keywords": [
+    "arcanea",
+    "claude",
+    "claude-code",
+    "opencode",
+    "codex",
+    "gemini",
+    "ai",
+    "agents",
+    "skills",
+    "creative",
+    "writing",
+    "world-building",
+    "luminors"
+  ],
+  "author": "FrankX",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankxai/arcanea.git"
+  },
+  "homepage": "https://arcanea.ai",
+  "dependencies": {
+    "commander": "^14.0.0",
+    "picocolors": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "bun-types": "^1.0.0",
+    "typescript": "^5.0.0"
+  }
+}

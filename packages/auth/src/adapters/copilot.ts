@@ -2,7 +2,7 @@
  * GitHub Copilot Auth Adapter
  */
 
-import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/core';
+import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/os';
 import { execSync } from 'node:child_process';
 
 export class CopilotAuthAdapter implements AuthAdapter {

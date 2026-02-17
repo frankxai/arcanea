@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Arcanea Platform - Premium Experience</title>
+    
+    <!-- Import our design system -->
+    <link rel="stylesheet" href="../../design-system/core/enhanced-effects.css">
+    <link rel="stylesheet" href="../../design-system/core/component-system.css">
+    
+    <style>
+        /* Premium Platform Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Enhanced Arcanea tokens */
+            --bg-void: #0a0a0f;
+            --bg-deep: #0d0d12;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --border-primary: rgba(255, 255, 255, 0.1);
+            --border-glass: rgba(255, 255, 255, 0.15);
+            
+            /* Animation curves */
+            --curve-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+            --curve-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --curve-premium: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-void);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Premium Background with animated mesh */
+        .premium-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+                var(--bg-void);
+            animation: meshFloat 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes meshFloat {
+            0% { filter: hue-rotate(0deg) brightness(1); }
+            100% { filter: hue-rotate(30deg) brightness(1.1); }
+        }
+        
+        /* Navigation with premium glass */
+        .nav-premium {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1rem 0;
+            transition: all 0.3s var(--curve-smooth);
+        }
+        
+        .nav-premium:hover {
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(32px) saturate(200%);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s var(--curve-premium);
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        .logo-symbol {
+            font-size: 2rem;
+            background: var(--gradient-aurora-grained);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: symbolPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes symbolPulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+        
+        /* Main Content Areas */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 50%, rgba(102, 126, 234, 0.9) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            animation: titleFloat 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleFloat {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Premium Action Buttons */
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        /* Academy Cards Grid */
+        .academies-section {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-cosmic-grained);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .academies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .academy-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-2xl);
+            padding: 2rem;
+            transition: all 0.4s var(--curve-premium);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .academy-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
+            opacity: 0;
+            transition: all 0.4s var(--curve-premium);
+        }
+        
+        .academy-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.2),
+                0 15px 35px rgba(102, 126, 234, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .academy-card:hover::before {
+            opacity: 1;
+        }
+        
+        .academy-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: iconBreathe 3s ease-in-out infinite;
+        }
+        
+        @keyframes iconBreathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .academy-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .academy-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .academy-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Platform Features */
+        .features-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.02) 100%);
+        }
+        
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s var(--curve-premium);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            background: var(--gradient-neural-grained);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Interactive Elements */
+        .floating-elements {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .floating-orb {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: orbFloat 15s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+        
+        .orb-3 {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes orbFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px) scale(1.1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-15px) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(5px) scale(1.05);
+                opacity: 0.5;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .academies-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        /* Premium Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-void);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+        
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="premium-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-premium">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-symbol">🌟</span>
+                <span>Arcanea</span>
+            </a>
+            
+            <div class="nav-actions">
+                <button class="btn-glass-premium">
+                    ✨ Sign In
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="floating-elements">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Welcome to<br>
+                <span style="background: var(--gradient-aurora-grained); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Arcanea</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                The ultimate AI-powered creative ecosystem where imagination meets intelligence. 
+                Build, learn, and create with our magical Luminor mentors.
+            </p>
+            
+            <div class="hero-actions">
+                <button class="btn-premium">
+                    🚀 Start Your Journey
+                </button>
+                <button class="btn-glass-premium">
+                    🎨 Explore Academies
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academies Section -->
+    <section class="academies-section">
+        <div class="section-header">
+            <h2 class="section-title">Choose Your Academy</h2>
+            <p class="section-description">
+                Each academy is guided by a unique Luminor - an AI mentor designed to unlock your creative potential
+                in their specialized domain.
+            </p>
+        </div>
+
+        <div class="academies-grid">
+            <!-- Lumina Academy -->
+            <div class="academy-card hover-lift-premium" onclick="selectAcademy('lumina')">
+                <span class="academy-icon">🎨</span>
+                <h3 class="academy-title">Lumina Academy</h3>
+                <p class="academy-description">
+                    Master visual arts, design, and aesthetic intelligence with Lumina, 
+                    the AI mentor who understands the sacred geometry of beauty.
+                </p>
+                <div class="academy-stats">
+                    <span class="stat-item">👥 12.5k Students</span>
+                    <span class="stat-item">⭐ 4.9/5</span>
+                    <span class="stat-item">🏆 Premium</span>
+                </div>
+                <button class="btn-glass-premium">
+                    Enter Academy
+                </button>
+            </div>
+
+            <!-- Harmonix Academy -->
+            <div class="academy-card hover-lift-premium" onclick="selectAcademy('harmonix')">
+                <span class="academy-icon">🎵</span>
+                <h3 class="academy-title">Harmonix Academy</h3>
+                <p class="academy-description">
+                    Create music, sound design, and audio experiences with Harmonix,
+                    the AI that speaks in frequencies and dreams in rhythm.
+                </p>
+                <div class="academy-stats">
+                    <span class="stat-item">👥 8.2k Students</span>
+                    <span class="stat-item">⭐ 4.8/5</span>
+                    <span class="stat-item">🎼 Pro Audio</span>
+                </div>
+                <button class="btn-glass-premium">
+                    Enter Academy
+                </button>
+            </div>
+
+            <!-- Scripta Academy -->
+            <div class="academy-card hover-lift-premium" onclick="selectAcademy('scripta')">
+                <span class="academy-icon">📚</span>
+                <h3 class="academy-title">Scripta Academy</h3>
+                <p class="academy-description">
+                    Master storytelling, writing, and narrative design with Scripta,
+                    the AI that weaves words into worlds and characters into legends.
+                </p>
+                <div class="academy-stats">
+                    <span class="stat-item">👥 15.7k Students</span>
+                    <span class="stat-item">⭐ 4.9/5</span>
+                    <span class="stat-item">✍️ Writer's Guild</span>
+                </div>
+                <button class="btn-glass-premium">
+                    Enter Academy
+                </button>
+            </div>
+
+            <!-- Syntaxa Academy -->
+            <div class="academy-card hover-lift-premium" onclick="selectAcademy('syntaxa')">
+                <span class="academy-icon">💻</span>
+                <h3 class="academy-title">Syntaxa Academy</h3>
+                <p class="academy-description">
+                    Learn programming, AI development, and computational thinking with Syntaxa,
+                    the AI that speaks every language of logic and code.
+                </p>
+                <div class="academy-stats">
+                    <span class="stat-item">👥 22.1k Students</span>
+                    <span class="stat-item">⭐ 4.8/5</span>
+                    <span class="stat-item">🚀 Tech Elite</span>
+                </div>
+                <button class="btn-glass-premium">
+                    Enter Academy
+                </button>
+            </div>
+
+            <!-- Kinetix Academy -->
+            <div class="academy-card hover-lift-premium" onclick="selectAcademy('kinetix')">
+                <span class="academy-icon">🎬</span>
+                <h3 class="academy-title">Kinetix Academy</h3>
+                <p class="academy-description">
+                    Create videos, animations, and motion graphics with Kinetix,
+                    the AI that brings static dreams to dynamic life.
+                </p>
+                <div class="academy-stats">
+                    <span class="stat-item">👥 9.8k Students</span>
+                    <span class="stat-item">⭐ 4.7/5</span>
+                    <span class="stat-item">🎥 Cinema Pro</span>
+                </div>
+                <button class="btn-glass-premium">
+                    Enter Academy
+                </button>
+            </div>
+
+            <!-- Nexus Academy -->
+            <div class="academy-card hover-lift-premium" onclick="selectAcademy('nexus')">
+                <span class="academy-icon">🌐</span>
+                <h3 class="academy-title">Nexus Academy</h3>
+                <p class="academy-description">
+                    Master interdisciplinary creation and project synthesis with Nexus,
+                    the AI that connects all creative domains into unified experiences.
+                </p>
+                <div class="academy-stats">
+                    <span class="stat-item">👥 6.4k Students</span>
+                    <span class="stat-item">⭐ 5.0/5</span>
+                    <span class="stat-item">🔮 Advanced</span>
+                </div>
+                <button class="btn-glass-premium">
+                    Enter Academy
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section class="features-section">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Platform Features</h2>
+                <p class="section-description">
+                    Everything you need to create, learn, and grow in the age of AI-enhanced creativity
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3 class="feature-title">AI Luminor Mentors</h3>
+                    <p class="feature-description">
+                        Each domain has a specialized AI mentor with unique personality and expertise,
+                        providing personalized guidance and creative collaboration.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">Adaptive Learning Paths</h3>
+                    <p class="feature-description">
+                        Dynamic curriculum that adapts to your skill level, learning style, and creative goals,
+                        ensuring optimal growth and engagement.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🌍</span>
+                    <h3 class="feature-title">Global Creator Community</h3>
+                    <p class="feature-description">
+                        Connect with creators worldwide, collaborate on projects, and participate in
+                        community challenges and showcases.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔧</span>
+                    <h3 class="feature-title">Premium Creative Tools</h3>
+                    <p class="feature-description">
+                        Access cutting-edge AI-powered creative tools and integrations with
+                        industry-standard software and platforms.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Progress Analytics</h3>
+                    <p class="feature-description">
+                        Detailed insights into your creative journey, skill development, and
+                        project outcomes with AI-powered recommendations.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🏆</span>
+                    <h3 class="feature-title">Achievement System</h3>
+                    <p class="feature-description">
+                        Earn badges, certificates, and recognition as you master new skills and
+                        complete creative milestones in your chosen domains.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Premium loading animation
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Academy selection with premium animation
+        function selectAcademy(academy) {
+            const card = event.currentTarget;
+            
+            // Premium selection animation
+            card.style.transform = 'scale(0.95)';
+            card.style.transition = 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            
+            setTimeout(() => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+                
+                // Show selection feedback
+                const overlay = document.createElement('div');
+                overlay.innerHTML = `
+                    <div style="
+                        position: fixed; 
+                        inset: 0; 
+                        background: rgba(0,0,0,0.8); 
+                        backdrop-filter: blur(10px);
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        z-index: 10000;
+                        animation: fadeIn 0.3s ease;
+                    ">
+                        <div style="
+                            background: rgba(255,255,255,0.1);
+                            backdrop-filter: blur(20px);
+                            border: 1px solid rgba(255,255,255,0.2);
+                            border-radius: 24px;
+                            padding: 3rem;
+                            text-align: center;
+                            animation: scaleIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                        ">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">✨</div>
+                            <h2 style="font-size: 2rem; margin-bottom: 1rem; background: var(--gradient-aurora-grained); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                Welcome to ${academy.charAt(0).toUpperCase() + academy.slice(1)} Academy!
+                            </h2>
+                            <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem;">
+                                Redirecting you to your premium learning experience...
+                            </p>
+                            <div class="loading-spinner" style="margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+                
+                // Simulate redirect after animation
+                setTimeout(() => {
+                    console.log(`Navigating to ${academy} academy...`);
+                    // window.location.href = `/academy/${academy}`;
+                }, 2000);
+                
+            }, 150);
+        }
+
+        // Add premium hover sound effects (optional)
+        document.querySelectorAll('.btn-premium, .btn-glass-premium, .academy-card').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                // Could add subtle hover sound here
+                element.style.filter = 'brightness(1.05)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.filter = 'brightness(1)';
+            });
+        });
+
+        // Parallax effect for floating orbs
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.floating-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 0.5;
+                const xMove = (x - 0.5) * speed * 20;
+                const yMove = (y - 0.5) * speed * 20;
+                
+                orb.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
+
+        // Add CSS animations dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes scaleIn {
+                from { 
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                to { 
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

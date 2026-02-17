@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storm Scribe - Arcanea Typing Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <style>
+        :root {
+            --wind-primary: #b39ddb;
+            --wind-dark: #7e57c2;
+            --wind-glow: #d1c4e9;
+            --gold-light: #ffd700;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); min-height: 100vh; overflow: hidden; }
+        .game-header { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: var(--bg-card); z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .back-btn { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.25rem; }
+        .game-title { font-family: 'Cinzel', serif; font-size: 1.25rem; background: linear-gradient(135deg, var(--wind-primary), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-pill { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.875rem; }
+        .stat-value { font-weight: 600; color: var(--gold-light); }
+        #game-container { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; }
+        .typing-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 90%; max-width: 800px; }
+        .prompt-display { font-size: 2rem; font-family: 'Cinzel', serif; margin-bottom: 2rem; color: var(--wind-primary); min-height: 100px; }
+        .input-area { width: 100%; padding: 1rem; font-size: 1.25rem; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.2); border-radius: 12px; color: var(--text-primary); font-family: 'Inter', sans-serif; }
+        .input-area:focus { outline: none; border-color: var(--wind-primary); }
+        .stats-display { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; font-size: 1rem; color: var(--text-secondary); }
+        .agent-panel { position: fixed; bottom: 20px; left: 20px; right: 20px; background: var(--bg-card); border: 2px solid var(--wind-primary); border-radius: 16px; padding: 1rem; z-index: 50; display: none; }
+        .agent-panel.active { display: block; }
+    </style>
+</head>
+<body>
+    <header class="game-header">
+        <div style="display:flex;align-items:center;gap:0.75rem">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <div class="game-title">🌪️ Storm Scribe</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem">
+            <div class="stat-pill"><span>⭐</span><span class="stat-value" id="xpDisplay">0</span></div>
+            <div class="stat-pill"><span>WPM</span><span class="stat-value" id="wpmDisplay">0</span></div>
+        </div>
+    </header>
+    <div id="game-container">
+        <div class="typing-container">
+            <div class="prompt-display" id="promptDisplay">Click Start to begin...</div>
+            <input type="text" class="input-area" id="inputArea" placeholder="Type here..." disabled>
+            <div class="stats-display">
+                <div>Accuracy: <span id="accuracyDisplay">0%</span></div>
+                <div>Time: <span id="timeDisplay">0s</span></div>
+                <div>Score: <span id="scoreDisplay">0</span></div>
+            </div>
+            <button onclick="startChallenge()" style="margin-top:2rem;padding:1rem 2rem;background:linear-gradient(135deg,var(--wind-primary),var(--wind-dark));border:none;border-radius:12px;color:#fff;font-size:1rem;cursor:pointer;">Start Challenge</button>
+        </div>
+    </div>
+    <div class="agent-panel" id="agentPanel">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem">
+            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--wind-primary),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:1.25rem">🌪️</div>
+            <div><div style="font-weight:600;color:var(--wind-primary)">Storm-Declarant</div><div style="font-size:0.75rem;color:var(--text-secondary)">The Voice of Thunder</div></div>
+        </div>
+        <div id="agentMessage" style="color:var(--text-secondary);line-height:1.5">Welcome to Storm Scribe! Type the prompts as fast and accurately as you can.</div>
+    </div>
+    <script>
+        const GameState = { xp: 0, wpm: 0, accuracy: 0, score: 0, isRunning: false, startTime: 0, prompt: '', typed: '' };
+        const PROMPTS = [
+            "The quick brown fox jumps over the lazy dog",
+            "In the depths of winter I finally learned there was in me an invincible summer",
+            "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment",
+            "The only way to do great work is to love what you do",
+            "Innovation distinguishes between a leader and a follower",
+            "Life is what happens when you are busy making other plans",
+            "The future belongs to those who believe in the beauty of their dreams",
+            "It is during our darkest moments that we must focus to see the light",
+            "Do not go where the path may lead go instead where there is no path and leave a trail",
+            "What lies behind us and what lies before us are tiny matters compared to what lies within us"
+        ];
+        function startChallenge() {
+            GameState.isRunning = true;
+            GameState.startTime = Date.now();
+            GameState.prompt = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
+            GameState.typed = '';
+            document.getElementById('promptDisplay').textContent = GameState.prompt;
+            document.getElementById('inputArea').disabled = false;
+            document.getElementById('inputArea').value = '';
+            document.getElementById('inputArea').focus();
+            showAgentMessage('Storm-Declarant', 'The Voice of Thunder', 'Begin! Type as fast and accurately as you can!');
+        }
+        document.getElementById('inputArea').addEventListener('input', function(e) {
+            if (!GameState.isRunning) return;
+            GameState.typed = e.target.value;
+            if (GameState.typed === GameState.prompt) {
+                completeChallenge();
+            }
+            updateStats();
+        });
+        function updateStats() {
+            const elapsed = (Date.now() - GameState.startTime) / 1000;
+            const words = GameState.typed.length / 5;
+            GameState.wpm = Math.round((words / elapsed) * 60);
+            let correct = 0;
+            for (let i = 0; i < GameState.typed.length; i++) {
+                if (GameState.typed[i] === GameState.prompt[i]) correct++;
+            }
+            GameState.accuracy = GameState.typed.length > 0 ? Math.round((correct / GameState.typed.length) * 100) : 0;
+            GameState.score = Math.round(GameState.wpm * (GameState.accuracy / 100));
+            document.getElementById('wpmDisplay').textContent = GameState.wpm;
+            document.getElementById('accuracyDisplay').textContent = GameState.accuracy + '%';
+            document.getElementById('timeDisplay').textContent = Math.round(elapsed) + 's';
+            document.getElementById('scoreDisplay').textContent = GameState.score;
+        }
+        function completeChallenge() {
+            GameState.isRunning = false;
+            const xpGain = Math.round(GameState.score / 2);
+            GameState.xp += xpGain;
+            document.getElementById('xpDisplay').textContent = GameState.xp;
+            document.getElementById('inputArea').disabled = true;
+            showAgentMessage('Storm-Declarant', 'The Voice of Thunder', 'Excellent! ' + GameState.wpm + ' WPM with ' + GameState.accuracy + '% accuracy! +' + xpGain + ' XP earned!');
+            syncWithArcanea(xpGain, 'typing_complete');
+        }
+        function showAgentMessage(name, role, msg) {
+            document.getElementById('agentMessage').textContent = msg;
+            document.getElementById('agentPanel').classList.add('active');
+            setTimeout(() => document.getElementById('agentPanel').classList.remove('active'), 5000);
+        }
+        function goBack() { window.location.href = '../games-v2.html'; }
+        function syncWithArcanea(xp, reason) {
+            if (window.Arcanea && window.Arcanea.awardXP) {
+                window.Arcanea.awardXP({ gameId: 'storm-scribe', amount: xp, reason: reason, agent: '@storm-declarator' });
+            }
+        }
+    </script>
+</body>
+</html>

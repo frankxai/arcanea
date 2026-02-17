@@ -142,7 +142,7 @@
     "@arcanea/codex": "codex-arcanea",
     "@arcanea/ultraworld": "ultraworld",
     "@arcanea/intelligence-os": "intelligence-os",
-    "@arcanea/core": "core"
+    "@arcanea/os": "core"
   },
 
   "departments": {

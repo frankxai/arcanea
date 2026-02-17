@@ -3,14 +3,14 @@
  * Re-exports core overlay types + auth-specific types.
  */
 
-import type { ProviderType, AuthSession } from '@arcanea/core';
+import type { ProviderType, AuthSession } from '@arcanea/os';
 
 export type {
   ProviderType,
   AuthSession,
   AuthAdapter,
   Keystore,
-} from '@arcanea/core';
+} from '@arcanea/os';
 
 export interface AuthConfig {
   providers: ProviderType[];

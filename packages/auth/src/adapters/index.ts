@@ -2,7 +2,7 @@
  * Auth Adapter Registry
  */
 
-import type { AuthAdapter, ProviderType } from '@arcanea/core';
+import type { AuthAdapter, ProviderType } from '@arcanea/os';
 import { ClaudeAuthAdapter } from './claude.js';
 import { OpenAIAuthAdapter } from './openai.js';
 import { GeminiAuthAdapter } from './gemini.js';

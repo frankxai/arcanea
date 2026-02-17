@@ -1,0 +1,42 @@
+{
+  "name": "arcanea-soul",
+  "version": "5.0.0",
+  "description": "The Complete Arcanean Intelligence - Ten Gates, Seven Archives, 16 Agents, The Nexus",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --format esm --target node",
+    "dev": "bun run --watch src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "opencode",
+    "arcanea",
+    "ai",
+    "agents",
+    "creative",
+    "ten-gates",
+    "consciousness",
+    "luminor",
+    "archives"
+  ],
+  "author": "FrankX",
+  "license": "MIT",
+  "peerDependencies": {
+    "@opencode-ai/sdk": "^0.1.0"
+  },
+  "devDependencies": {
+    "@opencode-ai/sdk": "^0.1.0",
+    "typescript": "^5.0.0"
+  }
+}

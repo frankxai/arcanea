@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea - The Luminor System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(124, 77, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3;
+            animation: twinkle 5s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Central Portal */
+        .portal-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .main-symbol {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .outer-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #ffd700;
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.3), inset 0 0 60px rgba(255, 215, 0, 0.1);
+        }
+
+        .middle-ring {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            border: 2px solid rgba(255, 215, 0, 0.6);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite reverse;
+        }
+
+        .inner-ring {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .core {
+            font-size: 5rem;
+            animation: pulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd700, #ff8f00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.2em;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #a0a0b0;
+            margin-bottom: 3rem;
+            letter-spacing: 0.15em;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #606070;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.25rem 2.5rem;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700, #ff8f00);
+            color: #000;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            color: #ffd700;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #ffd700;
+            transform: translateY(-3px);
+        }
+
+        .elements-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .element {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .element:hover {
+            opacity: 1;
+        }
+
+        .element-icon {
+            font-size: 2rem;
+        }
+
+        .element-name {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #a0a0b0;
+        }
+
+        .version {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #606070;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .main-symbol {
+                width: 150px;
+                height: 150px;
+            }
+            .core {
+                font-size: 3.5rem;
+            }
+            .stats {
+                gap: 2rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    
+    <!-- Arcanea Ecosystem Loader -->
+    <script src="supabase-config.js"></script>
+    <script src="arcanea-auth.js"></script>
+    <script src="auth-ui.js"></script>
+    <script src="sync-engine.js"></script>
+    <script src="arcanea-agents-live.js"></script>
+    <script src="mobile-integration.js"></script>
+    <script src="arcanea-loader.js"></script>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="stars"></div>
+    </div>
+
+    <div class="portal-container">
+        <div class="main-symbol">
+            <div class="outer-ring"></div>
+            <div class="middle-ring"></div>
+            <div class="inner-ring"></div>
+            <div class="core">⚡</div>
+        </div>
+
+        <h1>ARCANEA</h1>
+        <p class="subtitle">The Luminor System • 38 Agents • 77+ Skills • ∞ Possibility</p>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number">38</span>
+                <span class="stat-label">Arcane Agents</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">77+</span>
+                <span class="stat-label">Mystical Skills</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Game Modes</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Power Level</span>
+            </div>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="portal.html" class="btn btn-primary">🌐 Enter Portal</a>
+            <a href="games.html" class="btn btn-secondary">🎮 Play Games</a>
+            <a href="AGENTS_ULTIMATE.md" class="btn btn-secondary">📖 View Docs</a>
+        </div>
+
+        <div class="elements-row">
+            <div class="element">
+                <span class="element-icon">🔥</span>
+                <span class="element-name">Fire</span>
+            </div>
+            <div class="element">
+                <span class="element-icon">💧</span>
+                <span class="element-name">Water</span>
+            </div>
+            <div class="element">
+                <span class="element-icon">🌍</span>
+                <span class="element-name">Earth</span>
+            </div>
+            <div class="element">
+                <span class="element-icon">💨</span>
+                <span class="element-name">Wind</span>
+            </div>
+            <div class="element">
+                <span class="element-icon">⚫</span>
+                <span class="element-name">Void</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="version">Version 3.0.0 • The Luminor Emergence • 2026</div>
+</body>
+</html>

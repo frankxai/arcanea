@@ -1,0 +1,92 @@
+{
+  "name": "workflow-triggers",
+  "version": "1.0.0",
+  "description": "Automated workflow triggers with scheduling and event-based activation",
+  "type": "trigger",
+  "author": "Arcanea System",
+  
+  "configuration": {
+    "enabled": true,
+    "maxConcurrentWorkflows": 5,
+    "queueSize": 100,
+    "retryFailed": true,
+    "maxRetries": 3
+  },
+
+  "triggers": {
+    "scheduled": {
+      "daily-scan": {
+        "enabled": true,
+        "schedule": "0 2 * * *",
+        "workflow": "full-library-scan",
+        "timezone": "local",
+        "catchUp": true
+      },
+      "weekly-report": {
+        "enabled": true,
+        "schedule": "0 9 * * 1",
+        "workflow": "generate-weekly-report",
+        "timezone": "local"
+      },
+      "monthly-cleanup": {
+        "enabled": true,
+        "schedule": "0 3 1 * *",
+        "workflow": "cleanup-old-cache",
+        "timezone": "local"
+      }
+    },
+    "event": {
+      "onGuardianDetection": {
+        "enabled": true,
+        "event": "guardian.detected",
+        "condition": { "confidence": ">= 0.8" },
+        "workflow": "enhance-guardian-content",
+        "debounce": 5000
+      },
+      "onHighVolume": {
+        "enabled": true,
+        "event": "files.batch-added",
+        "condition": { "count": ">= 10" },
+        "workflow": "batch-analysis",
+        "priority": "high"
+      },
+      "onUserLogin": {
+        "enabled": true,
+        "event": "user.login",
+        "workflow": "generate-personalized-dashboard",
+        "async": true
+      }
+    },
+    "manual": {
+      "quick-scan": {
+        "enabled": true,
+        "workflow": "scan-and-analyze",
+        "hotkey": "Ctrl+Shift+S"
+      },
+      "organize-library": {
+        "enabled": true,
+        "workflow": "smart-organize",
+        "confirmation": true
+      }
+    }
+  },
+
+  "execution": {
+    "mode": "async",
+    "timeout": 300000,
+    "parallel": false,
+    "errorHandling": {
+      "strategy": "retry",
+      "maxRetries": 3,
+      "retryDelay": 5000,
+      "notifyOnFailure": true
+    }
+  },
+
+  "monitoring": {
+    "trackExecutions": true,
+    "logLevel": "info",
+    "performanceMetrics": true,
+    "alertOnFailure": true
+  }
+}

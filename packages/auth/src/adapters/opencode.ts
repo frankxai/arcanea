@@ -3,7 +3,7 @@
  * OpenCode is open-source — no authentication required.
  */
 
-import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/core';
+import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/os';
 
 export class OpenCodeAuthAdapter implements AuthAdapter {
   provider: ProviderType = 'opencode';

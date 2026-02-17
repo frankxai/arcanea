@@ -6,7 +6,7 @@
  */
 
 // Re-export core
-export * from '@arcanea/core';
+export * from '@arcanea/os';
 
 // Export adapters
 export * from './adapters/index.js';

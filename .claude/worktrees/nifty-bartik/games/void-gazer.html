@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Void Gazer - Arcanea Mystery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <style>
+        :root {
+            --void-primary: #7c4dff;
+            --void-dark: #311b92;
+            --void-glow: #b388ff;
+            --gold-light: #ffd700;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); min-height: 100vh; overflow: hidden; }
+        .game-header { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: var(--bg-card); z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .back-btn { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.25rem; }
+        .game-title { font-family: 'Cinzel', serif; font-size: 1.25rem; background: linear-gradient(135deg, var(--void-primary), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-pill { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.875rem; }
+        .stat-value { font-weight: 600; color: var(--gold-light); }
+        #game-container { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; }
+        .puzzle-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        .pattern-display { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 2rem; }
+        .pattern-cell { width: 60px; height: 60px; background: rgba(255,255,255,0.1); border: 2px solid var(--void-primary); border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .pattern-cell:hover { background: rgba(124,77,255,0.2); }
+        .pattern-cell.active { background: var(--void-primary); box-shadow: 0 0 20px var(--void-glow); }
+        .agent-panel { position: fixed; bottom: 20px; left: 20px; right: 20px; background: var(--bg-card); border: 2px solid var(--void-primary); border-radius: 16px; padding: 1rem; z-index: 50; display: none; }
+        .agent-panel.active { display: block; }
+    </style>
+</head>
+<body>
+    <header class="game-header">
+        <div style="display:flex;align-items:center;gap:0.75rem">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <div class="game-title">🌑 Void Gazer</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem">
+            <div class="stat-pill"><span>⭐</span><span class="stat-value" id="xpDisplay">0</span></div>
+            <div class="stat-pill"><span>🔮</span><span class="stat-value" id="levelDisplay">1</span></div>
+        </div>
+    </header>
+    <div id="game-container">
+        <div class="puzzle-container">
+            <div style="font-family:'Cinzel',serif;font-size:1.5rem;color:var(--void-primary);margin-bottom:1rem">Memorize the Pattern</div>
+            <div class="pattern-display" id="patternDisplay"></div>
+            <div style="font-size:1rem;color:var(--text-secondary);margin-bottom:1rem" id="statusText">Click Start to begin</div>
+            <button onclick="startPuzzle()" id="startBtn" style="padding:1rem 2rem;background:linear-gradient(135deg,var(--void-primary),var(--void-dark));border:none;border-radius:12px;color:#fff;font-size:1rem;cursor:pointer;">Start Puzzle</button>
+        </div>
+    </div>
+    <div class="agent-panel" id="agentPanel">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem">
+            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--void-primary),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:1.25rem">🌑</div>
+            <div><div style="font-weight:600;color:var(--void-primary)">Void-Gazer</div><div style="font-size:0.75rem;color:var(--text-secondary)">The Pattern Seeker</div></div>
+        </div>
+        <div id="agentMessage" style="color:var(--text-secondary);line-height:1.5">Watch the pattern carefully, then repeat it.</div>
+    </div>
+    <script>
+        const GameState = { xp: 0, level: 1, pattern: [], playerPattern: [], isShowing: false, canInput: false };
+        const SYMBOLS = ['🔮', '⚡', '🌙', '⭐', '💀', '🔥', '💧', '🌍'];
+        function initGrid() {
+            const grid = document.getElementById('patternDisplay');
+            grid.innerHTML = '';
+            for (let i = 0; i < 16; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'pattern-cell';
+                cell.dataset.index = i;
+                cell.onclick = () => cellClicked(i);
+                grid.appendChild(cell);
+            }
+        }
+        function startPuzzle() {
+            initGrid();
+            GameState.pattern = [];
+            GameState.playerPattern = [];
+            GameState.isShowing = true;
+            GameState.canInput = false;
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('startBtn').textContent = 'Watch...';
+            document.getElementById('statusText').textContent = 'Memorize the pattern...';
+            showAgentMessage('Watch the void reveal its secrets...');
+            // Generate pattern based on level
+            const patternLength = 3 + Math.floor(GameState.level / 2);
+            for (let i = 0; i < patternLength; i++) {
+                GameState.pattern.push(Math.floor(Math.random() * 16));
+            }
+            // Show pattern
+            showPattern();
+        }
+        function showPattern() {
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index >= GameState.pattern.length) {
+                    clearInterval(interval);
+                    GameState.isShowing = false;
+                    GameState.canInput = true;
+                    document.getElementById('startBtn').textContent = 'Your Turn!';
+                    document.getElementById('statusText').textContent = 'Repeat the pattern!';
+                    showAgentMessage('Now you! Click the cells in the same order.');
+                    return;
+                }
+                highlightCell(GameState.pattern[index]);
+                index++;
+            }, 800);
+        }
+        function highlightCell(index) {
+            const cells = document.querySelectorAll('.pattern-cell');
+            const cell = cells[index];
+            const symbol = SYMBOLS[index % SYMBOLS.length];
+            cell.textContent = symbol;
+            cell.classList.add('active');
+            setTimeout(() => {
+                cell.classList.remove('active');
+                setTimeout(() => cell.textContent = '', 200);
+            }, 400);
+        }
+        function cellClicked(index) {
+            if (!GameState.canInput) return;
+            highlightCell(index);
+            GameState.playerPattern.push(index);
+            // Check if pattern is complete
+            if (GameState.playerPattern.length === GameState.pattern.length) {
+                checkPattern();
+            }
+        }
+        function checkPattern() {
+            let correct = true;
+            for (let i = 0; i < GameState.pattern.length; i++) {
+                if (GameState.pattern[i] !== GameState.playerPattern[i]) {
+                    correct = false;
+                    break;
+                }
+            }
+            if (correct) {
+                const xpGain = 50 + (GameState.level * 10);
+                GameState.xp += xpGain;
+                GameState.level++;
+                document.getElementById('xpDisplay').textContent = GameState.xp;
+                document.getElementById('levelDisplay').textContent = GameState.level;
+                document.getElementById('statusText').textContent = 'Correct! +' + xpGain + ' XP';
+                showAgentMessage('The void recognizes your understanding! Level ' + GameState.level + ' unlocked!');
+                syncWithArcanea(xpGain, 'puzzle_solved');
+            } else {
+                document.getElementById('statusText').textContent = 'Incorrect. Try again.';
+                showAgentMessage('The pattern was wrong. The void demands precision.');
+            }
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('startBtn').textContent = 'Try Again';
+            GameState.canInput = false;
+        }
+        function showAgentMessage(msg) {
+            document.getElementById('agentMessage').textContent = msg;
+            document.getElementById('agentPanel').classList.add('active');
+            setTimeout(() => document.getElementById('agentPanel').classList.remove('active'), 4000);
+        }
+        function goBack() { window.location.href = '../games-v2.html'; }
+        function syncWithArcanea(xp, reason) {
+            if (window.Arcanea && window.Arcanea.awardXP) {
+                window.Arcanea.awardXP({ gameId: 'void-gazer', amount: xp, reason: reason, agent: '@void-gazer' });
+            }
+        }
+        initGrid();
+    </script>
+</body>
+</html>

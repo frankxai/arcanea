@@ -26,14 +26,14 @@ import {
   GetPromptRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 
-// Intelligence Engine (from @arcanea/core)
+// Intelligence Engine (from @arcanea/os)
 import {
   routeToGuardian,
   VoiceEnforcer,
   COLORS, FONTS, FONT_SIZES, SPACING, EFFECTS, ANIMATIONS, BREAKPOINTS,
   toCSSVariables, toTailwindConfig, tokensToJSON,
   VOICE_RULES,
-} from '@arcanea/core';
+} from '@arcanea/os';
 
 // Generation tools
 import {
@@ -155,7 +155,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     { name: "validate_canon", description: "Check content for Arcanea canon compliance", inputSchema: { type: "object", properties: { content: { type: "string" }, contentType: { type: "string", enum: ["story", "character", "general"] } }, required: ["content"] } },
     { name: "identify_gate", description: "Get detailed information about a specific Gate, Guardian, and Godbeast", inputSchema: { type: "object", properties: { gateNumber: { type: "number", minimum: 1, maximum: 10 } }, required: ["gateNumber"] } },
 
-    // === INTELLIGENCE ENGINE (powered by @arcanea/core) ===
+    // === INTELLIGENCE ENGINE (powered by @arcanea/os) ===
     { name: "route_guardian", description: "Route a creative task to the optimal Guardian based on intent analysis. Returns guardian, confidence, element, reasoning, and alternatives.", inputSchema: { type: "object", properties: { description: { type: "string", description: "Describe your task or creative need" } }, required: ["description"] } },
     { name: "check_voice", description: "Validate text against the Arcanea Voice Bible v2.0. Checks tone, terminology, and structure for canonical consistency.", inputSchema: { type: "object", properties: { text: { type: "string", description: "Text to validate" }, fix: { type: "boolean", description: "Auto-fix violations and return corrected text" } }, required: ["text"] } },
     { name: "get_design_tokens", description: "Get Arcanea design system tokens — colors, fonts, spacing, effects, animations. Export as CSS variables, Tailwind config, or JSON.", inputSchema: { type: "object", properties: { format: { type: "string", enum: ["css", "tailwind", "json"], description: "Output format (default: json)" }, category: { type: "string", enum: ["colors", "fonts", "spacing", "effects", "animations", "all"], description: "Token category (default: all)" } } } },
@@ -438,7 +438,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }, null, 2) }] };
     }
 
-    // Intelligence Engine (powered by @arcanea/core)
+    // Intelligence Engine (powered by @arcanea/os)
     case "route_guardian": {
       const result = routeToGuardian(args?.description as string);
       return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };

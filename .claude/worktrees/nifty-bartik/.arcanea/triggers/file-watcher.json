@@ -1,0 +1,108 @@
+{
+  "name": "file-watcher",
+  "version": "1.0.0",
+  "description": "Automated file system monitoring with change detection and auto-scan triggers",
+  "type": "trigger",
+  "author": "Arcanea System",
+  
+  "configuration": {
+    "enabled": true,
+    "watchPaths": ["./library", "./docs", "./assets"],
+    "excludePatterns": [
+      "node_modules/**",
+      ".git/**",
+      "*.tmp",
+      "*.log",
+      ".arcanea-cache/**"
+    ],
+    "recursive": true,
+    "polling": false,
+    "pollingInterval": 1000
+  },
+
+  "events": {
+    "fileCreated": {
+      "enabled": true,
+      "priority": "high",
+      "actions": [
+        {
+          "type": "scan",
+          "params": { "immediate": true, "target": "{filePath}" }
+        },
+        {
+          "type": "analyze",
+          "params": { "dimensions": ["guardian", "content", "visual"] }
+        },
+        {
+          "type": "index",
+          "params": { "addToSearch": true }
+        },
+        {
+          "type": "notify",
+          "params": { 
+            "message": "✨ New file detected and analyzed: {fileName}",
+            "channels": ["console", "web"],
+            "guardian": "{detectedGuardian}"
+          }
+        }
+      ],
+      "debounce": 500
+    },
+    "fileModified": {
+      "enabled": true,
+      "priority": "medium",
+      "actions": [
+        {
+          "type": "analyze",
+          "params": { "dimensions": ["content"], "incremental": true }
+        },
+        {
+          "type": "updateIndex",
+          "params": {}
+        }
+      ],
+      "debounce": 1000,
+      "minChangeSize": 100
+    },
+    "fileDeleted": {
+      "enabled": true,
+      "priority": "low",
+      "actions": [
+        {
+          "type": "removeFromIndex",
+          "params": { "filePath": "{filePath}" }
+        },
+        {
+          "type": "notify",
+          "params": { 
+            "message": "🗑️ File removed from library: {fileName}",
+            "channels": ["console"]
+          }
+        }
+      ]
+    },
+    "fileMoved": {
+      "enabled": true,
+      "priority": "medium",
+      "actions": [
+        {
+          "type": "updatePath",
+          "params": { "oldPath": "{oldPath}", "newPath": "{newPath}" }
+        }
+      ]
+    }
+  },
+
+  "batching": {
+    "enabled": true,
+    "maxBatchSize": 10,
+    "batchWindow": 2000,
+    "batchBy": "directory"
+  },
+
+  "performance": {
+    "maxConcurrentScans": 3,
+    "memoryLimit": "512MB",
+    "cpuLimit": 50
+  }
+}

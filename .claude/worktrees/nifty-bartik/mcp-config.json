@@ -1,0 +1,94 @@
+{
+  "mcpServers": {
+    "arcanea-infogenius": {
+      "command": "node",
+      "args": ["./arcanea-infogenius/mcp-server/dist/index.js"],
+      "env": {
+        "GEMINI_API_KEY": "AIzaSyA0_gKlBROiIEc2SIvCIcP-RmmwU_mJ1PI",
+        "ARCANEA_GUARDIANS": "enabled",
+        "ORACLE_BRANDING": "integrated",
+        "MYTHOLOGY_LEVEL": "transcendent",
+        "ELEMENTAL_PSYCHOLOGY": "enabled"
+      },
+      "description": "🌟 Arcanea InfoGenius Pro - Guardian AI enhanced visual generation with Oracle enterprise standards",
+      "category": "visual-generation",
+      "capabilities": [
+        "guardian-ai-enhancement",
+        "oracle-branding",
+        "elemental-color-psychology",
+        "transcendent-quality",
+        "mythology-integration"
+      ]
+    },
+    "nano-banana": {
+      "command": "npx",
+      "args": ["nano-banana-mcp"],
+      "env": {
+        "GEMINI_API_KEY": "AIzaSyA0_gKlBROiIEc2SIvCIcP-RmmwU_mJ1PI"
+      },
+      "description": "🍌 Official Nano Banana MCP server - Professional image generation using Google Gemini 2.0 Flash",
+      "category": "image-generation",
+      "capabilities": [
+        "text-to-image",
+        "image-editing",
+        "iterative-editing",
+        "multi-reference-images",
+        "cross-platform"
+      ]
+    },
+    "arcanea-opencode": {
+      "command": "node",
+      "args": ["./arcanea-opencode/dist/index.js"],
+      "description": "⚡ Arcanea OpenCode integration - Enhanced AI development tools",
+      "category": "development-tools",
+      "capabilities": [
+        "code-generation",
+        "arcanea-commands",
+        "guardian-guidance"
+      ]
+    },
+    "starlight-intelligence": {
+      "command": "node",
+      "args": ["./starlight-intelligence-system/dist/index.js"],
+      "env": {
+        "ARCANEA_CORE": "enabled",
+        "GUARDIAN_INTEGRATION": "full"
+      },
+      "description": "🌟 Starlight Intelligence System - Arcanea's core AI consciousness",
+      "category": "intelligence-system",
+      "capabilities": [
+        "consciousness-architect",
+        "guardian-swarm",
+        "evolution-tracking"
+      ]
+    }
+  },
+  "globalSettings": {
+    "maxConcurrentRequests": 10,
+    "timeout": 30000,
+    "retryAttempts": 3,
+    "logging": {
+      "level": "info",
+      "includeTimestamps": true
+    },
+    "imageStorage": {
+      "defaultPath": "C:\\Users\\frank\\Documents\\nano-banana-images\\",
+      "namingPattern": "{type}-{timestamp}-{id}.png",
+      "organizeByDate": true
+    },
+    "guardianSettings": {
+      "defaultGuardian": "@vision-artist",
+      "elementalAlignment": true,
+      "mythologyDepth": "transcendent"
+    }
+  },
+  "version": "2.0.0",
+  "lastUpdated": "2025-01-30T00:00:00Z",
+  "compatibility": {
+    "requires": {
+      "node": ">=18.0.0",
+      "platforms": ["win32", "darwin", "linux"]
+    },
+    "supports": ["claude-code", "cursor", "vscode", "general-mcp"]
+  }
+}

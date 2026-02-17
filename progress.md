@@ -41,7 +41,7 @@
 
 ### Phase 1: Core SDK + CLI — COMPLETED
 
-#### @arcanea/core v0.2.0 (Intelligence Engine)
+#### @arcanea/os v0.2.0 (Intelligence Engine)
 - [x] Built `engine/guardian-router.ts` — Routes tasks to Guardians by keyword analysis
 - [x] Built `engine/voice.ts` — VoiceEnforcer checks text against Voice Bible v2.0
 - [x] Built `engine/design-tokens.ts` — Full design system as CSS vars, Tailwind config, JSON
@@ -80,14 +80,14 @@
 - `.github/workflows/publish-packages.yml` — Publish workflow
 
 ### Test Results
-- @arcanea/core: Type-checks clean, smoke test passes
+- @arcanea/os: Type-checks clean, smoke test passes
 - @arcanea/cli: 17/17 tests pass, all 10 commands functional
 - Guardian Router accuracy: 100% on test cases (Lyssandria/database, Draconia/fire, Leyla/design, Shinkami/meta)
 
 ### Phase 2: MCP Server Engine Tools — COMPLETED
 
 #### @arcanea/mcp-server v0.4.0 (30 tools, 7 resources, 6 prompts)
-- [x] Added `@arcanea/core` as workspace dependency
+- [x] Added `@arcanea/os` as workspace dependency
 - [x] Imported Intelligence Engine (routeToGuardian, VoiceEnforcer, design tokens)
 - [x] Added `route_guardian` tool — routes tasks to optimal Guardian with confidence
 - [x] Added `check_voice` tool — validates text against Voice Bible v2.0, with auto-fix mode
@@ -110,7 +110,7 @@
 - `.changeset/mcp-engine-tools.md` — MCP server changeset
 
 ### Files Modified This Session (Phase 2+5)
-- `packages/arcanea-mcp/package.json` — Added @arcanea/core dep, v0.4.0, new description
+- `packages/arcanea-mcp/package.json` — Added @arcanea/os dep, v0.4.0, new description
 - `packages/arcanea-mcp/src/index.ts` — 3 new tools, 2 new resources, engine imports
 - `README.md` — Added Install section with all surfaces
 

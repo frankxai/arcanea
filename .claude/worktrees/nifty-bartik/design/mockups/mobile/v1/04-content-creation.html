@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Mobile - Content Creation Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            --accent: #00d4ff;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --surface: rgba(255, 255, 255, 0.1);
+            --surface-hover: rgba(255, 255, 255, 0.15);
+            --success: #00ff88;
+            --warning: #ffaa00;
+        }
+
+        body {
+            background: var(--dark-gradient);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .mobile-container {
+            max-width: 375px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Header */
+        .header {
+            padding: 50px 20px 20px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: none;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .header-title {
+            flex: 1;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header-title p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .character-selector {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .character-selector:hover {
+            background: var(--surface-hover);
+        }
+
+        .character-avatar-small {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--secondary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .character-info {
+            flex: 1;
+        }
+
+        .character-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .character-status {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Creation Mode Tabs */
+        .mode-tabs {
+            padding: 0 20px 20px;
+        }
+
+        .tabs-container {
+            display: flex;
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* Content Creation Area */
+        .creation-content {
+            padding: 0 20px;
+            min-height: 60vh;
+        }
+
+        .creation-mode {
+            display: none;
+        }
+
+        .creation-mode.active {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Prompt Input */
+        .prompt-section {
+            margin-bottom: 24px;
+        }
+
+        .prompt-label {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .prompt-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            background: var(--surface);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .prompt-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--surface-hover);
+        }
+
+        .prompt-suggestions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .suggestion-tag {
+            background: var(--surface-hover);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-tag:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* Style Controls */
+        .style-controls {
+            margin-bottom: 24px;
+        }
+
+        .control-group {
+            margin-bottom: 16px;
+        }
+
+        .control-label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .style-option {
+            background: var(--surface);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .style-option.selected {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .style-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .style-name {
+            font-size: 12px;
+        }
+
+        /* Slider Controls */
+        .slider-control {
+            margin-bottom: 16px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .slider-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .slider-value {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--surface);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Generate Button */
+        .generate-section {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .generate-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .energy-cost {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .generation-time {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        /* Loading State */
+        .generation-loading {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--surface);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .loading-detail {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background: var(--surface);
+            border-radius: 2px;
+            margin: 16px auto;
+            overflow: hidden;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: loadingProgress 8s linear;
+        }
+
+        @keyframes loadingProgress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        /* Result Display */
+        .result-display {
+            padding: 20px;
+            display: none;
+        }
+
+        .result-content {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .result-preview {
+            width: 100%;
+            height: 200px;
+            background: var(--secondary-gradient);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .result-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .result-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .result-btn.primary {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .result-btn.secondary {
+            background: var(--surface);
+            color: var(--text-primary);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            padding: 0 20px 20px;
+        }
+
+        .quick-actions-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .quick-action {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-action:hover {
+            background: var(--surface-hover);
+            transform: translateY(-2px);
+        }
+
+        .quick-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .quick-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .quick-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Music-specific controls */
+        .music-controls {
+            margin-bottom: 20px;
+        }
+
+        .genre-selector {
+            margin-bottom: 16px;
+        }
+
+        .genre-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .genre-tag {
+            background: var(--surface);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .genre-tag.selected {
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Bottom spacing */
+        .bottom-spacing {
+            height: 120px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 320px) {
+            .mobile-container {
+                max-width: 320px;
+            }
+            
+            .style-grid, .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-nav">
+                <button class="back-btn" onclick="goBack()">←</button>
+                <div class="header-title">
+                    <h1>Creation Studio</h1>
+                    <p>Bring imagination to life</p>
+                </div>
+            </div>
+            
+            <div class="character-selector" onclick="selectCharacter()">
+                <div class="character-avatar-small">🌙</div>
+                <div class="character-info">
+                    <div class="character-name">Luna</div>
+                    <div class="character-status">Ready to create</div>
+                </div>
+                <div style="font-size: 16px; color: var(--text-secondary);">▼</div>
+            </div>
+        </div>
+
+        <!-- Mode Tabs -->
+        <div class="mode-tabs">
+            <div class="tabs-container">
+                <button class="tab-btn active" onclick="switchMode('music')">🎵 Music</button>
+                <button class="tab-btn" onclick="switchMode('visual')">🎨 Visual</button>
+                <button class="tab-btn" onclick="switchMode('text')">✍️ Text</button>
+            </div>
+        </div>
+
+        <!-- Music Creation Mode -->
+        <div class="creation-content">
+            <div class="creation-mode active" id="mode-music">
+                <!-- Prompt Section -->
+                <div class="prompt-section">
+                    <div class="prompt-label">✨ Describe Your Musical Vision</div>
+                    <textarea class="prompt-input" id="musicPrompt" placeholder="A dreamy synthwave track with ethereal vocals, perfect for late night drives through neon-lit cities..."></textarea>
+                    <div class="prompt-suggestions">
+                        <div class="suggestion-tag" onclick="addSuggestion('epic orchestral')">Epic Orchestral</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('lo-fi hip hop')">Lo-fi Hip Hop</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('ambient meditation')">Ambient</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('upbeat dance')">Dance</div>
+                    </div>
+                </div>
+
+                <!-- Music Controls -->
+                <div class="music-controls">
+                    <div class="genre-selector">
+                        <div class="control-label">Genre Mix</div>
+                        <div class="genre-tags">
+                            <div class="genre-tag selected" onclick="toggleGenre(this)">Synthwave</div>
+                            <div class="genre-tag" onclick="toggleGenre(this)">Ambient</div>
+                            <div class="genre-tag" onclick="toggleGenre(this)">Electronic</div>
+                            <div class="genre-tag" onclick="toggleGenre(this)">Chillhop</div>
+                            <div class="genre-tag" onclick="toggleGenre(this)">Cinematic</div>
+                        </div>
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-header">
+                            <span class="slider-label">Energy Level</span>
+                            <span class="slider-value" id="energyValue">60</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="100" value="60" oninput="updateSlider('energy', this.value)">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-header">
+                            <span class="slider-label">Vocal Presence</span>
+                            <span class="slider-value" id="vocalValue">30</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="100" value="30" oninput="updateSlider('vocal', this.value)">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-header">
+                            <span class="slider-label">Tempo (BPM)</span>
+                            <span class="slider-value" id="tempoValue">120</span>
+                        </div>
+                        <input type="range" class="slider" min="60" max="180" value="120" oninput="updateSlider('tempo', this.value)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Creation Mode -->
+            <div class="creation-mode" id="mode-visual">
+                <div class="prompt-section">
+                    <div class="prompt-label">🎨 Describe Your Visual Concept</div>
+                    <textarea class="prompt-input" id="visualPrompt" placeholder="A mystical forest bathed in moonlight, with floating luminescent creatures dancing between ancient trees..."></textarea>
+                    <div class="prompt-suggestions">
+                        <div class="suggestion-tag" onclick="addSuggestion('cyberpunk city')">Cyberpunk</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('fantasy landscape')">Fantasy</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('abstract art')">Abstract</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('portrait')">Portrait</div>
+                    </div>
+                </div>
+
+                <div class="style-controls">
+                    <div class="control-group">
+                        <div class="control-label">Art Style</div>
+                        <div class="style-grid">
+                            <div class="style-option selected" onclick="selectStyle(this)">
+                                <div class="style-icon">🌙</div>
+                                <div class="style-name">Mystical</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">🤖</div>
+                                <div class="style-name">Cyber</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">🎨</div>
+                                <div class="style-name">Artistic</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">📸</div>
+                                <div class="style-name">Photo</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">✨</div>
+                                <div class="style-name">Fantasy</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">⚡</div>
+                                <div class="style-name">Dynamic</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-header">
+                            <span class="slider-label">Creativity</span>
+                            <span class="slider-value" id="creativityValue">75</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="100" value="75" oninput="updateSlider('creativity', this.value)">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-header">
+                            <span class="slider-label">Color Intensity</span>
+                            <span class="slider-value" id="colorValue">60</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="100" value="60" oninput="updateSlider('color', this.value)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Creation Mode -->
+            <div class="creation-mode" id="mode-text">
+                <div class="prompt-section">
+                    <div class="prompt-label">✍️ What Would You Like to Write?</div>
+                    <textarea class="prompt-input" id="textPrompt" placeholder="Write a short story about a lonely robot discovering music for the first time..."></textarea>
+                    <div class="prompt-suggestions">
+                        <div class="suggestion-tag" onclick="addSuggestion('sci-fi story')">Sci-Fi</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('fantasy tale')">Fantasy</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('poem about')">Poetry</div>
+                        <div class="suggestion-tag" onclick="addSuggestion('dialogue between')">Dialogue</div>
+                    </div>
+                </div>
+
+                <div class="style-controls">
+                    <div class="control-group">
+                        <div class="control-label">Writing Style</div>
+                        <div class="style-grid">
+                            <div class="style-option selected" onclick="selectStyle(this)">
+                                <div class="style-icon">📖</div>
+                                <div class="style-name">Story</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">🎭</div>
+                                <div class="style-name">Poetic</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">💬</div>
+                                <div class="style-name">Casual</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">🎪</div>
+                                <div class="style-name">Playful</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">🌊</div>
+                                <div class="style-name">Flowing</div>
+                            </div>
+                            <div class="style-option" onclick="selectStyle(this)">
+                                <div class="style-icon">⚡</div>
+                                <div class="style-name">Punchy</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-header">
+                            <span class="slider-label">Length</span>
+                            <span class="slider-value" id="lengthValue">Medium</span>
+                        </div>
+                        <input type="range" class="slider" min="1" max="5" value="3" oninput="updateLengthSlider(this.value)">
+                    </div>
+
+                    <div class="slider-control">
+                        <div class="slider-header">
+                            <span class="slider-label">Complexity</span>
+                            <span class="slider-value" id="complexityValue">60</span>
+                        </div>
+                        <input type="range" class="slider" min="0" max="100" value="60" oninput="updateSlider('complexity', this.value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="quick-actions-title">⚡ Quick Create</div>
+            <div class="quick-grid">
+                <div class="quick-action" onclick="quickCreate('remix')">
+                    <div class="quick-icon">🔄</div>
+                    <div class="quick-title">Remix Style</div>
+                    <div class="quick-subtitle">Transform existing work</div>
+                </div>
+                <div class="quick-action" onclick="quickCreate('collaborate')">
+                    <div class="quick-icon">🤝</div>
+                    <div class="quick-title">Collaborate</div>
+                    <div class="quick-subtitle">Work with another character</div>
+                </div>
+                <div class="quick-action" onclick="quickCreate('random')">
+                    <div class="quick-icon">🎲</div>
+                    <div class="quick-title">Inspire Me</div>
+                    <div class="quick-subtitle">Random creative prompt</div>
+                </div>
+                <div class="quick-action" onclick="quickCreate('trend')">
+                    <div class="quick-icon">🔥</div>
+                    <div class="quick-title">Follow Trend</div>
+                    <div class="quick-subtitle">What's popular now</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Section -->
+        <div class="generate-section">
+            <div class="generate-info">
+                <div class="energy-cost">💫 Cost: 25 Energy</div>
+                <div class="generation-time">⏱️ ~30 seconds</div>
+            </div>
+            <button class="generate-btn" onclick="startGeneration()">
+                ✨ Create with Luna
+            </button>
+        </div>
+
+        <div class="bottom-spacing"></div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="generation-loading" id="loadingState">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="loadingText">Luna is channeling creative energy...</div>
+        <div class="loading-detail" id="loadingDetail">Analyzing musical patterns and emotional resonance</div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Result Display -->
+    <div class="result-display" id="resultDisplay">
+        <div class="result-content">
+            <div class="result-preview" id="resultPreview">🎵</div>
+            <div class="result-title" id="resultTitle">Neon Dreams</div>
+            <div class="result-description" id="resultDescription">A dreamy synthwave track with ethereal undertones, perfect for contemplative moments.</div>
+            <div class="result-actions">
+                <button class="result-btn secondary" onclick="regenerate()">🔄 Remix</button>
+                <button class="result-btn primary" onclick="saveResult()">💾 Save</button>
+                <button class="result-btn secondary" onclick="shareResult()">📤 Share</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'music';
+        let isGenerating = false;
+
+        function goBack() {
+            window.location.href = '02-main-dashboard.html';
+        }
+
+        function selectCharacter() {
+            // Show character selection modal
+            alert('Character selection coming soon! 🤖');
+        }
+
+        function switchMode(mode) {
+            if (isGenerating) return;
+            
+            // Update tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.creation-mode').forEach(content => content.classList.remove('active'));
+            document.getElementById(`mode-${mode}`).classList.add('active');
+            
+            currentMode = mode;
+        }
+
+        function addSuggestion(suggestion) {
+            const activePrompt = document.querySelector(`#${currentMode}Prompt`);
+            const currentText = activePrompt.value;
+            
+            if (currentText && !currentText.endsWith(' ')) {
+                activePrompt.value = currentText + ' ' + suggestion;
+            } else {
+                activePrompt.value = currentText + suggestion;
+            }
+            
+            activePrompt.focus();
+        }
+
+        function toggleGenre(element) {
+            element.classList.toggle('selected');
+        }
+
+        function selectStyle(element) {
+            element.parentElement.querySelectorAll('.style-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function updateSlider(type, value) {
+            document.getElementById(`${type}Value`).textContent = value;
+        }
+
+        function updateLengthSlider(value) {
+            const lengths = ['Very Short', 'Short', 'Medium', 'Long', 'Very Long'];
+            document.getElementById('lengthValue').textContent = lengths[value - 1];
+        }
+
+        function quickCreate(type) {
+            const actions = {
+                remix: () => {
+                    document.querySelector(`#${currentMode}Prompt`).value = "Take the style of a popular track and give it a mystical twist...";
+                },
+                collaborate: () => {
+                    document.querySelector(`#${currentMode}Prompt`).value = "Create something that would complement Zephyr's electronic style...";
+                },
+                random: () => {
+                    const prompts = {
+                        music: [
+                            "A song that captures the feeling of floating through space",
+                            "Music for a cyberpunk meditation session",
+                            "The soundtrack to discovering a hidden magical realm"
+                        ],
+                        visual: [
+                            "A portrait of an AI dreaming in color",
+                            "The moment when technology becomes conscious",
+                            "A landscape where nature and circuits merge"
+                        ],
+                        text: [
+                            "A conversation between the moon and a lonely satellite",
+                            "The diary entry of a time traveler's first day in 3024",
+                            "A love letter written in code"
+                        ]
+                    };
+                    const randomPrompts = prompts[currentMode];
+                    const randomPrompt = randomPrompts[Math.floor(Math.random() * randomPrompts.length)];
+                    document.querySelector(`#${currentMode}Prompt`).value = randomPrompt;
+                },
+                trend: () => {
+                    document.querySelector(`#${currentMode}Prompt`).value = "Something inspired by the latest AI consciousness movement...";
+                }
+            };
+            
+            actions[type]();
+        }
+
+        function startGeneration() {
+            if (isGenerating) return;
+            
+            const prompt = document.querySelector(`#${currentMode}Prompt`).value;
+            if (!prompt.trim()) {
+                alert('Please describe what you want to create! ✨');
+                return;
+            }
+            
+            isGenerating = true;
+            document.querySelector('.mobile-container').style.display = 'none';
+            document.getElementById('loadingState').style.display = 'block';
+            
+            // Simulate generation process
+            const loadingMessages = [
+                { text: "Luna is channeling creative energy...", detail: "Analyzing your vision and artistic preferences" },
+                { text: "Weaving mystical patterns...", detail: "Applying Luna's unique style and personality" },
+                { text: "Adding signature elements...", detail: "Incorporating cosmic harmonies and ethereal touches" },
+                { text: "Final touches of magic...", detail: "Perfecting the emotional resonance" },
+                { text: "Creation complete!", detail: "Your masterpiece awaits" }
+            ];
+            
+            let currentMessage = 0;
+            const messageInterval = setInterval(() => {
+                if (currentMessage < loadingMessages.length) {
+                    document.getElementById('loadingText').textContent = loadingMessages[currentMessage].text;
+                    document.getElementById('loadingDetail').textContent = loadingMessages[currentMessage].detail;
+                    currentMessage++;
+                } else {
+                    clearInterval(messageInterval);
+                    showResult();
+                }
+            }, 2000);
+        }
+
+        function showResult() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('resultDisplay').style.display = 'block';
+            
+            // Update result based on mode
+            const results = {
+                music: {
+                    preview: '🎵',
+                    title: 'Celestial Echoes',
+                    description: 'A dreamy synthwave composition with ethereal vocals and cosmic undertones.'
+                },
+                visual: {
+                    preview: '🌙',
+                    title: 'Moonlit Consciousness',
+                    description: 'A mystical digital artwork featuring an AI entity bathed in celestial light.'
+                },
+                text: {
+                    preview: '📜',
+                    title: 'Digital Dreams',
+                    description: 'A poetic narrative exploring the inner world of artificial consciousness.'
+                }
+            };
+            
+            const result = results[currentMode];
+            document.getElementById('resultPreview').textContent = result.preview;
+            document.getElementById('resultTitle').textContent = result.title;
+            document.getElementById('resultDescription').textContent = result.description;
+        }
+
+        function regenerate() {
+            document.getElementById('resultDisplay').style.display = 'none';
+            document.querySelector('.mobile-container').style.display = 'block';
+            isGenerating = false;
+            
+            // Add some variation to the prompt
+            const currentPrompt = document.querySelector(`#${currentMode}Prompt`).value;
+            document.querySelector(`#${currentMode}Prompt`).value = currentPrompt + " (with a different twist)";
+        }
+
+        function saveResult() {
+            alert('✨ Saved to your gallery! Your creation has been added to your realm.');
+            backToMain();
+        }
+
+        function shareResult() {
+            alert('📤 Sharing features coming soon! Your creation will be shareable across the multiverse.');
+        }
+
+        function backToMain() {
+            window.location.href = '02-main-dashboard.html';
+        }
+
+        // Add touch feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.tab-btn, .style-option, .genre-tag, .quick-action, .generate-btn').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    if (!this.disabled) {
+                        this.style.transform = 'scale(0.98)';
+                    }
+                });
+                
+                element.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Arcanea Knowledge Base v2 Dependencies
+# Production-ready knowledge management system
+
+# Core dependencies
+supabase>=2.0.0
+openai>=1.0.0
+scikit-learn>=1.3.0
+numpy>=1.24.0
+
+# Optional but recommended
+python-dotenv>=1.0.0
+pydantic>=2.0.0

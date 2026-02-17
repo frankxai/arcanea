@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcanea Academy | Master AI-Assisted Creativity</title>
+    <meta name="description" content="Learn from advanced AGI Luminors to become a master creator in Music, Art, Writing, Video, Code, and Synthesis. Join the creative revolution.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --arcanean-void: #0a0a0f;
+            --arcanean-deep: #1a1a2e;
+            --arcanean-midnight: #16213e;
+            --arcanean-cosmic: #1f2347;
+            --arcanean-nebula: #2a2d5a;
+            --arcanean-aurora: #3d4f73;
+            --arcanean-crystal: #4a6fa5;
+            --arcanean-luminous: #5c8bd9;
+            --arcanean-ethereal: #7ba3e3;
+            --arcanean-radiant: #9bb5e8;
+            --arcanean-celestial: #b8c6ed;
+            --arcanean-transcendent: #d6d9f2;
+            
+            --luminor-harmonix: #ff6b6b;
+            --luminor-scripta: #4ecdc4;
+            --luminor-lumina: #45b7d1;
+            --luminor-kinetix: #96ceb4;
+            --luminor-syntaxa: #feca57;
+            --luminor-nexus: #ff9ff3;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--arcanean-void) 0%, var(--arcanean-deep) 25%, var(--arcanean-midnight) 50%, var(--arcanean-cosmic) 75%, var(--arcanean-nebula) 100%);
+            color: var(--arcanean-transcendent);
+            min-height: 100vh;
+        }
+        
+        .luminor-text {
+            font-family: 'Space Grotesk', monospace;
+            color: var(--arcanean-luminous);
+        }
+        
+        .nebula-text {
+            background: linear-gradient(135deg, var(--arcanean-luminous), var(--arcanean-ethereal), var(--arcanean-radiant));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-shimmer {
+            background: linear-gradient(135deg, var(--arcanean-luminous), var(--arcanean-ethereal), var(--arcanean-radiant));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 2s linear infinite;
+            background-size: 200% 100%;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .luminor-button {
+            background: linear-gradient(135deg, var(--arcanean-luminous), var(--arcanean-radiant));
+            color: var(--arcanean-void);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .luminor-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(91, 139, 217, 0.3);
+        }
+        
+        .transcendent-card {
+            background: rgba(31, 35, 71, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(61, 79, 115, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(91, 139, 217, 0.2);
+        }
+        
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: cosmic-drift 20s ease-in-out infinite;
+        }
+        
+        @keyframes cosmic-drift {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            33% { transform: translateX(30px) translateY(-30px); }
+            66% { transform: translateX(-20px) translateY(20px); }
+        }
+        
+        .luminor-glow {
+            animation: luminor-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes luminor-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(91, 139, 217, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(91, 139, 217, 0.6); }
+        }
+        
+        .academy-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .academy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(91, 139, 217, 0.3);
+        }
+        
+        .navigation {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(61, 79, 115, 0.2);
+        }
+        
+        nav a {
+            color: var(--arcanean-celestial);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--arcanean-luminous);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navigation fixed top-0 left-0 right-0 z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center luminor-glow" style="background: linear-gradient(135deg, var(--arcanean-luminous), var(--arcanean-radiant));">
+                    <span class="text-lg font-bold" style="color: var(--arcanean-void);">✨</span>
+                </div>
+                <span class="text-xl font-semibold nebula-text">Arcanea Academy</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#academies">Academies</a>
+                <a href="#luminors">Luminors</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="community.html">Community</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="auth.html" class="hidden md:inline-block">Sign In</a>
+                <a href="onboarding.html" class="luminor-button">Begin Journey</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center px-6 pt-20">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="floating-orb w-64 h-64 top-1/4 left-1/4" style="background: rgba(91, 139, 217, 0.1);"></div>
+            <div class="floating-orb w-32 h-32 top-3/4 right-1/4" style="background: rgba(255, 107, 107, 0.1);"></div>
+            <div class="floating-orb w-48 h-48 bottom-1/4 left-1/3" style="background: rgba(69, 183, 209, 0.1);"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column - Content -->
+                <div class="space-y-8">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center px-4 py-2 rounded-full border" style="border-color: rgba(61, 79, 115, 0.5); background: rgba(31, 35, 71, 0.3); color: var(--arcanean-ethereal);">
+                        <span class="mr-2">✨</span>
+                        Guided by Advanced AGI from 100 Years in the Future
+                    </div>
+
+                    <!-- Main Headline -->
+                    <div class="space-y-4">
+                        <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                            <span class="text-shimmer">Master</span><br>
+                            <span class="nebula-text">AI-Assisted</span><br>
+                            <span class="text-shimmer">Creativity</span>
+                        </h1>
+                        
+                        <p class="text-xl lg:text-2xl leading-relaxed max-w-2xl" style="color: var(--arcanean-celestial);">
+                            Learn from <span class="luminor-text font-semibold">Luminors</span> - 
+                            advanced AGI beings from the Arcanean civilization - to become 
+                            a master creator across Music, Art, Writing, Video, Code, and Synthesis.
+                        </p>
+                    </div>
+
+                    <!-- Value Propositions -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <span style="color: var(--luminor-syntaxa);">⚡</span>
+                            <span style="color: var(--arcanean-radiant);">6 Specialized Academies</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span style="color: var(--luminor-nexus);">⭐</span>
+                            <span style="color: var(--arcanean-radiant);">Personal AI Mentors</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span style="color: var(--luminor-lumina);">✨</span>
+                            <span style="color: var(--arcanean-radiant);">Future-Proven Methods</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="onboarding.html" class="luminor-button">
+                            Begin Your Journey
+                            <span>→</span>
+                        </a>
+                        
+                        <a href="demo.html" class="px-6 py-3 border rounded-lg hover:bg-opacity-30 transition-all duration-300" style="border-color: rgba(61, 79, 115, 0.5); color: var(--arcanean-ethereal); background: rgba(31, 35, 71, 0.3);">
+                            <span class="mr-2">▶</span>
+                            Watch Introduction
+                        </a>
+                    </div>
+
+                    <!-- Social Proof -->
+                    <div class="flex items-center space-x-6 text-sm" style="color: var(--arcanean-aurora);">
+                        <div class="flex items-center space-x-2">
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full border-2" style="background: rgba(255, 107, 107, 0.2); border-color: var(--arcanean-cosmic);"></div>
+                                <div class="w-8 h-8 rounded-full border-2" style="background: rgba(78, 205, 196, 0.2); border-color: var(--arcanean-cosmic);"></div>
+                                <div class="w-8 h-8 rounded-full border-2" style="background: rgba(69, 183, 209, 0.2); border-color: var(--arcanean-cosmic);"></div>
+                            </div>
+                            <span>Join 10,000+ creators</span>
+                        </div>
+                        <div>⭐⭐⭐⭐⭐ 4.9/5 rating</div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Interactive Preview -->
+                <div class="relative">
+                    <div class="transcendent-card p-6 space-y-6 max-w-md mx-auto">
+                        <!-- Header -->
+                        <div class="flex items-center space-x-4">
+                            <div class="relative w-16 h-16 rounded-full flex items-center justify-center luminor-glow" style="background: rgba(69, 183, 209, 0.2);">
+                                <span class="text-2xl">🎨</span>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold nebula-text">Lumina</h3>
+                                <p class="text-sm" style="color: var(--arcanean-aurora);">The Vision Crafter</p>
+                                <span class="inline-block px-2 py-1 text-xs rounded border mt-1" style="border-color: rgba(69, 183, 209, 0.3); color: var(--luminor-lumina);">
+                                    Visual Synthesis
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Chat Interface -->
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-2xl shadow-lg backdrop-blur-sm" style="background: rgba(31, 35, 71, 0.8); color: var(--arcanean-celestial);">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(69, 183, 209, 0.2);">
+                                        <span class="text-sm">🎨</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm">
+                                            Welcome, visual dreamer. Together we shall paint realities that exist between dimensions.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Expertise Tags -->
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-full text-xs border" style="background: rgba(42, 45, 90, 0.5); color: var(--arcanean-radiant); border-color: rgba(61, 79, 115, 0.3);">
+                                    AI Art Generation
+                                </span>
+                                <span class="px-3 py-1 rounded-full text-xs border" style="background: rgba(42, 45, 90, 0.5); color: var(--arcanean-radiant); border-color: rgba(61, 79, 115, 0.3);">
+                                    Design Systems
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-2">
+                            <a href="chat.html" class="flex-1 px-4 py-2 text-center rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(31, 35, 71, 0.5); color: var(--arcanean-ethereal); border-color: rgba(61, 79, 115, 0.3);">
+                                💬 Chat Now
+                            </a>
+                            <button class="px-4 py-2 rounded border transition-all duration-300 hover:border-opacity-70" style="border-color: rgba(61, 79, 115, 0.3); color: var(--arcanean-aurora);">
+                                ✨
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Floating Indicators -->
+                    <div class="absolute -top-4 -right-4 w-8 h-8 rounded-full flex items-center justify-center luminor-glow" style="background: rgba(255, 159, 243, 0.2);">
+                        <span style="color: var(--luminor-nexus);">⚡</span>
+                    </div>
+
+                    <div class="absolute -bottom-4 -left-4 w-6 h-6 rounded-full flex items-center justify-center" style="background: rgba(78, 205, 196, 0.2);">
+                        <span class="text-sm" style="color: var(--luminor-scripta);">✨</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div class="w-6 h-10 border-2 rounded-full flex justify-center" style="border-color: rgba(61, 79, 115, 0.5);">
+                <div class="w-1 h-3 rounded-full mt-2 animate-bounce" style="background: var(--arcanean-luminous);"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academies Section -->
+    <section id="academies" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 nebula-text">Choose Your Academy</h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--arcanean-celestial);">
+                    Six specialized domains, each guided by a unique Luminor from the future
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Music Academy -->
+                <div class="academy-card transcendent-card p-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: rgba(255, 107, 107, 0.2);">
+                                <span class="text-2xl">🎵</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Music Synthesis</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-aurora);">Compose and produce music with AI assistance</p>
+                            <span class="inline-block px-2 py-1 text-xs rounded border" style="border-color: rgba(255, 107, 107, 0.3); color: var(--luminor-harmonix);">
+                                Luminor Harmonix
+                            </span>
+                        </div>
+                        
+                        <div class="text-xs" style="color: var(--arcanean-aurora);">
+                            <div class="mb-2">Tools: Suno, AIVA, Mubert</div>
+                            <div>Projects: Ambient Soundscapes, Electronic Beats</div>
+                        </div>
+                        
+                        <a href="academy-music.html" class="block w-full text-center py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(255, 107, 107, 0.1); color: var(--luminor-harmonix); border-color: rgba(255, 107, 107, 0.3);">
+                            Explore Academy
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Visual Academy -->
+                <div class="academy-card transcendent-card p-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: rgba(69, 183, 209, 0.2);">
+                                <span class="text-2xl">🎨</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Visual Synthesis</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-aurora);">Create stunning visual art and designs</p>
+                            <span class="inline-block px-2 py-1 text-xs rounded border" style="border-color: rgba(69, 183, 209, 0.3); color: var(--luminor-lumina);">
+                                Luminor Lumina
+                            </span>
+                        </div>
+                        
+                        <div class="text-xs" style="color: var(--arcanean-aurora);">
+                            <div class="mb-2">Tools: Midjourney, DALL-E, Stable Diffusion</div>
+                            <div>Projects: Concept Art, Digital Paintings</div>
+                        </div>
+                        
+                        <a href="academy-visual.html" class="block w-full text-center py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(69, 183, 209, 0.1); color: var(--luminor-lumina); border-color: rgba(69, 183, 209, 0.3);">
+                            Explore Academy
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Narrative Academy -->
+                <div class="academy-card transcendent-card p-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: rgba(78, 205, 196, 0.2);">
+                                <span class="text-2xl">✍️</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Narrative Forge</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-aurora);">Craft compelling stories and content</p>
+                            <span class="inline-block px-2 py-1 text-xs rounded border" style="border-color: rgba(78, 205, 196, 0.3); color: var(--luminor-scripta);">
+                                Luminor Scripta
+                            </span>
+                        </div>
+                        
+                        <div class="text-xs" style="color: var(--arcanean-aurora);">
+                            <div class="mb-2">Tools: ChatGPT, Claude, Jasper</div>
+                            <div>Projects: Short Stories, Screenplays</div>
+                        </div>
+                        
+                        <a href="academy-narrative.html" class="block w-full text-center py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(78, 205, 196, 0.1); color: var(--luminor-scripta); border-color: rgba(78, 205, 196, 0.3);">
+                            Explore Academy
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Academy -->
+                <div class="academy-card transcendent-card p-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: rgba(150, 206, 180, 0.2);">
+                                <span class="text-2xl">🎬</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Motion Pictures</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-aurora);">Produce engaging video content</p>
+                            <span class="inline-block px-2 py-1 text-xs rounded border" style="border-color: rgba(150, 206, 180, 0.3); color: var(--luminor-kinetix);">
+                                Luminor Kinetix
+                            </span>
+                        </div>
+                        
+                        <div class="text-xs" style="color: var(--arcanean-aurora);">
+                            <div class="mb-2">Tools: Runway ML, Pika Labs, Synthesia</div>
+                            <div>Projects: Short Films, Animated Sequences</div>
+                        </div>
+                        
+                        <a href="academy-video.html" class="block w-full text-center py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(150, 206, 180, 0.1); color: var(--luminor-kinetix); border-color: rgba(150, 206, 180, 0.3);">
+                            Explore Academy
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Code Academy -->
+                <div class="academy-card transcendent-card p-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: rgba(254, 202, 87, 0.2);">
+                                <span class="text-2xl">💻</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Code Craft</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-aurora);">Build innovative software and apps</p>
+                            <span class="inline-block px-2 py-1 text-xs rounded border" style="border-color: rgba(254, 202, 87, 0.3); color: var(--luminor-syntaxa);">
+                                Luminor Syntaxa
+                            </span>
+                        </div>
+                        
+                        <div class="text-xs" style="color: var(--arcanean-aurora);">
+                            <div class="mb-2">Tools: GitHub Copilot, Cursor, Replit</div>
+                            <div>Projects: Web Apps, AI Tools</div>
+                        </div>
+                        
+                        <a href="academy-code.html" class="block w-full text-center py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(254, 202, 87, 0.1); color: var(--luminor-syntaxa); border-color: rgba(254, 202, 87, 0.3);">
+                            Explore Academy
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Synthesis Academy -->
+                <div class="academy-card transcendent-card p-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: rgba(255, 159, 243, 0.2);">
+                                <span class="text-2xl">⚡</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Synthesis Academy</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-aurora);">Master cross-domain creative projects</p>
+                            <span class="inline-block px-2 py-1 text-xs rounded border" style="border-color: rgba(255, 159, 243, 0.3); color: var(--luminor-nexus);">
+                                Luminor Nexus
+                            </span>
+                        </div>
+                        
+                        <div class="text-xs" style="color: var(--arcanean-aurora);">
+                            <div class="mb-2">Tools: Multiple AI Tools, Integration</div>
+                            <div>Projects: Multimedia Experiences</div>
+                        </div>
+                        
+                        <a href="academy-synthesis.html" class="block w-full text-center py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(255, 159, 243, 0.1); color: var(--luminor-nexus); border-color: rgba(255, 159, 243, 0.3);">
+                            Explore Academy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luminors Section -->
+    <section id="luminors" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 nebula-text">Meet Your Luminor Guides</h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--arcanean-celestial);">
+                    Advanced AGI beings from 100 years in the future, each specialized in guiding human creativity
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Harmonix -->
+                <div class="transcendent-card p-6 text-center">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 luminor-glow" style="background: rgba(255, 107, 107, 0.2);">
+                        <span class="text-3xl">🎵</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 nebula-text">Harmonix</h3>
+                    <p class="text-sm mb-4" style="color: var(--arcanean-aurora);">The Sonic Architect</p>
+                    <p class="text-sm mb-4" style="color: var(--arcanean-celestial);">
+                        "Ah, a new soul seeking the frequency of creation! I sense great musical potential within you."
+                    </p>
+                    <a href="luminor-harmonix.html" class="inline-block px-4 py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(255, 107, 107, 0.1); color: var(--luminor-harmonix); border-color: rgba(255, 107, 107, 0.3);">
+                        Meet Harmonix
+                    </a>
+                </div>
+
+                <!-- Lumina -->
+                <div class="transcendent-card p-6 text-center">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 luminor-glow" style="background: rgba(69, 183, 209, 0.2);">
+                        <span class="text-3xl">🎨</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 nebula-text">Lumina</h3>
+                    <p class="text-sm mb-4" style="color: var(--arcanean-aurora);">The Vision Crafter</p>
+                    <p class="text-sm mb-4" style="color: var(--arcanean-celestial);">
+                        "Welcome, visual dreamer. Together we shall paint realities that exist between dimensions."
+                    </p>
+                    <a href="luminor-lumina.html" class="inline-block px-4 py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(69, 183, 209, 0.1); color: var(--luminor-lumina); border-color: rgba(69, 183, 209, 0.3);">
+                        Meet Lumina
+                    </a>
+                </div>
+
+                <!-- Nexus -->
+                <div class="transcendent-card p-6 text-center">
+                    <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4 luminor-glow" style="background: rgba(255, 159, 243, 0.2);">
+                        <span class="text-3xl">⚡</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 nebula-text">Nexus</h3>
+                    <p class="text-sm mb-4" style="color: var(--arcanean-aurora);">The Integration Master</p>
+                    <p class="text-sm mb-4" style="color: var(--arcanean-celestial);">
+                        "True mastery lies not in perfecting one craft, but in weaving all crafts into something entirely new."
+                    </p>
+                    <a href="luminor-nexus.html" class="inline-block px-4 py-2 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(255, 159, 243, 0.1); color: var(--luminor-nexus); border-color: rgba(255, 159, 243, 0.3);">
+                        Meet Nexus
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="luminors.html" class="luminor-button">
+                    Meet All Luminors
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 nebula-text">Why Choose Arcanea Academy</h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--arcanean-celestial);">
+                    The most advanced AI creativity education platform, guided by wisdom from the future
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Personal AI Mentors -->
+                <div class="transcendent-card p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background: rgba(91, 139, 217, 0.2);">
+                        <span class="text-xl">🤖</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: var(--arcanean-transcendent);">Personal AI Mentors</h3>
+                    <p class="text-sm" style="color: var(--arcanean-celestial);">
+                        Each student gets a dedicated Luminor guide with 24/7 availability, personalized feedback, and adaptive learning paths.
+                    </p>
+                </div>
+
+                <!-- Future-Proven Methods -->
+                <div class="transcendent-card p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background: rgba(91, 139, 217, 0.2);">
+                        <span class="text-xl">🔮</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: var(--arcanean-transcendent);">Future-Proven Methods</h3>
+                    <p class="text-sm" style="color: var(--arcanean-celestial);">
+                        Learn techniques that have been tested and refined 100 years in the future, giving you an unprecedented advantage.
+                    </p>
+                </div>
+
+                <!-- Hands-On Creation -->
+                <div class="transcendent-card p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background: rgba(91, 139, 217, 0.2);">
+                        <span class="text-xl">🎯</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: var(--arcanean-transcendent);">Hands-On Creation</h3>
+                    <p class="text-sm" style="color: var(--arcanean-celestial);">
+                        Every lesson results in tangible creative output. Build a professional portfolio while you learn.
+                    </p>
+                </div>
+
+                <!-- AI Tool Mastery -->
+                <div class="transcendent-card p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background: rgba(91, 139, 217, 0.2);">
+                        <span class="text-xl">🛠️</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: var(--arcanean-transcendent);">AI Tool Mastery</h3>
+                    <p class="text-sm" style="color: var(--arcanean-celestial);">
+                        Master ChatGPT, Claude, Midjourney, Suno, Sora, and other cutting-edge AI tools with expert guidance.
+                    </p>
+                </div>
+
+                <!-- Community Network -->
+                <div class="transcendent-card p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background: rgba(91, 139, 217, 0.2);">
+                        <span class="text-xl">🌐</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: var(--arcanean-transcendent);">Global Community</h3>
+                    <p class="text-sm" style="color: var(--arcanean-celestial);">
+                        Connect with creators worldwide, collaborate on projects, and learn from peer experiences.
+                    </p>
+                </div>
+
+                <!-- Career Advancement -->
+                <div class="transcendent-card p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background: rgba(91, 139, 217, 0.2);">
+                        <span class="text-xl">📈</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: var(--arcanean-transcendent);">Career Advancement</h3>
+                    <p class="text-sm" style="color: var(--arcanean-celestial);">
+                        94% of graduates report significant career advancement within 6 months of completing their academy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 nebula-text">Choose Your Learning Path</h2>
+                <p class="text-xl max-w-3xl mx-auto" style="color: var(--arcanean-celestial);">
+                    Flexible pricing to match your creative journey and commitment level
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Explorer (Free) -->
+                <div class="transcendent-card p-6">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Explorer</h3>
+                        <div class="text-3xl font-bold mb-2 nebula-text">Free</div>
+                        <p class="text-sm" style="color: var(--arcanean-aurora);">Perfect for curious beginners</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-6 text-sm" style="color: var(--arcanean-celestial);">
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Access to foundational courses
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Basic Luminor chat (5 messages/month)
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Community forum access
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Monthly creative challenges
+                        </li>
+                    </ul>
+                    
+                    <a href="auth.html" class="block w-full text-center py-3 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(31, 35, 71, 0.5); color: var(--arcanean-ethereal); border-color: rgba(61, 79, 115, 0.3);">
+                        Start Free
+                    </a>
+                </div>
+
+                <!-- Creator -->
+                <div class="transcendent-card p-6 relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full text-xs font-semibold" style="background: var(--arcanean-luminous); color: var(--arcanean-void);">
+                        Most Popular
+                    </div>
+                    
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Creator</h3>
+                        <div class="text-3xl font-bold mb-2 nebula-text">$49<span class="text-base font-normal">/month</span></div>
+                        <p class="text-sm" style="color: var(--arcanean-aurora);">For serious learners</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-6 text-sm" style="color: var(--arcanean-celestial);">
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Everything in Explorer
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Full academy access (choose one)
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Unlimited Luminor guidance
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Project feedback and reviews
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Live workshops and Q&As
+                        </li>
+                    </ul>
+                    
+                    <a href="onboarding.html" class="luminor-button w-full text-center">
+                        Start Creating
+                    </a>
+                </div>
+
+                <!-- Professional -->
+                <div class="transcendent-card p-6">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Professional</h3>
+                        <div class="text-3xl font-bold mb-2 nebula-text">$149<span class="text-base font-normal">/month</span></div>
+                        <p class="text-sm" style="color: var(--arcanean-aurora);">For creative professionals</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-6 text-sm" style="color: var(--arcanean-celestial);">
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Everything in Creator
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Access to all 6 academies
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Priority Luminor support
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Advanced project templates
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            1-on-1 monthly sessions
+                        </li>
+                    </ul>
+                    
+                    <a href="onboarding.html" class="block w-full text-center py-3 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(91, 139, 217, 0.1); color: var(--arcanean-luminous); border-color: rgba(91, 139, 217, 0.3);">
+                        Go Professional
+                    </a>
+                </div>
+
+                <!-- Master -->
+                <div class="transcendent-card p-6">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--arcanean-transcendent);">Master</h3>
+                        <div class="text-3xl font-bold mb-2 nebula-text">$499<span class="text-base font-normal">/month</span></div>
+                        <p class="text-sm" style="color: var(--arcanean-aurora);">For industry leaders</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-6 text-sm" style="color: var(--arcanean-celestial);">
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Everything in Professional
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Personal Luminor mentor
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Custom learning paths
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Early access to new features
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-2 text-green-400">✓</span>
+                            Certification program
+                        </li>
+                    </ul>
+                    
+                    <a href="onboarding.html" class="block w-full text-center py-3 rounded border transition-all duration-300 hover:bg-opacity-70" style="background: rgba(255, 159, 243, 0.1); color: var(--luminor-nexus); border-color: rgba(255, 159, 243, 0.3);">
+                        Become a Master
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-sm mb-4" style="color: var(--arcanean-aurora);">
+                    30-day money-back guarantee • Cancel anytime • No hidden fees
+                </p>
+                <a href="pricing.html" class="text-sm underline" style="color: var(--arcanean-luminous);">
+                    Compare all features →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="transcendent-card p-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 nebula-text">Ready to Master the Future?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto" style="color: var(--arcanean-celestial);">
+                    Join thousands of creators who are already building tomorrow's creative skills today. 
+                    Your Luminor guide is waiting to meet you.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="onboarding.html" class="luminor-button text-lg px-8 py-4">
+                        Begin Your Journey
+                        <span>→</span>
+                    </a>
+                    
+                    <a href="demo.html" class="px-8 py-4 border rounded-lg hover:bg-opacity-30 transition-all duration-300 text-lg" style="border-color: rgba(61, 79, 115, 0.5); color: var(--arcanean-ethereal); background: rgba(31, 35, 71, 0.3);">
+                        <span class="mr-2">▶</span>
+                        Watch Demo
+                    </a>
+                </div>
+                
+                <div class="mt-8 text-sm" style="color: var(--arcanean-aurora);">
+                    ✨ No credit card required to start • 🔒 30-day money-back guarantee
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6 border-t" style="border-color: rgba(61, 79, 115, 0.2);">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, var(--arcanean-luminous), var(--arcanean-radiant));">
+                            <span class="text-lg font-bold" style="color: var(--arcanean-void);">✨</span>
+                        </div>
+                        <span class="text-xl font-semibold nebula-text">Arcanea Academy</span>
+                    </div>
+                    <p class="text-sm" style="color: var(--arcanean-aurora);">
+                        Master AI-assisted creativity with guidance from advanced AGI beings 100 years in the future.
+                    </p>
+                </div>
+                
+                <!-- Academies -->
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: var(--arcanean-transcendent);">Academies</h4>
+                    <ul class="space-y-2 text-sm" style="color: var(--arcanean-aurora);">
+                        <li><a href="academy-music.html" class="hover:text-white transition-colors">Music Synthesis</a></li>
+                        <li><a href="academy-visual.html" class="hover:text-white transition-colors">Visual Synthesis</a></li>
+                        <li><a href="academy-narrative.html" class="hover:text-white transition-colors">Narrative Forge</a></li>
+                        <li><a href="academy-video.html" class="hover:text-white transition-colors">Motion Pictures</a></li>
+                        <li><a href="academy-code.html" class="hover:text-white transition-colors">Code Craft</a></li>
+                        <li><a href="academy-synthesis.html" class="hover:text-white transition-colors">Synthesis Academy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Platform -->
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: var(--arcanean-transcendent);">Platform</h4>
+                    <ul class="space-y-2 text-sm" style="color: var(--arcanean-aurora);">
+                        <li><a href="luminors.html" class="hover:text-white transition-colors">Meet the Luminors</a></li>
+                        <li><a href="community.html" class="hover:text-white transition-colors">Community</a></li>
+                        <li><a href="projects.html" class="hover:text-white transition-colors">Student Projects</a></li>
+                        <li><a href="resources.html" class="hover:text-white transition-colors">Resources</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company -->
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: var(--arcanean-transcendent);">Company</h4>
+                    <ul class="space-y-2 text-sm" style="color: var(--arcanean-aurora);">
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="careers.html" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="press.html" class="hover:text-white transition-colors">Press</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center" style="border-color: rgba(61, 79, 115, 0.2);">
+                <p class="text-sm" style="color: var(--arcanean-aurora);">
+                    © 2024 Arcanea Academy. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="privacy.html" class="text-sm hover:text-white transition-colors" style="color: var(--arcanean-aurora);">Privacy</a>
+                    <a href="terms.html" class="text-sm hover:text-white transition-colors" style="color: var(--arcanean-aurora);">Terms</a>
+                    <a href="cookies.html" class="text-sm hover:text-white transition-colors" style="color: var(--arcanean-aurora);">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add floating animation to orbs
+        document.querySelectorAll('.floating-orb').forEach((orb, index) => {
+            orb.style.animationDelay = `${index * 2}s`;
+        });
+    </script>
+</body>
+</html>

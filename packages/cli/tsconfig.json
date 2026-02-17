@@ -15,7 +15,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "@arcanea/core": ["../core/dist"],
+      "@arcanea/os": ["../core/dist"],
       "@arcanea/auth": ["../auth/dist"],
       "@arcanea/overlay-claude": ["../overlay-claude/dist"],
       "@arcanea/overlay-chatgpt": ["../overlay-chatgpt/dist"],

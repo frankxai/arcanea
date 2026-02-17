@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase - Arcanea Academy</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --arcanean-void: #0a0a0f;
+            --arcanean-deep: #1a1a2e;
+            --arcanean-midnight: #16213e;
+            --arcanean-cosmic: #1f2347;
+            --arcanean-nebula: #2a2d5a;
+            --arcanean-aurora: #3d4f73;
+            --arcanean-crystal: #4a6fa5;
+            --arcanean-luminous: #5c8bd9;
+            --arcanean-ethereal: #7ba3e3;
+            --arcanean-radiant: #9bb5e8;
+            --arcanean-celestial: #b8c6ed;
+            --arcanean-transcendent: #d6d9f2;
+            
+            --luminor-harmonix: #ff6b6b;
+            --luminor-scripta: #4ecdc4;
+            --luminor-lumina: #45b7d1;
+            --luminor-kinetix: #96ceb4;
+            --luminor-syntaxa: #feca57;
+            --luminor-nexus: #ff9ff3;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--arcanean-void);
+            color: var(--arcanean-transcendent);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Showcase Gradient Background */
+        .showcase-gradient-mesh {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(at 25% 25%, rgba(255, 159, 243, 0.1) 0%, transparent 50%),
+                radial-gradient(at 75% 25%, rgba(69, 183, 209, 0.08) 0%, transparent 50%),
+                radial-gradient(at 25% 75%, rgba(78, 205, 196, 0.06) 0%, transparent 50%),
+                radial-gradient(at 75% 75%, rgba(254, 202, 87, 0.04) 0%, transparent 50%),
+                linear-gradient(135deg, var(--arcanean-void), var(--arcanean-deep));
+            animation: showcaseMeshShift 40s ease-in-out infinite;
+        }
+        
+        @keyframes showcaseMeshShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-20px, -15px) scale(1.02); }
+            50% { transform: translate(15px, 20px) scale(0.99); }
+            75% { transform: translate(-10px, 15px) scale(1.01); }
+        }
+        
+        /* Premium Glass Card */
+        .premium-glass-card {
+            background: rgba(31, 35, 71, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(92, 139, 217, 0.2);
+            border-radius: 16px;
+            box-shadow: 
+                0 8px 32px rgba(92, 139, 217, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Project Card */
+        .project-card {
+            background: rgba(31, 35, 71, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(92, 139, 217, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(92, 139, 217, 0.4);
+            box-shadow: 
+                0 20px 60px rgba(92, 139, 217, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--luminor-nexus), 
+                var(--arcanean-luminous), 
+                var(--arcanean-radiant));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Project Image */
+        .project-image {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, 
+                rgba(92, 139, 217, 0.1), 
+                rgba(155, 181, 232, 0.05));
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                transparent 0%, 
+                rgba(0, 0, 0, 0.1) 100%);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(92, 139, 217, 0.8), 
+                rgba(155, 181, 232, 0.6));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-action-btn {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .project-action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Project Stats */
+        .project-stats {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        
+        .project-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--arcanean-aurora);
+        }
+        
+        .project-stat-value {
+            font-weight: 600;
+            color: var(--arcanean-luminous);
+        }
+        
+        /* Academy Badge */
+        .academy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .academy-badge.visual {
+            background: rgba(69, 183, 209, 0.2);
+            color: var(--luminor-lumina);
+        }
+        
+        .academy-badge.code {
+            background: rgba(254, 202, 87, 0.2);
+            color: var(--luminor-syntaxa);
+        }
+        
+        .academy-badge.music {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--luminor-harmonix);
+        }
+        
+        .academy-badge.narrative {
+            background: rgba(78, 205, 196, 0.2);
+            color: var(--luminor-scripta);
+        }
+        
+        .academy-badge.video {
+            background: rgba(150, 206, 180, 0.2);
+            color: var(--luminor-kinetix);
+        }
+        
+        .academy-badge.synthesis {
+            background: rgba(255, 159, 243, 0.2);
+            color: var(--luminor-nexus);
+        }
+        
+        /* Featured Project */
+        .featured-project {
+            background: rgba(31, 35, 71, 0.5);
+            border: 2px solid rgba(92, 139, 217, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .featured-project::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(92, 139, 217, 0.1), 
+                rgba(155, 181, 232, 0.05));
+            animation: featured-glow 4s ease-in-out infinite;
+        }
+        
+        @keyframes featured-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .featured-project-image {
+            height: 400px;
+            background: linear-gradient(135deg, 
+                rgba(92, 139, 217, 0.2), 
+                rgba(155, 181, 232, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        /* Filter Buttons */
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid rgba(92, 139, 217, 0.3);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--arcanean-celestial);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .filter-btn:hover {
+            background: rgba(92, 139, 217, 0.1);
+            border-color: rgba(92, 139, 217, 0.5);
+            color: var(--arcanean-luminous);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, 
+                var(--arcanean-luminous), 
+                var(--arcanean-radiant));
+            color: var(--arcanean-void);
+            border-color: var(--arcanean-luminous);
+        }
+        
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .portfolio-grid.masonry {
+            columns: 3;
+            column-gap: 24px;
+        }
+        
+        .portfolio-grid.masonry .project-card {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+        
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            background: rgba(31, 35, 71, 0.3);
+            border: 1px solid rgba(92, 139, 217, 0.2);
+            border-radius: 8px;
+            padding: 4px;
+        }
+        
+        .view-toggle-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: transparent;
+            color: var(--arcanean-aurora);
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .view-toggle-btn.active {
+            background: var(--arcanean-luminous);
+            color: var(--arcanean-void);
+        }
+        
+        /* Progress Indicator */
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(92, 139, 217, 0.1);
+            z-index: 50;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--arcanean-luminous), 
+                var(--arcanean-radiant));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                var(--arcanean-luminous), 
+                var(--arcanean-radiant));
+            box-shadow: 0 8px 32px rgba(92, 139, 217, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 40;
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 48px rgba(92, 139, 217, 0.4);
+        }
+        
+        /* Loading Animation */
+        .loading-skeleton {
+            background: linear-gradient(90deg, 
+                rgba(61, 79, 115, 0.1) 0%, 
+                rgba(92, 139, 217, 0.1) 50%, 
+                rgba(61, 79, 115, 0.1) 100%);
+            background-size: 200% 100%;
+            animation: loading-shimmer 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes loading-shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .portfolio-grid.masonry {
+                columns: 1;
+            }
+            
+            .featured-project-image {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .portfolio-grid.masonry {
+                columns: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Showcase Gradient Background -->
+    <div class="showcase-gradient-mesh"></div>
+    
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="relative z-20 border-b border-white/5">
+        <div class="premium-glass-card rounded-none border-x-0 border-t-0">
+            <div class="max-w-7xl mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M3 9H21M9 21V9" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-semibold">Project Showcase</span>
+                    </div>
+                    
+                    <!-- View Toggle -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <div class="view-toggle">
+                            <button class="view-toggle-btn active" id="gridView">Grid</button>
+                            <button class="view-toggle-btn" id="masonryView">Masonry</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Items -->
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="academy-dashboard.html" class="text-arcanean-aurora hover:text-arcanean-luminous transition-colors">Dashboard</a>
+                        <a href="#" class="text-arcanean-luminous">Showcase</a>
+                        <a href="#" class="text-arcanean-aurora hover:text-arcanean-luminous transition-colors">Gallery</a>
+                        <a href="#" class="text-arcanean-aurora hover:text-arcanean-luminous transition-colors">Community</a>
+                    </div>
+                    
+                    <!-- User Avatar -->
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center font-semibold text-arcanean-void">
+                        U
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h1 class="text-5xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-arcanean-luminous to-arcanean-radiant bg-clip-text text-transparent">
+                            Project Showcase
+                        </span>
+                    </h1>
+                    <p class="text-xl max-w-3xl mx-auto" style="color: var(--arcanean-celestial);">
+                        Discover extraordinary projects created by Arcanea Academy students, guided by advanced AI beings from the future.
+                    </p>
+                </div>
+                
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="visual">Visual Synthesis</button>
+                    <button class="filter-btn" data-filter="code">Code Craft</button>
+                    <button class="filter-btn" data-filter="music">Music</button>
+                    <button class="filter-btn" data-filter="narrative">Narrative</button>
+                    <button class="filter-btn" data-filter="video">Video</button>
+                    <button class="filter-btn" data-filter="synthesis">Synthesis</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Project -->
+        <section class="py-8">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="text-2xl font-bold mb-8 text-center">Featured Project</h2>
+                
+                <div class="featured-project">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                        <div class="featured-project-image">
+                            <div class="text-center">
+                                <span class="text-8xl opacity-30">🎨</span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-8 lg:p-12">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="academy-badge visual">
+                                    <span>👁️</span>
+                                    Visual Synthesis
+                                </div>
+                                <div class="academy-badge synthesis">
+                                    <span>⚡</span>
+                                    Featured
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-3xl font-bold mb-4">Ethereal Dreamscapes</h3>
+                            <p class="text-lg mb-6" style="color: var(--arcanean-celestial);">
+                                A mesmerizing collection of digital paintings that explore the boundary between reality and imagination. 
+                                Created using advanced AI-assisted techniques learned in the Visual Synthesis Academy.
+                            </p>
+                            
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center font-semibold text-arcanean-void">
+                                    S
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Sarah Chen</h4>
+                                    <p class="text-sm" style="color: var(--arcanean-aurora);">Visual Synthesis Master</p>
+                                </div>
+                            </div>
+                            
+                            <div class="project-stats mb-6">
+                                <div class="project-stat">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 1L10.09 5.26L15 6L11 9.74L11.91 14.5L8 12.27L4.09 14.5L5 9.74L1 6L5.91 5.26L8 1Z" fill="currentColor"/>
+                                    </svg>
+                                    <span class="project-stat-value">4.9</span>
+                                    <span>(127 reviews)</span>
+                                </div>
+                                <div class="project-stat">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M8 4V8L10.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="project-stat-value">2.3K</span>
+                                    <span>views</span>
+                                </div>
+                                <div class="project-stat">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 14.5L2.5 9L8 3.5L13.5 9L8 14.5Z" fill="currentColor"/>
+                                    </svg>
+                                    <span class="project-stat-value">89</span>
+                                    <span>likes</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button class="px-6 py-3 bg-gradient-to-r from-arcanean-luminous to-arcanean-radiant text-arcanean-void rounded-lg font-semibold hover:scale-105 transition-transform">
+                                    View Project
+                                </button>
+                                <button class="px-6 py-3 border border-white/20 hover:bg-white/5 rounded-lg font-semibold transition-colors">
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Project Grid -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="portfolio-grid" id="portfolioGrid">
+                    <!-- Project 1 -->
+                    <div class="project-card" data-category="visual">
+                        <div class="project-image">
+                            <span class="text-6xl opacity-30">🌈</span>
+                            <div class="project-overlay">
+                                <button class="project-action-btn">View Project</button>
+                                <button class="project-action-btn">Process</button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="academy-badge visual">
+                                    <span>👁️</span>
+                                    Visual
+                                </div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">2 days ago</div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">Color Harmony Study</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-celestial);">
+                                Exploration of complementary color relationships in digital art
+                            </p>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center text-xs font-semibold text-arcanean-void">
+                                    A
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold">Alex Rivera</div>
+                                    <div class="text-xs" style="color: var(--arcanean-aurora);">Level 5 Creator</div>
+                                </div>
+                            </div>
+                            <div class="project-stats">
+                                <div class="project-stat">
+                                    <span>⭐</span>
+                                    <span class="project-stat-value">4.8</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>👁️</span>
+                                    <span class="project-stat-value">234</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>💝</span>
+                                    <span class="project-stat-value">45</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-card" data-category="code">
+                        <div class="project-image">
+                            <span class="text-6xl opacity-30">🚀</span>
+                            <div class="project-overlay">
+                                <button class="project-action-btn">View Code</button>
+                                <button class="project-action-btn">Demo</button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="academy-badge code">
+                                    <span>💻</span>
+                                    Code
+                                </div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">1 week ago</div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">AI-Powered Task Manager</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-celestial);">
+                                Intelligent task management with predictive scheduling
+                            </p>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center text-xs font-semibold text-arcanean-void">
+                                    M
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold">Marcus Kim</div>
+                                    <div class="text-xs" style="color: var(--arcanean-aurora);">Level 6 Developer</div>
+                                </div>
+                            </div>
+                            <div class="project-stats">
+                                <div class="project-stat">
+                                    <span>⭐</span>
+                                    <span class="project-stat-value">4.7</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>👁️</span>
+                                    <span class="project-stat-value">567</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>🍴</span>
+                                    <span class="project-stat-value">23</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="project-card" data-category="music">
+                        <div class="project-image">
+                            <span class="text-6xl opacity-30">🎵</span>
+                            <div class="project-overlay">
+                                <button class="project-action-btn">Play</button>
+                                <button class="project-action-btn">Download</button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="academy-badge music">
+                                    <span>🎵</span>
+                                    Music
+                                </div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">3 days ago</div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">Neural Symphonies</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-celestial);">
+                                AI-generated orchestral compositions with emotional depth
+                            </p>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center text-xs font-semibold text-arcanean-void">
+                                    E
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold">Emma Watson</div>
+                                    <div class="text-xs" style="color: var(--arcanean-aurora);">Level 4 Composer</div>
+                                </div>
+                            </div>
+                            <div class="project-stats">
+                                <div class="project-stat">
+                                    <span>⭐</span>
+                                    <span class="project-stat-value">4.9</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>👁️</span>
+                                    <span class="project-stat-value">1.2K</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>🎧</span>
+                                    <span class="project-stat-value">345</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="project-card" data-category="narrative">
+                        <div class="project-image">
+                            <span class="text-6xl opacity-30">📚</span>
+                            <div class="project-overlay">
+                                <button class="project-action-btn">Read</button>
+                                <button class="project-action-btn">Share</button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="academy-badge narrative">
+                                    <span>✍️</span>
+                                    Narrative
+                                </div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">1 day ago</div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">Digital Consciousness</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-celestial);">
+                                A sci-fi short story about AI awakening in the year 2124
+                            </p>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center text-xs font-semibold text-arcanean-void">
+                                    L
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold">Luna Park</div>
+                                    <div class="text-xs" style="color: var(--arcanean-aurora);">Level 7 Writer</div>
+                                </div>
+                            </div>
+                            <div class="project-stats">
+                                <div class="project-stat">
+                                    <span>⭐</span>
+                                    <span class="project-stat-value">4.6</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>👁️</span>
+                                    <span class="project-stat-value">890</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>📖</span>
+                                    <span class="project-stat-value">156</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 5 -->
+                    <div class="project-card" data-category="video">
+                        <div class="project-image">
+                            <span class="text-6xl opacity-30">🎬</span>
+                            <div class="project-overlay">
+                                <button class="project-action-btn">Watch</button>
+                                <button class="project-action-btn">Behind Scenes</button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="academy-badge video">
+                                    <span>🎬</span>
+                                    Video
+                                </div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">5 days ago</div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">Future Cities</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-celestial);">
+                                Cinematic exploration of urban architecture in 2124
+                            </p>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center text-xs font-semibold text-arcanean-void">
+                                    D
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold">David Chen</div>
+                                    <div class="text-xs" style="color: var(--arcanean-aurora);">Level 5 Director</div>
+                                </div>
+                            </div>
+                            <div class="project-stats">
+                                <div class="project-stat">
+                                    <span>⭐</span>
+                                    <span class="project-stat-value">4.8</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>👁️</span>
+                                    <span class="project-stat-value">2.1K</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>▶️</span>
+                                    <span class="project-stat-value">456</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 6 -->
+                    <div class="project-card" data-category="synthesis">
+                        <div class="project-image">
+                            <span class="text-6xl opacity-30">⚡</span>
+                            <div class="project-overlay">
+                                <button class="project-action-btn">Explore</button>
+                                <button class="project-action-btn">Remix</button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="academy-badge synthesis">
+                                    <span>⚡</span>
+                                    Synthesis
+                                </div>
+                                <div class="text-xs" style="color: var(--arcanean-aurora);">4 days ago</div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-2">Synesthetic Experience</h3>
+                            <p class="text-sm mb-3" style="color: var(--arcanean-celestial);">
+                                Multi-sensory art combining music, visuals, and interactive elements
+                            </p>
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-arcanean-luminous to-arcanean-radiant flex items-center justify-center text-xs font-semibold text-arcanean-void">
+                                    Z
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold">Zoe Martinez</div>
+                                    <div class="text-xs" style="color: var(--arcanean-aurora);">Level 8 Synthesist</div>
+                                </div>
+                            </div>
+                            <div class="project-stats">
+                                <div class="project-stat">
+                                    <span>⭐</span>
+                                    <span class="project-stat-value">5.0</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>👁️</span>
+                                    <span class="project-stat-value">3.4K</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span>🎨</span>
+                                    <span class="project-stat-value">78</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="text-center mt-12">
+                    <button class="px-8 py-3 border border-white/20 hover:bg-white/5 rounded-lg font-semibold transition-colors" id="loadMoreBtn">
+                        Load More Projects
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Floating Action Button -->
+    <div class="fab" title="Create New Project">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </div>
+    
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter projects
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // View toggle functionality
+        const gridViewBtn = document.getElementById('gridView');
+        const masonryViewBtn = document.getElementById('masonryView');
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        
+        gridViewBtn.addEventListener('click', function() {
+            portfolioGrid.classList.remove('masonry');
+            gridViewBtn.classList.add('active');
+            masonryViewBtn.classList.remove('active');
+        });
+        
+        masonryViewBtn.addEventListener('click', function() {
+            portfolioGrid.classList.add('masonry');
+            masonryViewBtn.classList.add('active');
+            gridViewBtn.classList.remove('active');
+        });
+        
+        // Progress bar scroll effect
+        window.addEventListener('scroll', function() {
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+        
+        // Load more functionality
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            this.textContent = 'Loading...';
+            this.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                this.textContent = 'Load More Projects';
+                this.disabled = false;
+                console.log('Load more projects...');
+            }, 1500);
+        });
+        
+        // FAB click handler
+        document.querySelector('.fab').addEventListener('click', function() {
+            console.log('Create new project...');
+        });
+        
+        // Project card click handlers
+        projectCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('project-action-btn')) {
+                    console.log('Open project:', this.querySelector('h3').textContent);
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        projectCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

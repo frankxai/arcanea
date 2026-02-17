@@ -277,7 +277,7 @@ Arcanea provides **77 mystical skills** organized by element and power level. Sk
 ### API Integration
 
 ```typescript
-import { Arcanea } from '@arcanea/core';
+import { Arcanea } from '@arcanea/os';
 
 const arcanea = new Arcanea({
   apiKey: process.env.ARCANEA_API_KEY

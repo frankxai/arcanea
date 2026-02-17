@@ -14,8 +14,8 @@ import type {
   ToolDetection,
   InstallResult,
   InstallPreview,
-} from '@arcanea/core';
-import { generateSystemPrompt, GUARDIANS } from '@arcanea/core';
+} from '@arcanea/os';
+import { generateSystemPrompt, GUARDIANS } from '@arcanea/os';
 
 export class OpenCodeOverlayInstaller implements OverlayInstaller {
   async canInstall(): Promise<boolean> {

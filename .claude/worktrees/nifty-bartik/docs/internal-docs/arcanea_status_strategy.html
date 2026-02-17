@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcanea Status & Strategy</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --panel: #121826;
+      --text: #e6eefc;
+      --muted: #9bb1d0;
+      --accent: #78a6ff;
+      --accent-2: #7fffd4;
+      --border: #233049;
+      --good: #39d98a;
+      --warn: #ffd166;
+      --bad: #ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+    h1 { font-size: 28px; margin: 0 0 8px; }
+    h2 { font-size: 18px; margin: 24px 0 8px; color: var(--accent-2); }
+    p { color: var(--muted); line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+    .span-12 { grid-column: span 12; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .tag { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--border); color:var(--muted); font-size:12px; }
+    .status { font-weight: 600; }
+    .ok { color: var(--good); }
+    .warn { color: var(--warn); }
+    .bad { color: var(--bad); }
+    ul { margin: 8px 0 0 18px; color: var(--muted); }
+    code { background: #0f1421; padding: 2px 6px; border-radius: 6px; border: 1px solid var(--border); }
+    .kpi { display:flex; gap:14px; margin-top:8px; }
+    .kpi > div { background:#0f1523; border:1px solid var(--border); padding:10px 12px; border-radius:10px; }
+    .kpi label { display:block; color:var(--muted); font-size:12px; }
+    .kpi strong { font-size:18px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color:#c8d7f0; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Arcanea codebase status, gaps, and near-term strategy with deliverables." />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="date" content="2025-09-12" />
+  <meta name="generated-by" content="Codex CLI" />
+  <meta name="theme-color" content="#121826" />
+  <meta property="og:title" content="Arcanea Status & Strategy" />
+  <meta property="og:description" content="Snapshot of where we are and what ships next." />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Arcanea" />
+  <meta property="og:url" content="https://arcanea.ai/internal" />
+  <meta property="og:image" content="/public/social-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arcanea Status & Strategy" />
+  <meta name="twitter:description" content="Snapshot of where we are and what ships next." />
+  <meta name="twitter:image" content="/public/social-card.png" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <script>
+    // Small helper to toggle sections if needed later
+    function toggle(id){ const el=document.getElementById(id); if(el){ el.style.display = el.style.display==='none' ? 'block':'none'; } }
+  </script>
+  </head>
+<body>
+  <div class="wrap">
+    <h1>Arcanea Status & Strategy</h1>
+    <p>Concise snapshot of where we are, where to go, and what we can ship today for maximum impact.</p>
+
+    <div class="grid">
+      <div class="card span-12">
+        <h2>Executive Summary</h2>
+        <p>Monorepo is solid and rich in design/strategy docs. Several apps are partially scaffolded; <strong>Academy</strong> has strong UI but lacks package metadata; <strong>Nexus</strong> references missing internal packages; public <strong>chat</strong> is not yet wired. We can ship a minimal, productionable <strong>apps/chat</strong> using Vercel AI SDK today and publish the repo split + domain plan.</p>
+        <div class="kpi">
+          <div><label>Monorepo Health</label><strong>4/5</strong></div>
+          <div><label>Public Chat Readiness</label><strong>2 → 4 Today</strong></div>
+          <div><label>Academy Run-Ready</label><strong>2/5</strong></div>
+          <div><label>Docs/Strategy</label><strong>5/5</strong></div>
+        </div>
+      </div>
+
+      <div class="card span-6">
+        <h2>What We’ll Ship Today</h2>
+        <ul>
+          <li><strong>apps/chat</strong>: Next.js 14 + Vercel AI SDK (text chat), ready for <code>chat.arcanea.ai</code>.</li>
+          <li><strong>Image API</strong>: OpenAI Images endpoint for prompts (<code>/api/image</code>), gated by <code>OPENAI_API_KEY</code>.</li>
+          <li><strong>Status + Strategy</strong>: This page, repo split doc, and codebase status report.</li>
+          <li><strong>Academy bootstrap</strong>: Add missing <code>package.json</code> soon after.</li>
+        </ul>
+      </div>
+
+      <div class="card span-6">
+        <h2>Domains → Apps</h2>
+        <ul>
+          <li><code>arcanea.ai</code> → Marketing (<code>apps/web</code>).</li>
+          <li><code>chat.arcanea.ai</code> → Public chat (<code>apps/chat</code>).</li>
+          <li><code>studio.arcanea.ai</code> → Image/Video studio (future <code>apps/studio</code>).</li>
+          <li><code>gallery.arcanea.ai</code> → Showcase/feed (future <code>apps/gallery</code>).</li>
+          <li><code>nexus.arcanea.ai</code> → Hub/community (<code>apps/nexus</code> after stabilizing deps).</li>
+          <li><code>workstation.arcanea.ai</code> → LibreChat self-host (external deployment).</li>
+          <li><code>bestiary.arcanea.ai</code> → Split-out Bestiary app.</li>
+        </ul>
+      </div>
+
+      <div class="card span-12">
+        <h2>Open Source vs Private</h2>
+        <ul>
+          <li><span class="tag">Open Source</span> UI kit, Vercel AI SDK wrappers, non-proprietary prompts, Bestiary app/data.</li>
+          <li><span class="tag">Private</span> Billing, premium model routing/prompt chains, internal ops, datasets.</li>
+        </ul>
+      </div>
+
+      <div class="card span-6">
+        <h2>Current Gaps</h2>
+        <ul>
+          <li><span class="status bad">Academy</span>: missing <code>package.json</code>.</li>
+          <li><span class="status bad">Nexus</span>: depends on non-existent internal packages.</li>
+          <li><span class="status warn">AI Core</span>: exports modules that don’t exist yet.</li>
+          <li><span class="status warn">Web</span>: placeholder only.</li>
+        </ul>
+      </div>
+
+      <div class="card span-6">
+        <h2>Recommendations</h2>
+        <ul>
+          <li>Ship <code>apps/chat</code> now; route domain; collect feedback.</li>
+          <li>Stabilize <code>apps/academy</code>; reuse <code>@arcanea/ui</code> components.</li>
+          <li>Prune Nexus deps or implement minimal shims.</li>
+          <li>Adopt <strong>shadcn/ui + Radix</strong> as primary UI stack.</li>
+        </ul>
+      </div>
+
+      <div class="card span-12">
+        <h2>Today’s Action Plan</h2>
+        <ul>
+          <li>Create <code>apps/chat</code> (Next.js 14, App Router).</li>
+          <li>Implement <code>/api/chat</code> using Vercel AI SDK.</li>
+          <li>Implement <code>/api/image</code> via OpenAI Images.</li>
+          <li>Write status + strategy docs (committed).</li>
+          <li>Bootstrap Academy <code>package.json</code> (next).</li>
+        </ul>
+        <p class="mono">Files added: reports/CODEBASE_STATUS.md, docs/strategy/REPO_SPLIT_AND_DEPLOY.md, internal-docs/arcanea_status_strategy.html, apps/chat/...</p>
+      </div>
+
+      <div class="card span-12">
+        <h2>Longer-Term (2–6 Weeks)</h2>
+        <ul>
+          <li>Studio app with modular providers (OpenAI, Stability, future video providers).</li>
+          <li>Gallery with moderation + shareable links + embed codes.</li>
+          <li>Auth + billing (Clerk/NextAuth + Stripe) in private monorepo.</li>
+          <li>Consolidate prompts into a governed prompt registry.</li>
+          <li>Spin out Bestiary to its own public repo and deploy.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
+

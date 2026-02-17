@@ -64,11 +64,11 @@ Add to your `.mcp.json` or MCP settings:
 ### Core SDK — for developers
 
 ```bash
-npm install @arcanea/core
+npm install @arcanea/os
 ```
 
 ```typescript
-import { routeToGuardian, VoiceEnforcer, toCSSVariables } from '@arcanea/core';
+import { routeToGuardian, VoiceEnforcer, toCSSVariables } from '@arcanea/os';
 
 const route = routeToGuardian("design a flowing water-themed UI");
 // → { guardian: "Leyla", confidence: 0.92, element: "Water", ... }
