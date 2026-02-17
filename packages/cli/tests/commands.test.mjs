@@ -8,10 +8,12 @@ import { describe, it, before, after } from 'node:test';
 import { strict as assert } from 'node:assert';
 import { execSync } from 'node:child_process';
 import { mkdtempSync, rmSync, existsSync, readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 
-const CLI = join(import.meta.dirname, '..', 'dist', 'arcanea.cjs');
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const CLI = join(__dirname, '..', 'dist', 'arcanea.cjs');
 
 function run(args, opts = {}) {
   return execSync(`node ${CLI} ${args}`, {
