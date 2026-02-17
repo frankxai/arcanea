@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7fffd4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Outer circle (Gate) -->
+  <circle cx="12" cy="12" r="10" stroke="#7fffd4" stroke-opacity="0.4"/>
+  <!-- Inner diamond (Source) -->
+  <path d="M12 3 L21 12 L12 21 L3 12 Z" stroke="#ffd700" stroke-opacity="0.6"/>
+  <!-- Center star -->
+  <path d="M12 7 L13.5 10.5 L17 12 L13.5 13.5 L12 17 L10.5 13.5 L7 12 L10.5 10.5 Z" fill="#7fffd4" stroke="none"/>
+</svg>

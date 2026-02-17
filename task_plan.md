@@ -3,7 +3,7 @@
 ## Goal
 Ship Arcanea on EVERY surface: overlay (enhances existing AI tools), standalone CLI (forked from OpenCode), VS Code extension, browser extensions, web, desktop, mobile. Two paths to the same intelligence layer.
 
-## Status: PHASES 1-2.5 COMPLETE | PHASE 3 IN PROGRESS | PHASE 10 NEW
+## Status: PHASES 1-2.5 COMPLETE | PHASE 3 ADVANCED | PHASE 5 SCAFFOLDED | PHASE 10 COMPLETE
 
 ### New: Phase 10 — Universe Content & Visualization
 - [x] Godbeast Codex: All 10 Godbeasts fully documented with lore
@@ -44,14 +44,15 @@ Ship Arcanea on EVERY surface: overlay (enhances existing AI tools), standalone 
 - 105K stars — battle-tested
 
 ### Tasks
-- [ ] Fork `anomalyco/opencode` → `frankxai/arcanea-realm`
-- [ ] Study the architecture (packages, plugin system, agents, themes)
+- [x] Fork `anomalyco/opencode` → `frankxai/arcanea-realm`
+- [x] Study the architecture (packages, plugin system, agents, themes)
 - [ ] Create Arcanea plugin (Guardian routing, voice, design tokens, lore queries)
-- [ ] Create 10 Guardian agent files in `.opencode/agents/`
-- [ ] Reskin TUI with Arcanea Design System (teal, gold, void, cosmic)
-- [ ] Add `@arcanea/mcp-server` as default MCP connection
-- [ ] Rename binary from `opencode` to `arcanea-realm` (or `realm`)
-- [ ] Add worldbuilding-specific commands via plugin
+- [x] Create 10 Guardian agent files in `.opencode/agent/` (markdown format)
+- [x] Create Arcanea cosmic theme (`.opencode/themes/arcanea.json`)
+- [x] Create 4 custom commands: /guardian, /council, /lore, /voice-check
+- [x] Add `@arcanea/mcp-server` as default MCP connection
+- [x] Rename binary from `opencode` to `arcanea-realm` (or `realm`)
+- [ ] Build the project (`bun install && bun run build`)
 - [ ] Test: `npx arcanea-realm` launches with Arcanea personality
 - [ ] Push first branded build
 
@@ -70,15 +71,20 @@ Ship Arcanea on EVERY surface: overlay (enhances existing AI tools), standalone 
 ---
 
 ## Phase 5: VS Code Extension (Priority: HIGH)
-**Status:** `pending`
+**Status:** `scaffolded`
 **Goal:** "Arcanea Realm" in VS Code Marketplace
 
 ### Tasks
-- [ ] Scaffold `packages/vscode/` using VS Code Extension API
-- [ ] Webview sidebar (cosmic glassmorphism, Guardian status, Gate progression)
+- [x] Scaffold `packages/vscode/` using VS Code Extension API
+- [x] Webview sidebar (Guardian Panel with cosmic styling)
+- [x] Gate Progress tree view (10 Gates with frequencies)
+- [x] Lore Explorer tree view (browsable canon)
+- [x] Status bar: active Guardian + Element
+- [x] 6 commands (route, council, voice-check, lore, tokens, gate)
+- [x] 4 custom VS Code colors
 - [ ] Connect to @arcanea/os for intelligence
 - [ ] Connect to MCP server for tools
-- [ ] Status bar: active Guardian + Gate + Element
+- [ ] Build and test locally
 - [ ] Publish to VS Code Marketplace
 
 ---

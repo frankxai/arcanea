@@ -1,0 +1,179 @@
+{
+  "name": "arcanea-realm",
+  "displayName": "Arcanea Realm",
+  "description": "Guardian-routed AI intelligence for creators — 10 Guardians, 5 Elements, 10 Gates of creative progression",
+  "version": "0.1.0",
+  "publisher": "frankxai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea"
+  },
+  "homepage": "https://arcanea.ai",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "guardian",
+    "creativity",
+    "arcanea",
+    "mcp"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "arcanea-realm",
+          "title": "Arcanea Realm",
+          "icon": "media/arcanea-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "arcanea-realm": [
+        {
+          "type": "webview",
+          "id": "arcanea.guardianPanel",
+          "name": "Guardian Panel"
+        },
+        {
+          "id": "arcanea.gateProgress",
+          "name": "Gate Progress"
+        },
+        {
+          "id": "arcanea.loreExplorer",
+          "name": "Lore Explorer"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "arcanea.routeGuardian",
+        "title": "Route to Guardian",
+        "category": "Arcanea"
+      },
+      {
+        "command": "arcanea.conveneCouncil",
+        "title": "Convene Guardian Council",
+        "category": "Arcanea"
+      },
+      {
+        "command": "arcanea.checkVoice",
+        "title": "Check Voice (Voice Bible v2.0)",
+        "category": "Arcanea"
+      },
+      {
+        "command": "arcanea.queryLore",
+        "title": "Query Lore",
+        "category": "Arcanea"
+      },
+      {
+        "command": "arcanea.showDesignTokens",
+        "title": "Show Design Tokens",
+        "category": "Arcanea"
+      },
+      {
+        "command": "arcanea.openGate",
+        "title": "Open Gate",
+        "category": "Arcanea"
+      }
+    ],
+    "configuration": {
+      "title": "Arcanea Realm",
+      "properties": {
+        "arcanea.activeGuardian": {
+          "type": "string",
+          "default": "shinkami",
+          "enum": [
+            "lyssandria",
+            "leyla",
+            "draconia",
+            "maylinn",
+            "alera",
+            "lyria",
+            "aiyami",
+            "elara",
+            "ino",
+            "shinkami"
+          ],
+          "description": "The currently active Guardian"
+        },
+        "arcanea.autoRoute": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically route tasks to the optimal Guardian"
+        },
+        "arcanea.mcpServerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to @arcanea/mcp-server (leave empty for npx)"
+        },
+        "arcanea.element": {
+          "type": "string",
+          "default": "void",
+          "enum": ["fire", "water", "earth", "wind", "void"],
+          "description": "Your primary elemental resonance"
+        }
+      }
+    },
+    "colors": [
+      {
+        "id": "arcanea.teal",
+        "description": "Arcanea primary teal",
+        "defaults": {
+          "dark": "#7fffd4",
+          "light": "#2d7a65"
+        }
+      },
+      {
+        "id": "arcanea.gold",
+        "description": "Arcanea accent gold",
+        "defaults": {
+          "dark": "#ffd700",
+          "light": "#b89b00"
+        }
+      },
+      {
+        "id": "arcanea.violet",
+        "description": "Arcanea secondary violet",
+        "defaults": {
+          "dark": "#9966ff",
+          "light": "#7744cc"
+        }
+      },
+      {
+        "id": "arcanea.void",
+        "description": "Arcanea cosmic void",
+        "defaults": {
+          "dark": "#0b0e14",
+          "light": "#f8fafc"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify",
+    "dev": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "@arcanea/core": "workspace:*"
+  }
+}

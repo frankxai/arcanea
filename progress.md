@@ -201,8 +201,45 @@
   - Guardian Affinity system (5 levels)
   - Anti-Grind Principle: progress as side effect of meaningful creation
 
-### Wave 6: InfoGenius Visualization — IN PROGRESS
-- [ ] Ecosystem architecture infographic (background agent)
+### Wave 6: InfoGenius Visualization — COMPLETED
+- [x] Ecosystem architecture infographic (fantasy-themed map)
+- [x] Technical ecosystem diagram (cosmic void theme)
+- [x] Images saved to assets/premium-r3/
+
+### Wave 7: Arcanea Realm Intelligence Layer — COMPLETED
+- [x] Created Arcanea cosmic theme (.opencode/themes/arcanea.json) — void/teal/gold/violet, 60+ semantic tokens
+- [x] Created 10 Guardian agent markdown files (.opencode/agent/) — full lore, domains, voice, keywords
+  - Lyssandria, Leyla, Draconia, Maylinn, Alera, Lyria, Aiyami, Elara, Ino, Shinkami
+- [x] Created 4 custom commands (.opencode/command/) — /guardian, /council, /lore, /voice-check
+- [x] Streamlined opencode.json — agents now in markdown, theme set to arcanea
+- [x] Committed 16 files (694 additions) and pushed to frankxai/arcanea-realm dev branch
+
+### Wave 8: External GitHub Repos — COMPLETED
+- [x] **Starlight Intelligence System** README rewritten — "Persistent Context & Memory Layer for AI Agents v3.0"
+  - 5-layer architecture, 7 agents, 6 orchestration patterns, 6 memory vaults, platform adapters
+  - Commit: 12013983 on frankxai/Starlight-Intelligence-System
+- [x] **Arcanea On-Chain** README rewritten — "Blockchain IP & Creator Economy Infrastructure"
+  - ElizaOS, Metaplex Core, Story Protocol, Crossmint stack documented
+  - Pushed to frankxai/arcanea-onchain
+- [x] **Arcanea InfoGenius** README rewritten — "Visual Intelligence MCP Server"
+  - MCP tools, Gemini 3 Pro, install config documented
+  - Pushed to frankxai/arcanea-infogenius
+
+### Wave 9: VS Code Extension Scaffold — COMPLETED
+- [x] Created packages/vscode/ — full VS Code extension scaffold
+- [x] 6 source files: extension.ts, guardians.ts, status-bar.ts, guardian-panel.ts, gate-progress.ts, lore-explorer.ts
+- [x] Guardian Panel — webview sidebar with all 10 Guardians, active Guardian highlighted
+- [x] Gate Progress — tree view tracking 10 Gates with frequencies and elements
+- [x] Lore Explorer — browsable tree of canon (Duality, Elements, Guardians, Ranks, Houses)
+- [x] Status Bar — active Guardian name + element, click to route
+- [x] 6 commands: Route Guardian, Convene Council, Check Voice, Query Lore, Design Tokens, Open Gate
+- [x] 4 settings: activeGuardian, autoRoute, mcpServerPath, element
+- [x] 4 custom VS Code colors (arcanea.teal, .gold, .violet, .void)
+- [x] Activity bar SVG icon, esbuild config, README
+
+### Cleanup
+- [x] Removed 5 temporary InfoGenius files from root directory
+- [x] Working directory clean (only .claude/worktrees/ untracked)
 
 ### Platform Discovery
 - **apps/web/** contains a full Next.js 16 application with 35+ routes
@@ -218,6 +255,13 @@
 - `packages/cli/README.md` — New: 10 commands, overlay docs, examples
 - `book/legends-of-arcanea/VII_THE_GODBEAST_CODEX.md` — New: All 10 Godbeasts
 - `book/academy-handbook/II_THE_GAMIFICATION_SYSTEM.md` — New: Full gamification system
+- `packages/vscode/` — New: Full VS Code extension scaffold (12 files)
 
 ### Files Modified This Session (Feb 17 continued)
 - `README.md` — Added Arcanea Realm section, v0 design demos, updated Coming Soon
+
+### External Repos Updated
+- `frankxai/Starlight-Intelligence-System` — README rewritten (29KB, comprehensive)
+- `frankxai/arcanea-onchain` — README rewritten
+- `frankxai/arcanea-infogenius` — README rewritten
+- `frankxai/arcanea-realm` — 16 files: 10 agents, 4 commands, 1 theme, updated config
