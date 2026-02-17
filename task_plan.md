@@ -3,7 +3,7 @@
 ## Goal
 Ship Arcanea on EVERY surface: overlay (enhances existing AI tools), standalone CLI (forked from OpenCode), VS Code extension, browser extensions, web, desktop, mobile. Two paths to the same intelligence layer.
 
-## Status: PHASES 1-2.5 COMPLETE | PHASE 3 ADVANCED | PHASE 5 SCAFFOLDED | PHASE 10 COMPLETE
+## Status: PHASES 1-4 COMPLETE | PHASE 3 ADVANCED | PHASE 5 SCAFFOLDED | PHASE 10 COMPLETE | CI GREEN
 
 ### New: Phase 10 — Universe Content & Visualization
 - [x] Godbeast Codex: All 10 Godbeasts fully documented with lore
@@ -58,15 +58,17 @@ Ship Arcanea on EVERY surface: overlay (enhances existing AI tools), standalone 
 
 ---
 
-## Phase 4: Rename @arcanea/os → @arcanea/os (Priority: HIGH)
-**Status:** `pending`
+## Phase 4: Rename @arcanea/core → @arcanea/os — COMPLETE
+**Status:** `complete`
 **Goal:** Reposition the intelligence layer as an "OS" — not just a library
 
 ### Tasks
-- [ ] Rename package in package.json
-- [ ] Update all imports across CLI, MCP server
-- [ ] Update README, CLAUDE.md
-- [ ] New changeset
+- [x] Rename package in package.json
+- [x] Update all imports across CLI, MCP server, VS Code extension (40+ files)
+- [x] Update README, CLAUDE.md, all workflow files
+- [x] Fix 8 remaining references found via GitHub code search
+- [x] Fix CI workflows for pnpm compatibility
+- [ ] Regenerate pnpm-lock.yaml (needs local filesystem)
 
 ---
 
@@ -142,7 +144,7 @@ Ship Arcanea on EVERY surface: overlay (enhances existing AI tools), standalone 
 Phase 1 (Core SDK) ← DONE, blocks everything
 Phase 2 (MCP) ← DONE
 Phase 3 (Fork OpenCode) ← can start NOW, uses MCP server
-Phase 4 (Rename core→os) ← quick, do alongside Phase 3
+Phase 4 (Rename core→os) ← DONE
 Phase 5 (VS Code) ← needs Phase 1
 Phase 6 (Browser) ← independent
 Phase 7 (Desktop) ← comes free with OpenCode fork
@@ -170,5 +172,11 @@ Phase 9 (npm) ← blocked on npmjs.com setup
 | Error | Status | Resolution |
 |-------|--------|------------|
 | npm packages not published | BLOCKED | Need @arcanea org on npmjs.com |
+| WSL2 localhost doesn't work | KNOWN | Push to Vercel for testing |
+| pnpm-lock.yaml out of sync | ACTIVE | Run `pnpm install` after filesystem recovers |
+| CI uses --no-frozen-lockfile | TEMPORARY | Switch back after lockfile regenerated |
+| Quality Gate was failing | RESOLVED | Fixed npm→pnpm + version conflict |
+| MCP canon frequencies wrong | RESOLVED | Fixed to canonical values (396,417,528...) |
+| MCP Gate 8 Godbeast wrong | RESOLVED | Vaelith → Thessara |
 | WSL2 can't run npm install | KNOWN | Use Windows PowerShell |
 | npm token expired | BLOCKED | Generate new token |
