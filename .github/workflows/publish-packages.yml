@@ -38,7 +38,7 @@ jobs:
 
       - name: Build packages
         run: |
-          pnpm --filter @arcanea/core run build
+          pnpm --filter @arcanea/os run build
           pnpm --filter @arcanea/cli run build
 
       - name: Run tests
