@@ -6,7 +6,7 @@
  */
 
 // Re-export core types and constants
-export * from '@arcanea/core';
+export * from '@arcanea/os';
 
 // Export skills
 export * from './skills/index.js';
