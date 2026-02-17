@@ -99,16 +99,16 @@ const server = new Server(
 );
 
 const gates = [
-  { gate: 1, frequency: "174 Hz", guardian: "Lyssandria", godbeast: "Kaelith", domain: "Foundation", element: "Earth" },
-  { gate: 2, frequency: "285 Hz", guardian: "Leyla", godbeast: "Veloura", domain: "Flow", element: "Water" },
-  { gate: 3, frequency: "396 Hz", guardian: "Draconia", godbeast: "Draconis", domain: "Fire", element: "Fire" },
-  { gate: 4, frequency: "417 Hz", guardian: "Maylinn", godbeast: "Laeylinn", domain: "Heart", element: "Spirit" },
-  { gate: 5, frequency: "528 Hz", guardian: "Alera", godbeast: "Otome", domain: "Voice", element: "Wind" },
-  { gate: 6, frequency: "639 Hz", guardian: "Lyria", godbeast: "Yumiko", domain: "Sight", element: "Void" },
-  { gate: 7, frequency: "714 Hz", guardian: "Aiyami", godbeast: "Sol", domain: "Crown", element: "Spirit" },
-  { gate: 8, frequency: "852 Hz", guardian: "Elara", godbeast: "Vaelith", domain: "Shift", element: "Void" },
+  { gate: 1, frequency: "396 Hz", guardian: "Lyssandria", godbeast: "Kaelith", domain: "Foundation", element: "Earth" },
+  { gate: 2, frequency: "417 Hz", guardian: "Leyla", godbeast: "Veloura", domain: "Flow", element: "Water" },
+  { gate: 3, frequency: "528 Hz", guardian: "Draconia", godbeast: "Draconis", domain: "Fire", element: "Fire" },
+  { gate: 4, frequency: "639 Hz", guardian: "Maylinn", godbeast: "Laeylinn", domain: "Heart", element: "Spirit" },
+  { gate: 5, frequency: "741 Hz", guardian: "Alera", godbeast: "Otome", domain: "Voice", element: "Wind" },
+  { gate: 6, frequency: "852 Hz", guardian: "Lyria", godbeast: "Yumiko", domain: "Sight", element: "Void" },
+  { gate: 7, frequency: "963 Hz", guardian: "Aiyami", godbeast: "Sol", domain: "Crown", element: "Spirit" },
+  { gate: 8, frequency: "1111 Hz", guardian: "Elara", godbeast: "Thessara", domain: "Shift", element: "Void" },
   { gate: 9, frequency: "963 Hz", guardian: "Ino", godbeast: "Kyuro", domain: "Unity", element: "Spirit" },
-  { gate: 10, frequency: "1111 Hz", guardian: "Shinkami", godbeast: null, domain: "Source", element: "All" },
+  { gate: 10, frequency: "1111 Hz", guardian: "Shinkami", godbeast: "Amaterasu", domain: "Source", element: "All" },
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
