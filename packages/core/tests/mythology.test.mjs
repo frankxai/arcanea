@@ -1,5 +1,5 @@
 /**
- * @arcanea/core — Mythology constants tests
+ * @arcanea/os — Mythology constants tests
  * Uses Node's built-in test runner (node:test)
  * Run: node --test packages/core/tests/mythology.test.mjs
  */
