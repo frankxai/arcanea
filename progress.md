@@ -265,3 +265,73 @@
 - `frankxai/arcanea-onchain` — README rewritten
 - `frankxai/arcanea-infogenius` — README rewritten
 - `frankxai/arcanea-realm` — 16 files: 10 agents, 4 commands, 1 theme, updated config
+
+---
+
+## Session: 2026-02-17 (Continued — GitHub API Session)
+
+> WSL2 9P filesystem bridge went down. All work done via GitHub API.
+
+### Wave 11: Phase 4 Complete — @arcanea/core → @arcanea/os
+- [x] Renamed package in packages/core/package.json
+- [x] Updated all imports across CLI, MCP server, VS Code extension (40+ files)
+- [x] Pushed rename commit + worktrees cleanup
+- [x] Fixed 8 remaining @arcanea/core references found via GitHub code search
+
+### Wave 12: Canon Data Integrity
+- [x] Fixed MCP Gate frequencies (Solfeggio → canonical: 396,417,528,639,741,852,963,1111,963,1111)
+- [x] Fixed Gate 8 Godbeast: "Vaelith" → "Thessara"
+- [x] Fixed Gate 10 Godbeast: null → "Amaterasu"
+- [x] Aligned element assignments across MCP, VS Code, arcanea-realm (Maylinn=Wind, Alera=Void, Lyria=Spirit)
+- [x] All 3 surfaces now have identical Guardian data
+
+### Wave 13: Package Documentation
+- [x] Created README for @arcanea/auth (43 lines, API + providers)
+- [x] Created README for @arcanea/overlay-claude (38 lines, depth tiers)
+- [x] Created README for @arcanea/overlay-chatgpt (27 lines)
+- [x] Created README for @arcanea/overlay-gemini (27 lines)
+- [x] Created README for @arcanea/overlay-copilot (27 lines)
+- [x] Created README for @arcanea/overlay-opencode (27 lines)
+- [x] Fixed core README badge: @arcanea/core → @arcanea/os
+- [x] Added publishConfig.access: "public" to MCP server package.json
+
+### Wave 14: CI/CD Pipeline Overhaul
+- [x] Quality Gate: npm → pnpm, removed version conflict, now PASSING
+- [x] Test Suite: replaced phantom test suites (Python, Playwright) with actual CLI tests + TypeScript + security
+- [x] Packages CI: added MCP server build step
+- [x] Publish Pipeline: added MCP server path trigger + build step
+- [x] All 4 workflows: removed explicit pnpm version (uses packageManager field)
+- [x] Temporary --no-frozen-lockfile until pnpm-lock.yaml regenerated locally
+
+### Wave 15: Repository Improvements
+- [x] Updated Coming Soon table in main README
+- [x] Added 10 GitHub topics to arcanea-realm repo
+- [x] Upgraded Bun 1.3.5 → 1.3.9 (required for arcanea-realm build)
+
+### Commits Made via GitHub API (20+ commits)
+1. `0efd886` — fix: Correct canon frequencies and Godbeast names
+2. `e52b1ad` — fix: Align MCP element assignments
+3. `4164325` — fix: Update npm badge URL
+4. `6a45b8a` — fix: Add publishConfig.access to MCP
+5. `e84c970` — docs: Add README for @arcanea/auth
+6. `f916f04` — docs: Add README for @arcanea/overlay-claude
+7. `23af99c` — docs: Add README for @arcanea/overlay-chatgpt
+8. `3886bdb` — docs: Add README for @arcanea/overlay-gemini
+9. `76f700f` — docs: Add README for @arcanea/overlay-copilot
+10. `ef022cb` — docs: Add README for @arcanea/overlay-opencode
+11. `d1b195d` — docs: Update Coming Soon table
+12. 8x fix: Rename @arcanea/core → @arcanea/os across remaining files
+13. Multiple CI workflow fixes (Quality Gate, Test Suite, Packages CI, Publish)
+
+### Blocked Items
+- **npm publish**: Needs @arcanea org on npmjs.com + NPM_TOKEN
+- **arcanea-realm build**: Needs filesystem access (`bun run --cwd packages/opencode build --single`)
+- **pnpm-lock.yaml**: Needs local `pnpm install` to regenerate after @arcanea/os rename
+- **VS Code extension build**: Needs filesystem access for `npm run build`
+
+### When Filesystem Recovers — Immediate Actions
+1. `git pull origin main` — sync 20+ GitHub API commits
+2. `pnpm install` — regenerate lockfile for @arcanea/os
+3. Commit updated pnpm-lock.yaml
+4. Switch CI back to --frozen-lockfile
+5. Build arcanea-realm: `cd /mnt/c/Users/frank/arcanea-realm && bun run --cwd packages/opencode build --single`
