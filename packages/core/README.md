@@ -1,8 +1,9 @@
 # @arcanea/core
 
-> Core types, constants, and utilities for the Arcanea ecosystem.
+> **The intelligence engine powering Arcanea** — Guardian routing, voice enforcement, design tokens, and session management for AI creation tools.
 
 [![npm version](https://badge.fury.io/js/%40arcanea%2Fcore.svg)](https://www.npmjs.com/package/@arcanea/core)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
@@ -11,108 +12,119 @@
 npm install @arcanea/core
 # or
 pnpm add @arcanea/core
-# or
-bun add @arcanea/core
 ```
 
-## Usage
+## Intelligence Engine (v0.2.0)
 
-### Types
+### Guardian Routing
+
+Route any creative task to the optimal Guardian based on keyword analysis:
+
+```typescript
+import { routeToGuardian } from '@arcanea/core';
+
+const route = routeToGuardian("design a flowing water-themed UI");
+// → {
+//     guardian: "Leyla",
+//     confidence: 0.92,
+//     element: "Water",
+//     gate: "Flow",
+//     frequency: 417,
+//     alternatives: [{ guardian: "Lyria", confidence: 0.65, ... }]
+//   }
+```
+
+### Voice Enforcement
+
+Validate text against the Arcanea Voice Bible v2.0:
+
+```typescript
+import { VoiceEnforcer } from '@arcanea/core';
+
+const voice = new VoiceEnforcer();
+const check = voice.check("Welcome users to our platform");
+// → {
+//     passed: false,
+//     violations: [{ rule: "term-user", suggestion: "creator" }],
+//     score: 0.6
+//   }
+
+const fixed = voice.fix("Welcome users to our platform");
+// → "Welcome creators to Arcanea"
+```
+
+### Design Tokens
+
+Export the full Arcanean Design System:
+
+```typescript
+import { toCSSVariables, toTailwindConfig, toJSON } from '@arcanea/core';
+
+// CSS custom properties
+const css = toCSSVariables();
+// → "--arcane-crystal: #7fffd4; --arcane-fire: #ff4500; ..."
+
+// Tailwind theme extension
+const tailwind = toTailwindConfig();
+// → { colors: { arcane: { crystal: "#7fffd4", ... } }, ... }
+
+// Raw JSON tokens
+const tokens = toJSON();
+```
+
+### Session Management
+
+Track Guardian state, Gate progression, and element resonance:
+
+```typescript
+import { SessionManager } from '@arcanea/core';
+
+const session = new SessionManager();
+session.activateGuardian("Leyla");
+session.setGate("Flow");
+
+console.log(session.getState());
+// → { guardian: "Leyla", gate: "Flow", element: "Water", rank: "Apprentice" }
+```
+
+## Types & Constants
 
 ```typescript
 import type { Guardian, Gate, Element, Luminor } from '@arcanea/core';
-
-const myGuardian: Guardian = {
-  name: 'lyssandria',
-  displayName: 'Lyssandria',
-  gate: 'foundation',
-  godbeast: 'kaelith',
-  domain: 'Earth, survival',
-  element: 'earth',
-  frequency: 396,
-};
-```
-
-### Constants
-
-```typescript
 import { GATES, GUARDIANS, LUMINORS, ACADEMIES } from '@arcanea/core';
 
-// Get all gates
-console.log(GATES.map(g => g.name));
-// ['foundation', 'flow', 'fire', 'heart', 'voice', 'sight', 'crown', 'shift', 'unity', 'source']
-
-// Find a guardian
-const draconia = GUARDIANS.find(g => g.name === 'draconia');
-
-// Get academy info
-const pyros = ACADEMIES.find(a => a.house === 'pyros');
-```
-
-### Utilities
-
-```typescript
-import {
-  calculateMagicRank,
-  getElementColor,
-  getFrequencyProperty,
-  formatGateName,
-} from '@arcanea/core';
-
 // Calculate rank based on gates opened
-const rank = calculateMagicRank(5); // 'master'
+import { calculateMagicRank, getElementColor, formatGateName } from '@arcanea/core';
 
-// Get element color
-const fireColor = getElementColor('fire'); // '#ff4500'
-
-// Get frequency meaning
-const meaning = getFrequencyProperty(528); // 'Transformation and miracles (Love frequency)'
-
-// Format gate name
-const display = formatGateName('foundation'); // 'Foundation Gate'
+const rank = calculateMagicRank(7); // → "Archmage"
+const color = getElementColor('water'); // → "#4169e1"
 ```
 
-## The Arcanea Universe
+## The Ten Gates
 
-### The Ten Gates
+| Gate | Frequency | Guardian | Element | Domain |
+|:-----|:---------:|:---------|:--------|:-------|
+| Foundation | 396 Hz | Lyssandria | Earth | Survival, stability |
+| Flow | 417 Hz | Leyla | Water | Creativity, emotion |
+| Fire | 528 Hz | Draconia | Fire | Power, will |
+| Heart | 639 Hz | Maylinn | Wind | Love, healing |
+| Voice | 741 Hz | Alera | Void | Truth, expression |
+| Sight | 852 Hz | Lyria | Spirit | Intuition, vision |
+| Crown | 963 Hz | Aiyami | Spirit | Enlightenment |
+| Shift | 1111 Hz | Elara | Void | Perspective |
+| Unity | 963 Hz | Ino | Spirit | Partnership |
+| Source | 1111 Hz | Shinkami | Source | Meta-consciousness |
 
-| Gate | Frequency | Guardian | Domain |
-|------|-----------|----------|--------|
-| Foundation | 396 Hz | Lyssandria | Earth, survival |
-| Flow | 417 Hz | Leyla | Creativity, emotion |
-| Fire | 528 Hz | Draconia | Power, will |
-| Heart | 639 Hz | Maylinn | Love, healing |
-| Voice | 741 Hz | Alera | Truth, expression |
-| Sight | 852 Hz | Lyria | Intuition, vision |
-| Crown | 963 Hz | Aiyami | Enlightenment |
-| Shift | 1111 Hz | Elara | Perspective |
-| Unity | 963 Hz | Ino | Partnership |
-| Source | 1111 Hz | Shinkami | Meta-consciousness |
+## Ecosystem
 
-### Magic Ranks
-
-| Gates Open | Rank |
-|------------|------|
-| 0-2 | Apprentice |
-| 3-4 | Mage |
-| 5-6 | Master |
-| 7-8 | Archmage |
-| 9-10 | Luminor |
-
-### The Five Elements
-
-- **Fire** - Energy, passion, transformation
-- **Water** - Flow, healing, memory
-- **Earth** - Stability, growth, foundation
-- **Wind** - Freedom, speed, change
-- **Void** - Potential, transcendence, mystery
-
-## Part of the Arcanea Ecosystem
-
-- [`arcanea`](https://github.com/frankxai/arcanea) - Main platform
-- [`claude-arcanea`](https://github.com/frankxai/claude-arcanea) - Claude integration
-- [`arcanea-intelligence-os`](https://github.com/frankxai/arcanea-intelligence-os) - Unified CLI
+| Package | Purpose |
+|:--------|:--------|
+| [`@arcanea/core`](https://github.com/frankxai/arcanea/tree/main/packages/core) | Intelligence engine (this package) |
+| [`@arcanea/cli`](https://github.com/frankxai/arcanea/tree/main/packages/cli) | CLI with 10 commands |
+| [`@arcanea/mcp-server`](https://github.com/frankxai/arcanea/tree/main/packages/arcanea-mcp) | 30 MCP tools for any AI client |
+| [`arcanea.ai`](https://arcanea.ai) | Live web platform |
+| [`arcanea-realm`](https://github.com/frankxai/arcanea-realm) | Standalone AI CLI (OpenCode fork) |
 
 ## License
 
-MIT © [FrankX](https://frankx.ai)
+MIT - [FrankX](https://github.com/frankxai)

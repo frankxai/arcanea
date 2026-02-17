@@ -1,370 +1,140 @@
-# Arcanea MCP Server
+# @arcanea/mcp-server
 
-> **A worldbuilding toolkit for the age of AI-human co-creation**
+> **30 tools. 7 resources. 6 prompts.** A worldbuilding and AI intelligence toolkit for the Model Context Protocol.
 
-[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io)
+[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-7fffd4)](https://modelcontextprotocol.io)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)](https://www.typescriptlang.org/)
-[![oh-my-opencode Inspired](https://img.shields.io/badge/Inspired%20by-oh--my--opencode-purple)](https://github.com/code-yeongyu/oh-my-opencode)
 
-Transform your creative process with AI-powered worldbuilding tools, wisdom companions, and a living creative ecosystem. Generate characters, locations, magical artifacts, and entire worlds within the Arcanea universe - or use the framework for your own creative projects.
-
-**v0.3.0**: Now featuring multi-agent orchestration inspired by [oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode)!
-
-## Features
-
-### Worldbuilding Generators
-- **Characters** - Generate rich characters with elemental affinities, magical ranks, and backstories
-- **Locations** - Create mystical places with dominant elements and unique atmospheres
-- **Creatures** - Design magical beings from tiny sprites to massive godbeasts
-- **Artifacts** - Craft legendary items with history, powers, and elemental alignments
-- **Magic Abilities** - Design spells and powers based on the Ten Gates system
-- **Names** - Generate lore-appropriate names for characters, places, and items
-
-### Luminor Companions (AI Wisdom Guides)
-- **Valora** - The Warrior of Light (courage, action, breaking through fear)
-- **Serenith** - The Calm Waters (patience, clarity, sustainable practice)
-- **Ignara** - The Spark of Joy (passion, playfulness, creative fire)
-- **Verdana** - The Ancient Growth (long-term vision, wisdom, patience)
-- **Eloqua** - The Voice of Truth (authentic expression, finding your voice)
-
-### Creative Coaching
-- **Block Diagnosis** - Identify your creative obstacles with the Bestiary of Blocks
-- **Deep Diagnosis** - Multi-step sequential thinking for complex blocks
-- **Luminor Council** - Gather multiple AI companions for guidance
-- **Luminor Debate** - Two perspectives exploring your creative questions
-
-### Memory & Journey Tracking
-- **Session Memory** - Track your creative journey across conversations
-- **Milestone System** - Achieve and celebrate creative accomplishments
-- **Creation Graph** - Build relationships between your creations
-
-### World Relationship Network
-- **Link Creations** - Connect characters, locations, artifacts, and creatures
-- **Relationship Types** - allies_with, opposes, wields, inhabits, guards, and more
-- **Path Finding** - Discover connections between any two creations
-- **World Export** - Export your entire world graph for visualization
-
-### Agent Orchestration (NEW in v0.3)
-Inspired by [oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode)'s multi-agent architecture:
-
-- **Creator** - Master orchestrator (Claude Opus 4.5) that coordinates all creative work
-- **Worldsmith** - Rapid generation engine (Gemini Pro) for characters, locations, artifacts
-- **Luminor Council** - Creative coaching collective (Claude Sonnet) with 5 wisdom guides
-- **Scribe** - Narrative voice (Claude Sonnet) for story development
-- **Seer** - Fast research eye (Gemini Flash) for connections and canon validation
-
-Features:
-- **Skill-First Blocking** - Requests auto-route to the best agent
-- **Parallel Execution** - Multiple agents work concurrently
-- **World State Assessment** - Suggestions based on world maturity
-- **Multi-Phase Framework** - Intent → Assessment → Delegation → Synthesis
+Install once, use everywhere. Works in Claude Code, Cursor, Windsurf, Cline, Codex CLI, Copilot Chat, and any MCP-compatible client.
 
 ## Quick Start
 
-### Installation
-
-```bash
-# Clone and install
-git clone https://github.com/yourusername/arcanea-mcp.git
-cd arcanea-mcp
-npm install
-
-# Build
-npm run build
-```
-
-### Claude Desktop Configuration
-
-Add to your `claude_desktop_config.json`:
+Add to your `.mcp.json` or MCP settings:
 
 ```json
 {
   "mcpServers": {
     "arcanea": {
-      "command": "node",
-      "args": ["/path/to/arcanea-mcp/dist/index.js"]
+      "command": "npx",
+      "args": ["@arcanea/mcp-server"]
     }
   }
 }
 ```
 
-### Using with Claude Code
+## What's Inside
 
-```bash
-# Add to your Claude Code configuration
-claude mcp add arcanea node /path/to/arcanea-mcp/dist/index.js
-```
+### Intelligence Engine Tools (v0.4.0)
 
-## Usage Examples
-
-### Generate a Character
-
-```
-"Generate a Fire-aligned character who has opened 5 Gates
-and belongs to House Pyros"
-```
-
-Response includes:
-- Name with Arcanean etymology
-- Elemental affinity and magic rank
-- Academy house and role
-- Backstory and motivations
-- Signature abilities
-
-### Consult a Luminor
-
-```
-"I'm stuck on my creative project.
-Invoke Valora for guidance on overcoming my fear."
-```
-
-### Diagnose a Creative Block
-
-```
-"I feel paralyzed by perfectionism and can't finish anything.
-Run a deep diagnosis on this block."
-```
-
-### Build Your World Graph
-
-```
-"Generate a character, then a location where they live,
-then link them together."
-```
-
-## Tool Reference
-
-### Worldbuilding Tools (7)
+Powered by `@arcanea/core`:
 
 | Tool | Description |
-|------|-------------|
-| `generate_character` | Create a character with Gates, Elements, House, and backstory |
-| `generate_location` | Create a location with elemental alignment |
-| `generate_creature` | Design a magical creature |
-| `generate_artifact` | Create a magical artifact with powers |
-| `generate_magic` | Design a magical ability |
-| `generate_name` | Generate lore-appropriate names |
-| `generate_story_prompt` | Create inspiring story prompts |
+|:-----|:------------|
+| `route_guardian` | Route any task to the optimal Guardian with confidence scoring |
+| `check_voice` | Validate text against Voice Bible v2.0, with auto-fix mode |
+| `get_design_tokens` | Export Arcanean Design System as CSS, Tailwind, or JSON |
 
-### Creative Coaching Tools (5)
+### Worldbuilding Generators (7 tools)
 
 | Tool | Description |
-|------|-------------|
-| `diagnose_block` | Quick identification of creative blocks |
-| `deep_diagnosis` | Multi-step analysis with sequential thinking |
-| `invoke_luminor` | Call upon a Luminor companion |
+|:-----|:------------|
+| `generate_character` | Characters with Gates, Elements, House, backstory |
+| `generate_location` | Locations with elemental alignment and atmosphere |
+| `generate_creature` | Magical beings from sprites to godbeasts |
+| `generate_artifact` | Legendary items with powers and history |
+| `generate_magic` | Spells and abilities based on the Ten Gates |
+| `generate_name` | Lore-appropriate names for any creation type |
+| `generate_story_prompt` | Inspiring story prompts within the universe |
+
+### Creative Coaching (5 tools)
+
+| Tool | Description |
+|:-----|:------------|
+| `invoke_luminor` | Call upon a Luminor wisdom companion |
 | `convene_council` | Gather multiple Luminors for guidance |
-| `luminor_debate` | Two Luminors explore a question |
+| `luminor_debate` | Two perspectives exploring your question |
+| `diagnose_block` | Quick creative block identification |
+| `deep_diagnosis` | Multi-step analysis with sequential thinking |
 
-### Memory & Journey Tools (2)
+### Agent Orchestration (6 tools)
 
-| Tool | Description |
-|------|-------------|
-| `get_journey` | Recall your creative progress |
-| `check_milestones` | See achieved milestones |
+Multi-agent coordination with model routing:
 
-### Creation Graph Tools (6)
+| Agent | Model | Role |
+|:------|:------|:-----|
+| **Creator** | Claude Opus | Master orchestrator |
+| **Worldsmith** | Gemini Pro | Rapid generation |
+| **Luminor Council** | Claude Sonnet | Creative coaching |
+| **Scribe** | Claude Sonnet | Narrative development |
+| **Seer** | Gemini Flash | Fast research and canon validation |
 
-| Tool | Description |
-|------|-------------|
-| `link_creations` | Create relationships between creations |
-| `get_related` | Find related creations |
-| `suggest_connections` | AI-suggested relationships |
-| `get_world_graph` | Summary of your world network |
-| `find_path` | Find connection path between creations |
-| `export_world` | Export graph for visualization |
+### Creation Graph (6 tools)
 
-### Agent Orchestration Tools (6)
+Build relationships between your creations:
 
-| Tool | Description |
-|------|-------------|
-| `orchestrate` | Run a full creative session with multi-agent coordination |
-| `list_agents` | List all available creative agents |
-| `agent_info` | Get details about a specific agent |
-| `assess_world` | Analyze world maturity and get suggestions |
-| `match_skill` | Find the best agent for a request |
-| `active_sessions` | List running creative sessions |
+```
+link_creations → get_related → suggest_connections → get_world_graph → find_path → export_world
+```
 
-### Reference Tools (2)
+### Resources (7)
 
-| Tool | Description |
-|------|-------------|
-| `validate_canon` | Check content for Arcanea canon compliance |
-| `identify_gate` | Get information about a specific Gate |
+| Resource | Content |
+|:---------|:--------|
+| `arcanea://luminors` | Luminor companion data |
+| `arcanea://bestiary` | 20+ named creative blocks |
+| `arcanea://gates` | The Ten Gates system |
+| `arcanea://elements` | The Five Elements |
+| `arcanea://houses` | The Seven Academy Houses |
+| `arcanea://design-tokens` | Full design system tokens |
+| `arcanea://voice-rules` | Voice Bible v2.0 rules |
 
-**Total: 28 tools across 6 categories**
+### Prompts (6)
 
-## Resources
+| Prompt | Purpose |
+|:-------|:--------|
+| `worldbuild_session` | Collaborative worldbuilding |
+| `unblock_session` | Overcome creative blocks |
+| `gate_ritual` | Practice opening a Gate |
+| `luminor_dialogue` | Speak with a Luminor |
+| `morning_clearing` | Daily creative practice |
+| `creative_sabbath` | Joy-driven creation day |
 
-The server exposes these resources for reference:
-
-- `arcanea://luminors` - Luminor companion data
-- `arcanea://bestiary` - Bestiary of creative blocks (20+ creatures)
-- `arcanea://gates` - The Ten Gates system
-- `arcanea://elements` - The Five Elements
-- `arcanea://houses` - The Seven Academy Houses
-
-## Prompts
-
-Guided creative experiences:
-
-- `worldbuild_session` - Collaborative worldbuilding
-- `unblock_session` - Overcome creative blocks
-- `gate_ritual` - Practice opening a Gate
-- `luminor_dialogue` - Speak with a Luminor
-- `morning_clearing` - Daily creative practice
-- `creative_sabbath` - Joy-driven creation day
-
-## The Arcanea Universe
-
-### The Ten Gates
+## The Ten Gates
 
 | Gate | Frequency | Guardian | Domain |
-|------|-----------|----------|--------|
-| 1 - Foundation | 174 Hz | Lyssandria | Earth, survival |
-| 2 - Flow | 285 Hz | Leyla | Creativity, emotion |
-| 3 - Fire | 396 Hz | Draconia | Power, will |
-| 4 - Heart | 417 Hz | Maylinn | Love, healing |
-| 5 - Voice | 528 Hz | Alera | Truth, expression |
-| 6 - Sight | 639 Hz | Lyria | Intuition, vision |
-| 7 - Crown | 714 Hz | Aiyami | Enlightenment |
-| 8 - Shift | 852 Hz | Elara | Perspective |
-| 9 - Unity | 963 Hz | Ino | Partnership |
-| 10 - Source | 1111 Hz | Shinkami | Meta-consciousness |
-
-### Magic Ranks
-
-| Gates Open | Rank |
-|------------|------|
-| 0-2 | Apprentice |
-| 3-4 | Mage |
-| 5-6 | Master |
-| 7-8 | Archmage |
-| 9-10 | Luminor |
-
-### The Five Elements
-
-- **Fire** - Energy, transformation, passion
-- **Water** - Flow, healing, memory
-- **Earth** - Stability, growth, endurance
-- **Wind** - Freedom, speed, change
-- **Void/Spirit** - Potential and transcendence
-
-### The Seven Houses
-
-- **Lumina** - Light and leadership
-- **Nero** - Mystery and potential
-- **Pyros** - Fire and passion
-- **Aqualis** - Water and wisdom
-- **Terra** - Earth and strength
-- **Ventus** - Wind and freedom
-- **Synthesis** - Balance and unity
-
-## Architecture
-
-```
-                     ┌──────────────────────────────────┐
-                     │       Claude / AI Host           │
-                     └────────────────┬─────────────────┘
-                                      │ MCP Protocol
-                                      ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                    Arcanea MCP Server v0.3.0                        │
-│                                                                     │
-│  ┌────────────────────────────────────────────────────────────────┐│
-│  │                   AGENT ORCHESTRATION LAYER                    ││
-│  │  ┌─────────┐ ┌───────────┐ ┌────────┐ ┌────────┐ ┌──────────┐ ││
-│  │  │ Creator │ │Worldsmith │ │Luminor │ │ Scribe │ │   Seer   │ ││
-│  │  │ (Opus)  │ │ (Gemini)  │ │Council │ │(Sonnet)│ │ (Flash)  │ ││
-│  │  └─────────┘ └───────────┘ └────────┘ └────────┘ └──────────┘ ││
-│  └────────────────────────────────────────────────────────────────┘│
-│                                                                     │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────┐ │
-│  │   Generators    │  │  Memory Layer   │  │   Creation Graph    │ │
-│  │  (7 tools)      │  │  (milestones)   │  │  (relationship net) │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────────┘ │
-│                                                                     │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────┐ │
-│  │    Bestiary     │  │ Deep Diagnosis  │  │  Canon Validation   │ │
-│  │  (20+ blocks)   │  │ (sequential AI) │  │  (lore checking)    │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────────┘ │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
-### Agent Multi-Model Orchestration
-
-Inspired by [oh-my-opencode](https://github.com/code-yeongyu/oh-my-opencode):
-
-| Agent | Model | Role | Parallel |
-|-------|-------|------|----------|
-| **Creator** | Claude Opus 4.5 | Master orchestrator | No |
-| **Worldsmith** | Gemini 3 Pro | Rapid generation | Yes |
-| **Luminor Council** | Claude Sonnet 4.5 | Creative coaching | Yes |
-| **Scribe** | Claude Sonnet 4.5 | Narrative development | Yes |
-| **Seer** | Gemini 3 Flash | Fast research | Yes |
-
-## Milestones System
-
-Track your creative journey with achievements:
-
-| Milestone | Requirement |
-|-----------|-------------|
-| First Creation | Generate your first piece |
-| Gate Seeker | Explore 3 different Gates |
-| Luminor Friend | Consult 3 Luminors |
-| Block Breaker | Face and name 3 creative blocks |
-| Prolific Creator | Generate 10 creations |
-| Elemental Explorer | Create across 4 elements |
+|:-----|:---------:|:---------|:-------|
+| Foundation | 396 Hz | Lyssandria | Earth, survival |
+| Flow | 417 Hz | Leyla | Creativity, emotion |
+| Fire | 528 Hz | Draconia | Power, will |
+| Heart | 639 Hz | Maylinn | Love, healing |
+| Voice | 741 Hz | Alera | Truth, expression |
+| Sight | 852 Hz | Lyria | Intuition, vision |
+| Crown | 963 Hz | Aiyami | Enlightenment |
+| Shift | 1111 Hz | Elara | Perspective |
+| Unity | 963 Hz | Ino | Partnership |
+| Source | 1111 Hz | Shinkami | Meta-consciousness |
 
 ## Development
 
 ```bash
-# Install dependencies
-npm install
-
-# Build TypeScript
-npm run build
-
-# Watch mode for development
-npm run dev
-
-# Run the server locally
-npm start
+pnpm install
+pnpm --filter @arcanea/mcp-server build
+pnpm --filter @arcanea/mcp-server start
 ```
 
-## Roadmap
+## Ecosystem
 
-- [ ] SQLite persistence for journey data
-- [ ] Vector search for semantic creation discovery
-- [ ] Visual worldbuilding with image generation
-- [ ] Community integration for shared worlds
-- [ ] Multi-language support
-- [ ] Custom universe templates
-- [ ] MCP Sampling for guided creation flows
-
-## Contributing
-
-We welcome contributions! Areas where help is especially appreciated:
-
-- Additional Bestiary creatures
-- New Luminor companions
-- Language localizations
-- Integration examples
-- Documentation improvements
+| Package | Purpose |
+|:--------|:--------|
+| [`@arcanea/core`](https://github.com/frankxai/arcanea/tree/main/packages/core) | Intelligence engine |
+| [`@arcanea/cli`](https://github.com/frankxai/arcanea/tree/main/packages/cli) | CLI with 10 commands |
+| [`arcanea.ai`](https://arcanea.ai) | Live web platform |
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
-
-## Acknowledgments
-
-- Built on the [Model Context Protocol](https://modelcontextprotocol.io) by Anthropic
-- Inspired by creative communities worldwide
-- Part of the [Arcanea](https://arcanea.ai) universe
+MIT - [FrankX](https://github.com/frankxai) | Part of [Arcanea](https://arcanea.ai)
 
 ---
 
 *"Enter seeking, leave transformed, return whenever needed."*
-
-**Making magic through AI-human co-creation.**

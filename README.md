@@ -82,10 +82,23 @@ const check = voice.check("Welcome users to our platform");
 
 **[arcanea.ai](https://arcanea.ai)** — live now
 
+### Arcanea Realm — Standalone AI CLI
+
+**[arcanea-realm](https://github.com/frankxai/arcanea-realm)** — forked from OpenCode (105K stars), powered by the same Vercel AI SDK. A full AI creation terminal with 10 Guardian agents, 75+ models, and the Arcanea intelligence layer built in.
+
+### v0 Design Demos
+
+| Product | Preview |
+|:--------|:--------|
+| [Arcanea Imagine](https://v0.dev/chat/rjiUbIIuDx0) | AI image generation with elemental themes |
+| [Arcanea Studio](https://v0.dev/chat/lMysc6koxd2) | Creative workspace with Guardian panels |
+| [Arcanea Chat](https://v0.dev/chat/udxPXi3PqVF) | AI conversation with mythological companions |
+
 ### Coming Soon
 
 | Surface | Status |
 |:--------|:------:|
+| Arcanea Realm CLI | Alpha (OpenCode fork) |
 | VS Code Extension | In development |
 | Chrome Extension (5 overlays) | Ready to publish |
 | Desktop App (Tauri) | Planned |
@@ -352,6 +365,12 @@ The Academy is the structured learning environment. Each House specializes in a 
 ## Ecosystem
 
 Arcanea is not a single repository. It's a coordinated system of projects, each with a specific role:
+
+<div align="center">
+<img src="./assets/premium-r3/14-technical-ecosystem.png" alt="Arcanea Technical Ecosystem" width="90%"/>
+</div>
+
+<br/>
 
 | Project | Purpose | Status |
 |:--------|:--------|:------:|
