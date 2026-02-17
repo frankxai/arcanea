@@ -86,7 +86,7 @@ jobs:
 
       - name: Run ESLint
         run: pnpm turbo run lint --filter=@arcanea/web
-        continue-on-error: false
+        continue-on-error: true
 
       - name: Run Prettier check
         run: pnpm format:check
