@@ -72,7 +72,7 @@ const skill = getSkillByTrigger('/refactor');
 
 ## Part of the Arcanea Ecosystem
 
-- [`@arcanea/core`](https://github.com/frankxai/arcanea/tree/main/packages/core) - Core types and constants
+- [`@arcanea/os`](https://github.com/frankxai/arcanea/tree/main/packages/core) - Core types and constants
 - [`arcanea-intelligence-os`](https://github.com/frankxai/arcanea-intelligence-os) - Unified CLI
 - [`arcanea`](https://github.com/frankxai/arcanea) - Main platform
 
