@@ -27,25 +27,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          cache-dependency-path: 'apps/web/package-lock.json'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        working-directory: apps/web
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: TypeScript Check
         working-directory: apps/web
-        run: npx tsc --noEmit
+        run: pnpm tsc --noEmit
         continue-on-error: false
 
       - name: ESLint
         working-directory: apps/web
-        run: npm run lint
+        run: pnpm lint
         continue-on-error: true
 
   # ============================================
@@ -61,22 +63,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          cache-dependency-path: 'apps/web/package-lock.json'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        working-directory: apps/web
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         working-directory: apps/web
-        run: npm run build
+        run: pnpm build
         env:
-          # Provide dummy env vars for build
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co' }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key' }}
 
