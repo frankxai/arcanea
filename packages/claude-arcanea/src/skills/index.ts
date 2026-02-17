@@ -4,7 +4,7 @@
  * Gate-organized skills for creative and technical work.
  */
 
-import type { Skill, GateName } from '@arcanea/core';
+import type { Skill, GateName } from '@arcanea/os';
 
 // Foundation Gate Skills (396 Hz)
 export const foundationSkills: Skill[] = [
