@@ -34,7 +34,7 @@ jobs:
 
       - name: Build packages
         run: |
-          pnpm --filter @arcanea/core build
+          pnpm --filter @arcanea/os build
           pnpm --filter claude-arcanea build
           pnpm --filter arcanea-intelligence-os build
 
