@@ -98,10 +98,10 @@ const check = voice.check("Welcome users to our platform");
 
 | Surface | Status |
 |:--------|:------:|
-| Arcanea Realm CLI | Alpha (OpenCode fork) |
-| VS Code Extension | In development |
+| Arcanea Realm CLI | Alpha — 10 Guardians, cosmic theme, 4 commands |
+| VS Code Extension | Scaffolded — Guardian Panel, Gate Progress, Lore Explorer |
 | Chrome Extension (5 overlays) | Ready to publish |
-| Desktop App (Tauri) | Planned |
+| Desktop App (Tauri) | Planned (via OpenCode fork) |
 | Mobile App | Planned |
 
 <br/>
