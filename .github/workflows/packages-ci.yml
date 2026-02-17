@@ -44,6 +44,9 @@ jobs:
       - name: Build core package
         run: pnpm --filter @arcanea/os build
 
+      - name: Build MCP server
+        run: pnpm --filter @arcanea/mcp-server build
+
       - name: Build overlay packages
         run: |
           pnpm --filter @arcanea/overlay-claude build
