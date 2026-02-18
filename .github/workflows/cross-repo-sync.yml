@@ -17,6 +17,8 @@ jobs:
     name: Sync APL to Standalone Repository
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    env:
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
     steps:
     - name: Checkout main repository
@@ -25,19 +27,19 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Skip APL sync when PAT is missing
-      if: secrets.PERSONAL_ACCESS_TOKEN == ''
+      if: env.PERSONAL_ACCESS_TOKEN == ''
       run: echo "PERSONAL_ACCESS_TOKEN is not configured. Skipping APL sync."
 
     - name: Checkout APL repository
-      if: secrets.PERSONAL_ACCESS_TOKEN != ''
+      if: env.PERSONAL_ACCESS_TOKEN != ''
       uses: actions/checkout@v4
       with:
         repository: frankxai/arcanea-prompt-language
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        token: ${{ env.PERSONAL_ACCESS_TOKEN }}
         path: apl-repo
 
     - name: Sync AI Core to APL Repository
-      if: secrets.PERSONAL_ACCESS_TOKEN != ''
+      if: env.PERSONAL_ACCESS_TOKEN != ''
       run: |
         # Remove old content (except README, package.json, etc.)
         cd apl-repo
@@ -60,7 +62,7 @@ jobs:
         "
 
     - name: Commit and push changes
-      if: secrets.PERSONAL_ACCESS_TOKEN != ''
+      if: env.PERSONAL_ACCESS_TOKEN != ''
       run: |
         cd apl-repo
         git config user.name "Arcanea Sync Bot"
@@ -77,6 +79,8 @@ jobs:
     name: Sync Library to Standalone Repository
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    env:
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
     steps:
     - name: Checkout main repository
@@ -85,19 +89,19 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Skip library sync when PAT is missing
-      if: secrets.PERSONAL_ACCESS_TOKEN == ''
+      if: env.PERSONAL_ACCESS_TOKEN == ''
       run: echo "PERSONAL_ACCESS_TOKEN is not configured. Skipping library sync."
 
     - name: Checkout Library repository
-      if: secrets.PERSONAL_ACCESS_TOKEN != ''
+      if: env.PERSONAL_ACCESS_TOKEN != ''
       uses: actions/checkout@v4
       with:
         repository: frankxai/arcanean-library
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        token: ${{ env.PERSONAL_ACCESS_TOKEN }}
         path: library-repo
 
     - name: Sync Library Content
-      if: secrets.PERSONAL_ACCESS_TOKEN != ''
+      if: env.PERSONAL_ACCESS_TOKEN != ''
       run: |
         cd library-repo
 
@@ -118,7 +122,7 @@ jobs:
         "
 
     - name: Commit and push changes
-      if: secrets.PERSONAL_ACCESS_TOKEN != ''
+      if: env.PERSONAL_ACCESS_TOKEN != ''
       run: |
         cd library-repo
         git config user.name "Arcanea Sync Bot"
