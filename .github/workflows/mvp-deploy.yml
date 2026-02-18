@@ -86,7 +86,7 @@ jobs:
 
       - name: Run ESLint
         run: pnpm turbo run lint --filter=@arcanea/web
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Run Prettier check
         run: pnpm format:check
@@ -180,7 +180,7 @@ jobs:
     name: Deploy to Vercel (Preview)
     runs-on: ubuntu-latest
     needs: [build]
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && secrets.VERCEL_TOKEN != ''
     environment:
       name: preview
       url: ${{ steps.deploy.outputs.preview-url }}
@@ -234,7 +234,7 @@ jobs:
     name: Deploy to Vercel (Production)
     runs-on: ubuntu-latest
     needs: [build]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && secrets.VERCEL_TOKEN != ''
     environment:
       name: production
       url: https://arcanea.ai
@@ -349,6 +349,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: '🚨 Production Deployment Failed - Health Check',
-              body: `## Deployment Failure\n\n**Commit:** ${context.sha}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runId}\n\n**Action Required:**\n1. Check Vercel deployment logs\n2. Review error messages above\n3. Consider rolling back to previous version\n\n**Rollback Command:**\n\`\`\`bash\nvercel rollback\n\`\`\``,
-              labels: ['incident', 'production', 'deployment']
+              body: `## Deployment Failure\n\n**Commit:** ${context.sha}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runId}\n\n**Action Required:**\n1. Check Vercel deployment logs\n2. Review error messages above\n3. Consider rolling back to previous version\n\n**Rollback Command:**\n\`\`\`bash\nvercel rollback\n\`\`\``
             });

@@ -5,40 +5,8 @@
       <stop offset="0%" stop-color="#1a1d26"/>
       <stop offset="100%" stop-color="#0b0e14"/>
     </radialGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#7fffd4" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#7fffd4" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="glow-filter">
-      <feGaussianBlur stdDeviation="5.12" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
-
-  <!-- Background -->
   <rect width="128" height="128" rx="25.6" fill="url(#bg-grad)"/>
-
-  <!-- Outer ring -->
-  <circle cx="64" cy="64" r="52.48"
-    fill="none"
-    stroke="#7fffd4"
-    stroke-width="3.2"
-    stroke-opacity="0.3"/>
-
-  <!-- Glow -->
-  <circle cx="64" cy="64" r="32" fill="url(#glow)"/>
-
-  <!-- Star/Mark symbol -->
-  <text
-    x="64"
-    y="86.4"
-    text-anchor="middle"
-    font-family="system-ui, -apple-system, serif"
-    font-size="64"
-    fill="#7fffd4"
-    filter="url(#glow-filter)"
-    font-weight="bold">✦</text>
+  <circle cx="64" cy="64" r="52.48" fill="none" stroke="#7fffd4" stroke-width="3.2" stroke-opacity="0.3"/>
+  <text x="64" y="86.4" text-anchor="middle" font-family="system-ui, -apple-system, serif" font-size="64" fill="#7fffd4" font-weight="bold">✦</text>
 </svg>

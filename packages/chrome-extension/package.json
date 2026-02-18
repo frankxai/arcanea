@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "node build.mjs --watch",
     "build": "node build.mjs",
+    "icons:generate": "node generate-icons.mjs",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.36",
     "esbuild": "^0.24.0",
+    "pngjs": "^7.0.0",
     "typescript": "^5.5.0"
   }
 }

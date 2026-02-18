@@ -16,7 +16,7 @@ jobs:
   sync-prompt-language:
     name: Sync APL to Standalone Repository
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.modified, 'packages/ai-core') || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    if: secrets.PERSONAL_ACCESS_TOKEN != '' && (github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
 
     steps:
     - name: Checkout main repository
@@ -38,7 +38,11 @@ jobs:
         find . -name "*.ts" -not -path "./.git/*" -delete
 
         # Copy updated AI core content
-        cp -r ../packages/ai-core/* .
+        if [ -d ../packages/ai-core ]; then
+          cp -r ../packages/ai-core/* .
+        else
+          echo "packages/ai-core not found. Skipping file sync."
+        fi
 
         # Update version in package.json
         node -e "
@@ -65,7 +69,7 @@ jobs:
   sync-library-content:
     name: Sync Library to Standalone Repository
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.modified, 'apps/library') || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    if: secrets.PERSONAL_ACCESS_TOKEN != '' && (github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
 
     steps:
     - name: Checkout main repository
@@ -85,7 +89,11 @@ jobs:
         cd library-repo
 
         # Sync app content (excluding node_modules)
-        rsync -av --delete --exclude=node_modules --exclude=.git --exclude=README.md --exclude=package.json ../apps/library/ .
+        if [ -d ../apps/library ]; then
+          rsync -av --delete --exclude=node_modules --exclude=.git --exclude=README.md --exclude=package.json ../apps/library/ .
+        else
+          echo "apps/library not found. Skipping file sync."
+        fi
 
         # Update version
         node -e "

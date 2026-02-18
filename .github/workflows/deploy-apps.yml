@@ -48,14 +48,13 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'pnpm'
 
-    - name: Install pnpm
-      run: npm install -g pnpm
+    - uses: pnpm/action-setup@v4
 
     - name: Install dependencies
-      run: pnpm install
+      run: pnpm install --frozen-lockfile
 
     - name: Type check all apps
       run: pnpm type-check

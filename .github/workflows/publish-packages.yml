@@ -8,6 +8,7 @@ on:
       - 'packages/cli/**'
       - 'packages/arcanea-mcp/**'
       - '.changeset/**'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

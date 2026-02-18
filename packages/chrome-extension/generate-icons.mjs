@@ -1,14 +1,11 @@
-/**
- * Generates placeholder SVG icons for the Arcanea Chrome Extension.
- * Run with: node generate-icons.mjs
- *
- * For production, replace with actual designed PNG icons at:
- * icons/icon16.png, icons/icon32.png, icons/icon48.png, icons/icon128.png
- */
-
-import { writeFileSync, mkdirSync } from 'fs';
+import { mkdirSync, writeFileSync } from 'fs';
+import { PNG } from 'pngjs';
 
 mkdirSync('icons', { recursive: true });
+
+const DARK = [11, 14, 20, 255];
+const DARK_HI = [26, 29, 38, 255];
+const TEAL = [127, 255, 212, 255];
 
 function createSvgIcon(size) {
   const center = size / 2;
@@ -21,58 +18,78 @@ function createSvgIcon(size) {
       <stop offset="0%" stop-color="#1a1d26"/>
       <stop offset="100%" stop-color="#0b0e14"/>
     </radialGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#7fffd4" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#7fffd4" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="glow-filter">
-      <feGaussianBlur stdDeviation="${size * 0.04}" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
-
-  <!-- Background -->
   <rect width="${size}" height="${size}" rx="${size * 0.2}" fill="url(#bg-grad)"/>
-
-  <!-- Outer ring -->
-  <circle cx="${center}" cy="${center}" r="${center * 0.82}"
-    fill="none"
-    stroke="#7fffd4"
-    stroke-width="${size * 0.025}"
-    stroke-opacity="0.3"/>
-
-  <!-- Glow -->
-  <circle cx="${center}" cy="${center}" r="${center * 0.5}" fill="url(#glow)"/>
-
-  <!-- Star/Mark symbol -->
-  <text
-    x="${center}"
-    y="${center + fontSize * 0.35}"
-    text-anchor="middle"
-    font-family="system-ui, -apple-system, serif"
-    font-size="${fontSize}"
-    fill="#7fffd4"
-    filter="url(#glow-filter)"
-    font-weight="bold">✦</text>
+  <circle cx="${center}" cy="${center}" r="${center * 0.82}" fill="none" stroke="#7fffd4" stroke-width="${size * 0.025}" stroke-opacity="0.3"/>
+  <text x="${center}" y="${center + fontSize * 0.35}" text-anchor="middle" font-family="system-ui, -apple-system, serif" font-size="${fontSize}" fill="#7fffd4" font-weight="bold">✦</text>
 </svg>`;
 }
 
-// Generate SVG icons (Chrome actually supports SVG for some sizes but requires PNG for manifest)
-// These serve as visual references — convert to PNG for production
+function setPx(png, x, y, rgba) {
+  const i = (png.width * y + x) << 2;
+  png.data[i] = rgba[0];
+  png.data[i + 1] = rgba[1];
+  png.data[i + 2] = rgba[2];
+  png.data[i + 3] = rgba[3];
+}
+
+function mix(a, b, t) {
+  return [
+    Math.round(a[0] + (b[0] - a[0]) * t),
+    Math.round(a[1] + (b[1] - a[1]) * t),
+    Math.round(a[2] + (b[2] - a[2]) * t),
+    255,
+  ];
+}
+
+function createPngIcon(size) {
+  const png = new PNG({ width: size, height: size });
+  const center = (size - 1) / 2;
+  const r = size * 0.43;
+  const ring = size * 0.34;
+  const ringW = Math.max(1.2, size * 0.04);
+  const glow = size * 0.24;
+
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const nx = x / (size - 1);
+      const ny = y / (size - 1);
+      const dx = x - center;
+      const dy = y - center;
+      const d = Math.sqrt(dx * dx + dy * dy);
+
+      const bg = mix(DARK_HI, DARK, (nx + ny) / 2);
+      const corner = Math.min(x, y, size - 1 - x, size - 1 - y);
+      if (corner < size * 0.1 && d > r * 1.3) {
+        setPx(png, x, y, [0, 0, 0, 0]);
+        continue;
+      }
+
+      let px = bg;
+
+      if (Math.abs(d - ring) <= ringW) {
+        px = mix(px, TEAL, 0.55);
+      } else if (d < glow) {
+        const t = 1 - d / glow;
+        px = mix(px, TEAL, t * 0.42);
+      }
+
+      if (d < size * 0.075) {
+        px = mix(px, [255, 255, 255, 255], 0.9);
+      }
+
+      setPx(png, x, y, px);
+    }
+  }
+
+  return PNG.sync.write(png);
+}
+
 const sizes = [16, 32, 48, 128];
 
 for (const size of sizes) {
   const svg = createSvgIcon(size);
   writeFileSync(`icons/icon${size}.svg`, svg);
-  console.log(`Generated icons/icon${size}.svg`);
+  writeFileSync(`icons/icon${size}.png`, createPngIcon(size));
+  console.log(`Generated icons/icon${size}.svg + icons/icon${size}.png`);
 }
-
-console.log('\nNote: For production, convert SVG files to PNG using:');
-console.log('  - Inkscape: inkscape -w 128 -h 128 icons/icon128.svg -o icons/icon128.png');
-console.log('  - ImageMagick: convert -background none icons/icon128.svg icons/icon128.png');
-console.log('  - Or use an online converter like cloudconvert.com');
-console.log('\nChrome Manifest V3 requires PNG icons. Update manifest.json to use .png extension.');
-console.log('During development, you can reference the SVG files directly in manifest.json.');
