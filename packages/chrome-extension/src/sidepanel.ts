@@ -138,7 +138,11 @@ function renderMarkdown(text: string): string {
   html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
 
   // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label, rawUrl) => {
+    const safeUrl = sanitizeExternalUrl(rawUrl);
+    if (!safeUrl) return label;
+    return `<a href="${escapeHtml(safeUrl)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+  });
 
   // Horizontal rule
   html = html.replace(/^---$/gm, '<hr>');
@@ -155,6 +159,21 @@ function renderMarkdown(text: string): string {
   }
 
   return html;
+}
+
+function sanitizeExternalUrl(rawUrl: string): string | null {
+  const candidate = rawUrl.trim();
+  if (!candidate) return null;
+
+  try {
+    const parsed = new URL(candidate);
+    if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+      return parsed.toString();
+    }
+    return null;
+  } catch {
+    return null;
+  }
 }
 
 function escapeHtml(text: string): string {
