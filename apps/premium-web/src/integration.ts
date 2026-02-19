@@ -3,8 +3,6 @@
  * Connects 38 Agents with 77 Skills for Unified Creative Power
  */
 
-import { ARCANEA_CONFIG } from './index';
-
 // ============================================
 // TYPE DEFINITIONS
 // ============================================
@@ -51,13 +49,6 @@ interface ElementalAffinityMatrix {
   [agentElement: string]: {
     [skillElement: string]: number;
   };
-}
-
-interface EvolutionTrigger {
-  skillId: string;
-  xpGained: number;
-  newAbilities: string[];
-  gateProgress: number;
 }
 
 interface GuardianSkillAlignment {
@@ -373,11 +364,11 @@ export function findBestAgentForSkill(skillId: string): Agent | undefined {
   return compatibleAgents.sort((a, b) => b.powerLevel - a.powerLevel)[0];
 }
 
-export function findBestSkillForAgent(agentId: string, context?: string): Skill | undefined {
+export function findBestSkillForAgent(agentId: string): Skill | undefined {
   const agent = getAgentById(agentId);
   if (!agent) return undefined;
   
-  let bestSkill = agent.skills
+  const bestSkill = agent.skills
     .map(skillId => getSkillById(skillId))
     .filter((s): s is Skill => s !== undefined && s.gateRequirement <= agent.gateRequirement)
     .sort((a, b) => b.powerLevel - a.powerLevel)[0];

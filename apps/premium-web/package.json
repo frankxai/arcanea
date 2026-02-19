@@ -34,6 +34,8 @@
     "@types/react-dom": "^18.3.1",
     "@types/ws": "^8.5.12",
     "eslint": "^9.15.0",
+    "tsc-alias": "^1.8.16",
+    "typescript-eslint": "^8.46.4",
     "tsx": "^4.19.2",
     "typescript": "^5.9.3",
     "vitest": "^2.1.4"

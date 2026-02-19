@@ -127,7 +127,7 @@ app.get('/api/status', (req, res) => {
 
 // Premium Reasoning Endpoint (Stub for Starlight Integration)
 app.post('/api/reason', async (req, res) => {
-  const { query, guardian, context, depth = 'standard' } = req.body;
+  const { query, guardian, depth = 'standard' } = req.body;
   
   // Simulated premium reasoning response
   const response = {
@@ -146,7 +146,7 @@ app.post('/api/reason', async (req, res) => {
 
 // 🌟 Starlight Intelligence Integration (Future)
 app.post('/api/starlight/reason', async (req, res) => {
-  const { query, guardian, options = {} } = req.body;
+  const { query, guardian } = req.body;
 
   // Integration point for Starlight Intelligence Engine
   res.json({
@@ -197,7 +197,6 @@ app.get('/api/agents/:id', (req, res) => {
   }
 
   const skills = integration.getSkillsForAgent(agent.id);
-  const stats = integration.getSystemStats();
 
   res.json({
     agent,
@@ -443,7 +442,7 @@ wss.on('connection', (ws: WebSocket) => {
 });
 
 // Broadcast to all clients
-function broadcast(data: any) {
+function broadcast(data: unknown) {
   const message = JSON.stringify(data);
   clients.forEach(client => {
     if (client.readyState === WebSocket.OPEN) {
@@ -482,7 +481,8 @@ function generatePremiumReasoning(query: string, guardian: string, depth: string
   };
   
   const responses = premiumResponses[g] || premiumResponses['Lyssandria'];
-  return responses[Math.floor(Math.random() * responses.length)];
+  const chosen = responses[Math.floor(Math.random() * responses.length)];
+  return depth === 'deep' ? `[${element}] ${chosen}` : chosen;
 }
 
 function generateInsights(query: string, guardian: string): string[] {
