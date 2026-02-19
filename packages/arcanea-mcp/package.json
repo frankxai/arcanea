@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/mcp-server",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Arcanea MCP Server — 30 tools, 7 resources, 6 prompts. Worldbuilding, Guardian routing, voice enforcement, design tokens, and agent orchestration.",
   "type": "module",
   "main": "dist/index.js",
@@ -13,7 +13,14 @@
     "start": "node dist/cli.js",
     "clean": "rm -rf dist"
   },
-  "keywords": ["mcp", "arcanea", "worldbuilding", "creative", "ai", "fantasy"],
+  "keywords": [
+    "mcp",
+    "arcanea",
+    "worldbuilding",
+    "creative",
+    "ai",
+    "fantasy"
+  ],
   "author": "FrankX",
   "license": "MIT",
   "dependencies": {

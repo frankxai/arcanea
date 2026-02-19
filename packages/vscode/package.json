@@ -2,7 +2,7 @@
   "name": "arcanea-realm",
   "displayName": "Arcanea Realm",
   "description": "Guardian-routed AI intelligence for creators — 10 Guardians, 5 Elements, 10 Gates of creative progression",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "frankxai",
   "license": "MIT",
   "repository": {
@@ -121,7 +121,13 @@
         "arcanea.element": {
           "type": "string",
           "default": "void",
-          "enum": ["fire", "water", "earth", "wind", "void"],
+          "enum": [
+            "fire",
+            "water",
+            "earth",
+            "wind",
+            "void"
+          ],
           "description": "Your primary elemental resonance"
         }
       }

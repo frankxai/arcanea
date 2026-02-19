@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Arcanea Realm — Your AI Creation Realm. Overlay any AI tool with arcane intelligence.",
   "homepage": "https://github.com/frankxai/arcanea/tree/main/packages/cli#readme",
   "type": "module",
@@ -15,7 +15,12 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist/arcanea.cjs", "dist/index.js", "dist/index.d.ts", "README.md"],
+  "files": [
+    "dist/arcanea.cjs",
+    "dist/index.js",
+    "dist/index.d.ts",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc && node build.mjs",
     "build:ts": "tsc",
@@ -25,7 +30,17 @@
     "start": "node dist/arcanea.cjs",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["arcanea", "cli", "ai", "overlay", "claude", "chatgpt", "gemini", "copilot", "opencode"],
+  "keywords": [
+    "arcanea",
+    "cli",
+    "ai",
+    "overlay",
+    "claude",
+    "chatgpt",
+    "gemini",
+    "copilot",
+    "opencode"
+  ],
   "author": "FrankX <frank@frankx.ai>",
   "license": "MIT",
   "repository": {
@@ -49,6 +64,10 @@
     "esbuild": "^0.24.0",
     "typescript": "^5.3.0"
   },
-  "engines": { "node": ">=18.0.0" },
-  "publishConfig": { "access": "public" }
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

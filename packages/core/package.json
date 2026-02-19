@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/os",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Arcanea Intelligence OS — Guardian routing, voice enforcement, design tokens, and session management for AI creation surfaces",
   "type": "module",
   "main": "./dist/index.js",
