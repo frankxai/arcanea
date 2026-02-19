@@ -131,7 +131,7 @@ export function validateQuery<T extends z.ZodType>(
 ): { success: true; data: z.infer<T> } | { success: false; error: NextResponse } {
   try {
     const { searchParams } = new URL(req.url);
-    const params: Record<string, any> = {};
+    const params: Record<string, string | number> = {};
 
     // Convert search params to object
     searchParams.forEach((value, key) => {
@@ -186,16 +186,35 @@ export function sanitizeInput(input: string): string {
 /**
  * Sanitize all string fields in an object
  */
-export function sanitizeObject<T extends Record<string, any>>(obj: T): T {
-  const sanitized = { ...obj };
+type SanitizableValue =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | SanitizableValue[]
+  | { [key: string]: SanitizableValue };
+
+export function sanitizeObject<T extends Record<string, SanitizableValue>>(obj: T): T {
+  const sanitized: Record<string, SanitizableValue> = { ...obj };
 
   for (const key in sanitized) {
     if (typeof sanitized[key] === 'string') {
-      sanitized[key] = sanitizeInput(sanitized[key] as string) as any;
+      sanitized[key] = sanitizeInput(sanitized[key] as string);
     } else if (typeof sanitized[key] === 'object' && sanitized[key] !== null) {
-      sanitized[key] = sanitizeObject(sanitized[key]);
+      if (Array.isArray(sanitized[key])) {
+        sanitized[key] = sanitized[key].map(item =>
+          typeof item === 'string'
+            ? sanitizeInput(item)
+            : typeof item === 'object' && item !== null
+              ? sanitizeObject(item as Record<string, SanitizableValue>)
+              : item
+        );
+      } else {
+        sanitized[key] = sanitizeObject(sanitized[key] as Record<string, SanitizableValue>);
+      }
     }
   }
 
-  return sanitized;
+  return sanitized as T;
 }

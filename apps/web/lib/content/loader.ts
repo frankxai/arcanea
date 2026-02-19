@@ -11,9 +11,7 @@
 
 import { readdir, readFile } from 'fs/promises';
 import { join } from 'path';
-
-// gray-matter is CommonJS, use dynamic import pattern
-const grayMatter = require('gray-matter') as typeof import('gray-matter');
+import matter from 'gray-matter';
 import {
   Collection,
   Text,
@@ -451,7 +449,7 @@ export async function getTextsInCollection(collectionSlug: string): Promise<Text
  */
 async function loadText(filePath: string, collectionSlug: string, filename: string): Promise<Text> {
   const fileContent = await readFile(filePath, 'utf-8');
-  const { data: frontmatter, content } = grayMatter(fileContent);
+  const { data: frontmatter, content } = matter(fileContent);
 
   const collection = COLLECTIONS.find(c => c.slug === collectionSlug);
   const headings = extractHeadings(content);

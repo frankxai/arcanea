@@ -18,7 +18,7 @@ function getDefaultSupabase(): SupabaseClient {
 
 export async function getCreation(client: SupabaseClient, id: string, includePrivate: boolean = false): Promise<Creation | null> {
   const supabase = client || getDefaultSupabase()
-  let query = supabase
+  const query = supabase
     .from('creations')
     .select('*')
     .eq('id', id)
