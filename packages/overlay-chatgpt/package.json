@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/overlay-chatgpt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ChatGPT / OpenAI overlay for the Arcanea Intelligence OS",
   "type": "module",
   "main": "./dist/index.js",
@@ -11,14 +11,23 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["arcanea", "chatgpt", "openai", "overlay", "ai"],
+  "keywords": [
+    "arcanea",
+    "chatgpt",
+    "openai",
+    "overlay",
+    "ai"
+  ],
   "author": "FrankX <frank@frankx.ai>",
   "license": "MIT",
   "repository": {
@@ -33,6 +42,10 @@
     "@types/node": "^20.10.0",
     "typescript": "^5.3.0"
   },
-  "engines": { "node": ">=18.0.0" },
-  "publishConfig": { "access": "public" }
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
