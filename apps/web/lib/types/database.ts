@@ -31,7 +31,7 @@ export interface Creation {
   id: string;
   title: string;
   description?: string;
-  type: 'image' | 'music' | 'video' | 'story' | 'other';
+  type: 'image' | 'music' | 'video' | 'text' | 'multimodal' | 'story' | 'other';
   mediaUrl?: string;
   thumbnailUrl?: string;
   userId: string;

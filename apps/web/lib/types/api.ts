@@ -85,7 +85,7 @@ export interface VideoGenerationRequest {
 export interface CreateCreationRequest {
   title: string;
   description?: string;
-  type: 'image' | 'music' | 'video' | 'story' | 'other';
+  type: 'image' | 'music' | 'video' | 'text' | 'multimodal' | 'story' | 'other';
   mediaUrl?: string;
   thumbnailUrl?: string;
   luminorId?: string;

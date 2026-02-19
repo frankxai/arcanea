@@ -31,7 +31,7 @@ interface ContextSidebarProps {
   relationshipStatus: string;
   keyMoments: KeyMoment[];
   recentTopics: string[];
-  creatorPreferences: Record<string, any>;
+  creatorPreferences: Record<string, unknown>;
   currentProject?: {
     id: string;
     title: string;

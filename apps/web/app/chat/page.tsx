@@ -18,6 +18,10 @@ interface Message {
   content: string;
 }
 
+interface ImageGenerationApiResponse {
+  images?: Array<{ url?: string }>;
+}
+
 /**
  * Premium Chat - Simple, powerful AI chat without character selection
  *
@@ -123,9 +127,12 @@ export default function PremiumChatPage() {
 
       if (!response.ok) throw new Error('Failed to generate image');
 
-      const data = await response.json();
+      const data: ImageGenerationApiResponse = await response.json();
       if (data.images && data.images.length > 0) {
-        setGeneratedImages(prev => [...prev, ...data.images.map((img: any) => img.url)]);
+        const urls = data.images
+          .map((img) => img.url)
+          .filter((url): url is string => typeof url === 'string' && url.length > 0);
+        setGeneratedImages(prev => [...prev, ...urls]);
       }
       setImagePrompt('');
       setShowImageInput(false);

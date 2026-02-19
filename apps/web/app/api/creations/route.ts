@@ -22,6 +22,30 @@ import {
 } from '@/lib/api-utils';
 import { VALIDATION_RULES, type CreationFilters } from '@/lib/database/types/api-responses';
 
+const CREATION_TYPES = ['image', 'music', 'video', 'text', 'multimodal'] as const;
+const CREATION_STATUSES = ['draft', 'processing', 'published', 'archived'] as const;
+const CREATION_SORT_FIELDS: NonNullable<CreationFilters['sortBy']>[] = [
+  'created_at',
+  'updated_at',
+  'like_count',
+  'view_count',
+];
+const SORT_ORDERS: NonNullable<CreationFilters['sortOrder']>[] = ['asc', 'desc'];
+const POSTABLE_STATUSES = ['draft', 'published'] as const;
+const LICENSE_TYPES = [
+  'cc_by',
+  'cc_by_sa',
+  'cc_by_nc',
+  'cc_by_nc_sa',
+  'cc_by_nd',
+  'all_rights_reserved',
+  'public_domain',
+] as const;
+
+function isOneOf<T extends readonly string[]>(value: string, values: T): value is T[number] {
+  return (values as readonly string[]).includes(value);
+}
+
 /**
  * GET /api/creations
  *
@@ -55,8 +79,8 @@ export async function GET(request: NextRequest) {
 
     // Type filter
     const type = searchParams.get('type');
-    if (type && ['image', 'music', 'video', 'text', 'multimodal'].includes(type)) {
-      filters.type = type as any;
+    if (type && isOneOf(type, CREATION_TYPES)) {
+      filters.type = type;
     }
 
     // Luminor ID filter
@@ -67,8 +91,8 @@ export async function GET(request: NextRequest) {
 
     // Status filter
     const status = searchParams.get('status');
-    if (status && ['draft', 'processing', 'published', 'archived'].includes(status)) {
-      filters.status = status as any;
+    if (status && isOneOf(status, CREATION_STATUSES)) {
+      filters.status = status;
     }
 
     // Visibility filter
@@ -96,13 +120,13 @@ export async function GET(request: NextRequest) {
 
     // Sort options
     const sortBy = searchParams.get('sortBy');
-    if (sortBy && ['created_at', 'updated_at', 'like_count', 'view_count'].includes(sortBy)) {
-      filters.sortBy = sortBy as any;
+    if (sortBy && isOneOf(sortBy, CREATION_SORT_FIELDS)) {
+      filters.sortBy = sortBy;
     }
 
     const sortOrder = searchParams.get('sortOrder');
-    if (sortOrder && ['asc', 'desc'].includes(sortOrder)) {
-      filters.sortOrder = sortOrder as any;
+    if (sortOrder && isOneOf(sortOrder, SORT_ORDERS)) {
+      filters.sortOrder = sortOrder;
     }
 
     // Fetch creations
@@ -143,27 +167,17 @@ export async function POST(request: NextRequest) {
       aiTool: z.string().max(50).optional(),
       prompt: z.string().max(5000).optional(),
       model: z.string().max(100).optional(),
-      generationParams: z.record(z.any()).optional(),
+      generationParams: z.record(z.string(), z.unknown()).optional(),
       seed: z.number().int().optional(),
-      metadata: z.record(z.any()).optional(),
-      status: z.enum(['draft', 'published']).optional(),
+      metadata: z.record(z.string(), z.unknown()).optional(),
+      status: z.enum(POSTABLE_STATUSES).optional(),
       isPublic: z.boolean().optional(),
       tags: z
         .array(z.string().max(VALIDATION_RULES.tags.maxLength))
         .max(VALIDATION_RULES.tags.maxCount)
         .optional(),
       categories: z.array(z.string().max(50)).max(10).optional(),
-      license: z
-        .enum([
-          'cc_by',
-          'cc_by_sa',
-          'cc_by_nc',
-          'cc_by_nc_sa',
-          'cc_by_nd',
-          'all_rights_reserved',
-          'public_domain',
-        ])
-        .optional(),
+      license: z.enum(LICENSE_TYPES).optional(),
       allowRemix: z.boolean().optional(),
       allowCommercial: z.boolean().optional(),
     });
@@ -179,17 +193,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { userId, isPublic, ...restData } = validation.data;
+    const { userId, isPublic, fileUrl, ...restData } = validation.data;
 
     // Convert isPublic to visibility and ensure required fields
-    const creationData = {
+    const creationData: Parameters<typeof createCreation>[2] = {
       ...restData,
+      mediaUrl: fileUrl,
       visibility: (isPublic !== false ? 'public' : 'private') as 'public' | 'private' | 'unlisted',
+      status: restData.status ?? 'draft',
+      tags: restData.tags ?? [],
       userId,
     };
 
-    // Create creation - use type assertion for flexibility
-    const creation = await createCreation(supabaseServer, userId, creationData as any);
+    const creation = await createCreation(supabaseServer, userId, creationData);
 
     return successResponse({ creation }, 201);
   } catch (error) {
