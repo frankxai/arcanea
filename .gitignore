@@ -149,6 +149,7 @@ junit.xml
 .arcanea/test-data/
 
 # Binary/generated assets
+*.vsix
 *.pdf
 apps/web/demonstration.html
 apps/web/globals.css
