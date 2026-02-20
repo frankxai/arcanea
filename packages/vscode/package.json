@@ -10,7 +10,6 @@
     "url": "https://github.com/frankxai/arcanea"
   },
   "homepage": "https://arcanea.ai",
-  "icon": "media/icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },

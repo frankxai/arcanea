@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # CLI Package Tests (71 tests)
+  # Full Package Tests (109 tests)
   cli-tests:
     name: CLI Tests
     runs-on: ubuntu-latest
@@ -44,10 +44,11 @@ jobs:
           pnpm --filter @arcanea/os run build
           pnpm --filter @arcanea/auth run build
           pnpm --filter "@arcanea/overlay-*" run build
+          pnpm --filter @arcanea/mcp-server run build
           pnpm --filter @arcanea/cli run build
 
-      - name: Run CLI tests
-        run: node --test packages/cli/tests/commands.test.mjs
+      - name: Run all tests
+        run: node --test packages/core/tests/*.test.mjs packages/arcanea-mcp/tests/*.test.mjs packages/overlay-claude/tests/*.test.mjs packages/cli/tests/*.test.mjs
         env:
           CI: true
 

@@ -7,6 +7,8 @@ on:
       - 'packages/core/**'
       - 'packages/cli/**'
       - 'packages/arcanea-mcp/**'
+      - 'packages/auth/**'
+      - 'packages/overlay-*/**'
       - '.changeset/**'
   workflow_dispatch:
 
@@ -46,7 +48,7 @@ jobs:
 
       - name: Run tests
         run: |
-          node --test packages/cli/tests/commands.test.mjs
+          node --test packages/core/tests/*.test.mjs packages/arcanea-mcp/tests/*.test.mjs packages/overlay-claude/tests/*.test.mjs packages/cli/tests/*.test.mjs
 
       - name: Create Release PR or Publish
         id: changesets
