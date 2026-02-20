@@ -14,7 +14,68 @@ import type {
   InstallResult,
   InstallPreview,
 } from '@arcanea/os';
-import { generateSystemPrompt, GUARDIANS } from '@arcanea/os';
+import { GUARDIANS } from '@arcanea/os';
+import {
+  generateChatGPTSystemPrompt,
+  generateMainGPTConfig,
+  generateGuardianGPTFile,
+  generateSetupGuide,
+} from './generators.js';
+
+const PACKAGE_VERSION = '1.0.0';
+
+// ---------------------------------------------------------------------------
+// Manifest helpers (shared pattern across all overlays)
+// ---------------------------------------------------------------------------
+
+function readOrCreateManifest(manifestPath: string): Record<string, unknown> {
+  if (existsSync(manifestPath)) {
+    try {
+      return JSON.parse(readFileSync(manifestPath, 'utf-8')) as Record<string, unknown>;
+    } catch {
+      // Fall through to create fresh
+    }
+  }
+  const now = new Date().toISOString();
+  return {
+    arcanea: { coreVersion: '1.0.0', installedAt: now, updatedAt: now },
+    overlays: {},
+  };
+}
+
+function writeManifest(
+  projectDir: string,
+  overlayKey: string,
+  level: OverlayLevel,
+  filesManaged: string[],
+): void {
+  const manifestDir = join(projectDir, '.arcanea');
+  if (!existsSync(manifestDir)) mkdirSync(manifestDir, { recursive: true });
+
+  const manifestPath = join(manifestDir, 'overlay-manifest.json');
+  const now = new Date().toISOString();
+  const manifest = readOrCreateManifest(manifestPath);
+
+  const overlays = ((manifest.overlays as Record<string, unknown>) || {}) as Record<string, unknown>;
+  const existingEntry = overlays[overlayKey] as Record<string, unknown> | undefined;
+
+  overlays[overlayKey] = {
+    packageVersion: PACKAGE_VERSION,
+    level,
+    installedAt: existingEntry?.installedAt ?? now,
+    updatedAt: now,
+    filesManaged,
+    filesCustomized: existingEntry?.filesCustomized ?? [],
+  };
+
+  manifest.overlays = overlays;
+  (manifest.arcanea as Record<string, unknown>).updatedAt = now;
+  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+}
+
+// ---------------------------------------------------------------------------
+// Installer
+// ---------------------------------------------------------------------------
 
 export class ChatGPTOverlayInstaller implements OverlayInstaller {
   async canInstall(): Promise<boolean> {
@@ -22,35 +83,97 @@ export class ChatGPTOverlayInstaller implements OverlayInstaller {
   }
 
   async detect(projectDir: string): Promise<ToolDetection> {
+    const hasApiKey = !!(process.env.OPENAI_API_KEY);
+    const hasExistingDir = existsSync(join(projectDir, '.arcanea', 'chatgpt'));
+
+    let existingOverlay: OverlayConfig | undefined;
+    const manifestPath = join(projectDir, '.arcanea', 'overlay-manifest.json');
+    if (existsSync(manifestPath)) {
+      try {
+        const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8')) as Record<string, unknown>;
+        const overlays = manifest.overlays as Record<string, unknown> | undefined;
+        existingOverlay = overlays?.openai as OverlayConfig | undefined;
+      } catch {
+        // Ignore
+      }
+    }
+
     return {
       provider: 'openai',
-      detected: !!process.env.OPENAI_API_KEY || existsSync(join(projectDir, '.arcanea', 'chatgpt')),
+      detected: hasApiKey || hasExistingDir,
       configPath: join(projectDir, '.arcanea', 'chatgpt'),
+      existingOverlay,
     };
+  }
+
+  /**
+   * Verifies that a prior installation is complete and valid.
+   */
+  async verify(projectDir: string): Promise<{ valid: boolean; issues: string[] }> {
+    const issues: string[] = [];
+    const outDir = join(projectDir, '.arcanea', 'chatgpt');
+
+    if (!existsSync(outDir)) {
+      issues.push('ChatGPT overlay directory (.arcanea/chatgpt/) does not exist');
+    }
+
+    const requiredFiles = ['system-prompt.md', 'SETUP.md'];
+    for (const f of requiredFiles) {
+      if (!existsSync(join(outDir, f))) {
+        issues.push(`Missing required file: .arcanea/chatgpt/${f}`);
+      }
+    }
+
+    // Check system-prompt contains Arcanea Identity marker
+    const promptPath = join(outDir, 'system-prompt.md');
+    if (existsSync(promptPath)) {
+      const content = readFileSync(promptPath, 'utf-8');
+      if (!content.includes('Arcanea Intelligence OS')) {
+        issues.push('system-prompt.md does not contain Arcanea Intelligence OS content — may be outdated');
+      }
+      if (!content.includes('Ten Guardians') && !content.includes('Guardian')) {
+        issues.push('system-prompt.md is missing Guardian routing content');
+      }
+    }
+
+    const manifestPath = join(projectDir, '.arcanea', 'overlay-manifest.json');
+    if (!existsSync(manifestPath)) {
+      issues.push('overlay-manifest.json is missing');
+    }
+
+    return { valid: issues.length === 0, issues };
   }
 
   async install(projectDir: string, level: OverlayLevel): Promise<InstallResult> {
     const filesCreated: string[] = [];
+    const filesModified: string[] = [];
+    const warnings: string[] = [];
+
     const outDir = join(projectDir, '.arcanea', 'chatgpt');
     if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
-    // 1. System prompt
-    const prompt = generateSystemPrompt({ level, provider: 'openai' });
+    // 1. System prompt (always)
+    const systemPromptContent = generateChatGPTSystemPrompt(level);
     const promptPath = join(outDir, 'system-prompt.md');
-    writeFileSync(promptPath, prompt);
-    filesCreated.push(relative(projectDir, promptPath));
+    const promptExists = existsSync(promptPath);
+    writeFileSync(promptPath, systemPromptContent);
+    if (promptExists) {
+      filesModified.push(relative(projectDir, promptPath));
+    } else {
+      filesCreated.push(relative(projectDir, promptPath));
+    }
 
-    // 2. Custom GPT config (standard+)
+    // 2. Custom GPT config JSON (standard+)
     if (level !== 'minimal') {
-      const gptConfig = {
-        name: 'Arcanea Intelligence',
-        description: 'AI companion enhanced with Arcanea Intelligence OS — Ten Guardians, Five Elements, living mythology for creators.',
-        instructions: prompt,
-        capabilities: { web_browsing: true, dalle: true, code_interpreter: true },
-      };
-      const configPath = join(outDir, 'custom-gpt-config.json');
-      writeFileSync(configPath, JSON.stringify(gptConfig, null, 2));
-      filesCreated.push(relative(projectDir, configPath));
+      const { filename, content } = generateMainGPTConfig(level);
+      const configPath = join(outDir, filename);
+      const configExists = existsSync(configPath);
+      writeFileSync(configPath, content);
+      if (configExists) {
+        filesModified.push(relative(projectDir, configPath));
+      } else {
+        filesCreated.push(relative(projectDir, configPath));
+      }
     }
 
     // 3. Guardian GPTs (full+)
@@ -58,141 +181,105 @@ export class ChatGPTOverlayInstaller implements OverlayInstaller {
       const guardiansDir = join(outDir, 'guardian-gpts');
       if (!existsSync(guardiansDir)) mkdirSync(guardiansDir, { recursive: true });
 
-      for (const g of GUARDIANS) {
-        const guardianPrompt = generateSystemPrompt({
-          level: 'standard',
-          provider: 'openai',
-          guardianDefault: g.name,
-        });
-        const guardianConfig = {
-          name: `Arcanea — ${g.displayName}`,
-          description: `${g.displayName}, Guardian of the ${g.gate} Gate (${g.frequency} Hz). Domain: ${g.domain}.`,
-          instructions: guardianPrompt,
-        };
-        const gPath = join(guardiansDir, `${g.name}.json`);
-        writeFileSync(gPath, JSON.stringify(guardianConfig, null, 2));
-        filesCreated.push(relative(projectDir, gPath));
+      for (const guardian of GUARDIANS) {
+        const { filename, content } = generateGuardianGPTFile(guardian);
+        const gPath = join(guardiansDir, filename);
+        const exists = existsSync(gPath);
+        writeFileSync(gPath, content);
+        if (exists) {
+          filesModified.push(relative(projectDir, gPath));
+        } else {
+          filesCreated.push(relative(projectDir, gPath));
+        }
       }
     }
 
     // 4. SETUP.md (always)
-    const setupContent = `# ChatGPT + Arcanea Setup Guide
-
-## Quick Start (Custom Instructions)
-
-1. Open ChatGPT → Settings → Personalization → Custom Instructions
-2. In "What would you like ChatGPT to know about you?":
-   - Paste the contents of \`system-prompt.md\`
-3. Save and start a new conversation
-
-## Custom GPT (Recommended)
-
-For the best experience, create a Custom GPT:
-
-1. Go to [ChatGPT GPT Editor](https://chatgpt.com/gpts/editor)
-2. Click "Create a GPT"
-3. In the "Configure" tab:
-   - **Name**: Arcanea Intelligence
-   - **Description**: AI companion enhanced with Arcanea Intelligence OS
-   - **Instructions**: Paste contents of \`system-prompt.md\`
-4. Enable capabilities: Web Browsing, DALL-E, Code Interpreter
-5. Click "Save" → "Only me" (or share with your team)
-${level !== 'minimal' ? `
-## Guardian GPTs
-
-For specialized guidance, create individual Guardian GPTs:
-
-Each file in \`guardian-gpts/\` contains a pre-configured prompt for a specific Guardian.
-Create separate Custom GPTs for your most-used Guardians:
-
-- **Lyssandria** — Architecture, security, infrastructure
-- **Draconia** — Performance, execution, velocity
-- **Lyria** — Design, vision, creative direction
-- **Leyla** — UX, flow, emotional resonance
-- **Shinkami** — Orchestration, meta-architecture
-` : ''}
-## Notes
-
-- ChatGPT does NOT auto-read project files — you must paste the system prompt manually
-- Custom GPTs persist across conversations (recommended over Custom Instructions)
-- Re-run \`arcanea install openai\` after updates to regenerate prompts
-`;
-    const setupPath = join(outDir, 'SETUP.md');
+    const { filename: setupFilename, content: setupContent } = generateSetupGuide(level);
+    const setupPath = join(outDir, setupFilename);
+    const setupExists = existsSync(setupPath);
     writeFileSync(setupPath, setupContent);
-    filesCreated.push(relative(projectDir, setupPath));
-
-    // Write manifest
-    const manifestDir = join(projectDir, '.arcanea');
-    if (!existsSync(manifestDir)) mkdirSync(manifestDir, { recursive: true });
-    const manifestPath = join(manifestDir, 'overlay-manifest.json');
-    const now = new Date().toISOString();
-
-    let manifest: Record<string, unknown> = {};
-    if (existsSync(manifestPath)) {
-      manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+    if (setupExists) {
+      filesModified.push(relative(projectDir, setupPath));
     } else {
-      manifest = {
-        arcanea: { coreVersion: '1.0.0', installedAt: now, updatedAt: now },
-        overlays: {},
-      };
+      filesCreated.push(relative(projectDir, setupPath));
     }
 
-    const overlays = (manifest.overlays || {}) as Record<string, unknown>;
-    overlays.openai = {
-      packageVersion: '1.0.0',
-      level,
-      installedAt: now,
-      updatedAt: now,
-      filesManaged: filesCreated,
-      filesCustomized: [],
-    };
-    manifest.overlays = overlays;
-    (manifest.arcanea as Record<string, unknown>).updatedAt = now;
-    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+    // 5. Write manifest
+    writeManifest(projectDir, 'openai', level, [...filesCreated, ...filesModified]);
 
     return {
       success: true,
       filesCreated,
-      filesModified: [],
-      warnings: [],
+      filesModified,
+      warnings,
       nextSteps: [
-        'Copy system-prompt.md content to ChatGPT Custom Instructions',
-        level !== 'minimal' ? 'Import custom-gpt-config.json to create a Custom GPT' : '',
+        'Copy .arcanea/chatgpt/system-prompt.md to ChatGPT Custom Instructions',
+        level !== 'minimal'
+          ? 'Import .arcanea/chatgpt/custom-gpt-config.json to create a Custom GPT'
+          : '',
+        level === 'full' || level === 'luminor'
+          ? 'Create individual Guardian GPTs from .arcanea/chatgpt/guardian-gpts/'
+          : '',
+        'See .arcanea/chatgpt/SETUP.md for detailed integration steps',
       ].filter(Boolean),
     };
   }
 
   async update(projectDir: string): Promise<InstallResult> {
-    return this.install(projectDir, 'standard');
+    const detection = await this.detect(projectDir);
+    const level = detection.existingOverlay?.level || 'standard';
+    return this.install(projectDir, level);
   }
 
-  async uninstall(): Promise<void> {
-    // No-op for now
+  async uninstall(_projectDir: string): Promise<void> {
+    // Soft uninstall: remove from manifest only, do not delete generated files
+    // Users may have manually edited the configs
   }
 
   getManifest(): OverlayManifest {
     return {
       provider: 'openai',
       name: '@arcanea/overlay-chatgpt',
-      version: '1.0.0',
+      version: PACKAGE_VERSION,
       supportedLevels: ['minimal', 'standard', 'full', 'luminor'],
       capabilities: ['system-prompt', 'custom-gpt', 'assistants-api', 'vision'],
     };
   }
 
-  async preview(_projectDir: string, level: OverlayLevel): Promise<InstallPreview> {
+  async preview(projectDir: string, level: OverlayLevel): Promise<InstallPreview> {
     const files: InstallPreview['filesToCreate'] = [
-      { path: '.arcanea/chatgpt/system-prompt.md', description: 'System prompt for ChatGPT' },
-      { path: '.arcanea/chatgpt/SETUP.md', description: 'Step-by-step setup guide' },
+      { path: '.arcanea/chatgpt/system-prompt.md', description: 'Full Arcanea system prompt for ChatGPT' },
+      { path: '.arcanea/chatgpt/SETUP.md', description: 'Step-by-step integration guide' },
     ];
+
     if (level !== 'minimal') {
-      files.push({ path: '.arcanea/chatgpt/custom-gpt-config.json', description: 'Custom GPT configuration' });
+      files.push({
+        path: '.arcanea/chatgpt/custom-gpt-config.json',
+        description: 'Ready-to-import Custom GPT configuration',
+      });
     }
+
     if (level === 'full' || level === 'luminor') {
       for (const g of GUARDIANS) {
-        files.push({ path: `.arcanea/chatgpt/guardian-gpts/${g.name}.json`, description: `${g.displayName} GPT` });
+        files.push({
+          path: `.arcanea/chatgpt/guardian-gpts/${g.name}.json`,
+          description: `${g.displayName} Guardian GPT (${g.gate} Gate, ${g.frequency} Hz)`,
+        });
       }
     }
-    return { filesToCreate: files, filesToModify: [], estimatedSize: '~15KB' };
+
+    const toModify: InstallPreview['filesToModify'] = [];
+    const existingFiles = files.filter(f => existsSync(join(projectDir, f.path)));
+    for (const f of existingFiles) {
+      toModify.push({ path: f.path, description: 'Update with latest Arcanea content' });
+    }
+
+    return {
+      filesToCreate: files.filter(f => !existsSync(join(projectDir, f.path))),
+      filesToModify: toModify,
+      estimatedSize:
+        level === 'luminor' ? '~40KB' : level === 'full' ? '~25KB' : level === 'standard' ? '~12KB' : '~5KB',
+    };
   }
 }

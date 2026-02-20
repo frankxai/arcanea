@@ -26,5 +26,26 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.5.4"
+  },
+  "keywords": [
+    "arcanea",
+    "extension",
+    "guardian",
+    "ai",
+    "browser-extension",
+    "chrome-extension"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/extension-core"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

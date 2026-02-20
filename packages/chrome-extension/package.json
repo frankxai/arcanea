@@ -9,6 +9,9 @@
     "icons:generate": "node generate-icons.mjs",
     "clean": "rm -rf dist"
   },
+  "dependencies": {
+    "@arcanea/extension-core": "workspace:*"
+  },
   "devDependencies": {
     "@types/chrome": "^0.1.36",
     "esbuild": "^0.24.0",

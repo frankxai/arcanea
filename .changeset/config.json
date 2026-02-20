@@ -4,7 +4,7 @@
   "commit": false,
   "fixed": [],
   "linked": [
-    ["@arcanea/os", "@arcanea/cli"]
+    ["@arcanea/os", "@arcanea/cli", "@arcanea/mcp-server"]
   ],
   "access": "public",
   "baseBranch": "main",

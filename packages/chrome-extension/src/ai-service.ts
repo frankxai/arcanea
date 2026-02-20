@@ -1,7 +1,8 @@
 import type { Guardian } from './guardians.js';
 import type { Message } from './utils/storage.js';
+import type { Provider } from '@arcanea/extension-core';
 
-export type Provider = 'anthropic' | 'google' | 'openai';
+export type { Provider };
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';

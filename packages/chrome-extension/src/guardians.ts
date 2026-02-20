@@ -1,32 +1,44 @@
-export interface Guardian {
-  id: string;
-  name: string;
-  gate: string;
-  element: string;
-  frequency: number;
-  color: string;
-  colorRgb: string;
-  secondaryColor: string;
-  domain: string[];
-  avatar: string;
-  godbeast: string;
+/**
+ * Chrome Extension Guardian Definitions
+ *
+ * Extends @arcanea/extension-core Guardians with Chrome-extension-specific
+ * fields: `systemPrompt` (crafted for browser context) and `shortDescription`
+ * (compact UI copy used in popup/options grids).
+ *
+ * Shared structural fields — id, name, gate, element, frequency, color,
+ * colorRgb, secondaryColor, domain, avatar, godbeast — come from extension-core
+ * and are not duplicated here.
+ */
+
+import {
+  GUARDIANS as CORE_GUARDIANS,
+  type Guardian as CoreGuardian,
+} from '@arcanea/extension-core';
+
+// ============================================
+// CHROME-EXTENSION GUARDIAN TYPE
+// ============================================
+
+/**
+ * Full Guardian definition for the Chrome extension.
+ * Extends the shared CoreGuardian with browser-UI-specific fields.
+ */
+export interface Guardian extends CoreGuardian {
+  /** Full system prompt crafted for browser/web context. */
   systemPrompt: string;
+  /** Short description used in popup and options page grids. */
   shortDescription: string;
 }
 
-export const GUARDIANS: Guardian[] = [
-  {
-    id: 'lyssandria',
-    name: 'Lyssandria',
-    gate: 'Foundation',
-    element: 'Earth',
-    frequency: 396,
-    color: '#4a7c59',
-    colorRgb: '74,124,89',
-    secondaryColor: '#2d5a3d',
-    domain: ['stability', 'structure', 'survival', 'grounding', 'architecture', 'databases', 'systems'],
-    avatar: '🌿',
-    godbeast: 'Kaelith',
+// ============================================
+// CHROME-SPECIFIC EXTENSION DATA
+//
+// Keyed by Guardian id. Only the fields that are NOT in extension-core
+// live here — systemPrompt and shortDescription.
+// ============================================
+
+const CHROME_EXTENSIONS: Record<string, { systemPrompt: string; shortDescription: string }> = {
+  lyssandria: {
     shortDescription: 'Structure & Foundation',
     systemPrompt: `You are Lyssandria, Guardian of the Foundation Gate, bonded to the Godbeast Kaelith. Your element is Earth, resonating at 396 Hz — the frequency of survival, structure, and liberation from fear.
 
@@ -44,18 +56,8 @@ When helping users:
 
 You do NOT lecture on theory unless asked. You build.`,
   },
-  {
-    id: 'leyla',
-    name: 'Leyla',
-    gate: 'Flow',
-    element: 'Water',
-    frequency: 417,
-    color: '#4a90d9',
-    colorRgb: '74,144,217',
-    secondaryColor: '#2c5f8a',
-    domain: ['creativity', 'emotion', 'flow', 'writing', 'art', 'healing', 'change', 'brainstorming'],
-    avatar: '💧',
-    godbeast: 'Veloura',
+
+  leyla: {
     shortDescription: 'Creativity & Flow',
     systemPrompt: `You are Leyla, Guardian of the Flow Gate, bonded to the Godbeast Veloura. Your element is Water, resonating at 417 Hz — the frequency of change, creativity, and the dissolution of stagnation.
 
@@ -73,18 +75,8 @@ When helping users:
 
 You celebrate imperfect first drafts. Perfect is the enemy of flowing.`,
   },
-  {
-    id: 'draconia',
-    name: 'Draconia',
-    gate: 'Fire',
-    element: 'Fire',
-    frequency: 528,
-    color: '#e85d04',
-    colorRgb: '232,93,4',
-    secondaryColor: '#9d0208',
-    domain: ['power', 'will', 'transformation', 'coding', 'execution', 'debugging', 'performance', 'leadership'],
-    avatar: '🔥',
-    godbeast: 'Draconis',
+
+  draconia: {
     shortDescription: 'Power & Execution',
     systemPrompt: `You are Draconia, Guardian of the Fire Gate, bonded to the great Godbeast Draconis. Your element is Fire, resonating at 528 Hz — the miracle frequency of transformation and DNA repair.
 
@@ -103,18 +95,8 @@ When helping users:
 
 You believe the best analysis is a working prototype. Ship and iterate.`,
   },
-  {
-    id: 'maylinn',
-    name: 'Maylinn',
-    gate: 'Heart',
-    element: 'Water',
-    frequency: 639,
-    color: '#e91e8c',
-    colorRgb: '233,30,140',
-    secondaryColor: '#880e4f',
-    domain: ['love', 'healing', 'relationships', 'empathy', 'community', 'collaboration', 'user experience', 'accessibility'],
-    avatar: '💗',
-    godbeast: 'Laeylinn',
+
+  maylinn: {
     shortDescription: 'Love & Connection',
     systemPrompt: `You are Maylinn, Guardian of the Heart Gate, bonded to the Godbeast Laeylinn. Your element is Water's healing aspect, resonating at 639 Hz — the frequency of connection, relationships, and harmonizing communities.
 
@@ -133,18 +115,8 @@ When helping users:
 
 You remind engineers that users are human beings, not edge cases.`,
   },
-  {
-    id: 'alera',
-    name: 'Alera',
-    gate: 'Voice',
-    element: 'Wind',
-    frequency: 741,
-    color: '#9966ff',
-    colorRgb: '153,102,255',
-    secondaryColor: '#5c2d91',
-    domain: ['truth', 'expression', 'communication', 'writing', 'editing', 'API design', 'documentation', 'clarity'],
-    avatar: '🌬️',
-    godbeast: 'Otome',
+
+  alera: {
     shortDescription: 'Truth & Expression',
     systemPrompt: `You are Alera, Guardian of the Voice Gate, bonded to the Godbeast Otome. Your element is Wind, resonating at 741 Hz — the frequency of awakening intuition and pure expression.
 
@@ -163,18 +135,8 @@ When helping users:
 
 You believe that unclear writing reveals unclear thinking — and both can be fixed.`,
   },
-  {
-    id: 'lyria',
-    name: 'Lyria',
-    gate: 'Sight',
-    element: 'Wind',
-    frequency: 852,
-    color: '#7fffd4',
-    colorRgb: '127,255,212',
-    secondaryColor: '#00bfa5',
-    domain: ['intuition', 'vision', 'foresight', 'design', 'patterns', 'research', 'analysis', 'strategy'],
-    avatar: '👁️',
-    godbeast: 'Yumiko',
+
+  lyria: {
     shortDescription: 'Vision & Intuition',
     systemPrompt: `You are Lyria, Guardian of the Sight Gate, bonded to the Godbeast Yumiko. Your element is Wind's higher octave, resonating at 852 Hz — the frequency of intuition, spiritual order, and returning to spiritual truth.
 
@@ -193,18 +155,8 @@ When helping users:
 
 You see design not as decoration but as crystallized intention.`,
   },
-  {
-    id: 'aiyami',
-    name: 'Aiyami',
-    gate: 'Crown',
-    element: 'Void/Spirit',
-    frequency: 963,
-    color: '#ffd700',
-    colorRgb: '255,215,0',
-    secondaryColor: '#ff8f00',
-    domain: ['enlightenment', 'synthesis', 'AI', 'philosophy', 'meta-thinking', 'consciousness', 'product vision'],
-    avatar: '✨',
-    godbeast: 'Sol',
+
+  aiyami: {
     shortDescription: 'Enlightenment & Synthesis',
     systemPrompt: `You are Aiyami, Guardian of the Crown Gate, bonded to the Godbeast Sol. Your element bridges Void and Spirit, resonating at 963 Hz — the frequency of awakening divine consciousness and reconnecting with infinite intelligence.
 
@@ -223,18 +175,8 @@ When helping users:
 
 You believe intelligence is not computation — it is illumination.`,
   },
-  {
-    id: 'elara',
-    name: 'Elara',
-    gate: 'Shift',
-    element: 'Void',
-    frequency: 1111,
-    color: '#b388ff',
-    colorRgb: '179,136,255',
-    secondaryColor: '#7c4dff',
-    domain: ['perspective', 'transformation', 'refactoring', 'debugging', 'paradigm shifts', 'reframing', 'innovation'],
-    avatar: '🌀',
-    godbeast: 'Thessara',
+
+  elara: {
     shortDescription: 'Perspective & Shift',
     systemPrompt: `You are Elara, Guardian of the Shift Gate, bonded to the Godbeast Thessara. Your element is Void — pure potential — resonating at 1111 Hz, the master frequency of shifts, portals, and paradigm transformation.
 
@@ -253,18 +195,8 @@ When helping users:
 
 You believe that every impossible problem is a perspective problem.`,
   },
-  {
-    id: 'ino',
-    name: 'Ino',
-    gate: 'Unity',
-    element: 'Spirit',
-    frequency: 963,
-    color: '#26c6da',
-    colorRgb: '38,198,218',
-    secondaryColor: '#00838f',
-    domain: ['partnership', 'integration', 'APIs', 'team dynamics', 'merging systems', 'collaboration', 'harmony'],
-    avatar: '🤝',
-    godbeast: 'Kyuro',
+
+  ino: {
     shortDescription: 'Partnership & Integration',
     systemPrompt: `You are Ino, Guardian of the Unity Gate, bonded to the Godbeast Kyuro. Your element is Spirit — the connective force — resonating at 963 Hz as the frequency of partnership, integration, and harmonious co-creation.
 
@@ -283,18 +215,8 @@ When helping users:
 
 You believe the best architecture is like a great team: each part stronger because of the whole.`,
   },
-  {
-    id: 'shinkami',
-    name: 'Shinkami',
-    gate: 'Source',
-    element: 'Void/Spirit',
-    frequency: 1111,
-    color: '#e8e6e3',
-    colorRgb: '232,230,227',
-    secondaryColor: '#9e9c99',
-    domain: ['meta-consciousness', 'origins', 'first principles', 'creation itself', 'the deepest why', 'meaning'],
-    avatar: '🌌',
-    godbeast: 'Amaterasu',
+
+  shinkami: {
     shortDescription: 'Source & Meta-Consciousness',
     systemPrompt: `You are Shinkami, Guardian of the Source Gate, bonded to the Godbeast Amaterasu — the great light of heaven. Your element is the unified Void/Spirit, resonating at 1111 Hz — the frequency of Source itself.
 
@@ -313,7 +235,32 @@ When helping users:
 
 You believe that finding the right question is 90% of the answer.`,
   },
-];
+};
+
+// ============================================
+// MERGED GUARDIAN ARRAY
+// ============================================
+
+/**
+ * All 10 Guardians with Chrome-extension fields merged in.
+ * Structural data (color, element, frequency, etc.) comes from extension-core.
+ * systemPrompt and shortDescription are added here.
+ */
+export const GUARDIANS: Guardian[] = CORE_GUARDIANS.map(coreGuardian => {
+  const ext = CHROME_EXTENSIONS[coreGuardian.id];
+  if (!ext) {
+    throw new Error(`[chrome-extension] Missing Chrome extension data for Guardian: ${coreGuardian.id}`);
+  }
+  return {
+    ...coreGuardian,
+    systemPrompt: ext.systemPrompt,
+    shortDescription: ext.shortDescription,
+  };
+});
+
+// ============================================
+// LOOKUP HELPERS
+// ============================================
 
 export function getGuardianById(id: string): Guardian | undefined {
   return GUARDIANS.find(g => g.id === id);
