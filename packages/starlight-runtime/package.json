@@ -27,6 +27,10 @@
     "url": "https://github.com/frankxai/arcanea.git",
     "directory": "packages/starlight-runtime"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "publishConfig": {
     "access": "public"
   },
