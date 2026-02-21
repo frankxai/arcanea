@@ -1,6 +1,6 @@
 {
   "name": "claude-arcanea",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Arcanea Intelligence OS for Claude Code - Mythology-infused AI agent orchestration",
   "type": "module",
   "main": "./dist/index.js",
