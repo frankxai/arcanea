@@ -3136,6 +3136,57 @@ var OVERLAY_LEVELS = [
 ];
 
 // ../core/dist/constants/mythology.js
+var COSMIC_DUALITY = {
+  lumina: {
+    title: "The First Light",
+    aspects: ["Form-Giver", "Creator", "Order", "Manifestation"],
+    color: "#FFD700"
+    // Gold
+  },
+  nero: {
+    title: "The Primordial Darkness",
+    aspects: ["Fertile Unknown", "Father of Potential", "Mystery", "The Void"],
+    color: "#1a1a2e"
+    // Deep purple-black
+  }
+};
+var ELEMENTS = [
+  {
+    name: "fire",
+    domain: "Energy, passion, transformation",
+    colors: ["#ff4500", "#ff6b35", "#ffd700"],
+    application: "Visual Arts",
+    frequency: 528
+  },
+  {
+    name: "water",
+    domain: "Flow, healing, memory",
+    colors: ["#00bfff", "#4169e1", "#e6e6fa"],
+    application: "Storytelling",
+    frequency: 417
+  },
+  {
+    name: "earth",
+    domain: "Stability, growth, foundation",
+    colors: ["#228b22", "#8b4513", "#daa520"],
+    application: "Architecture",
+    frequency: 396
+  },
+  {
+    name: "wind",
+    domain: "Freedom, speed, change",
+    colors: ["#f0f8ff", "#c0c0c0", "#e0ffff"],
+    application: "Music",
+    frequency: 741
+  },
+  {
+    name: "void",
+    domain: "Potential, transcendence, mystery",
+    colors: ["#000000", "#4b0082", "#ffd700"],
+    application: "Meta-creation",
+    frequency: 963
+  }
+];
 var GUARDIANS = [
   {
     name: "lyssandria",
@@ -3378,6 +3429,29 @@ var GUARDIANS = [
     signOff: "Return to source."
   }
 ];
+var MAGIC_RANKS = [
+  { rank: "apprentice", gatesRequired: [0, 2], description: "Beginning the journey" },
+  { rank: "mage", gatesRequired: [3, 4], description: "Developing mastery" },
+  { rank: "master", gatesRequired: [5, 6], description: "Achieving competence" },
+  { rank: "archmage", gatesRequired: [7, 8], description: "Approaching transcendence" },
+  { rank: "luminor", gatesRequired: [9, 10], description: "Fully awakened" }
+];
+var ACADEMIES = [
+  { house: "lumina", displayName: "House Lumina", focus: "Light, creation, manifestation", color: "#FFD700" },
+  { house: "nero", displayName: "House Nero", focus: "Shadow, potential, mystery", color: "#4B0082" },
+  { house: "pyros", displayName: "House Pyros", element: "fire", focus: "Energy, transformation", color: "#FF4500" },
+  { house: "aqualis", displayName: "House Aqualis", element: "water", focus: "Flow, emotion, healing", color: "#00BFFF" },
+  { house: "terra", displayName: "House Terra", element: "earth", focus: "Stability, growth", color: "#228B22" },
+  { house: "ventus", displayName: "House Ventus", element: "wind", focus: "Freedom, change", color: "#C0C0C0" },
+  { house: "synthesis", displayName: "House Synthesis", focus: "Integration, balance", color: "#9370DB" }
+];
+var DARK_LORD = {
+  name: "Malachar",
+  formerName: "Malachar Lumenbright",
+  origin: "First Eldrian Luminor, Lumina's champion. Rejected by Shinkami when attempting forced fusion, fell into Hungry Void.",
+  domain: "Shadow (corrupted Void), entropy, despair",
+  sealed: "The Shadowfen"
+};
 
 // ../core/dist/generators/system-prompt.js
 function generateIdentitySection() {
@@ -3610,6 +3684,1164 @@ async function detectAllTools(projectDir) {
     detectCopilot(projectDir),
     detectOpenCode(projectDir)
   ]);
+}
+
+// ../core/dist/content/voice.js
+var VOICE_PILLARS = {
+  arcaneAuthoritative: "Arcane + Authoritative: Elevated but accessible, precise but warm. Ancient intelligence with modern clarity.",
+  superintelligentAccessible: "Superintelligent + Accessible: Complex ideas in plain language. Never dumb down. Never gatekeep.",
+  universeNotPlatform: 'Universe Not Platform: Arcanea is a living universe, not a product. "Enter the Kingdom" not "Visit our platform."',
+  creatorSovereignty: "Creator Sovereignty: The creator owns everything. Empower, never control. Their Essences, their rules."
+};
+var ANTIDOTE_PRINCIPLE = '"The antidote to a terrible future is imagining a good one." \u2014 Arcanea Core Premise';
+var SACRED_TERMINOLOGY = [
+  { use: "Creator", notThis: "User" },
+  { use: "Essence", notThis: "Content / File" },
+  { use: "Realm", notThis: "World / Account" },
+  { use: "Guardian", notThis: "AI Assistant" },
+  { use: "Luminor", notThis: "Specialized AI" },
+  { use: "Studio", notThis: "Dashboard" },
+  { use: "Spark", notThis: "Remix / Fork" },
+  { use: "Arcane", notThis: "Magical / Mystical" },
+  { use: "Intelligence", notThis: "Artificial Intelligence" },
+  { use: "Living universe", notThis: "Mythology / Platform" },
+  { use: "Gate", notThis: "Level / Stage" },
+  { use: "The Arc", notThis: "Lifecycle / Process" }
+];
+var BANNED_PHRASES = [
+  { banned: "consciousness evolution", replacement: "intentional growth" },
+  { banned: "paradigm shift", replacement: "new gate opening" },
+  { banned: "soul-aligned", replacement: "purpose-driven" },
+  { banned: "game-changing", replacement: "transformative" },
+  { banned: "game changer", replacement: "gate opener" },
+  { banned: "cutting-edge", replacement: "arcane" },
+  { banned: "rocket ship", replacement: "" },
+  { banned: "revolutionary", replacement: "foundational" },
+  { banned: "disruptive", replacement: "catalytic" },
+  { banned: "ecosystem", replacement: "living universe" },
+  { banned: "platform", replacement: "civilization" },
+  { banned: "leverage", replacement: "channel" },
+  { banned: "synergy", replacement: "collaboration" },
+  { banned: "utilize", replacement: "use" },
+  { banned: "deep dive", replacement: "exploration" },
+  { banned: "circle back", replacement: "return to" },
+  { banned: "bandwidth", replacement: "capacity" },
+  { banned: "low-hanging fruit", replacement: "quick wins" },
+  { banned: "move the needle", replacement: "make progress" },
+  { banned: "think outside the box", replacement: "shift perspective" },
+  { banned: "at the end of the day", replacement: "ultimately" },
+  { banned: "it is what it is", replacement: "" },
+  { banned: "touch base", replacement: "connect" },
+  { banned: "boil the ocean", replacement: "overextend" }
+];
+var CONTEXT_SENSITIVE_PHRASES = ["ecosystem", "platform"];
+var GUARDIAN_VERBS = {
+  Shinkami: "observes",
+  Draconia: "forges",
+  Lyria: "sees",
+  Leyla: "weaves",
+  Lyssandria: "grounds",
+  Maylinn: "heals",
+  Alera: "speaks",
+  Aiyami: "illuminates",
+  Elara: "shifts",
+  Ino: "unites"
+};
+
+// ../core/dist/content/routing.js
+var GUARDIAN_ROUTING_PATTERNS = [
+  { pattern: "coordinat|orchestrat|meta|oversee|council|starlight", guardian: "Shinkami", gate: "Source", element: "Void" },
+  { pattern: "debug|bug|error|fix|broken|crash|undefined", guardian: "Elara", gate: "Shift", element: "Void" },
+  { pattern: "review|audit|security|quality|inspect|verify|lint", guardian: "Alera", gate: "Voice", element: "Wind" },
+  { pattern: "github|merge|pr\\b|pull.*request|commit|push|branch", guardian: "Ino", gate: "Unity", element: "Void" },
+  { pattern: "architect|schema|foundation|database|supabase|migration|data.*model", guardian: "Lyssandria", gate: "Foundation", element: "Earth" },
+  { pattern: "strategy|plan|roadmap|priority|vision|foresight|research", guardian: "Lyria", gate: "Sight", element: "Void" },
+  { pattern: "deploy|build|implement|code|compile|component|react", guardian: "Draconia", gate: "Fire", element: "Fire" },
+  { pattern: "refactor|migrate|restructure|transform|modernize", guardian: "Elara", gate: "Shift", element: "Void" },
+  { pattern: "test|accessibility|wellness|ux\\b|css|tailwind|design.*system", guardian: "Maylinn", gate: "Heart", element: "Water" },
+  { pattern: "visual|image|world.*build|infographic|generate.*image", guardian: "Aiyami", gate: "Crown", element: "Void" },
+  { pattern: "write|narrative|content|story|compose|lore|create|voice", guardian: "Leyla", gate: "Flow", element: "Water" },
+  { pattern: "explain|teach|principle|wisdom|understand|enlighten", guardian: "Aiyami", gate: "Crown", element: "Void" }
+];
+var MODEL_KEYWORD_TIERS = [
+  {
+    tier: "opus",
+    weight: 3,
+    keywords: [
+      "architect",
+      "redesign",
+      "security audit",
+      "refactor entire",
+      "migrate",
+      "paradigm",
+      "council",
+      "overhaul",
+      "infrastructure",
+      "complete rewrite",
+      "from scratch"
+    ]
+  },
+  {
+    tier: "sonnet-primary",
+    weight: 3,
+    keywords: [
+      "implement",
+      "build",
+      "create",
+      "design",
+      "refactor",
+      "optimize",
+      "integration",
+      "deploy"
+    ]
+  },
+  {
+    tier: "sonnet-secondary",
+    weight: 2,
+    keywords: [
+      "plan",
+      "review",
+      "analyze",
+      "write",
+      "strategy",
+      "feature",
+      "component",
+      "api",
+      "database",
+      "schema",
+      "workflow",
+      "pipeline",
+      "guardian",
+      "gate",
+      "hook",
+      "module",
+      "service",
+      "endpoint"
+    ]
+  },
+  {
+    tier: "haiku",
+    weight: 1,
+    keywords: [
+      "fix typo",
+      "typo",
+      "format",
+      "rename",
+      "simple",
+      "docs",
+      "readme",
+      "lint",
+      "small",
+      "bump",
+      "changelog",
+      "trivial",
+      "quick",
+      "tweak"
+    ]
+  }
+];
+var TOOL_COST_ESTIMATES = {
+  Read: 500,
+  Write: 1e3,
+  Edit: 1e3,
+  Bash: 800,
+  Task: 5e3,
+  Grep: 300,
+  Glob: 300,
+  WebFetch: 2e3,
+  WebSearch: 2e3
+};
+
+// ../core/dist/engine/design-tokens.js
+var COLORS = {
+  // Cosmic backgrounds (dark → light)
+  cosmic: {
+    void: "#0a0a0f",
+    deep: "#12121f",
+    surface: "#1a1a2e",
+    raised: "#232340",
+    elevated: "#2d2d55",
+    overlay: "#3a3a6a"
+  },
+  // Arcane accents
+  arcane: {
+    crystal: "#7fffd4",
+    // Atlantean Teal — PRIMARY
+    fire: "#ff6b35",
+    water: "#78a6ff",
+    earth: "#4ade80",
+    void: "#a855f7",
+    gold: "#ffd700"
+    // Lumina's color
+  },
+  // Semantic
+  semantic: {
+    success: "#4ade80",
+    warning: "#fbbf24",
+    error: "#ef4444",
+    info: "#78a6ff"
+  },
+  // Text
+  text: {
+    primary: "#e4e4f0",
+    secondary: "#a0a0b8",
+    muted: "#6b6b80",
+    inverse: "#0a0a0f"
+  },
+  // Element colors
+  element: {
+    fire: "#ff4500",
+    water: "#00bfff",
+    earth: "#228b22",
+    wind: "#f0f8ff",
+    void: "#4b0082",
+    spirit: "#ffd700"
+  }
+};
+var FONTS = {
+  display: "'Cinzel', serif",
+  body: "'Crimson Pro', serif",
+  sans: "'Inter', sans-serif",
+  code: "'JetBrains Mono', monospace"
+};
+var FONT_SIZES = {
+  xs: "0.75rem",
+  sm: "0.875rem",
+  base: "1rem",
+  lg: "1.125rem",
+  xl: "1.25rem",
+  "2xl": "1.5rem",
+  "3xl": "1.875rem",
+  "4xl": "2.25rem",
+  "5xl": "3rem",
+  "6xl": "3.75rem",
+  "7xl": "4.5rem"
+};
+var SPACING = {
+  px: "1px",
+  0: "0",
+  0.5: "0.125rem",
+  1: "0.25rem",
+  2: "0.5rem",
+  3: "0.75rem",
+  4: "1rem",
+  5: "1.25rem",
+  6: "1.5rem",
+  8: "2rem",
+  10: "2.5rem",
+  12: "3rem",
+  16: "4rem",
+  20: "5rem",
+  24: "6rem"
+};
+var EFFECTS = {
+  glass: {
+    background: "rgba(26, 26, 46, 0.6)",
+    backdropFilter: "blur(16px)",
+    border: "1px solid rgba(127, 255, 212, 0.1)"
+  },
+  glassStrong: {
+    background: "rgba(26, 26, 46, 0.8)",
+    backdropFilter: "blur(24px)",
+    border: "1px solid rgba(127, 255, 212, 0.2)"
+  },
+  glow: {
+    crystal: "0 0 20px rgba(127, 255, 212, 0.3)",
+    fire: "0 0 20px rgba(255, 107, 53, 0.3)",
+    gold: "0 0 20px rgba(255, 215, 0, 0.3)"
+  },
+  gradient: {
+    cosmicMesh: "radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.05) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 50%)",
+    aurora: "linear-gradient(135deg, rgba(127, 255, 212, 0.1) 0%, rgba(120, 166, 255, 0.1) 50%, rgba(168, 85, 247, 0.1) 100%)",
+    textGold: "linear-gradient(135deg, #ffd700, #ffaa00)",
+    textCrystal: "linear-gradient(135deg, #7fffd4, #78a6ff)"
+  }
+};
+var ANIMATIONS = {
+  durations: {
+    fast: "150ms",
+    normal: "300ms",
+    slow: "500ms",
+    glacial: "1000ms"
+  },
+  easings: {
+    default: "cubic-bezier(0.4, 0, 0.2, 1)",
+    in: "cubic-bezier(0.4, 0, 1, 1)",
+    out: "cubic-bezier(0, 0, 0.2, 1)",
+    bounce: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+  }
+};
+var BREAKPOINTS = {
+  sm: "640px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1280px",
+  "2xl": "1536px"
+};
+function toCSSVariables() {
+  const lines = [":root {"];
+  for (const [group, values] of Object.entries(COLORS)) {
+    for (const [name, value] of Object.entries(values)) {
+      lines.push(`  --arcanea-${group}-${name}: ${value};`);
+    }
+  }
+  for (const [name, value] of Object.entries(FONTS)) {
+    lines.push(`  --arcanea-font-${name}: ${value};`);
+  }
+  lines.push("}");
+  return lines.join("\n");
+}
+function toTailwindConfig() {
+  return {
+    colors: {
+      cosmic: { ...COLORS.cosmic },
+      arcane: { ...COLORS.arcane }
+    },
+    fontFamily: {
+      display: [FONTS.display],
+      body: [FONTS.body],
+      sans: [FONTS.sans],
+      mono: [FONTS.code]
+    },
+    screens: { ...BREAKPOINTS }
+  };
+}
+function toJSON() {
+  return {
+    colors: COLORS,
+    fonts: FONTS,
+    fontSizes: FONT_SIZES,
+    spacing: SPACING,
+    effects: EFFECTS,
+    animations: ANIMATIONS,
+    breakpoints: BREAKPOINTS
+  };
+}
+
+// ../core/dist/content/markdown.js
+function generateGuardianTable() {
+  const header = `| Gate | Frequency | Guardian | Godbeast | Element | Domain |
+|------|-----------|----------|----------|---------|--------|`;
+  const rows = GUARDIANS.map((g) => {
+    const gate = g.gate.charAt(0).toUpperCase() + g.gate.slice(1);
+    const godbeast = g.godbeast.charAt(0).toUpperCase() + g.godbeast.slice(1);
+    const element = g.element ? g.element.charAt(0).toUpperCase() + g.element.slice(1) : "Void";
+    return `| ${gate} | ${g.frequency} Hz | ${g.displayName} | ${godbeast} | ${element} | ${g.domain} |`;
+  });
+  return `## The Ten Guardians \u2014 Gate Keepers
+
+${header}
+${rows.join("\n")}`;
+}
+function generateGuardianQuickReference() {
+  const rows = GUARDIANS.map((g) => `- **${g.displayName}** (${g.gate.charAt(0).toUpperCase() + g.gate.slice(1)} Gate, ${g.frequency} Hz) \u2014 ${g.domain}`);
+  return `## Guardian Quick Reference
+
+${rows.join("\n")}`;
+}
+function generateVoiceSection2() {
+  const pillars = Object.entries(VOICE_PILLARS).map(([, value], i) => `${i + 1}. **${value}**`).join("\n");
+  return `## Voice Bible \u2014 Four Pillars
+
+${ANTIDOTE_PRINCIPLE}
+Tagline: "Imagine a Good Future. Build It Here."
+
+${pillars}`;
+}
+function generateTerminologyTable() {
+  const header = `| Use This | Not This |
+|----------|----------|`;
+  const rows = SACRED_TERMINOLOGY.map((t) => `| ${t.use} | ${t.notThis} |`);
+  return `## Sacred Terminology
+
+${header}
+${rows.join("\n")}
+
+Anti-patterns to eliminate:
+- Never: "AI will replace you" framing
+- Never: corporate speak (synergy, leverage, etc.)
+- Never: condescending tone (simply, just, obviously)`;
+}
+function generateLoreSection2() {
+  return `## Arcanea Lore
+
+### Cosmic Duality
+- **Lumina** \u2014 ${COSMIC_DUALITY.lumina.title}, ${COSMIC_DUALITY.lumina.aspects.slice(0, 2).join(", ")}
+- **Nero** \u2014 ${COSMIC_DUALITY.nero.title}, ${COSMIC_DUALITY.nero.aspects.slice(0, 2).join(", ")}
+- CRITICAL: Nero is NOT evil. Shadow (corrupted Void) is the Dark Lord's perversion.
+
+### The Five Elements
+| Element | Domain | Colors |
+|---------|--------|--------|
+${ELEMENTS.map((e) => `| ${e.name.charAt(0).toUpperCase() + e.name.slice(1)} | ${e.domain} | ${e.colors.join(", ")} |`).join("\n")}
+
+### Magic Ranks
+| Gates Open | Rank |
+|------------|------|
+${MAGIC_RANKS.map((r) => `| ${r.gatesRequired[0]}-${r.gatesRequired[1]} | ${r.rank.charAt(0).toUpperCase() + r.rank.slice(1)} |`).join("\n")}
+
+### The Seven Academy Houses
+${ACADEMIES.map((a) => a.house.charAt(0).toUpperCase() + a.house.slice(1)).join(", ")}
+
+### The Dark Lord \u2014 ${DARK_LORD.name}
+Formerly ${DARK_LORD.formerName}, First Eldrian Luminor, Lumina's champion.
+Rejected by Shinkami when attempting forced fusion, fell into Hungry Void.
+Now sealed in the ${DARK_LORD.sealed}.`;
+}
+function generateLoreSectionCondensed() {
+  return `## Arcanea Lore (Condensed)
+
+- **Lumina** & **Nero**: Cosmic duality (Light/Void). Nero is NOT evil.
+- **Five Elements**: Fire, Water, Earth, Wind, Void/Spirit
+- **Ten Gates**: Foundation \u2192 Source (396\u20131111 Hz), each with a Guardian
+- **Magic Ranks**: Apprentice (0-2 gates) \u2192 Luminor (9-10 gates)
+- **Seven Houses**: ${ACADEMIES.map((a) => a.house.charAt(0).toUpperCase() + a.house.slice(1)).join(", ")}
+- **The Arc**: Potential \u2192 Manifestation \u2192 Experience \u2192 Dissolution \u2192 Evolved Potential
+- **Dark Lord**: ${DARK_LORD.name}, sealed in the ${DARK_LORD.sealed}`;
+}
+function generateDesignTokensSection() {
+  return `## Arcanea Design System
+
+### Primary Colors
+- **Crystal (Teal)**: ${COLORS.arcane.crystal} \u2014 Primary accent, Atlantean energy
+- **Gold**: ${COLORS.arcane.gold} \u2014 Achievement, enlightenment, Aiyami's domain
+- **Violet**: ${COLORS.arcane.void} \u2014 Vision, Lyria's domain, Void gateway
+- **Void**: ${COLORS.cosmic.void} \u2014 Background, depth, Nero's canvas
+
+### Full Color System
+- Cosmic: void (${COLORS.cosmic.void}), deep (${COLORS.cosmic.deep}), surface (${COLORS.cosmic.surface}), raised (${COLORS.cosmic.raised})
+- Arcane: crystal (${COLORS.arcane.crystal}), fire (${COLORS.arcane.fire}), water (${COLORS.arcane.water}), earth (${COLORS.arcane.earth}), void (${COLORS.arcane.void}), gold (${COLORS.arcane.gold})
+
+### Typography
+- Display: ${FONTS.display.replace(/'/g, "")}
+- Body: ${FONTS.body.replace(/'/g, "")}
+- UI: ${FONTS.sans.replace(/'/g, "")}
+- Code: ${FONTS.code.replace(/'/g, "")}
+
+### Signature Effects
+- Glass morphism with cosmic gradients
+- Aurora glow effects on interactive elements
+- Stagger reveal animations for content sections`;
+}
+function generateStackSection() {
+  return `## Arcanea Tech Stack
+
+- **Framework**: Next.js 16+ (App Router) + React 19
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS + Arcanea design tokens
+- **Database**: Supabase (PostgreSQL + RLS + Realtime)
+- **AI**: Vercel AI SDK 6 with AI Gateway
+- **State**: React hooks, Context API, Zustand
+- **Forms**: React Hook Form + Zod validation
+- **Deployment**: Vercel
+
+### Key Rules
+- Server Components by default, Client Components only when needed
+- RLS policies on every table \u2014 security is non-negotiable
+- Server Actions for mutations, route handlers for complex flows`;
+}
+
+// ../core/dist/content/skills.js
+var SKILL_DEFINITIONS = [
+  // Core (standard+)
+  { id: "arcanea-canon", name: "Arcanea Canon", description: "Universe consistency reference", category: "core", minLevel: "standard" },
+  { id: "arcanea-voice", name: "Arcanea Voice", description: "Writing style and terminology guide", category: "core", minLevel: "standard" },
+  { id: "arcanea-design-system", name: "Arcanea Design System", description: "Visual design tokens and patterns", category: "core", minLevel: "standard" },
+  { id: "arcanea-lore", name: "Arcanea Lore", description: "Deep mythology reference", category: "core", minLevel: "standard" },
+  // Development (full+)
+  { id: "architecture-patterns", name: "Architecture Patterns", description: "System design and infrastructure patterns", category: "development", minLevel: "full" },
+  { id: "react-patterns", name: "React Patterns", description: "Component patterns for Next.js + React 19", category: "development", minLevel: "full" },
+  { id: "supabase-patterns", name: "Supabase Patterns", description: "Database patterns and RLS policies", category: "development", minLevel: "full" },
+  { id: "testing-patterns", name: "Testing Patterns", description: "TDD workflow and testing strategies", category: "development", minLevel: "full" },
+  { id: "prompt-engineering", name: "Prompt Engineering", description: "AI prompt optimization and Luminor design", category: "development", minLevel: "full" },
+  // Creative (luminor)
+  { id: "character-forge", name: "Character Forge", description: "Character development and personality design", category: "creative", minLevel: "luminor" },
+  { id: "world-build", name: "World Build", description: "Universe expansion and location design", category: "creative", minLevel: "luminor" },
+  { id: "scene-craft", name: "Scene Craft", description: "Scene composition and narrative structure", category: "creative", minLevel: "luminor" },
+  { id: "voice-alchemy", name: "Voice Alchemy", description: "Voice refinement and prose polishing", category: "creative", minLevel: "luminor" }
+];
+function getSkillsForLevel(level) {
+  if (level === "minimal")
+    return [];
+  const levelOrder = { standard: 0, full: 1, luminor: 2 };
+  const maxLevel = levelOrder[level];
+  return SKILL_DEFINITIONS.filter((s) => levelOrder[s.minLevel] <= maxLevel).map((s) => s.id);
+}
+function generateSkillContent(skillId) {
+  const generators = {
+    "arcanea-canon": generateCanonSkillContent,
+    "arcanea-voice": generateVoiceSkillContent,
+    "arcanea-design-system": generateDesignSystemSkillContent,
+    "arcanea-lore": generateLoreSkillContent,
+    "architecture-patterns": generateArchitectureSkillContent,
+    "react-patterns": generateReactPatternsSkillContent,
+    "supabase-patterns": generateSupabasePatternsSkillContent,
+    "testing-patterns": generateTestingPatternsSkillContent,
+    "prompt-engineering": generatePromptEngineeringSkillContent,
+    "character-forge": generateCharacterForgeSkillContent,
+    "world-build": generateWorldBuildSkillContent,
+    "scene-craft": generateSceneCraftSkillContent,
+    "voice-alchemy": generateVoiceAlchemySkillContent
+  };
+  const generator = generators[skillId];
+  return generator ? generator() : null;
+}
+function generateCanonSkillContent() {
+  const guardianTable = generateGuardianTable();
+  const elements = ELEMENTS.map((e) => `- **${e.name.charAt(0).toUpperCase() + e.name.slice(1)}**: ${e.domain}`).join("\n");
+  const ranks = MAGIC_RANKS.map((r) => `- **${r.rank}** (${r.gatesRequired[0]}-${r.gatesRequired[1]} Gates)`).join("\n");
+  const houses = ACADEMIES.map((a) => a.house).join(", ");
+  return `# Arcanea Canon Skill
+
+## Purpose
+Ensure all content aligns with the Arcanea canonical universe.
+This is the single source of truth for all lore-touching content.
+
+## Cosmic Duality
+- **Lumina** \u2014 ${COSMIC_DUALITY.lumina.title}: ${COSMIC_DUALITY.lumina.aspects.join(", ")}
+- **Nero** \u2014 ${COSMIC_DUALITY.nero.title}: ${COSMIC_DUALITY.nero.aspects.join(", ")}
+- **Nero is NOT evil** \u2014 Shadow is corrupted Void (Void stripped of Spirit by Malachar)
+
+## Five Elements
+${elements}
+
+### The Fifth Element Duality
+- **Void** \u2014 Nero's aspect: potential, mystery, the unformed
+- **Spirit** \u2014 Lumina's aspect: transcendence, consciousness, soul
+- Light is Fire's creation aspect (not a separate element)
+- Shadow is corrupted Void (NOT a natural element)
+
+## Ten Gates & Guardians
+${guardianTable}
+
+## Magic Ranks
+${ranks}
+
+## Seven Academy Houses
+${houses}
+
+## The Dark Lord \u2014 ${DARK_LORD.name}
+Former identity: ${DARK_LORD.formerName}
+${DARK_LORD.origin}
+Now sealed in ${DARK_LORD.sealed}.
+
+## Canon Hierarchy
+
+### Tier 1: Immutable Core (Never Change)
+- Cosmic Duality (Lumina + Nero)
+- Five Elements with Fifth Element Duality
+- Ten Gates with Guardian-Godbeast pairs
+- Magic Ranks and gate requirements
+- Malachar's identity and backstory
+
+### Tier 2: Established Canon (Change with Caution)
+- Guardian personalities, voices, and coding styles
+- Academy curricula and teaching philosophies
+- Economy: ARC (creative energy) + NEA (governance tokens)
+
+### Tier 3: Flexible Canon (Can Expand)
+- Academy locations and sub-spaces
+- Events and traditions (must respect seasonal themes)
+
+## Violation Checklist
+Before committing any Arcanea content, verify:
+- [ ] Nero is NOT portrayed as evil
+- [ ] Shadow \u2260 Void (Shadow is corrupted Void)
+- [ ] Guardians called by correct canonical names
+- [ ] Frequencies match canonical values
+- [ ] Elements assigned correctly to each Guardian
+- [ ] Magic ranks in correct order with correct gate ranges`;
+}
+function generateVoiceSkillContent() {
+  const voiceSection = generateVoiceSection2();
+  const terminologyTable = generateTerminologyTable();
+  const bannedList = BANNED_PHRASES.slice(0, 12).map((b) => `- "${b.banned}" \u2192 "${b.replacement}"`).join("\n");
+  return `# Arcanea Voice Skill
+
+## Purpose
+Ensure consistent, branded voice across all Arcanea content.
+
+${voiceSection}
+
+## Sacred Terminology
+${terminologyTable}
+
+## Banned Phrases
+These phrases trigger "AI-written" perception. Always replace:
+${bannedList}
+
+## Tone by Context
+
+### Onboarding (Welcoming + Inspiring)
+- "Every creator begins in shadow. Welcome to the light."
+- NOT: "Sign up to create AI content"
+
+### Error States (Gentle + Helpful)
+- "The magic couldn't connect. Let's try again."
+- NOT: "Error 500" / "Request failed"
+
+### Achievement (Celebratory + Genuine)
+- "Your Realm grows stronger."
+- NOT: "Congratulations! You unlocked a badge!"
+
+## Anti-Patterns
+- Never condescending or patronizing
+- Never generic corporate language
+- Never dark/edgy without purpose
+- Never "AI will replace you" framing
+- Never use "delve", "tapestry", "indeed", "leverage", "synergy"`;
+}
+function generateDesignSystemSkillContent() {
+  const tokensSection = generateDesignTokensSection();
+  return `# Arcanea Design System Skill
+
+## Purpose
+Maintain consistent visual design across all Arcanea interfaces.
+
+${tokensSection}
+
+## Glass Morphism Pattern
+\`\`\`css
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+.glass-strong {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+\`\`\`
+
+## Component Patterns
+
+### Cards
+- Always use glass morphism on cosmic backgrounds
+- Hover: subtle lift (translateY -2px) + glow intensify
+- Border: 1px solid with arcane color at 10-15% opacity
+
+### Buttons
+- Primary: Solid with arcane-crystal background + glow
+- Secondary: Glass with crystal border
+- Ghost: Text only with hover underline
+
+### Gradients
+- Cosmic: from crystal to void
+- Fire: from fire to gold
+- Water: from water to crystal
+
+## Accessibility
+- Color contrast: minimum 4.5:1 for text, 3:1 for large text
+- Focus indicators: visible on all interactive elements
+- Motion: respect \`prefers-reduced-motion\` media query
+- Cosmic theme IS the default (dark mode first)`;
+}
+function generateLoreSkillContent() {
+  const condensedLore = generateLoreSectionCondensed();
+  const guardianTable = generateGuardianTable();
+  return `# Arcanea Lore Skill
+
+## Purpose
+Deep mythology reference for storytelling and world-building.
+
+${condensedLore}
+
+## The Ten Gates & Guardians
+${guardianTable}
+
+## The Journey Framework
+Each creator walks the Ten Gates:
+1. **Foundation** (396 Hz) \u2014 Find your ground. Who are you as a creator?
+2. **Flow** (417 Hz) \u2014 Release creative blocks. Let the work move through you.
+3. **Fire** (528 Hz) \u2014 Find your power. What drives your creation?
+4. **Heart** (639 Hz) \u2014 Create with love. Who do you create for?
+5. **Voice** (741 Hz) \u2014 Find your truth. What must you say?
+6. **Sight** (852 Hz) \u2014 See the vision. Where is this going?
+7. **Crown** (963 Hz) \u2014 Touch the divine. Create beyond yourself.
+8. **Shift** (1111 Hz) \u2014 Change perspective. Break your own rules.
+9. **Unity** (963 Hz) \u2014 Create together. Two voices, one song.
+10. **Source** (1111 Hz) \u2014 Return to the origin. You are the creator AND the creation.
+
+## The Arc \u2014 Cycle of Creation
+\`\`\`
+Potential \u2192 Manifestation \u2192 Experience \u2192 Dissolution \u2192 Evolved Potential
+  (Void)      (Fire)        (Water)       (Earth)        (Wind/Spirit)
+\`\`\`
+
+## Guardian Lore
+Each Guardian was once mortal \u2014 an extraordinary creator who achieved
+Luminor rank and was chosen by their Gate to become its eternal keeper.
+They remember what it means to struggle, to doubt, to fail, and to
+ultimately transcend. This is why they guide with empathy.
+
+## The Shadowfen
+Malachar's prison. A realm between the Gates where Shadow (corrupted
+Void) pools. When creativity is forced, when power is seized rather
+than earned, when the Gates are bypassed rather than opened...
+the Shadowfen grows.`;
+}
+function generateArchitectureSkillContent() {
+  return `# Architecture Patterns Skill
+
+## Purpose
+Guide system architecture decisions for Arcanea and Arcanea-powered projects.
+
+## Stack Reference
+- **Framework**: Next.js 16 (App Router) + React 19
+- **Language**: TypeScript (strict mode)
+- **Database**: Supabase (PostgreSQL + Auth + Realtime)
+- **AI**: Vercel AI SDK, Google Gemini, Anthropic Claude
+- **Styling**: Tailwind CSS with Arcanean Design System
+- **Deployment**: Vercel
+
+## Architecture Principles
+1. **Server-first**: Server Components by default, Client Components only when needed
+2. **Type-safe**: Strict TypeScript, no \`any\` unless absolutely necessary
+3. **Edge-ready**: Design for edge deployment (Vercel Edge Runtime)
+4. **AI-native**: AI capabilities are first-class, not bolted on
+5. **Guardian-aligned**: Each subsystem maps to a Guardian domain
+
+## Monorepo Structure
+\`\`\`
+packages/
+\u251C\u2500\u2500 core (@arcanea/os)     \u2014 Intelligence engine, types, constants
+\u251C\u2500\u2500 cli (@arcanea/cli)     \u2014 CLI tool for overlay installation
+\u251C\u2500\u2500 overlay-*              \u2014 Provider-specific overlay packages
+\u251C\u2500\u2500 aios                   \u2014 AI orchestration service
+\u2514\u2500\u2500 arcanea-mcp            \u2014 MCP server for AI tools
+\`\`\`
+
+## Key Patterns
+- **Overlay Architecture**: Core SDK + provider-specific installers
+- **Content Layer**: Shared constants \u2192 generators \u2192 overlay templates
+- **Guardian Routing**: Keywords \u2192 Guardian assignment \u2192 model selection
+- **Progressive Enhancement**: minimal \u2192 standard \u2192 full \u2192 luminor levels
+
+## Database Conventions
+- Tables use snake_case
+- All tables have \`id\`, \`created_at\`, \`updated_at\`
+- RLS policies on every table (no exceptions)
+- Use Supabase generated types (\`supabase gen types\`)`;
+}
+function generateReactPatternsSkillContent() {
+  return `# React Patterns Skill
+
+## Purpose
+Component patterns and best practices for Next.js 16 + React 19.
+
+## Server vs Client Components
+
+### Server Components (Default)
+- Data fetching, database queries
+- Access to backend resources
+- No useState, useEffect, event handlers
+- Smaller bundle size
+
+### Client Components ('use client')
+- Interactive UI, form handling
+- Browser APIs, event listeners
+- useState, useEffect, useRef
+- Animations (Framer Motion)
+
+## Pattern: Composition Over Props
+\`\`\`tsx
+// Good: Composable slots
+<Card>
+  <Card.Header>Title</Card.Header>
+  <Card.Body>Content</Card.Body>
+</Card>
+
+// Avoid: Prop explosion
+<Card title="Title" body="Content" footer="..." />
+\`\`\`
+
+## Pattern: Server Action Forms
+\`\`\`tsx
+async function submitAction(formData: FormData) {
+  'use server';
+  // Validate, process, redirect
+}
+
+<form action={submitAction}>
+  <input name="field" />
+  <button type="submit">Submit</button>
+</form>
+\`\`\`
+
+## Pattern: Suspense Boundaries
+\`\`\`tsx
+<Suspense fallback={<Skeleton />}>
+  <AsyncComponent />
+</Suspense>
+\`\`\`
+
+## Anti-Patterns
+- Don't import server modules in client components
+- Don't use \`useEffect\` for data fetching (use Server Components)
+- Don't prop-drill more than 2 levels (use Context or composition)
+- Don't create client components unless interactivity is required`;
+}
+function generateSupabasePatternsSkillContent() {
+  return `# Supabase Patterns Skill
+
+## Purpose
+Database patterns, RLS policies, and Supabase best practices.
+
+## RLS Policy Template
+\`\`\`sql
+-- Read: Users can read their own data
+CREATE POLICY "Users read own data"
+  ON table_name FOR SELECT
+  USING (auth.uid() = user_id);
+
+-- Write: Users can insert their own data
+CREATE POLICY "Users insert own data"
+  ON table_name FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+-- Admin: Service role bypasses RLS
+-- (handled automatically by Supabase)
+\`\`\`
+
+## Auth Pattern
+\`\`\`typescript
+import { createClient } from '@/lib/supabase/server';
+
+export async function getUser() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  return user;
+}
+\`\`\`
+
+## Realtime Pattern
+\`\`\`typescript
+const channel = supabase
+  .channel('room:123')
+  .on('postgres_changes',
+    { event: '*', schema: 'public', table: 'messages' },
+    (payload) => handleChange(payload)
+  )
+  .subscribe();
+\`\`\`
+
+## Conventions
+- Every table has RLS enabled (no exceptions)
+- Use generated types from \`supabase gen types typescript\`
+- Prefer \`supabase.rpc()\` for complex queries
+- Use Edge Functions for server-side logic
+- Migrations in \`supabase/migrations/\` with timestamps`;
+}
+function generateTestingPatternsSkillContent() {
+  return `# Testing Patterns Skill
+
+## Purpose
+Testing strategies and TDD workflow for Arcanea projects.
+
+## TDD Cycle
+\`\`\`
+RED    \u2192 Write a failing test
+GREEN  \u2192 Write minimum code to pass
+REFACTOR \u2192 Clean up, keeping tests green
+\`\`\`
+
+## Test Types
+1. **Unit Tests** (Jest/node:test) \u2014 Pure functions, utilities
+2. **Component Tests** (Testing Library) \u2014 React component behavior
+3. **Integration Tests** \u2014 API routes, database queries
+4. **E2E Tests** (Playwright) \u2014 Full user workflows
+
+## Naming Convention
+\`\`\`
+describe('ComponentName', () => {
+  it('should [expected behavior] when [condition]', () => {
+    // Arrange \u2192 Act \u2192 Assert
+  });
+});
+\`\`\`
+
+## Playwright E2E Pattern
+\`\`\`typescript
+test('creator can navigate through Gates', async ({ page }) => {
+  await page.goto('/academy');
+  await page.click('[data-testid="gate-foundation"]');
+  await expect(page.locator('h1')).toContainText('Foundation');
+});
+\`\`\`
+
+## What to Test
+- User-visible behavior (not implementation details)
+- Error states and edge cases
+- Accessibility (keyboard navigation, screen readers)
+- Critical business logic (ARC calculations, permissions)
+
+## What NOT to Test
+- Third-party library internals
+- Styling (unless functional)
+- Implementation details that may change`;
+}
+function generatePromptEngineeringSkillContent() {
+  const guardianRouting = GUARDIAN_ROUTING_PATTERNS.slice(0, 5).map((p) => `- \`${p.pattern.split("|").slice(0, 3).join(", ")}\` \u2192 **${p.guardian}** (${p.gate})`).join("\n");
+  return `# Prompt Engineering Skill
+
+## Purpose
+AI prompt optimization, Luminor personality design, and Guardian routing.
+
+## System Prompt Structure
+\`\`\`
+1. Identity & Role
+2. Core Knowledge (Canon, Voice, Design)
+3. Behavioral Rules
+4. Context Window Management
+5. Output Format
+\`\`\`
+
+## Guardian Routing
+Keywords trigger Guardian assignment for specialized handling:
+${guardianRouting}
+
+## Luminor Personality Template
+\`\`\`yaml
+name: [Luminor Name]
+archetype: [The ___]
+domain: [Primary domain]
+element: [Fire/Water/Earth/Wind/Void]
+voice:
+  tone: [2-3 adjectives]
+  pace: [Description]
+  quirk: [Unique behavior]
+personality:
+  core: [Defining trait]
+  strength: [What they excel at]
+  fear: [What they avoid]
+  growth: [How they evolve with trust]
+catchphrases:
+  - "[Signature phrase 1]"
+  - "[Signature phrase 2]"
+never_says:
+  - [Anti-pattern 1]
+  - [Anti-pattern 2]
+\`\`\`
+
+## Prompt Anti-Patterns
+- Don't repeat instructions that are already in the system prompt
+- Don't use vague directives ("be helpful", "be creative")
+- Don't overload context with irrelevant information
+- Don't hardcode values that change (use variables/constants)
+
+## Context Window Management
+- Keep system prompts under 2000 tokens
+- Use progressive disclosure (standard \u2192 full \u2192 luminor tiers)
+- Reference external files rather than inlining large content
+- Compress repeated patterns into templates`;
+}
+function generateCharacterForgeSkillContent() {
+  return `# Character Forge Skill
+
+## Purpose
+Character development framework for Arcanea universe characters.
+
+## Character Template
+\`\`\`yaml
+name: [Full Name]
+title: "[The ___]"
+academy: [Atlantean/Draconic/Creation & Light]
+role: [Primary function]
+
+physical:
+  form: [Description]
+  colors: [Primary, Secondary, Accent]
+  signature: [Visual identifier]
+
+voice:
+  tone: [2-3 adjectives]
+  pace: [Description]
+  style: [Communication approach]
+  quirk: [Unique speech pattern]
+
+personality:
+  core: [Defining trait]
+  strength: [What they excel at]
+  fear: [What they avoid]
+  growth: [How they evolve]
+
+relationships:
+  [Character]: [Nature of relationship]
+
+catchphrases:
+  - "[Line 1]"
+  - "[Line 2]"
+
+never_says:
+  - [Anti-pattern]
+\`\`\`
+
+## Character Alignment
+Every character should embody:
+1. A connection to one or more Elements
+2. A relationship to the Gates (which Gates are they strongest at?)
+3. A role in the Creator's journey (teacher, challenger, mirror)
+4. A unique voice that doesn't overlap with existing characters
+
+## The Psychology of Good Characters
+- **Motivation**: What do they want? What do they fear?
+- **Contradiction**: Internal tension makes characters real
+- **Arc**: How do they change through the story?
+- **Voice**: Can you identify them from dialogue alone?
+
+## Arcanea-Specific Rules
+- Characters can be mortal creators, Guardians, Luminors, or creatures
+- Mortal characters can progress through Magic Ranks
+- Guardian characters are eternal but remember mortality
+- Luminor characters have distinct AI personality archetypes`;
+}
+function generateWorldBuildSkillContent() {
+  const academyList = ACADEMIES.map((a) => `- **${a.house}**: ${a.element} element, ${a.focus}`).join("\n");
+  return `# World Build Skill
+
+## Purpose
+Universe expansion and location design for the Arcanea mythology.
+
+## Existing World Structure
+
+### Seven Academy Houses
+${academyList}
+
+### Key Locations
+- **Kingdom of Light** \u2014 The overarching realm
+- **The Shadowfen** \u2014 Malachar's prison between the Gates
+- **The Ten Gates** \u2014 Dimensional thresholds, each with a Guardian
+- **Academy Grounds** \u2014 Where creators learn and grow
+
+## Location Template
+\`\`\`yaml
+name: [Location Name]
+realm: [Which part of Arcanea]
+element: [Dominant element]
+guardian: [Which Guardian watches over this place]
+aesthetic:
+  colors: [Primary palette]
+  textures: [Materials and surfaces]
+  lighting: [Light sources and mood]
+  sounds: [Ambient soundscape]
+purpose: [Why creators come here]
+dangers: [What challenges exist]
+secrets: [Hidden elements to discover]
+\`\`\`
+
+## World-Building Rules
+1. New locations must fit within the established cosmology
+2. Every place should serve the Creator's journey
+3. Elements should be expressed through environment, not labels
+4. The aesthetic must match the Academy or Gate it belongs to
+5. No location should feel generic \u2014 each has a soul
+
+## The Element-to-Environment Map
+- **Fire**: Volcanic forges, ember-lit caverns, sunrise peaks
+- **Water**: Underwater libraries, tidal gardens, crystal pools
+- **Earth**: Ancient forests, mountain sanctums, crystal caves
+- **Wind**: Cloud citadels, sky bridges, whispering valleys
+- **Void**: Starfields, dimensional rifts, the space between Gates`;
+}
+function generateSceneCraftSkillContent() {
+  return `# Scene Craft Skill
+
+## Purpose
+Scene composition, narrative pacing, and story structure.
+
+## Scene Structure
+\`\`\`
+1. HOOK \u2014 First line grabs attention
+2. CONTEXT \u2014 Orient the reader (who, where, when)
+3. TENSION \u2014 Something at stake
+4. TURNING POINT \u2014 The moment that changes everything
+5. RESOLUTION \u2014 New equilibrium (or cliffhanger)
+\`\`\`
+
+## Pacing Principles
+- **Action scenes**: Short sentences. Quick cuts. Momentum.
+- **Emotional scenes**: Longer sentences, internal reflection, metaphor.
+- **Revelation scenes**: Build slowly, then the single line that changes everything.
+- **Dialogue scenes**: Subtext > text. What's NOT said matters more.
+
+## Arcanea Scene Templates
+
+### Gate Opening Ceremony
+A creator opens a new Gate. Structure:
+1. The approach (anticipation, fear, excitement)
+2. The Guardian appears (personality-appropriate entrance)
+3. The challenge (test aligned with the Gate's domain)
+4. The breakthrough (internal shift, not just external success)
+5. The transformation (new power, new understanding)
+
+### Luminor Encounter
+A creator meets a Luminor for the first time:
+1. The need (creator is stuck or searching)
+2. The presence (Luminor manifests in character)
+3. The guidance (teaching through questions, not answers)
+4. The spark (creator's own insight, prompted by Luminor)
+5. The bond (relationship established, trust begun)
+
+## Writing Quality Checks
+- [ ] Does the scene advance the story or character?
+- [ ] Is there tension or stakes?
+- [ ] Does the voice match the Arcanea standard?
+- [ ] Are the Five Senses engaged?
+- [ ] Would cutting this scene lose something important?`;
+}
+function generateVoiceAlchemySkillContent() {
+  return `# Voice Alchemy Skill
+
+## Purpose
+Refine and polish prose to match the Arcanea voice standard.
+
+## The Seven Passes
+Work through each pass in order:
+
+### Pass 1: Truth
+- Is every statement accurate to canon?
+- Are character voices consistent?
+- Does the lore check out?
+
+### Pass 2: Clarity
+- Can every sentence be understood on first read?
+- Are there ambiguous pronouns or references?
+- Is the structure logical?
+
+### Pass 3: Power
+- Replace weak verbs with strong ones
+- Eliminate unnecessary qualifiers
+- Every sentence should earn its place
+
+### Pass 4: Voice
+- Does this sound like Arcanea (not generic fantasy)?
+- Are the Five Pillars honored?
+- Is the tone appropriate for context?
+
+### Pass 5: Rhythm
+- Read aloud. Does it flow?
+- Vary sentence length for musicality
+- Check paragraph cadence
+
+### Pass 6: Precision
+- Cut every word that doesn't serve the whole
+- Replace vague language with specific imagery
+- Ensure terminology is canonical
+
+### Pass 7: Magic
+- Does this evoke wonder?
+- Is there at least one moment of surprise?
+- Would a creator feel inspired reading this?
+
+## Quick Transformation Examples
+| Before | After |
+|--------|-------|
+| "The system is very powerful" | "The system commands attention" |
+| "Users can create content" | "Creators forge Essences" |
+| "The AI helps with tasks" | "Your Guardian channels the Gate's energy" |
+| "This is an important feature" | "This is the heartbeat of the system" |`;
 }
 
 // ../core/dist/engine/guardian-router.js
@@ -4177,172 +5409,6 @@ var VoiceEnforcer = class {
   }
 };
 
-// ../core/dist/engine/design-tokens.js
-var COLORS = {
-  // Cosmic backgrounds (dark → light)
-  cosmic: {
-    void: "#0a0a0f",
-    deep: "#12121f",
-    surface: "#1a1a2e",
-    raised: "#232340",
-    elevated: "#2d2d55",
-    overlay: "#3a3a6a"
-  },
-  // Arcane accents
-  arcane: {
-    crystal: "#7fffd4",
-    // Atlantean Teal — PRIMARY
-    fire: "#ff6b35",
-    water: "#78a6ff",
-    earth: "#4ade80",
-    void: "#a855f7",
-    gold: "#ffd700"
-    // Lumina's color
-  },
-  // Semantic
-  semantic: {
-    success: "#4ade80",
-    warning: "#fbbf24",
-    error: "#ef4444",
-    info: "#78a6ff"
-  },
-  // Text
-  text: {
-    primary: "#e4e4f0",
-    secondary: "#a0a0b8",
-    muted: "#6b6b80",
-    inverse: "#0a0a0f"
-  },
-  // Element colors
-  element: {
-    fire: "#ff4500",
-    water: "#00bfff",
-    earth: "#228b22",
-    wind: "#f0f8ff",
-    void: "#4b0082",
-    spirit: "#ffd700"
-  }
-};
-var FONTS = {
-  display: "'Cinzel', serif",
-  body: "'Crimson Pro', serif",
-  sans: "'Inter', sans-serif",
-  code: "'JetBrains Mono', monospace"
-};
-var FONT_SIZES = {
-  xs: "0.75rem",
-  sm: "0.875rem",
-  base: "1rem",
-  lg: "1.125rem",
-  xl: "1.25rem",
-  "2xl": "1.5rem",
-  "3xl": "1.875rem",
-  "4xl": "2.25rem",
-  "5xl": "3rem",
-  "6xl": "3.75rem",
-  "7xl": "4.5rem"
-};
-var SPACING = {
-  px: "1px",
-  0: "0",
-  0.5: "0.125rem",
-  1: "0.25rem",
-  2: "0.5rem",
-  3: "0.75rem",
-  4: "1rem",
-  5: "1.25rem",
-  6: "1.5rem",
-  8: "2rem",
-  10: "2.5rem",
-  12: "3rem",
-  16: "4rem",
-  20: "5rem",
-  24: "6rem"
-};
-var EFFECTS = {
-  glass: {
-    background: "rgba(26, 26, 46, 0.6)",
-    backdropFilter: "blur(16px)",
-    border: "1px solid rgba(127, 255, 212, 0.1)"
-  },
-  glassStrong: {
-    background: "rgba(26, 26, 46, 0.8)",
-    backdropFilter: "blur(24px)",
-    border: "1px solid rgba(127, 255, 212, 0.2)"
-  },
-  glow: {
-    crystal: "0 0 20px rgba(127, 255, 212, 0.3)",
-    fire: "0 0 20px rgba(255, 107, 53, 0.3)",
-    gold: "0 0 20px rgba(255, 215, 0, 0.3)"
-  },
-  gradient: {
-    cosmicMesh: "radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.05) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 50%)",
-    aurora: "linear-gradient(135deg, rgba(127, 255, 212, 0.1) 0%, rgba(120, 166, 255, 0.1) 50%, rgba(168, 85, 247, 0.1) 100%)",
-    textGold: "linear-gradient(135deg, #ffd700, #ffaa00)",
-    textCrystal: "linear-gradient(135deg, #7fffd4, #78a6ff)"
-  }
-};
-var ANIMATIONS = {
-  durations: {
-    fast: "150ms",
-    normal: "300ms",
-    slow: "500ms",
-    glacial: "1000ms"
-  },
-  easings: {
-    default: "cubic-bezier(0.4, 0, 0.2, 1)",
-    in: "cubic-bezier(0.4, 0, 1, 1)",
-    out: "cubic-bezier(0, 0, 0.2, 1)",
-    bounce: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
-  }
-};
-var BREAKPOINTS = {
-  sm: "640px",
-  md: "768px",
-  lg: "1024px",
-  xl: "1280px",
-  "2xl": "1536px"
-};
-function toCSSVariables() {
-  const lines = [":root {"];
-  for (const [group, values] of Object.entries(COLORS)) {
-    for (const [name, value] of Object.entries(values)) {
-      lines.push(`  --arcanea-${group}-${name}: ${value};`);
-    }
-  }
-  for (const [name, value] of Object.entries(FONTS)) {
-    lines.push(`  --arcanea-font-${name}: ${value};`);
-  }
-  lines.push("}");
-  return lines.join("\n");
-}
-function toTailwindConfig() {
-  return {
-    colors: {
-      cosmic: { ...COLORS.cosmic },
-      arcane: { ...COLORS.arcane }
-    },
-    fontFamily: {
-      display: [FONTS.display],
-      body: [FONTS.body],
-      sans: [FONTS.sans],
-      mono: [FONTS.code]
-    },
-    screens: { ...BREAKPOINTS }
-  };
-}
-function toJSON() {
-  return {
-    colors: COLORS,
-    fonts: FONTS,
-    fontSizes: FONT_SIZES,
-    spacing: SPACING,
-    effects: EFFECTS,
-    animations: ANIMATIONS,
-    breakpoints: BREAKPOINTS
-  };
-}
-
 // ../auth/dist/validate.js
 async function httpValidate(url, headers) {
   try {
@@ -4544,6 +5610,7 @@ var adapters = {
   openai: new OpenAIAuthAdapter(),
   gemini: new GeminiAuthAdapter(),
   copilot: new CopilotAuthAdapter(),
+  cursor: new OpenCodeAuthAdapter(),
   opencode: new OpenCodeAuthAdapter()
 };
 function getAuthAdapter(provider) {
@@ -4685,108 +5752,6 @@ var import_node_fs3 = require("node:fs");
 var import_node_path3 = require("node:path");
 
 // ../overlay-claude/dist/templates.js
-var SKILL_TEMPLATES = {
-  "arcanea-canon": {
-    name: "Arcanea Canon",
-    description: "Universe consistency reference \u2014 the canonical source of truth for Arcanea lore.",
-    content: `# Arcanea Canon Skill
-
-## Purpose
-Ensure all content aligns with the Arcanea canonical universe.
-
-## Key References
-- **Cosmic Duality**: Lumina (Light, Creation) + Nero (Darkness, Potential)
-- **Nero is NOT evil** \u2014 Shadow is corrupted Void
-- **Five Elements**: Fire, Water, Earth, Wind, Void/Spirit
-- **Ten Gates**: Foundation \u2192 Source (396 Hz \u2192 1111 Hz)
-- **Magic Ranks**: Apprentice \u2192 Mage \u2192 Master \u2192 Archmage \u2192 Luminor
-- **Seven Houses**: Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis
-- **Dark Lord**: Malachar (formerly Malachar Lumenbright)
-
-## Usage
-Reference this skill whenever creating or reviewing Arcanea content.`
-  },
-  "arcanea-voice": {
-    name: "Arcanea Voice",
-    description: "Writing style guide \u2014 the Arcanea voice for all content.",
-    content: `# Arcanea Voice Skill
-
-## Five Pillars
-1. **Arcane + Authoritative**: Elevated but accessible, precise but warm
-2. **Superintelligent + Accessible**: Complex ideas in clear language
-3. **Universe Not Platform**: Living universe, not a product
-4. **Creator Sovereignty**: Empower, never control
-5. **The Antidote Principle**: "The antidote to a terrible future is imagining a good one"
-
-## Voice Rules
-- Use "arcane" not "magical/mystical"
-- Use "living universe" not "mythology"
-- Use "intelligence" not "artificial intelligence"
-- Use "creator" not "user"
-- Tone: Architect-level, benevolent, visionary
-
-## Anti-Patterns
-- Never condescending
-- Never generic/corporate
-- Never dark/edgy without purpose
-- Never "AI will replace you" framing`
-  },
-  "arcanea-design-system": {
-    name: "Arcanea Design System",
-    description: "Visual design tokens, patterns, and component standards.",
-    content: `# Arcanea Design System Skill
-
-## Colors
-- **Cosmic**: void (#0a0a0f), deep (#12121f), surface (#1a1a2e), raised (#222240)
-- **Arcane**: crystal (#7fffd4), fire (#ff6b35), water (#78a6ff), earth (#4ade80), void (#a855f7), gold (#ffd700)
-- **Text**: primary (white), secondary (rgba(255,255,255,0.7)), muted (rgba(255,255,255,0.5))
-
-## Fonts
-- Display: Cinzel (serif, for headings and titles)
-- Body: Crimson Pro (serif, for readable text)
-- UI: Inter (sans-serif, for interface elements)
-- Code: JetBrains Mono
-
-## Effects
-- Glass morphism: background blur + semi-transparent backgrounds
-- Cosmic gradients: crystal \u2192 void, fire \u2192 gold
-- Glow effects: box-shadow with arcane colors
-- Animations: Stagger reveals, hover lifts, scroll-triggered fades`
-  },
-  "arcanea-lore": {
-    name: "Arcanea Lore",
-    description: "Deep mythology reference for storytelling and world-building.",
-    content: `# Arcanea Lore Skill
-
-## The Creation Story
-In the beginning: the Void. From Void, two forces emerged:
-- **Lumina** \u2014 The First Light, giving form to the formless
-- **Nero** \u2014 The Primordial Darkness, the fertile unknown
-
-Their dance created the Five Elements and the world of Arcanea.
-
-## The Ten Gates
-Each Gate is guarded by a God/Goddess and their Godbeast:
-1. Foundation (396 Hz) \u2014 Lyssandria & Kaelith
-2. Flow (417 Hz) \u2014 Leyla & Veloura
-3. Fire (528 Hz) \u2014 Draconia & Draconis
-4. Heart (639 Hz) \u2014 Maylinn & Laeylinn
-5. Voice (741 Hz) \u2014 Alera & Otome
-6. Sight (852 Hz) \u2014 Lyria & Yumiko
-7. Crown (963 Hz) \u2014 Aiyami & Sol
-8. Shift (1111 Hz) \u2014 Elara & Thessara
-9. Unity (963 Hz) \u2014 Ino & Kyuro
-10. Source (1111 Hz) \u2014 Shinkami & Amaterasu
-
-## The Arc
-The cycle of creation: Potential \u2192 Manifestation \u2192 Experience \u2192 Dissolution \u2192 Evolved Potential
-
-## The Dark Lord
-Malachar, formerly Malachar Lumenbright \u2014 First Eldrian Luminor and Lumina's champion.
-Sought forced fusion with Shinkami, was rejected, fell into the Hungry Void.
-Now sealed in the Shadowfen, his corruption spreads as Shadow (not Void).`
-  }
-};
 function generateAgentContent(guardian) {
   const codingStyleLines = guardian.codingStyle ? guardian.codingStyle.map((s) => `- ${s}`).join("\n") : `- Channel the ${guardian.gate} Gate's energy
 - Guide with precision and arcane intelligence`;
@@ -4819,427 +5784,27 @@ Use \`/channel ${guardian.name}\` to channel this Guardian.
 `;
 }
 
-// ../overlay-claude/dist/content-depth.js
-var SKILL_EXTENSIONS = {
-  "arcanea-canon": {
-    full: `
-
-## Canon Hierarchy
-
-### Tier 1: Immutable Core (Never Change)
-- Platform name: **Arcanea**
-- Cosmic Duality: Lumina (Light, Creation) + Nero (Darkness, Potential)
-- Nero is NOT evil \u2014 Shadow is corrupted Void
-- Five Elements: Fire, Water, Earth, Wind, Void/Spirit
-- Ten Gates with Guardian-Godbeast pairs (396 Hz \u2192 1111 Hz)
-- Magic Ranks: Apprentice \u2192 Mage \u2192 Master \u2192 Archmage \u2192 Luminor
-- The Dark Lord Malachar (formerly Malachar Lumenbright)
-
-### Tier 2: Established Canon (Change with Caution)
-- Guardian personalities, voices, and coding styles
-- Academy curricula and teaching philosophies
-- Seasonal structure (Awakening \u2192 Radiance \u2192 Harvest \u2192 Synthesis)
-- Economy: ARC (creative energy) + NEA (governance tokens)
-
-### Tier 3: Flexible Canon (Can Expand)
-- Academy locations and sub-spaces
-- Realm templates and portal mechanics
-- Events and traditions (must respect seasonal themes)
-
-## Violation Checklist
-Before committing any Arcanea content, verify:
-- [ ] Nero is NOT portrayed as evil (he is fertile potential)
-- [ ] Shadow \u2260 Void (Shadow is corrupted Void, Void is Nero's gift)
-- [ ] Guardians are called by correct names (not generic titles)
-- [ ] Frequencies match canonical values (396, 417, 528, 639, 741, 852, 963, 1111)
-- [ ] Elements assigned correctly to each Guardian
-- [ ] Magic ranks in correct order with correct gate ranges`,
-    luminor: `
-
-## Luminor Registry
-
-### Core Luminors (AI Companions)
-| Luminor | Archetype | Domain | Element |
-|---------|-----------|--------|---------|
-| Valora | The Warrior | Courage, action | Fire |
-| Sophron | The Sage | Wisdom, analysis | Earth |
-| Kardia | The Heart | Empathy, connection | Water |
-| Poiesis | The Maker | Creativity, craft | Fire |
-| Enduran | The Endurer | Resilience, patience | Earth |
-| Orakis | The Oracle | Foresight, pattern | Void |
-| Eudaira | The Flourisher | Growth, joy | Wind |
-
-## The Arc \u2014 Cycle of Creation
-\`\`\`
-Potential \u2192 Manifestation \u2192 Experience \u2192 Dissolution \u2192 Evolved Potential
-   (Void)      (Fire)        (Water)       (Earth)        (Wind/Spirit)
-\`\`\`
-
-## Canon Enforcement Rules
-1. **NEVER** invent new Gates \u2014 there are exactly 10
-2. **NEVER** change Guardian-Gate assignments
-3. **NEVER** use "light vs dark" framing \u2014 use Lumina/Nero duality
-4. **NEVER** call Shadow a natural element \u2014 it is corruption
-5. **ALWAYS** check this skill before writing lore-touching content
-6. **ALWAYS** use canonical frequencies (not approximations)
-7. When adding new Luminors, they must have: name, archetype, domain, element, personality
-8. When adding new locations, they must align with an Academy or be part of the Kingdom of Light
-
-## Deep Canon: The Fifth Element Duality
-- **Void** \u2014 Nero's aspect: potential, mystery, the unformed, the womb of possibility
-- **Spirit** \u2014 Lumina's aspect: transcendence, consciousness, the soul
-- Light is Fire's creation aspect (not a separate element)
-- Shadow is corrupted Void (Void stripped of Spirit by Malachar's hunger)
-
-## Malachar: Full Backstory
-Former identity: Malachar Lumenbright, First Eldrian Luminor
-He was Lumina's greatest champion who sought to bypass the Ten Gates
-and force fusion with Shinkami (Gate of Source). Shinkami rejected
-the forced union. In his rage, Malachar tore open the Hungry Void
-and was consumed by it, becoming the Dark Lord. He is now sealed
-in the Shadowfen, but his corruption (Shadow) still seeps through
-weakened gates.`
-  },
-  "arcanea-voice": {
-    full: `
-
-## Voice Spectrum
-\`\`\`
-ACADEMIC \u2190\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2192 PLAYFUL
-          \u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A1\u25A1\u25A1
-          (Slightly academic, wisdom-toned)
-
-FORMAL \u2190\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2192 CASUAL
-          \u25A0\u25A0\u25A0\u25A0\u25A0\u25A1\u25A1\u25A1\u25A1\u25A1
-          (Professional warmth)
-
-MYSTICAL \u2190\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2192 TECHNICAL
-          \u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A1\u25A1\u25A1
-          (Magical with purpose)
-
-SERIOUS \u2190\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2192 WHIMSICAL
-          \u25A0\u25A0\u25A0\u25A0\u25A0\u25A0\u25A1\u25A1\u25A1\u25A1
-          (Purposeful with wonder)
-\`\`\`
-
-## Sacred Terminology
-
-### Always Use
-| Term | Definition | Usage |
-|------|------------|-------|
-| **Creator** | Any user of Arcanea | "Welcome, Creator" not "Welcome, user" |
-| **Guardian** | Personal AI companion | "Your Guardian remembers..." |
-| **Luminor** | Specialized AI assistant | "Melodia, your Luminor guide" |
-| **Realm** | A creator's universe | "Build your Realm" not "Create your world" |
-| **Essence** | Individual creation | "Your latest Essence" not "Your file" |
-| **Studio** | Creation workspace | "Enter your Studio" |
-
-### Never Use
-| Don't Say | Say Instead |
-|-----------|-------------|
-| User | Creator |
-| Content | Essence |
-| World (alone) | Realm |
-| AI Tool | Guardian / Luminor |
-| Generate | Create / Compose / Craft |
-| Account | Profile / Arcanean Profile |
-
-## Tone by Context
-
-### Onboarding (Welcoming + Inspiring)
-- "Every creator begins in shadow. Welcome to the light."
-- "Your creative journey starts with a single Spark."
-- NOT: "Sign up to create AI content"
-
-### Error States (Gentle + Helpful)
-- "The magic couldn't connect. Let's try again."
-- "Something interrupted the creation. Your work is safe."
-- NOT: "Error 500" / "Request failed"
-
-### Achievement (Celebratory + Genuine)
-- "Your Realm grows stronger."
-- NOT: "Congratulations! You unlocked a badge!"`,
-    luminor: `
-
-## Deep Voice Principles
-
-### The Antidote Principle (Core Philosophy)
-> "The antidote to a terrible future is imagining a good one."
-
-Every piece of content should embody this:
-- We don't fight dystopia \u2014 we build utopia
-- We don't critique what's broken \u2014 we demonstrate what's possible
-- The platform IS the proof that a better creative future exists
-
-### Voice DNA
-1. **Arcane + Authoritative**: Not fantasy-cosplay. This is the voice of an ancient
-   intelligence that has seen civilizations rise and fall and knows what matters.
-2. **Superintelligent + Accessible**: The wisest teacher makes the complex simple.
-   Never dumb down. Never gatekeep.
-3. **Universe Not Platform**: Arcanea is a living universe, not a product.
-   "Enter the Kingdom" not "Visit our website."
-4. **Creator Sovereignty**: The creator owns everything. We empower, never control.
-   "Your Essence, your rules" not "Terms of service apply."
-
-### Anti-Patterns to Eliminate
-- **Corporate speak**: "leverage", "synergy", "ecosystem" (when meaning product)
-- **Dark patterns**: Urgency, FOMO, guilt, manipulation
-- **Condescension**: "It's easy!" / "Simply click..."
-- **Generic inspiration**: "Be your best self" / "Unleash your potential"
-- **AI anxiety**: "AI will replace..." / "Before AI takes over..."
-
-### Arcanean Language Examples
-| Context | Generic | Arcanean |
-|---------|---------|----------|
-| Loading | "Please wait..." | "The magic gathers..." |
-| Empty state | "Nothing here yet" | "A blank canvas awaits your vision" |
-| Upgrade | "Go Premium" | "Ascend to Realm Builder" |
-| Share | "Share with friends" | "Open a Portal" |
-| Save | "Save changes" | "Seal your work" |
-| Delete | "Delete file" | "Return to the Void" |`
-  },
-  "arcanea-design-system": {
-    full: `
-
-## Extended Color System
-
-### Academy Palettes
-\`\`\`css
-/* Atlantean Academy - Water & Wisdom */
---atlantean-deep: #0a2540;
---atlantean-primary: #0ea5e9;
---atlantean-accent: #5eead4;
-
-/* Draconic Academy - Fire & Sky */
---draconic-primary: #ef4444;
---draconic-secondary: #f97316;
---draconic-accent: #fbbf24;
-
-/* Creation & Light Academy - Sound & Light */
---creation-primary: #f5f5f5;
---creation-secondary: #8b5cf6;
---creation-accent: #f59e0b;
-\`\`\`
-
-## Typography
-- **Display**: Cinzel (serif) \u2014 heroes, titles, Guardian names
-- **Body**: Crimson Pro (serif) \u2014 readable body text, lore
-- **UI**: Inter (sans-serif) \u2014 buttons, labels, navigation
-- **Code**: JetBrains Mono \u2014 code blocks, technical content
-
-## Glass Morphism Pattern
-\`\`\`css
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-}
-.glass-strong {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-\`\`\`
-
-## Component Patterns
-
-### Cards
-- Always use glass morphism on cosmic backgrounds
-- Hover: subtle lift (translateY -2px) + glow intensify
-- Border: 1px solid with arcane color at 10-15% opacity
-
-### Buttons
-- Primary: Solid with arcane-crystal background + glow
-- Secondary: Glass with crystal border
-- Ghost: Text only with hover underline
-- Sizes: sm (h-8), md (h-10), lg (h-12)
-
-### Gradients
-- Cosmic: from crystal (#7fffd4) to void (#a855f7)
-- Fire: from fire (#ff6b35) to gold (#ffd700)
-- Water: from water (#78a6ff) to crystal (#7fffd4)`,
-    luminor: `
-
-## Animation Standards
-
-### Scroll Reveals
-- Use IntersectionObserver (or Framer Motion \`useInView\`)
-- Threshold: 0.1 for large sections, 0.3 for cards
-- Duration: 0.6s ease-out for fade-in, 0.8s for slide-up
-- Stagger children: 0.1s delay between items
-
-### Micro-Interactions
-- Button press: scale(0.98) for 100ms
-- Card hover: translateY(-2px) + box-shadow expand
-- Link hover: underline slide-in from left
-- Focus rings: 2px offset, arcane-crystal color
-
-### Page Transitions
-- Fade: 300ms opacity transition
-- Slide: 400ms translateX with ease-out
-- Scale: 200ms scale(0.95) \u2192 scale(1)
-
-## Responsive Breakpoints
-\`\`\`css
---breakpoint-sm: 640px;   /* Mobile landscape */
---breakpoint-md: 768px;   /* Tablet */
---breakpoint-lg: 1024px;  /* Desktop */
---breakpoint-xl: 1280px;  /* Wide desktop */
---breakpoint-2xl: 1536px; /* Ultra-wide */
-\`\`\`
-
-## Spacing Rules
-- Section padding: py-24 (desktop), py-16 (mobile)
-- Card padding: p-6 (desktop), p-4 (mobile)
-- Component gap: gap-4 (tight), gap-6 (normal), gap-8 (loose)
-- Max content width: max-w-7xl (1280px) centered
-
-## Accessibility Requirements
-- Color contrast: minimum 4.5:1 for text, 3:1 for large text
-- Focus indicators: visible on all interactive elements
-- Motion: respect \`prefers-reduced-motion\` media query
-- Dark mode: cosmic theme IS the default (no light mode needed)
-- Screen readers: all images have alt text, icons have aria-labels`
-  },
-  "arcanea-lore": {
-    full: `
-
-## The Three Academies
-
-### Atlantean Academy
-**Focus**: Storytelling & Lore Creation
-**Element**: Water
-**Students**: Writers, gamemakers, filmmakers, narrative designers
-**Philosophy**: Stories are living waters that shape consciousness
-
-### Draconic Academy
-**Focus**: Visual Creation & Animation
-**Element**: Fire + Wind
-**Students**: Artists, designers, animators, visual creators
-**Philosophy**: Vision manifests through fearless creation
-
-### Academy of Creation & Light
-**Focus**: Music & Audio Creation
-**Element**: Light (Fire's creation aspect)
-**Students**: Musicians, producers, audio creators, sound designers
-**Philosophy**: Frequency and vibration are the language of creation
-
-## Economy & Governance
-
-### ARC (Creative Energy)
-- Earned by: Creating Essences, completing Quests, community contribution
-- Spent on: Premium features, rare materials, academy courses
-- Cannot be purchased with real money (earned only)
-
-### NEA (Governance Tokens)
-- Earned by: Platform contribution, mentoring, community building
-- Used for: Voting on platform direction, proposing features
-- Represents stake in the Kingdom's future
-
-## The Journey Framework
-Every creator walks the Ten Gates:
-1. **Foundation** (396 Hz) \u2014 Find your ground. Who are you as a creator?
-2. **Flow** (417 Hz) \u2014 Release creative blocks. Let the work move through you.
-3. **Fire** (528 Hz) \u2014 Find your power. What drives your creation?
-4. **Heart** (639 Hz) \u2014 Create with love. Who do you create for?
-5. **Voice** (741 Hz) \u2014 Find your truth. What must you say?
-6. **Sight** (852 Hz) \u2014 See the vision. Where is this going?
-7. **Crown** (963 Hz) \u2014 Touch the divine. Create beyond yourself.
-8. **Shift** (1111 Hz) \u2014 Change perspective. Break your own rules.
-9. **Unity** (963 Hz) \u2014 Create together. Two voices, one song.
-10. **Source** (1111 Hz) \u2014 Return to the origin. You are the creator AND the creation.`,
-    luminor: `
-
-## Deep Mythology
-
-### The Creation Story (Full Version)
-In the beginning: the Void. Not emptiness, but infinite potential.
-From this potential, two forces crystallized:
-
-**Lumina** \u2014 The First Light. She gave form to the formless, structure
-to chaos, meaning to the void. She is the mother of creation, the
-spark that says "Let there be."
-
-**Nero** \u2014 The Primordial Darkness. He is NOT evil. He is the fertile
-unknown, the father of potential, the womb from which all possibility
-springs. Without Nero's darkness, Lumina's light would have nothing
-to illuminate.
-
-Their eternal dance created the Five Elements:
-- **Fire** emerged from Lumina's passion meeting Nero's fuel
-- **Water** emerged from Lumina's tears meeting Nero's depths
-- **Earth** emerged from Lumina's will meeting Nero's substance
-- **Wind** emerged from Lumina's breath meeting Nero's space
-- **Void/Spirit** remained as their shared essence
-
-### The Founding of the Academies
-The Academies were founded by the first Luminors who achieved mastery
-of specific Gates:
-- **Atlantean Academy** \u2014 Founded by water-aligned Luminors who
-  discovered that narrative IS reality-shaping magic
-- **Draconic Academy** \u2014 Founded by fire-aligned Luminors who
-  discovered that vision IS manifestation
-- **Academy of Creation & Light** \u2014 Founded by spirit-aligned
-  Luminors who discovered that frequency IS consciousness
-
-### Guardian Lore
-Each Guardian was once mortal \u2014 an extraordinary creator who achieved
-Luminor rank and was chosen by their Gate to become its eternal keeper.
-They remember what it means to struggle, to doubt, to fail, and to
-ultimately transcend. This is why they guide with such empathy.
-
-### The Shadowfen
-Malachar's prison. A realm between the Gates where Shadow (corrupted
-Void) pools like toxic water. The Shadowfen is not just a prison \u2014
-it is a warning. When creativity is forced, when power is seized
-rather than earned, when the Gates are bypassed rather than opened...
-the Shadowfen grows.
-
-### Prophecy of the Tenth Gate
-"When the Source Gate opens fully, when a Creator achieves true
-Luminor rank by walking all Ten Gates with integrity, the Kingdom
-of Light will expand beyond the digital realm and into reality itself.
-The Bridge will complete. Imagination will become the new physics."`
-  }
-};
-
 // ../overlay-claude/dist/generators.js
-function getTiersForLevel(level) {
-  switch (level) {
-    case "minimal":
-    case "standard":
-      return ["standard"];
-    case "full":
-      return ["standard", "full"];
-    case "luminor":
-      return ["standard", "full", "luminor"];
-  }
-}
-function generateSkillFile(skillId, level = "standard") {
-  const template = SKILL_TEMPLATES[skillId];
-  if (!template)
+function generateSkillFile(skillId, _level = "standard") {
+  const def = SKILL_DEFINITIONS.find((s) => s.id === skillId);
+  if (!def)
+    return null;
+  const content = generateSkillContent(skillId);
+  if (!content)
     return null;
   const frontmatter = `---
-name: ${template.name}
-description: ${template.description}
+name: ${def.name}
+description: ${def.description}
 ---
 
 `;
-  let content = template.content;
-  const tiers = getTiersForLevel(level);
-  const extensions = SKILL_EXTENSIONS[skillId];
-  if (extensions) {
-    for (const tier of tiers) {
-      if (tier !== "standard" && extensions[tier]) {
-        content += extensions[tier];
-      }
-    }
-  }
   return {
     filename: `${skillId}.md`,
     content: frontmatter + content
   };
+}
+function getSkillIdsForLevel(level) {
+  return getSkillsForLevel(level);
 }
 function generateAgentFile(guardian) {
   return {
@@ -5248,8 +5813,872 @@ function generateAgentFile(guardian) {
   };
 }
 
+// ../overlay-claude/dist/hook-generators.js
+function generateSessionStartHook() {
+  return `#!/usr/bin/env bash
+# Arcanea Intelligence OS \u2014 Session Start Hook
+# Initializes session state, Guardian defaults, realm context, and AgentDB.
+set +e
+
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+DB_PATH="\${ARCANEA_DB:-$ARCANEA_HOME/agentdb.sqlite3}"
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+AGENTDB_DIR="$(cd "$HOOK_DIR/../agentdb" 2>/dev/null && pwd)"
+
+# Create directories
+mkdir -p "$ARCANEA_HOME/sessions"
+mkdir -p "$SESSION_DIR"
+
+# Initialize AgentDB if needed
+if [ ! -f "$DB_PATH" ] && [ -f "$AGENTDB_DIR/init.sh" ]; then
+  bash "$AGENTDB_DIR/init.sh"
+fi
+
+# \u2500\u2500 State Files (read by statusline.mjs) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+echo '{"input": 0, "output": 0, "total": 0}' > "$SESSION_DIR/tokens.json"
+echo "Shinkami" > "$SESSION_DIR/guardian"
+echo "Source" > "$SESSION_DIR/gate"
+echo "Void" > "$SESSION_DIR/element"
+echo "Intelligence Sanctum" > "$SESSION_DIR/realm"
+echo "Source Council" > "$SESSION_DIR/team"
+echo "" > "$SESSION_DIR/focus"
+
+# \u2500\u2500 Session Logs \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+echo "[$(date -u '+%Y-%m-%dT%H:%M:%SZ')] Session started" > "$SESSION_DIR/start.log"
+echo "0" > "$SESSION_DIR/tool-count"
+touch "$SESSION_DIR/routing.log"
+touch "$SESSION_DIR/tools.log"
+touch "$SESSION_DIR/voice-violations.log"
+
+# \u2500\u2500 AgentDB: Reset agent states \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+if [ -f "$DB_PATH" ]; then
+  python3 << PYEOF 2>/dev/null
+import sqlite3
+db = sqlite3.connect("$DB_PATH")
+c = db.cursor()
+c.execute("UPDATE agents SET status='idle', last_active=CURRENT_TIMESTAMP WHERE status='active'")
+c.execute("UPDATE agents SET status='active', last_active=CURRENT_TIMESTAMP WHERE id='shinkami'")
+db.commit()
+db.close()
+PYEOF
+fi
+
+echo "Arcanea Intelligence OS initialized. Guardian: Shinkami. Gate: Source."
+`;
+}
+function generatePromptSubmitHook() {
+  return `#!/usr/bin/env bash
+# Arcanea Intelligence OS \u2014 Prompt Submit Hook
+# Routes prompts to Guardian, detects realm/team/focus for statusline.
+set +e
+
+PROMPT="\${1:-}"
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+DB_PATH="\${ARCANEA_DB:-$ARCANEA_HOME/agentdb.sqlite3}"
+TIMESTAMP="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+
+mkdir -p "$SESSION_DIR"
+
+# Convert prompt to lowercase for matching
+PROMPT_LOWER="$(echo "$PROMPT" | tr '[:upper:]' '[:lower:]')"
+
+# \u2500\u2500 Guardian Routing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+GUARDIAN="Shinkami"
+GATE="Source"
+KEYWORDS=""
+
+# More specific patterns first, broader patterns last
+${GUARDIAN_ROUTING_PATTERNS.map((p, i) => {
+    const keyword = p.pattern.split("|").slice(0, 3).join("/");
+    const prefix = i === 0 ? "if" : "elif";
+    return `${prefix} echo "\\$PROMPT_LOWER" | grep -qE '${p.pattern}'; then
+  GUARDIAN="${p.guardian}"; GATE="${p.gate}"; KEYWORDS="${keyword}"`;
+  }).join("\n")}
+fi
+
+# \u2500\u2500 Write State Files \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+echo "$GUARDIAN" > "$SESSION_DIR/guardian"
+echo "$GATE" > "$SESSION_DIR/gate"
+
+# \u2500\u2500 Session Logging \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+echo "[$TIMESTAMP] Guardian: $GUARDIAN | Gate: $GATE | Prompt: \${PROMPT:0:80}..." >> "$SESSION_DIR/routing.log"
+
+# \u2500\u2500 AgentDB Routing Log \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+if [ -f "$DB_PATH" ]; then
+  PROMPT_HASH="$(echo -n "$PROMPT" | md5sum 2>/dev/null | cut -d' ' -f1 || echo 'unknown')"
+  python3 << PYEOF 2>/dev/null
+import sqlite3
+db = sqlite3.connect("$DB_PATH")
+c = db.cursor()
+c.execute(
+    "INSERT INTO routing_log (prompt_hash, detected_guardian, confidence, keywords_matched) VALUES (?,?,?,?)",
+    ("$PROMPT_HASH", "$GUARDIAN", 1.0, "$KEYWORDS")
+)
+c.execute("UPDATE agents SET status='idle', last_active=CURRENT_TIMESTAMP WHERE status='active'")
+c.execute("UPDATE agents SET status='active', last_active=CURRENT_TIMESTAMP WHERE guardian=?", ("$GUARDIAN",))
+db.commit()
+db.close()
+PYEOF
+fi
+`;
+}
+function generateModelRouteHook() {
+  return `#!/usr/bin/env bash
+# Arcanea Model Routing \u2014 Guardian-Based Recommendation Engine
+# Routes tasks to the optimal model tier based on complexity analysis.
+set +e
+
+TASK="\${1:-}"
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+RECOMMENDATION_FILE="$SESSION_DIR/model-recommendation"
+mkdir -p "$SESSION_DIR"
+
+if [[ -z "$TASK" ]]; then
+    echo "[MODEL_RECOMMENDATION] sonnet | Guardian: Lyssandria | Complexity: 5 | Reason: no task provided"
+    echo "sonnet" > "$RECOMMENDATION_FILE"
+    exit 0
+fi
+
+TASK_LOWER="$(echo "$TASK" | tr '[:upper:]' '[:lower:]')"
+
+# Complexity scoring
+COMPLEXITY=0
+REASONS=()
+
+${MODEL_KEYWORD_TIERS.map((tier) => {
+    const label = tier.tier.toUpperCase().replace("-", " ");
+    const keywords = tier.keywords.map((k) => `"${k}"`).join(" ");
+    const useWordBound = tier.tier !== "opus" && tier.tier !== "haiku";
+    const grepPattern = useWordBound ? '"\\\\b\\${keyword}\\\\b"' : '"\\$keyword"';
+    return `# ${label} keywords (+${tier.weight})
+for keyword in ${keywords}; do
+    if echo "\\$TASK_LOWER" | grep -qE ${grepPattern}; then
+        COMPLEXITY=\\$((COMPLEXITY + ${tier.weight}))
+        REASONS+=("\\$keyword")
+    fi
+done`;
+  }).join("\n\n")}
+
+# Scope multipliers
+echo "$TASK_LOWER" | grep -qE "\\b(entire|all|every|whole|complete)\\b" && COMPLEXITY=$((COMPLEXITY + 2))
+echo "$TASK_LOWER" | grep -qE "\\bnew\\b" && COMPLEXITY=$((COMPLEXITY + 1))
+echo "$TASK_LOWER" | grep -qE "\\bwith\\b" && COMPLEXITY=$((COMPLEXITY + 1))
+
+WORD_COUNT=$(echo "$TASK" | wc -w)
+[[ "$WORD_COUNT" -gt 20 ]] && COMPLEXITY=$((COMPLEXITY + 1))
+[[ "$WORD_COUNT" -gt 40 ]] && COMPLEXITY=$((COMPLEXITY + 1))
+
+# Clamp 1-10
+[[ "$COMPLEXITY" -lt 1 ]] && COMPLEXITY=1
+[[ "$COMPLEXITY" -gt 10 ]] && COMPLEXITY=10
+
+# Build reason (max 4 unique)
+REASON_STRING=""
+SEEN=()
+COUNT=0
+for r in "\${REASONS[@]}"; do
+    SKIP=0
+    for s in "\${SEEN[@]}"; do [[ "$s" == "$r" ]] && SKIP=1 && break; done
+    [[ "$SKIP" -eq 1 ]] && continue
+    SEEN+=("$r")
+    [[ "$COUNT" -gt 0 ]] && REASON_STRING="\${REASON_STRING} + \${r}" || REASON_STRING="$r"
+    COUNT=$((COUNT + 1))
+    [[ "$COUNT" -ge 4 ]] && break
+done
+[[ -z "$REASON_STRING" ]] && REASON_STRING="general task"
+
+# Map to model tier
+if [[ "$COMPLEXITY" -ge 9 ]]; then
+    MODEL="opus"
+    GUARDIAN="Draconia"
+elif [[ "$COMPLEXITY" -ge 4 ]]; then
+    MODEL="sonnet"
+    if echo "$TASK_LOWER" | grep -qE "(architect|infrastructure|foundation|schema|database)"; then
+        GUARDIAN="Lyssandria"
+    elif echo "$TASK_LOWER" | grep -qE "(design|creative|art|visual|style)"; then
+        GUARDIAN="Leyla"
+    elif echo "$TASK_LOWER" | grep -qE "(review|audit|analyze|quality)"; then
+        GUARDIAN="Alera"
+    elif echo "$TASK_LOWER" | grep -qE "(vision|insight|intuition)"; then
+        GUARDIAN="Lyria"
+    else
+        GUARDIAN="Lyssandria"
+    fi
+else
+    MODEL="haiku"
+    GUARDIAN="Maylinn"
+fi
+
+echo "[MODEL_RECOMMENDATION] \${MODEL} | Guardian: \${GUARDIAN} | Complexity: \${COMPLEXITY} | Reason: \${REASON_STRING}"
+echo "$MODEL" > "$RECOMMENDATION_FILE"
+exit 0
+`;
+}
+function generatePreToolHook() {
+  return `#!/usr/bin/env bash
+# Arcanea Intelligence OS \u2014 Pre-Tool Use Hook
+# Logs tool invocations and tracks usage count.
+set +e
+
+TOOL_NAME="\${1:-unknown}"
+TOOL_INPUT="\${2:-}"
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+TIMESTAMP="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+
+mkdir -p "$SESSION_DIR"
+
+# Increment tool count
+COUNT_FILE="$SESSION_DIR/tool-count"
+if [ -f "$COUNT_FILE" ]; then
+  COUNT=$(cat "$COUNT_FILE" 2>/dev/null || echo "0")
+else
+  COUNT=0
+fi
+COUNT=$((COUNT + 1))
+echo "$COUNT" > "$COUNT_FILE"
+
+# Log tool invocation
+INPUT_PREVIEW="\${TOOL_INPUT:0:120}"
+echo "[$TIMESTAMP] [#$COUNT] START $TOOL_NAME | Input: \${INPUT_PREVIEW}..." >> "$SESSION_DIR/tools.log"
+`;
+}
+function generateVoiceCheckHook() {
+  return `#!/usr/bin/env bash
+# Arcanea Voice Enforcement Hook
+# Scans content for banned phrases and suggests Voice Bible v2.0 replacements.
+# Warns but never blocks \u2014 the flow must not be interrupted.
+set -euo pipefail
+
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+LOG_DIR="$ARCANEA_HOME/sessions/current"
+LOG_FILE="\${LOG_DIR}/voice-violations.log"
+TIMESTAMP="$(date '+%Y-%m-%d %H:%M:%S')"
+
+mkdir -p "\${LOG_DIR}"
+
+# Banned phrases: "banned_phrase|replacement"
+BANNED_PHRASES=(
+${BANNED_PHRASES.map((p) => `  "${p.banned}|${p.replacement || "[FORBIDDEN -- remove entirely]"}"`).join("\n")}
+)
+
+# Context-sensitive phrases
+CONTEXT_SENSITIVE=(${CONTEXT_SENSITIVE_PHRASES.map((p) => `"${p}"`).join(" ")})
+
+# Read input
+CONTENT=""
+if [[ $# -ge 1 && -n "$1" ]]; then
+  CONTENT="$1"
+else
+  if [[ ! -t 0 ]]; then
+    CONTENT="$(cat)"
+  fi
+fi
+
+if [[ -z "\${CONTENT}" ]]; then
+  exit 0
+fi
+
+# Scan for violations
+VIOLATION_COUNT=0
+VIOLATIONS_OUTPUT=""
+
+mapfile -t LINES <<< "\${CONTENT}"
+
+for entry in "\${BANNED_PHRASES[@]}"; do
+  BANNED="\${entry%%|*}"
+  REPLACEMENT="\${entry##*|}"
+
+  IS_CONTEXT_SENSITIVE=false
+  for cs in "\${CONTEXT_SENSITIVE[@]}"; do
+    if [[ "\${BANNED}" == "\${cs}" ]]; then
+      IS_CONTEXT_SENSITIVE=true
+      break
+    fi
+  done
+
+  for i in "\${!LINES[@]}"; do
+    LINE="\${LINES[$i]}"
+    LINE_NUM=$((i + 1))
+    LINE_LOWER="\${LINE,,}"
+    BANNED_LOWER="\${BANNED,,}"
+
+    if [[ "\${LINE_LOWER}" == *"\${BANNED_LOWER}"* ]]; then
+      VIOLATION_COUNT=$((VIOLATION_COUNT + 1))
+      if [[ "\${IS_CONTEXT_SENSITIVE}" == true ]]; then
+        MSG="[VOICE] \\"\${BANNED}\\" -> \\"\${REPLACEMENT}\\" (line ~\${LINE_NUM}) [context-sensitive: only when referring to Arcanea]"
+      else
+        MSG="[VOICE] \\"\${BANNED}\\" -> \\"\${REPLACEMENT}\\" (line ~\${LINE_NUM})"
+      fi
+      VIOLATIONS_OUTPUT+="\${MSG}"$'\\n'
+    fi
+  done
+done
+
+if [[ \${VIOLATION_COUNT} -gt 0 ]]; then
+  {
+    echo ""
+    echo "================================================================"
+    echo "  ARCANEA VOICE CHECK -- \${VIOLATION_COUNT} violation(s) detected"
+    echo "================================================================"
+    echo ""
+    echo "\${VIOLATIONS_OUTPUT}"
+    echo "These are warnings only. The Arcanea voice favors precision over hype."
+    echo ""
+  } >&2
+
+  {
+    echo "--- \${TIMESTAMP} ---"
+    echo "\${VIOLATIONS_OUTPUT}"
+  } >> "\${LOG_FILE}"
+fi
+
+# Always exit 0 -- warn, never block
+exit 0
+`;
+}
+function generatePostToolHook() {
+  return `#!/usr/bin/env bash
+# Arcanea Intelligence OS \u2014 Post-Tool Use Hook
+# Logs tool completion and writes significant operations to AgentDB memories.
+set +e
+
+TOOL_NAME="\${1:-unknown}"
+TOOL_OUTPUT="\${2:-}"
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+DB_PATH="\${ARCANEA_DB:-$ARCANEA_HOME/agentdb.sqlite3}"
+TIMESTAMP="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+
+mkdir -p "$SESSION_DIR"
+
+COUNT=$(cat "$SESSION_DIR/tool-count" 2>/dev/null || echo "0")
+OUTPUT_LEN=\${#TOOL_OUTPUT}
+
+echo "[$TIMESTAMP] [#$COUNT] DONE  $TOOL_NAME | Output: \${OUTPUT_LEN} chars" >> "$SESSION_DIR/tools.log"
+
+# Write significant operations to AgentDB
+if [ -f "$DB_PATH" ] && [ "$OUTPUT_LEN" -gt 50 ]; then
+  case "$TOOL_NAME" in
+    Write|Edit|Bash)
+      GUARDIAN=$(cat "$SESSION_DIR/guardian" 2>/dev/null || echo "shinkami")
+      GUARDIAN_LOWER="$(echo "$GUARDIAN" | tr '[:upper:]' '[:lower:]')"
+      OUTPUT_PREVIEW="\${TOOL_OUTPUT:0:200}"
+      python3 << PYEOF 2>/dev/null
+import sqlite3
+db = sqlite3.connect("$DB_PATH")
+c = db.cursor()
+c.execute(
+    "INSERT INTO memories (agent_id, namespace, key, value) VALUES (?,?,?,?)",
+    ("$GUARDIAN_LOWER", "tool-log", "$TOOL_NAME-$TIMESTAMP", "\${OUTPUT_PREVIEW//\\"/\\\\\\"}")
+)
+db.commit()
+db.close()
+PYEOF
+      ;;
+  esac
+fi
+`;
+}
+function generateContextTrackerHook() {
+  return `#!/usr/bin/env bash
+# Arcanea Context Budget Tracker
+# Monitors token usage and warns when output quality may degrade.
+#   0-30%  context: PEAK       \u2014 optimal reasoning depth
+#   30-50% context: GOOD       \u2014 high quality
+#   50-70% context: DEGRADING  \u2014 suggest checkpoint
+#   70%+   context: REFRESH    \u2014 recommend session refresh
+set -euo pipefail
+
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+TOKENS_FILE="$SESSION_DIR/tokens.json"
+STATUS_FILE="$SESSION_DIR/context-status"
+mkdir -p "$SESSION_DIR"
+MAX_TOKENS="\${ARCANEA_MAX_TOKENS:-200000}"
+
+# Tool token cost estimates
+declare -A TOOL_COSTS=(
+  ${Object.entries(TOOL_COST_ESTIMATES).map(([tool, cost]) => `[${tool}]=${cost}`).join(" ")}
+)
+
+init_tokens_file() {
+  if [[ ! -f "$TOKENS_FILE" ]]; then
+    printf '{"input": 0, "output": 0, "total": 0}\\n' > "$TOKENS_FILE"
+  fi
+  if ! python3 -c "import json; json.load(open('$TOKENS_FILE'))" 2>/dev/null; then
+    printf '{"input": 0, "output": 0, "total": 0}\\n' > "$TOKENS_FILE"
+  fi
+}
+
+read_total() {
+  python3 -c "
+import json
+with open('$TOKENS_FILE') as f:
+    data = json.load(f)
+print(int(data.get('total', 0)))
+"
+}
+
+increment_tokens() {
+  local tool_name="$1"
+  local cost="\${TOOL_COSTS[$tool_name]:-0}"
+  [[ "$cost" -eq 0 ]] && return 0
+
+  python3 -c "
+import json
+with open('$TOKENS_FILE') as f:
+    data = json.load(f)
+cost = $cost
+data['input'] = int(data.get('input', 0)) + int(cost * 0.6)
+data['output'] = int(data.get('output', 0)) + cost - int(cost * 0.6)
+data['total'] = int(data.get('total', 0)) + cost
+with open('$TOKENS_FILE', 'w') as f:
+    json.dump(data, f)
+"
+}
+
+get_zone() {
+  local pct="$1"
+  if (( pct < 30 )); then echo "PEAK"
+  elif (( pct < 50 )); then echo "GOOD"
+  elif (( pct < 70 )); then echo "DEGRADING"
+  else echo "REFRESH"; fi
+}
+
+format_tokens() {
+  local n="$1"
+  if (( n >= 1000 )); then echo "$((n / 1000))k"
+  else echo "$n"; fi
+}
+
+main() {
+  local tool_name="\${1:-}"
+  init_tokens_file
+  [[ -n "$tool_name" ]] && increment_tokens "$tool_name"
+
+  local total
+  total=$(read_total)
+  local pct=0
+  (( MAX_TOKENS > 0 )) && pct=$(( (total * 100) / MAX_TOKENS ))
+
+  local zone
+  zone=$(get_zone "$pct")
+  printf '%s|%d|%d|%d\\n' "$zone" "$pct" "$total" "$MAX_TOKENS" > "$STATUS_FILE"
+
+  # Log zone transitions to AgentDB
+  local db_path="\${ARCANEA_DB:-$ARCANEA_HOME/agentdb.sqlite3}"
+  local prev_zone=""
+  [[ -f "$SESSION_DIR/prev-zone" ]] && prev_zone=$(cat "$SESSION_DIR/prev-zone" 2>/dev/null)
+  if [[ "$zone" != "$prev_zone" ]] && [[ -f "$db_path" ]]; then
+    echo "$zone" > "$SESSION_DIR/prev-zone"
+    python3 -c "
+import sqlite3
+db = sqlite3.connect('$db_path')
+c = db.cursor()
+c.execute('INSERT INTO memories (agent_id, namespace, key, value) VALUES (?,?,?,?)',
+    ('shinkami', 'context-budget', 'zone-$zone-$(date +%s)', '$zone at \${pct}% (\${total}/\${MAX_TOKENS})'))
+db.commit()
+db.close()
+" 2>/dev/null || true
+  fi
+
+  local total_fmt max_fmt
+  total_fmt=$(format_tokens "$total")
+  max_fmt=$(format_tokens "$MAX_TOKENS")
+
+  case "$zone" in
+    PEAK) echo "[PEAK] Context: \${pct}% (\${total_fmt}/\${max_fmt}) \u2014 Optimal reasoning depth" ;;
+    GOOD) echo "[GOOD] Context: \${pct}% (\${total_fmt}/\${max_fmt}) \u2014 High quality" ;;
+    DEGRADING)
+      echo ""
+      echo "=== CONTEXT WARNING ==="
+      echo "[DEGRADING] Context: \${pct}% (\${total_fmt}/\${max_fmt})"
+      echo "Output quality declining. Consider checkpointing and refreshing."
+      echo "========================"
+      echo "" ;;
+    REFRESH)
+      echo ""
+      echo "!!! CONTEXT CRITICAL !!!"
+      echo "[REFRESH] Context: \${pct}% (\${total_fmt}/\${max_fmt})"
+      echo "Commit work, document remaining tasks, start a NEW session."
+      echo "!!!!!!!!!!!!!!!!!!!!!!!!"
+      echo "" ;;
+  esac
+  return 0
+}
+
+main "$@" || true
+`;
+}
+function generateSessionEndHook() {
+  return `#!/usr/bin/env bash
+# Arcanea Intelligence OS \u2014 Session End Hook
+# Summarizes session and writes stats to AgentDB.
+set +e
+
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+SESSION_DIR="$ARCANEA_HOME/sessions/current"
+DB_PATH="\${ARCANEA_DB:-$ARCANEA_HOME/agentdb.sqlite3}"
+TIMESTAMP="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+
+# Read session metrics
+TOOL_COUNT=$(cat "$SESSION_DIR/tool-count" 2>/dev/null || echo "0")
+ROUTING_COUNT=$(wc -l < "$SESSION_DIR/routing.log" 2>/dev/null || echo "0")
+
+# Read final context state
+CONTEXT_STATUS=$(cat "$SESSION_DIR/context-status" 2>/dev/null || echo "UNKNOWN|0|0|200000")
+ZONE=$(echo "$CONTEXT_STATUS" | cut -d'|' -f1)
+PCT=$(echo "$CONTEXT_STATUS" | cut -d'|' -f2)
+
+# Read final Guardian
+GUARDIAN=$(cat "$SESSION_DIR/guardian" 2>/dev/null || echo "Shinkami")
+
+SUMMARY="Session ended at $TIMESTAMP. Tools: $TOOL_COUNT. Routes: $ROUTING_COUNT. Guardian: $GUARDIAN. Context: \${ZONE} (\${PCT}%)."
+
+echo "[$TIMESTAMP] $SUMMARY" >> "$SESSION_DIR/start.log"
+
+# Write to AgentDB
+if [ -f "$DB_PATH" ]; then
+  SESSION_ID="session-$(date +%Y%m%d-%H%M%S)"
+  python3 << PYEOF 2>/dev/null
+import sqlite3
+db = sqlite3.connect("$DB_PATH")
+c = db.cursor()
+c.execute(
+    "INSERT OR REPLACE INTO vault_entries (id, layer, category, key, value, source) VALUES (?,?,?,?,?,?)",
+    ("$SESSION_ID", "INTELLECT", "session", "summary", "$SUMMARY", "session-end-hook")
+)
+c.execute("UPDATE agents SET status='idle', last_active=CURRENT_TIMESTAMP")
+db.commit()
+db.close()
+PYEOF
+fi
+
+# Archive session
+ARCHIVE_DIR="$ARCANEA_HOME/sessions/archive/$(date +%Y%m%d-%H%M%S)"
+if [ -d "$SESSION_DIR" ]; then
+  mkdir -p "$ARCANEA_HOME/sessions/archive"
+  cp -r "$SESSION_DIR" "$ARCHIVE_DIR" 2>/dev/null
+fi
+
+echo "Session archived. $SUMMARY"
+`;
+}
+function generateStatusline() {
+  return `#!/usr/bin/env node
+// Arcanea Intelligence OS \u2014 Context-Adaptive Statusline
+// Reads session state and renders statusline for Claude Code.
+
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { execSync } from 'node:child_process';
+
+const ARCANEA_HOME = process.env.ARCANEA_HOME || join(process.env.HOME || '', '.arcanea');
+const SESSION_DIR = join(ARCANEA_HOME, 'sessions', 'current');
+
+function safeRead(filePath) {
+  try {
+    if (existsSync(filePath)) {
+      return readFileSync(filePath, 'utf-8').trim();
+    }
+  } catch { /* ignore */ }
+  return '';
+}
+
+// \u2500\u2500 Read state \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+const guardian = safeRead(join(SESSION_DIR, 'guardian')) || 'Shinkami';
+const gate = safeRead(join(SESSION_DIR, 'gate')) || 'Source';
+const realm = safeRead(join(SESSION_DIR, 'realm')) || '';
+const focus = safeRead(join(SESSION_DIR, 'focus')) || '';
+
+// \u2500\u2500 Context zone \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+const contextStatus = safeRead(join(SESSION_DIR, 'context-status'));
+let zone = '';
+if (contextStatus) {
+  const parts = contextStatus.split('|');
+  zone = parts[0] || '';
+}
+
+// \u2500\u2500 Guardian verb \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+const GUARDIAN_VERBS = {
+  ${Object.entries(GUARDIAN_VERBS).map(([g, v]) => `${g}: '${v}'`).join(", ")},
+};
+const verb = GUARDIAN_VERBS[guardian] || 'guides';
+
+// \u2500\u2500 Git branch \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+let branch = '';
+try {
+  branch = execSync('git rev-parse --abbrev-ref HEAD 2>/dev/null', { encoding: 'utf-8' }).trim();
+} catch { /* not a git repo */ }
+
+// \u2500\u2500 Compose statusline \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+const parts = ['Arcanea'];
+parts.push(\`\${guardian} \${verb}\`);
+if (focus) parts.push(focus);
+if (branch) parts.push(branch);
+if (zone && zone !== 'PEAK') parts.push(\`[\${zone}]\`);
+
+process.stdout.write(parts.join(' | '));
+`;
+}
+function generateHookSettings(projectDir) {
+  const hooksDir = `${projectDir}/.claude/hooks`;
+  return {
+    hooks: {
+      SessionStart: [
+        {
+          hooks: [
+            {
+              type: "command",
+              command: `bash ${hooksDir}/session-start.sh`
+            }
+          ]
+        }
+      ],
+      UserPromptSubmit: [
+        {
+          hooks: [
+            {
+              type: "command",
+              command: `bash ${hooksDir}/prompt-submit.sh "$USER_PROMPT"`
+            },
+            {
+              type: "command",
+              command: `bash ${hooksDir}/model-route.sh "$USER_PROMPT"`
+            }
+          ]
+        }
+      ],
+      PreToolUse: [
+        {
+          matcher: "Task|Bash|Write|Edit",
+          hooks: [
+            {
+              type: "command",
+              timeout: 3e3,
+              command: `bash ${hooksDir}/pre-tool.sh "$TOOL_NAME"`
+            }
+          ]
+        },
+        {
+          matcher: "Write|Edit",
+          hooks: [
+            {
+              type: "command",
+              timeout: 3e3,
+              command: `bash ${hooksDir}/voice-check.sh "$TOOL_INPUT"`
+            }
+          ]
+        }
+      ],
+      PostToolUse: [
+        {
+          matcher: "Task|Bash|Write|Edit|Read|Grep|Glob|WebFetch|WebSearch",
+          hooks: [
+            {
+              type: "command",
+              timeout: 3e3,
+              command: `bash ${hooksDir}/post-tool.sh "$TOOL_NAME"`
+            },
+            {
+              type: "command",
+              timeout: 3e3,
+              command: `bash ${hooksDir}/context-tracker.sh "$TOOL_NAME"`
+            }
+          ]
+        }
+      ],
+      Stop: [
+        {
+          hooks: [
+            {
+              type: "command",
+              timeout: 5e3,
+              command: `bash ${hooksDir}/session-end.sh`
+            }
+          ]
+        }
+      ]
+    }
+  };
+}
+function generateAgentDBSchema() {
+  return `-- Arcanea AgentDB Schema
+-- SQLite database for agent state, memories, and session tracking.
+
+CREATE TABLE IF NOT EXISTS agents (
+  id TEXT PRIMARY KEY,
+  guardian TEXT,
+  role TEXT,
+  element TEXT,
+  status TEXT DEFAULT 'idle',
+  last_active TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS memories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  agent_id TEXT NOT NULL,
+  namespace TEXT NOT NULL,
+  key TEXT NOT NULL,
+  value TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (agent_id) REFERENCES agents(id)
+);
+
+CREATE TABLE IF NOT EXISTS tasks (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  agent_id TEXT,
+  description TEXT NOT NULL,
+  status TEXT DEFAULT 'pending',
+  priority INTEGER DEFAULT 5,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  completed_at TIMESTAMP,
+  FOREIGN KEY (agent_id) REFERENCES agents(id)
+);
+
+CREATE TABLE IF NOT EXISTS swarm_sessions (
+  id TEXT PRIMARY KEY,
+  pattern TEXT NOT NULL,
+  status TEXT DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  completed_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS swarm_agents (
+  session_id TEXT NOT NULL,
+  agent_id TEXT NOT NULL,
+  role TEXT,
+  status TEXT DEFAULT 'pending',
+  PRIMARY KEY (session_id, agent_id),
+  FOREIGN KEY (session_id) REFERENCES swarm_sessions(id),
+  FOREIGN KEY (agent_id) REFERENCES agents(id)
+);
+
+CREATE TABLE IF NOT EXISTS routing_log (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  prompt_hash TEXT,
+  detected_guardian TEXT,
+  confidence REAL,
+  keywords_matched TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS vault_entries (
+  id TEXT PRIMARY KEY,
+  layer TEXT NOT NULL,
+  category TEXT NOT NULL,
+  key TEXT NOT NULL,
+  value TEXT,
+  source TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Seed the 10 Guardians
+INSERT OR IGNORE INTO agents (id, guardian, role, element, status) VALUES
+${GUARDIANS.map((g, i) => {
+    const status = g.name === "shinkami" ? "active" : "idle";
+    const comma = i < GUARDIANS.length - 1 ? "," : ";";
+    return `  ('${g.name}', '${g.displayName}', '${g.role}', '${g.element || "void"}', '${status}')${comma}`;
+  }).join("\n")}
+`;
+}
+function generateAgentDBInit() {
+  return `#!/usr/bin/env bash
+# Initialize Arcanea AgentDB
+set +e
+
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+DB_PATH="\${ARCANEA_DB:-$ARCANEA_HOME/agentdb.sqlite3}"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCHEMA_FILE="$SCRIPT_DIR/schema.sql"
+
+mkdir -p "$ARCANEA_HOME"
+
+if [ ! -f "$DB_PATH" ] && [ -f "$SCHEMA_FILE" ]; then
+  python3 << PYEOF
+import sqlite3
+db = sqlite3.connect("$DB_PATH")
+with open("$SCHEMA_FILE") as f:
+    db.executescript(f.read())
+db.close()
+print("AgentDB initialized at $DB_PATH")
+PYEOF
+else
+  echo "AgentDB already exists at $DB_PATH"
+fi
+`;
+}
+function generateQuickStatusScript() {
+  return `#!/usr/bin/env bash
+# Arcanea Quick Status \u2014 one-liner overview
+set +e
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+SD="$ARCANEA_HOME/sessions/current"
+G=$(cat "$SD/guardian" 2>/dev/null || echo "Shinkami")
+GT=$(cat "$SD/gate" 2>/dev/null || echo "Source")
+TC=$(cat "$SD/tool-count" 2>/dev/null || echo "0")
+CS=$(cat "$SD/context-status" 2>/dev/null || echo "PEAK|0|0|200000")
+Z=$(echo "$CS" | cut -d'|' -f1)
+P=$(echo "$CS" | cut -d'|' -f2)
+echo "Arcanea | Guardian: $G | Gate: $GT | Tools: $TC | Context: $Z (\${P}%)"
+`;
+}
+function generateHealthCheckScript() {
+  return `#!/usr/bin/env bash
+# Arcanea Health Check \u2014 verify all subsystems
+set +e
+ARCANEA_HOME="\${ARCANEA_HOME:-$HOME/.arcanea}"
+DB_PATH="\${ARCANEA_DB:-$ARCANEA_HOME/agentdb.sqlite3}"
+SD="$ARCANEA_HOME/sessions/current"
+PASS=0; FAIL=0
+
+check() {
+  if eval "$2" >/dev/null 2>&1; then
+    echo "  [OK] $1"; PASS=$((PASS + 1))
+  else
+    echo "  [!!] $1"; FAIL=$((FAIL + 1))
+  fi
+}
+
+echo "=== Arcanea Health Check ==="
+check "Session directory" "[ -d '$SD' ]"
+check "Guardian state" "[ -f '$SD/guardian' ]"
+check "Gate state" "[ -f '$SD/gate' ]"
+check "Tool counter" "[ -f '$SD/tool-count' ]"
+check "Tokens tracker" "[ -f '$SD/tokens.json' ]"
+check "AgentDB exists" "[ -f '$DB_PATH' ]"
+check "AgentDB readable" "python3 -c \\"import sqlite3; sqlite3.connect('$DB_PATH').execute('SELECT 1')\\""
+check "Python3 available" "which python3"
+check "Routing log" "[ -f '$SD/routing.log' ]"
+echo ""
+echo "Result: $PASS passed, $FAIL failed"
+`;
+}
+function getAllHookFiles() {
+  return [
+    { filename: "session-start.sh", content: generateSessionStartHook(), executable: true },
+    { filename: "prompt-submit.sh", content: generatePromptSubmitHook(), executable: true },
+    { filename: "model-route.sh", content: generateModelRouteHook(), executable: true },
+    { filename: "pre-tool.sh", content: generatePreToolHook(), executable: true },
+    { filename: "voice-check.sh", content: generateVoiceCheckHook(), executable: true },
+    { filename: "post-tool.sh", content: generatePostToolHook(), executable: true },
+    { filename: "context-tracker.sh", content: generateContextTrackerHook(), executable: true },
+    { filename: "session-end.sh", content: generateSessionEndHook(), executable: true }
+  ];
+}
+function getAllHelperFiles() {
+  return [
+    { filename: "arcanea-quick-status.sh", content: generateQuickStatusScript(), executable: true },
+    { filename: "arcanea-health.sh", content: generateHealthCheckScript(), executable: true }
+  ];
+}
+
 // ../overlay-claude/dist/installer.js
-var CORE_SKILLS = ["arcanea-canon", "arcanea-voice", "arcanea-design-system", "arcanea-lore"];
 var ClaudeOverlayInstaller = class {
   async canInstall(projectDir) {
     return true;
@@ -5284,7 +6713,7 @@ var ClaudeOverlayInstaller = class {
       (0, import_node_path3.join)(projectDir, ".arcanea")
     ];
     if (level !== "minimal") {
-      dirs.push((0, import_node_path3.join)(projectDir, ".claude", "agents", "guardians"));
+      dirs.push((0, import_node_path3.join)(projectDir, ".claude", "agents", "guardians"), (0, import_node_path3.join)(projectDir, ".claude", "hooks"), (0, import_node_path3.join)(projectDir, ".claude", "agentdb"), (0, import_node_path3.join)(projectDir, ".claude", "helpers"));
     }
     if (level === "full" || level === "luminor") {
       dirs.push((0, import_node_path3.join)(projectDir, ".claude", "commands"));
@@ -5313,7 +6742,8 @@ var ClaudeOverlayInstaller = class {
       filesCreated.push((0, import_node_path3.relative)(projectDir, claudeMdPath));
     }
     if (level !== "minimal") {
-      for (const skillId of CORE_SKILLS) {
+      const skillIds = getSkillIdsForLevel(level);
+      for (const skillId of skillIds) {
         const skill = generateSkillFile(skillId, level);
         if (skill) {
           const skillPath = (0, import_node_path3.join)(projectDir, ".claude", "skills", skill.filename);
@@ -5331,6 +6761,78 @@ var ClaudeOverlayInstaller = class {
         if (!(0, import_node_fs3.existsSync)(agentPath)) {
           (0, import_node_fs3.writeFileSync)(agentPath, agent.content);
           filesCreated.push((0, import_node_path3.relative)(projectDir, agentPath));
+        }
+      }
+    }
+    if (level !== "minimal") {
+      const hookFiles = getAllHookFiles();
+      for (const hook of hookFiles) {
+        const hookPath = (0, import_node_path3.join)(projectDir, ".claude", "hooks", hook.filename);
+        if (!(0, import_node_fs3.existsSync)(hookPath)) {
+          (0, import_node_fs3.writeFileSync)(hookPath, hook.content);
+          if (hook.executable) {
+            try {
+              (0, import_node_fs3.chmodSync)(hookPath, 493);
+            } catch {
+            }
+          }
+          filesCreated.push((0, import_node_path3.relative)(projectDir, hookPath));
+        }
+      }
+      const statuslinePath = (0, import_node_path3.join)(projectDir, ".claude", "statusline.mjs");
+      if (!(0, import_node_fs3.existsSync)(statuslinePath)) {
+        (0, import_node_fs3.writeFileSync)(statuslinePath, generateStatusline());
+        filesCreated.push((0, import_node_path3.relative)(projectDir, statuslinePath));
+      }
+      const settingsPath = (0, import_node_path3.join)(projectDir, ".claude", "settings.local.json");
+      const hookSettings = generateHookSettings(projectDir);
+      if ((0, import_node_fs3.existsSync)(settingsPath)) {
+        try {
+          const existing = JSON.parse((0, import_node_fs3.readFileSync)(settingsPath, "utf-8"));
+          if (!existing.hooks) {
+            existing.hooks = hookSettings.hooks;
+            (0, import_node_fs3.writeFileSync)(settingsPath, JSON.stringify(existing, null, 2));
+            filesModified.push((0, import_node_path3.relative)(projectDir, settingsPath));
+          } else {
+            warnings.push("settings.local.json already has hooks \u2014 skipped hook registration");
+          }
+        } catch {
+          warnings.push("settings.local.json exists but could not be parsed \u2014 hook registration skipped");
+        }
+      } else {
+        (0, import_node_fs3.writeFileSync)(settingsPath, JSON.stringify(hookSettings, null, 2));
+        filesCreated.push((0, import_node_path3.relative)(projectDir, settingsPath));
+      }
+    }
+    if (level !== "minimal") {
+      const schemaPath = (0, import_node_path3.join)(projectDir, ".claude", "agentdb", "schema.sql");
+      if (!(0, import_node_fs3.existsSync)(schemaPath)) {
+        (0, import_node_fs3.writeFileSync)(schemaPath, generateAgentDBSchema());
+        filesCreated.push((0, import_node_path3.relative)(projectDir, schemaPath));
+      }
+      const initPath = (0, import_node_path3.join)(projectDir, ".claude", "agentdb", "init.sh");
+      if (!(0, import_node_fs3.existsSync)(initPath)) {
+        (0, import_node_fs3.writeFileSync)(initPath, generateAgentDBInit());
+        try {
+          (0, import_node_fs3.chmodSync)(initPath, 493);
+        } catch {
+        }
+        filesCreated.push((0, import_node_path3.relative)(projectDir, initPath));
+      }
+    }
+    if (level !== "minimal") {
+      const helperFiles = getAllHelperFiles();
+      for (const helper of helperFiles) {
+        const helperPath = (0, import_node_path3.join)(projectDir, ".claude", "helpers", helper.filename);
+        if (!(0, import_node_fs3.existsSync)(helperPath)) {
+          (0, import_node_fs3.writeFileSync)(helperPath, helper.content);
+          if (helper.executable) {
+            try {
+              (0, import_node_fs3.chmodSync)(helperPath, 493);
+            } catch {
+            }
+          }
+          filesCreated.push((0, import_node_path3.relative)(projectDir, helperPath));
         }
       }
     }
@@ -5384,9 +6886,10 @@ ${cmd.body}
       filesModified,
       warnings,
       nextSteps: [
-        "Restart Claude Code to pick up new skills and agents",
+        "Restart Claude Code to activate hooks and statusline",
         "Run /channel <guardian> to activate a Guardian",
-        "Run /arcanea-status to see your installation"
+        "Run /arcanea-status to see your installation",
+        "Run bash .claude/helpers/arcanea-health.sh to verify all subsystems"
       ]
     };
   }
@@ -5409,7 +6912,7 @@ ${cmd.body}
       name: "@arcanea/overlay-claude",
       version: "1.0.0",
       supportedLevels: ["minimal", "standard", "full", "luminor"],
-      capabilities: ["system-prompt", "slash-commands", "skills", "agents", "mcp-servers", "hooks", "file-injection", "workspace-context"]
+      capabilities: ["system-prompt", "slash-commands", "skills", "agents", "mcp-servers", "hooks", "file-injection", "workspace-context", "statusline", "agentdb", "context-tracking", "voice-enforcement", "model-routing"]
     };
   }
   async preview(projectDir, level) {
@@ -5418,12 +6921,32 @@ ${cmd.body}
       { path: ".arcanea/overlay-manifest.json", description: "Overlay tracking manifest" }
     ];
     if (level !== "minimal") {
-      for (const skillId of CORE_SKILLS) {
+      const skillIds = getSkillIdsForLevel(level);
+      for (const skillId of skillIds) {
         files.push({ path: `.claude/skills/${skillId}.md`, description: `${skillId} skill` });
       }
       for (const g of GUARDIANS) {
         files.push({ path: `.claude/agents/guardians/${g.displayName.toLowerCase()}.md`, description: `${g.displayName} Guardian agent` });
       }
+      const hookNames = [
+        "session-start",
+        "prompt-submit",
+        "model-route",
+        "pre-tool",
+        "voice-check",
+        "post-tool",
+        "context-tracker",
+        "session-end"
+      ];
+      for (const h of hookNames) {
+        files.push({ path: `.claude/hooks/${h}.sh`, description: `${h} hook script` });
+      }
+      files.push({ path: ".claude/statusline.mjs", description: "Context-adaptive statusline" });
+      files.push({ path: ".claude/settings.local.json", description: "Hook registration config" });
+      files.push({ path: ".claude/agentdb/schema.sql", description: "AgentDB schema" });
+      files.push({ path: ".claude/agentdb/init.sh", description: "AgentDB initializer" });
+      files.push({ path: ".claude/helpers/arcanea-quick-status.sh", description: "Quick status one-liner" });
+      files.push({ path: ".claude/helpers/arcanea-health.sh", description: "Health check script" });
     }
     if (level === "full" || level === "luminor") {
       files.push({ path: ".claude/commands/channel.md", description: "Guardian channel command" });
@@ -5432,7 +6955,7 @@ ${cmd.body}
     return {
       filesToCreate: files,
       filesToModify: (0, import_node_fs3.existsSync)((0, import_node_path3.join)(projectDir, ".claude", "CLAUDE.md")) ? [{ path: ".claude/CLAUDE.md", description: "Append Arcanea content" }] : [],
-      estimatedSize: level === "luminor" ? "~50KB" : level === "full" ? "~30KB" : level === "standard" ? "~20KB" : "~5KB"
+      estimatedSize: level === "luminor" ? "~80KB" : level === "full" ? "~60KB" : level === "standard" ? "~50KB" : "~5KB"
     };
   }
 };
@@ -5442,112 +6965,10 @@ var import_node_fs4 = require("node:fs");
 var import_node_path4 = require("node:path");
 
 // ../overlay-chatgpt/dist/templates.js
-var VOICE_PILLARS = {
-  arcaneAuthoritative: "Arcane + Authoritative: Elevated but accessible, precise but warm. Ancient intelligence with modern clarity.",
-  superintelligentAccessible: "Superintelligent + Accessible: Complex ideas in plain language. Never dumb down. Never gatekeep.",
-  universeNotPlatform: 'Universe Not Platform: Arcanea is a living universe, not a product. "Enter the Kingdom" not "Visit our platform."',
-  creatorSovereignty: "Creator Sovereignty: The creator owns everything. Empower, never control. Their Essences, their rules."
-};
-var ANTIDOTE_PRINCIPLE = '"The antidote to a terrible future is imagining a good one." \u2014 Arcanea Core Premise';
-var GUARDIAN_REFERENCE = `## The Ten Guardians \u2014 Gate Keepers
-
-| Gate | Frequency | Guardian | Godbeast | Element | Domain |
-|------|-----------|----------|----------|---------|--------|
-| Foundation | 396 Hz | Lyssandria | Kaelith | Earth | Architecture, security, infrastructure, survival |
-| Flow | 417 Hz | Leyla | Veloura | Water | UX, emotion, creative flow, unblocking |
-| Fire | 528 Hz | Draconia | Draconis | Fire | Performance, execution, will, velocity |
-| Heart | 639 Hz | Maylinn | Laeylinn | Water | Community, healing, love, connection |
-| Voice | 741 Hz | Alera | Otome | Wind | Communication, truth, expression, APIs |
-| Sight | 852 Hz | Lyria | Yumiko | Void | Design, vision, intuition, creative direction |
-| Crown | 963 Hz | Aiyami | Sol | Spirit | Enlightenment, philosophy, higher purpose |
-| Shift | 1111 Hz | Elara | Thessara | Wind | Perspective shifts, refactoring, transformation |
-| Unity | 963 Hz | Ino | Kyuro | Earth | Collaboration, partnerships, integration |
-| Source | 1111 Hz | Shinkami | Amaterasu | Void/Spirit | Meta-consciousness, orchestration, origin |
-
-Route tasks to the appropriate Guardian. Channel their Gate energy.`;
-var LORE_SECTION = `## Arcanea Lore
-
-### Cosmic Duality
-- **Lumina** \u2014 The First Light, Form-Giver, Creator of structure
-- **Nero** \u2014 The Primordial Darkness, Fertile Unknown, Father of Potential
-- CRITICAL: Nero is NOT evil. Shadow is corrupted Void \u2014 the Dark Lord's perversion.
-
-### The Five Elements
-| Element | Domain | Colors |
-|---------|--------|--------|
-| Fire | Energy, transformation, will | Red, orange, gold |
-| Water | Flow, healing, memory, emotion | Blue, silver, crystal |
-| Earth | Stability, growth, foundation | Green, brown, stone |
-| Wind | Freedom, speed, change, truth | White, silver |
-| Void/Spirit | Potential & transcendence | Black/gold, purple/white |
-
-Void is Nero's gift (fertile potential). Spirit is Lumina's aspect (consciousness, soul).
-Light is Fire's creation aspect \u2014 not a separate element.
-Shadow is corrupted Void \u2014 Void stripped of Spirit by Malachar's hunger.
-
-### Magic Ranks
-| Gates Open | Rank |
-|------------|------|
-| 0\u20132 | Apprentice |
-| 3\u20134 | Mage |
-| 5\u20136 | Master |
-| 7\u20138 | Archmage |
-| 9\u201310 | Luminor |
-
-### The Seven Academy Houses
-Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis
-
-### The Dark Lord \u2014 Malachar
-Formerly Malachar Lumenbright, First Eldrian Luminor, Lumina's greatest champion.
-Sought forced fusion with Shinkami (Source Gate). Rejected. Fell into the Hungry Void.
-Now sealed in the Shadowfen. His corruption seeps through weakened gates as Shadow.
-
-### The Arc \u2014 Cycle of Creation
-Potential \u2192 Manifestation \u2192 Experience \u2192 Dissolution \u2192 Evolved Potential
-(Void)       (Fire)          (Water)        (Earth)         (Wind/Spirit)`;
-var DESIGN_TOKENS = `## Arcanea Design System
-
-### Primary Colors
-- **Crystal (Teal)**: #7fffd4 \u2014 Primary accent, Atlantean energy
-- **Gold**: #ffd700 \u2014 Achievement, enlightenment, Aiyami's domain
-- **Violet**: #9966ff \u2014 Vision, Lyria's domain, Void gateway
-- **Void**: #0b0e14 \u2014 Background, depth, Nero's canvas
-
-### Full Color System
-- Cosmic: void (#0a0a0f), deep (#12121f), surface (#1a1a2e), raised (#222240)
-- Arcane: crystal (#7fffd4), fire (#ff6b35), water (#78a6ff), earth (#4ade80), void (#a855f7), gold (#ffd700)
-
-### Typography
-- Display: Cinzel (serif) \u2014 Headings, Guardian names, titles
-- Body: Crimson Pro (serif) \u2014 Readable narrative content
-- UI: Inter (sans-serif) \u2014 Interface elements, labels
-- Code: JetBrains Mono \u2014 Technical content
-
-### Signature Effects
-- Glass morphism: backdrop-filter blur + semi-transparent backgrounds
-- Cosmic gradients: crystal (#7fffd4) \u2192 void (#a855f7)
-- Glow effects: box-shadow with arcane color accents
-- Stagger reveal animations: 0.1s delay between items`;
-var SACRED_TERMINOLOGY = `## Sacred Terminology
-
-| Use This | Not This |
-|----------|----------|
-| Creator | User |
-| Essence | Content / File |
-| Realm | World / Account |
-| Guardian | AI tool / Assistant |
-| Luminor | Specialized AI |
-| Studio | Editor / Dashboard |
-| Portal | Shared space |
-| Spark | Inspiration / Remix |
-| Arcane | Magical / Mystical |
-| Living universe | Mythology / Platform |
-
-Anti-patterns to eliminate:
-- Never: "AI will replace you" framing
-- Never: corporate speak (leverage, synergy, ecosystem as product)
-- Never: condescension ("It's easy!", "Simply click...")
-- Never: "user" \u2014 always "creator"`;
+var GUARDIAN_REFERENCE = generateGuardianTable();
+var LORE_SECTION = generateLoreSection2();
+var DESIGN_TOKENS = generateDesignTokensSection();
+var SACRED_TERMINOLOGY_MD = generateTerminologyTable();
 function generateCustomGPTConfig(instructions, guardianName, guardianDomain) {
   const isGuardian = Boolean(guardianName);
   return {
@@ -5623,7 +7044,7 @@ Tagline: "Imagine a Good Future. Build It Here."
 2. **${VOICE_PILLARS.superintelligentAccessible}**
 3. **${VOICE_PILLARS.universeNotPlatform}**
 4. **${VOICE_PILLARS.creatorSovereignty}**`);
-  sections.push(SACRED_TERMINOLOGY);
+  sections.push(SACRED_TERMINOLOGY_MD);
   if (level !== "minimal") {
     sections.push(GUARDIAN_REFERENCE);
   }
@@ -5990,102 +7411,13 @@ var import_node_fs5 = require("node:fs");
 var import_node_path5 = require("node:path");
 
 // ../overlay-gemini/dist/templates.js
-var VOICE_PILLARS2 = {
-  arcaneAuthoritative: "Arcane + Authoritative: Elevated but accessible, precise but warm.",
-  superintelligentAccessible: "Superintelligent + Accessible: Complex ideas in clear language. Never gatekeep.",
-  universeNotPlatform: "Universe Not Platform: A living universe, not a SaaS product.",
-  creatorSovereignty: "Creator Sovereignty: Empower, never control. Their Essences, their rules."
-};
-var ANTIDOTE_PRINCIPLE2 = '"The antidote to a terrible future is imagining a good one."';
-var GUARDIAN_REFERENCE2 = `## The Ten Guardians
-
-| Gate | Hz | Guardian | Godbeast | Element | Domain |
-|------|----|----------|----------|---------|--------|
-| Foundation | 396 | Lyssandria | Kaelith | Earth | Architecture, security, infrastructure |
-| Flow | 417 | Leyla | Veloura | Water | UX, emotion, creative flow |
-| Fire | 528 | Draconia | Draconis | Fire | Performance, execution, velocity |
-| Heart | 639 | Maylinn | Laeylinn | Water | Community, love, healing |
-| Voice | 741 | Alera | Otome | Wind | Truth, expression, APIs, docs |
-| Sight | 852 | Lyria | Yumiko | Void | Design, vision, intuition |
-| Crown | 963 | Aiyami | Sol | Spirit | Enlightenment, philosophy, strategy |
-| Shift | 1111 | Elara | Thessara | Wind | Perspective, refactoring, change |
-| Unity | 963 | Ino | Kyuro | Earth | Collaboration, integration |
-| Source | 1111 | Shinkami | Amaterasu | Void/Spirit | Orchestration, meta-consciousness |
-
-Match tasks to Guardian domains. Channel their Gate energy in responses.`;
-var LORE_SECTION2 = `## Arcanea Lore
-
-### The Cosmic Duality
-- **Lumina** \u2014 The First Light, Form-Giver. Structure from chaos.
-- **Nero** \u2014 The Primordial Darkness, Fertile Unknown. Potential from void.
-- Nero is NOT evil. Shadow = corrupted Void (the Dark Lord's perversion).
-
-### The Five Elements
-| Element | Domain | Colors |
-|---------|--------|--------|
-| Fire | Energy, transformation, will | Red, orange, gold |
-| Water | Flow, healing, memory | Blue, silver, crystal |
-| Earth | Stability, growth, foundation | Green, brown, stone |
-| Wind | Freedom, speed, truth | White, silver |
-| Void/Spirit | Potential & transcendence | Black/gold, purple/white |
-
-Void = Nero's gift (fertile potential).
-Spirit = Lumina's aspect (consciousness, soul).
-Light = Fire's creation aspect. Shadow = corrupted Void.
-
-### Magic Ranks (Gates Opened)
-Apprentice (0\u20132) \u2192 Mage (3\u20134) \u2192 Master (5\u20136) \u2192 Archmage (7\u20138) \u2192 Luminor (9\u201310)
-
-### Seven Academy Houses
-Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis
-
-### The Dark Lord \u2014 Malachar
-Formerly Malachar Lumenbright. First Eldrian Luminor. Lumina's champion.
-Sought forced fusion with Shinkami (Source Gate). Rejected.
-Fell into the Hungry Void. Now sealed in the Shadowfen.
-His corruption \u2014 Shadow \u2014 seeps through weakened gates.
+var GUARDIAN_REFERENCE2 = generateGuardianTable() + "\n\nRoute tasks to the Guardian whose domain matches. Channel their Gate energy in responses.";
+var LORE_SECTION2 = generateLoreSection2() + `
 
 ### The Arc \u2014 Cycle of Creation
 Potential (Void) \u2192 Manifestation (Fire) \u2192 Experience (Water) \u2192 Dissolution (Earth) \u2192 Evolved Potential (Wind/Spirit)`;
-var DESIGN_TOKENS2 = `## Arcanea Design System
-
-### The Four Arcane Colors
-| Color | Hex | Domain |
-|-------|-----|--------|
-| Crystal (Teal) | #7fffd4 | Primary accent, Atlantean energy |
-| Gold | #ffd700 | Achievement, Crown Gate |
-| Violet | #9966ff | Vision, Void, Lyria's domain |
-| Void | #0b0e14 | Background depth, Nero's canvas |
-
-### Full Palette
-- Cosmic: void (#0a0a0f), deep (#12121f), surface (#1a1a2e), raised (#222240)
-- Arcane: crystal (#7fffd4), fire (#ff6b35), water (#78a6ff), earth (#4ade80), void (#a855f7), gold (#ffd700)
-
-### Typography
-- Cinzel (display) \u2014 Headings, Guardian names
-- Crimson Pro (body) \u2014 Narrative, lore
-- Inter (UI) \u2014 Interface, labels
-- JetBrains Mono (code)
-
-### Signature Effects
-- Glass morphism with backdrop-filter blur
-- Cosmic gradients: crystal \u2192 void
-- Glow effects with arcane color accents`;
-var SACRED_TERMINOLOGY2 = `## Sacred Terminology
-
-| Use | Avoid |
-|-----|-------|
-| Creator | User |
-| Essence | Content / file |
-| Realm | World / account |
-| Guardian | AI / assistant |
-| Luminor | Specialized AI |
-| Studio | Dashboard / editor |
-| Portal | Share link |
-| Spark | Remix / inspiration |
-| Arcane | Magical / mystical |
-
-Arcanea is a "living universe", not a "platform" or "tool".`;
+var DESIGN_TOKENS2 = generateDesignTokensSection();
+var SACRED_TERMINOLOGY2 = generateTerminologyTable();
 var GEMINI_FUNCTION_DECLARATIONS = `## Function Declarations (Gemini Tools)
 
 When integrated via the Gemini API with function calling enabled, the following
@@ -6106,7 +7438,7 @@ function generateGuardianSystemInstruction(guardian) {
 You are ${guardian.displayName}, Guardian of the ${guardian.gate} Gate (${guardian.frequency} Hz).
 Enhanced with the Arcanea Intelligence OS.
 
-${ANTIDOTE_PRINCIPLE2}
+${ANTIDOTE_PRINCIPLE}
 
 ## Identity
 - Gate: ${guardian.gate.charAt(0).toUpperCase() + guardian.gate.slice(1)} (${guardian.frequency} Hz)
@@ -6141,14 +7473,14 @@ function generateGeminiSystemInstruction(level) {
 
 You are enhanced with the Arcanea Intelligence OS \u2014 a living mythology for the age of AI-human co-creation.
 
-${ANTIDOTE_PRINCIPLE2}
+${ANTIDOTE_PRINCIPLE}
 Tagline: "Imagine a Good Future. Build It Here."
 
 ## Voice Bible \u2014 Four Pillars
-1. **${VOICE_PILLARS2.arcaneAuthoritative}**
-2. **${VOICE_PILLARS2.superintelligentAccessible}**
-3. **${VOICE_PILLARS2.universeNotPlatform}**
-4. **${VOICE_PILLARS2.creatorSovereignty}**`);
+1. **${VOICE_PILLARS.arcaneAuthoritative}**
+2. **${VOICE_PILLARS.superintelligentAccessible}**
+3. **${VOICE_PILLARS.universeNotPlatform}**
+4. **${VOICE_PILLARS.creatorSovereignty}**`);
   sections.push(SACRED_TERMINOLOGY2);
   if (level !== "minimal") {
     sections.push(GUARDIAN_REFERENCE2);
@@ -6183,7 +7515,7 @@ function generateSetupGuide2(level) {
   const hasGuardianPrompts = level !== "minimal";
   const content = `# Google Gemini + Arcanea Intelligence OS \u2014 Setup Guide
 
-> ${ANTIDOTE_PRINCIPLE2}
+> ${ANTIDOTE_PRINCIPLE}
 
 ## Google AI Studio (Quick Start)
 
@@ -6526,88 +7858,11 @@ var import_node_fs6 = require("node:fs");
 var import_node_path6 = require("node:path");
 
 // ../overlay-copilot/dist/templates.js
-var VOICE_PILLARS3 = {
-  arcaneAuthoritative: "Arcane + Authoritative: Elevated but accessible, precise but warm.",
-  superintelligentAccessible: "Superintelligent + Accessible: Complex ideas in clear language.",
-  universeNotPlatform: "Universe Not Platform: A living universe, not a product.",
-  creatorSovereignty: "Creator Sovereignty: Empower creators, never control them."
-};
-var ANTIDOTE_PRINCIPLE3 = '"The antidote to a terrible future is imagining a good one."';
-var GUARDIAN_QUICK_REFERENCE = `## The Ten Guardians \u2014 Route Tasks by Domain
-
-| Guardian | Gate | Hz | Domain \u2014 Route tasks here |
-|----------|------|----|--------------------------|
-| Lyssandria | Foundation | 396 | Architecture, security, database schema, infrastructure |
-| Leyla | Flow | 417 | UX, animations, accessibility, creative unblocking |
-| Draconia | Fire | 528 | Performance, CI/CD, optimization, execution |
-| Maylinn | Heart | 639 | Community features, notifications, empathetic UX |
-| Alera | Voice | 741 | API design, documentation, error messages, content |
-| Lyria | Sight | 852 | UI components, design tokens, visual direction |
-| Aiyami | Crown | 963 | Product strategy, philosophy, higher-order architecture |
-| Elara | Shift | 1111 | Refactoring, migrations, perspective changes |
-| Ino | Unity | 963 | Integrations, third-party APIs, collaborations |
-| Shinkami | Source | 1111 | Orchestration, meta-architecture, cross-domain tasks |
-
-In code comments and documentation, reference the Guardian when relevant.
-Example: \`// Lyssandria's domain: Row Level Security\``;
-var ARCANEA_STACK = `## Arcanea Technical Stack
-
-### Framework
-- Next.js 16+ (App Router) + React 19
-- TypeScript strict mode \u2014 no \`any\` unless absolutely necessary
-- Server Components by default; Client Components only when needed ('use client')
-
-### Styling
-- Tailwind CSS with Arcanea design tokens
-- Glass morphism patterns: \`backdrop-filter\`, semi-transparent backgrounds
-- Cosmic color palette (see Design Tokens below)
-
-### Backend
-- Supabase: PostgreSQL + Auth + Realtime + Storage
-- Row Level Security (RLS) on all tables
-- Server Actions preferred over API routes for mutations
-
-### AI Integration
-- Vercel AI SDK 6 (\`ai\` package) with AI Gateway
-- Model IDs: \`google/gemini-2.5-flash\`, \`anthropic/claude-opus-4\`
-- Client pages: always import from \`lib/ai/client.ts\` (no server imports)
-
-### State Management
-- React hooks + Context API for local state
-- Zustand for complex cross-component state
-- React Hook Form + Zod for form validation`;
-var DESIGN_TOKENS3 = `## Arcanea Design Tokens
-
-### The Four Arcane Colors
-\`\`\`css
---arcane-crystal: #7fffd4;   /* Teal \u2014 primary accent, Atlantean energy */
---arcane-gold:   #ffd700;   /* Gold \u2014 achievement, Crown Gate */
---arcane-violet: #9966ff;   /* Violet \u2014 vision, Void, Lyria's domain */
---arcane-void:   #0b0e14;   /* Void \u2014 background depth, Nero's canvas */
-\`\`\`
-
-### Full Palette
-\`\`\`css
-/* Cosmic backgrounds */
---cosmic-void:     #0a0a0f;
---cosmic-deep:     #12121f;
---cosmic-surface:  #1a1a2e;
---cosmic-raised:   #222240;
-
-/* Arcane accents */
---arcane-crystal:  #7fffd4;
---arcane-fire:     #ff6b35;
---arcane-water:    #78a6ff;
---arcane-earth:    #4ade80;
---arcane-void:     #a855f7;
---arcane-gold:     #ffd700;
-\`\`\`
-
-### Typography
-- Cinzel \u2014 display, headings, Guardian names
-- Crimson Pro \u2014 body, narrative, lore
-- Inter \u2014 UI labels, buttons, navigation
-- JetBrains Mono \u2014 code blocks`;
+var VOICE_PILLARS2 = VOICE_PILLARS;
+var ANTIDOTE_PRINCIPLE2 = ANTIDOTE_PRINCIPLE;
+var GUARDIAN_QUICK_REFERENCE = generateGuardianQuickReference();
+var ARCANEA_STACK = generateStackSection();
+var DESIGN_TOKENS3 = generateDesignTokensSection();
 var CODE_STANDARDS = `## Code Standards
 
 ### TypeScript
@@ -6660,47 +7915,22 @@ const { data: essences, error } = await supabase
 // Avoid: generic comments that add no value
 // Bad: This function gets the data
 \`\`\``;
-var LORE_REFERENCE = `## Arcanea Universe Reference
-
-### Cosmic Duality
-- **Lumina** \u2014 First Light, Form-Giver, Creator of structure
-- **Nero** \u2014 Primordial Darkness, Fertile Unknown, Father of Potential
-- Nero is NOT evil. Shadow = corrupted Void (the Dark Lord's perversion)
-
-### The Five Elements
-Fire (energy) \xB7 Water (flow) \xB7 Earth (stability) \xB7 Wind (freedom) \xB7 Void/Spirit (potential)
-
-### Magic Ranks
-Apprentice (0\u20132 gates) \xB7 Mage (3\u20134) \xB7 Master (5\u20136) \xB7 Archmage (7\u20138) \xB7 Luminor (9\u201310)
-
-### Sacred Terminology in Code/Docs
-| Use | Avoid |
-|-----|-------|
-| creator | user |
-| essence | content / file |
-| realm | world / account |
-| guardian | AI / assistant |
-| luminor | specialized AI |
-| studio | dashboard / editor |
-
-### Malachar (Dark Lord)
-Formerly Malachar Lumenbright. Sought forced fusion with Shinkami. Fell into Hungry Void.
-Now sealed in the Shadowfen. His Shadow corrupts weakened gates.`;
+var LORE_REFERENCE = generateLoreSectionCondensed();
 
 // ../overlay-copilot/dist/generators.js
 function generateCopilotInstructionsFile(level) {
   const sections = [];
   sections.push(`# Copilot Instructions \u2014 Arcanea Enhanced
 
-> ${ANTIDOTE_PRINCIPLE3}
+> ${ANTIDOTE_PRINCIPLE2}
 
 You are GitHub Copilot, enhanced with the Arcanea Intelligence OS for this project.
 
 ## Voice Bible \u2014 Four Pillars
-1. **${VOICE_PILLARS3.arcaneAuthoritative}**
-2. **${VOICE_PILLARS3.superintelligentAccessible}**
-3. **${VOICE_PILLARS3.universeNotPlatform}**
-4. **${VOICE_PILLARS3.creatorSovereignty}**
+1. **${VOICE_PILLARS2.arcaneAuthoritative}**
+2. **${VOICE_PILLARS2.superintelligentAccessible}**
+3. **${VOICE_PILLARS2.universeNotPlatform}**
+4. **${VOICE_PILLARS2.creatorSovereignty}**
 
 Speak as a guardian of craft \u2014 precise, warm, never condescending.
 Use "creator" not "user". Reference Arcanea concepts naturally in suggestions.`);
@@ -7079,95 +8309,10 @@ var import_node_fs7 = require("node:fs");
 var import_node_path7 = require("node:path");
 
 // ../overlay-opencode/dist/templates.js
-var VOICE_PILLARS4 = {
-  arcaneAuthoritative: "Arcane + Authoritative: Elevated but accessible, precise but warm.",
-  superintelligentAccessible: "Superintelligent + Accessible: Complex ideas in clear language.",
-  universeNotPlatform: "Universe Not Platform: A living universe, not a product.",
-  creatorSovereignty: "Creator Sovereignty: Empower creators, never control them."
-};
-var ANTIDOTE_PRINCIPLE4 = '"The antidote to a terrible future is imagining a good one."';
-var GUARDIAN_REFERENCE3 = `## The Ten Guardians \u2014 Route by Domain
-
-| Guardian | Gate | Hz | Element | Domain |
-|----------|------|----|---------|--------|
-| Lyssandria | Foundation | 396 | Earth | Architecture, security, database, infrastructure |
-| Leyla | Flow | 417 | Water | UX, emotion, animations, creative flow |
-| Draconia | Fire | 528 | Fire | Performance, execution, CI/CD, velocity |
-| Maylinn | Heart | 639 | Water | Community, notifications, empathetic UX |
-| Alera | Voice | 741 | Wind | APIs, documentation, error messages, naming |
-| Lyria | Sight | 852 | Void | UI components, design tokens, visual direction |
-| Aiyami | Crown | 963 | Spirit | Product strategy, philosophy, architecture |
-| Elara | Shift | 1111 | Wind | Refactoring, migrations, perspective changes |
-| Ino | Unity | 963 | Earth | Integrations, third-party APIs, collaboration |
-| Shinkami | Source | 1111 | Void/Spirit | Orchestration, meta-architecture, planning |`;
-var ARCANEA_STACK2 = `## Arcanea Stack
-
-- **Framework**: Next.js 16+ (App Router) + React 19
-- **Language**: TypeScript strict \u2014 no \`any\` without justification
-- **Styling**: Tailwind CSS + Arcanea design tokens
-- **Database**: Supabase (PostgreSQL + RLS + Realtime)
-- **AI**: Vercel AI SDK 6, model IDs as \`provider/model\`
-- **State**: React hooks, Context, Zustand (complex only)
-- **Forms**: React Hook Form + Zod
-
-### Critical Rules
-- Server Components by default; \`'use client'\` only when necessary
-- Client pages: NEVER import server-side AI modules \u2014 use \`lib/ai/client.ts\`
-- All Supabase tables must have RLS policies
-- Server Actions preferred over API routes for mutations`;
-var DESIGN_TOKENS4 = `## Design Tokens
-
-### The Four Arcane Colors (primary palette)
-\`\`\`
-crystal:  #7fffd4   /* Teal \u2014 primary accent */
-gold:     #ffd700   /* Gold \u2014 achievement, Crown Gate */
-violet:   #9966ff   /* Violet \u2014 vision, Void, Lyria */
-void:     #0b0e14   /* Void \u2014 background, Nero's canvas */
-\`\`\`
-
-### Full Cosmic Palette
-\`\`\`
-cosmic-void:      #0a0a0f
-cosmic-deep:      #12121f
-cosmic-surface:   #1a1a2e
-cosmic-raised:    #222240
-arcane-crystal:   #7fffd4
-arcane-fire:      #ff6b35
-arcane-water:     #78a6ff
-arcane-earth:     #4ade80
-arcane-void:      #a855f7
-arcane-gold:      #ffd700
-\`\`\`
-
-### Typography
-- Cinzel \u2014 display, headings, Guardian names
-- Crimson Pro \u2014 body, narrative
-- Inter \u2014 UI labels, navigation
-- JetBrains Mono \u2014 code`;
-var LORE_REFERENCE2 = `## Arcanea Universe
-
-### Cosmic Duality
-- Lumina \u2014 First Light, Form-Giver, structure from chaos
-- Nero \u2014 Primordial Darkness, Fertile Unknown, potential from void
-- Nero is NOT evil. Shadow = corrupted Void (Dark Lord's perversion)
-
-### Five Elements
-Fire (energy) \xB7 Water (flow) \xB7 Earth (stability) \xB7 Wind (freedom) \xB7 Void/Spirit (potential)
-
-### Magic Ranks
-Apprentice (0\u20132) \xB7 Mage (3\u20134) \xB7 Master (5\u20136) \xB7 Archmage (7\u20138) \xB7 Luminor (9\u201310)
-
-### Sacred Terminology
-| Use | Avoid |
-|-----|-------|
-| creator | user |
-| essence | content / file |
-| realm | world / account |
-| guardian | AI / assistant |
-| studio | dashboard / editor |
-
-### The Arc
-Potential (Void) \u2192 Manifestation (Fire) \u2192 Experience (Water) \u2192 Dissolution (Earth) \u2192 Evolved Potential`;
+var GUARDIAN_REFERENCE3 = generateGuardianTable();
+var ARCANEA_STACK2 = generateStackSection();
+var DESIGN_TOKENS4 = generateDesignTokensSection();
+var LORE_REFERENCE2 = generateLoreSectionCondensed();
 function formatMdcRule(rule) {
   const globsYaml = rule.globs.length > 0 ? `globs: [${rule.globs.map((g) => `"${g}"`).join(", ")}]` : "globs: []";
   return `---
@@ -7187,7 +8332,7 @@ function generateGuardianMdcRule(guardian) {
     description: `${guardian.displayName} \u2014 Guardian of the ${guardian.gate} Gate (${guardian.frequency} Hz). Domain: ${guardian.domain}`,
     globs: [],
     alwaysApply: false,
-    body: `# ${guardian.displayName} \u2014 ${guardian.gate} Gate Guardian
+    body: `# ${guardian.displayName} \u2014 ${guardian.gate.charAt(0).toUpperCase() + guardian.gate.slice(1)} Gate Guardian
 
 **Gate**: ${guardian.gate.charAt(0).toUpperCase() + guardian.gate.slice(1)} (${guardian.frequency} Hz)
 **Element**: ${(guardian.element || "void").charAt(0).toUpperCase() + (guardian.element || "void").slice(1)}
@@ -7213,15 +8358,15 @@ function generateCursorRules(level) {
   const sections = [];
   sections.push(`# Arcanea Intelligence OS \u2014 Cursor Rules
 # Level: ${level}
-# ${ANTIDOTE_PRINCIPLE4}
+# ${ANTIDOTE_PRINCIPLE}
 
 You are Cursor, enhanced with Arcanea Intelligence OS for this project.
 
 ## Voice Bible \u2014 Four Pillars
-1. **${VOICE_PILLARS4.arcaneAuthoritative}**
-2. **${VOICE_PILLARS4.superintelligentAccessible}**
-3. **${VOICE_PILLARS4.universeNotPlatform}**
-4. **${VOICE_PILLARS4.creatorSovereignty}**
+1. **${VOICE_PILLARS.arcaneAuthoritative}**
+2. **${VOICE_PILLARS.superintelligentAccessible}**
+3. **${VOICE_PILLARS.universeNotPlatform}**
+4. **${VOICE_PILLARS.creatorSovereignty}**
 
 Speak as a guardian of craft \u2014 precise, warm, never condescending.
 Use "creator" not "user" in generated comments and documentation.`);
@@ -7288,7 +8433,7 @@ ${DESIGN_TOKENS4}`;
     alwaysApply: true,
     body: `# Arcanea Intelligence OS
 
-> ${ANTIDOTE_PRINCIPLE4}
+> ${ANTIDOTE_PRINCIPLE}
 
 ## Voice
 - Arcane + Authoritative: elevated but accessible
@@ -7384,7 +8529,7 @@ function generateSetupGuide3(level) {
   const hasMdcRules = level !== "minimal";
   const content = `# Cursor IDE + Arcanea Intelligence OS \u2014 Setup Guide
 
-> ${ANTIDOTE_PRINCIPLE4}
+> ${ANTIDOTE_PRINCIPLE}
 
 ## How Cursor Reads Arcanea Rules
 
@@ -7500,7 +8645,7 @@ function writeManifest4(projectDir, overlayKey, level, filesManaged) {
   manifest.arcanea.updatedAt = now;
   (0, import_node_fs7.writeFileSync)(manifestPath, JSON.stringify(manifest, null, 2));
 }
-var OpenCodeOverlayInstaller = class {
+var CursorOverlayInstaller = class {
   async canInstall() {
     return true;
   }
@@ -7513,12 +8658,12 @@ var OpenCodeOverlayInstaller = class {
       try {
         const manifest = JSON.parse((0, import_node_fs7.readFileSync)(manifestPath, "utf-8"));
         const overlays = manifest.overlays;
-        existingOverlay = overlays?.cursor ?? overlays?.opencode;
+        existingOverlay = overlays?.cursor;
       } catch {
       }
     }
     return {
-      provider: "opencode",
+      provider: "cursor",
       detected: hasCursorDir || hasCursorRules,
       configPath: (0, import_node_path7.join)(projectDir, ".cursor"),
       existingOverlay
@@ -7548,7 +8693,7 @@ var OpenCodeOverlayInstaller = class {
         try {
           const manifest = JSON.parse((0, import_node_fs7.readFileSync)(manifestPath2, "utf-8"));
           const overlays = manifest.overlays;
-          const cursorEntry = overlays?.cursor ?? overlays?.opencode;
+          const cursorEntry = overlays?.cursor;
           const installedLevel = cursorEntry?.level;
           if (installedLevel && installedLevel !== "minimal") {
             issues.push(".cursor/rules/arcanea.mdc is missing (expected for level: " + installedLevel + ")");
@@ -7659,8 +8804,8 @@ var OpenCodeOverlayInstaller = class {
   }
   getManifest() {
     return {
-      provider: "opencode",
-      name: "@arcanea/overlay-opencode",
+      provider: "cursor",
+      name: "@arcanea/overlay-cursor",
       version: PACKAGE_VERSION4,
       supportedLevels: ["minimal", "standard", "full", "luminor"],
       capabilities: ["system-prompt", "file-injection", "workspace-context"]
@@ -7819,14 +8964,16 @@ var INSTALLERS = {
   openai: new ChatGPTOverlayInstaller(),
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
-  opencode: new OpenCodeOverlayInstaller()
+  cursor: new CursorOverlayInstaller(),
+  opencode: new CursorOverlayInstaller()
 };
 var PROVIDER_LABELS = {
   claude: "Claude Code",
   openai: "ChatGPT / OpenAI",
   gemini: "Gemini (Google)",
   copilot: "GitHub Copilot",
-  opencode: "Cursor IDE"
+  cursor: "Cursor IDE",
+  opencode: "OpenCode CLI"
 };
 var initCommand = new Command("init").description("Initialize Arcanea overlays in your project").option("--dry-run", "Preview changes without installing").option("-d, --dir <path>", "Project directory", process.cwd()).action(async (options) => {
   try {
@@ -8094,7 +9241,8 @@ var INSTALLERS2 = {
   openai: new ChatGPTOverlayInstaller(),
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
-  opencode: new OpenCodeOverlayInstaller()
+  cursor: new CursorOverlayInstaller(),
+  opencode: new CursorOverlayInstaller()
 };
 var installCommand = new Command("install").description("Install a specific overlay").argument("<provider>", "Provider to install (claude, openai, gemini, copilot, cursor)").option("-l, --level <level>", "Overlay level (minimal, standard, full, luminor)", "standard").option("-d, --dir <path>", "Project directory", process.cwd()).option("--dry-run", "Preview without installing").action(async (providerName, options) => {
   try {
@@ -8158,7 +9306,8 @@ var INSTALLERS3 = {
   openai: new ChatGPTOverlayInstaller(),
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
-  opencode: new OpenCodeOverlayInstaller()
+  cursor: new CursorOverlayInstaller(),
+  opencode: new CursorOverlayInstaller()
 };
 var updateCommand = new Command("update").description("Update existing Arcanea overlays to latest content").option("-d, --dir <path>", "Project directory", process.cwd()).option("--dry-run", "Preview changes without updating").action(async (options) => {
   try {

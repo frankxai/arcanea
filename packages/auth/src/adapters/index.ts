@@ -14,6 +14,7 @@ const adapters: Record<ProviderType, AuthAdapter> = {
   openai: new OpenAIAuthAdapter(),
   gemini: new GeminiAuthAdapter(),
   copilot: new CopilotAuthAdapter(),
+  cursor: new OpenCodeAuthAdapter(),
   opencode: new OpenCodeAuthAdapter(),
 };
 

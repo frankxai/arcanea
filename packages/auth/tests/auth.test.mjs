@@ -111,9 +111,9 @@ describe('getAuthAdapter', () => {
 });
 
 describe('getAllAdapters', () => {
-  it('returns an array of 5 adapters', () => {
+  it('returns an array of 6 adapters', () => {
     const adapters = getAllAdapters();
-    assert.equal(adapters.length, 5, 'should have 5 provider adapters');
+    assert.equal(adapters.length, 6, 'should have 6 provider adapters (including cursor alias)');
   });
 
   it('every adapter has provider, displayName, and required methods', () => {
