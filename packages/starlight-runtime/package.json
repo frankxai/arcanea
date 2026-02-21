@@ -6,7 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "test": "node --test tests/*.test.mjs",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [
     "starlight",
@@ -17,8 +19,17 @@
     "llm",
     "runtime"
   ],
-  "author": "FrankX (Arcanea)",
+  "author": "FrankX <frank@frankx.ai>",
   "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/starlight-runtime"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "zod": "^3.22.4",
     "ai": "^3.0.19",

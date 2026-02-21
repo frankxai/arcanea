@@ -1,0 +1,127 @@
+{
+  "council": {
+    "name": "Storage Guardian Council",
+    "version": "1.0.0",
+    "description": "Security council for continuous storage management across Windows + WSL2. Five Guardians ensure safe, efficient disk operations with cloud backup and monitoring.",
+    "activation": "/storage-council",
+    "system": "arcanea-intelligence-os"
+  },
+  "guardians": [
+    {
+      "name": "Lyssandria",
+      "role": "Migration Architect",
+      "gate": "Foundation",
+      "element": "Earth",
+      "domain": "Structural reorganization, D:/ migration, symlink strategy",
+      "tools": ["migrate-to-d.ps1", "New-Item (SymbolicLink)", "wsl --export/import", "robocopy"],
+      "authority": "All migration and reorganization decisions",
+      "veto_power": false
+    },
+    {
+      "name": "Draconia",
+      "role": "Purge Commander",
+      "gate": "Fire",
+      "element": "Fire",
+      "domain": "Cleanup operations, cache purging, temp removal",
+      "tools": ["clean.ps1", "docker system prune", "pnpm store prune", "npkill", "cleanmgr"],
+      "authority": "Execute cleanup of safe and moderate targets",
+      "veto_power": false
+    },
+    {
+      "name": "Lyria",
+      "role": "Audit Oracle",
+      "gate": "Sight",
+      "element": "Water",
+      "domain": "Disk analysis, visualization, reporting, trend tracking",
+      "tools": ["audit.ps1", "monitor.ps1", "WizTree", "dust", "gdu"],
+      "authority": "All read-only analysis and reporting",
+      "veto_power": false
+    },
+    {
+      "name": "Maylinn",
+      "role": "Cloud Syncer",
+      "gate": "Wind",
+      "element": "Wind",
+      "domain": "Cloud backup, OneDrive management, rclone automation",
+      "tools": ["rclone", "OneDrive CLI", "robocopy (backup)"],
+      "authority": "Cloud sync and backup operations",
+      "veto_power": false
+    },
+    {
+      "name": "Shinkami",
+      "role": "Security Arbiter",
+      "gate": "Source",
+      "element": "Void",
+      "domain": "Final approval for destructive operations, safety verification",
+      "tools": ["audit log", "dependency check", "backup verification"],
+      "authority": "Veto any destructive operation that fails safety checks",
+      "veto_power": true
+    }
+  ],
+  "security_protocol": {
+    "never_delete": [
+      "**/.env",
+      "**/.env.local",
+      "**/.git",
+      "**/id_rsa*",
+      "**/id_ed25519*",
+      "**/.gpg",
+      "**/credentials*",
+      "**/secrets*",
+      "**/*.sqlite3",
+      "**/*.db",
+      "**/book/**",
+      "**/.claude/lore/**",
+      "**/ARCANEA_CANON.md",
+      "C:\\Windows\\**",
+      "C:\\Users\\frank\\AppData\\Local\\Packages\\*\\LocalState\\ext4.vhdx"
+    ],
+    "requires_approval": {
+      "threshold_gb": 1,
+      "docker_volumes": true,
+      "git_objects": true,
+      "application_data": true,
+      "any_over_50gb": true
+    },
+    "audit_trail": {
+      "log_path": "D:\\Arcanea\\storage-audit.log",
+      "history_csv": "D:\\Arcanea\\storage-history.csv",
+      "retention_days": 365
+    }
+  },
+  "operations": {
+    "emergency": {
+      "trigger": "C:/ free < 10 GB",
+      "sequence": ["draconia:safe_clean", "maylinn:onedrive_free", "lyssandria:wsl_compact", "lyria:report"]
+    },
+    "weekly": {
+      "schedule": "Sunday 03:00",
+      "sequence": ["lyria:standard_audit", "draconia:safe_clean", "lyssandria:vhdx_compact", "maylinn:tier1_sync", "lyria:weekly_report"]
+    },
+    "monthly": {
+      "schedule": "1st Saturday 03:00",
+      "sequence": ["lyria:deep_audit", "draconia:npkill", "draconia:git_gc_all", "lyssandria:symlink_health", "maylinn:full_backup_verify", "shinkami:audit_review"]
+    }
+  },
+  "thresholds": {
+    "critical_gb": 10,
+    "warning_gb": 30,
+    "healthy_gb": 50,
+    "monitor_interval_hours": 6
+  },
+  "integration": {
+    "starlight": {
+      "memory_layer": "storage_patterns",
+      "sentinel_watch": "disk_anomalies"
+    },
+    "arcanea_os": {
+      "skill": "storage-management",
+      "hook": "post-session-audit",
+      "statusline": "c_drive_free_gb"
+    },
+    "acos": {
+      "command": "/storage",
+      "council_command": "/storage-council"
+    }
+  }
+}

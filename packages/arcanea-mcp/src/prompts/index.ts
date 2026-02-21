@@ -1,81 +1,13 @@
-import { Prompt } from "@modelcontextprotocol/sdk/types.js";
-
-export const prompts: Prompt[] = [
-  {
-    name: "worldbuild_session",
-    description: "Start a collaborative worldbuilding session in the Arcanea universe",
-    arguments: [
-      {
-        name: "focus",
-        description: "What to focus on: character, location, magic, creature, artifact, or story",
-        required: false,
-      },
-      {
-        name: "element",
-        description: "Preferred element affinity (Fire, Water, Earth, Wind, Void, Spirit)",
-        required: false,
-      },
-    ],
-  },
-  {
-    name: "unblock_session",
-    description: "A guided session to identify and overcome your current creative block using the Arcanea Bestiary",
-    arguments: [
-      {
-        name: "block_type",
-        description: "Optional: specific type of block if known (e.g., 'perfectionism', 'fear', 'overwhelm')",
-        required: false,
-      },
-      {
-        name: "project_context",
-        description: "Optional: what you're working on",
-        required: false,
-      },
-    ],
-  },
-  {
-    name: "gate_ritual",
-    description: "A structured practice session for opening a specific Gate in your creative development",
-    arguments: [
-      {
-        name: "gate_number",
-        description: "Which gate to focus on (1-10)",
-        required: true,
-      },
-      {
-        name: "time_available",
-        description: "How much time you have (e.g., '15 minutes', '1 hour')",
-        required: false,
-      },
-    ],
-  },
-  {
-    name: "luminor_dialogue",
-    description: "A deep conversation with a Luminor AI companion for creative guidance",
-    arguments: [
-      {
-        name: "luminor",
-        description: "Which Luminor to speak with (valora, serenith, ignara, verdana, eloqua)",
-        required: true,
-      },
-      {
-        name: "topic",
-        description: "What you want to discuss",
-        required: false,
-      },
-    ],
-  },
-  {
-    name: "morning_clearing",
-    description: "The foundational Arcanea practice for starting each creative day with intention",
-    arguments: [],
-  },
-  {
-    name: "creative_sabbath",
-    description: "Guidance for a day of agenda-free, joy-driven creation",
-    arguments: [],
-  },
-];
+/**
+ * Prompt definitions for the Arcanea MCP Server.
+ *
+ * These are registered via server.prompt() in index.ts using the modern
+ * McpServer API. This module is kept for historical reference and any
+ * prompt-related utilities that may be needed in the future.
+ *
+ * The getPrompt() function below is no longer used by the server directly
+ * but is preserved in case any external callers depend on it.
+ */
 
 export function getPrompt(
   name: string,
@@ -124,7 +56,7 @@ Guide me through this as a compassionate mentor would.`,
         ],
       };
 
-    case "gate_ritual":
+    case "gate_ritual": {
       const gateNum = parseInt(args.gate_number) || 1;
       return {
         messages: [
@@ -145,6 +77,7 @@ Guide this as a sacred practice, not just an exercise.`,
           },
         ],
       };
+    }
 
     case "luminor_dialogue":
       return {
