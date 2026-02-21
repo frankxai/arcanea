@@ -8,7 +8,7 @@ interface ValidationIssue {
 
 const canonicalNames = {
   guardians: ["Lyssandria", "Leyla", "Draconia", "Maylinn", "Alera", "Lyria", "Aiyami", "Elara", "Ino", "Shinkami"],
-  godbeasts: ["Kaelith", "Veloura", "Draconis", "Laeylinn", "Otome", "Yumiko", "Sol", "Vaelith", "Kyuro"],
+  godbeasts: ["Kaelith", "Veloura", "Draconis", "Laeylinn", "Otome", "Yumiko", "Sol", "Thessara", "Kyuro", "Amaterasu"],
   elements: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"],
   houses: ["Lumina", "Nero", "Pyros", "Aqualis", "Terra", "Ventus", "Synthesis"],
 };

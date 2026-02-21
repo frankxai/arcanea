@@ -87,8 +87,20 @@ import {
 } from "./agents/index.js";
 
 const server = new McpServer(
-  { name: "arcanea-mcp", version: "0.5.0" }
+  { name: "arcanea-mcp", version: "0.6.0" }
 );
+
+/**
+ * Safely parse JSON from a tool result. Returns the parsed object or null.
+ * Prevents server crashes from malformed generator output.
+ */
+function safeParseResult(result: { content: Array<{ type: "text"; text: string }> }): any | null {
+  try {
+    return JSON.parse(result.content[0].text);
+  } catch {
+    return null;
+  }
+}
 
 const gates = [
   { gate: 1, frequency: "396 Hz", guardian: "Lyssandria", godbeast: "Kaelith", domain: "Foundation", element: "Earth" },
@@ -130,18 +142,20 @@ server.tool(
   async (args) => {
     const sessionId = args.sessionId ?? "default";
     const result = await generateCharacter(args as any);
-    const parsed = JSON.parse(result.content[0].text);
-    const creation = {
-      id: Date.now().toString(),
-      type: "character" as const,
-      name: parsed.name,
-      element: parsed.primaryElement,
-      gate: parsed.gatesOpen,
-      createdAt: new Date(),
-      summary: `${parsed.rank} of ${parsed.house}`,
-    };
-    recordCreation(sessionId, creation);
-    addCreationToGraph(sessionId, creation, parsed);
+    const parsed = safeParseResult(result);
+    if (parsed) {
+      const creation = {
+        id: Date.now().toString(),
+        type: "character" as const,
+        name: parsed.name,
+        element: parsed.primaryElement,
+        gate: parsed.gatesOpen,
+        createdAt: new Date(),
+        summary: `${parsed.rank} of ${parsed.house}`,
+      };
+      recordCreation(sessionId, creation);
+      addCreationToGraph(sessionId, creation, parsed);
+    }
     return result;
   }
 );
@@ -170,17 +184,19 @@ server.tool(
   async (args) => {
     const sessionId = args.sessionId ?? "default";
     const result = await generateLocation(args as any);
-    const parsed = JSON.parse(result.content[0].text);
-    const creation = {
-      id: Date.now().toString(),
-      type: "location" as const,
-      name: parsed.name,
-      element: parsed.dominantElement,
-      createdAt: new Date(),
-      summary: parsed.type,
-    };
-    recordCreation(sessionId, creation);
-    addCreationToGraph(sessionId, creation, parsed);
+    const parsed = safeParseResult(result);
+    if (parsed) {
+      const creation = {
+        id: Date.now().toString(),
+        type: "location" as const,
+        name: parsed.name,
+        element: parsed.dominantElement,
+        createdAt: new Date(),
+        summary: parsed.type,
+      };
+      recordCreation(sessionId, creation);
+      addCreationToGraph(sessionId, creation, parsed);
+    }
     return result;
   }
 );
@@ -197,17 +213,19 @@ server.tool(
   async (args) => {
     const sessionId = args.sessionId ?? "default";
     const result = await generateCreature(args as any);
-    const parsed = JSON.parse(result.content[0].text);
-    const creation = {
-      id: Date.now().toString(),
-      type: "creature" as const,
-      name: parsed.name,
-      element: parsed.element,
-      createdAt: new Date(),
-      summary: parsed.species,
-    };
-    recordCreation(sessionId, creation);
-    addCreationToGraph(sessionId, creation, parsed);
+    const parsed = safeParseResult(result);
+    if (parsed) {
+      const creation = {
+        id: Date.now().toString(),
+        type: "creature" as const,
+        name: parsed.name,
+        element: parsed.element,
+        createdAt: new Date(),
+        summary: parsed.species,
+      };
+      recordCreation(sessionId, creation);
+      addCreationToGraph(sessionId, creation, parsed);
+    }
     return result;
   }
 );
@@ -224,17 +242,19 @@ server.tool(
   async (args) => {
     const sessionId = args.sessionId ?? "default";
     const result = await generateArtifact(args as any);
-    const parsed = JSON.parse(result.content[0].text);
-    const creation = {
-      id: Date.now().toString(),
-      type: "artifact" as const,
-      name: parsed.name,
-      element: parsed.element,
-      createdAt: new Date(),
-      summary: parsed.type,
-    };
-    recordCreation(sessionId, creation);
-    addCreationToGraph(sessionId, creation, parsed);
+    const parsed = safeParseResult(result);
+    if (parsed) {
+      const creation = {
+        id: Date.now().toString(),
+        type: "artifact" as const,
+        name: parsed.name,
+        element: parsed.element,
+        createdAt: new Date(),
+        summary: parsed.type,
+      };
+      recordCreation(sessionId, creation);
+      addCreationToGraph(sessionId, creation, parsed);
+    }
     return result;
   }
 );
@@ -268,15 +288,15 @@ server.tool(
   "diagnose_block",
   "Quick identification of your creative block",
   {
-    symptoms: z.string(),
-    context: z.string().optional(),
-    sessionId: z.string().optional(),
+    symptoms: z.string().min(1).max(5000),
+    context: z.string().max(5000).optional(),
+    sessionId: z.string().max(100).optional(),
   },
   async (args) => {
     const sessionId = args.sessionId ?? "default";
     const result = await diagnoseBlock(args.symptoms, args.context);
-    const parsed = JSON.parse(result.content[0].text);
-    if (parsed.creature?.name) recordCreatureEncountered(sessionId, parsed.creature.name);
+    const parsed = safeParseResult(result);
+    if (parsed?.creature?.name) recordCreatureEncountered(sessionId, parsed.creature.name);
     return result;
   }
 );
@@ -319,11 +339,11 @@ server.tool(
   "deep_diagnosis",
   "Multi-step analysis of a complex creative block using sequential thinking",
   {
-    symptoms: z.string(),
-    context: z.string().optional(),
-    history: z.string().optional(),
+    symptoms: z.string().min(1).max(5000),
+    context: z.string().max(5000).optional(),
+    history: z.string().max(10000).optional(),
     depth: z.enum(["quick", "standard", "deep"]).optional(),
-    sessionId: z.string().optional(),
+    sessionId: z.string().max(100).optional(),
   },
   async (args) => {
     const sessionId = args.sessionId ?? "default";
@@ -333,8 +353,8 @@ server.tool(
       args.history,
       (args.depth ?? "standard") as "quick" | "standard" | "deep"
     );
-    const parsed = JSON.parse(result.content[0].text);
-    if (parsed.primaryCreature?.name) recordCreatureEncountered(sessionId, parsed.primaryCreature.name);
+    const parsed = safeParseResult(result);
+    if (parsed?.primaryCreature?.name) recordCreatureEncountered(sessionId, parsed.primaryCreature.name);
     return result;
   }
 );
@@ -351,9 +371,9 @@ server.tool(
   async (args) => {
     const sessionId = args.sessionId ?? "default";
     const result = await conveneCouncil(args.lead, args.support ?? [], args.topic);
-    const parsed = JSON.parse(result.content[0].text);
-    if (parsed.lead?.luminor) recordLuminorConsulted(sessionId, parsed.lead.luminor);
-    parsed.supporting?.forEach((s: any) => recordLuminorConsulted(sessionId, s.luminor));
+    const parsed = safeParseResult(result);
+    if (parsed?.lead?.luminor) recordLuminorConsulted(sessionId, parsed.lead.luminor);
+    parsed?.supporting?.forEach((s: any) => recordLuminorConsulted(sessionId, s.luminor));
     return result;
   }
 );
@@ -575,8 +595,8 @@ server.tool(
   "orchestrate",
   "Run a full creative session with multi-agent coordination",
   {
-    request: z.string().describe("What you want to create or explore"),
-    sessionId: z.string().optional(),
+    request: z.string().min(1).max(5000).describe("What you want to create or explore"),
+    sessionId: z.string().max(100).optional(),
   },
   async (args) => {
     const sessionId = args.sessionId ?? "default";
@@ -745,7 +765,7 @@ server.tool(
   "validate_canon",
   "Check content for Arcanea canon compliance",
   {
-    content: z.string(),
+    content: z.string().min(1).max(50000),
     contentType: z.enum(["story", "character", "general"]).optional(),
   },
   async (args) => validateCanon(args.content, args.contentType)
@@ -794,7 +814,7 @@ server.tool(
   "check_voice",
   "Validate text against the Arcanea Voice Bible v2.0. Checks tone, terminology, and structure for canonical consistency.",
   {
-    text: z.string().describe("Text to validate"),
+    text: z.string().min(1).max(50000).describe("Text to validate"),
     fix: z.boolean().describe("Auto-fix violations and return corrected text").optional(),
   },
   async (args) => {
