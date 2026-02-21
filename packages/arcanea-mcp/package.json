@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/mcp-server",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Arcanea MCP Server — 30 tools, 7 resources, 6 prompts. Worldbuilding, Guardian routing, voice enforcement, design tokens, and agent orchestration.",
   "type": "module",
   "main": "dist/index.js",

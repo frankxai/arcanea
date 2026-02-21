@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/auth",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Universal AI provider authentication for the Arcanea ecosystem",
   "type": "module",
   "main": "./dist/index.js",
