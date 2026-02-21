@@ -11,7 +11,7 @@ created: "2026-01-15"
 updated: "2026-02-21"
 
 gate: "heart"
-frequency: "639"
+frequency: "417"
 guardian: "Maylinn"
 element: "wind"
 
@@ -35,7 +35,7 @@ reviewer_notes: "v2.0 — Rewritten to match CANON_LOCKED.md and Godbeast Codex.
 
 **Creature Type**: Worldtree Deer | **Bonded to**: Maylinn, Goddess of the Heart Gate
 **Symbol**: Deer with antlers branching into living trees | **Colors**: Living green, bark-brown, blossom-white, golden amber
-**Frequency**: 639 Hz | **Element**: Wind
+**Frequency**: 417 Hz | **Element**: Wind
 
 ---
 

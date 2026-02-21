@@ -10,7 +10,7 @@ version: "1.0.0"
 created: "2026-02-21"
 
 gate: "shift"
-frequency: "1111"
+frequency: "852"
 guardian: "Elara"
 element: "void"
 
@@ -33,7 +33,7 @@ approved_date: ""
 
 **Creature Type**: Fractal Entity | **Bonded to**: Elara, Goddess of the Shift Gate
 **Symbol**: Eye surrounded by fractaling sub-eyes | **Colors**: Iridescent, shifting spectrum, void-black center
-**Frequency**: 1111 Hz | **Element**: Void
+**Frequency**: 852 Hz | **Element**: Void
 
 ---
 

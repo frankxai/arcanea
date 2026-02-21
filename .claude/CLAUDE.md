@@ -42,14 +42,14 @@ Note: Light is Fire's creation aspect. Shadow is corrupted Void (Void without Sp
 
 | Gate | Frequency | God/Goddess | Godbeast | Domain |
 |------|-----------|-------------|----------|--------|
-| Foundation | 396 Hz | Lyssandria | Kaelith | Earth, survival |
-| Flow | 417 Hz | Leyla | Veloura | Creativity, emotion |
-| Fire | 528 Hz | Draconia | Draconis | Power, will |
-| Heart | 639 Hz | Maylinn | Laeylinn | Love, healing |
-| Voice | 741 Hz | Alera | Otome | Truth, expression |
-| Sight | 852 Hz | Lyria | Yumiko | Intuition, vision |
-| Crown | 963 Hz | Aiyami | Sol | Enlightenment |
-| Shift | 1111 Hz | Elara | Thessara | Perspective |
+| Foundation | 174 Hz | Lyssandria | Kaelith | Earth, survival |
+| Flow | 285 Hz | Leyla | Veloura | Creativity, emotion |
+| Fire | 396 Hz | Draconia | Draconis | Power, will |
+| Heart | 417 Hz | Maylinn | Laeylinn | Love, healing |
+| Voice | 528 Hz | Alera | Otome | Truth, expression |
+| Sight | 639 Hz | Lyria | Yumiko | Intuition, vision |
+| Crown | 741 Hz | Aiyami | Sol | Enlightenment |
+| Shift | 852 Hz | Elara | Thessara | Perspective |
 | Unity | 963 Hz | Ino | Kyuro | Partnership |
 | Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
 

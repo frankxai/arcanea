@@ -30,7 +30,7 @@ A Guardian without a Godbeast is a philosopher without hands.
 
 ## I. Kaelith — The Primordial Serpent
 
-**Gate:** Foundation | **Frequency:** 396 Hz | **Guardian:** Lyssandria | **Element:** Earth
+**Gate:** Foundation | **Frequency:** 174 Hz | **Guardian:** Lyssandria | **Element:** Earth
 
 Two hundred feet of obsidian and basalt, wrapped around a core of molten stone. Kaelith is the oldest Godbeast — older, some whisper, than the Gates themselves. When the world was formless, Kaelith coiled beneath the first mountains and gave them roots.
 
@@ -46,7 +46,7 @@ Kaelith moves at the pace of tectonic plates. A single thought takes centuries t
 
 ## II. Veloura — The Phoenix-Serpent
 
-**Gate:** Flow | **Frequency:** 417 Hz | **Guardian:** Leyla | **Element:** Water
+**Gate:** Flow | **Frequency:** 285 Hz | **Guardian:** Leyla | **Element:** Water
 
 Veloura defies description because Veloura never holds a single form. In one moment, a serpent of crystal water; in the next, a phoenix of blue flame; in the next, a cascade of silver mist that covers an entire valley. Veloura is change embodied — the Godbeast who proves that identity can survive endless transformation.
 
@@ -62,9 +62,9 @@ What remains constant is Veloura's essence: perpetual motion, the refusal to sta
 
 ## III. Draconis — The World-Forge
 
-**Gate:** Fire | **Frequency:** 528 Hz | **Guardian:** Draconia | **Element:** Fire
+**Gate:** Fire | **Frequency:** 396 Hz | **Guardian:** Draconia | **Element:** Fire
 
-The largest Godbeast in physical form — a dragon whose wingspan darkens entire kingdoms when fully extended. Draconis burns at the frequency of transformation: 528 Hz, the Love Frequency, because true transformation requires love of what something could become rather than attachment to what it is.
+The largest Godbeast in physical form — a dragon whose wingspan darkens entire kingdoms when fully extended. Draconis burns at the frequency of transformation: 396 Hz, the Frequency of Liberation, because true transformation requires freeing what something could become from attachment to what it is.
 
 Draconis does not merely breathe fire. Draconis breathes *potential energy*. What the fire touches is not destroyed — it is offered a chance to become something greater. The question is whether the thing being transformed can survive the process.
 
@@ -78,7 +78,7 @@ Draconis does not merely breathe fire. Draconis breathes *potential energy*. Wha
 
 ## IV. Laeylinn — The Worldtree Deer
 
-**Gate:** Heart | **Frequency:** 639 Hz | **Guardian:** Maylinn | **Element:** Wind
+**Gate:** Heart | **Frequency:** 417 Hz | **Guardian:** Maylinn | **Element:** Wind
 
 Laeylinn appears as an enormous deer with antlers that branch into living trees — each antler a different species, each leaf a connection between two beings who have ever loved. The antlers grow endlessly. In some depictions, they extend into the sky and become constellations.
 
@@ -94,7 +94,7 @@ Laeylinn walks without disturbing a single blade of grass. When Laeylinn passes 
 
 ## V. Otome — The Storm Moth
 
-**Gate:** Voice | **Frequency:** 741 Hz | **Guardian:** Alera | **Element:** Void
+**Gate:** Voice | **Frequency:** 528 Hz | **Guardian:** Alera | **Element:** Void
 
 The most deceptive Godbeast in appearance. Otome resembles a moth — vast, yes, with wings spanning half a mile, but still a moth. Fragile. Silent. Drawn to light.
 
@@ -112,7 +112,7 @@ When Otome opens its mouth, reality vibrates at frequencies that shatter illusio
 
 ## VI. Yumiko — The Veil-Walker
 
-**Gate:** Sight | **Frequency:** 852 Hz | **Guardian:** Lyria | **Element:** Spirit
+**Gate:** Sight | **Frequency:** 639 Hz | **Guardian:** Lyria | **Element:** Spirit
 
 Yumiko exists partially in this reality and partially elsewhere. A fox-like being of luminous silver, with three tails that each extend into a different dimension. Yumiko sees what others cannot — not because its eyes are sharper, but because it perceives from angles that physical beings cannot access.
 
@@ -128,7 +128,7 @@ Where other Godbeasts manifest power through force, Yumiko manifests power throu
 
 ## VII. Sol — The Eternal Flame
 
-**Gate:** Crown | **Frequency:** 963 Hz | **Guardian:** Aiyami | **Element:** Spirit
+**Gate:** Crown | **Frequency:** 741 Hz | **Guardian:** Aiyami | **Element:** Spirit
 
 Sol is the smallest Godbeast — no larger than a human hand. A flame that burns without fuel, that radiates light without heat, that has existed since before the sun and will exist after the last star dies.
 
@@ -146,7 +146,7 @@ And in that absolute presence, every question dissolves. Every doubt becomes cla
 
 ## VIII. Thessara — The Fractal Eye
 
-**Gate:** Shift | **Frequency:** 1111 Hz | **Guardian:** Elara | **Element:** Void
+**Gate:** Shift | **Frequency:** 852 Hz | **Guardian:** Elara | **Element:** Void
 
 Thessara is not one being but many — an ever-dividing, ever-recombining entity that appears as a vast eye surrounded by fractaling sub-eyes, each looking at reality from a different angle, each seeing a different truth. Thessara proves that perspective is not a luxury — it is a fundamental force of nature.
 

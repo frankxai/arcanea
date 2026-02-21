@@ -10,7 +10,7 @@ version: "1.0.0"
 created: "2026-02-21"
 
 gate: "flow"
-frequency: "417"
+frequency: "285"
 guardian: "Leyla"
 element: "water"
 
@@ -33,7 +33,7 @@ approved_date: ""
 
 **Creature Type**: Phoenix-Serpent | **Bonded to**: Leyla, Goddess of the Flow Gate
 **Symbol**: Flowing serpent-phoenix in perpetual transformation | **Colors**: Crystal-blue, silver-mist, azure-flame
-**Frequency**: 417 Hz | **Element**: Water
+**Frequency**: 285 Hz | **Element**: Water
 
 ---
 
