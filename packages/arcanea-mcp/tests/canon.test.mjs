@@ -106,8 +106,8 @@ describe('MCP Server — Tool Inventory', () => {
     "get_journey", "check_milestones",
     "link_creations", "get_related", "suggest_connections",
     "get_world_graph", "find_path", "export_world",
-    "orchestrate", "list_agents", "agent_info",
-    "assess_world", "match_skill", "active_sessions",
+    "guardian_guidance", "list_agents", "agent_info",
+    "assess_world", "match_skill", "memory_status",
     "validate_canon", "identify_gate",
     "route_guardian", "check_voice", "get_design_tokens",
   ];

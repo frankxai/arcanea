@@ -8,10 +8,9 @@
  * - Worldbuilding generators (characters, magic, locations, creatures, artifacts)
  * - Luminor AI companions with Council mode
  * - Bestiary of creative blocks with deep diagnosis
- * - Memory layer for persistent creative journeys
+ * - Persistent memory layer (backed by ~/.arcanea/memories.json)
  * - Canon validation and Ten Gates system
- * - Agent orchestration system (inspired by oh-my-opencode)
- * - Multi-agent parallel execution
+ * - Guardian guidance and agent routing (data lookup, no AI stubs)
  * - Creation graph with relationship network
  */
 
@@ -50,10 +49,13 @@ import { diagnoseBlock } from "./tools/diagnose.js";
 import { conveneCouncil, luminorDebate } from "./tools/council.js";
 import { deepDiagnosis } from "./tools/deep-diagnosis.js";
 
-// Memory
+// Memory (persistent — backed by ~/.arcanea/memories.json)
 import {
   getOrCreateSession,
   getSessionSummary,
+  listSessions,
+  deleteSession,
+  getMemoryFilePath,
   recordGateExplored,
   recordLuminorConsulted,
   recordCreatureEncountered,
@@ -73,16 +75,11 @@ import {
   type RelationshipType,
 } from "./tools/creation-graph.js";
 
-// Agent System (oh-my-opencode inspired orchestration)
+// Agent System (data lookup — no AI-calling stubs)
 import {
   AGENTS,
   getAgent,
   assessWorldState,
-  orchestrateCreativeSession,
-  getSessionStatus,
-  getActiveSessions,
-  getTask,
-  cancelTask,
   matchCreativeSkill,
 } from "./agents/index.js";
 
@@ -150,7 +147,7 @@ server.tool(
         name: parsed.name,
         element: parsed.primaryElement,
         gate: parsed.gatesOpen,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
         summary: `${parsed.rank} of ${parsed.house}`,
       };
       recordCreation(sessionId, creation);
@@ -191,7 +188,7 @@ server.tool(
         type: "location" as const,
         name: parsed.name,
         element: parsed.dominantElement,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
         summary: parsed.type,
       };
       recordCreation(sessionId, creation);
@@ -220,7 +217,7 @@ server.tool(
         type: "creature" as const,
         name: parsed.name,
         element: parsed.element,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
         summary: parsed.species,
       };
       recordCreation(sessionId, creation);
@@ -249,7 +246,7 @@ server.tool(
         type: "artifact" as const,
         name: parsed.name,
         element: parsed.element,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
         summary: parsed.type,
       };
       recordCreation(sessionId, creation);
@@ -589,29 +586,67 @@ server.tool(
   }
 );
 
-// === AGENT ORCHESTRATION ===
+// === GUARDIAN GUIDANCE (replaces orchestrate stub) ===
 
 server.tool(
-  "orchestrate",
-  "Run a full creative session with multi-agent coordination",
+  "guardian_guidance",
+  "Get structured guidance on which Guardian, agent, and approach best fits a creative task. Pure data lookup — returns recommendations, not AI output.",
   {
-    request: z.string().min(1).max(5000).describe("What you want to create or explore"),
+    request: z.string().min(1).max(5000).describe("Describe what you want to create or explore"),
     sessionId: z.string().max(100).optional(),
   },
   async (args) => {
     const sessionId = args.sessionId ?? "default";
-    const { session, result } = await orchestrateCreativeSession(args.request, sessionId);
+
+    // 1. Route to Guardian via @arcanea/os intelligence
+    const guardianResult = routeToGuardian(args.request);
+
+    // 2. Match to creative skill/agent
+    const skill = matchCreativeSkill(args.request);
+
+    // 3. Assess world state for context-aware suggestions
+    const worldState = assessWorldState(sessionId);
+
+    // 4. Find the relevant gate
+    const guardianName = guardianResult.guardian?.displayName ?? guardianResult.guardian?.name ?? "";
+    const matchedGate = gates.find(g =>
+      g.guardian.toLowerCase() === guardianName.toLowerCase()
+    );
+
+    // 5. Build suggestions based on world maturity
+    const suggestions: string[] = [];
+    switch (worldState.maturity) {
+      case "virgin": suggestions.push("Start by creating a founding character and their home location."); break;
+      case "emerging": suggestions.push("Connect your creations with relationships. Try linking characters to locations."); break;
+      case "developing": suggestions.push("Develop narrative threads. Consider what conflicts or alliances exist."); break;
+      case "rich": suggestions.push("Document your world's history. Create artifacts that tie characters together."); break;
+      case "epic": suggestions.push("Your world is vast! Consider creating an epic narrative that spans your creations."); break;
+    }
+
+    // 6. Recommend specific MCP tools to use
+    const recommendedTools: string[] = [];
+    if (skill) {
+      const agent = getAgent(skill.agent);
+      if (agent) {
+        recommendedTools.push(...agent.capabilities.map(c => c.name));
+      }
+    }
+
     return {
       content: [{
         type: "text" as const,
         text: JSON.stringify({
-          sessionId: session.id,
-          goal: session.goal,
-          state: session.state,
-          agentsUsed: session.agents,
-          taskCount: session.tasks.length,
-          result,
-          message: `Creative session completed with ${session.agents.length} agent(s).`,
+          guardian: guardianResult,
+          gate: matchedGate ?? null,
+          skill: skill ? { name: skill.name, agent: skill.agent, triggers: skill.triggers } : null,
+          worldState: {
+            maturity: worldState.maturity,
+            creationCount: worldState.creationCount,
+            connectionCount: worldState.connectionCount,
+          },
+          suggestions,
+          recommendedTools,
+          message: `Guardian ${guardianName} recommends this approach. Use the listed tools to proceed.`,
         }, null, 2),
       }],
     };
@@ -735,24 +770,22 @@ server.tool(
 );
 
 server.tool(
-  "active_sessions",
-  "List all currently running creative sessions",
+  "memory_status",
+  "Show memory persistence status — file path, session count, and session IDs. Useful for diagnostics.",
   {},
   async () => {
-    const sessions = getActiveSessions();
+    const sessionIds = listSessions();
     return {
       content: [{
         type: "text" as const,
         text: JSON.stringify({
-          activeSessions: sessions.map((s) => ({
-            id: s.id,
-            goal: s.goal,
-            state: s.state,
-            agents: s.agents,
-            startedAt: s.startedAt,
-          })),
-          count: sessions.length,
-          message: sessions.length > 0 ? `${sessions.length} session(s) currently running.` : "No active sessions.",
+          persistent: true,
+          filePath: getMemoryFilePath(),
+          sessionCount: sessionIds.length,
+          sessionIds,
+          message: sessionIds.length > 0
+            ? `${sessionIds.length} session(s) persisted to disk.`
+            : "No sessions yet. Memory will persist automatically when you start creating.",
         }, null, 2),
       }],
     };

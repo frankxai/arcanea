@@ -848,7 +848,8 @@ describe('Memory — session lifecycle', () => {
 
   it('new session has empty arrays and a startedAt date', () => {
     const session = getOrCreateSession(MEM_SESSION);
-    assert.ok(session.startedAt instanceof Date);
+    assert.equal(typeof session.startedAt, 'string');
+    assert.ok(!isNaN(Date.parse(session.startedAt)), 'startedAt should be a valid ISO date string');
     assert.deepEqual(session.gatesExplored, []);
     assert.deepEqual(session.luminorsConsulted, []);
     assert.deepEqual(session.creaturesEncountered, []);
