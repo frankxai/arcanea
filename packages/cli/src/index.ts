@@ -25,7 +25,7 @@ const program = new Command();
 program
   .name('arcanea')
   .description('Arcanea Realm — Overlay any AI tool with arcane intelligence')
-  .version('0.2.0');
+  .version('0.6.0');
 
 // Overlay management
 program.addCommand(initCommand);

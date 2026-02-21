@@ -31,6 +31,7 @@ export const initCommand = new Command('init')
   .option('--dry-run', 'Preview changes without installing')
   .option('-d, --dir <path>', 'Project directory', process.cwd())
   .action(async (options) => {
+    try {
     const projectDir = options.dir as string;
 
     printBanner();
@@ -173,4 +174,8 @@ export const initCommand = new Command('init')
     console.log('');
     printSuccess('Arcanea Intelligence OS initialized.');
     console.log(`\n  ${pc.dim('Run `arcanea status` to see your installation.')}\n`);
+    } catch (err) {
+      printError(`Init failed: ${err instanceof Error ? err.message : String(err)}`);
+      process.exitCode = 1;
+    }
   });

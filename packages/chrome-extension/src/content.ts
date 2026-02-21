@@ -232,7 +232,10 @@ function removeActionsMenu(): void {
 
 // ─── Selection Detection ──────────────────────────────────────────────────────
 
+let floatingButtonEnabled = true; // Updated by initialize()
+
 document.addEventListener('mouseup', _e => {
+  if (!floatingButtonEnabled) return;
   if (selectionTimeout) {
     clearTimeout(selectionTimeout);
     selectionTimeout = null;
@@ -381,6 +384,26 @@ function setupWritingAssistant(): void {
   });
 }
 
-// Initialize
-setupWritingAssistant();
-createShadowContainer();
+// Initialize with settings check
+async function initialize(): Promise<void> {
+  try {
+    const result = await chrome.storage.local.get('settings');
+    const settings = result?.settings ?? {};
+    const enableFloating = settings.enableFloatingButton ?? true;
+    const enableShortcuts = settings.keyboardShortcuts ?? true;
+    floatingButtonEnabled = enableFloating;
+
+    if (enableFloating) {
+      createShadowContainer();
+    }
+    if (enableShortcuts) {
+      setupWritingAssistant();
+    }
+  } catch {
+    // Fallback: enable everything if storage fails
+    createShadowContainer();
+    setupWritingAssistant();
+  }
+}
+
+initialize();

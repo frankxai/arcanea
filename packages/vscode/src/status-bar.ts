@@ -50,14 +50,11 @@ export class GuardianStatusBar implements vscode.Disposable {
       `${guardian.shortDescription}\n\n` +
       `*Click to cycle Guardians*`
     );
-    // statusBarItem.color is supported; cast to any avoids strict deprecation warning
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (this.guardianItem as any).color = guardian.color;
+    this.guardianItem.color = new vscode.ThemeColor('arcanea.teal');
 
     const elementIcon = ELEMENT_ICONS[guardian.element] ?? 'circle-outline';
     this.elementItem.text = `$(${elementIcon}) ${guardian.element}`;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (this.elementItem as any).color = guardian.color;
+    this.elementItem.color = new vscode.ThemeColor('arcanea.teal');
     this.elementItem.tooltip = new vscode.MarkdownString(
       `**Element:** ${guardian.element}\n\n` +
       `**Gate:** ${guardian.gate} (${guardian.frequency})\n\n` +

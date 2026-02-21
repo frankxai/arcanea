@@ -185,8 +185,37 @@ export async function exportData(): Promise<string> {
   return JSON.stringify(data, null, 2);
 }
 
+const ALLOWED_STORAGE_KEYS: Set<keyof StorageSchema> = new Set([
+  'apiKeys',
+  'settings',
+  'conversations',
+  'recentGuardians',
+]);
+
 export async function importData(jsonString: string): Promise<void> {
-  const data = JSON.parse(jsonString) as Record<string, unknown>;
+  let raw: unknown;
+  try {
+    raw = JSON.parse(jsonString);
+  } catch {
+    throw new Error('Invalid JSON format');
+  }
+
+  if (typeof raw !== 'object' || raw === null || Array.isArray(raw)) {
+    throw new Error('Import data must be a JSON object');
+  }
+
+  // Only allow known storage keys to prevent overwriting unexpected data
+  const data: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(raw as Record<string, unknown>)) {
+    if (ALLOWED_STORAGE_KEYS.has(key as keyof StorageSchema)) {
+      data[key] = value;
+    }
+  }
+
+  if (Object.keys(data).length === 0) {
+    throw new Error('No valid Arcanea data found in import file');
+  }
+
   return new Promise((resolve, reject) => {
     chrome.storage.local.set(data, () => {
       if (chrome.runtime.lastError) {

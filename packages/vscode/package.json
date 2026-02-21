@@ -130,6 +130,14 @@
             "void"
           ],
           "description": "Your primary elemental resonance"
+        },
+        "arcanea.openedGates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Gates you have opened on your creative journey"
         }
       }
     },
@@ -181,7 +189,5 @@
     "esbuild": "^0.20.0",
     "typescript": "^5.5.0"
   },
-  "dependencies": {
-    "@arcanea/os": "workspace:*"
-  }
+  "dependencies": {}
 }

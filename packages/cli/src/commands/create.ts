@@ -5,7 +5,7 @@
 import { Command } from 'commander';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { printSuccess, printInfo } from '../ui/banner.js';
+import { printSuccess, printInfo, printError } from '../ui/banner.js';
 
 const TEMPLATES: Record<string, { dir: string; generate: (name: string) => string }> = {
   character: {
@@ -237,6 +237,7 @@ export const createCommand = new Command('create')
   .argument('<name>', 'Name for the creation')
   .option('-d, --dir <path>', 'Output directory', process.cwd())
   .action(async (type: string, name: string, options: { dir: string }) => {
+    try {
     const template = TEMPLATES[type];
 
     if (!template) {
@@ -259,4 +260,8 @@ export const createCommand = new Command('create')
     printSuccess(`${type} template created: .arcanea/${template.dir}/${slug}.md`);
     printInfo(`Fill in the template to bring "${name}" to life`);
     console.log('');
+    } catch (err) {
+      printError(`Create failed: ${err instanceof Error ? err.message : String(err)}`);
+      process.exitCode = 1;
+    }
   });

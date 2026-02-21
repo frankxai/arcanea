@@ -38,9 +38,9 @@ function runSafe(args) {
 // ============================================================
 
 describe('CLI — metadata: program identity', () => {
-  it('reports version 0.2.0', () => {
+  it('reports version 0.6.0', () => {
     const output = run('--version');
-    assert.ok(output.trim().includes('0.2.0'), `Expected version 0.2.0, got: ${output.trim()}`);
+    assert.ok(output.trim().includes('0.6.0'), `Expected version 0.6.0, got: ${output.trim()}`);
   });
 
   it('program name is arcanea', () => {

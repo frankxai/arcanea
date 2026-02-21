@@ -13,30 +13,38 @@ authCommand
   .command('add <provider>')
   .description('Add or update credentials for a provider')
   .action(async (providerName: string) => {
-    const provider = providerName as ProviderType;
-    if (!PROVIDERS.includes(provider)) {
-      printError(`Unknown provider: ${providerName}. Available: ${PROVIDERS.join(', ')}`);
-      return;
-    }
+    try {
+      const provider = providerName as ProviderType;
+      if (!PROVIDERS.includes(provider)) {
+        printError(`Unknown provider: ${providerName}. Available: ${PROVIDERS.join(', ')}`);
+        process.exitCode = 1;
+        return;
+      }
 
-    const adapter = getAuthAdapter(provider);
-    const keystore = createKeystore();
+      const adapter = getAuthAdapter(provider);
+      const keystore = createKeystore();
 
-    printInfo(`Authenticate with ${adapter.displayName}`);
-    printInfo(`Get your API key at: ${adapter.getSetupUrl()}`);
+      printInfo(`Authenticate with ${adapter.displayName}`);
+      printInfo(`Get your API key at: ${adapter.getSetupUrl()}`);
 
-    const credential = await promptPassword('  Enter API key: ');
-    if (!credential) {
-      printError('No key provided.');
-      return;
-    }
+      const credential = await promptPassword('  Enter API key: ');
+      if (!credential) {
+        printError('No key provided.');
+        process.exitCode = 1;
+        return;
+      }
 
-    const session = await adapter.validate(credential);
-    if (session.validated) {
-      await keystore.save(provider, credential);
-      printSuccess(`Validated and saved! ${session.models.length} models available.`);
-    } else {
-      printError('Validation failed — the key appears to be invalid.');
+      const session = await adapter.validate(credential);
+      if (session.validated) {
+        await keystore.save(provider, credential);
+        printSuccess(`Validated and saved! ${session.models.length} models available.`);
+      } else {
+        printError('Validation failed — the key appears to be invalid.');
+        process.exitCode = 1;
+      }
+    } catch (err) {
+      printError(`Auth failed: ${err instanceof Error ? err.message : String(err)}`);
+      process.exitCode = 1;
     }
   });
 
@@ -44,54 +52,69 @@ authCommand
   .command('list')
   .description('Show authenticated providers')
   .action(async () => {
-    const keystore = createKeystore();
+    try {
+      const keystore = createKeystore();
 
-    printDivider();
-    console.log('\n  Authenticated providers:\n');
+      printDivider();
+      console.log('\n  Authenticated providers:\n');
 
-    for (const provider of PROVIDERS) {
-      const cred = await keystore.load(provider);
-      if (cred) {
-        const adapter = getAuthAdapter(provider);
-        const session = await adapter.validate(cred);
-        if (session.validated) {
-          printSuccess(`${adapter.displayName} — ${maskCredential(cred)} (${session.models.length} models)`);
+      for (const provider of PROVIDERS) {
+        const cred = await keystore.load(provider);
+        if (cred) {
+          const adapter = getAuthAdapter(provider);
+          const session = await adapter.validate(cred);
+          if (session.validated) {
+            printSuccess(`${adapter.displayName} — ${maskCredential(cred)} (${session.models.length} models)`);
+          } else {
+            printError(`${adapter.displayName} — ${maskCredential(cred)} (invalid)`);
+          }
         } else {
-          printError(`${adapter.displayName} — ${maskCredential(cred)} (invalid)`);
+          printError(`${getAuthAdapter(provider).displayName} — not configured`);
         }
-      } else {
-        printError(`${getAuthAdapter(provider).displayName} — not configured`);
       }
+      console.log('');
+    } catch (err) {
+      printError(`Auth list failed: ${err instanceof Error ? err.message : String(err)}`);
+      process.exitCode = 1;
     }
-    console.log('');
   });
 
 authCommand
   .command('remove <provider>')
   .description('Remove stored credentials for a provider')
   .action(async (providerName: string) => {
-    const provider = providerName as ProviderType;
-    const keystore = createKeystore();
-    await keystore.delete(provider);
-    printSuccess(`Credentials for ${providerName} removed.`);
+    try {
+      const provider = providerName as ProviderType;
+      const keystore = createKeystore();
+      await keystore.delete(provider);
+      printSuccess(`Credentials for ${providerName} removed.`);
+    } catch (err) {
+      printError(`Remove failed: ${err instanceof Error ? err.message : String(err)}`);
+      process.exitCode = 1;
+    }
   });
 
 authCommand
   .command('validate')
   .description('Re-validate all stored credentials')
   .action(async () => {
-    const keystore = createKeystore();
-    const stored = await keystore.list();
+    try {
+      const keystore = createKeystore();
+      const stored = await keystore.list();
 
-    for (const provider of stored) {
-      const cred = await keystore.load(provider);
-      if (!cred) continue;
-      const adapter = getAuthAdapter(provider);
-      const session = await adapter.validate(cred);
-      if (session.validated) {
-        printSuccess(`${adapter.displayName} — valid`);
-      } else {
-        printError(`${adapter.displayName} — invalid`);
+      for (const provider of stored) {
+        const cred = await keystore.load(provider);
+        if (!cred) continue;
+        const adapter = getAuthAdapter(provider);
+        const session = await adapter.validate(cred);
+        if (session.validated) {
+          printSuccess(`${adapter.displayName} — valid`);
+        } else {
+          printError(`${adapter.displayName} — invalid`);
+        }
       }
+    } catch (err) {
+      printError(`Validation failed: ${err instanceof Error ? err.message : String(err)}`);
+      process.exitCode = 1;
     }
   });

@@ -29,5 +29,5 @@ export * from './detection/index.js';
 // Engine (Intelligence Layer)
 export * from './engine/index.js';
 
-// Version
-export const VERSION = '0.2.0';
+// Version — kept in sync with package.json
+export const VERSION = '0.6.0';

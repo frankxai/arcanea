@@ -6,7 +6,7 @@ import { Command } from 'commander';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { GUARDIANS } from '@arcanea/os';
-import { printSuccess, printInfo, printDivider } from '../ui/banner.js';
+import { printSuccess, printInfo, printError, printDivider } from '../ui/banner.js';
 
 interface WorldPillar {
   name: string;
@@ -314,6 +314,7 @@ export const worldCommand = new Command('world')
   .option('-d, --dir <path>', 'Output directory', process.cwd())
   .option('--all', 'Generate all seven pillars')
   .action(async (aspect: string | undefined, options: { name: string; dir: string; all?: boolean }) => {
+    try {
     const realmName = options.name;
     // Sanitize realm name to prevent path traversal — strip everything except alphanumeric, spaces, hyphens
     const safeSlug = realmName.toLowerCase().replace(/[^a-z0-9\s-]+/g, '').replace(/\s+/g, '-').replace(/^-|-$/g, '') || 'realm';
@@ -359,4 +360,8 @@ export const worldCommand = new Command('world')
       printInfo('Use --all to generate all seven pillars');
     }
     console.log('');
+    } catch (err) {
+      printError(`World generation failed: ${err instanceof Error ? err.message : String(err)}`);
+      process.exitCode = 1;
+    }
   });

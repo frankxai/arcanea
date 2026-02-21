@@ -7829,183 +7829,211 @@ var PROVIDER_LABELS = {
   opencode: "Cursor IDE"
 };
 var initCommand = new Command("init").description("Initialize Arcanea overlays in your project").option("--dry-run", "Preview changes without installing").option("-d, --dir <path>", "Project directory", process.cwd()).action(async (options) => {
-  const projectDir = options.dir;
-  printBanner();
-  console.log("  Scanning for AI tools...\n");
-  const detections = await detectAllTools(projectDir);
-  printDivider();
-  console.log("  Detected tools:\n");
-  for (const d of detections) {
-    const label = PROVIDER_LABELS[d.provider];
-    if (d.detected) {
-      printSuccess(`${label}${d.version ? ` (${d.version})` : ""}`);
-    } else {
-      printError(`${label} \u2014 not detected`);
+  try {
+    const projectDir = options.dir;
+    printBanner();
+    console.log("  Scanning for AI tools...\n");
+    const detections = await detectAllTools(projectDir);
+    printDivider();
+    console.log("  Detected tools:\n");
+    for (const d of detections) {
+      const label = PROVIDER_LABELS[d.provider];
+      if (d.detected) {
+        printSuccess(`${label}${d.version ? ` (${d.version})` : ""}`);
+      } else {
+        printError(`${label} \u2014 not detected`);
+      }
     }
-  }
-  const providers = await promptMultiSelect("Select overlays to install:", detections.map((d) => ({
-    label: PROVIDER_LABELS[d.provider],
-    value: d.provider,
-    detected: d.detected
-  })));
-  if (providers.length === 0) {
-    printWarning("No overlays selected. Run `arcanea init` again when ready.");
-    return;
-  }
-  const keystore = createKeystore();
-  const installPlan = [];
-  for (const provider of providers) {
-    const level = await promptSelect(`${PROVIDER_LABELS[provider]} overlay level:`, OVERLAY_LEVELS.map((l) => ({ label: `${l.level} \u2014 ${l.description}`, value: l.level })));
-    const adapter = getAuthAdapter(provider);
-    let session = await adapter.detectFromEnv();
-    if (!session?.validated && provider !== "opencode" && provider !== "copilot") {
-      printInfo(`Authenticate with ${adapter.displayName}`);
-      printInfo(`Get your API key at: ${adapter.getSetupUrl()}`);
-      const credential = await promptPassword(`  Enter API key: `);
-      if (credential) {
-        session = await adapter.validate(credential);
-        if (session.validated) {
-          printSuccess(`Validated! ${session.models.length} models available`);
-          await keystore.save(provider, credential);
-          printSuccess("Credentials saved securely");
-        } else {
-          printError("Validation failed \u2014 key may be invalid");
-          const proceed = await promptConfirm("Install overlay anyway?", false);
-          if (!proceed)
-            continue;
+    const providers = await promptMultiSelect("Select overlays to install:", detections.map((d) => ({
+      label: PROVIDER_LABELS[d.provider],
+      value: d.provider,
+      detected: d.detected
+    })));
+    if (providers.length === 0) {
+      printWarning("No overlays selected. Run `arcanea init` again when ready.");
+      return;
+    }
+    const keystore = createKeystore();
+    const installPlan = [];
+    for (const provider of providers) {
+      const level = await promptSelect(`${PROVIDER_LABELS[provider]} overlay level:`, OVERLAY_LEVELS.map((l) => ({ label: `${l.level} \u2014 ${l.description}`, value: l.level })));
+      const adapter = getAuthAdapter(provider);
+      let session = await adapter.detectFromEnv();
+      if (!session?.validated && provider !== "opencode" && provider !== "copilot") {
+        printInfo(`Authenticate with ${adapter.displayName}`);
+        printInfo(`Get your API key at: ${adapter.getSetupUrl()}`);
+        const credential = await promptPassword(`  Enter API key: `);
+        if (credential) {
+          session = await adapter.validate(credential);
+          if (session.validated) {
+            printSuccess(`Validated! ${session.models.length} models available`);
+            await keystore.save(provider, credential);
+            printSuccess("Credentials saved securely");
+          } else {
+            printError("Validation failed \u2014 key may be invalid");
+            const proceed = await promptConfirm("Install overlay anyway?", false);
+            if (!proceed)
+              continue;
+          }
+        }
+      } else if (session?.validated) {
+        printSuccess(`${adapter.displayName} \u2014 already authenticated`);
+      }
+      installPlan.push({ provider, level });
+    }
+    printDivider();
+    console.log("\n  Installation preview:\n");
+    for (const plan of installPlan) {
+      const installer = INSTALLERS[plan.provider];
+      const preview = await installer.preview(projectDir, plan.level);
+      console.log(`  ${PROVIDER_LABELS[plan.provider]} (${plan.level}):`);
+      for (const f of preview.filesToCreate) {
+        console.log(`    + ${f.path}`);
+      }
+      for (const f of preview.filesToModify) {
+        console.log(`    ~ ${f.path}`);
+      }
+      console.log("");
+    }
+    if (options.dryRun) {
+      printInfo("Dry run \u2014 no files written.");
+      return;
+    }
+    const confirmed = await promptConfirm("Install overlays?");
+    if (!confirmed) {
+      printWarning("Installation cancelled.");
+      return;
+    }
+    printDivider();
+    console.log("\n  Installing...\n");
+    const installResults = [];
+    for (const plan of installPlan) {
+      const installer = INSTALLERS[plan.provider];
+      const result = await installer.install(projectDir, plan.level);
+      installResults.push({ provider: plan.provider, result });
+      if (result.success) {
+        printSuccess(`${PROVIDER_LABELS[plan.provider]} overlay installed (${plan.level})`);
+        if (result.filesCreated.length > 0) {
+          printInfo(`Created ${result.filesCreated.length} files`);
+        }
+        for (const warning of result.warnings) {
+          printWarning(warning);
+        }
+      } else {
+        printError(`Failed to install ${PROVIDER_LABELS[plan.provider]}`);
+      }
+    }
+    printDivider();
+    console.log("\n  Next steps:\n");
+    const shownSteps = /* @__PURE__ */ new Set();
+    for (const { result } of installResults) {
+      for (const step of result.nextSteps) {
+        if (!shownSteps.has(step)) {
+          printInfo(step);
+          shownSteps.add(step);
         }
       }
-    } else if (session?.validated) {
-      printSuccess(`${adapter.displayName} \u2014 already authenticated`);
-    }
-    installPlan.push({ provider, level });
-  }
-  printDivider();
-  console.log("\n  Installation preview:\n");
-  for (const plan of installPlan) {
-    const installer = INSTALLERS[plan.provider];
-    const preview = await installer.preview(projectDir, plan.level);
-    console.log(`  ${PROVIDER_LABELS[plan.provider]} (${plan.level}):`);
-    for (const f of preview.filesToCreate) {
-      console.log(`    + ${f.path}`);
-    }
-    for (const f of preview.filesToModify) {
-      console.log(`    ~ ${f.path}`);
     }
     console.log("");
-  }
-  if (options.dryRun) {
-    printInfo("Dry run \u2014 no files written.");
-    return;
-  }
-  const confirmed = await promptConfirm("Install overlays?");
-  if (!confirmed) {
-    printWarning("Installation cancelled.");
-    return;
-  }
-  printDivider();
-  console.log("\n  Installing...\n");
-  const installResults = [];
-  for (const plan of installPlan) {
-    const installer = INSTALLERS[plan.provider];
-    const result = await installer.install(projectDir, plan.level);
-    installResults.push({ provider: plan.provider, result });
-    if (result.success) {
-      printSuccess(`${PROVIDER_LABELS[plan.provider]} overlay installed (${plan.level})`);
-      if (result.filesCreated.length > 0) {
-        printInfo(`Created ${result.filesCreated.length} files`);
-      }
-      for (const warning of result.warnings) {
-        printWarning(warning);
-      }
-    } else {
-      printError(`Failed to install ${PROVIDER_LABELS[plan.provider]}`);
-    }
-  }
-  printDivider();
-  console.log("\n  Next steps:\n");
-  const shownSteps = /* @__PURE__ */ new Set();
-  for (const { result } of installResults) {
-    for (const step of result.nextSteps) {
-      if (!shownSteps.has(step)) {
-        printInfo(step);
-        shownSteps.add(step);
-      }
-    }
-  }
-  console.log("");
-  printSuccess("Arcanea Intelligence OS initialized.");
-  console.log(`
+    printSuccess("Arcanea Intelligence OS initialized.");
+    console.log(`
   ${import_picocolors2.default.dim("Run `arcanea status` to see your installation.")}
 `);
+  } catch (err) {
+    printError(`Init failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
+  }
 });
 
 // dist/commands/auth.js
 var PROVIDERS = ["claude", "openai", "gemini", "copilot", "opencode"];
 var authCommand = new Command("auth").description("Manage AI provider authentication");
 authCommand.command("add <provider>").description("Add or update credentials for a provider").action(async (providerName) => {
-  const provider = providerName;
-  if (!PROVIDERS.includes(provider)) {
-    printError(`Unknown provider: ${providerName}. Available: ${PROVIDERS.join(", ")}`);
-    return;
-  }
-  const adapter = getAuthAdapter(provider);
-  const keystore = createKeystore();
-  printInfo(`Authenticate with ${adapter.displayName}`);
-  printInfo(`Get your API key at: ${adapter.getSetupUrl()}`);
-  const credential = await promptPassword("  Enter API key: ");
-  if (!credential) {
-    printError("No key provided.");
-    return;
-  }
-  const session = await adapter.validate(credential);
-  if (session.validated) {
-    await keystore.save(provider, credential);
-    printSuccess(`Validated and saved! ${session.models.length} models available.`);
-  } else {
-    printError("Validation failed \u2014 the key appears to be invalid.");
+  try {
+    const provider = providerName;
+    if (!PROVIDERS.includes(provider)) {
+      printError(`Unknown provider: ${providerName}. Available: ${PROVIDERS.join(", ")}`);
+      process.exitCode = 1;
+      return;
+    }
+    const adapter = getAuthAdapter(provider);
+    const keystore = createKeystore();
+    printInfo(`Authenticate with ${adapter.displayName}`);
+    printInfo(`Get your API key at: ${adapter.getSetupUrl()}`);
+    const credential = await promptPassword("  Enter API key: ");
+    if (!credential) {
+      printError("No key provided.");
+      process.exitCode = 1;
+      return;
+    }
+    const session = await adapter.validate(credential);
+    if (session.validated) {
+      await keystore.save(provider, credential);
+      printSuccess(`Validated and saved! ${session.models.length} models available.`);
+    } else {
+      printError("Validation failed \u2014 the key appears to be invalid.");
+      process.exitCode = 1;
+    }
+  } catch (err) {
+    printError(`Auth failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
   }
 });
 authCommand.command("list").description("Show authenticated providers").action(async () => {
-  const keystore = createKeystore();
-  printDivider();
-  console.log("\n  Authenticated providers:\n");
-  for (const provider of PROVIDERS) {
-    const cred = await keystore.load(provider);
-    if (cred) {
+  try {
+    const keystore = createKeystore();
+    printDivider();
+    console.log("\n  Authenticated providers:\n");
+    for (const provider of PROVIDERS) {
+      const cred = await keystore.load(provider);
+      if (cred) {
+        const adapter = getAuthAdapter(provider);
+        const session = await adapter.validate(cred);
+        if (session.validated) {
+          printSuccess(`${adapter.displayName} \u2014 ${maskCredential(cred)} (${session.models.length} models)`);
+        } else {
+          printError(`${adapter.displayName} \u2014 ${maskCredential(cred)} (invalid)`);
+        }
+      } else {
+        printError(`${getAuthAdapter(provider).displayName} \u2014 not configured`);
+      }
+    }
+    console.log("");
+  } catch (err) {
+    printError(`Auth list failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
+  }
+});
+authCommand.command("remove <provider>").description("Remove stored credentials for a provider").action(async (providerName) => {
+  try {
+    const provider = providerName;
+    const keystore = createKeystore();
+    await keystore.delete(provider);
+    printSuccess(`Credentials for ${providerName} removed.`);
+  } catch (err) {
+    printError(`Remove failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
+  }
+});
+authCommand.command("validate").description("Re-validate all stored credentials").action(async () => {
+  try {
+    const keystore = createKeystore();
+    const stored = await keystore.list();
+    for (const provider of stored) {
+      const cred = await keystore.load(provider);
+      if (!cred)
+        continue;
       const adapter = getAuthAdapter(provider);
       const session = await adapter.validate(cred);
       if (session.validated) {
-        printSuccess(`${adapter.displayName} \u2014 ${maskCredential(cred)} (${session.models.length} models)`);
+        printSuccess(`${adapter.displayName} \u2014 valid`);
       } else {
-        printError(`${adapter.displayName} \u2014 ${maskCredential(cred)} (invalid)`);
+        printError(`${adapter.displayName} \u2014 invalid`);
       }
-    } else {
-      printError(`${getAuthAdapter(provider).displayName} \u2014 not configured`);
     }
-  }
-  console.log("");
-});
-authCommand.command("remove <provider>").description("Remove stored credentials for a provider").action(async (providerName) => {
-  const provider = providerName;
-  const keystore = createKeystore();
-  await keystore.delete(provider);
-  printSuccess(`Credentials for ${providerName} removed.`);
-});
-authCommand.command("validate").description("Re-validate all stored credentials").action(async () => {
-  const keystore = createKeystore();
-  const stored = await keystore.list();
-  for (const provider of stored) {
-    const cred = await keystore.load(provider);
-    if (!cred)
-      continue;
-    const adapter = getAuthAdapter(provider);
-    const session = await adapter.validate(cred);
-    if (session.validated) {
-      printSuccess(`${adapter.displayName} \u2014 valid`);
-    } else {
-      printError(`${adapter.displayName} \u2014 invalid`);
-    }
+  } catch (err) {
+    printError(`Validation failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
   }
 });
 
@@ -8069,49 +8097,56 @@ var INSTALLERS2 = {
   opencode: new OpenCodeOverlayInstaller()
 };
 var installCommand = new Command("install").description("Install a specific overlay").argument("<provider>", "Provider to install (claude, openai, gemini, copilot, cursor)").option("-l, --level <level>", "Overlay level (minimal, standard, full, luminor)", "standard").option("-d, --dir <path>", "Project directory", process.cwd()).option("--dry-run", "Preview without installing").action(async (providerName, options) => {
-  const resolvedName = providerName === "cursor" ? "opencode" : providerName;
-  const provider = resolvedName;
-  const installer = INSTALLERS2[provider];
-  if (!installer) {
-    printError(`Unknown provider: ${providerName}`);
-    printInfo(`Available: ${Object.keys(INSTALLERS2).join(", ")}`);
-    return;
-  }
-  const level = options.level;
-  const projectDir = options.dir;
-  if (options.dryRun) {
-    const preview = await installer.preview(projectDir, level);
-    console.log(`
+  try {
+    const resolvedName = providerName === "cursor" ? "opencode" : providerName;
+    const provider = resolvedName;
+    const installer = INSTALLERS2[provider];
+    if (!installer) {
+      printError(`Unknown provider: ${providerName}`);
+      printInfo(`Available: ${Object.keys(INSTALLERS2).join(", ")}`);
+      process.exitCode = 1;
+      return;
+    }
+    const level = options.level;
+    const projectDir = options.dir;
+    if (options.dryRun) {
+      const preview = await installer.preview(projectDir, level);
+      console.log(`
   Preview for ${providerName} (${level}):
 `);
-    for (const f of preview.filesToCreate)
-      console.log(`  + ${f.path} \u2014 ${f.description}`);
-    for (const f of preview.filesToModify)
-      console.log(`  ~ ${f.path} \u2014 ${f.description}`);
-    console.log(`
+      for (const f of preview.filesToCreate)
+        console.log(`  + ${f.path} \u2014 ${f.description}`);
+      for (const f of preview.filesToModify)
+        console.log(`  ~ ${f.path} \u2014 ${f.description}`);
+      console.log(`
   Estimated size: ${preview.estimatedSize}
 `);
-    return;
-  }
-  printInfo(`Installing ${providerName} overlay (${level})...`);
-  const result = await installer.install(projectDir, level);
-  if (result.success) {
-    printSuccess(`${providerName} overlay installed!`);
-    printDivider();
-    console.log("  Files created:");
-    for (const f of result.filesCreated)
-      console.log(`    + ${f}`);
-    if (result.filesModified.length) {
-      console.log("  Files modified:");
-      for (const f of result.filesModified)
-        console.log(`    ~ ${f}`);
+      return;
     }
-    console.log("\n  Next steps:");
-    for (const step of result.nextSteps)
-      printInfo(step);
-    console.log("");
-  } else {
-    printError("Installation failed.");
+    printInfo(`Installing ${providerName} overlay (${level})...`);
+    const result = await installer.install(projectDir, level);
+    if (result.success) {
+      printSuccess(`${providerName} overlay installed!`);
+      printDivider();
+      console.log("  Files created:");
+      for (const f of result.filesCreated)
+        console.log(`    + ${f}`);
+      if (result.filesModified.length) {
+        console.log("  Files modified:");
+        for (const f of result.filesModified)
+          console.log(`    ~ ${f}`);
+      }
+      console.log("\n  Next steps:");
+      for (const step of result.nextSteps)
+        printInfo(step);
+      console.log("");
+    } else {
+      printError("Installation failed.");
+      process.exitCode = 1;
+    }
+  } catch (err) {
+    printError(`Install failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
   }
 });
 
@@ -8126,54 +8161,67 @@ var INSTALLERS3 = {
   opencode: new OpenCodeOverlayInstaller()
 };
 var updateCommand = new Command("update").description("Update existing Arcanea overlays to latest content").option("-d, --dir <path>", "Project directory", process.cwd()).option("--dry-run", "Preview changes without updating").action(async (options) => {
-  const projectDir = options.dir;
-  const manifestPath = (0, import_node_path9.join)(projectDir, ".arcanea", "overlay-manifest.json");
-  if (!(0, import_node_fs9.existsSync)(manifestPath)) {
-    printError("No Arcanea overlays found. Run `arcanea init` first.");
-    return;
-  }
-  const manifest = JSON.parse((0, import_node_fs9.readFileSync)(manifestPath, "utf-8"));
-  const overlays = manifest.overlays || {};
-  const providers = Object.keys(overlays);
-  if (providers.length === 0) {
-    printWarning("No overlays installed. Run `arcanea init` to get started.");
-    return;
-  }
-  printInfo(`Found ${providers.length} overlay(s) to update...`);
-  printDivider();
-  for (const providerKey of providers) {
-    const overlay = overlays[providerKey];
-    const level = overlay.level || "standard";
-    const installerKey = providerKey === "cursor" ? "opencode" : providerKey;
-    const installer = INSTALLERS3[installerKey];
-    if (!installer) {
-      printWarning(`Unknown provider: ${providerKey} \u2014 skipping`);
-      continue;
+  try {
+    const projectDir = options.dir;
+    const manifestPath = (0, import_node_path9.join)(projectDir, ".arcanea", "overlay-manifest.json");
+    if (!(0, import_node_fs9.existsSync)(manifestPath)) {
+      printError("No Arcanea overlays found. Run `arcanea init` first.");
+      process.exitCode = 1;
+      return;
     }
-    if (options.dryRun) {
-      const preview = await installer.preview(projectDir, level);
-      console.log(`
+    let manifest;
+    try {
+      manifest = JSON.parse((0, import_node_fs9.readFileSync)(manifestPath, "utf-8"));
+    } catch {
+      printError("Corrupted overlay manifest. Delete .arcanea/overlay-manifest.json and run `arcanea init` again.");
+      process.exitCode = 1;
+      return;
+    }
+    const overlays = manifest.overlays || {};
+    const providers = Object.keys(overlays);
+    if (providers.length === 0) {
+      printWarning("No overlays installed. Run `arcanea init` to get started.");
+      return;
+    }
+    printInfo(`Found ${providers.length} overlay(s) to update...`);
+    printDivider();
+    for (const providerKey of providers) {
+      const overlay = overlays[providerKey];
+      const level = overlay.level || "standard";
+      const installerKey = providerKey === "cursor" ? "opencode" : providerKey;
+      const installer = INSTALLERS3[installerKey];
+      if (!installer) {
+        printWarning(`Unknown provider: ${providerKey} \u2014 skipping`);
+        continue;
+      }
+      if (options.dryRun) {
+        const preview = await installer.preview(projectDir, level);
+        console.log(`
   ${providerKey} (${level}):`);
-      for (const f of preview.filesToCreate)
-        console.log(`    + ${f.path}`);
-      for (const f of preview.filesToModify)
-        console.log(`    ~ ${f.path}`);
-      continue;
+        for (const f of preview.filesToCreate)
+          console.log(`    + ${f.path}`);
+        for (const f of preview.filesToModify)
+          console.log(`    ~ ${f.path}`);
+        continue;
+      }
+      const result = await installer.install(projectDir, level);
+      if (result.success) {
+        const totalFiles = result.filesCreated.length + result.filesModified.length;
+        printSuccess(`${providerKey} (${level}) \u2014 ${totalFiles} files updated`);
+      } else {
+        printError(`Failed to update ${providerKey}`);
+      }
     }
-    const result = await installer.install(projectDir, level);
-    if (result.success) {
-      const totalFiles = result.filesCreated.length + result.filesModified.length;
-      printSuccess(`${providerKey} (${level}) \u2014 ${totalFiles} files updated`);
+    if (!options.dryRun) {
+      console.log("");
+      printSuccess("All overlays updated.");
     } else {
-      printError(`Failed to update ${providerKey}`);
+      console.log("");
+      printInfo("Dry run \u2014 no files written.");
     }
-  }
-  if (!options.dryRun) {
-    console.log("");
-    printSuccess("All overlays updated.");
-  } else {
-    console.log("");
-    printInfo("Dry run \u2014 no files written.");
+  } catch (err) {
+    printError(`Update failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
   }
 });
 
@@ -8471,43 +8519,48 @@ var SEVEN_PILLARS = [
   }
 ];
 var worldCommand = new Command("world").description("Generate world-building templates using the Seven Pillars framework").argument("[aspect]", "Pillar to generate (geography, history, cultures, magic, economy, politics, belief)").option("-n, --name <name>", "Realm name", "MyRealm").option("-d, --dir <path>", "Output directory", process.cwd()).option("--all", "Generate all seven pillars").action(async (aspect, options) => {
-  const realmName = options.name;
-  const safeSlug = realmName.toLowerCase().replace(/[^a-z0-9\s-]+/g, "").replace(/\s+/g, "-").replace(/^-|-$/g, "") || "realm";
-  const outDir = (0, import_node_path10.join)(options.dir, ".arcanea", "worlds", safeSlug);
-  if (!(0, import_node_fs10.existsSync)(outDir))
-    (0, import_node_fs10.mkdirSync)(outDir, { recursive: true });
-  const pillarsToGenerate = options.all ? SEVEN_PILLARS : aspect ? SEVEN_PILLARS.filter((p) => p.name === aspect.toLowerCase()) : [];
-  if (pillarsToGenerate.length === 0 && !options.all) {
-    console.log("\n  The Seven Pillars of World-Building:\n");
-    for (const p of SEVEN_PILLARS) {
-      const guardian = GUARDIANS.find((g) => g.name === p.guardian);
-      console.log(`    ${p.name.padEnd(12)} \u2014 ${p.description}`);
-      console.log(`    ${" ".repeat(12)}   Guardian: ${guardian?.displayName || p.guardian}
+  try {
+    const realmName = options.name;
+    const safeSlug = realmName.toLowerCase().replace(/[^a-z0-9\s-]+/g, "").replace(/\s+/g, "-").replace(/^-|-$/g, "") || "realm";
+    const outDir = (0, import_node_path10.join)(options.dir, ".arcanea", "worlds", safeSlug);
+    if (!(0, import_node_fs10.existsSync)(outDir))
+      (0, import_node_fs10.mkdirSync)(outDir, { recursive: true });
+    const pillarsToGenerate = options.all ? SEVEN_PILLARS : aspect ? SEVEN_PILLARS.filter((p) => p.name === aspect.toLowerCase()) : [];
+    if (pillarsToGenerate.length === 0 && !options.all) {
+      console.log("\n  The Seven Pillars of World-Building:\n");
+      for (const p of SEVEN_PILLARS) {
+        const guardian = GUARDIANS.find((g) => g.name === p.guardian);
+        console.log(`    ${p.name.padEnd(12)} \u2014 ${p.description}`);
+        console.log(`    ${" ".repeat(12)}   Guardian: ${guardian?.displayName || p.guardian}
 `);
+      }
+      console.log("  Usage:");
+      console.log('    arcanea world geography --name "Dragon Peaks"');
+      console.log('    arcanea world --all --name "Kingdom of Light"\n');
+      return;
     }
-    console.log("  Usage:");
-    console.log('    arcanea world geography --name "Dragon Peaks"');
-    console.log('    arcanea world --all --name "Kingdom of Light"\n');
-    return;
-  }
-  printDivider();
-  console.log(`
+    printDivider();
+    console.log(`
   Generating world templates for "${realmName}"...
 `);
-  for (const pillar of pillarsToGenerate) {
-    const content = pillar.template.replace(/\{\{REALM\}\}/g, realmName);
-    const filePath = (0, import_node_path10.join)(outDir, `${pillar.name}.md`);
-    (0, import_node_fs10.writeFileSync)(filePath, content);
-    const guardian = GUARDIANS.find((g) => g.name === pillar.guardian);
-    printSuccess(`${pillar.name} \u2014 guided by ${guardian?.displayName || pillar.guardian}`);
-  }
-  console.log(`
+    for (const pillar of pillarsToGenerate) {
+      const content = pillar.template.replace(/\{\{REALM\}\}/g, realmName);
+      const filePath = (0, import_node_path10.join)(outDir, `${pillar.name}.md`);
+      (0, import_node_fs10.writeFileSync)(filePath, content);
+      const guardian = GUARDIANS.find((g) => g.name === pillar.guardian);
+      printSuccess(`${pillar.name} \u2014 guided by ${guardian?.displayName || pillar.guardian}`);
+    }
+    console.log(`
   Files written to: .arcanea/worlds/${safeSlug}/`);
-  printInfo(`${pillarsToGenerate.length} pillar(s) generated`);
-  if (!options.all && pillarsToGenerate.length < 7) {
-    printInfo("Use --all to generate all seven pillars");
+    printInfo(`${pillarsToGenerate.length} pillar(s) generated`);
+    if (!options.all && pillarsToGenerate.length < 7) {
+      printInfo("Use --all to generate all seven pillars");
+    }
+    console.log("");
+  } catch (err) {
+    printError(`World generation failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
   }
-  console.log("");
 });
 
 // dist/commands/create.js
@@ -8735,83 +8788,98 @@ How powerful can magic get?
   }
 };
 var createCommand2 = new Command("create").description("Generate creative templates (character, scene, magic-system)").argument("<type>", "Template type: character, scene, magic-system").argument("<name>", "Name for the creation").option("-d, --dir <path>", "Output directory", process.cwd()).action(async (type, name, options) => {
-  const template = TEMPLATES[type];
-  if (!template) {
-    console.log("\n  Available templates:\n");
-    for (const [key, t] of Object.entries(TEMPLATES)) {
-      console.log(`    ${key.padEnd(14)} \u2192 .arcanea/${t.dir}/{name}.md`);
+  try {
+    const template = TEMPLATES[type];
+    if (!template) {
+      console.log("\n  Available templates:\n");
+      for (const [key, t] of Object.entries(TEMPLATES)) {
+        console.log(`    ${key.padEnd(14)} \u2192 .arcanea/${t.dir}/{name}.md`);
+      }
+      console.log('\n  Usage: arcanea create character "Elena Stormweaver"\n');
+      return;
     }
-    console.log('\n  Usage: arcanea create character "Elena Stormweaver"\n');
-    return;
+    const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const outDir = (0, import_node_path11.join)(options.dir, ".arcanea", template.dir);
+    if (!(0, import_node_fs11.existsSync)(outDir))
+      (0, import_node_fs11.mkdirSync)(outDir, { recursive: true });
+    const content = template.generate(name);
+    const filePath = (0, import_node_path11.join)(outDir, `${slug}.md`);
+    (0, import_node_fs11.writeFileSync)(filePath, content);
+    printSuccess(`${type} template created: .arcanea/${template.dir}/${slug}.md`);
+    printInfo(`Fill in the template to bring "${name}" to life`);
+    console.log("");
+  } catch (err) {
+    printError(`Create failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
   }
-  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  const outDir = (0, import_node_path11.join)(options.dir, ".arcanea", template.dir);
-  if (!(0, import_node_fs11.existsSync)(outDir))
-    (0, import_node_fs11.mkdirSync)(outDir, { recursive: true });
-  const content = template.generate(name);
-  const filePath = (0, import_node_path11.join)(outDir, `${slug}.md`);
-  (0, import_node_fs11.writeFileSync)(filePath, content);
-  printSuccess(`${type} template created: .arcanea/${template.dir}/${slug}.md`);
-  printInfo(`Fill in the template to bring "${name}" to life`);
-  console.log("");
 });
 
 // dist/commands/route.js
 var import_picocolors4 = __toESM(require_picocolors(), 1);
 var routeCommand = new Command("route").description("Route a task to the best Guardian").argument("<description...>", "Task description to route").action((descWords) => {
-  const description = descWords.join(" ");
-  const result = routeToGuardian(description);
-  const g = result.guardian;
-  console.log();
-  console.log(`  ${import_picocolors4.default.bold(import_picocolors4.default.cyan(g.displayName))} ${import_picocolors4.default.dim(`(${g.role})`)}`);
-  console.log(`  ${import_picocolors4.default.dim("Gate:")} ${g.gate} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Element:")} ${result.element} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Confidence:")} ${import_picocolors4.default.green((result.confidence * 100).toFixed(0) + "%")}`);
-  console.log(`  ${import_picocolors4.default.dim("Domain:")} ${g.domain}`);
-  console.log();
-  console.log(`  ${import_picocolors4.default.italic(import_picocolors4.default.dim(g.vibe))}`);
-  console.log();
-  console.log(`  ${import_picocolors4.default.dim("Reasoning:")} ${result.reasoning}`);
-  if (result.alternatives.length > 0) {
+  try {
+    const description = descWords.join(" ");
+    const result = routeToGuardian(description);
+    const g = result.guardian;
     console.log();
-    printDivider();
-    console.log(`  ${import_picocolors4.default.dim("Alternatives:")}`);
-    for (const alt of result.alternatives) {
-      const pct = (alt.confidence * 100).toFixed(0);
-      console.log(`    ${import_picocolors4.default.dim(alt.guardian.displayName)} (${pct}%)`);
+    console.log(`  ${import_picocolors4.default.bold(import_picocolors4.default.cyan(g.displayName))} ${import_picocolors4.default.dim(`(${g.role})`)}`);
+    console.log(`  ${import_picocolors4.default.dim("Gate:")} ${g.gate} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Element:")} ${result.element} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Confidence:")} ${import_picocolors4.default.green((result.confidence * 100).toFixed(0) + "%")}`);
+    console.log(`  ${import_picocolors4.default.dim("Domain:")} ${g.domain}`);
+    console.log();
+    console.log(`  ${import_picocolors4.default.italic(import_picocolors4.default.dim(g.vibe))}`);
+    console.log();
+    console.log(`  ${import_picocolors4.default.dim("Reasoning:")} ${result.reasoning}`);
+    if (result.alternatives.length > 0) {
+      console.log();
+      printDivider();
+      console.log(`  ${import_picocolors4.default.dim("Alternatives:")}`);
+      for (const alt of result.alternatives) {
+        const pct = (alt.confidence * 100).toFixed(0);
+        console.log(`    ${import_picocolors4.default.dim(alt.guardian.displayName)} (${pct}%)`);
+      }
     }
+    console.log();
+    console.log(`  ${import_picocolors4.default.dim(g.signOff)}`);
+    console.log();
+  } catch (err) {
+    printError(`Route failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
   }
-  console.log();
-  console.log(`  ${import_picocolors4.default.dim(g.signOff)}`);
-  console.log();
 });
 
 // dist/commands/voice.js
 var import_picocolors5 = __toESM(require_picocolors(), 1);
 var voiceCommand = new Command("voice").description("Check text against the Arcanea Voice Bible").argument("<text...>", "Text to check").option("--fix", "Auto-fix violations where possible").action((textWords, opts) => {
-  const text = textWords.join(" ");
-  const enforcer = new VoiceEnforcer();
-  const result = enforcer.check(text);
-  console.log();
-  const scoreColor = result.score >= 80 ? import_picocolors5.default.green : result.score >= 50 ? import_picocolors5.default.yellow : import_picocolors5.default.red;
-  console.log(`  ${import_picocolors5.default.bold("Voice Score:")} ${scoreColor(result.score.toString())}/100  ${result.passed ? import_picocolors5.default.green("PASSED") : import_picocolors5.default.red("NEEDS WORK")}`);
-  if (result.violations.length > 0) {
+  try {
+    const text = textWords.join(" ");
+    const enforcer = new VoiceEnforcer();
+    const result = enforcer.check(text);
     console.log();
-    printDivider();
-    console.log(`  ${import_picocolors5.default.bold("Violations")} (${result.violations.length}):`);
-    console.log();
-    for (const v of result.violations) {
-      const icon = v.rule.severity === "error" ? import_picocolors5.default.red("x") : v.rule.severity === "warning" ? import_picocolors5.default.yellow("!") : import_picocolors5.default.dim("~");
-      console.log(`  ${icon} ${import_picocolors5.default.dim(`[${v.rule.severity}]`)} "${import_picocolors5.default.bold(v.match)}" \u2014 ${v.rule.description}`);
-      console.log(`    ${import_picocolors5.default.cyan("->")} ${v.suggestion}`);
+    const scoreColor = result.score >= 80 ? import_picocolors5.default.green : result.score >= 50 ? import_picocolors5.default.yellow : import_picocolors5.default.red;
+    console.log(`  ${import_picocolors5.default.bold("Voice Score:")} ${scoreColor(result.score.toString())}/100  ${result.passed ? import_picocolors5.default.green("PASSED") : import_picocolors5.default.red("NEEDS WORK")}`);
+    if (result.violations.length > 0) {
+      console.log();
+      printDivider();
+      console.log(`  ${import_picocolors5.default.bold("Violations")} (${result.violations.length}):`);
+      console.log();
+      for (const v of result.violations) {
+        const icon = v.rule.severity === "error" ? import_picocolors5.default.red("x") : v.rule.severity === "warning" ? import_picocolors5.default.yellow("!") : import_picocolors5.default.dim("~");
+        console.log(`  ${icon} ${import_picocolors5.default.dim(`[${v.rule.severity}]`)} "${import_picocolors5.default.bold(v.match)}" \u2014 ${v.rule.description}`);
+        console.log(`    ${import_picocolors5.default.cyan("->")} ${v.suggestion}`);
+      }
     }
-  }
-  if (opts.fix) {
+    if (opts.fix) {
+      console.log();
+      printDivider();
+      const fixed = enforcer.fix(text);
+      console.log(`  ${import_picocolors5.default.bold("Fixed:")}`);
+      console.log(`  ${fixed}`);
+    }
     console.log();
-    printDivider();
-    const fixed = enforcer.fix(text);
-    console.log(`  ${import_picocolors5.default.bold("Fixed:")}`);
-    console.log(`  ${fixed}`);
+  } catch (err) {
+    printError(`Voice check failed: ${err instanceof Error ? err.message : String(err)}`);
+    process.exitCode = 1;
   }
-  console.log();
 });
 
 // dist/commands/tokens.js
@@ -8846,7 +8914,7 @@ var tokensCommand = new Command("tokens").description("Export Arcanea design sys
 
 // dist/index.js
 var program2 = new Command();
-program2.name("arcanea").description("Arcanea Realm \u2014 Overlay any AI tool with arcane intelligence").version("0.2.0");
+program2.name("arcanea").description("Arcanea Realm \u2014 Overlay any AI tool with arcane intelligence").version("0.6.0");
 program2.addCommand(initCommand);
 program2.addCommand(authCommand);
 program2.addCommand(statusCommand);
