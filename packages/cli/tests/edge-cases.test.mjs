@@ -23,6 +23,7 @@ function run(args, opts = {}) {
   return execSync(`node "${CLI}" ${args}`, {
     encoding: 'utf-8',
     timeout: 15000,
+    env: { ...process.env, NO_COLOR: '1' },
     ...opts,
   });
 }
