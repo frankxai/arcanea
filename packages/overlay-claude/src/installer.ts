@@ -21,7 +21,7 @@ import type {
   InstallPreview,
 } from '@arcanea/os';
 import { generateClaudeMd, OVERLAY_LEVELS, GUARDIANS } from '@arcanea/os';
-import { generateSkillFile, generateAgentFile } from './generators.js';
+import { generateSkillFile, getSkillIdsForLevel, generateAgentFile } from './generators.js';
 import {
   getAllHookFiles,
   getAllHelperFiles,
@@ -30,8 +30,6 @@ import {
   generateAgentDBSchema,
   generateAgentDBInit,
 } from './hook-generators.js';
-
-const CORE_SKILLS = ['arcanea-canon', 'arcanea-voice', 'arcanea-design-system', 'arcanea-lore'];
 
 export class ClaudeOverlayInstaller implements OverlayInstaller {
   async canInstall(projectDir: string): Promise<boolean> {
@@ -115,7 +113,8 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
 
     // ── 3. Install skills (standard+) ────────────────────────────────────
     if (level !== 'minimal') {
-      for (const skillId of CORE_SKILLS) {
+      const skillIds = getSkillIdsForLevel(level);
+      for (const skillId of skillIds) {
         const skill = generateSkillFile(skillId, level);
         if (skill) {
           const skillPath = join(projectDir, '.claude', 'skills', skill.filename);
@@ -303,7 +302,8 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
 
     if (level !== 'minimal') {
       // Skills
-      for (const skillId of CORE_SKILLS) {
+      const skillIds = getSkillIdsForLevel(level);
+      for (const skillId of skillIds) {
         files.push({ path: `.claude/skills/${skillId}.md`, description: `${skillId} skill` });
       }
       // Guardians

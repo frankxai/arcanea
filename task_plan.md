@@ -58,10 +58,15 @@ See findings.md for full breakdown.
 - [x] overlay-cursor generates MDC rules from shared content
 - [x] Add 62 tests for shared content layer in @arcanea/os
 
-### Wave 3: Absorb Best Patterns
-- [ ] Audit oh-my-opencode for plugin patterns worth adopting
-- [ ] Audit claude-flow for orchestration patterns
-- [ ] Implement skill file generation for all 35 auto-activation rules
+### Wave 3: Absorb Best Patterns ✅ COMPLETE (580 tests passing)
+- [x] Audit oh-my-opencode for plugin patterns worth adopting
+- [x] Audit claude-flow for orchestration patterns
+- [x] Create shared skill system in @arcanea/os (13 skills, triggers, level selection)
+- [x] Refactor overlay-claude generators to use shared content
+- [x] Expand installer: standard=4, full=9, luminor=13 skills
+- [x] Add matchSkillTriggers() auto-activation system
+- [x] Remove dead code (content-depth.ts, SKILL_TEMPLATES)
+- [x] Add 35+ new tests across core and overlay-claude
 
 ### Wave 4: Runtime Intelligence
 - [ ] Agent-to-agent communication protocol

@@ -136,5 +136,57 @@
 | Guardian verbs | Hardcoded in hook-generators.ts | GUARDIAN_VERBS in @arcanea/os |
 | Guardian seed data | Hardcoded SQL in hook-generators.ts | Generated from GUARDIANS constant |
 
+---
+
+## Session: 2026-02-21 (Wave 3)
+
+### Wave 3 — Absorb Best Patterns: COMPLETE
+
+| # | Action | Result |
+|---|--------|--------|
+| 1 | Audited oh-my-opencode | Array-based plugin config, NPM dist-tag resolution, doctor checks, config hierarchy (user→project→plugin) |
+| 2 | Audited claude-flow | 60+ agent types, 6 orchestration patterns (only hierarchical active), 17 hooks, 12 workers — all dormant |
+| 3 | Created packages/core/src/content/skills.ts | 13 SKILL_DEFINITIONS, 13 SKILL_TRIGGERS, matchSkillTriggers(), getSkillsForLevel(), generateSkillContent() |
+| 4 | Updated packages/core/src/content/index.ts | Exports new skill types and functions |
+| 5 | Rewrote overlay-claude/src/generators.ts | Uses shared generateSkillContent() from @arcanea/os |
+| 6 | Updated overlay-claude/src/installer.ts | Dynamic getSkillIdsForLevel(level) replaces hardcoded CORE_SKILLS |
+| 7 | Removed dead code | Deleted content-depth.ts, removed SKILL_TEMPLATES from templates.ts |
+| 8 | Added 30 new tests in @arcanea/os | SKILL_DEFINITIONS, SKILL_TRIGGERS, matchSkillTriggers, getSkillsForLevel, generateSkillContent |
+| 9 | Rewrote overlay-claude generators.test.mjs | 34 tests: all 13 skills, triggers, level selection, agent generation |
+| 10 | Expanded installer.test.mjs | +5 tests: full=9 skills, luminor=13 skills, creative/dev skill verification |
+
+### Test Count Evolution
+- Previous total: 522
+- @arcanea/os: 106 → **136** (+30 skill tests)
+- overlay-claude: 130 → **158** (+23 generator + +5 installer tests)
+- Total: **580 tests** across 6 packages, all passing
+
+### Files Created
+- `packages/core/src/content/skills.ts` — Shared skill system (~500 lines)
+
+### Files Modified
+- `packages/core/src/content/index.ts` — Skill exports
+- `packages/overlay-claude/src/generators.ts` — Rewritten for shared generators
+- `packages/overlay-claude/src/installer.ts` — Dynamic skill selection
+- `packages/overlay-claude/src/index.ts` — Export getSkillIdsForLevel
+- `packages/overlay-claude/src/templates.ts` — Removed dead SKILL_TEMPLATES
+- `packages/overlay-claude/tests/generators.test.mjs` — Full rewrite (34 tests)
+- `packages/overlay-claude/tests/installer.test.mjs` — Expanded level verification (+5 tests)
+- `packages/core/tests/content.test.mjs` — +30 skill system tests
+
+### Files Deleted
+- `packages/overlay-claude/src/content-depth.ts` — Dead code, replaced by @arcanea/os generators
+
+### What Changed (Before vs After)
+
+| Feature | Before | After |
+|---------|--------|-------|
+| Skill content | Hardcoded SKILL_TEMPLATES + SKILL_EXTENSIONS | Generated from @arcanea/os constants |
+| Skill count | 4 at all levels (content depth varied) | 4/9/13 by level (standard/full/luminor) |
+| Skill triggers | Not implemented | 13 triggers with keyword matching |
+| Auto-activation | None | matchSkillTriggers() returns matching skill IDs |
+| Level selection | Hardcoded CORE_SKILLS array | getSkillsForLevel() from @arcanea/os |
+| Content depth | Tiered extensions (standard/full/luminor) | Same rich content; level controls WHICH skills |
+
 ### Blockers
 - npm publish: Token expired, @arcanea org not created

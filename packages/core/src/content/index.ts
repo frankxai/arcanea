@@ -37,3 +37,13 @@ export {
   generateStackSection,
   generateGuardianProfile,
 } from './markdown.js';
+
+// Skill generators and triggers
+export {
+  SKILL_TRIGGERS,
+  SKILL_DEFINITIONS,
+  matchSkillTriggers,
+  getSkillsForLevel,
+  generateSkillContent,
+} from './skills.js';
+export type { SkillTrigger, OverlaySkillCategory, SkillDefinition } from './skills.js';

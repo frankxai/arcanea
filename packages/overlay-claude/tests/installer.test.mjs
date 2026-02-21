@@ -136,6 +136,23 @@ describe('ClaudeOverlayInstaller', () => {
 
     after(() => rmSync(dir, { recursive: true, force: true }));
 
+    it('should create 9 skill files (4 core + 5 dev)', () => {
+      const skillsDir = join(dir, '.claude', 'skills');
+      assert.ok(existsSync(skillsDir));
+      const files = readdirSync(skillsDir).filter(f => f.endsWith('.md'));
+      assert.equal(files.length, 9, `Expected 9 skills, got: ${files}`);
+    });
+
+    it('should include development skills', () => {
+      const skillsDir = join(dir, '.claude', 'skills');
+      const files = readdirSync(skillsDir);
+      assert.ok(files.includes('architecture-patterns.md'), 'Missing architecture-patterns');
+      assert.ok(files.includes('react-patterns.md'), 'Missing react-patterns');
+      assert.ok(files.includes('supabase-patterns.md'), 'Missing supabase-patterns');
+      assert.ok(files.includes('testing-patterns.md'), 'Missing testing-patterns');
+      assert.ok(files.includes('prompt-engineering.md'), 'Missing prompt-engineering');
+    });
+
     it('should create commands', () => {
       const cmdsDir = join(dir, '.claude', 'commands');
       assert.ok(existsSync(cmdsDir));
@@ -143,7 +160,7 @@ describe('ClaudeOverlayInstaller', () => {
       assert.ok(files.length >= 2, `Expected at least 2 commands, got: ${files}`);
     });
 
-    it('skill content should be deeper than standard', () => {
+    it('skill content should be substantial', () => {
       const skillContent = readFileSync(join(dir, '.claude', 'skills', 'arcanea-canon.md'), 'utf-8');
       const lines = skillContent.split('\n').length;
       assert.ok(lines > 30, `Full skill should have >30 lines, got ${lines}`);
@@ -160,7 +177,32 @@ describe('ClaudeOverlayInstaller', () => {
 
     after(() => rmSync(dir, { recursive: true, force: true }));
 
-    it('skill content should be the deepest', () => {
+    it('should create 13 skill files (4 core + 5 dev + 4 creative)', () => {
+      const skillsDir = join(dir, '.claude', 'skills');
+      assert.ok(existsSync(skillsDir));
+      const files = readdirSync(skillsDir).filter(f => f.endsWith('.md'));
+      assert.equal(files.length, 13, `Expected 13 skills, got: ${files}`);
+    });
+
+    it('should include creative skills', () => {
+      const skillsDir = join(dir, '.claude', 'skills');
+      const files = readdirSync(skillsDir);
+      assert.ok(files.includes('character-forge.md'), 'Missing character-forge');
+      assert.ok(files.includes('world-build.md'), 'Missing world-build');
+      assert.ok(files.includes('scene-craft.md'), 'Missing scene-craft');
+      assert.ok(files.includes('voice-alchemy.md'), 'Missing voice-alchemy');
+    });
+
+    it('should include all core and dev skills too', () => {
+      const skillsDir = join(dir, '.claude', 'skills');
+      const files = readdirSync(skillsDir);
+      // Core
+      assert.ok(files.includes('arcanea-canon.md'), 'Missing core skill');
+      // Dev
+      assert.ok(files.includes('architecture-patterns.md'), 'Missing dev skill');
+    });
+
+    it('skill content should be substantial', () => {
       const skillContent = readFileSync(join(dir, '.claude', 'skills', 'arcanea-canon.md'), 'utf-8');
       const lines = skillContent.split('\n').length;
       assert.ok(lines > 60, `Luminor skill should have >60 lines, got ${lines}`);

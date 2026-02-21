@@ -37,6 +37,13 @@ const {
   generateStackSection,
   generateGuardianProfile,
 
+  // Skill generators
+  SKILL_TRIGGERS,
+  SKILL_DEFINITIONS,
+  matchSkillTriggers,
+  getSkillsForLevel,
+  generateSkillContent,
+
   // Existing constants for cross-reference
   GUARDIANS,
   COLORS,
@@ -499,5 +506,205 @@ describe('Content ↔ Constants cross-reference', () => {
       const name = r.rank.charAt(0).toUpperCase() + r.rank.slice(1);
       assert.ok(lore.includes(name), `Missing rank: ${name}`);
     }
+  });
+});
+
+// ============================================
+// SKILL DEFINITIONS
+// ============================================
+
+describe('SKILL_DEFINITIONS', () => {
+  it('should define 13 skills', () => {
+    assert.equal(SKILL_DEFINITIONS.length, 13);
+  });
+
+  it('should have 4 core, 5 development, 4 creative', () => {
+    const core = SKILL_DEFINITIONS.filter(s => s.category === 'core');
+    const dev = SKILL_DEFINITIONS.filter(s => s.category === 'development');
+    const creative = SKILL_DEFINITIONS.filter(s => s.category === 'creative');
+    assert.equal(core.length, 4);
+    assert.equal(dev.length, 5);
+    assert.equal(creative.length, 4);
+  });
+
+  it('core skills should require standard level', () => {
+    const core = SKILL_DEFINITIONS.filter(s => s.category === 'core');
+    for (const s of core) {
+      assert.equal(s.minLevel, 'standard', `${s.id} should be standard`);
+    }
+  });
+
+  it('dev skills should require full level', () => {
+    const dev = SKILL_DEFINITIONS.filter(s => s.category === 'development');
+    for (const s of dev) {
+      assert.equal(s.minLevel, 'full', `${s.id} should be full`);
+    }
+  });
+
+  it('creative skills should require luminor level', () => {
+    const creative = SKILL_DEFINITIONS.filter(s => s.category === 'creative');
+    for (const s of creative) {
+      assert.equal(s.minLevel, 'luminor', `${s.id} should be luminor`);
+    }
+  });
+
+  it('every definition should have unique id', () => {
+    const ids = SKILL_DEFINITIONS.map(s => s.id);
+    const unique = [...new Set(ids)];
+    assert.equal(ids.length, unique.length);
+  });
+});
+
+// ============================================
+// SKILL TRIGGERS
+// ============================================
+
+describe('SKILL_TRIGGERS', () => {
+  it('should define triggers for all 13 skills', () => {
+    const triggerIds = SKILL_TRIGGERS.map(t => t.skillId);
+    for (const def of SKILL_DEFINITIONS) {
+      assert.ok(triggerIds.includes(def.id), `Missing trigger for: ${def.id}`);
+    }
+  });
+
+  it('every trigger should have keywords array', () => {
+    for (const t of SKILL_TRIGGERS) {
+      assert.ok(Array.isArray(t.keywords), `${t.skillId} keywords not array`);
+      assert.ok(t.keywords.length >= 2, `${t.skillId} needs at least 2 keywords`);
+    }
+  });
+
+  it('no duplicate keywords within same trigger', () => {
+    for (const t of SKILL_TRIGGERS) {
+      const unique = [...new Set(t.keywords)];
+      assert.equal(t.keywords.length, unique.length, `${t.skillId} has duplicate keywords`);
+    }
+  });
+});
+
+describe('matchSkillTriggers', () => {
+  it('should match guardian-related prompts to canon', () => {
+    assert.ok(matchSkillTriggers('Tell me about the guardian').includes('arcanea-canon'));
+  });
+
+  it('should match design prompts to design-system', () => {
+    assert.ok(matchSkillTriggers('Update the color tokens').includes('arcanea-design-system'));
+  });
+
+  it('should match database prompts to supabase-patterns', () => {
+    assert.ok(matchSkillTriggers('Add RLS policy for supabase').includes('supabase-patterns'));
+  });
+
+  it('should match test prompts to testing-patterns', () => {
+    assert.ok(matchSkillTriggers('Write playwright e2e tests').includes('testing-patterns'));
+  });
+
+  it('should return empty for unrelated prompts', () => {
+    assert.equal(matchSkillTriggers('make me a sandwich').length, 0);
+  });
+
+  it('should not duplicate skill IDs', () => {
+    const matches = matchSkillTriggers('canon lore guardian mythology');
+    const unique = [...new Set(matches)];
+    assert.equal(matches.length, unique.length);
+  });
+});
+
+// ============================================
+// getSkillsForLevel
+// ============================================
+
+describe('getSkillsForLevel', () => {
+  it('minimal returns empty', () => {
+    assert.deepEqual(getSkillsForLevel('minimal'), []);
+  });
+
+  it('standard returns 4 core', () => {
+    assert.equal(getSkillsForLevel('standard').length, 4);
+  });
+
+  it('full returns 9', () => {
+    assert.equal(getSkillsForLevel('full').length, 9);
+  });
+
+  it('luminor returns 13', () => {
+    assert.equal(getSkillsForLevel('luminor').length, 13);
+  });
+
+  it('each level is superset of previous', () => {
+    const standard = getSkillsForLevel('standard');
+    const full = getSkillsForLevel('full');
+    const luminor = getSkillsForLevel('luminor');
+    for (const s of standard) assert.ok(full.includes(s));
+    for (const s of full) assert.ok(luminor.includes(s));
+  });
+});
+
+// ============================================
+// SKILL CONTENT GENERATORS
+// ============================================
+
+describe('generateSkillContent', () => {
+  it('should return null for unknown skill', () => {
+    assert.equal(generateSkillContent('nonexistent'), null);
+  });
+
+  it('should generate content for all 13 skills', () => {
+    for (const def of SKILL_DEFINITIONS) {
+      const content = generateSkillContent(def.id);
+      assert.ok(content, `Failed to generate: ${def.id}`);
+      assert.ok(content.length > 200, `${def.id} too short: ${content.length}`);
+    }
+  });
+
+  it('canon content should include Guardian data from GUARDIANS constant', () => {
+    const content = generateSkillContent('arcanea-canon');
+    for (const g of GUARDIANS.slice(0, 3)) {
+      assert.ok(content.includes(g.displayName), `Missing Guardian: ${g.displayName}`);
+    }
+  });
+
+  it('voice content should include VOICE_PILLARS data', () => {
+    const content = generateSkillContent('arcanea-voice');
+    assert.ok(content.includes('Arcane'));
+    assert.ok(content.includes('antidote'));
+  });
+
+  it('voice content should include BANNED_PHRASES data', () => {
+    const content = generateSkillContent('arcanea-voice');
+    // Should include some banned phrases from the shared constant
+    const hasSomeBanned = BANNED_PHRASES.slice(0, 3).some(b => content.includes(b.banned));
+    assert.ok(hasSomeBanned, 'Should include at least some BANNED_PHRASES');
+  });
+
+  it('lore content should include COSMIC_DUALITY', () => {
+    const content = generateSkillContent('arcanea-lore');
+    assert.ok(content.includes('Lumina'));
+    assert.ok(content.includes('Nero'));
+  });
+
+  it('architecture content should reference the stack', () => {
+    const content = generateSkillContent('architecture-patterns');
+    assert.ok(content.includes('Next.js'));
+    assert.ok(content.includes('Supabase'));
+    assert.ok(content.includes('TypeScript'));
+  });
+
+  it('react content should cover server and client components', () => {
+    const content = generateSkillContent('react-patterns');
+    assert.ok(content.includes('Server Component'));
+    assert.ok(content.includes('Client Component'));
+  });
+
+  it('character-forge content should include character template', () => {
+    const content = generateSkillContent('character-forge');
+    assert.ok(content.includes('Character Template'));
+    assert.ok(content.includes('personality'));
+  });
+
+  it('scene-craft content should include scene structure', () => {
+    const content = generateSkillContent('scene-craft');
+    assert.ok(content.includes('HOOK'));
+    assert.ok(content.includes('TURNING POINT'));
   });
 });

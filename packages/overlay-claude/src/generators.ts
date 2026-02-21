@@ -1,57 +1,47 @@
 /**
  * File generators for Claude Code overlay.
+ *
+ * All skill content is generated from @arcanea/os shared constants,
+ * eliminating hardcoded duplication. Development and creative skills
+ * are installed at higher overlay levels.
  */
 
 import type { OverlayLevel, Guardian } from '@arcanea/os';
-import { SKILL_TEMPLATES, generateAgentContent, COMMAND_TEMPLATE } from './templates.js';
-import { SKILL_EXTENSIONS } from './content-depth.js';
-
-/**
- * Maps an overlay level to which content tiers to include.
- */
-function getTiersForLevel(level: OverlayLevel): Array<'standard' | 'full' | 'luminor'> {
-  switch (level) {
-    case 'minimal':
-    case 'standard':
-      return ['standard'];
-    case 'full':
-      return ['standard', 'full'];
-    case 'luminor':
-      return ['standard', 'full', 'luminor'];
-  }
-}
+import {
+  SKILL_DEFINITIONS,
+  getSkillsForLevel,
+  generateSkillContent,
+} from '@arcanea/os';
+import { generateAgentContent, COMMAND_TEMPLATE } from './templates.js';
 
 export function generateSkillFile(
   skillId: string,
-  level: OverlayLevel = 'standard',
+  _level: OverlayLevel = 'standard',
 ): { filename: string; content: string } | null {
-  const template = SKILL_TEMPLATES[skillId as keyof typeof SKILL_TEMPLATES];
-  if (!template) return null;
+  const def = SKILL_DEFINITIONS.find(s => s.id === skillId);
+  if (!def) return null;
+
+  const content = generateSkillContent(skillId);
+  if (!content) return null;
 
   const frontmatter = `---
-name: ${template.name}
-description: ${template.description}
+name: ${def.name}
+description: ${def.description}
 ---
 
 `;
-
-  // Build content by layering tiers
-  let content = template.content;
-  const tiers = getTiersForLevel(level);
-  const extensions = SKILL_EXTENSIONS[skillId];
-
-  if (extensions) {
-    for (const tier of tiers) {
-      if (tier !== 'standard' && extensions[tier]) {
-        content += extensions[tier];
-      }
-    }
-  }
 
   return {
     filename: `${skillId}.md`,
     content: frontmatter + content,
   };
+}
+
+/**
+ * Get all skill IDs appropriate for the given overlay level.
+ */
+export function getSkillIdsForLevel(level: OverlayLevel): string[] {
+  return getSkillsForLevel(level);
 }
 
 export function generateAgentFile(guardian: Guardian): { filename: string; content: string } {
