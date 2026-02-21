@@ -16,12 +16,17 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CLI = join(__dirname, '..', 'dist', 'arcanea.cjs');
 
+// Strip ANSI escape sequences (picocolors may force color in CI)
+const stripAnsi = (s) => s.replace(/\x1b\[[0-9;]*m/g, '');
+
 function run(args, opts = {}) {
-  return execSync(`node "${CLI}" ${args}`, {
+  const raw = execSync(`node "${CLI}" ${args}`, {
     encoding: 'utf-8',
     timeout: 15000,
+    env: { ...process.env, NO_COLOR: '1' },
     ...opts,
   });
+  return stripAnsi(raw);
 }
 
 function runSafe(args) {

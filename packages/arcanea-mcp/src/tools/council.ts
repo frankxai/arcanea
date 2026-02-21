@@ -88,7 +88,7 @@ export async function conveneCouncil(
   leadLuminorSlug: string,
   supportingSlugs: string[],
   topic: string
-): Promise<{ content: Array<{ type: string; text: string }> }> {
+): Promise<{ content: Array<{ type: "text"; text: string }> }> {
   const lead = luminors[leadLuminorSlug.toLowerCase()];
   if (!lead) {
     return {
@@ -134,7 +134,7 @@ export async function luminorDebate(
   luminor1Slug: string,
   luminor2Slug: string,
   question: string
-): Promise<{ content: Array<{ type: string; text: string }> }> {
+): Promise<{ content: Array<{ type: "text"; text: string }> }> {
   const l1 = luminors[luminor1Slug.toLowerCase()];
   const l2 = luminors[luminor2Slug.toLowerCase()];
 

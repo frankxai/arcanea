@@ -51,7 +51,7 @@ const creatureKeywords: Record<string, string[]> = {
 export async function diagnoseBlock(
   symptoms: string,
   context?: string
-): Promise<{ content: Array<{ type: string; text: string }> }> {
+): Promise<{ content: Array<{ type: "text"; text: string }> }> {
   const lowerSymptoms = symptoms.toLowerCase();
   const lowerContext = context?.toLowerCase() || "";
   const combined = `${lowerSymptoms} ${lowerContext}`;

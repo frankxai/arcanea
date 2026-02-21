@@ -28,7 +28,7 @@ const guardianGateMap: Record<string, number> = {
 export async function validateCanon(
   content: string,
   contentType?: string
-): Promise<{ content: Array<{ type: string; text: string }> }> {
+): Promise<{ content: Array<{ type: "text"; text: string }> }> {
   const issues: ValidationIssue[] = [];
   const suggestions: string[] = [];
   const lowerContent = content.toLowerCase();

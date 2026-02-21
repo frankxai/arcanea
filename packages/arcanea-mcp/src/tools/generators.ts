@@ -60,7 +60,7 @@ function getRankFromGates(gates: number): string {
   return "Luminor";
 }
 
-type ToolResult = { content: Array<{ type: string; text: string }> };
+type ToolResult = { content: Array<{ type: "text"; text: string }> };
 
 export async function generateCharacter(options: {
   archetype?: string;

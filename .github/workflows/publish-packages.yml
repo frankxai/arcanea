@@ -136,6 +136,11 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Build dependencies
+        run: |
+          pnpm --filter @arcanea/os run build
+          pnpm --filter @arcanea/extension-core run build
+
       - name: Build Chrome extension
         working-directory: packages/chrome-extension
         run: node build.mjs

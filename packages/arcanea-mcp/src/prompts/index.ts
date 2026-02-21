@@ -12,7 +12,7 @@
 export function getPrompt(
   name: string,
   args: Record<string, string>
-): { messages: Array<{ role: string; content: { type: string; text: string } }> } {
+): { messages: Array<{ role: "user"; content: { type: "text"; text: string } }> } {
   switch (name) {
     case "worldbuild_session":
       return {
