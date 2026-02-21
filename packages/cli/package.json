@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/cli",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "description": "Arcanea Realm — Your AI Creation Realm. Overlay any AI tool with arcane intelligence.",
   "homepage": "https://github.com/frankxai/arcanea/tree/main/packages/cli#readme",
   "type": "module",

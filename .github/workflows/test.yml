@@ -49,8 +49,10 @@ jobs:
           pnpm --filter @arcanea/cli run build
           pnpm --filter arcanea-intelligence-os run build
           pnpm --filter @starlight/runtime run build
+          pnpm --filter claude-arcanea run build
+          pnpm --filter arcanea-realm exec -- esbuild src/guardians.ts --outfile=tests/_guardians.mjs --format=esm --platform=node
 
-      - name: Run all tests (791 tests)
+      - name: Run all tests (847 tests)
         run: node --test packages/*/tests/*.test.mjs
         env:
           CI: true

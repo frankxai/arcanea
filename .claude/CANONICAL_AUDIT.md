@@ -10,7 +10,7 @@
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `.claude/lore/ARCANEA_CANON.md` | **MASTER CANON** - All mythology, names, systems | VERIFIED |
+| `.claude/lore/CANON_LOCKED.md` | **MASTER CANON** - All mythology, names, systems | VERIFIED |
 | `.claude/CLAUDE.md` | Project instructions, references canon | VERIFIED |
 | `.claude/lore/ARCANEAN_LANGUAGE_SYSTEM.md` | Naming conventions, linguistic rules | VERIFIED |
 | `.claude/lore/NAME_AUDIT_AND_REPURPOSING.md` | Tracks corrections, conflicts resolved | VERIFIED |
@@ -87,7 +87,7 @@
 - **Fall:** Rejected by Shinkami when attempting forced fusion, fell into Hungry Void
 - **Goal:** Find Codex Lumina, unmake existence
 - **Status:** Sealed in the Shadowfen
-- **The Thirteen:** His corrupted generals (see ARCANEA_CANON.md)
+- **The Thirteen:** His corrupted generals (see CANON_LOCKED.md)
 
 ### Magic Terminology (STANDARD)
 | Context | Term |
@@ -173,7 +173,7 @@ book/
 ## Items Needing Verification
 
 ### 1. Book Content Canon Alignment
-Each of the 61 Library texts should be checked against ARCANEA_CANON.md for:
+Each of the 61 Library texts should be checked against CANON_LOCKED.md for:
 - [ ] Correct Guardian/Godbeast names
 - [ ] Correct element references
 - [ ] Correct magic terminology
@@ -233,7 +233,7 @@ Check that platform code uses correct terminology:
 
 When I work on Arcanea, I reference these files in order:
 
-1. **`.claude/lore/ARCANEA_CANON.md`** - Names, systems, mythology
+1. **`.claude/lore/CANON_LOCKED.md`** - Names, systems, mythology
 2. **`.claude/lore/magic-foundations/GLOSSARY_OF_TERMS.md`** - Terms, practices
 3. **`.claude/CLAUDE.md`** - Project context, technical stack
 4. **`book/README.md`** - Library structure
@@ -273,7 +273,7 @@ Yes, I am fully aware of and can work with:
 6. **The Dark Lord lore** - Malachar's fall, The Thirteen, Codex Lumina
 
 When you ask me to build Arcanea content, I will:
-1. Check ARCANEA_CANON.md for accuracy
+1. Check CANON_LOCKED.md for accuracy
 2. Use correct names and terminology
 3. Invoke appropriate specialized agents
 4. Maintain narrative consistency with existing Library content

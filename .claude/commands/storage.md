@@ -63,7 +63,7 @@ When the user invokes `/storage`, follow this protocol:
 - `.git` directories (only gc inside them)
 - Active source code
 - Database files (`.sqlite3`, `.db`)
-- `book/` content, `lore/` content, `ARCANEA_CANON.md`
+- `book/` content, `lore/` content, `CANON_LOCKED.md`
 - Windows system files
 - WSL2 VHDX files (only compact them)
 

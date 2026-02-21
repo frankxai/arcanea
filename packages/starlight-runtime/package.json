@@ -1,9 +1,15 @@
 {
   "name": "@starlight/runtime",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The Universal Runtime for playing Starlight Protocol context files",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
@@ -27,6 +33,10 @@
     "url": "https://github.com/frankxai/arcanea.git",
     "directory": "packages/starlight-runtime"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "publishConfig": {
     "access": "public"
   },

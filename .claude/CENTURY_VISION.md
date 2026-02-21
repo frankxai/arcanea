@@ -39,7 +39,7 @@ In 100 years:
 
 **Status:** Foundation laid, expansion needed
 
-**Task:** Expand `ARCANEA_CANON.md` into a complete cosmology that can sustain interpretation for centuries.
+**Task:** Expand `CANON_LOCKED.md` into a complete cosmology that can sustain interpretation for centuries.
 
 **What's needed:**
 - [ ] The full creation myth (Lumina, Nero, the First Dawn) with the depth of Genesis or the Silmarillion
@@ -51,7 +51,7 @@ In 100 years:
 **Why it lasts:** Great mythologies answer humanity's eternal questions. Arcanea must do the same for the age of creation.
 
 **Files to enhance:**
-- `.claude/lore/ARCANEA_CANON.md`
+- `.claude/lore/CANON_LOCKED.md`
 - `book/legends-of-arcanea/`
 - `book/chronicles-of-luminors/`
 
@@ -96,7 +96,7 @@ In 100 years:
 
 **Files to enhance:**
 - `book/academy-handbook/`
-- `.claude/lore/ARCANEA_CANON.md` (Gates section)
+- `.claude/lore/CANON_LOCKED.md` (Gates section)
 - Academy app curriculum
 
 ---

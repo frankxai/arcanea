@@ -1,127 +1,80 @@
-# Findings: Arcanea — Every Surface Strategy
+# Findings: Arcanea Ecosystem Audit
 
-## Date: 2026-02-17
-## Question: How do we own EVERY surface — overlay + standalone CLI + VS Code + browser + desktop + mobile?
+> Last updated: 2026-02-21
 
----
+## Package Inventory (15 packages + 2 apps)
 
-## Critical Discovery: OpenCode Is Now TypeScript
+| Package | Version | Dist | Tests | Publish-Ready | Notes |
+|---------|---------|------|-------|---------------|-------|
+| arcanea-intelligence-os (aios) | v0.1.1 | YES | 68 | npm-ready | Needs own changeset |
+| @arcanea/mcp-server | v0.5.0 | YES | 16 | npm-ready | In changeset, SDK 1.9.0 |
+| @arcanea/auth | v1.0.1 | YES | 44 | npm-ready | In changeset (patch) |
+| @arcanea/chrome-extension | v0.1.0 | YES | 35 | browser-only | Chrome Web Store blocked |
+| claude-arcanea | v0.1.1 | YES | 0 | npm-ready | Needs tests + changeset |
+| @arcanea/cli | v0.3.0 | YES | 137 | npm-ready | In changeset |
+| @arcanea/os | v0.3.0 | YES | 44 | npm-ready | In changeset |
+| @arcanea/extension-core | v0.1.0 | YES | 112 | npm-ready | In changeset |
+| @arcanea/overlay-chatgpt | v1.0.1 | YES | 68 | npm-ready | In changeset |
+| @arcanea/overlay-claude | v1.0.1 | YES | 32 | npm-ready | In changeset |
+| @arcanea/overlay-copilot | v1.0.1 | YES | 67 | npm-ready | In changeset |
+| @arcanea/overlay-gemini | v1.0.1 | YES | 70 | npm-ready | In changeset |
+| @arcanea/overlay-opencode | v1.0.1 | YES | 77 | npm-ready | In changeset |
+| @starlight/runtime | v0.1.0 | YES | 21 | npm-ready | Needs own changeset |
+| arcanea-realm (vscode) | v0.1.1 | YES | 0 | marketplace | Via vsce publish |
 
-The original OpenCode (Go, `opencode-ai/opencode`) was **archived September 2025**. It was rewritten in **TypeScript** and now lives at `anomalyco/opencode` (Anomaly Co, ex-SST team).
+**Total: 791 tests, 188 suites, 0 failures**
 
-| Attribute | OpenCode (TypeScript) |
-|:----------|:---------------------|
-| **Language** | TypeScript (50.7%) |
-| **Runtime** | Bun |
-| **TUI** | OpenTUI + SolidJS (custom, 60fps) |
-| **AI SDK** | Vercel AI SDK (SAME AS ARCANEA) |
-| **Architecture** | Client-server — TUI talks to local HTTP server |
-| **Models** | 75+ via Vercel AI SDK |
-| **MCP** | Full support (stdio + HTTP) |
-| **Plugin System** | Mature — TypeScript plugins, custom agents, custom commands |
-| **License** | MIT — fully forkable |
-| **Stars** | 105K |
-| **Monorepo** | packages/opencode (TUI+server), sdk/js, app (web), desktop (Tauri), plugin, ui, sdks/vscode |
+## Publish Readiness
 
-### Why This Is Perfect For Arcanea
-1. **Same AI SDK** — Vercel AI SDK, already in our stack
-2. **Plugin system** — Arcanea OS becomes a plugin set (Guardian routing, voice, design tokens, lore)
-3. **Client-server split** — reskin TUI without touching AI logic
-4. **Multi-surface** — TUI + web + desktop + VS Code from ONE codebase
-5. **MIT license** — full freedom to fork, rebrand, commercialize
-6. **TypeScript** — our language
+### npm Publishing
+- **NPM_TOKEN**: SET on GitHub (2026-02-21 02:40 UTC)
+- **Changeset**: `extension-core-and-upgrades.md` covers 10 packages
+- **Missing changesets**: aios, starlight-runtime, claude-arcanea (3 packages)
+- **Blocker**: `pnpm install` must run from Windows PowerShell first
+- **Pipeline**: `.github/workflows/publish-packages.yml` handles CI/CD
 
-### Alternative: Gemini CLI
+### Chrome Web Store
+- **Missing**: Privacy policy, screenshots, $5 developer account
+- **Has**: manifest.json, icons (16/32/48/128px), dist build, 35 tests
 
-| Attribute | Gemini CLI |
-|:----------|:-----------|
-| **Language** | TypeScript (98.1%) |
-| **Runtime** | Node.js 20+ |
-| **TUI** | Ink + React 19 (we know React deeply) |
-| **AI SDK** | @google/genai (Gemini ONLY) |
-| **License** | Apache 2.0 |
-| **Stars** | 95K |
-| **Monorepo** | cli, core, a2a-server, vscode-ide-companion |
+### VS Code Marketplace
+- **Publisher**: `frankxai`
+- **Icon**: `packages/vscode/resources/icon.png`
+- **VSIX**: 39.3KB esbuild bundle
+- **Missing**: Azure DevOps PAT, `vsce publish` command
 
-**Pros**: React/Ink = our stack, cleaner architecture, smaller codebase
-**Cons**: Gemini-only (would need to rip out and replace AI layer), Google telemetry baked in
+## Uncommitted Work (14 files)
 
-### Verdict: Fork OpenCode
+| File | Change | Purpose |
+|------|--------|---------|
+| 6x MCP tool files | `type: string` → `type: "text"` | SDK 1.9.0 strict typing |
+| publish-packages.yml | +5 lines | Build @arcanea/os + extension-core before chrome-ext |
+| test.yml | +9 lines | Expanded test coverage in CI |
+| 6x CLI test files | +1 line each | Minor fixes from previous session |
 
-OpenCode wins because of Vercel AI SDK (already our stack), MIT license, plugin system (cleanest integration), and multi-surface architecture (TUI + web + desktop + VS Code all from one server).
+## Infrastructure Verified
 
----
+- **TypeScript**: All 12+ packages pass `tsc --noEmit` with zero errors
+- **Turbo**: build, test, type-check, lint, clean, dev all configured
+- **Root scripts**: `test:all` (full), `test:quick` (core packages)
+- **CI/CD**: GitHub Actions with type-check → test → build → publish pipeline
+- **MCP Server**: Migrated to `@modelcontextprotocol/sdk` 1.9.0 (McpServer + server.tool() + zod)
 
-## The "ALL Surfaces" Architecture
+## Architecture
 
 ```
-┌────────────────────────────────────────────────────────┐
-│                     ARCANEA OS                          │
-│   @arcanea/os — Intelligence layer (npm package)        │
-│                                                         │
-│   Guardians · Voice Bible · Design System · Lore/Canon  │
-│   Session State · 65+ Skills · 40+ Agents · Types       │
-└────────┬──────────┬──────────┬──────────┬──────────────┘
-         │          │          │          │
-    ┌────┴───┐ ┌───┴────┐ ┌──┴────┐ ┌──┴──────────┐
-    │ Overlay│ │  MCP   │ │ VS    │ │  Standalone  │
-    │ Configs│ │ Server │ │ Code  │ │     CLI      │
-    │        │ │        │ │  Ext  │ │ (OpenCode    │
-    │.claude │ │30 tools│ │       │ │  fork)       │
-    │.cursor │ │7 rsrc  │ │       │ │              │
-    └───┬────┘ └───┬────┘ └──┬────┘ └──────┬───────┘
-        │          │         │              │
-   Enhances    Works in   VS Code      Standalone
-   existing    Claude,    Marketplace  "Arcanea Realm"
-   AI tools    Cursor,                 TUI + web + desktop
-               Windsurf,
-               Cline, Codex
+┌──────────────────────────────────────────────────┐
+│                  @arcanea/os                      │
+│   Intelligence: Guardians · Voice · Design · Lore │
+└────┬──────┬──────┬──────┬──────┬────────────────┘
+     │      │      │      │      │
+  CLI    MCP    VS Code  Chrome  5 Overlay
+  10cmd  30tool  6cmd    Ext     Packages
+  137t   16t     0t      35t     314t
 ```
 
-### Product Line
-
-| Product | What It Is | Source |
-|:--------|:-----------|:-------|
-| **@arcanea/os** | Intelligence layer (npm) | `packages/core/` (rename) |
-| **@arcanea/cli** | Overlay installer ("Oh My Zsh for AI") | `packages/cli/` (slim down) |
-| **@arcanea/mcp-server** | Universal tool access | `packages/arcanea-mcp/` |
-| **Arcanea Realm CLI** | Standalone AI creation tool | Fork of `anomalyco/opencode` |
-| **Arcanea Realm VS Code** | VS Code extension | New package |
-| **Arcanea Realm Browser** | 5 browser overlays | `packages/overlay-*` |
-| **Arcanea Realm Desktop** | Desktop app | OpenCode's Tauri package |
-| **Arcanea Realm Web** | Web app | OpenCode's web package |
-| **arcanea.ai** | Marketing + platform | `arcanea-platform` repo |
-
-### How The Fork Works
-
-1. Fork `anomalyco/opencode` → `frankxai/arcanea-realm`
-2. The OpenCode server already supports MCP → add `@arcanea/mcp-server` as default
-3. The OpenCode plugin system → install `@arcanea/os` as a plugin providing Guardians, voice, design
-4. Reskin TUI → Arcanea Design System colors, Guardian status in sidebar, Gate progression
-5. Custom agents → 10 Guardian agents in `.opencode/agents/`
-6. Custom commands → worldbuilding commands via plugin
-7. Rename binary → `arcanea` or `realm`
-
-### What Stays As Is
-
-| Package | Keeps Its Role |
-|:--------|:---------------|
-| `@arcanea/os` | Intelligence library — used by ALL surfaces |
-| `@arcanea/mcp-server` | Tool layer — used by overlay CLI AND standalone fork |
-| `@arcanea/cli` | Overlay installer — for people who DON'T want a standalone tool |
-| The fork | Standalone product — for people who want Arcanea as their primary tool |
-
----
-
-## Key Decision: Don't Choose. Ship Both.
-
-**Overlay path** (quick, wide reach):
-- `npx @arcanea/cli init` → enhances existing AI tools
-- No switching cost for users — they keep Claude Code/Cursor
-
-**Standalone path** (deep, owned UX):
-- `npx arcanea-realm` → full Arcanea experience
-- Custom TUI, Guardian sidebar, Gate progression, worldbuilding commands
-- All the UX we dream of
-
-Both powered by the same `@arcanea/os` intelligence and `@arcanea/mcp-server` tools.
+## Test Architecture
+- **Runner**: Node.js built-in (`node:test` + `node:assert`)
+- **Files**: `tests/*.test.mjs` (ESM)
+- **CJS bridge**: starlight-runtime uses `.cjs` copy for ESM/CJS compat
+- **No external deps**: Zero test framework dependencies

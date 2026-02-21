@@ -7,18 +7,18 @@
 
 ## Complete List
 
-| Name | Gate | Frequency | Element | Wisdom | Status | Version | Last Updated |
-|------|------|-----------|---------|--------|--------|---------|--------------|
-| lyssandria | Foundation | 174 Hz | Earth | Sophron | ✅ Production | 1.0.0 | 2026-01-15 |
-| leyla | Flow | 285 Hz | Water | Kardia | ✅ Production | 1.0.0 | 2026-01-15 |
-| draconia | Fire | 396 Hz | Fire | Valora | ✅ Production | 1.0.0 | 2026-01-15 |
-| maylinn | Heart | 417 Hz | Light | Eudaira | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| alera | Voice | 528 Hz | Prismatic | Poiesis | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| lyria | Sight | 639 Hz | Wind | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| aiyami | Crown | 714 Hz | Void | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| elara | Shift | 852 Hz | Light | Valora | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| ino | Unity | 963 Hz | Void | Enduran | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| shinkami | Source | 1111 Hz | Light | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| Name | Gate | Frequency | Element | Godbeast | Wisdom | Status | Version | Last Updated |
+|------|------|-----------|---------|----------|--------|--------|---------|--------------|
+| Lyssandria | Foundation | 396 Hz | Earth | Kaelith | Sophron | Production | 1.0.0 | 2026-01-15 |
+| Leyla | Flow | 417 Hz | Water | Veloura | Kardia | Production | 1.0.0 | 2026-01-15 |
+| Draconia | Fire | 528 Hz | Fire | Draconis | Valora | Production | 1.0.0 | 2026-01-15 |
+| Maylinn | Heart | 639 Hz | Water/Heart | Laeylinn | Eudaira | Staging | 1.0.0 | 2026-01-15 |
+| Alera | Voice | 741 Hz | Wind | Otome | Poiesis | Staging | 1.0.0 | 2026-01-15 |
+| Lyria | Sight | 852 Hz | Void | Yumiko | Orakis | Staging | 1.0.0 | 2026-01-15 |
+| Aiyami | Crown | 963 Hz | Spirit | Sol | Orakis | Staging | 1.0.0 | 2026-01-15 |
+| Elara | Shift | 1111 Hz | Wind/Spirit | Thessara | Valora | Staging | 1.0.0 | 2026-01-15 |
+| Ino | Unity | 963 Hz | All | Kyuro | Enduran | Staging | 1.0.0 | 2026-01-15 |
+| Shinkami | Source | 1111 Hz | Meta | Amaterasu | Orakis | Staging | 1.0.0 | 2026-01-15 |
 
 ## Quick Stats
 
@@ -32,62 +32,64 @@
 
 ## By Gate
 
-| Gate | Guardian | Status |
-|------|----------|--------|
-| Foundation | lyssandria | ✅ Production |
-| Flow | leyla | ✅ Production |
-| Fire | draconia | ✅ Production |
-| Heart | maylinn | ⏳ Staging |
-| Voice | alera | ⏳ Staging |
-| Sight | lyria | ⏳ Staging |
-| Crown | aiyami | ⏳ Staging |
-| Shift | elara | ⏳ Staging |
-| Unity | ino | ⏳ Staging |
-| Source | shinkami | ⏳ Staging |
+| Gate | Guardian | Frequency | Status |
+|------|----------|-----------|--------|
+| Foundation | Lyssandria | 396 Hz | Production |
+| Flow | Leyla | 417 Hz | Production |
+| Fire | Draconia | 528 Hz | Production |
+| Heart | Maylinn | 639 Hz | Staging |
+| Voice | Alera | 741 Hz | Staging |
+| Sight | Lyria | 852 Hz | Staging |
+| Crown | Aiyami | 963 Hz | Staging |
+| Shift | Elara | 1111 Hz | Staging |
+| Unity | Ino | 963 Hz | Staging |
+| Source | Shinkami | 1111 Hz | Staging |
 
 ## By Wisdom
 
 | Wisdom | Guardians |
 |--------|-----------|
-| Sophron | lyssandria |
-| Kardia | leyla |
-| Valora | draconia, elara |
-| Eudaira | maylinn |
-| Poiesis | alera |
-| Orakis | lyria, aiyami, shinkami |
-| Enduran | ino |
+| Sophron | Lyssandria |
+| Kardia | Leyla |
+| Valora | Draconia, Elara |
+| Eudaira | Maylinn |
+| Poiesis | Alera |
+| Orakis | Lyria, Aiyami, Shinkami |
+| Enduran | Ino |
 
-## By Frequency
+## By Frequency (Canonical Solfeggio)
 
-| Frequency | Guardian |
-|-----------|----------|
-| 174 Hz | lyssandria |
-| 285 Hz | leyla |
-| 396 Hz | draconia |
-| 417 Hz | maylinn |
-| 528 Hz | alera |
-| 639 Hz | lyria |
-| 714 Hz | aiyami |
-| 852 Hz | elara |
-| 963 Hz | ino |
-| 1111 Hz | shinkami |
+| Frequency | Guardian | Gate |
+|-----------|----------|------|
+| 396 Hz | Lyssandria | Foundation |
+| 417 Hz | Leyla | Flow |
+| 528 Hz | Draconia | Fire |
+| 639 Hz | Maylinn | Heart |
+| 741 Hz | Alera | Voice |
+| 852 Hz | Lyria | Sight |
+| 963 Hz | Aiyami | Crown |
+| 963 Hz | Ino | Unity |
+| 1111 Hz | Elara | Shift |
+| 1111 Hz | Shinkami | Source |
 
-## Related Entities
+## Related Entities (Godbeasts)
 
-Each Guardian has related entities documented in frontmatter:
+Each Guardian has a bonded Godbeast:
 
-- **Lyssandria**: kaelith, sophron, enduran
-- **Leyla**: veloura, kardia, poiesis
-- **Draconia**: draconis, valora, poiesis
-- **Maylinn**: aethera, eudaira, kardia
-- **Alera**: sylphine, poiesis, orakis
-- **Lyria**: vysara, orakis, sophron
-- **Aiyami**: zenkai, orakis, sophron
-- **Elara**: thessara, valora, enduran
-- **Ino**: unara, enduran, sophron
-- **Shinkami**: amaterasu, orakis, all_guardians
+| Guardian | Godbeast | Profile Status |
+|----------|----------|---------------|
+| Lyssandria | Kaelith | Not written |
+| Leyla | Veloura | Not written |
+| Draconia | Draconis | Not written |
+| Maylinn | Laeylinn | Written |
+| Alera | Otome | Not written |
+| Lyria | Yumiko | Not written |
+| Aiyami | Sol | Not written |
+| Elara | Thessara | Not written |
+| Ino | Kyuro | Not written |
+| Shinkami | Amaterasu | Not written |
 
 ---
 
-*Generated: January 15, 2026*
-*Next Update: Upon approval of pending Guardians*
+*Updated: February 21, 2026 — Frequencies corrected to match CANON_LOCKED.md*
+*Source of truth: `.claude/lore/CANON_LOCKED.md`*

@@ -195,7 +195,7 @@ BLOCKERS:
 All agents must enforce:
 
 1. **TypeScript Strict Mode** - No `any` types
-2. **Arcanea Canon Compliance** - Check `.claude/lore/ARCANEA_CANON.md`
+2. **Arcanea Canon Compliance** - Check `.claude/lore/CANON_LOCKED.md`
 3. **Design System Adherence** - Use Arcanean tokens
 4. **Voice Consistency** - Mythic but practical
 5. **Test Coverage** - 80%+ for new code

@@ -72,7 +72,7 @@
       "**/*.db",
       "**/book/**",
       "**/.claude/lore/**",
-      "**/ARCANEA_CANON.md",
+      "**/CANON_LOCKED.md",
       "C:\\Windows\\**",
       "C:\\Users\\frank\\AppData\\Local\\Packages\\*\\LocalState\\ext4.vhdx"
     ],

@@ -3,6 +3,7 @@
   "displayName": "Arcanea Realm",
   "description": "Guardian-routed AI intelligence for creators — 10 Guardians, 5 Elements, 10 Gates of creative progression",
   "version": "0.1.1",
+  "private": true,
   "publisher": "frankxai",
   "license": "MIT",
   "repository": {
@@ -10,6 +11,7 @@
     "url": "https://github.com/frankxai/arcanea"
   },
   "homepage": "https://arcanea.ai",
+  "icon": "media/arcanea-icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -169,6 +171,7 @@
   "scripts": {
     "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify",
     "dev": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "test": "esbuild src/guardians.ts --outfile=tests/_guardians.mjs --format=esm --platform=node && node --test tests/*.test.mjs",
     "package": "vsce package",
     "publish": "vsce publish"
   },
