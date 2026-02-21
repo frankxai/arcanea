@@ -26,7 +26,7 @@ import {
   OpenAIAuthAdapter,
   GeminiAuthAdapter,
   CopilotAuthAdapter,
-  OpenCodeAuthAdapter,
+  CursorAuthAdapter,
   createKeystore,
   EnvKeystore,
   EncryptedFileKeystore,
@@ -104,16 +104,16 @@ describe('getAuthAdapter', () => {
     assert.ok(adapter instanceof CopilotAuthAdapter, 'should be CopilotAuthAdapter');
   });
 
-  it('returns an OpenCodeAuthAdapter for "opencode"', () => {
-    const adapter = getAuthAdapter('opencode');
-    assert.ok(adapter instanceof OpenCodeAuthAdapter, 'should be OpenCodeAuthAdapter');
+  it('returns a CursorAuthAdapter for "cursor"', () => {
+    const adapter = getAuthAdapter('cursor');
+    assert.ok(adapter instanceof CursorAuthAdapter, 'should be CursorAuthAdapter');
   });
 });
 
 describe('getAllAdapters', () => {
-  it('returns an array of 6 adapters', () => {
+  it('returns an array of 5 adapters', () => {
     const adapters = getAllAdapters();
-    assert.equal(adapters.length, 6, 'should have 6 provider adapters (including cursor alias)');
+    assert.equal(adapters.length, 5, 'should have 5 provider adapters');
   });
 
   it('every adapter has provider, displayName, and required methods', () => {
@@ -134,9 +134,9 @@ describe('getAllAdapters', () => {
     }
   });
 
-  it('keyless adapters (opencode) return an empty envVarNames array', () => {
-    const adapter = getAuthAdapter('opencode');
-    assert.deepEqual(adapter.envVarNames(), [], 'opencode needs no API key — empty array is correct');
+  it('keyless adapters (cursor) return an empty envVarNames array', () => {
+    const adapter = getAuthAdapter('cursor');
+    assert.deepEqual(adapter.envVarNames(), [], 'cursor needs no API key — empty array is correct');
   });
 
   it('key-based adapters (claude, openai, gemini) return non-empty envVarNames', () => {
@@ -360,9 +360,9 @@ describe('EncryptedFileKeystore — ephemeral write/read round-trip', () => {
 
   it('deletes a saved provider credential', async () => {
     const store = new EncryptedFileKeystore();
-    await store.save('opencode', 'test-opencode-key');
-    await store.delete('opencode');
-    const result = await store.load('opencode');
+    await store.save('cursor', 'test-cursor-key');
+    await store.delete('cursor');
+    const result = await store.load('cursor');
     assert.equal(result, null, 'credential should be null after deletion');
   });
 });

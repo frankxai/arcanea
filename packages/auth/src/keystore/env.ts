@@ -25,7 +25,7 @@ export class EnvKeystore implements Keystore {
   }
 
   async list(): Promise<ProviderType[]> {
-    const providers: ProviderType[] = ['claude', 'openai', 'gemini', 'copilot', 'opencode'];
+    const providers: ProviderType[] = ['claude', 'openai', 'gemini', 'copilot', 'cursor'];
     const found: ProviderType[] = [];
     for (const p of providers) {
       if (await this.load(p)) found.push(p);

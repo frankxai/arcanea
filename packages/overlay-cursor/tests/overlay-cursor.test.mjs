@@ -28,7 +28,7 @@ import {
 // -------------------------------------------------------------------------
 // Template constants
 // -------------------------------------------------------------------------
-describe('VOICE_PILLARS (OpenCode)', () => {
+describe('VOICE_PILLARS (Cursor)', () => {
   it('is an object with four canonical keys', () => {
     assert.strictEqual(typeof VOICE_PILLARS, 'object');
     assert.ok('arcaneAuthoritative' in VOICE_PILLARS);
@@ -50,7 +50,7 @@ describe('VOICE_PILLARS (OpenCode)', () => {
   });
 });
 
-describe('ANTIDOTE_PRINCIPLE (OpenCode)', () => {
+describe('ANTIDOTE_PRINCIPLE (Cursor)', () => {
   it('is a non-empty string with canonical quote', () => {
     assert.strictEqual(typeof ANTIDOTE_PRINCIPLE, 'string');
     assert.ok(ANTIDOTE_PRINCIPLE.includes('antidote'));
@@ -58,7 +58,7 @@ describe('ANTIDOTE_PRINCIPLE (OpenCode)', () => {
   });
 });
 
-describe('GUARDIAN_REFERENCE (OpenCode)', () => {
+describe('GUARDIAN_REFERENCE (Cursor)', () => {
   it('is a non-empty string', () => {
     assert.strictEqual(typeof GUARDIAN_REFERENCE, 'string');
     assert.ok(GUARDIAN_REFERENCE.length > 0);
@@ -85,7 +85,7 @@ describe('GUARDIAN_REFERENCE (OpenCode)', () => {
   });
 });
 
-describe('ARCANEA_STACK (OpenCode)', () => {
+describe('ARCANEA_STACK (Cursor)', () => {
   it('is a non-empty string', () => {
     assert.strictEqual(typeof ARCANEA_STACK, 'string');
     assert.ok(ARCANEA_STACK.length > 0);
@@ -114,7 +114,7 @@ describe('ARCANEA_STACK (OpenCode)', () => {
   });
 });
 
-describe('DESIGN_TOKENS (OpenCode)', () => {
+describe('DESIGN_TOKENS (Cursor)', () => {
   it('is a non-empty string', () => {
     assert.strictEqual(typeof DESIGN_TOKENS, 'string');
     assert.ok(DESIGN_TOKENS.length > 0);
@@ -138,7 +138,7 @@ describe('DESIGN_TOKENS (OpenCode)', () => {
   });
 });
 
-describe('LORE_REFERENCE (OpenCode)', () => {
+describe('LORE_REFERENCE (Cursor)', () => {
   it('is a non-empty string', () => {
     assert.strictEqual(typeof LORE_REFERENCE, 'string');
     assert.ok(LORE_REFERENCE.length > 0);
@@ -461,7 +461,7 @@ describe('generateGuardianMdcFile', () => {
   });
 });
 
-describe('generateSetupGuide (OpenCode)', () => {
+describe('generateSetupGuide (Cursor)', () => {
   it('returns filename and content for all levels', () => {
     for (const level of ['minimal', 'standard', 'full', 'luminor']) {
       const result = generateSetupGuide(level);

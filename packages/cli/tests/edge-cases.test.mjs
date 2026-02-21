@@ -2,7 +2,7 @@
  * @arcanea/cli — edge case tests
  *
  * Covers unknown commands, missing arguments, empty input,
- * alias behaviour (cursor → opencode), install dry-run preview,
+ * cursor provider, install dry-run preview,
  * create/world template content integrity, and slug generation.
  *
  * Run: node --test packages/cli/tests/edge-cases.test.mjs
@@ -127,16 +127,16 @@ describe('CLI — edge cases: unknown install provider', () => {
 });
 
 // ============================================================
-// cursor alias → opencode
+// cursor provider
 // ============================================================
 
-describe('CLI — edge cases: cursor alias for opencode', () => {
-  it('install cursor is treated as opencode installer', () => {
+describe('CLI — edge cases: cursor provider', () => {
+  it('install cursor creates overlay manifest', () => {
     const dir = freshDir();
     try {
       run(`install cursor --level minimal --dir "${dir}"`);
       assert.ok(existsSync(join(dir, '.arcanea', 'overlay-manifest.json')),
-        'cursor alias should install overlay manifest');
+        'cursor should install overlay manifest');
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

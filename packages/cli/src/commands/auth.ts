@@ -4,7 +4,7 @@ import type { ProviderType } from '@arcanea/os';
 import { printSuccess, printError, printInfo, printDivider } from '../ui/banner.js';
 import { promptPassword } from '../ui/prompts.js';
 
-const PROVIDERS: ProviderType[] = ['claude', 'openai', 'gemini', 'copilot', 'opencode'];
+const PROVIDERS: ProviderType[] = ['claude', 'openai', 'gemini', 'copilot', 'cursor'];
 
 export const authCommand = new Command('auth')
   .description('Manage AI provider authentication');

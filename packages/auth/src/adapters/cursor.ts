@@ -1,17 +1,17 @@
 /**
- * OpenCode Auth Adapter
- * OpenCode is open-source — no authentication required.
+ * Cursor IDE Auth Adapter
+ * Cursor is local-first — no authentication required.
  */
 
 import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/os';
 
-export class OpenCodeAuthAdapter implements AuthAdapter {
-  provider: ProviderType = 'opencode';
+export class CursorAuthAdapter implements AuthAdapter {
+  provider: ProviderType = 'cursor';
   displayName = 'Cursor IDE';
 
   async validate(_credential: string): Promise<AuthSession> {
     return {
-      provider: 'opencode',
+      provider: 'cursor',
       validated: true,
       models: ['local'],
       capabilities: ['chat', 'plugins', 'hooks'],
@@ -21,7 +21,7 @@ export class OpenCodeAuthAdapter implements AuthAdapter {
   async detectFromEnv(): Promise<AuthSession | null> {
     // Always valid — no auth needed
     return {
-      provider: 'opencode',
+      provider: 'cursor',
       validated: true,
       models: ['local'],
       capabilities: ['chat', 'plugins', 'hooks'],
@@ -33,6 +33,6 @@ export class OpenCodeAuthAdapter implements AuthAdapter {
   }
 
   getSetupUrl(): string {
-    return 'https://opencode.ai';
+    return 'https://cursor.com';
   }
 }

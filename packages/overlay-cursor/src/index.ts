@@ -8,9 +8,6 @@
 // Installer — primary entry point
 export { CursorOverlayInstaller } from './installer.js';
 
-// Backwards-compatible alias
-export { CursorOverlayInstaller as OpenCodeOverlayInstaller } from './installer.js';
-
 // Generators — use directly in custom integrations
 export {
   generateCursorRules,

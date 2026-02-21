@@ -7,15 +7,14 @@ import { ClaudeAuthAdapter } from './claude.js';
 import { OpenAIAuthAdapter } from './openai.js';
 import { GeminiAuthAdapter } from './gemini.js';
 import { CopilotAuthAdapter } from './copilot.js';
-import { OpenCodeAuthAdapter } from './opencode.js';
+import { CursorAuthAdapter } from './cursor.js';
 
 const adapters: Record<ProviderType, AuthAdapter> = {
   claude: new ClaudeAuthAdapter(),
   openai: new OpenAIAuthAdapter(),
   gemini: new GeminiAuthAdapter(),
   copilot: new CopilotAuthAdapter(),
-  cursor: new OpenCodeAuthAdapter(),
-  opencode: new OpenCodeAuthAdapter(),
+  cursor: new CursorAuthAdapter(),
 };
 
 export function getAuthAdapter(provider: ProviderType): AuthAdapter {
@@ -34,4 +33,4 @@ export { ClaudeAuthAdapter } from './claude.js';
 export { OpenAIAuthAdapter } from './openai.js';
 export { GeminiAuthAdapter } from './gemini.js';
 export { CopilotAuthAdapter } from './copilot.js';
-export { OpenCodeAuthAdapter } from './opencode.js';
+export { CursorAuthAdapter } from './cursor.js';

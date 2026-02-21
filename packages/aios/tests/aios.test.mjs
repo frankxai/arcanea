@@ -60,7 +60,7 @@ import {
   detectGemini,
   detectCopilot,
   detectOpenAI,
-  detectOpenCode,
+  detectCursor,
   detectAllTools,
   // Generators
   generateSystemPrompt,

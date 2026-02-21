@@ -77,18 +77,14 @@ export async function detectCopilot(projectDir: string): Promise<ToolDetection> 
   };
 }
 
-export async function detectOpenCode(projectDir: string): Promise<ToolDetection> {
-  // Detect Cursor IDE (successor to the OpenCode overlay)
+export async function detectCursor(projectDir: string): Promise<ToolDetection> {
   const hasCursorDir = existsSync(join(projectDir, '.cursor'));
   const hasCursorRules = existsSync(join(projectDir, '.cursorrules'));
   const hasCursorBinary = binaryExists('cursor');
-  // Also check legacy OpenCode paths
-  const hasOpenCodeDir = existsSync(join(projectDir, '.opencode'));
-  const hasOpenCodeConfig = existsSync(join(projectDir, 'opencode.json'));
 
   return {
-    provider: 'opencode',
-    detected: hasCursorDir || hasCursorRules || hasCursorBinary || hasOpenCodeDir || hasOpenCodeConfig,
+    provider: 'cursor',
+    detected: hasCursorDir || hasCursorRules || hasCursorBinary,
     configPath: join(projectDir, '.cursor'),
   };
 }
@@ -99,6 +95,6 @@ export async function detectAllTools(projectDir: string): Promise<ToolDetection[
     detectOpenAI(projectDir),
     detectGemini(projectDir),
     detectCopilot(projectDir),
-    detectOpenCode(projectDir),
+    detectCursor(projectDir),
   ]);
 }

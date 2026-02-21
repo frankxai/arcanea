@@ -3,7 +3,7 @@
  * Type definitions for the auth + overlay system.
  */
 
-export type ProviderType = 'claude' | 'openai' | 'gemini' | 'copilot' | 'cursor' | 'opencode';
+export type ProviderType = 'claude' | 'openai' | 'gemini' | 'copilot' | 'cursor';
 
 export type OverlayLevel = 'minimal' | 'standard' | 'full' | 'luminor';
 
@@ -150,8 +150,7 @@ export const PROVIDER_CAPABILITIES: Record<ProviderType, OverlayCapability[]> = 
   openai: ['system-prompt', 'custom-gpt', 'assistants-api', 'vision'],
   gemini: ['system-prompt', 'vision'],
   copilot: ['system-prompt', 'file-injection', 'workspace-context'],
-  cursor: ['system-prompt', 'file-injection', 'workspace-context'],
-  opencode: ['system-prompt', 'slash-commands', 'skills', 'agents', 'mcp-servers', 'hooks', 'plugins', 'file-injection'],
+  cursor: ['system-prompt', 'slash-commands', 'skills', 'agents', 'mcp-servers', 'hooks', 'plugins', 'file-injection', 'workspace-context'],
 };
 
 export const OVERLAY_LEVELS: LevelDefinition[] = [

@@ -12,7 +12,7 @@ export {
   OpenAIAuthAdapter,
   GeminiAuthAdapter,
   CopilotAuthAdapter,
-  OpenCodeAuthAdapter,
+  CursorAuthAdapter,
 } from './adapters/index.js';
 
 // Keystore

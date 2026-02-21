@@ -19,7 +19,6 @@ const INSTALLERS: Record<string, ClaudeOverlayInstaller | ChatGPTOverlayInstalle
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
   cursor: new CursorOverlayInstaller(),
-  opencode: new CursorOverlayInstaller(),
 };
 
 export const updateCommand = new Command('update')
@@ -60,8 +59,8 @@ export const updateCommand = new Command('update')
       for (const providerKey of providers) {
         const overlay = overlays[providerKey];
         const level = (overlay.level as OverlayLevel) || 'standard';
-        // Map 'cursor' manifest key back to 'opencode' installer key
-        const installerKey = providerKey === 'cursor' ? 'opencode' : providerKey;
+        // Legacy manifests may have 'opencode' — map to 'cursor'
+        const installerKey = providerKey === 'opencode' ? 'cursor' : providerKey;
         const installer = INSTALLERS[installerKey];
 
         if (!installer) {

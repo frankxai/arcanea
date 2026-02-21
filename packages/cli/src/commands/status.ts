@@ -6,7 +6,7 @@ import { createKeystore, getAuthAdapter, maskCredential } from '@arcanea/auth';
 import type { ProviderType } from '@arcanea/os';
 import { printBanner, printSuccess, printError, printInfo, printDivider } from '../ui/banner.js';
 
-const PROVIDERS: ProviderType[] = ['claude', 'openai', 'gemini', 'copilot', 'opencode'];
+const PROVIDERS: ProviderType[] = ['claude', 'openai', 'gemini', 'copilot', 'cursor'];
 
 export const statusCommand = new Command('status')
   .description('Show Arcanea overlay status')

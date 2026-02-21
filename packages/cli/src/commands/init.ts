@@ -16,7 +16,6 @@ const INSTALLERS: Record<ProviderType, ClaudeOverlayInstaller | ChatGPTOverlayIn
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
   cursor: new CursorOverlayInstaller(),
-  opencode: new CursorOverlayInstaller(),
 };
 
 const PROVIDER_LABELS: Record<ProviderType, string> = {
@@ -25,7 +24,6 @@ const PROVIDER_LABELS: Record<ProviderType, string> = {
   gemini: 'Gemini (Google)',
   copilot: 'GitHub Copilot',
   cursor: 'Cursor IDE',
-  opencode: 'OpenCode CLI',
 };
 
 export const initCommand = new Command('init')
@@ -83,7 +81,7 @@ export const initCommand = new Command('init')
       const adapter = getAuthAdapter(provider);
       let session = await adapter.detectFromEnv();
 
-      if (!session?.validated && provider !== 'opencode' && provider !== 'copilot') {
+      if (!session?.validated && provider !== 'cursor' && provider !== 'copilot') {
         printInfo(`Authenticate with ${adapter.displayName}`);
         printInfo(`Get your API key at: ${adapter.getSetupUrl()}`);
         const credential = await promptPassword(`  Enter API key: `);

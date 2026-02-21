@@ -21,7 +21,7 @@
       "@arcanea/overlay-chatgpt": ["../overlay-chatgpt/dist"],
       "@arcanea/overlay-gemini": ["../overlay-gemini/dist"],
       "@arcanea/overlay-copilot": ["../overlay-copilot/dist"],
-      "@arcanea/overlay-cursor": ["../overlay-opencode/dist"]
+      "@arcanea/overlay-cursor": ["../overlay-cursor/dist"]
     }
   },
   "include": ["src/**/*"],

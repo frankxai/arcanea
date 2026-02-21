@@ -13,7 +13,6 @@ const INSTALLERS: Record<ProviderType, ClaudeOverlayInstaller | ChatGPTOverlayIn
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
   cursor: new CursorOverlayInstaller(),
-  opencode: new CursorOverlayInstaller(),
 };
 
 export const installCommand = new Command('install')
@@ -24,9 +23,7 @@ export const installCommand = new Command('install')
   .option('--dry-run', 'Preview without installing')
   .action(async (providerName: string, options: { level: string; dir: string; dryRun?: boolean }) => {
     try {
-      // Accept 'cursor' as alias for 'opencode'
-      const resolvedName = providerName === 'cursor' ? 'opencode' : providerName;
-      const provider = resolvedName as ProviderType;
+      const provider = providerName as ProviderType;
       const installer = INSTALLERS[provider];
 
       if (!installer) {
