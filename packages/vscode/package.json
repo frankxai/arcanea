@@ -3,6 +3,7 @@
   "displayName": "Arcanea Realm",
   "description": "Guardian-routed AI intelligence for creators — 10 Guardians, 5 Elements, 10 Gates of creative progression",
   "version": "0.1.1",
+  "private": true,
   "publisher": "frankxai",
   "license": "MIT",
   "repository": {
