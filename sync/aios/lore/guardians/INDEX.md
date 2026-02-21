@@ -61,15 +61,15 @@
 
 | Frequency | Guardian | Gate |
 |-----------|----------|------|
-| 396 Hz | Lyssandria | Foundation |
-| 417 Hz | Leyla | Flow |
-| 528 Hz | Draconia | Fire |
-| 639 Hz | Maylinn | Heart |
-| 741 Hz | Alera | Voice |
-| 852 Hz | Lyria | Sight |
-| 963 Hz | Aiyami | Crown |
+| 174 Hz | Lyssandria | Foundation |
+| 285 Hz | Leyla | Flow |
+| 396 Hz | Draconia | Fire |
+| 417 Hz | Maylinn | Heart |
+| 528 Hz | Alera | Voice |
+| 639 Hz | Lyria | Sight |
+| 741 Hz | Aiyami | Crown |
+| 852 Hz | Elara | Shift |
 | 963 Hz | Ino | Unity |
-| 1111 Hz | Elara | Shift |
 | 1111 Hz | Shinkami | Source |
 
 ## Related Entities (Godbeasts)

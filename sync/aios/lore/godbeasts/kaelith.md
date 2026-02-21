@@ -10,7 +10,7 @@ version: "1.0.0"
 created: "2026-02-21"
 
 gate: "foundation"
-frequency: "396"
+frequency: "174"
 guardian: "Lyssandria"
 element: "earth"
 
@@ -33,7 +33,7 @@ approved_date: ""
 
 **Creature Type**: Primordial Serpent | **Bonded to**: Lyssandria, Goddess of the Foundation Gate
 **Symbol**: Coiled serpent beneath mountains | **Colors**: Obsidian, basalt-grey, molten-amber
-**Frequency**: 396 Hz | **Element**: Earth
+**Frequency**: 174 Hz | **Element**: Earth
 
 ---
 

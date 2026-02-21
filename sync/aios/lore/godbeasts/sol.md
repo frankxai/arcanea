@@ -10,7 +10,7 @@ version: "1.0.0"
 created: "2026-02-21"
 
 gate: "crown"
-frequency: "963"
+frequency: "741"
 guardian: "Aiyami"
 element: "spirit"
 
@@ -33,7 +33,7 @@ approved_date: ""
 
 **Creature Type**: Eternal Flame | **Bonded to**: Aiyami, Goddess of the Crown Gate
 **Symbol**: Flame no larger than a hand, burning without fuel | **Colors**: Pure white, golden light, prismatic
-**Frequency**: 963 Hz | **Element**: Spirit
+**Frequency**: 741 Hz | **Element**: Spirit
 
 ---
 

@@ -12,7 +12,7 @@ category: "guardian"
 element: "void"
 wisdom: "orakis"
 gate: "crown"
-frequency: "963"
+frequency: "741"
 
 canon: true
 requires_approval: true
