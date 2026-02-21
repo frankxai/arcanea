@@ -1,13 +1,15 @@
 /**
- * @arcanea/overlay-opencode
+ * @arcanea/overlay-cursor
  *
  * Cursor IDE overlay for the Arcanea Intelligence OS.
  * Generates .cursorrules and .cursor/rules/*.mdc for Cursor IDE integration.
- * (Provider ID: 'opencode' for backwards compatibility)
  */
 
 // Installer — primary entry point
-export { OpenCodeOverlayInstaller } from './installer.js';
+export { CursorOverlayInstaller } from './installer.js';
+
+// Backwards-compatible alias
+export { CursorOverlayInstaller as OpenCodeOverlayInstaller } from './installer.js';
 
 // Generators — use directly in custom integrations
 export {

@@ -143,8 +143,8 @@ describe('DESIGN_TOKENS (Gemini)', () => {
   it('contains the four arcane color hex values', () => {
     assert.ok(DESIGN_TOKENS.includes('#7fffd4'), 'Missing Crystal teal');
     assert.ok(DESIGN_TOKENS.includes('#ffd700'), 'Missing Gold');
-    assert.ok(DESIGN_TOKENS.includes('#9966ff'), 'Missing Violet');
-    assert.ok(DESIGN_TOKENS.includes('#0b0e14'), 'Missing Void');
+    assert.ok(DESIGN_TOKENS.includes('#a855f7'), 'Missing Violet');
+    assert.ok(DESIGN_TOKENS.includes('#0a0a0f'), 'Missing Void');
   });
 
   it('references typography stack', () => {
@@ -174,7 +174,7 @@ describe('SACRED_TERMINOLOGY (Gemini)', () => {
   });
 
   it('references living universe not platform', () => {
-    assert.ok(SACRED_TERMINOLOGY.includes('living universe'));
+    assert.ok(SACRED_TERMINOLOGY.includes('Living universe'));
   });
 });
 

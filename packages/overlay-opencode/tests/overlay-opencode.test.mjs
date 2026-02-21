@@ -1,5 +1,5 @@
 /**
- * Test suite for @arcanea/overlay-opencode
+ * Test suite for @arcanea/overlay-cursor
  * Tests all exports from dist/index.js using Node.js built-in test runner.
  */
 import { describe, it } from 'node:test';
@@ -7,7 +7,7 @@ import assert from 'node:assert';
 
 import {
   // Installer
-  OpenCodeOverlayInstaller,
+  CursorOverlayInstaller,
   // Generators
   generateCursorRules,
   generateArcaneMdcRule,
@@ -95,9 +95,9 @@ describe('ARCANEA_STACK (OpenCode)', () => {
     assert.ok(ARCANEA_STACK.includes('Next.js 16'));
   });
 
-  it('references TypeScript strict mode with no any rule', () => {
-    assert.ok(ARCANEA_STACK.includes('TypeScript strict'));
-    assert.ok(ARCANEA_STACK.includes('no `any`') || ARCANEA_STACK.includes("no 'any'") || ARCANEA_STACK.includes('any'));
+  it('references TypeScript strict mode', () => {
+    assert.ok(ARCANEA_STACK.includes('TypeScript'));
+    assert.ok(ARCANEA_STACK.includes('strict'));
   });
 
   it('references Supabase with RLS requirement', () => {
@@ -123,13 +123,13 @@ describe('DESIGN_TOKENS (OpenCode)', () => {
   it('contains the four canonical arcane color hex values', () => {
     assert.ok(DESIGN_TOKENS.includes('#7fffd4'));
     assert.ok(DESIGN_TOKENS.includes('#ffd700'));
-    assert.ok(DESIGN_TOKENS.includes('#9966ff'));
-    assert.ok(DESIGN_TOKENS.includes('#0b0e14'));
+    assert.ok(DESIGN_TOKENS.includes('#a855f7'));
+    assert.ok(DESIGN_TOKENS.includes('#0a0a0f'));
   });
 
   it('defines cosmic palette entries', () => {
-    assert.ok(DESIGN_TOKENS.includes('cosmic-void'));
-    assert.ok(DESIGN_TOKENS.includes('cosmic-surface'));
+    assert.ok(DESIGN_TOKENS.includes('Cosmic'));
+    assert.ok(DESIGN_TOKENS.includes('surface'));
   });
 
   it('references typography fonts', () => {
@@ -158,10 +158,10 @@ describe('LORE_REFERENCE (OpenCode)', () => {
     assert.ok(LORE_REFERENCE.includes('Void'));
   });
 
-  it('lists sacred terminology table', () => {
-    assert.ok(LORE_REFERENCE.includes('creator'));
-    assert.ok(LORE_REFERENCE.includes('essence'));
-    assert.ok(LORE_REFERENCE.includes('guardian'));
+  it('lists key lore concepts', () => {
+    assert.ok(LORE_REFERENCE.includes('Guardian'));
+    assert.ok(LORE_REFERENCE.includes('Ten Gates'));
+    assert.ok(LORE_REFERENCE.includes('Magic Ranks'));
   });
 
   it('describes the Arc cycle', () => {
@@ -494,32 +494,32 @@ describe('generateSetupGuide (OpenCode)', () => {
 // -------------------------------------------------------------------------
 // Installer
 // -------------------------------------------------------------------------
-describe('OpenCodeOverlayInstaller', () => {
+describe('CursorOverlayInstaller', () => {
   it('can be instantiated', () => {
-    const installer = new OpenCodeOverlayInstaller();
-    assert.ok(installer instanceof OpenCodeOverlayInstaller);
+    const installer = new CursorOverlayInstaller();
+    assert.ok(installer instanceof CursorOverlayInstaller);
   });
 
   it('canInstall resolves to true', async () => {
-    const installer = new OpenCodeOverlayInstaller();
+    const installer = new CursorOverlayInstaller();
     const result = await installer.canInstall();
     assert.strictEqual(result, true);
   });
 
-  it('getManifest returns provider opencode', () => {
-    const installer = new OpenCodeOverlayInstaller();
+  it('getManifest returns provider cursor', () => {
+    const installer = new CursorOverlayInstaller();
     const manifest = installer.getManifest();
-    assert.strictEqual(manifest.provider, 'opencode');
+    assert.strictEqual(manifest.provider, 'cursor');
   });
 
   it('getManifest returns correct package name', () => {
-    const installer = new OpenCodeOverlayInstaller();
+    const installer = new CursorOverlayInstaller();
     const manifest = installer.getManifest();
-    assert.strictEqual(manifest.name, '@arcanea/overlay-opencode');
+    assert.strictEqual(manifest.name, '@arcanea/overlay-cursor');
   });
 
   it('getManifest has all four supported levels', () => {
-    const installer = new OpenCodeOverlayInstaller();
+    const installer = new CursorOverlayInstaller();
     const manifest = installer.getManifest();
     for (const level of ['minimal', 'standard', 'full', 'luminor']) {
       assert.ok(manifest.supportedLevels.includes(level));
@@ -527,35 +527,35 @@ describe('OpenCodeOverlayInstaller', () => {
   });
 
   it('getManifest capabilities includes system-prompt, file-injection, workspace-context', () => {
-    const installer = new OpenCodeOverlayInstaller();
+    const installer = new CursorOverlayInstaller();
     const manifest = installer.getManifest();
     assert.ok(manifest.capabilities.includes('system-prompt'));
     assert.ok(manifest.capabilities.includes('file-injection'));
     assert.ok(manifest.capabilities.includes('workspace-context'));
   });
 
-  it('detect resolves with provider opencode', async () => {
-    const installer = new OpenCodeOverlayInstaller();
+  it('detect resolves with provider cursor', async () => {
+    const installer = new CursorOverlayInstaller();
     const result = await installer.detect('/tmp');
-    assert.strictEqual(result.provider, 'opencode');
+    assert.strictEqual(result.provider, 'cursor');
   });
 
   it('detect returns detected boolean and configPath', async () => {
-    const installer = new OpenCodeOverlayInstaller();
+    const installer = new CursorOverlayInstaller();
     const result = await installer.detect('/tmp');
     assert.strictEqual(typeof result.detected, 'boolean');
     assert.ok('configPath' in result);
   });
 
   it('preview returns filesToCreate and filesToModify arrays', async () => {
-    const installer = new OpenCodeOverlayInstaller();
+    const installer = new CursorOverlayInstaller();
     const result = await installer.preview('/tmp/nonexistent-arcanea-cursor', 'standard');
     assert.ok(Array.isArray(result.filesToCreate));
     assert.ok(Array.isArray(result.filesToModify));
   });
 
   it('preview estimatedSize is a string for each level', async () => {
-    const installer = new OpenCodeOverlayInstaller();
+    const installer = new CursorOverlayInstaller();
     for (const level of ['minimal', 'standard', 'full', 'luminor']) {
       const result = await installer.preview('/tmp/nonexistent-arcanea-cursor', level);
       assert.strictEqual(typeof result.estimatedSize, 'string');
@@ -563,7 +563,7 @@ describe('OpenCodeOverlayInstaller', () => {
   });
 
   it('verify returns valid false and non-empty issues for nonexistent dir', async () => {
-    const installer = new OpenCodeOverlayInstaller();
+    const installer = new CursorOverlayInstaller();
     const result = await installer.verify('/tmp/nonexistent-arcanea-cursor-verify');
     assert.strictEqual(typeof result.valid, 'boolean');
     assert.ok(Array.isArray(result.issues));

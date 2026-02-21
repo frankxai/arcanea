@@ -26,6 +26,9 @@ export * from './generators/index.js';
 // Detection
 export * from './detection/index.js';
 
+// Content (Shared content layer for overlay packages)
+export * from './content/index.js';
+
 // Engine (Intelligence Layer)
 export * from './engine/index.js';
 

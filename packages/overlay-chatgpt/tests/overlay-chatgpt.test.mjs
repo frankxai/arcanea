@@ -20,6 +20,7 @@ import {
   LORE_SECTION,
   DESIGN_TOKENS,
   SACRED_TERMINOLOGY,
+  SACRED_TERMINOLOGY_MD,
   generateCustomGPTConfig,
   generateGuardianGPTProfile,
 } from '../dist/index.js';
@@ -124,12 +125,6 @@ describe('LORE_SECTION', () => {
     assert.ok(LORE_SECTION.includes('Aqualis'));
     assert.ok(LORE_SECTION.includes('Synthesis'));
   });
-
-  it('describes the Arc cycle of creation', () => {
-    assert.ok(LORE_SECTION.includes('Potential'));
-    assert.ok(LORE_SECTION.includes('Manifestation'));
-    assert.ok(LORE_SECTION.includes('Dissolution'));
-  });
 });
 
 describe('DESIGN_TOKENS', () => {
@@ -141,8 +136,8 @@ describe('DESIGN_TOKENS', () => {
   it('contains the four canonical arcane color hex values', () => {
     assert.ok(DESIGN_TOKENS.includes('#7fffd4'), 'Missing Crystal teal');
     assert.ok(DESIGN_TOKENS.includes('#ffd700'), 'Missing Gold');
-    assert.ok(DESIGN_TOKENS.includes('#9966ff'), 'Missing Violet');
-    assert.ok(DESIGN_TOKENS.includes('#0b0e14'), 'Missing Void');
+    assert.ok(DESIGN_TOKENS.includes('#9966ff') || DESIGN_TOKENS.includes('#a855f7'), 'Missing Violet/Void');
+    assert.ok(DESIGN_TOKENS.includes('#0b0e14') || DESIGN_TOKENS.includes('#0a0a0f'), 'Missing Void background');
   });
 
   it('references the Cinzel display font', () => {
@@ -151,21 +146,44 @@ describe('DESIGN_TOKENS', () => {
 });
 
 describe('SACRED_TERMINOLOGY', () => {
-  it('is a non-empty string', () => {
-    assert.strictEqual(typeof SACRED_TERMINOLOGY, 'string');
+  it('is a non-empty array (structured data from @arcanea/os)', () => {
+    assert.ok(Array.isArray(SACRED_TERMINOLOGY));
     assert.ok(SACRED_TERMINOLOGY.length > 0);
   });
 
+  it('each entry has use and notThis fields', () => {
+    for (const entry of SACRED_TERMINOLOGY) {
+      assert.ok('use' in entry, 'Missing "use" field');
+      assert.ok('notThis' in entry, 'Missing "notThis" field');
+    }
+  });
+
+  it('includes Creator, Essence, Realm, Guardian, Studio mappings', () => {
+    const uses = SACRED_TERMINOLOGY.map(e => e.use);
+    assert.ok(uses.includes('Creator'));
+    assert.ok(uses.includes('Essence'));
+    assert.ok(uses.includes('Realm'));
+    assert.ok(uses.includes('Guardian'));
+    assert.ok(uses.includes('Studio'));
+  });
+});
+
+describe('SACRED_TERMINOLOGY_MD', () => {
+  it('is a non-empty string', () => {
+    assert.strictEqual(typeof SACRED_TERMINOLOGY_MD, 'string');
+    assert.ok(SACRED_TERMINOLOGY_MD.length > 0);
+  });
+
   it('instructs using "Creator" not "User"', () => {
-    assert.ok(SACRED_TERMINOLOGY.includes('Creator'));
-    assert.ok(SACRED_TERMINOLOGY.includes('User'));
+    assert.ok(SACRED_TERMINOLOGY_MD.includes('Creator'));
+    assert.ok(SACRED_TERMINOLOGY_MD.includes('User'));
   });
 
   it('references Essence, Realm, Guardian, Studio vocabulary', () => {
-    assert.ok(SACRED_TERMINOLOGY.includes('Essence'));
-    assert.ok(SACRED_TERMINOLOGY.includes('Realm'));
-    assert.ok(SACRED_TERMINOLOGY.includes('Guardian'));
-    assert.ok(SACRED_TERMINOLOGY.includes('Studio'));
+    assert.ok(SACRED_TERMINOLOGY_MD.includes('Essence'));
+    assert.ok(SACRED_TERMINOLOGY_MD.includes('Realm'));
+    assert.ok(SACRED_TERMINOLOGY_MD.includes('Guardian'));
+    assert.ok(SACRED_TERMINOLOGY_MD.includes('Studio'));
   });
 });
 

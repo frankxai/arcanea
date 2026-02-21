@@ -6,16 +6,17 @@ import { ClaudeOverlayInstaller } from '@arcanea/overlay-claude';
 import { ChatGPTOverlayInstaller } from '@arcanea/overlay-chatgpt';
 import { GeminiOverlayInstaller } from '@arcanea/overlay-gemini';
 import { CopilotOverlayInstaller } from '@arcanea/overlay-copilot';
-import { OpenCodeOverlayInstaller } from '@arcanea/overlay-opencode';
+import { CursorOverlayInstaller } from '@arcanea/overlay-cursor';
 import { printBanner, printSuccess, printError, printInfo, printWarning, printDivider } from '../ui/banner.js';
 import { promptMultiSelect, promptSelect, promptPassword, promptConfirm } from '../ui/prompts.js';
 
-const INSTALLERS: Record<ProviderType, ClaudeOverlayInstaller | ChatGPTOverlayInstaller | GeminiOverlayInstaller | CopilotOverlayInstaller | OpenCodeOverlayInstaller> = {
+const INSTALLERS: Record<ProviderType, ClaudeOverlayInstaller | ChatGPTOverlayInstaller | GeminiOverlayInstaller | CopilotOverlayInstaller | CursorOverlayInstaller> = {
   claude: new ClaudeOverlayInstaller(),
   openai: new ChatGPTOverlayInstaller(),
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
-  opencode: new OpenCodeOverlayInstaller(),
+  cursor: new CursorOverlayInstaller(),
+  opencode: new CursorOverlayInstaller(),
 };
 
 const PROVIDER_LABELS: Record<ProviderType, string> = {
@@ -23,7 +24,8 @@ const PROVIDER_LABELS: Record<ProviderType, string> = {
   openai: 'ChatGPT / OpenAI',
   gemini: 'Gemini (Google)',
   copilot: 'GitHub Copilot',
-  opencode: 'Cursor IDE',
+  cursor: 'Cursor IDE',
+  opencode: 'OpenCode CLI',
 };
 
 export const initCommand = new Command('init')

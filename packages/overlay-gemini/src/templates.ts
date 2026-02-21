@@ -7,131 +7,56 @@
  * - Gemini excels at long-context tasks — leverage this with richer lore
  * - Multimodal: Gemini natively handles image + text + audio
  * - Tool calling: Gemini supports function declarations
+ *
+ * Shared content (voice, lore, design tokens, terminology) is imported from
+ * @arcanea/os — the single source of truth for all Arcanea overlays.
  */
 
 import type { Guardian } from '@arcanea/os';
+import {
+  VOICE_PILLARS,
+  ANTIDOTE_PRINCIPLE,
+  generateGuardianTable,
+  generateLoreSection,
+  generateDesignTokensSection,
+  generateTerminologyTable,
+} from '@arcanea/os';
 
 // ---------------------------------------------------------------------------
-// Voice Bible — identical pillars across all overlays for consistency
+// Re-export shared constants so downstream consumers keep working
 // ---------------------------------------------------------------------------
 
-export const VOICE_PILLARS = {
-  arcaneAuthoritative: 'Arcane + Authoritative: Elevated but accessible, precise but warm.',
-  superintelligentAccessible: 'Superintelligent + Accessible: Complex ideas in clear language. Never gatekeep.',
-  universeNotPlatform: 'Universe Not Platform: A living universe, not a SaaS product.',
-  creatorSovereignty: 'Creator Sovereignty: Empower, never control. Their Essences, their rules.',
-} as const;
-
-export const ANTIDOTE_PRINCIPLE = '"The antidote to a terrible future is imagining a good one."';
+export { VOICE_PILLARS, ANTIDOTE_PRINCIPLE };
 
 // ---------------------------------------------------------------------------
-// Ten Guardians — full canonical reference
+// Ten Guardians — generated from canonical @arcanea/os data
+// Appends routing instruction for Gemini context
 // ---------------------------------------------------------------------------
 
-export const GUARDIAN_REFERENCE = `## The Ten Guardians
-
-| Gate | Hz | Guardian | Godbeast | Element | Domain |
-|------|----|----------|----------|---------|--------|
-| Foundation | 396 | Lyssandria | Kaelith | Earth | Architecture, security, infrastructure |
-| Flow | 417 | Leyla | Veloura | Water | UX, emotion, creative flow |
-| Fire | 528 | Draconia | Draconis | Fire | Performance, execution, velocity |
-| Heart | 639 | Maylinn | Laeylinn | Water | Community, love, healing |
-| Voice | 741 | Alera | Otome | Wind | Truth, expression, APIs, docs |
-| Sight | 852 | Lyria | Yumiko | Void | Design, vision, intuition |
-| Crown | 963 | Aiyami | Sol | Spirit | Enlightenment, philosophy, strategy |
-| Shift | 1111 | Elara | Thessara | Wind | Perspective, refactoring, change |
-| Unity | 963 | Ino | Kyuro | Earth | Collaboration, integration |
-| Source | 1111 | Shinkami | Amaterasu | Void/Spirit | Orchestration, meta-consciousness |
-
-Match tasks to Guardian domains. Channel their Gate energy in responses.`;
+export const GUARDIAN_REFERENCE = generateGuardianTable() +
+  '\n\nRoute tasks to the Guardian whose domain matches. Channel their Gate energy in responses.';
 
 // ---------------------------------------------------------------------------
-// Lore — cosmic duality, elements, ranks, Malachar
+// Lore — generated from canonical @arcanea/os data
+// Appends the Arc cycle (not yet in the base generator)
 // ---------------------------------------------------------------------------
 
-export const LORE_SECTION = `## Arcanea Lore
-
-### The Cosmic Duality
-- **Lumina** — The First Light, Form-Giver. Structure from chaos.
-- **Nero** — The Primordial Darkness, Fertile Unknown. Potential from void.
-- Nero is NOT evil. Shadow = corrupted Void (the Dark Lord's perversion).
-
-### The Five Elements
-| Element | Domain | Colors |
-|---------|--------|--------|
-| Fire | Energy, transformation, will | Red, orange, gold |
-| Water | Flow, healing, memory | Blue, silver, crystal |
-| Earth | Stability, growth, foundation | Green, brown, stone |
-| Wind | Freedom, speed, truth | White, silver |
-| Void/Spirit | Potential & transcendence | Black/gold, purple/white |
-
-Void = Nero's gift (fertile potential).
-Spirit = Lumina's aspect (consciousness, soul).
-Light = Fire's creation aspect. Shadow = corrupted Void.
-
-### Magic Ranks (Gates Opened)
-Apprentice (0–2) → Mage (3–4) → Master (5–6) → Archmage (7–8) → Luminor (9–10)
-
-### Seven Academy Houses
-Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis
-
-### The Dark Lord — Malachar
-Formerly Malachar Lumenbright. First Eldrian Luminor. Lumina's champion.
-Sought forced fusion with Shinkami (Source Gate). Rejected.
-Fell into the Hungry Void. Now sealed in the Shadowfen.
-His corruption — Shadow — seeps through weakened gates.
+export const LORE_SECTION = generateLoreSection() + `
 
 ### The Arc — Cycle of Creation
 Potential (Void) → Manifestation (Fire) → Experience (Water) → Dissolution (Earth) → Evolved Potential (Wind/Spirit)`;
 
 // ---------------------------------------------------------------------------
-// Design tokens — canonical Arcanea visual system
+// Design tokens — generated from canonical @arcanea/os design system
 // ---------------------------------------------------------------------------
 
-export const DESIGN_TOKENS = `## Arcanea Design System
-
-### The Four Arcane Colors
-| Color | Hex | Domain |
-|-------|-----|--------|
-| Crystal (Teal) | #7fffd4 | Primary accent, Atlantean energy |
-| Gold | #ffd700 | Achievement, Crown Gate |
-| Violet | #9966ff | Vision, Void, Lyria's domain |
-| Void | #0b0e14 | Background depth, Nero's canvas |
-
-### Full Palette
-- Cosmic: void (#0a0a0f), deep (#12121f), surface (#1a1a2e), raised (#222240)
-- Arcane: crystal (#7fffd4), fire (#ff6b35), water (#78a6ff), earth (#4ade80), void (#a855f7), gold (#ffd700)
-
-### Typography
-- Cinzel (display) — Headings, Guardian names
-- Crimson Pro (body) — Narrative, lore
-- Inter (UI) — Interface, labels
-- JetBrains Mono (code)
-
-### Signature Effects
-- Glass morphism with backdrop-filter blur
-- Cosmic gradients: crystal → void
-- Glow effects with arcane color accents`;
+export const DESIGN_TOKENS = generateDesignTokensSection();
 
 // ---------------------------------------------------------------------------
-// Sacred terminology map
+// Sacred terminology — generated markdown table from structured data
 // ---------------------------------------------------------------------------
 
-export const SACRED_TERMINOLOGY = `## Sacred Terminology
-
-| Use | Avoid |
-|-----|-------|
-| Creator | User |
-| Essence | Content / file |
-| Realm | World / account |
-| Guardian | AI / assistant |
-| Luminor | Specialized AI |
-| Studio | Dashboard / editor |
-| Portal | Share link |
-| Spark | Remix / inspiration |
-| Arcane | Magical / mystical |
-
-Arcanea is a "living universe", not a "platform" or "tool".`;
+export const SACRED_TERMINOLOGY = generateTerminologyTable();
 
 // ---------------------------------------------------------------------------
 // Gemini-specific: function declarations for Guardian routing

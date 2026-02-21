@@ -21,10 +21,11 @@ export {
 export {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,
+  SACRED_TERMINOLOGY,
+  SACRED_TERMINOLOGY_MD,
   GUARDIAN_REFERENCE,
   LORE_SECTION,
   DESIGN_TOKENS,
-  SACRED_TERMINOLOGY,
   generateCustomGPTConfig,
   generateGuardianGPTProfile,
   type CustomGPTConfig,

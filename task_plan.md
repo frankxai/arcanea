@@ -41,18 +41,22 @@ See findings.md for full breakdown.
 
 ---
 
-## Phase 4: Priority Implementation ⏳ PENDING
+## Phase 4: Priority Implementation
 
-### Wave 1: Fix What's Broken (Quick Wins)
-- [ ] Rename overlay-opencode → overlay-cursor (or create separate overlay-cursor)
-- [ ] Create actual overlay-opencode for OpenCode CLI
-- [ ] Add hook installation to overlay-claude package
-- [ ] Add hook tests
+### Wave 1: Fix What's Broken ✅ COMPLETE (207 tests passing)
+- [x] Rename overlay-opencode → overlay-cursor (package, class, provider, CLI)
+- [x] Add hook installation to overlay-claude (8 hooks + statusline + settings.local.json)
+- [x] Add AgentDB + helper scripts to overlay-claude installer
+- [x] Add 98 hook tests covering all generators, settings, portability, integration
+- [x] Update ProviderType + OverlayCapability types in @arcanea/os
+- [x] Update CLI commands (init, install, update) with CursorOverlayInstaller
 
-### Wave 2: Unify Content Layer
-- [ ] Extract shared overlay content to @arcanea/os generators
-- [ ] All overlays consume from single source of truth
-- [ ] Add statusline installation to overlay-claude
+### Wave 2: Unify Content Layer ✅ COMPLETE (522 tests passing)
+- [x] Audit content duplication across all 5 overlay packages (5 parallel deep-dives)
+- [x] Extract shared generators to @arcanea/os (voice, routing, markdown generators)
+- [x] Make all 5 overlays consume from single source of truth
+- [x] overlay-cursor generates MDC rules from shared content
+- [x] Add 62 tests for shared content layer in @arcanea/os
 
 ### Wave 3: Absorb Best Patterns
 - [ ] Audit oh-my-opencode for plugin patterns worth adopting
@@ -69,4 +73,7 @@ See findings.md for full breakdown.
 ## Errors Encountered
 | Error | Attempt | Resolution |
 |-------|---------|------------|
-| (none) | | |
+| OverlayCapability type error | 1 | Added 5 new values to union type |
+| ProviderType missing 'cursor' | 1 | Added 'cursor' to union + PROVIDER_CAPABILITIES |
+| Test assertion 'defaulting' | 1 | Updated to 'no task provided' (matching actual content) |
+| vitest not found at monorepo root | 1 | Tests use node:test, run via `node --test` |

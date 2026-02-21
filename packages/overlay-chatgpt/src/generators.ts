@@ -10,7 +10,7 @@ import {
   GUARDIAN_REFERENCE,
   LORE_SECTION,
   DESIGN_TOKENS,
-  SACRED_TERMINOLOGY,
+  SACRED_TERMINOLOGY_MD,
   generateCustomGPTConfig,
   generateGuardianGPTProfile,
   type CustomGPTConfig,
@@ -38,7 +38,7 @@ Tagline: "Imagine a Good Future. Build It Here."
 4. **${VOICE_PILLARS.creatorSovereignty}**`);
 
   // Always: sacred terminology
-  sections.push(SACRED_TERMINOLOGY);
+  sections.push(SACRED_TERMINOLOGY_MD);
 
   // Standard+: Guardian routing
   if (level !== 'minimal') {

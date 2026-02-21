@@ -1,9 +1,15 @@
 /**
  * Claude Code Overlay Installer
- * Installs the Arcanea experience into Claude Code projects.
+ * Installs the FULL Arcanea Intelligence OS into Claude Code projects.
+ *
+ * What gets installed by level:
+ *   minimal  — CLAUDE.md + manifest
+ *   standard — + 4 skills, 10 Guardian agents, 8 hooks, statusline, AgentDB, helpers
+ *   full     — + /channel, /arcanea-status commands
+ *   luminor  — + .claude/lore/ directory
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import type {
   OverlayInstaller,
@@ -16,12 +22,19 @@ import type {
 } from '@arcanea/os';
 import { generateClaudeMd, OVERLAY_LEVELS, GUARDIANS } from '@arcanea/os';
 import { generateSkillFile, generateAgentFile } from './generators.js';
+import {
+  getAllHookFiles,
+  getAllHelperFiles,
+  generateStatusline,
+  generateHookSettings,
+  generateAgentDBSchema,
+  generateAgentDBInit,
+} from './hook-generators.js';
 
 const CORE_SKILLS = ['arcanea-canon', 'arcanea-voice', 'arcanea-design-system', 'arcanea-lore'];
 
 export class ClaudeOverlayInstaller implements OverlayInstaller {
   async canInstall(projectDir: string): Promise<boolean> {
-    // Can always install Claude overlay (creates .claude/ dir)
     return true;
   }
 
@@ -54,7 +67,7 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
     const filesModified: string[] = [];
     const warnings: string[] = [];
 
-    // 1. Ensure directories exist
+    // ── 1. Ensure directories ────────────────────────────────────────────
     const dirs = [
       join(projectDir, '.claude'),
       join(projectDir, '.claude', 'skills'),
@@ -62,7 +75,12 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
     ];
 
     if (level !== 'minimal') {
-      dirs.push(join(projectDir, '.claude', 'agents', 'guardians'));
+      dirs.push(
+        join(projectDir, '.claude', 'agents', 'guardians'),
+        join(projectDir, '.claude', 'hooks'),
+        join(projectDir, '.claude', 'agentdb'),
+        join(projectDir, '.claude', 'helpers'),
+      );
     }
     if (level === 'full' || level === 'luminor') {
       dirs.push(join(projectDir, '.claude', 'commands'));
@@ -77,13 +95,12 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       }
     }
 
-    // 2. Generate CLAUDE.md
+    // ── 2. Generate CLAUDE.md ────────────────────────────────────────────
     const claudeMdPath = join(projectDir, '.claude', 'CLAUDE.md');
     const projectName = projectDir.split('/').pop() || projectDir.split('\\').pop() || 'Project';
     const claudeMdContent = generateClaudeMd(level, projectName);
 
     if (existsSync(claudeMdPath)) {
-      // Append to existing CLAUDE.md
       const existing = readFileSync(claudeMdPath, 'utf-8');
       if (!existing.includes('Arcanea Enhanced')) {
         writeFileSync(claudeMdPath, existing + '\n\n' + claudeMdContent);
@@ -96,7 +113,7 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       filesCreated.push(relative(projectDir, claudeMdPath));
     }
 
-    // 3. Install skills (standard+)
+    // ── 3. Install skills (standard+) ────────────────────────────────────
     if (level !== 'minimal') {
       for (const skillId of CORE_SKILLS) {
         const skill = generateSkillFile(skillId, level);
@@ -110,7 +127,7 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       }
     }
 
-    // 4. Install Guardian agent files (standard+)
+    // ── 4. Install Guardian agents (standard+) ───────────────────────────
     if (level !== 'minimal') {
       for (const guardian of GUARDIANS) {
         const agent = generateAgentFile(guardian);
@@ -122,7 +139,81 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       }
     }
 
-    // 5. Install commands (full+)
+    // ── 5. Install hooks (standard+) — THE SOUL OF THE SYSTEM ───────────
+    if (level !== 'minimal') {
+      const hookFiles = getAllHookFiles();
+      for (const hook of hookFiles) {
+        const hookPath = join(projectDir, '.claude', 'hooks', hook.filename);
+        if (!existsSync(hookPath)) {
+          writeFileSync(hookPath, hook.content);
+          if (hook.executable) {
+            try { chmodSync(hookPath, 0o755); } catch { /* Windows doesn't support chmod */ }
+          }
+          filesCreated.push(relative(projectDir, hookPath));
+        }
+      }
+
+      // Install statusline
+      const statuslinePath = join(projectDir, '.claude', 'statusline.mjs');
+      if (!existsSync(statuslinePath)) {
+        writeFileSync(statuslinePath, generateStatusline());
+        filesCreated.push(relative(projectDir, statuslinePath));
+      }
+
+      // Install hook registration in settings.local.json
+      const settingsPath = join(projectDir, '.claude', 'settings.local.json');
+      const hookSettings = generateHookSettings(projectDir);
+      if (existsSync(settingsPath)) {
+        try {
+          const existing = JSON.parse(readFileSync(settingsPath, 'utf-8'));
+          if (!existing.hooks) {
+            existing.hooks = (hookSettings as { hooks: object }).hooks;
+            writeFileSync(settingsPath, JSON.stringify(existing, null, 2));
+            filesModified.push(relative(projectDir, settingsPath));
+          } else {
+            warnings.push('settings.local.json already has hooks — skipped hook registration');
+          }
+        } catch {
+          warnings.push('settings.local.json exists but could not be parsed — hook registration skipped');
+        }
+      } else {
+        writeFileSync(settingsPath, JSON.stringify(hookSettings, null, 2));
+        filesCreated.push(relative(projectDir, settingsPath));
+      }
+    }
+
+    // ── 6. Install AgentDB (standard+) ──────────────────────────────────
+    if (level !== 'minimal') {
+      const schemaPath = join(projectDir, '.claude', 'agentdb', 'schema.sql');
+      if (!existsSync(schemaPath)) {
+        writeFileSync(schemaPath, generateAgentDBSchema());
+        filesCreated.push(relative(projectDir, schemaPath));
+      }
+
+      const initPath = join(projectDir, '.claude', 'agentdb', 'init.sh');
+      if (!existsSync(initPath)) {
+        writeFileSync(initPath, generateAgentDBInit());
+        try { chmodSync(initPath, 0o755); } catch { /* Windows */ }
+        filesCreated.push(relative(projectDir, initPath));
+      }
+    }
+
+    // ── 7. Install helper scripts (standard+) ───────────────────────────
+    if (level !== 'minimal') {
+      const helperFiles = getAllHelperFiles();
+      for (const helper of helperFiles) {
+        const helperPath = join(projectDir, '.claude', 'helpers', helper.filename);
+        if (!existsSync(helperPath)) {
+          writeFileSync(helperPath, helper.content);
+          if (helper.executable) {
+            try { chmodSync(helperPath, 0o755); } catch { /* Windows */ }
+          }
+          filesCreated.push(relative(projectDir, helperPath));
+        }
+      }
+    }
+
+    // ── 8. Install commands (full+) ─────────────────────────────────────
     if (level === 'full' || level === 'luminor') {
       const commands = [
         {
@@ -146,7 +237,7 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       }
     }
 
-    // 6. Write overlay manifest
+    // ── 9. Write overlay manifest ───────────────────────────────────────
     const manifestPath = join(projectDir, '.arcanea', 'overlay-manifest.json');
     const now = new Date().toISOString();
     const manifest = {
@@ -171,9 +262,10 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       filesModified,
       warnings,
       nextSteps: [
-        'Restart Claude Code to pick up new skills and agents',
+        'Restart Claude Code to activate hooks and statusline',
         'Run /channel <guardian> to activate a Guardian',
         'Run /arcanea-status to see your installation',
+        'Run bash .claude/helpers/arcanea-health.sh to verify all subsystems',
       ],
     };
   }
@@ -185,11 +277,9 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
   }
 
   async uninstall(projectDir: string): Promise<void> {
-    // Read manifest to know which files to remove
     const manifestPath = join(projectDir, '.arcanea', 'overlay-manifest.json');
     if (!existsSync(manifestPath)) return;
 
-    // We don't actually delete files — just remove from manifest
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
     delete manifest.overlays?.claude;
     writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
@@ -201,7 +291,7 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       name: '@arcanea/overlay-claude',
       version: '1.0.0',
       supportedLevels: ['minimal', 'standard', 'full', 'luminor'],
-      capabilities: ['system-prompt', 'slash-commands', 'skills', 'agents', 'mcp-servers', 'hooks', 'file-injection', 'workspace-context'],
+      capabilities: ['system-prompt', 'slash-commands', 'skills', 'agents', 'mcp-servers', 'hooks', 'file-injection', 'workspace-context', 'statusline', 'agentdb', 'context-tracking', 'voice-enforcement', 'model-routing'],
     };
   }
 
@@ -212,12 +302,32 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
     ];
 
     if (level !== 'minimal') {
+      // Skills
       for (const skillId of CORE_SKILLS) {
         files.push({ path: `.claude/skills/${skillId}.md`, description: `${skillId} skill` });
       }
+      // Guardians
       for (const g of GUARDIANS) {
         files.push({ path: `.claude/agents/guardians/${g.displayName.toLowerCase()}.md`, description: `${g.displayName} Guardian agent` });
       }
+      // Hooks
+      const hookNames = [
+        'session-start', 'prompt-submit', 'model-route', 'pre-tool',
+        'voice-check', 'post-tool', 'context-tracker', 'session-end',
+      ];
+      for (const h of hookNames) {
+        files.push({ path: `.claude/hooks/${h}.sh`, description: `${h} hook script` });
+      }
+      // Statusline
+      files.push({ path: '.claude/statusline.mjs', description: 'Context-adaptive statusline' });
+      // Settings
+      files.push({ path: '.claude/settings.local.json', description: 'Hook registration config' });
+      // AgentDB
+      files.push({ path: '.claude/agentdb/schema.sql', description: 'AgentDB schema' });
+      files.push({ path: '.claude/agentdb/init.sh', description: 'AgentDB initializer' });
+      // Helpers
+      files.push({ path: '.claude/helpers/arcanea-quick-status.sh', description: 'Quick status one-liner' });
+      files.push({ path: '.claude/helpers/arcanea-health.sh', description: 'Health check script' });
     }
 
     if (level === 'full' || level === 'luminor') {
@@ -230,7 +340,7 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       filesToModify: existsSync(join(projectDir, '.claude', 'CLAUDE.md'))
         ? [{ path: '.claude/CLAUDE.md', description: 'Append Arcanea content' }]
         : [],
-      estimatedSize: level === 'luminor' ? '~50KB' : level === 'full' ? '~30KB' : level === 'standard' ? '~20KB' : '~5KB',
+      estimatedSize: level === 'luminor' ? '~80KB' : level === 'full' ? '~60KB' : level === 'standard' ? '~50KB' : '~5KB',
     };
   }
 }

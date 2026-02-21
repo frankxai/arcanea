@@ -1,7 +1,6 @@
 /**
- * OpenCode / Cursor IDE Overlay Installer
+ * Cursor IDE Overlay Installer
  * Generates .cursorrules and .cursor/rules/ for Cursor IDE integration.
- * (Internally registered as 'opencode' provider for backwards compatibility)
  */
 
 import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
@@ -80,7 +79,7 @@ function writeManifest(
 // Installer
 // ---------------------------------------------------------------------------
 
-export class OpenCodeOverlayInstaller implements OverlayInstaller {
+export class CursorOverlayInstaller implements OverlayInstaller {
   async canInstall(): Promise<boolean> {
     return true;
   }
@@ -95,14 +94,14 @@ export class OpenCodeOverlayInstaller implements OverlayInstaller {
       try {
         const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8')) as Record<string, unknown>;
         const overlays = manifest.overlays as Record<string, unknown> | undefined;
-        existingOverlay = (overlays?.cursor ?? overlays?.opencode) as OverlayConfig | undefined;
+        existingOverlay = overlays?.cursor as OverlayConfig | undefined;
       } catch {
         // Ignore
       }
     }
 
     return {
-      provider: 'opencode',
+      provider: 'cursor',
       detected: hasCursorDir || hasCursorRules,
       configPath: join(projectDir, '.cursor'),
       existingOverlay,
@@ -136,7 +135,7 @@ export class OpenCodeOverlayInstaller implements OverlayInstaller {
         try {
           const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8')) as Record<string, unknown>;
           const overlays = manifest.overlays as Record<string, unknown> | undefined;
-          const cursorEntry = (overlays?.cursor ?? overlays?.opencode) as Record<string, unknown> | undefined;
+          const cursorEntry = overlays?.cursor as Record<string, unknown> | undefined;
           const installedLevel = cursorEntry?.level as string | undefined;
           if (installedLevel && installedLevel !== 'minimal') {
             issues.push('.cursor/rules/arcanea.mdc is missing (expected for level: ' + installedLevel + ')');
@@ -276,8 +275,8 @@ export class OpenCodeOverlayInstaller implements OverlayInstaller {
 
   getManifest(): OverlayManifest {
     return {
-      provider: 'opencode',
-      name: '@arcanea/overlay-opencode',
+      provider: 'cursor',
+      name: '@arcanea/overlay-cursor',
       version: PACKAGE_VERSION,
       supportedLevels: ['minimal', 'standard', 'full', 'luminor'],
       capabilities: ['system-prompt', 'file-injection', 'workspace-context'],

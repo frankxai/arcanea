@@ -1,5 +1,5 @@
 /**
- * Generators for the OpenCode / Cursor IDE overlay output files.
+ * Generators for the Cursor IDE overlay output files.
  * Produces .cursorrules and .cursor/rules/*.mdc files.
  */
 

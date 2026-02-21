@@ -4,15 +4,16 @@ import { ClaudeOverlayInstaller } from '@arcanea/overlay-claude';
 import { ChatGPTOverlayInstaller } from '@arcanea/overlay-chatgpt';
 import { GeminiOverlayInstaller } from '@arcanea/overlay-gemini';
 import { CopilotOverlayInstaller } from '@arcanea/overlay-copilot';
-import { OpenCodeOverlayInstaller } from '@arcanea/overlay-opencode';
+import { CursorOverlayInstaller } from '@arcanea/overlay-cursor';
 import { printSuccess, printError, printInfo, printDivider } from '../ui/banner.js';
 
-const INSTALLERS: Record<ProviderType, ClaudeOverlayInstaller | ChatGPTOverlayInstaller | GeminiOverlayInstaller | CopilotOverlayInstaller | OpenCodeOverlayInstaller> = {
+const INSTALLERS: Record<ProviderType, ClaudeOverlayInstaller | ChatGPTOverlayInstaller | GeminiOverlayInstaller | CopilotOverlayInstaller | CursorOverlayInstaller> = {
   claude: new ClaudeOverlayInstaller(),
   openai: new ChatGPTOverlayInstaller(),
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
-  opencode: new OpenCodeOverlayInstaller(),
+  cursor: new CursorOverlayInstaller(),
+  opencode: new CursorOverlayInstaller(),
 };
 
 export const installCommand = new Command('install')

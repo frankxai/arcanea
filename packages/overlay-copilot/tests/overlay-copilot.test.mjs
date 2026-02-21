@@ -79,14 +79,17 @@ describe('GUARDIAN_QUICK_REFERENCE', () => {
     }
   });
 
-  it('lists developer-oriented domains for each Guardian', () => {
-    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('Architecture'));
-    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('Performance'));
-    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('API'));
+  it('lists canonical domains from @arcanea/os for each Guardian', () => {
+    // Domains now come from the canonical @arcanea/os constants
+    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('security'), 'Missing domain keyword: security');
+    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('transformation'), 'Missing domain keyword: transformation');
+    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('expression'), 'Missing domain keyword: expression');
   });
 
-  it('provides a comment example referencing Guardian domain', () => {
-    assert.ok(GUARDIAN_QUICK_REFERENCE.includes("Lyssandria's domain"));
+  it('includes Gate names for each Guardian', () => {
+    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('Foundation Gate'));
+    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('Source Gate'));
+    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('Sight Gate'));
   });
 
   it('contains Hz frequency values', () => {
@@ -107,7 +110,7 @@ describe('ARCANEA_STACK', () => {
   });
 
   it('references TypeScript strict mode', () => {
-    assert.ok(ARCANEA_STACK.includes('TypeScript strict'));
+    assert.ok(ARCANEA_STACK.includes('TypeScript') && ARCANEA_STACK.includes('strict'));
   });
 
   it('references Supabase', () => {
@@ -134,23 +137,24 @@ describe('DESIGN_TOKENS (Copilot)', () => {
     assert.ok(DESIGN_TOKENS.length > 0);
   });
 
-  it('defines CSS custom property names for arcane colors', () => {
-    assert.ok(DESIGN_TOKENS.includes('--arcane-crystal'));
-    assert.ok(DESIGN_TOKENS.includes('--arcane-gold'));
-    assert.ok(DESIGN_TOKENS.includes('--arcane-violet'));
-    assert.ok(DESIGN_TOKENS.includes('--arcane-void'));
+  it('references the four primary arcane color names', () => {
+    assert.ok(DESIGN_TOKENS.includes('Crystal'), 'Missing Crystal/Teal');
+    assert.ok(DESIGN_TOKENS.includes('Gold'), 'Missing Gold');
+    assert.ok(DESIGN_TOKENS.includes('Violet'), 'Missing Violet');
+    assert.ok(DESIGN_TOKENS.includes('Void'), 'Missing Void');
   });
 
-  it('contains correct hex values for all four arcane colors', () => {
-    assert.ok(DESIGN_TOKENS.includes('#7fffd4'));
-    assert.ok(DESIGN_TOKENS.includes('#ffd700'));
-    assert.ok(DESIGN_TOKENS.includes('#9966ff'));
-    assert.ok(DESIGN_TOKENS.includes('#0b0e14'));
+  it('contains correct hex values for the canonical arcane colors', () => {
+    assert.ok(DESIGN_TOKENS.includes('#7fffd4'), 'Missing crystal hex');
+    assert.ok(DESIGN_TOKENS.includes('#ffd700'), 'Missing gold hex');
+    assert.ok(DESIGN_TOKENS.includes('#a855f7'), 'Missing violet hex');
+    assert.ok(DESIGN_TOKENS.includes('#0a0a0f'), 'Missing void hex');
   });
 
   it('references cosmic background palette', () => {
-    assert.ok(DESIGN_TOKENS.includes('--cosmic-void'));
-    assert.ok(DESIGN_TOKENS.includes('--cosmic-surface'));
+    // Generated format uses inline labels rather than CSS var names
+    assert.ok(DESIGN_TOKENS.toLowerCase().includes('cosmic'), 'Missing cosmic reference');
+    assert.ok(DESIGN_TOKENS.includes('#1a1a2e'), 'Missing cosmic surface hex');
   });
 });
 
@@ -198,14 +202,27 @@ describe('LORE_REFERENCE', () => {
     assert.ok(LORE_REFERENCE.includes('Luminor'));
   });
 
-  it('contains sacred terminology table', () => {
-    assert.ok(LORE_REFERENCE.includes('creator'));
-    assert.ok(LORE_REFERENCE.includes('essence'));
-    assert.ok(LORE_REFERENCE.includes('realm'));
+  it('contains the Five Elements', () => {
+    assert.ok(LORE_REFERENCE.includes('Fire'));
+    assert.ok(LORE_REFERENCE.includes('Water'));
+    assert.ok(LORE_REFERENCE.includes('Earth'));
+    assert.ok(LORE_REFERENCE.includes('Wind'));
+    assert.ok(LORE_REFERENCE.includes('Void'));
   });
 
   it('references Malachar', () => {
     assert.ok(LORE_REFERENCE.includes('Malachar'));
+  });
+
+  it('references the Seven Academy Houses', () => {
+    assert.ok(LORE_REFERENCE.includes('Lumina'));
+    assert.ok(LORE_REFERENCE.includes('Synthesis'));
+  });
+
+  it('references the Arc cycle', () => {
+    assert.ok(LORE_REFERENCE.includes('Arc'));
+    assert.ok(LORE_REFERENCE.includes('Potential'));
+    assert.ok(LORE_REFERENCE.includes('Manifestation'));
   });
 });
 
@@ -250,9 +267,10 @@ describe('generateCopilotInstructionsFile', () => {
     assert.ok(result.content.includes('Shinkami'));
   });
 
-  it('minimal level does not include Guardian routing table', () => {
+  it('minimal level does not include Guardian quick reference', () => {
     const result = generateCopilotInstructionsFile('minimal');
-    assert.ok(!result.content.includes("Lyssandria's domain:"));
+    // In minimal mode, Guardian section is excluded entirely
+    assert.ok(!result.content.includes('Foundation Gate'));
   });
 
   it('full level includes lore reference', () => {

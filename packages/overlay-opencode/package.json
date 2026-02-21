@@ -1,7 +1,7 @@
 {
-  "name": "@arcanea/overlay-opencode",
+  "name": "@arcanea/overlay-cursor",
   "version": "1.1.0",
-  "description": "OpenCode overlay for the Arcanea Intelligence OS",
+  "description": "Cursor IDE overlay for the Arcanea Intelligence OS",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -25,7 +25,8 @@
   },
   "keywords": [
     "arcanea",
-    "opencode",
+    "cursor",
+    "cursor-ide",
     "overlay",
     "ai"
   ],
@@ -34,7 +35,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/frankxai/arcanea.git",
-    "directory": "packages/overlay-opencode"
+    "directory": "packages/overlay-cursor"
   },
   "dependencies": {
     "@arcanea/os": "workspace:*"

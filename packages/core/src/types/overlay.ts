@@ -3,7 +3,7 @@
  * Type definitions for the auth + overlay system.
  */
 
-export type ProviderType = 'claude' | 'openai' | 'gemini' | 'copilot' | 'opencode';
+export type ProviderType = 'claude' | 'openai' | 'gemini' | 'copilot' | 'cursor' | 'opencode';
 
 export type OverlayLevel = 'minimal' | 'standard' | 'full' | 'luminor';
 
@@ -19,7 +19,12 @@ export type OverlayCapability =
   | 'plugins'
   | 'vision'
   | 'file-injection'
-  | 'workspace-context';
+  | 'workspace-context'
+  | 'statusline'
+  | 'agentdb'
+  | 'context-tracking'
+  | 'voice-enforcement'
+  | 'model-routing';
 
 export interface AuthSession {
   provider: ProviderType;
@@ -141,10 +146,11 @@ export interface LevelDefinition {
 }
 
 export const PROVIDER_CAPABILITIES: Record<ProviderType, OverlayCapability[]> = {
-  claude: ['system-prompt', 'slash-commands', 'skills', 'agents', 'mcp-servers', 'hooks', 'file-injection', 'workspace-context'],
+  claude: ['system-prompt', 'slash-commands', 'skills', 'agents', 'mcp-servers', 'hooks', 'file-injection', 'workspace-context', 'statusline', 'agentdb', 'context-tracking', 'voice-enforcement', 'model-routing'],
   openai: ['system-prompt', 'custom-gpt', 'assistants-api', 'vision'],
   gemini: ['system-prompt', 'vision'],
   copilot: ['system-prompt', 'file-injection', 'workspace-context'],
+  cursor: ['system-prompt', 'file-injection', 'workspace-context'],
   opencode: ['system-prompt', 'slash-commands', 'skills', 'agents', 'mcp-servers', 'hooks', 'plugins', 'file-injection'],
 };
 
