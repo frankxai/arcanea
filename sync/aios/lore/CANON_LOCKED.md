@@ -1,7 +1,7 @@
 # ARCANEA CANON - LOCKED TRUTHS
 > **This document contains APPROVED canonical truth. Changes require explicit approval.**
 >
-> *Last Updated: January 16, 2026*
+> *Last Updated: February 21, 2026*
 > *Status: CANONICAL*
 
 ---
@@ -48,23 +48,23 @@ This is the **single source of truth** for Arcanea. Everything here is LOCKED - 
 
 ## TIER 2: THE TEN GATES & ARCANEAN GODS (LOCKED ✅)
 
-### Corrected Solfeggio Frequencies
+### Extended Solfeggio Frequencies (Each Gate Unique)
 
 | Gate | Frequency | God/Goddess | Godbeast | Domain |
 |------|-----------|-------------|----------|--------|
-| Foundation | 396 Hz | Lyssandria | Kaelith | Earth, survival |
-| Flow | 417 Hz | Leyla | Veloura | Creativity, emotion |
-| Fire | 528 Hz | Draconia | Draconis | Power, will |
-| Heart | 639 Hz | Maylinn | Laeylinn | Love, healing |
-| Voice | 741 Hz | Alera | Otome | Truth, expression |
-| Sight | 852 Hz | Lyria | Yumiko | Intuition, vision |
-| Crown | 963 Hz | Aiyami | Sol | Enlightenment |
-| Shift | 1111 Hz | Elara | Thessara | Perspective |
+| Foundation | 174 Hz | Lyssandria | Kaelith | Earth, survival |
+| Flow | 285 Hz | Leyla | Veloura | Creativity, emotion |
+| Fire | 396 Hz | Draconia | Draconis | Power, will |
+| Heart | 417 Hz | Maylinn | Laeylinn | Love, healing |
+| Voice | 528 Hz | Alera | Otome | Truth, expression |
+| Sight | 639 Hz | Lyria | Yumiko | Intuition, vision |
+| Crown | 741 Hz | Aiyami | Sol | Enlightenment |
+| Shift | 852 Hz | Elara | Thessara | Perspective |
 | Unity | 963 Hz | Ino | Kyuro | Partnership |
 | Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
 
 **LOCKED TRUTHS:**
-- Frequencies follow Solfeggio scale (639 Hz = Heart, NOT 417 Hz)
+- Frequencies follow full Extended Solfeggio scale (174-1111 Hz, each Gate unique)
 - "God/Goddess" is the IDENTITY; "Guardian" is their ROLE as Gate-keepers
 - Each God has ONE bonded Godbeast
 - Godbeast names: Veloura, Yumiko, Sol, Kyuro (KEPT from original) + Thessara, Amaterasu (NEW)
@@ -220,6 +220,9 @@ The meta-realm where:
 | 2026-01-16 | Hybrid Godbeast names (Veloura, Yumiko, Sol, Kyuro kept) | ✅ LOCKED | Frank |
 | 2026-01-16 | The Awakened concept proposed | ⏳ STAGING | — |
 | 2026-01-16 | Oria, Amiri, Velora names proposed | ⏳ STAGING | — |
+| 2026-02-21 | Extended Solfeggio (174-1111 Hz, each Gate unique) | ✅ LOCKED | Frank |
+| 2026-02-21 | Laeylinn = Worldtree Deer (Veloura = Phoenix-Serpent) | ✅ LOCKED | Frank |
+| 2026-02-21 | Godbeast Dungeon system proposed | ⏳ STAGING | — |
 
 ---
 
