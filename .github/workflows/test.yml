@@ -43,14 +43,16 @@ jobs:
         run: |
           pnpm --filter @arcanea/os run build
           pnpm --filter @arcanea/auth run build
+          pnpm --filter @arcanea/extension-core run build
           pnpm --filter "@arcanea/overlay-*" run build
           pnpm --filter @arcanea/mcp-server run build
           pnpm --filter @arcanea/cli run build
 
-      - name: Run all tests
-        run: node --test packages/core/tests/*.test.mjs packages/arcanea-mcp/tests/*.test.mjs packages/overlay-claude/tests/*.test.mjs packages/cli/tests/*.test.mjs
+      - name: Run all tests (791 tests)
+        run: node --test packages/*/tests/*.test.mjs
         env:
           CI: true
+          NO_COLOR: '1'
 
   # TypeScript Type Check
   typecheck:
@@ -76,6 +78,7 @@ jobs:
         run: |
           pnpm --filter @arcanea/os run build
           pnpm --filter @arcanea/auth run build
+          pnpm --filter @arcanea/extension-core run build
           pnpm --filter "@arcanea/overlay-*" run build
           pnpm --filter @arcanea/mcp-server run build
           pnpm --filter @arcanea/cli run build
