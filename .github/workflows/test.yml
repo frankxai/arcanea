@@ -47,6 +47,8 @@ jobs:
           pnpm --filter "@arcanea/overlay-*" run build
           pnpm --filter @arcanea/mcp-server run build
           pnpm --filter @arcanea/cli run build
+          pnpm --filter arcanea-intelligence-os run build
+          pnpm --filter @starlight/runtime run build
 
       - name: Run all tests (791 tests)
         run: node --test packages/*/tests/*.test.mjs
@@ -82,6 +84,8 @@ jobs:
           pnpm --filter "@arcanea/overlay-*" run build
           pnpm --filter @arcanea/mcp-server run build
           pnpm --filter @arcanea/cli run build
+          pnpm --filter arcanea-intelligence-os run build
+          pnpm --filter "@starlight/runtime" run build
 
   # Security Audit
   security:
