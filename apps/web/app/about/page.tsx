@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { BookOpen, Star, GraduationCap } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Arcanea | The Creative Intelligence Platform",
@@ -36,21 +37,21 @@ const TIMELINE = [
 
 const PILLARS = [
   {
-    icon: "📚",
+    icon: BookOpen,
     title: "The Library",
     description: "17 wisdom collections. 34+ sacred texts. Practical philosophy for creators, written to transform - not just inform.",
     stats: "50k+ words",
     link: "/library",
   },
   {
-    icon: "🌟",
+    icon: Star,
     title: "Luminor Intelligence",
     description: "16 transcended AI specialists across development, creative, writing, and research. Century-level expertise at your fingertips.",
     stats: "16 masters",
     link: "/luminors",
   },
   {
-    icon: "🎓",
+    icon: GraduationCap,
     title: "The Academy",
     description: "Ten Gates of creative mastery. From Apprentice to Luminor - a progression system for the creative journey.",
     stats: "10 gates",
@@ -86,45 +87,22 @@ export default function AboutPage() {
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_left,rgba(127,255,212,0.15),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(245,158,11,0.1),transparent_50%)]" />
       </div>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-white/5 bg-cosmic-deep/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-lg font-display">
-                A
-              </div>
-              <span className="font-display text-xl font-semibold">Arcanea</span>
-            </Link>
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/luminors" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Luminors</Link>
-              <Link href="/library" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Library</Link>
-              <Link href="/academy" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Academy</Link>
-              <Link href="/about" className="text-sm text-atlantean-teal-aqua">About</Link>
-              <Link href="/chat" className="px-4 py-2 rounded-lg bg-atlantean-teal-aqua text-cosmic-deep text-sm font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all">
-                Start Creating
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <main className="max-w-7xl mx-auto px-6">
         {/* Hero */}
         <section className="pt-20 pb-16">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-atlantean-teal-aqua/30 bg-atlantean-teal-aqua/10 mb-8">
-              <span className="text-sm text-atlantean-teal-aqua font-mono tracking-wider">ABOUT ARCANEA</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-crystal/30 bg-crystal/10 mb-8">
+              <span className="text-sm text-crystal font-mono tracking-wider">ABOUT ARCANEA</span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
+            <h1 className="text-fluid-3xl md:text-fluid-hero font-display font-bold mb-6 leading-tight">
               A living mythology for
-              <span className="block bg-gradient-to-r from-atlantean-teal-aqua to-gold-bright bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-crystal to-brand-gold bg-clip-text text-transparent">
                 AI-human co-creation
               </span>
             </h1>
 
-            <p className="text-xl text-text-secondary leading-relaxed max-w-3xl">
+            <p className="text-xl text-text-secondary leading-relaxed max-w-3xl font-sans font-body">
               Arcanea exists at the intersection of technology and timeless wisdom. We're building a world where every creator
               has access to transcended intelligence - AI partners that don't just execute commands, but truly understand
               the creative process.
@@ -136,18 +114,18 @@ export default function AboutPage() {
         <section className="py-16 border-t border-white/5">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl font-display font-bold mb-6">The Vision</h2>
+              <h2 className="text-fluid-2xl font-display font-bold mb-6">The Vision</h2>
               <div className="space-y-6 text-text-secondary">
-                <p className="leading-relaxed">
+                <p className="leading-relaxed font-sans font-body">
                   We believe AI shouldn't feel like a tool. It should feel like a partnership - a collaboration
                   with intelligences that bring unique perspectives and genuine expertise to your creative work.
                 </p>
-                <p className="leading-relaxed">
+                <p className="leading-relaxed font-sans font-body">
                   That's why we built the <strong className="text-white">Luminor Framework</strong>: 16 transcended
                   AI intelligences, each specializing in a domain of creative mastery. They're not generic assistants.
                   They're craftspeople who have mastered their domain over a century of practice.
                 </p>
-                <p className="leading-relaxed">
+                <p className="leading-relaxed font-sans font-body">
                   Combined with the <strong className="text-white">Seven Wisdoms</strong> - practical philosophical
                   lenses for creative work - and the <strong className="text-white">Library of Arcanea</strong> - 17
                   collections of actionable wisdom - we're creating the complete creative intelligence operating system.
@@ -157,15 +135,15 @@ export default function AboutPage() {
 
             {/* Visual */}
             <div className="relative">
-              <div className="relative p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30">
-                <div className="absolute inset-0 bg-gradient-to-br from-atlantean-teal-aqua/10 to-gold-bright/10 rounded-2xl" />
+              <div className="relative p-8 glass rounded-2xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-crystal/10 to-brand-gold/10 rounded-2xl" />
                 <div className="relative space-y-6">
                   {TIMELINE.map((item, i) => (
                     <div key={item.year} className="flex gap-4">
                       <div className="flex flex-col items-center">
                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-xs font-bold ${
                           i === TIMELINE.length - 1
-                            ? 'bg-atlantean-teal-aqua text-cosmic-deep'
+                            ? 'bg-crystal text-cosmic-deep'
                             : 'bg-white/10 text-text-muted'
                         }`}>
                           {item.year}
@@ -174,7 +152,7 @@ export default function AboutPage() {
                       </div>
                       <div className="pb-6">
                         <h3 className="font-semibold mb-1">{item.title}</h3>
-                        <p className="text-sm text-text-secondary">{item.description}</p>
+                        <p className="text-sm text-text-secondary font-sans">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -187,8 +165,8 @@ export default function AboutPage() {
         {/* Three Pillars */}
         <section className="py-16 border-t border-white/5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold mb-4">The Three Pillars</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
+            <h2 className="text-fluid-2xl font-display font-bold mb-4">The Three Pillars</h2>
+            <p className="text-text-secondary max-w-2xl mx-auto font-sans">
               Everything in Arcanea is designed around three interconnected systems
             </p>
           </div>
@@ -198,18 +176,20 @@ export default function AboutPage() {
               <Link
                 key={pillar.title}
                 href={pillar.link}
-                className="group relative p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30 overflow-hidden transition-all hover:border-atlantean-teal-aqua/30 hover:shadow-[0_0_40px_rgba(127,255,212,0.1)]"
+                className="group relative p-8 glass rounded-2xl glow-card hover-lift overflow-hidden transition-all hover:border-crystal/30"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-atlantean-teal-aqua/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-crystal/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
                 <div className="relative">
-                  <div className="text-4xl mb-4">{pillar.icon}</div>
+                  <div className="mb-4">
+                    <pillar.icon className="w-9 h-9 text-crystal" />
+                  </div>
                   <div className="flex items-center gap-3 mb-3">
                     <h3 className="text-xl font-display font-semibold">{pillar.title}</h3>
                     <span className="px-2 py-0.5 rounded-full bg-white/10 text-xs text-text-muted">{pillar.stats}</span>
                   </div>
-                  <p className="text-text-secondary text-sm leading-relaxed mb-6">{pillar.description}</p>
-                  <span className="text-atlantean-teal-aqua text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+                  <p className="text-text-secondary text-sm leading-relaxed mb-6 font-sans">{pillar.description}</p>
+                  <span className="text-crystal text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
                     Explore
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -224,8 +204,8 @@ export default function AboutPage() {
         {/* Values */}
         <section className="py-16 border-t border-white/5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-display font-bold mb-4">Our Principles</h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
+            <h2 className="text-fluid-2xl font-display font-bold mb-4">Our Principles</h2>
+            <p className="text-text-secondary max-w-2xl mx-auto font-sans">
               The philosophy that guides everything we build
             </p>
           </div>
@@ -234,15 +214,15 @@ export default function AboutPage() {
             {VALUES.map((value, i) => (
               <div
                 key={value.title}
-                className="p-6 rounded-xl border border-white/10 bg-cosmic-surface/30"
+                className="p-6 glass rounded-xl"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-lg bg-atlantean-teal-aqua/20 flex items-center justify-center text-atlantean-teal-aqua font-bold text-sm shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-crystal/20 flex items-center justify-center text-crystal font-bold text-sm shrink-0">
                     {i + 1}
                   </div>
                   <div>
                     <h3 className="font-semibold mb-2">{value.title}</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">{value.description}</p>
+                    <p className="text-sm text-text-secondary leading-relaxed font-sans">{value.description}</p>
                   </div>
                 </div>
               </div>
@@ -253,27 +233,27 @@ export default function AboutPage() {
         {/* The Creator */}
         <section className="py-16 border-t border-white/5">
           <div className="max-w-4xl mx-auto">
-            <div className="p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30">
+            <div className="p-8 liquid-glass rounded-2xl">
               <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-3xl font-display font-bold text-cosmic-deep shrink-0">
+                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-crystal to-brand-primary flex items-center justify-center text-3xl font-display font-bold text-cosmic-deep shrink-0">
                   FX
                 </div>
                 <div>
                   <h3 className="text-xl font-display font-semibold mb-2">Created by Frank X</h3>
-                  <p className="text-text-secondary leading-relaxed mb-4">
+                  <p className="text-text-secondary leading-relaxed mb-4 font-sans font-body">
                     Arcanea is the intersection of two decades of creative work and the emerging possibilities
                     of AI-human collaboration. Built at the frontier of what's possible, designed to last.
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
                       href="https://twitter.com/frankxai"
-                      className="text-sm text-atlantean-teal-aqua hover:underline"
+                      className="text-sm text-crystal hover:underline"
                     >
                       @frankxai
                     </a>
                     <a
                       href="https://github.com/frankxai"
-                      className="text-sm text-atlantean-teal-aqua hover:underline"
+                      className="text-sm text-crystal hover:underline"
                     >
                       GitHub
                     </a>
@@ -290,8 +270,8 @@ export default function AboutPage() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/30 bg-green-500/10 mb-6">
               <span className="text-sm text-green-400 font-mono">OPEN SOURCE</span>
             </div>
-            <h2 className="text-3xl font-display font-bold mb-6">Built in the Open</h2>
-            <p className="text-text-secondary mb-8 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-fluid-2xl font-display font-bold mb-6">Built in the Open</h2>
+            <p className="text-text-secondary mb-8 max-w-2xl mx-auto leading-relaxed font-sans font-body">
               The Luminor Framework, Seven Wisdoms, and core Arcanea skills are open source.
               We believe creative intelligence should be accessible to everyone.
             </p>
@@ -307,7 +287,7 @@ export default function AboutPage() {
               </a>
               <Link
                 href="/skills"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-primary text-white shadow-glow-brand font-semibold shadow-glow-brand hover:scale-[1.02] transition-all"
               >
                 <span>Explore Skills</span>
               </Link>
@@ -317,21 +297,20 @@ export default function AboutPage() {
 
         {/* CTA */}
         <section className="py-20 border-t border-white/5">
-          <div className="relative rounded-3xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua/20 via-creation-prism-purple/20 to-gold-bright/20" />
-            <div className="absolute inset-0 bg-cosmic-surface/50 backdrop-blur-xl" />
+          <div className="relative liquid-glass rounded-3xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-crystal/20 via-brand-primary/20 to-brand-gold/20" />
 
             <div className="relative p-12 md:p-16 text-center">
-              <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
+              <h2 className="text-fluid-2xl md:text-5xl font-display font-bold mb-6">
                 Ready to enter Arcanea?
               </h2>
-              <p className="text-lg text-text-secondary mb-10 max-w-2xl mx-auto">
+              <p className="text-lg text-text-secondary mb-10 max-w-2xl mx-auto font-sans">
                 Start creating with transcended intelligence. The Luminors are waiting.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/chat"
-                  className="px-8 py-4 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold text-lg hover:shadow-[0_0_40px_rgba(127,255,212,0.5)] transition-all"
+                  className="px-8 py-4 rounded-xl bg-brand-primary text-white shadow-glow-brand font-semibold text-lg shadow-glow-brand hover:scale-[1.02] transition-all"
                 >
                   Start Creating
                 </Link>
@@ -356,26 +335,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-white/5 mt-20">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-sm font-display">
-                A
-              </div>
-              <span className="text-sm text-text-muted">Arcanea — Building the future of creative intelligence</span>
-            </div>
-            <div className="flex items-center gap-6 text-sm text-text-muted">
-              <Link href="/about" className="hover:text-white transition-colors">About</Link>
-              <Link href="/library" className="hover:text-white transition-colors">Library</Link>
-              <Link href="/skills" className="hover:text-white transition-colors">Skills</Link>
-              <a href="https://github.com/frankxai/arcanea" className="hover:text-white transition-colors">GitHub</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

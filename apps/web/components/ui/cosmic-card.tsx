@@ -27,7 +27,7 @@ const CosmicCard = React.forwardRef<HTMLDivElement, CosmicCardProps>(
     ref
   ) => {
     const academyClasses = {
-      atlantean: 'border-atlantean-teal/30 hover:border-atlantean-teal/60',
+      atlantean: 'border-crystal/30 hover:border-crystal/60',
       draconic: 'border-draconic-gold/30 hover:border-draconic-gold/60',
       creation: 'border-creation-gold/30 hover:border-creation-gold/60',
     };
@@ -43,7 +43,7 @@ const CosmicCard = React.forwardRef<HTMLDivElement, CosmicCardProps>(
           'rounded-lg border p-6 transition-all',
           glass
             ? 'glass'
-            : 'bg-cosmic-surface border-cosmic-border hover:bg-cosmic-raised',
+            : 'bg-cosmic-surface border-white/10 hover:bg-cosmic-raised',
           shimmer && 'shimmer',
           academy && academyClasses[academy],
           glow && 'hover:shadow-glow-md',

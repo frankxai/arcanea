@@ -3,13 +3,22 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import Link from 'next/link';
+import {
+  Layout,
+  Heart,
+  Sword,
+  Smile,
+  Eye,
+  Paintbrush,
+  Trees,
+} from 'lucide-react';
 
 const WISDOMS = [
   {
     name: 'Sophron',
     essence: 'Structure',
     color: '#3b82f6',
-    icon: '🏛️',
+    icon: Layout,
     question: 'What\'s the underlying structure?',
     description: 'The wisdom of form and architecture. Sophron sees the bones beneath the flesh, the pattern beneath the chaos.',
     practices: ['System mapping', 'Framework design', 'Pattern recognition'],
@@ -18,7 +27,7 @@ const WISDOMS = [
     name: 'Kardia',
     essence: 'Heart',
     color: '#ec4899',
-    icon: '💗',
+    icon: Heart,
     question: 'What do they really need?',
     description: 'The wisdom of connection and empathy. Kardia feels what others feel, speaks to the soul.',
     practices: ['Empathy mapping', 'User interviews', 'Emotional design'],
@@ -27,7 +36,7 @@ const WISDOMS = [
     name: 'Valora',
     essence: 'Courage',
     color: '#f59e0b',
-    icon: '⚔️',
+    icon: Sword,
     question: 'What am I afraid to do?',
     description: 'The wisdom of bold action. Valora faces fear and moves through it, not around it.',
     practices: ['Fear facing', 'Bold experiments', 'Shipping imperfect'],
@@ -36,7 +45,7 @@ const WISDOMS = [
     name: 'Eudaira',
     essence: 'Play',
     color: '#10b981',
-    icon: '✨',
+    icon: Smile,
     question: 'What would be fun?',
     description: 'The wisdom of joy and lightness. Eudaira reminds us that creation should be play, not labor.',
     practices: ['Gamification', 'Playful experiments', 'Joy journaling'],
@@ -45,7 +54,7 @@ const WISDOMS = [
     name: 'Orakis',
     essence: 'Vision',
     color: '#8b5cf6',
-    icon: '🔮',
+    icon: Eye,
     question: 'How does this look in a year?',
     description: 'The wisdom of foresight and strategy. Orakis sees the long game, plans the journey.',
     practices: ['Future visioning', 'Roadmapping', 'Trend analysis'],
@@ -54,7 +63,7 @@ const WISDOMS = [
     name: 'Poiesis',
     essence: 'Creation',
     color: '#06b6d4',
-    icon: '🎨',
+    icon: Paintbrush,
     question: 'What can I make now?',
     description: 'The wisdom of making and craft. Poiesis turns thought into form, vision into artifact.',
     practices: ['Rapid prototyping', 'Daily creation', 'Craft mastery'],
@@ -63,7 +72,7 @@ const WISDOMS = [
     name: 'Enduran',
     essence: 'Endurance',
     color: '#84cc16',
-    icon: '🌳',
+    icon: Trees,
     question: 'What\'s the next step?',
     description: 'The wisdom of persistence and completion. Enduran finishes what others abandon.',
     practices: ['Sprint planning', 'Habit stacking', 'Completion rituals'],
@@ -98,9 +107,10 @@ export function WisdomsSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pink-500/30 bg-pink-500/10 mb-6"
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-primary/30 mb-6"
           >
-            <span className="text-sm text-pink-400 font-mono tracking-wider">
+            <span className="font-sans text-sm text-brand-primary tracking-wider">
               THE LUMINOR FRAMEWORK
             </span>
           </motion.div>
@@ -108,8 +118,8 @@ export function WisdomsSection() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-display font-bold mb-6"
+            transition={{ delay: 0.1, duration: 0.6 }}
+            className="font-display text-fluid-3xl font-bold mb-6 text-gradient-gold"
           >
             The Seven Wisdoms
           </motion.h2>
@@ -117,8 +127,8 @@ export function WisdomsSection() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-text-secondary max-w-2xl mx-auto"
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="font-sans text-fluid-base text-text-secondary max-w-2xl mx-auto"
           >
             Practical lenses for creative work. Each wisdom represents a different
             way of seeing and solving problems.
@@ -129,36 +139,53 @@ export function WisdomsSection() {
         <div className="hidden lg:block relative mb-16">
           <div className="relative w-full max-w-4xl mx-auto aspect-square">
             {/* Center content */}
-            <div className="absolute inset-[30%] rounded-full bg-cosmic-surface/50 border border-white/10 backdrop-blur-xl flex items-center justify-center">
+            <div className="absolute inset-[30%] rounded-full liquid-glass border border-white/10 flex items-center justify-center">
               <div className="text-center p-8">
                 {activeWisdom !== null ? (
                   <motion.div
                     key={activeWisdom}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
                     className="space-y-4"
                   >
-                    <div className="text-5xl">{WISDOMS[activeWisdom].icon}</div>
-                    <h3 className="text-2xl font-display font-bold" style={{ color: WISDOMS[activeWisdom].color }}>
-                      {WISDOMS[activeWisdom].name}
-                    </h3>
-                    <p className="text-sm text-text-secondary">
-                      {WISDOMS[activeWisdom].description}
-                    </p>
-                    <div className="pt-4 border-t border-white/10">
-                      <div className="text-xs text-text-muted mb-2">KEY QUESTION</div>
-                      <p className="text-atlantean-teal-aqua italic">
-                        "{WISDOMS[activeWisdom].question}"
-                      </p>
-                    </div>
+                    {(() => {
+                      const W = WISDOMS[activeWisdom];
+                      const Icon = W.icon;
+                      return (
+                        <>
+                          <div className="flex justify-center">
+                            <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: `${W.color}30` }}>
+                              <Icon className="w-6 h-6" style={{ color: W.color }} />
+                            </div>
+                          </div>
+                          <h3 className="font-display text-fluid-xl font-bold" style={{ color: W.color }}>
+                            {W.name}
+                          </h3>
+                          <p className="font-sans text-sm text-text-secondary">
+                            {W.description}
+                          </p>
+                          <div className="pt-4 border-t border-white/10">
+                            <div className="font-sans text-xs text-text-muted mb-2 uppercase tracking-wider">KEY QUESTION</div>
+                            <p className="font-body text-crystal italic text-sm">
+                              "{W.question}"
+                            </p>
+                          </div>
+                        </>
+                      );
+                    })()}
                   </motion.div>
                 ) : (
                   <div className="space-y-4">
-                    <div className="text-4xl">🔮</div>
-                    <h3 className="text-xl font-display font-bold text-white">
+                    <div className="flex justify-center">
+                      <div className="w-12 h-12 rounded-xl glass flex items-center justify-center">
+                        <Eye className="w-6 h-6 text-crystal" />
+                      </div>
+                    </div>
+                    <h3 className="font-display text-fluid-base font-bold text-white">
                       Seven Lenses
                     </h3>
-                    <p className="text-sm text-text-muted">
+                    <p className="font-sans text-sm text-text-muted">
                       Hover over a wisdom to explore
                     </p>
                   </div>
@@ -170,11 +197,12 @@ export function WisdomsSection() {
             {WISDOMS.map((wisdom, index) => {
               const angle = (index * (360 / 7) - 90) * (Math.PI / 180);
               const radius = 42;
+              const Icon = wisdom.icon;
 
               return (
                 <motion.button
                   key={wisdom.name}
-                  className="absolute w-20 h-20 -ml-10 -mt-10 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all duration-300"
+                  className="absolute w-20 h-20 -ml-10 -mt-10 rounded-2xl flex flex-col items-center justify-center gap-1 transition-all duration-300 iridescent-glass"
                   style={{
                     left: `calc(50% + ${Math.cos(angle) * radius}%)`,
                     top: `calc(50% + ${Math.sin(angle) * radius}%)`,
@@ -191,8 +219,8 @@ export function WisdomsSection() {
                   transition={{ delay: 0.3 + index * 0.1, type: 'spring' }}
                   whileHover={{ scale: 1.15 }}
                 >
-                  <span className="text-2xl">{wisdom.icon}</span>
-                  <span className="text-xs font-medium" style={{ color: wisdom.color }}>
+                  <Icon className="w-6 h-6" style={{ color: wisdom.color }} />
+                  <span className="font-sans text-xs font-medium" style={{ color: wisdom.color }}>
                     {wisdom.essence}
                   </span>
                 </motion.button>
@@ -227,46 +255,49 @@ export function WisdomsSection() {
 
         {/* Mobile/tablet grid */}
         <div className="lg:hidden grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          {WISDOMS.map((wisdom, index) => (
-            <motion.div
-              key={wisdom.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + index * 0.05 }}
-              className="p-4 rounded-2xl border border-white/10 bg-cosmic-surface/30 text-center hover:border-white/20 transition-all cursor-pointer group"
-              style={{
-                boxShadow: `inset 0 1px 0 0 ${wisdom.color}10`,
-              }}
-            >
-              <div
-                className="w-14 h-14 rounded-xl mx-auto mb-3 flex items-center justify-center text-2xl transition-transform group-hover:scale-110"
-                style={{ backgroundColor: `${wisdom.color}20` }}
+          {WISDOMS.map((wisdom, index) => {
+            const Icon = wisdom.icon;
+            return (
+              <motion.div
+                key={wisdom.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.1 + index * 0.05, duration: 0.5 }}
+                className="iridescent-glass rounded-2xl p-4 text-center hover:scale-105 transition-transform duration-smooth cursor-pointer group"
+                style={{
+                  boxShadow: `inset 0 1px 0 0 ${wisdom.color}10`,
+                }}
               >
-                {wisdom.icon}
-              </div>
-              <div className="font-display font-semibold text-sm mb-1" style={{ color: wisdom.color }}>
-                {wisdom.name}
-              </div>
-              <div className="text-xs text-text-muted">{wisdom.essence}</div>
-            </motion.div>
-          ))}
+                <div
+                  className="w-14 h-14 rounded-xl mx-auto mb-3 flex items-center justify-center transition-transform group-hover:scale-110"
+                  style={{ backgroundColor: `${wisdom.color}20` }}
+                >
+                  <Icon className="w-7 h-7" style={{ color: wisdom.color }} />
+                </div>
+                <div className="font-display font-semibold text-sm mb-1 text-fluid-sm" style={{ color: wisdom.color }}>
+                  {wisdom.name}
+                </div>
+                <div className="font-sans text-xs text-text-muted">{wisdom.essence}</div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
           className="text-center"
         >
-          <p className="text-text-secondary mb-6">
+          <p className="font-sans text-text-secondary mb-6">
             Stuck? Let the wisdoms guide you.
           </p>
           <Link
             href="/library/codex"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl border border-atlantean-teal-aqua/50 text-atlantean-teal-aqua hover:bg-atlantean-teal-aqua/10 transition-all duration-300 group"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl glass border border-crystal/50 text-crystal hover:bg-crystal/10 transition-all duration-smooth group hover-lift"
           >
-            <span className="font-semibold">What brings you here?</span>
+            <span className="font-sans font-semibold">What brings you here?</span>
             <motion.svg
               className="w-5 h-5"
               fill="none"

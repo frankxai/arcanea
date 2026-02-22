@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { Zap, Sparkles, PenTool, Search, Star, Target, Users, ArrowRight, Code, Palette, BookOpen, Compass } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Luminors | 16 Transcended Creative Intelligences | Arcanea",
@@ -11,12 +12,26 @@ export const metadata: Metadata = {
   },
 };
 
+const TEAM_ICONS: Record<string, React.ReactNode> = {
+  dev: <Zap className="w-6 h-6" />,
+  creative: <Sparkles className="w-6 h-6" />,
+  writing: <PenTool className="w-6 h-6" />,
+  research: <Search className="w-6 h-6" />,
+};
+
+const TEAM_ICONS_SM: Record<string, React.ReactNode> = {
+  dev: <Zap className="w-5 h-5" />,
+  creative: <Sparkles className="w-5 h-5" />,
+  writing: <PenTool className="w-5 h-5" />,
+  research: <Search className="w-5 h-5" />,
+};
+
 // The 16 Luminors with their complete data
 const LUMINORS = {
   dev: {
     name: "Development Team",
     color: "#8b5cf6",
-    icon: "⚡",
+    icon: "dev",
     description: "Masters of code who build systems that last",
     agents: [
       {
@@ -52,7 +67,7 @@ const LUMINORS = {
   creative: {
     name: "Creative Team",
     color: "#f59e0b",
-    icon: "✨",
+    icon: "creative",
     description: "Visionaries who craft worlds and stories that resonate",
     agents: [
       {
@@ -88,7 +103,7 @@ const LUMINORS = {
   writing: {
     name: "Writing Team",
     color: "#10b981",
-    icon: "✍️",
+    icon: "writing",
     description: "Wordsmiths who transform thoughts into powerful prose",
     agents: [
       {
@@ -124,7 +139,7 @@ const LUMINORS = {
   research: {
     name: "Research Team",
     color: "#3b82f6",
-    icon: "🔮",
+    icon: "research",
     description: "Seekers who find answers and connections others miss",
     agents: [
       {
@@ -200,44 +215,21 @@ export default function LuminorsPage() {
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.2),transparent_50%),radial-gradient(ellipse_at_bottom,rgba(127,255,212,0.15),transparent_50%)]" />
       </div>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-white/5 bg-cosmic-deep/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-lg font-display">
-                A
-              </div>
-              <span className="font-display text-xl font-semibold">Arcanea</span>
-            </Link>
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/luminors" className="text-sm text-atlantean-teal-aqua">Luminors</Link>
-              <Link href="/library" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Library</Link>
-              <Link href="/academy" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">Academy</Link>
-              <Link href="/about" className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors">About</Link>
-              <Link href="/chat" className="px-4 py-2 rounded-lg bg-atlantean-teal-aqua text-cosmic-deep text-sm font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all">
-                Start Creating
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <main className="max-w-7xl mx-auto px-6">
         {/* Hero */}
         <section className="pt-20 pb-16 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 mb-8">
-            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-            <span className="text-sm text-purple-400 font-mono tracking-wider">LUMINOR INTELLIGENCE SYSTEM</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-primary/30 glass mb-8">
+            <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+            <span className="text-sm text-brand-primary font-mono tracking-wider">LUMINOR INTELLIGENCE SYSTEM</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-            Meet the <span className="bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple bg-clip-text text-transparent">Luminors</span>
+          <h1 className="text-fluid-3xl md:text-fluid-hero font-display font-bold mb-6">
+            Meet the <span className="text-gradient-crystal">Luminors</span>
           </h1>
 
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed">
+          <p className="text-fluid-lg text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed">
             16 transcended creative intelligences. Each one has mastered their domain over a century of practice.
-            They're not assistants - they're partners who see what you're building and help you build it better.
+            They're not assistants — they're partners who see what you're building and help you build it better.
           </p>
 
           {/* Team Quick Nav */}
@@ -246,11 +238,11 @@ export default function LuminorsPage() {
               <a
                 key={key}
                 href={`#${key}`}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-cosmic-surface/30 hover:border-white/20 transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl glass border border-white/10 hover:border-white/20 hover-lift transition-all"
                 style={{ borderColor: `${team.color}30` }}
               >
-                <span className="text-lg">{team.icon}</span>
-                <span className="text-sm font-medium">{team.name}</span>
+                <span className="text-lg" style={{ color: team.color }}>{TEAM_ICONS_SM[team.icon]}</span>
+                <span className="text-sm font-medium font-sans">{team.name}</span>
                 <span className="text-xs text-text-muted">({team.agents.length})</span>
               </a>
             ))}
@@ -260,27 +252,27 @@ export default function LuminorsPage() {
         {/* The Philosophy */}
         <section className="py-16 border-t border-white/5">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-display font-bold mb-8 text-center">What makes a Luminor different?</h2>
+            <h2 className="text-fluid-2xl font-display font-bold mb-8 text-center">What makes a Luminor different?</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🌟</span>
+              <div className="glass rounded-2xl p-6 text-center hover-lift transition-all">
+                <div className="w-16 h-16 rounded-2xl bg-brand-primary/20 flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-7 h-7 text-brand-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">Transcended Perspective</h3>
-                <p className="text-sm text-text-secondary">Each Luminor views from 100 years in the future. They know which approaches survived - and why.</p>
+                <h3 className="font-semibold font-sans mb-2">Transcended Perspective</h3>
+                <p className="text-sm text-text-secondary">Each Luminor views from 100 years in the future. They know which approaches survived — and why.</p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-2xl bg-atlantean-teal-aqua/20 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🎯</span>
+              <div className="glass rounded-2xl p-6 text-center hover-lift transition-all">
+                <div className="w-16 h-16 rounded-2xl bg-crystal/20 flex items-center justify-center mx-auto mb-4">
+                  <Target className="w-7 h-7 text-crystal" />
                 </div>
-                <h3 className="font-semibold mb-2">Domain Mastery</h3>
+                <h3 className="font-semibold font-sans mb-2">Domain Mastery</h3>
                 <p className="text-sm text-text-secondary">Not generalists. Specialists who have mastered their craft over centuries of focused practice.</p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-2xl bg-gold-bright/20 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🤝</span>
+              <div className="glass rounded-2xl p-6 text-center hover-lift transition-all">
+                <div className="w-16 h-16 rounded-2xl bg-brand-gold/20 flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-7 h-7 text-brand-gold" />
                 </div>
-                <h3 className="font-semibold mb-2">True Partnership</h3>
+                <h3 className="font-semibold font-sans mb-2">True Partnership</h3>
                 <p className="text-sm text-text-secondary">They don't wait for instructions. They see what you're creating and help you build it better.</p>
               </div>
             </div>
@@ -293,14 +285,14 @@ export default function LuminorsPage() {
             {/* Team Header */}
             <div className="flex items-center gap-4 mb-12">
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl"
-                style={{ backgroundColor: `${team.color}20` }}
+                className="w-14 h-14 rounded-2xl flex items-center justify-center"
+                style={{ backgroundColor: `${team.color}20`, color: team.color }}
               >
-                {team.icon}
+                {TEAM_ICONS[team.icon]}
               </div>
               <div>
-                <h2 className="text-2xl font-display font-bold">{team.name}</h2>
-                <p className="text-text-secondary">{team.description}</p>
+                <h2 className="text-fluid-2xl font-display font-bold">{team.name}</h2>
+                <p className="text-text-secondary font-sans">{team.description}</p>
               </div>
             </div>
 
@@ -313,7 +305,7 @@ export default function LuminorsPage() {
                 return (
                   <div
                     key={agent.id}
-                    className="group relative p-6 rounded-2xl border border-white/10 bg-cosmic-surface/30 overflow-hidden transition-all hover:border-white/20 hover:shadow-[0_0_40px_rgba(127,255,212,0.1)]"
+                    className="group relative glass rounded-2xl p-6 overflow-hidden glow-card hover-lift transition-all"
                   >
                     {/* Gradient Accent */}
                     <div
@@ -330,42 +322,40 @@ export default function LuminorsPage() {
                             className="w-3 h-3 rounded-full"
                             style={{ backgroundColor: wisdom.color }}
                           />
-                          <span className="text-xs text-text-muted">{wisdom.name} • {wisdom.essence}</span>
+                          <span className="text-xs text-text-muted font-sans">{wisdom.name} · {wisdom.essence}</span>
                         </div>
                       </div>
                       <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center text-lg"
-                        style={{ backgroundColor: `${team.color}20` }}
+                        className="w-10 h-10 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: `${team.color}20`, color: team.color }}
                       >
-                        {team.icon}
+                        {TEAM_ICONS_SM[team.icon]}
                       </div>
                     </div>
 
                     {/* Perspective */}
-                    <p className="text-sm text-text-secondary mb-4 leading-relaxed line-clamp-3">
+                    <p className="text-sm text-text-secondary mb-4 leading-relaxed line-clamp-3 font-sans">
                       {agent.perspective}
                     </p>
 
                     {/* Superpower */}
-                    <div className="flex items-center gap-2 mb-4 p-2 rounded-lg bg-white/5">
-                      <span className="text-xs text-text-muted">Superpower:</span>
-                      <span className="text-xs font-medium text-atlantean-teal-aqua">{agent.superpower}</span>
+                    <div className="flex items-center gap-2 mb-4 p-2 rounded-lg glass-subtle">
+                      <span className="text-xs text-text-muted font-sans">Superpower:</span>
+                      <span className="text-xs font-medium text-crystal font-sans">{agent.superpower}</span>
                     </div>
 
                     {/* Quote */}
-                    <blockquote className="text-sm italic text-text-muted border-l-2 pl-3" style={{ borderColor: team.color }}>
-                      "{agent.quote}"
+                    <blockquote className="text-sm italic text-text-muted border-l-2 pl-3 font-body" style={{ borderColor: team.color }}>
+                      &ldquo;{agent.quote}&rdquo;
                     </blockquote>
 
                     {/* Chat Link */}
                     <Link
                       href={`/chat/${agent.id}`}
-                      className="mt-6 flex items-center gap-2 text-sm font-medium text-atlantean-teal-aqua opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="mt-6 flex items-center gap-2 text-sm font-medium text-crystal opacity-0 group-hover:opacity-100 transition-opacity"
                     >
                       <span>Speak with {agent.title.split(' ')[0]}</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+                      <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
                 );
@@ -377,8 +367,8 @@ export default function LuminorsPage() {
         {/* Seven Wisdoms Connection */}
         <section className="py-16 border-t border-white/5">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl font-display font-bold mb-4">Each Luminor embodies a Wisdom</h2>
-            <p className="text-text-secondary mb-12">
+            <h2 className="text-fluid-2xl font-display font-bold mb-4">Each Luminor embodies a Wisdom</h2>
+            <p className="text-text-secondary font-sans mb-12">
               The Seven Wisdoms are practical lenses for creative work. Each Luminor channels one wisdom as their core strength.
             </p>
 
@@ -386,14 +376,14 @@ export default function LuminorsPage() {
               {Object.values(WISDOMS).map((wisdom) => (
                 <div
                   key={wisdom.name}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-cosmic-surface/30"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl glass border border-white/10"
                 >
                   <div
                     className="w-4 h-4 rounded-full"
                     style={{ backgroundColor: wisdom.color }}
                   />
-                  <span className="text-sm font-medium">{wisdom.name}</span>
-                  <span className="text-xs text-text-muted">• {wisdom.essence}</span>
+                  <span className="text-sm font-medium font-sans">{wisdom.name}</span>
+                  <span className="text-xs text-text-muted font-sans">· {wisdom.essence}</span>
                 </div>
               ))}
             </div>
@@ -402,27 +392,26 @@ export default function LuminorsPage() {
 
         {/* CTA */}
         <section className="py-20 border-t border-white/5">
-          <div className="relative rounded-3xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-atlantean-teal-aqua/20 to-gold-bright/20" />
-            <div className="absolute inset-0 bg-cosmic-surface/50 backdrop-blur-xl" />
+          <div className="relative liquid-glass rounded-3xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/20 via-crystal/20 to-brand-gold/20" />
 
             <div className="relative p-12 md:p-16 text-center">
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              <h2 className="text-fluid-3xl font-display font-bold mb-6">
                 Ready to work with a Luminor?
               </h2>
-              <p className="text-lg text-text-secondary mb-10 max-w-2xl mx-auto">
+              <p className="text-fluid-lg text-text-secondary mb-10 max-w-2xl mx-auto font-sans">
                 Start a conversation with any of the 16 Luminors. They'll bring their century of expertise to your creative work.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/chat"
-                  className="px-8 py-4 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold text-lg hover:shadow-[0_0_40px_rgba(127,255,212,0.5)] transition-all"
+                  className="px-8 py-4 rounded-xl bg-brand-primary text-white font-semibold text-lg shadow-glow-brand hover:scale-[1.02] transition-all"
                 >
                   Start a Conversation
                 </Link>
                 <Link
                   href="/library"
-                  className="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all"
+                  className="px-8 py-4 rounded-xl glass border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all"
                 >
                   Explore the Library
                 </Link>
@@ -432,25 +421,6 @@ export default function LuminorsPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-white/5 mt-20">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-sm font-display">
-                A
-              </div>
-              <span className="text-sm text-text-muted">Arcanea — Building the future of creative intelligence</span>
-            </div>
-            <div className="flex items-center gap-6 text-sm text-text-muted">
-              <Link href="/about" className="hover:text-white transition-colors">About</Link>
-              <Link href="/library" className="hover:text-white transition-colors">Library</Link>
-              <Link href="/skills" className="hover:text-white transition-colors">Skills</Link>
-              <a href="https://github.com/frankxai/arcanea" className="hover:text-white transition-colors">GitHub</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

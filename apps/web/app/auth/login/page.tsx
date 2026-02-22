@@ -57,9 +57,9 @@ function LoginForm() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       {/* Background effects */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-atlantean-teal-aqua/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-creation-prism-purple/10 rounded-full blur-3xl" />
+      <div className="fixed inset-0 pointer-events-none bg-mesh-gradient">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-crystal/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-primary/8 rounded-full blur-3xl" />
       </div>
 
       <motion.div
@@ -77,11 +77,11 @@ function LoginForm() {
         </Link>
 
         {/* Card */}
-        <div className="bg-cosmic-surface/50 backdrop-blur-xl rounded-3xl border border-white/10 p-8">
+        <div className="liquid-glass rounded-3xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center mx-auto mb-4">
-              <Sparkles className="w-8 h-8 text-cosmic-deep" />
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary to-crystal flex items-center justify-center mx-auto mb-4 shadow-glow-brand">
+              <Sparkles className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-2xl font-display font-bold mb-2">Welcome Back</h1>
             <p className="text-text-secondary">Sign in to continue your journey</p>
@@ -153,7 +153,7 @@ function LoginForm() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua/20 transition-all"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none focus:ring-2 focus:ring-crystal/20 transition-all"
                 />
               </div>
             </div>
@@ -168,7 +168,7 @@ function LoginForm() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                   required
-                  className="w-full pl-12 pr-12 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua/20 transition-all"
+                  className="w-full pl-12 pr-12 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none focus:ring-2 focus:ring-crystal/20 transition-all"
                 />
                 <button
                   type="button"
@@ -184,11 +184,11 @@ function LoginForm() {
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-white/20 bg-white/5 text-atlantean-teal-aqua focus:ring-atlantean-teal-aqua/20"
+                  className="w-4 h-4 rounded border-white/20 bg-white/5 text-crystal focus:ring-crystal/20"
                 />
                 <span className="text-sm text-text-secondary">Remember me</span>
               </label>
-              <Link href="/auth/forgot-password" className="text-sm text-atlantean-teal-aqua hover:underline">
+              <Link href="/auth/forgot-password" className="text-sm text-crystal hover:underline">
                 Forgot password?
               </Link>
             </div>
@@ -196,7 +196,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold hover:shadow-[0_0_30px_rgba(127,255,212,0.4)] transition-all disabled:opacity-50"
+              className="w-full py-3 rounded-xl bg-brand-primary text-white font-semibold shadow-glow-brand hover:scale-[1.02] transition-all disabled:opacity-50"
             >
               {isLoading ? 'Signing in...' : 'Sign In'}
             </button>
@@ -205,7 +205,7 @@ function LoginForm() {
           {/* Footer */}
           <p className="text-center text-text-secondary mt-6">
             Don't have an account?{' '}
-            <Link href="/auth/signup" className="text-atlantean-teal-aqua hover:underline">
+            <Link href="/auth/signup" className="text-crystal hover:underline">
               Create one
             </Link>
           </p>
@@ -218,7 +218,7 @@ function LoginForm() {
 function LoginFallback() {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <Loader2 className="w-8 h-8 animate-spin text-atlantean-teal-aqua" />
+      <Loader2 className="w-8 h-8 animate-spin text-crystal" />
     </div>
   );
 }

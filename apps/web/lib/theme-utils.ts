@@ -209,28 +209,28 @@ export function getAcademyClasses(academy: Academy): {
 
   const classMap: Record<Academy, ReturnType<typeof getAcademyClasses>> = {
     default: {
-      text: 'text-gold-bright',
-      bg: 'bg-cosmic-surface',
-      border: 'border-gold-medium',
-      glow: 'shadow-glow-md',
+      text: 'text-brand-gold',
+      bg: 'glass',
+      border: 'border-brand-gold/30',
+      glow: 'shadow-glow-gold',
     },
     atlantean: {
-      text: 'text-atlantean-teal',
-      bg: 'bg-atlantean-deep/20',
-      border: 'border-atlantean-teal',
-      glow: 'shadow-atlantean',
+      text: 'text-crystal',
+      bg: 'glass',
+      border: 'border-crystal/30',
+      glow: 'shadow-glow-md',
     },
     draconic: {
-      text: 'text-draconic-gold',
-      bg: 'bg-draconic-crimson-deep/20',
-      border: 'border-draconic-gold',
-      glow: 'shadow-draconic',
+      text: 'text-fire',
+      bg: 'glass',
+      border: 'border-fire/30',
+      glow: 'shadow-glow-fire',
     },
     creation: {
-      text: 'text-creation-gold',
-      bg: 'bg-creation-gold-deep/10',
-      border: 'border-creation-gold',
-      glow: 'shadow-creation',
+      text: 'text-brand-primary',
+      bg: 'glass',
+      border: 'border-brand-primary/30',
+      glow: 'shadow-glow-brand',
     },
   };
 

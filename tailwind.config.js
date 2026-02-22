@@ -1,8 +1,17 @@
-/** @type {import('tailwindcss').Config} */
+/**
+ * Arcanea Tailwind Configuration v2.0
+ * Source of truth: .arcanea/design/DESIGN_BIBLE.md
+ * Cosmic Glass Design System
+ *
+ * @type {import('tailwindcss').Config}
+ */
 module.exports = {
   darkMode: ["class"],
   content: [
+    "./app/**/*.{ts,tsx,js,jsx,md,mdx}",
     "./apps/**/*.{ts,tsx,js,jsx,md,mdx}",
+    "./components/**/*.{ts,tsx,js,jsx,md,mdx}",
+    "./lib/**/*.{ts,tsx,js,jsx}",
     "./packages/**/*.{ts,tsx,js,jsx,md,mdx}"
   ],
   theme: {
@@ -14,8 +23,11 @@ module.exports = {
       }
     },
     extend: {
+      /* ==========================================
+         COLORS
+         ========================================== */
       colors: {
-        // Shadcn/UI base colors
+        // shadcn/ui base (HSL variables from globals.css)
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -50,181 +62,183 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))"
         },
 
-        // Cosmic Foundation - Universal Arcanean colors
+        // Cosmic Palette (Backgrounds & Surfaces)
         cosmic: {
-          void: "#0a0a0f",
-          deep: "#1a1a2e",
-          midnight: "#16213e",
-          cosmic: "#1f2347",
-          nebula: "#2a2d5a",
-          aurora: "#3d4f73",
-          crystal: "#4a6fa5",
-          luminous: "#5c8bd9",
-          ethereal: "#7ba3e3",
-          radiant: "#9bb5e8",
-          celestial: "#b8c6ed",
-          transcendent: "#d6d9f2"
+          void: "#0b0e14",
+          deep: "#121826",
+          surface: "#1a2332",
+          raised: "#242f42",
+          elevated: "#2d3a52",
+          overlay: "#364562"
         },
 
-        // Atlantean Academy - Story & Lore
-        atlantean: {
-          abyss: "#0a1f2e",
-          depth: "#0d3a52",
-          current: "#118ab2",
-          surface: "#06aed5",
-          foam: "#86cfda",
-          pearl: "#c8e7f2",
-          coral: "#ff6b9d",
-          silver: "#b8c9d9",
-          jade: "#2a9d8f",
-          amber: "#e9c46a"
-        },
-
-        // Draconic Academy - Visual Creation
-        draconic: {
-          shadow: "#1a0f0a",
-          ember: "#8b2635",
-          flame: "#c9384a",
-          crimson: "#e63946",
-          gold: "#f4a261",
-          sky: "#4a90e2",
-          cloud: "#a8b8d8",
-          radiance: "#ffd97d",
-          bronze: "#cd7f32",
-          ruby: "#e01e37",
-          sapphire: "#0f52ba",
-          amber: "#ffbf00"
-        },
-
-        // Academy of Creation & Light - Music & Audio
-        creation: {
-          silence: "#f8f9fa",
-          harmony: "#ffffff",
-          frequency: "#fff4e6",
+        // Brand
+        brand: {
+          primary: "#8b5cf6",
+          accent: "#7fffd4",
           gold: "#ffd700",
-          prism: "#e0f7fa",
-          violet: "#b794f6",
-          indigo: "#818cf8",
-          blue: "#60a5fa",
-          cyan: "#22d3ee",
-          green: "#34d399",
-          yellow: "#fbbf24",
-          orange: "#fb923c",
-          rose: "#fda4af",
-          aurora: "#7bf1a8",
-          crystal: "#e5e7eb",
-          shimmer: "#fef3c7"
+          secondary: "#78a6ff"
         },
 
-        // Luminor AI Companions
-        luminor: {
-          melodia: "#ff6b6b",    // Music
-          chronica: "#4ecdc4",   // Story
-          prismatic: "#45b7d1",  // Visual
-          synthesis: "#feca57"   // Cross-media
+        // Elemental Accents
+        crystal: {
+          DEFAULT: "#7fffd4",
+          bright: "#99ffe0",
+          deep: "#5ce6b8"
+        },
+        fire: {
+          DEFAULT: "#ff6b35",
+          bright: "#ff8c5a",
+          deep: "#d94e1f"
+        },
+        water: {
+          DEFAULT: "#78a6ff",
+          bright: "#9dbfff",
+          deep: "#5a8ce6"
+        },
+        "void-el": {
+          DEFAULT: "#9966ff",
+          bright: "#b38cff",
+          deep: "#7a4dcc"
+        },
+        gold: {
+          DEFAULT: "#ffd700",
+          bright: "#ffe44d",
+          deep: "#ccac00"
+        },
+        wind: {
+          DEFAULT: "#00ff88",
+          bright: "#33ffaa",
+          deep: "#00cc6d"
+        },
+        earth: {
+          DEFAULT: "#8b7355",
+          bright: "#a89070",
+          deep: "#6e5940"
         },
 
-        // System Status Colors
-        status: {
-          success: "#10b981",
-          warning: "#f59e0b",
-          error: "#ef4444",
-          info: "#3b82f6"
-        }
+        // Text
+        "text-primary": "#e6eefc",
+        "text-secondary": "#9bb1d0",
+        "text-muted": "#708094",
+        "text-disabled": "#515b6b",
+
+        // Semantic
+        success: { DEFAULT: "#20cc73", light: "#5ae096", dark: "#18a65c" },
+        warning: { DEFAULT: "#ffa500", light: "#ffbf4d", dark: "#cc8400" },
+        error: { DEFAULT: "#f52952", light: "#f75c7a", dark: "#cc1f42" },
+        info: { DEFAULT: "#26b8e6", light: "#5ccde6", dark: "#1f99bf" }
       },
 
-      // Border Radius
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)"
-      },
-
-      // Font Families
+      /* ==========================================
+         TYPOGRAPHY
+         ========================================== */
       fontFamily: {
-        primary: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "sans-serif"],
+        display: ["Cinzel", "serif"],
+        body: ["Crimson Pro", "serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"]
       },
 
-      // Font Sizes with line heights
       fontSize: {
-        cosmic: ["3rem", { lineHeight: "1.1", letterSpacing: "-0.04em" }],
-        stellar: ["2.25rem", { lineHeight: "1.25", letterSpacing: "-0.02em" }],
-        radiant: ["1.75rem", { lineHeight: "1.4", letterSpacing: "-0.01em" }],
-        luminous: ["1.5rem", { lineHeight: "1.4" }],
-        bright: ["1.25rem", { lineHeight: "1.5" }],
-        clear: ["1.125rem", { lineHeight: "1.5" }],
-        base: ["1rem", { lineHeight: "1.6" }],
-        small: ["0.875rem", { lineHeight: "1.5" }],
-        tiny: ["0.75rem", { lineHeight: "1.4" }]
+        "fluid-xs": ["clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem)", { lineHeight: "1.4" }],
+        "fluid-sm": ["clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem)", { lineHeight: "1.5" }],
+        "fluid-base": ["clamp(0.9rem, 0.85rem + 0.25vw, 1rem)", { lineHeight: "1.6" }],
+        "fluid-lg": ["clamp(1.1rem, 1rem + 0.5vw, 1.25rem)", { lineHeight: "1.5" }],
+        "fluid-xl": ["clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)", { lineHeight: "1.4" }],
+        "fluid-2xl": ["clamp(1.5rem, 1.25rem + 1.25vw, 2rem)", { lineHeight: "1.3" }],
+        "fluid-3xl": ["clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem)", { lineHeight: "1.2" }],
+        "fluid-4xl": ["clamp(2.25rem, 1.75rem + 2.5vw, 3rem)", { lineHeight: "1.1" }],
+        "fluid-5xl": ["clamp(3rem, 2rem + 5vw, 4.5rem)", { lineHeight: "1.0" }],
+        "fluid-hero": ["clamp(3rem, 1.5rem + 7.5vw, 7rem)", { lineHeight: "0.9", letterSpacing: "-0.02em" }]
       },
 
-      // Spacing Scale (8px base grid)
-      spacing: {
-        xs: "0.25rem",   // 4px
-        sm: "0.5rem",    // 8px
-        md: "1rem",      // 16px
-        lg: "1.5rem",    // 24px
-        xl: "2rem",      // 32px
-        "2xl": "3rem",   // 48px
-        "3xl": "4rem",   // 64px
-        "4xl": "6rem"    // 96px
+      /* ==========================================
+         BORDER RADIUS
+         ========================================== */
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+        xl: "1rem",
+        "2xl": "1.5rem",
+        "3xl": "2rem"
       },
 
-      // Box Shadows (magical glowing shadows)
+      /* ==========================================
+         SHADOWS & GLOWS
+         ========================================== */
       boxShadow: {
-        "glow-subtle": "0 0 16px rgba(91, 139, 217, 0.15)",
-        "glow-medium": "0 0 24px rgba(91, 139, 217, 0.3), 0 0 48px rgba(91, 139, 217, 0.15)",
-        "glow-strong": "0 0 32px rgba(91, 139, 217, 0.5), 0 0 64px rgba(91, 139, 217, 0.25)",
-        "glow-magical": "0 0 48px rgba(91, 139, 217, 0.6), 0 0 96px rgba(91, 139, 217, 0.3), 0 0 128px rgba(91, 139, 217, 0.15)",
-        "elevation-1": "0 2px 8px rgba(91, 139, 217, 0.1), 0 0 16px rgba(91, 139, 217, 0.05)",
-        "elevation-2": "0 4px 16px rgba(91, 139, 217, 0.15), 0 0 24px rgba(91, 139, 217, 0.08)",
-        "elevation-3": "0 8px 24px rgba(91, 139, 217, 0.2), 0 0 32px rgba(91, 139, 217, 0.12)",
-        "elevation-4": "0 16px 48px rgba(91, 139, 217, 0.25), 0 0 64px rgba(91, 139, 217, 0.15)",
-        "elevation-5": "0 24px 64px rgba(91, 139, 217, 0.3), 0 0 96px rgba(91, 139, 217, 0.2)"
+        // Glows
+        "glow-sm": "0 0 10px rgba(127, 255, 212, 0.15)",
+        "glow-md": "0 0 20px rgba(127, 255, 212, 0.25)",
+        "glow-lg": "0 0 40px rgba(127, 255, 212, 0.35)",
+        "glow-xl": "0 0 60px rgba(127, 255, 212, 0.45)",
+        "glow-brand": "0 0 20px rgba(139, 92, 246, 0.3)",
+        "glow-fire": "0 0 20px rgba(255, 107, 53, 0.3)",
+        "glow-gold": "0 0 20px rgba(255, 215, 0, 0.3)",
+        "glow-void": "0 0 20px rgba(153, 102, 255, 0.3)",
+
+        // Elevation
+        "elevation-1": "0 2px 8px rgba(0,0,0,0.2), 0 0 1px rgba(255,255,255,0.05)",
+        "elevation-2": "0 4px 16px rgba(0,0,0,0.3), 0 0 1px rgba(255,255,255,0.06)",
+        "elevation-3": "0 8px 32px rgba(0,0,0,0.4), 0 0 1px rgba(255,255,255,0.08)",
+        "elevation-4": "0 16px 64px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1)"
       },
 
-      // Animations
+      /* ==========================================
+         BACKGROUND IMAGES
+         ========================================== */
+      backgroundImage: {
+        "cosmic-gradient": "linear-gradient(135deg, #0b0e14 0%, #1a2332 100%)",
+        "cosmic-mesh": "radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.03) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(153, 102, 255, 0.03) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(120, 166, 255, 0.03) 0%, transparent 50%)",
+        "aurora": "linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(127, 255, 212, 0.06) 33%, rgba(120, 166, 255, 0.08) 66%, rgba(255, 215, 0, 0.04) 100%)",
+        "gradient-crystal": "linear-gradient(135deg, #7fffd4 0%, #99ffe0 100%)",
+        "gradient-fire": "linear-gradient(135deg, #ff6b35 0%, #ffd700 100%)",
+        "gradient-void": "linear-gradient(135deg, #9966ff 0%, #b38cff 100%)",
+        "gradient-gold": "linear-gradient(135deg, #ffd700 0%, #ffe44d 100%)",
+        "gradient-brand": "linear-gradient(135deg, #8b5cf6 0%, #7fffd4 100%)"
+      },
+
+      /* ==========================================
+         ANIMATIONS
+         ========================================== */
       keyframes: {
-        // Standard UI animations
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" }
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 }
+          to: { height: "0" }
         },
         "fade-in": {
-          from: { opacity: 0 },
-          to: { opacity: 1 }
+          from: { opacity: "0" },
+          to: { opacity: "1" }
         },
-        "fade-out": {
-          from: { opacity: 1 },
-          to: { opacity: 0 }
+        "fade-in-up": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" }
         },
-        "slide-in": {
-          from: { transform: "translateY(20px)", opacity: 0 },
-          to: { transform: "translateY(0)", opacity: 1 }
-        },
-        "slide-out": {
-          from: { transform: "translateY(0)", opacity: 1 },
-          to: { transform: "translateY(20px)", opacity: 0 }
+        "fade-in-down": {
+          from: { opacity: "0", transform: "translateY(-20px)" },
+          to: { opacity: "1", transform: "translateY(0)" }
         },
         "scale-in": {
-          from: { transform: "scale(0.95)", opacity: 0 },
-          to: { transform: "scale(1)", opacity: 1 }
+          from: { opacity: "0", transform: "scale(0.95)" },
+          to: { opacity: "1", transform: "scale(1)" }
         },
-
-        // Magical effects
-        "luminor-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(91, 139, 217, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(91, 139, 217, 0.6)" }
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" }
         },
-        "cosmic-glow": {
-          "0%, 100%": { boxShadow: "0 0 40px rgba(91, 139, 217, 0.2), 0 0 80px rgba(91, 139, 217, 0.1)" },
-          "50%": { boxShadow: "0 0 60px rgba(91, 139, 217, 0.3), 0 0 120px rgba(91, 139, 217, 0.15)" }
+        "pulse-glow": {
+          "0%, 100%": { opacity: "1", filter: "brightness(1)" },
+          "50%": { opacity: "0.8", filter: "brightness(1.2)" }
+        },
+        "shimmer": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" }
         },
         "cosmic-drift": {
           "0%": { transform: "translate(0, 0)" },
@@ -232,91 +246,49 @@ module.exports = {
           "66%": { transform: "translate(-20px, 20px)" },
           "100%": { transform: "translate(0, 0)" }
         },
-        "shimmer": {
-          "0%": { backgroundPosition: "-1000px 0" },
-          "100%": { backgroundPosition: "1000px 0" }
+        "breathe": {
+          "0%, 100%": { transform: "scale(1)", opacity: "1" },
+          "50%": { transform: "scale(1.03)", opacity: "0.9" }
         },
-        "sparkle-burst": {
-          "0%": { opacity: 0, transform: "scale(0) rotate(0deg)" },
-          "50%": { opacity: 1, transform: "scale(1.2) rotate(180deg)" },
-          "100%": { opacity: 0, transform: "scale(0.8) rotate(360deg)" }
-        },
-        "pulse-scale": {
-          "0%, 100%": { transform: "scale(1)" },
-          "50%": { transform: "scale(1.05)" }
-        },
-
-        // Academy-specific
-        "water-flow": {
-          "0%, 100%": { transform: "translateY(0) scaleY(1)" },
-          "50%": { transform: "translateY(-10px) scaleY(1.05)" }
-        },
-        "fire-flicker": {
-          "0%, 100%": { opacity: 1, transform: "scaleY(1)" },
-          "25%": { opacity: 0.9, transform: "scaleY(1.05)" },
-          "50%": { opacity: 1, transform: "scaleY(0.98)" },
-          "75%": { opacity: 0.95, transform: "scaleY(1.02)" }
-        },
-        "prismatic-shift": {
-          "0%": { filter: "hue-rotate(0deg)" },
-          "100%": { filter: "hue-rotate(360deg)" }
+        "glow-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(127, 255, 212, 0.2)" },
+          "50%": { boxShadow: "0 0 40px rgba(127, 255, 212, 0.4)" }
         }
       },
 
       animation: {
-        // Standard
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
-        "fade-out": "fade-out 0.2s ease-out",
-        "slide-in": "slide-in 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
-        "slide-out": "slide-out 0.3s cubic-bezier(0.4, 0, 1, 1)",
+        "fade-in-up": "fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+        "fade-in-down": "fade-in-down 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
         "scale-in": "scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
-
-        // Magical
-        "luminor-glow": "luminor-glow 3s ease-in-out infinite",
-        "cosmic-glow": "cosmic-glow 8s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "shimmer": "shimmer 2s linear infinite",
         "cosmic-drift": "cosmic-drift 20s ease-in-out infinite",
-        "shimmer": "shimmer 2s ease-in-out infinite",
-        "sparkle": "sparkle-burst 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "pulse": "pulse-scale 2s cubic-bezier(0.4, 0, 0.2, 1) infinite",
-
-        // Academy
-        "water-flow": "water-flow 4s ease-in-out infinite",
-        "fire-flicker": "fire-flicker 2s ease-in-out infinite",
-        "prismatic": "prismatic-shift 6s linear infinite"
+        "breathe": "breathe 4s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "spin-slow": "spin 20s linear infinite"
       },
 
-      // Background Gradients
-      backgroundImage: {
-        "cosmic-gradient": "linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #1f2347 75%, #2a2d5a 100%)",
-        "luminous-gradient": "linear-gradient(135deg, #5c8bd9 0%, #7ba3e3 50%, #9bb5e8 100%)",
-        "cosmic-nebula": "radial-gradient(ellipse at center, #1f2347 0%, #16213e 50%, #0a0a0f 100%)",
-
-        // Academy gradients
-        "atlantean-gradient": "linear-gradient(135deg, #0d3a52 0%, #118ab2 100%)",
-        "atlantean-glow": "radial-gradient(circle, #c8e7f2 0%, #06aed5 50%, #0d3a52 100%)",
-        "draconic-gradient": "linear-gradient(135deg, #8b2635 0%, #e63946 50%, #f4a261 100%)",
-        "draconic-sky": "linear-gradient(180deg, #4a90e2 0%, #a8b8d8 100%)",
-        "creation-gradient": "linear-gradient(135deg, #ffffff 0%, #fff4e6 50%, #ffd700 100%)",
-        "creation-rainbow": "linear-gradient(90deg, #b794f6 0%, #818cf8 14.3%, #60a5fa 28.6%, #22d3ee 42.9%, #34d399 57.2%, #fbbf24 71.5%, #fb923c 85.8%, #fda4af 100%)"
-      },
-
-      // Transition Timing
+      /* ==========================================
+         TRANSITIONS
+         ========================================== */
       transitionTimingFunction: {
-        "magic": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "default": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "spring": "cubic-bezier(0.34, 1.56, 0.64, 1)",
         "cosmic": "cubic-bezier(0.22, 1, 0.36, 1)",
-        "glow": "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        "snappy": "cubic-bezier(0.2, 0, 0, 1)"
       },
 
-      // Transition Durations
       transitionDuration: {
-        instant: "100ms",
-        fast: "200ms",
-        normal: "300ms",
-        smooth: "500ms",
-        flowing: "800ms",
-        cosmic: "1200ms"
+        "instant": "100ms",
+        "fast": "150ms",
+        "normal": "250ms",
+        "smooth": "400ms",
+        "flowing": "600ms",
+        "cosmic": "1000ms"
       }
     }
   },

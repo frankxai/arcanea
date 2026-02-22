@@ -12,7 +12,6 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log error to error reporting service
     console.error('Application error:', error);
   }, [error]);
 
@@ -20,30 +19,30 @@ export default function Error({
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-16">
       {/* Error Icon with cosmic glow */}
       <div className="mb-8 relative">
-        <div className="absolute inset-0 animate-pulse blur-xl bg-draconic-crimson/30 rounded-full" />
-        <div className="relative bg-gradient-to-br from-draconic-crimson/20 to-draconic-gold/20 p-6 rounded-full border border-draconic-gold/30">
-          <AlertCircle className="w-16 h-16 text-draconic-crimson" />
+        <div className="absolute inset-0 animate-pulse blur-xl bg-fire/30 rounded-full" />
+        <div className="relative glass rounded-full p-6 border border-fire/30">
+          <AlertCircle className="w-16 h-16 text-fire" />
         </div>
       </div>
 
       {/* Error Message */}
-      <h1 className="text-3xl md:text-4xl font-cinzel font-bold text-atlantean-teal-aqua mb-4 text-center">
+      <h1 className="text-3xl md:text-4xl font-display font-bold text-crystal mb-4 text-center">
         Something Went Wrong
       </h1>
 
-      <p className="text-neutral-400 text-center max-w-md mb-2">
+      <p className="text-text-secondary text-center max-w-md mb-2">
         The cosmic energies have been disrupted. Our guardians are investigating the disturbance.
       </p>
 
       {/* Technical Details (only in development) */}
       {process.env.NODE_ENV === 'development' && error.message && (
-        <div className="mt-4 p-4 bg-neutral-900/50 border border-neutral-800 rounded-lg max-w-2xl w-full">
-          <p className="font-jetbrains-mono text-xs text-neutral-500 mb-2">Error Details:</p>
-          <p className="font-jetbrains-mono text-sm text-red-400 break-all">
+        <div className="mt-4 p-4 glass-subtle rounded-lg max-w-2xl w-full border border-fire/20">
+          <p className="font-mono text-xs text-text-muted mb-2">Error Details:</p>
+          <p className="font-mono text-sm text-fire break-all">
             {error.message}
           </p>
           {error.digest && (
-            <p className="font-jetbrains-mono text-xs text-neutral-600 mt-2">
+            <p className="font-mono text-xs text-text-muted mt-2">
               Error ID: {error.digest}
             </p>
           )}
@@ -54,7 +53,7 @@ export default function Error({
       <div className="flex flex-col sm:flex-row gap-4 mt-8">
         <button
           onClick={reset}
-          className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-atlantean-teal-aqua/20 to-atlantean-teal-deep/20 hover:from-atlantean-teal-aqua/30 hover:to-atlantean-teal-deep/30 border border-atlantean-teal-aqua/50 rounded-lg text-atlantean-teal-aqua font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(127,255,212,0.3)]"
+          className="group flex items-center gap-2 px-6 py-3 glass rounded-xl text-crystal font-semibold hover:shadow-glow-md transition-all"
         >
           <RefreshCcw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
           Try Again
@@ -62,7 +61,7 @@ export default function Error({
 
         <Link
           href="/"
-          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cosmic-blue/20 to-cosmic-purple/20 hover:from-cosmic-blue/30 hover:to-cosmic-purple/30 border border-cosmic-blue/50 rounded-lg text-cosmic-blue font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(120,166,255,0.3)]"
+          className="flex items-center gap-2 px-6 py-3 glass rounded-xl text-water font-semibold hover:shadow-glow-md transition-all"
         >
           <Home className="w-5 h-5" />
           Return Home
@@ -71,8 +70,8 @@ export default function Error({
 
       {/* Helpful Suggestions */}
       <div className="mt-12 max-w-md text-center">
-        <p className="text-sm text-neutral-500 mb-3">You might want to try:</p>
-        <ul className="text-sm text-neutral-400 space-y-2">
+        <p className="text-sm text-text-muted mb-3">You might want to try:</p>
+        <ul className="text-sm text-text-secondary space-y-2">
           <li>Refreshing the page</li>
           <li>Checking your internet connection</li>
           <li>Clearing your browser cache</li>

@@ -32,7 +32,7 @@ export function Navigation({ academy = 'default', className }: NavigationProps) 
         className={cn(
           'sticky top-0 z-50 w-full transition-all duration-300',
           isScrolled || isMobileMenuOpen
-            ? 'glass shadow-lg border-b border-cosmic-border'
+            ? 'glass shadow-lg border-b border-white/10'
             : 'bg-transparent',
           className
         )}
@@ -43,7 +43,7 @@ export function Navigation({ academy = 'default', className }: NavigationProps) 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group z-50 relative focus:outline-none focus:ring-2 focus:ring-atlantean-teal rounded-lg p-1 -m-1" aria-label="Arcanea home">
+            <Link href="/" className="flex items-center gap-3 group z-50 relative focus:outline-none focus:ring-2 focus:ring-crystal rounded-lg p-1 -m-1" aria-label="Arcanea home">
               <motion.div
                 className="text-2xl"
                 whileHover={{ rotate: 360 }}
@@ -52,7 +52,7 @@ export function Navigation({ academy = 'default', className }: NavigationProps) 
               >
                 ✨
               </motion.div>
-              <span className="text-xl font-bold bg-gradient-to-r from-gold-bright via-atlantean-teal to-draconic-crimson bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-gradient-to-r from-brand-gold via-crystal to-fire bg-clip-text text-transparent">
                 Arcanea
               </span>
             </Link>
@@ -80,7 +80,7 @@ export function Navigation({ academy = 'default', className }: NavigationProps) 
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 text-text-primary z-50 relative focus:outline-none focus:ring-2 focus:ring-atlantean-teal rounded-lg"
+              className="md:hidden p-2 text-text-primary z-50 relative focus:outline-none focus:ring-2 focus:ring-crystal rounded-lg"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isMobileMenuOpen}
@@ -126,7 +126,7 @@ export function Navigation({ academy = 'default', className }: NavigationProps) 
             <MobileNavLink href="/academies" onClick={() => setIsMobileMenuOpen(false)}>Academies</MobileNavLink>
             <MobileNavLink href="/library" onClick={() => setIsMobileMenuOpen(false)}>Library</MobileNavLink>
           </nav>
-          <div className="w-16 h-px bg-cosmic-border" aria-hidden="true" />
+          <div className="w-16 h-px bg-white/10" aria-hidden="true" />
           <div className="flex flex-col gap-4 w-full max-w-xs">
             <Button variant="ghost" className="w-full justify-center" onClick={() => setIsMobileMenuOpen(false)}>
               Sign In
@@ -146,7 +146,7 @@ function MobileNavLink({ href, onClick, children }: { href: string; onClick: () 
     <Link
       href={href}
       onClick={onClick}
-      className="text-2xl font-display font-medium text-text-secondary hover:text-text-primary hover:text-atlantean-teal transition-colors"
+      className="text-2xl font-display font-medium text-text-secondary hover:text-text-primary hover:text-crystal transition-colors"
     >
       {children}
     </Link>
@@ -162,11 +162,11 @@ function NavLink({ href, children }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors relative group focus:outline-none focus:ring-2 focus:ring-atlantean-teal rounded px-2 py-1 -mx-2 -my-1"
+      className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors relative group focus:outline-none focus:ring-2 focus:ring-crystal rounded px-2 py-1 -mx-2 -my-1"
     >
       {children}
       <motion.div
-        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-atlantean-teal via-gold-bright to-draconic-crimson"
+        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-crystal via-brand-gold to-fire"
         initial={{ scaleX: 0 }}
         whileHover={{ scaleX: 1 }}
         transition={{ duration: 0.3 }}

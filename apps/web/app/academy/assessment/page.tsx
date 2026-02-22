@@ -217,7 +217,7 @@ export default function AssessmentPage() {
           <div className="bg-cosmic-surface/50 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
             {/* Header */}
             <div className="relative p-8 text-center border-b border-white/10">
-              <div className="absolute inset-0 bg-gradient-to-b from-gold-bright/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-brand-gold/10 to-transparent" />
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -249,7 +249,7 @@ export default function AssessmentPage() {
                     key={i}
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       answers[i] >= 3
-                        ? 'bg-gold-bright text-cosmic-deep'
+                        ? 'bg-brand-gold text-cosmic-deep'
                         : 'bg-white/10 text-text-muted'
                     }`}
                     style={answers[i] >= 3 ? { boxShadow: '0 0 10px rgba(255,215,0,0.5)' } : {}}
@@ -320,7 +320,7 @@ export default function AssessmentPage() {
                 </Link>
                 <Link
                   href="/luminors"
-                  className="flex-1 py-3 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep text-center font-semibold hover:shadow-[0_0_30px_rgba(127,255,212,0.4)] transition-all"
+                  className="flex-1 py-3 rounded-xl bg-crystal text-cosmic-deep text-center font-semibold hover:shadow-[0_0_30px_rgba(127,255,212,0.4)] transition-all"
                 >
                   Meet Your Luminor
                 </Link>
@@ -352,7 +352,7 @@ export default function AssessmentPage() {
           </div>
           <div className="h-2 bg-white/10 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-atlantean-teal-aqua to-gold-bright rounded-full"
+              className="h-full bg-gradient-to-r from-crystal to-brand-gold rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
             />
@@ -377,7 +377,7 @@ export default function AssessmentPage() {
                   onClick={() => handleSelectOption(index)}
                   className={`w-full p-4 rounded-xl border text-left transition-all ${
                     selectedOption === index
-                      ? 'border-atlantean-teal-aqua bg-atlantean-teal-aqua/10'
+                      ? 'border-crystal bg-crystal/10'
                       : 'border-white/10 hover:border-white/30 hover:bg-white/5'
                   }`}
                 >
@@ -385,7 +385,7 @@ export default function AssessmentPage() {
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
                         selectedOption === index
-                          ? 'border-atlantean-teal-aqua bg-atlantean-teal-aqua'
+                          ? 'border-crystal bg-crystal'
                           : 'border-white/30'
                       }`}
                     >
@@ -412,7 +412,7 @@ export default function AssessmentPage() {
               <button
                 onClick={handleNext}
                 disabled={selectedOption === null}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-crystal text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 {currentQuestion === ASSESSMENT_QUESTIONS.length - 1 ? 'Complete' : 'Next'}
                 <ArrowRight className="w-4 h-4" />

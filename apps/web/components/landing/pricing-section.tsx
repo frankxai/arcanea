@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Check, Sparkles, Zap, Crown, ArrowRight } from 'lucide-react';
+import { Check, Sparkles, Zap, Crown, ArrowRight, Star } from 'lucide-react';
 import Link from 'next/link';
 
 const PLANS = [
@@ -75,8 +75,8 @@ export function PricingSection() {
     <section ref={ref} id="pricing" className="py-32 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-atlantean-teal-aqua/10 to-creation-prism-purple/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-gradient-to-r from-gold-bright/10 to-draconic-crimson/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-crystal/10 to-brand-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-gradient-to-r from-brand-gold/10 to-arcane-fire/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -84,26 +84,27 @@ export function PricingSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-bright/10 border border-gold-bright/20 mb-6">
-            <Sparkles className="w-4 h-4 text-gold-bright" />
-            <span className="text-sm font-medium text-gold-bright">Simple Pricing</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-gold/20 mb-6">
+            <Sparkles className="w-4 h-4 text-brand-gold" />
+            <span className="font-sans text-sm font-medium text-brand-gold">Simple Pricing</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
+          <h2 className="font-display text-fluid-4xl font-bold mb-6">
             Choose your creative path
           </h2>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-10">
+          <p className="font-sans text-fluid-lg text-text-secondary max-w-2xl mx-auto mb-10">
             Start free, upgrade when you're ready. All plans include core Arcanea features.
           </p>
 
           {/* Billing toggle */}
-          <div className="inline-flex items-center gap-4 p-1.5 rounded-full bg-cosmic-surface/50 border border-white/10">
+          <div className="inline-flex items-center gap-4 p-1.5 rounded-full glass border border-white/10">
             <button
               onClick={() => setIsYearly(false)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
+              className={`px-6 py-2.5 rounded-full font-sans text-sm font-medium transition-all duration-smooth ${
                 !isYearly
-                  ? 'bg-white text-cosmic-deep'
+                  ? 'bg-white text-cosmic-void'
                   : 'text-text-muted hover:text-white'
               }`}
             >
@@ -111,9 +112,9 @@ export function PricingSection() {
             </button>
             <button
               onClick={() => setIsYearly(true)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+              className={`px-6 py-2.5 rounded-full font-sans text-sm font-medium transition-all duration-smooth flex items-center gap-2 ${
                 isYearly
-                  ? 'bg-white text-cosmic-deep'
+                  ? 'bg-white text-cosmic-void'
                   : 'text-text-muted hover:text-white'
               }`}
             >
@@ -126,7 +127,7 @@ export function PricingSection() {
         </motion.div>
 
         {/* Pricing cards */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8 items-start">
           {PLANS.map((plan, i) => {
             const Icon = i === 0 ? Zap : i === 1 ? Sparkles : Crown;
             const price = isYearly ? plan.price.yearly : plan.price.monthly;
@@ -137,93 +138,98 @@ export function PricingSection() {
                 key={plan.name}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.1 + i * 0.1 }}
-                className={`relative rounded-3xl p-8 ${
-                  plan.featured
-                    ? 'bg-gradient-to-b from-atlantean-teal-aqua/20 to-cosmic-surface/50 border-2 border-atlantean-teal-aqua/30 scale-105 lg:scale-110'
-                    : 'bg-cosmic-surface/30 border border-white/10'
-                }`}
+                transition={{ delay: 0.1 + i * 0.1, duration: 0.6, ease: 'easeOut' }}
+                className={`relative ${plan.featured ? 'lg:-mt-4' : ''}`}
               >
-                {/* Featured badge */}
+                {/* Crystal POPULAR badge */}
                 {plan.badge && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-atlantean-teal-aqua text-cosmic-deep text-sm font-semibold">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-crystal to-brand-primary text-cosmic-void text-sm font-sans font-semibold shadow-glow-sm">
+                    <Star className="w-3.5 h-3.5 fill-cosmic-void" />
                     {plan.badge}
                   </div>
                 )}
 
-                {/* Plan header */}
-                <div className="mb-8">
-                  <div
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                      plan.featured
-                        ? 'bg-atlantean-teal-aqua/20'
-                        : 'bg-white/5'
-                    }`}
-                  >
-                    <Icon
-                      className={`w-6 h-6 ${
-                        plan.featured ? 'text-atlantean-teal-aqua' : 'text-white'
-                      }`}
-                    />
-                  </div>
-                  <h3 className="text-2xl font-display font-bold mb-2">{plan.name}</h3>
-                  <p className="text-text-secondary">{plan.description}</p>
-                </div>
-
-                {/* Price */}
-                <div className="mb-8">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-5xl font-display font-bold">
-                      {price === 0 ? 'Free' : `$${price}`}
-                    </span>
-                    {price > 0 && (
-                      <span className="text-text-muted">{period}</span>
-                    )}
-                  </div>
-                  {isYearly && price > 0 && (
-                    <p className="text-sm text-text-muted mt-2">
-                      ${Math.round(price / 12)}/month billed annually
-                    </p>
-                  )}
-                </div>
-
-                {/* CTA */}
-                <Link
-                  href={plan.href}
-                  className={`w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold transition-all mb-8 ${
+                <div
+                  className={`rounded-3xl p-8 h-full ${
                     plan.featured
-                      ? 'bg-atlantean-teal-aqua text-cosmic-deep hover:bg-atlantean-teal-aqua/90'
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      ? 'liquid-glass-elevated border-gradient shadow-glow-md'
+                      : 'glass'
                   }`}
                 >
-                  {plan.cta}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-
-                {/* Features */}
-                <div className="space-y-4">
-                  {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-start gap-3">
-                      <div
-                        className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                          plan.featured
-                            ? 'bg-atlantean-teal-aqua/20 text-atlantean-teal-aqua'
-                            : 'bg-white/10 text-white'
+                  {/* Plan header */}
+                  <div className="mb-8">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+                        plan.featured
+                          ? 'bg-crystal/20'
+                          : 'glass'
+                      }`}
+                    >
+                      <Icon
+                        className={`w-6 h-6 ${
+                          plan.featured ? 'text-crystal' : 'text-text-secondary'
                         }`}
-                      >
-                        <Check className="w-3 h-3" />
-                      </div>
-                      <span className="text-sm text-text-secondary">{feature}</span>
+                      />
                     </div>
-                  ))}
-                  {plan.limits.map((limit) => (
-                    <div key={limit} className="flex items-start gap-3 opacity-50">
-                      <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-white/5">
-                        <span className="w-2 h-0.5 bg-text-muted rounded-full" />
-                      </div>
-                      <span className="text-sm text-text-muted">{limit}</span>
+                    <h3 className="font-display text-fluid-2xl font-bold mb-2">{plan.name}</h3>
+                    <p className="font-sans text-text-secondary">{plan.description}</p>
+                  </div>
+
+                  {/* Price */}
+                  <div className="mb-8">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-display text-fluid-3xl font-bold">
+                        {price === 0 ? 'Free' : `$${price}`}
+                      </span>
+                      {price > 0 && (
+                        <span className="font-sans text-text-muted">{period}</span>
+                      )}
                     </div>
-                  ))}
+                    {isYearly && price > 0 && (
+                      <p className="font-sans text-sm text-text-muted mt-2">
+                        ${Math.round(price / 12)}/month billed annually
+                      </p>
+                    )}
+                  </div>
+
+                  {/* CTA */}
+                  <Link
+                    href={plan.href}
+                    className={`w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-sans font-semibold transition-all duration-smooth mb-8 ${
+                      plan.featured
+                        ? 'bg-gradient-to-r from-crystal to-brand-primary text-cosmic-void shadow-glow-brand hover:shadow-glow-lg'
+                        : 'glass border border-white/10 text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {plan.cta}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  {/* Features */}
+                  <div className="space-y-4">
+                    {plan.features.map((feature) => (
+                      <div key={feature} className="flex items-start gap-3">
+                        <div
+                          className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                            plan.featured
+                              ? 'bg-crystal/20 text-crystal'
+                              : 'bg-white/10 text-text-secondary'
+                          }`}
+                        >
+                          <Check className="w-3 h-3" />
+                        </div>
+                        <span className="font-sans text-sm text-text-secondary">{feature}</span>
+                      </div>
+                    ))}
+                    {plan.limits.map((limit) => (
+                      <div key={limit} className="flex items-start gap-3 opacity-50">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 glass">
+                          <span className="w-2 h-0.5 bg-text-muted rounded-full" />
+                        </div>
+                        <span className="font-sans text-sm text-text-muted">{limit}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             );
@@ -234,15 +240,15 @@ export function PricingSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
           className="mt-16 text-center"
         >
-          <p className="text-text-muted mb-4">
+          <p className="font-sans text-text-muted mb-4">
             Need custom solutions for your team or enterprise?
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 text-atlantean-teal-aqua hover:underline"
+            className="inline-flex items-center gap-2 font-sans text-crystal hover:underline transition-colors"
           >
             Contact Sales
             <ArrowRight className="w-4 h-4" />

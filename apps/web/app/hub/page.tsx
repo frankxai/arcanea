@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { Radio, BookOpen, Wrench, Zap, Rocket, Star, Library, MessageCircle } from "lucide-react";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Resource Hub | Arcanea",
   description: "Your central hub for Arcanea resources, updates, guides, and tools. Everything you need to master creative intelligence.",
+};
+
+const SECTION_ICONS: Record<string, ReactNode> = {
+  updates: <Radio className="w-6 h-6" />,
+  guides: <BookOpen className="w-6 h-6" />,
+  tools: <Wrench className="w-6 h-6" />,
+  api: <Zap className="w-6 h-6" />,
 };
 
 const SECTIONS = [
@@ -11,7 +20,6 @@ const SECTIONS = [
     id: "updates",
     title: "Updates",
     description: "Daily activity log and platform announcements",
-    icon: "📡",
     href: "/hub/updates",
     color: "#8B5CF6",
     stats: "Live feed",
@@ -20,7 +28,6 @@ const SECTIONS = [
     id: "guides",
     title: "Guides",
     description: "Step-by-step tutorials for mastering Arcanea",
-    icon: "📖",
     href: "/hub/guides",
     color: "#10B981",
     stats: "12 guides",
@@ -29,7 +36,6 @@ const SECTIONS = [
     id: "tools",
     title: "Tools",
     description: "Available creation tools and integrations",
-    icon: "🛠️",
     href: "/hub/tools",
     color: "#F59E0B",
     stats: "8 tools",
@@ -38,18 +44,24 @@ const SECTIONS = [
     id: "api",
     title: "API Reference",
     description: "Developer documentation for Arcanea APIs",
-    icon: "⚡",
     href: "/hub/api",
     color: "#06B6D4",
     stats: "Coming soon",
   },
 ];
 
+const QUICK_LINK_ICONS: Record<string, ReactNode> = {
+  "Getting Started": <Rocket className="w-5 h-5 text-crystal" />,
+  "Luminor Guide": <Star className="w-5 h-5 text-brand-gold" />,
+  "Library Tour": <Library className="w-5 h-5 text-brand-primary" />,
+  "Join Discord": <MessageCircle className="w-5 h-5 text-water" />,
+};
+
 const QUICK_LINKS = [
-  { label: "Getting Started", href: "/hub/guides/getting-started", icon: "🚀" },
-  { label: "Luminor Guide", href: "/hub/guides/luminors", icon: "🌟" },
-  { label: "Library Tour", href: "/library", icon: "📚" },
-  { label: "Join Discord", href: "https://discord.gg/arcanea", icon: "💬", external: true },
+  { label: "Getting Started", href: "/hub/guides/getting-started" },
+  { label: "Luminor Guide", href: "/hub/guides/luminors" },
+  { label: "Library Tour", href: "/library" },
+  { label: "Join Discord", href: "https://discord.gg/arcanea", external: true },
 ];
 
 export default function HubPage() {
@@ -63,15 +75,15 @@ export default function HubPage() {
       <main className="max-w-7xl mx-auto px-6 py-20">
         {/* Header */}
         <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 mb-6">
-            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-            <span className="text-sm text-purple-400 font-mono tracking-wider">RESOURCE HUB</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-primary/30 mb-6">
+            <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+            <span className="text-sm text-brand-primary font-mono tracking-wider">RESOURCE HUB</span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+          <h1 className="text-fluid-3xl font-display font-bold mb-4">
             Everything you need
           </h1>
-          <p className="text-xl text-text-secondary max-w-2xl">
+          <p className="text-fluid-lg text-text-secondary max-w-2xl font-sans">
             Your central hub for updates, guides, tools, and documentation.
             Master Arcanea with everything in one place.
           </p>
@@ -83,7 +95,7 @@ export default function HubPage() {
             <Link
               key={section.id}
               href={section.href}
-              className="group relative p-8 rounded-2xl border border-white/10 bg-cosmic-surface/30 overflow-hidden transition-all hover:border-white/20 hover:shadow-[0_0_40px_rgba(139,92,246,0.15)]"
+              className="group relative glass rounded-2xl p-8 overflow-hidden glow-card hover-lift transition-all"
             >
               {/* Gradient overlay on hover */}
               <div
@@ -97,10 +109,10 @@ export default function HubPage() {
                 {/* Icon and Stats */}
                 <div className="flex items-start justify-between mb-4">
                   <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl"
-                    style={{ backgroundColor: `${section.color}20` }}
+                    className="w-14 h-14 rounded-xl flex items-center justify-center"
+                    style={{ backgroundColor: `${section.color}20`, color: section.color }}
                   >
-                    {section.icon}
+                    {SECTION_ICONS[section.id]}
                   </div>
                   <span
                     className="text-xs font-mono px-3 py-1 rounded-full"
@@ -115,11 +127,11 @@ export default function HubPage() {
 
                 {/* Content */}
                 <h2 className="text-xl font-display font-semibold mb-2">{section.title}</h2>
-                <p className="text-text-secondary text-sm">{section.description}</p>
+                <p className="text-text-secondary text-sm font-sans">{section.description}</p>
 
                 {/* Arrow indicator */}
                 <div className="mt-6 flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: section.color }}>
-                  <span>Explore</span>
+                  <span className="font-sans">Explore</span>
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -131,7 +143,7 @@ export default function HubPage() {
 
         {/* Quick Links */}
         <div className="mb-16">
-          <h2 className="text-2xl font-display font-semibold mb-6">Quick Links</h2>
+          <h2 className="text-fluid-2xl font-display font-semibold mb-6">Quick Links</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {QUICK_LINKS.map((link) => (
               <Link
@@ -139,10 +151,10 @@ export default function HubPage() {
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-cosmic-surface/20 hover:border-atlantean-teal-aqua/30 hover:bg-atlantean-teal-aqua/5 transition-all"
+                className="flex items-center gap-3 p-4 glass rounded-xl hover:border-crystal/30 hover:bg-crystal/5 transition-all"
               >
-                <span className="text-xl">{link.icon}</span>
-                <span className="text-sm font-medium">{link.label}</span>
+                {QUICK_LINK_ICONS[link.label]}
+                <span className="text-sm font-medium font-sans">{link.label}</span>
                 {link.external && (
                   <svg className="w-3 h-3 ml-auto text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

@@ -51,6 +51,49 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        // Brand Colors (Design Bible)
+        brand: {
+          primary: '#8b5cf6',
+          accent: '#7fffd4',
+          gold: '#ffd700',
+          secondary: '#78a6ff',
+        },
+        // Elemental Accent Tokens
+        crystal: {
+          DEFAULT: '#7fffd4',
+          bright: '#99ffe0',
+          deep: '#5ce6b8',
+        },
+        fire: {
+          DEFAULT: '#ff6b35',
+          bright: '#ff8c5a',
+          deep: '#d94e1f',
+        },
+        water: {
+          DEFAULT: '#78a6ff',
+          bright: '#9dbfff',
+          deep: '#5a8ce6',
+        },
+        'void-el': {
+          DEFAULT: '#9966ff',
+          bright: '#b38cff',
+          deep: '#7a4dcc',
+        },
+        wind: {
+          DEFAULT: '#c8d6e5',
+          bright: '#dfe8f0',
+          deep: '#a4b8cc',
+        },
+        earth: {
+          DEFAULT: '#4a7c59',
+          bright: '#6b9e7a',
+          deep: '#2d5e3a',
+        },
+        // Arcanean Aliases (used across 40+ components)
+        'atlantean-teal-aqua': '#7fffd4',
+        arcanean: {
+          text: 'hsl(var(--text-primary))',
+        },
         // Arcanean Cosmic Colors
         cosmic: {
           void: 'hsl(var(--cosmic-void))',
@@ -153,6 +196,13 @@ const config: Config = {
         'draconic-gradient': 'linear-gradient(135deg, hsl(var(--draconic-crimson)) 0%, hsl(var(--draconic-gold)) 50%, hsl(var(--draconic-sky)) 100%)',
         'creation-gradient': 'linear-gradient(135deg, hsl(var(--creation-gold)) 0%, hsl(var(--creation-prism-blue)) 50%, hsl(var(--creation-prism-purple)) 100%)',
         'prism-gradient': 'linear-gradient(90deg, hsl(var(--creation-prism-red)), hsl(var(--creation-prism-orange)), hsl(var(--creation-prism-yellow)), hsl(var(--creation-prism-green)), hsl(var(--creation-prism-cyan)), hsl(var(--creation-prism-blue)), hsl(var(--creation-prism-purple)))',
+        // Design Bible gradient backgrounds
+        'gradient-crystal': 'linear-gradient(135deg, #7fffd4, #99ffe0)',
+        'gradient-fire': 'linear-gradient(135deg, #ff6b35, #ffd700)',
+        'gradient-void': 'linear-gradient(135deg, #9966ff, #b38cff)',
+        'gradient-gold': 'linear-gradient(135deg, #ffd700, #ffe44d)',
+        'gradient-brand': 'linear-gradient(135deg, #8b5cf6, #7fffd4)',
+        'gradient-water': 'linear-gradient(135deg, #78a6ff, #9dbfff)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -328,6 +378,35 @@ const config: Config = {
           '0%': { transform: 'scale(0.9)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
+        // Design Bible keyframes
+        'iridescent-shift': {
+          '0%': { transform: 'translateX(-100%) rotate(45deg)' },
+          '50%': { transform: 'translateX(100%) rotate(45deg)' },
+          '100%': { transform: 'translateX(-100%) rotate(45deg)' },
+        },
+        'cosmic-drift': {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '25%': { transform: 'translate(10px, -10px) scale(1.02)' },
+          '50%': { transform: 'translate(-5px, 5px) scale(0.98)' },
+          '75%': { transform: 'translate(5px, 10px) scale(1.01)' },
+        },
+        'breathe': {
+          '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+          '50%': { opacity: '1', transform: 'scale(1.05)' },
+        },
+        'glow-pulse': {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(127,255,212,0.15)' },
+          '50%': { boxShadow: '0 0 40px rgba(127,255,212,0.35)' },
+        },
+        'aurora-flow': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+        'sparkle': {
+          '0%, 100%': { opacity: '0', transform: 'scale(0)' },
+          '50%': { opacity: '1', transform: 'scale(1)' },
+        },
       },
       animation: {
         // Cosmic
@@ -360,12 +439,21 @@ const config: Config = {
         'slide-in-from-left': 'slide-in-from-left 0.3s ease-out',
         'slide-in-from-right': 'slide-in-from-right 0.3s ease-out',
         'scale-in': 'scale-in 0.2s ease-out',
+        // Design Bible animations
+        'iridescent-shift': 'iridescent-shift 8s ease-in-out infinite',
+        'cosmic-drift': 'cosmic-drift 20s ease-in-out infinite',
+        'breathe': 'breathe 4s ease-in-out infinite',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+        'aurora-flow': 'aurora-flow 15s ease infinite',
+        'sparkle': 'sparkle 2s ease-in-out infinite',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
-        cinzel: ['Cinzel', 'serif'], // Elegant display font for headings
-        crimson: ['Crimson Pro', 'serif'], // Refined body font
+        sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['var(--font-cinzel)', 'Cinzel', 'serif'],
+        body: ['var(--font-crimson-pro)', 'Crimson Pro', 'serif'],
+        mono: ['var(--font-jetbrains-mono)', 'JetBrains Mono', 'monospace'],
+        cinzel: ['var(--font-cinzel)', 'Cinzel', 'serif'],
+        crimson: ['var(--font-crimson-pro)', 'Crimson Pro', 'serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],
@@ -378,6 +466,16 @@ const config: Config = {
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
         '5xl': ['3rem', { lineHeight: '1' }],
         '6xl': ['3.75rem', { lineHeight: '1' }],
+        // Fluid Typography (Design Bible)
+        'fluid-xs': ['clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)', { lineHeight: '1.5' }],
+        'fluid-sm': ['clamp(0.875rem, 0.8rem + 0.35vw, 1rem)', { lineHeight: '1.5' }],
+        'fluid-base': ['clamp(1rem, 0.9rem + 0.5vw, 1.125rem)', { lineHeight: '1.6' }],
+        'fluid-lg': ['clamp(1.125rem, 1rem + 0.6vw, 1.25rem)', { lineHeight: '1.6' }],
+        'fluid-xl': ['clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)', { lineHeight: '1.4' }],
+        'fluid-2xl': ['clamp(1.5rem, 1.2rem + 1.5vw, 2rem)', { lineHeight: '1.3' }],
+        'fluid-3xl': ['clamp(1.875rem, 1.5rem + 1.9vw, 2.5rem)', { lineHeight: '1.2' }],
+        'fluid-4xl': ['clamp(2.25rem, 1.8rem + 2.25vw, 3rem)', { lineHeight: '1.1' }],
+        'fluid-hero': ['clamp(3rem, 2rem + 5vw, 5rem)', { lineHeight: '0.9' }],
       },
       spacing: {
         '18': '4.5rem',
@@ -388,13 +486,36 @@ const config: Config = {
         xs: '2px',
       },
       boxShadow: {
-        'glow-sm': '0 0 10px rgba(255, 204, 51, 0.3)',
-        'glow-md': '0 0 20px rgba(255, 204, 51, 0.4)',
-        'glow-lg': '0 0 30px rgba(255, 204, 51, 0.5)',
-        'glow-xl': '0 0 40px rgba(255, 204, 51, 0.6)',
+        // Crystal glows (brand signature)
+        'glow-sm': '0 0 10px rgba(127, 255, 212, 0.15)',
+        'glow-md': '0 0 20px rgba(127, 255, 212, 0.25)',
+        'glow-lg': '0 0 40px rgba(127, 255, 212, 0.35)',
+        'glow-xl': '0 0 60px rgba(127, 255, 212, 0.45)',
+        'glow-brand': '0 0 20px rgba(139, 92, 246, 0.3)',
+        'glow-fire': '0 0 20px rgba(255, 107, 53, 0.3)',
+        'glow-gold': '0 0 20px rgba(255, 215, 0, 0.3)',
+        'glow-void': '0 0 20px rgba(153, 102, 255, 0.3)',
+        // Academy-specific
         'atlantean': '0 0 25px rgba(38, 204, 204, 0.5)',
         'draconic': '0 0 25px rgba(255, 198, 26, 0.5)',
         'creation': '0 0 25px rgba(255, 230, 128, 0.5)',
+        // Elevation scale
+        'elevation-1': '0 2px 8px rgba(0,0,0,0.2), 0 0 1px rgba(255,255,255,0.05)',
+        'elevation-2': '0 4px 16px rgba(0,0,0,0.3), 0 0 1px rgba(255,255,255,0.06)',
+        'elevation-3': '0 8px 32px rgba(0,0,0,0.4), 0 0 1px rgba(255,255,255,0.08)',
+        'elevation-4': '0 16px 64px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1)',
+      },
+      transitionTimingFunction: {
+        'spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        'cosmic': 'cubic-bezier(0.22, 1, 0.36, 1)',
+        'snappy': 'cubic-bezier(0.2, 0, 0, 1)',
+      },
+      transitionDuration: {
+        'instant': '100ms',
+        'fast': '150ms',
+        'smooth': '400ms',
+        'flowing': '600ms',
+        'cosmic': '1000ms',
       },
     },
   },

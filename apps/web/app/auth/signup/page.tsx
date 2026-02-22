@@ -71,8 +71,8 @@ export default function SignupPage() {
           animate={{ opacity: 1, scale: 1 }}
           className="text-center max-w-md"
         >
-          <div className="w-20 h-20 rounded-full bg-atlantean-teal-aqua/20 flex items-center justify-center mx-auto mb-6">
-            <Check className="w-10 h-10 text-atlantean-teal-aqua" />
+          <div className="w-20 h-20 rounded-full bg-crystal/20 flex items-center justify-center mx-auto mb-6 shadow-glow-sm">
+            <Check className="w-10 h-10 text-crystal" />
           </div>
           <h1 className="text-2xl font-display font-bold mb-4">Check Your Email</h1>
           <p className="text-text-secondary mb-8">
@@ -81,7 +81,7 @@ export default function SignupPage() {
           </p>
           <Link
             href="/auth/login"
-            className="inline-block px-8 py-3 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold hover:shadow-[0_0_30px_rgba(127,255,212,0.4)] transition-all"
+            className="inline-block px-8 py-3 rounded-xl bg-brand-primary text-white font-semibold shadow-glow-brand hover:scale-[1.02] transition-all"
           >
             Back to Sign In
           </Link>
@@ -93,9 +93,9 @@ export default function SignupPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 py-12">
       {/* Background effects */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-creation-prism-purple/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-atlantean-teal-aqua/10 rounded-full blur-3xl" />
+      <div className="fixed inset-0 pointer-events-none bg-mesh-gradient">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-crystal/8 rounded-full blur-3xl" />
       </div>
 
       <motion.div
@@ -113,11 +113,11 @@ export default function SignupPage() {
         </Link>
 
         {/* Card */}
-        <div className="bg-cosmic-surface/50 backdrop-blur-xl rounded-3xl border border-white/10 p-8">
+        <div className="liquid-glass rounded-3xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-creation-prism-purple to-atlantean-teal-aqua flex items-center justify-center mx-auto mb-4">
-              <Sparkles className="w-8 h-8 text-cosmic-deep" />
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary to-crystal flex items-center justify-center mx-auto mb-4 shadow-glow-brand">
+              <Sparkles className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-2xl font-display font-bold mb-2">Begin Your Journey</h1>
             <p className="text-text-secondary">Create your Arcanea account</p>
@@ -188,7 +188,7 @@ export default function SignupPage() {
                   placeholder="Choose a unique username"
                   required
                   minLength={3}
-                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua/20 transition-all"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none focus:ring-2 focus:ring-crystal/20 transition-all"
                 />
               </div>
             </div>
@@ -203,7 +203,7 @@ export default function SignupPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua/20 transition-all"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none focus:ring-2 focus:ring-crystal/20 transition-all"
                 />
               </div>
             </div>
@@ -218,7 +218,7 @@ export default function SignupPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Create a strong password"
                   required
-                  className="w-full pl-12 pr-12 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua/20 transition-all"
+                  className="w-full pl-12 pr-12 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none focus:ring-2 focus:ring-crystal/20 transition-all"
                 />
                 <button
                   type="button"
@@ -231,15 +231,15 @@ export default function SignupPage() {
 
               {/* Password requirements */}
               <div className="mt-3 space-y-1">
-                <div className={`flex items-center gap-2 text-xs ${hasMinLength ? 'text-atlantean-teal-aqua' : 'text-text-muted'}`}>
+                <div className={`flex items-center gap-2 text-xs ${hasMinLength ? 'text-crystal' : 'text-text-muted'}`}>
                   <Check className={`w-3 h-3 ${hasMinLength ? '' : 'opacity-50'}`} />
                   At least 8 characters
                 </div>
-                <div className={`flex items-center gap-2 text-xs ${hasUppercase ? 'text-atlantean-teal-aqua' : 'text-text-muted'}`}>
+                <div className={`flex items-center gap-2 text-xs ${hasUppercase ? 'text-crystal' : 'text-text-muted'}`}>
                   <Check className={`w-3 h-3 ${hasUppercase ? '' : 'opacity-50'}`} />
                   One uppercase letter
                 </div>
-                <div className={`flex items-center gap-2 text-xs ${hasNumber ? 'text-atlantean-teal-aqua' : 'text-text-muted'}`}>
+                <div className={`flex items-center gap-2 text-xs ${hasNumber ? 'text-crystal' : 'text-text-muted'}`}>
                   <Check className={`w-3 h-3 ${hasNumber ? '' : 'opacity-50'}`} />
                   One number
                 </div>
@@ -251,15 +251,15 @@ export default function SignupPage() {
                 type="checkbox"
                 id="terms"
                 required
-                className="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-atlantean-teal-aqua focus:ring-atlantean-teal-aqua/20"
+                className="mt-1 w-4 h-4 rounded border-white/20 bg-white/5 text-crystal focus:ring-crystal/20"
               />
               <label htmlFor="terms" className="text-sm text-text-secondary">
                 I agree to the{' '}
-                <Link href="/terms" className="text-atlantean-teal-aqua hover:underline">
+                <Link href="/terms" className="text-crystal hover:underline">
                   Terms of Service
                 </Link>{' '}
                 and{' '}
-                <Link href="/privacy" className="text-atlantean-teal-aqua hover:underline">
+                <Link href="/privacy" className="text-crystal hover:underline">
                   Privacy Policy
                 </Link>
               </label>
@@ -268,7 +268,7 @@ export default function SignupPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple text-cosmic-deep font-semibold hover:shadow-[0_0_30px_rgba(127,255,212,0.4)] transition-all disabled:opacity-50"
+              className="w-full py-3 rounded-xl bg-brand-primary text-white font-semibold shadow-glow-brand hover:scale-[1.02] transition-all disabled:opacity-50"
             >
               {isLoading ? 'Creating account...' : 'Create Account'}
             </button>
@@ -277,7 +277,7 @@ export default function SignupPage() {
           {/* Footer */}
           <p className="text-center text-text-secondary mt-6">
             Already have an account?{' '}
-            <Link href="/auth/login" className="text-atlantean-teal-aqua hover:underline">
+            <Link href="/auth/login" className="text-crystal hover:underline">
               Sign in
             </Link>
           </p>

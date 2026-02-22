@@ -51,8 +51,8 @@ const GUARDIANS = [
     domain: 'Power, will, courage',
     description: 'Ten feet tall, clad in golden armor that glows like a miniature sun. A mane of living flame cascades from her head.',
     teaching: 'Power must be claimed, not given. No one will hand you your strength. You must declare it, demonstrate it, own it.',
-    gradient: 'from-draconic-crimson to-orange-600',
-    accentColor: 'draconic-crimson',
+    gradient: 'from-fire to-orange-600',
+    accentColor: 'fire',
   },
   {
     id: 'maylinn',
@@ -115,8 +115,8 @@ const GUARDIANS = [
     domain: 'Enlightenment, divinity, transcendence',
     description: 'Eleven feet tall—the tallest Guardian—difficult to perceive directly. Looking at Aiyami is like looking at the sun.',
     teaching: 'Enlightenment is not addition—it is removal. You do not gain truth; you release falsehood.',
-    gradient: 'from-gold-bright to-yellow-600',
-    accentColor: 'gold-bright',
+    gradient: 'from-brand-gold to-yellow-600',
+    accentColor: 'brand-gold',
   },
   {
     id: 'elara',
@@ -163,8 +163,8 @@ const GUARDIANS = [
     domain: 'Meta-consciousness, creation itself',
     description: 'The only being who achieved complete fusion with their Godbeast aspect. Shifts form constantly—wolf, humanoid, or pure presence.',
     teaching: 'You are already complete. The journey through the Gates is not addition but remembrance. At the Source, you discover that seeker and sought are one.',
-    gradient: 'from-gold-bright via-white to-creation-prism-purple',
-    accentColor: 'gold-bright',
+    gradient: 'from-brand-gold via-white to-brand-primary',
+    accentColor: 'brand-gold',
   },
 ];
 
@@ -226,7 +226,7 @@ export function GuardiansGrid() {
                     <div className="flex flex-wrap gap-4 text-sm">
                       <div>
                         <span className="text-text-muted">Frequency:</span>
-                        <span className="ml-2 text-atlantean-teal-aqua font-mono">{guardian.frequency}</span>
+                        <span className="ml-2 text-crystal font-mono">{guardian.frequency}</span>
                       </div>
                       <div>
                         <span className="text-text-muted">Element:</span>
@@ -234,7 +234,7 @@ export function GuardiansGrid() {
                       </div>
                       <div>
                         <span className="text-text-muted">Godbeast:</span>
-                        <span className="ml-2 text-gold-bright">{guardian.godbeast}</span>
+                        <span className="ml-2 text-brand-gold">{guardian.godbeast}</span>
                       </div>
                     </div>
 
@@ -267,7 +267,7 @@ export function GuardiansGrid() {
                           The Godbeast
                         </h4>
                         <p className="text-text-secondary">
-                          <span className="text-gold-bright font-semibold">{guardian.godbeast}</span>
+                          <span className="text-brand-gold font-semibold">{guardian.godbeast}</span>
                           {' — '}
                           {guardian.godbestType}
                         </p>
@@ -278,7 +278,7 @@ export function GuardiansGrid() {
                         <h4 className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-3">
                           The Teaching
                         </h4>
-                        <blockquote className="text-lg font-crimson italic text-white leading-relaxed border-l-2 border-gold-bright/50 pl-4">
+                        <blockquote className="text-lg font-crimson italic text-white leading-relaxed border-l-2 border-brand-gold/50 pl-4">
                           "{guardian.teaching}"
                         </blockquote>
 

@@ -72,20 +72,20 @@ export default async function TextPage({ params }: Props) {
       {/* Skip to content link */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-atlantean-teal focus:px-4 focus:py-2 focus:text-cosmic-deep"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-crystal focus:px-4 focus:py-2 focus:text-cosmic-deep"
       >
         Skip to content
       </a>
 
       {/* Header Bar */}
-      <header className="sticky top-0 z-40 border-b border-cosmic-border bg-cosmic-deep/90 backdrop-blur-lg">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-cosmic-deep/90 backdrop-blur-lg">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <nav className="flex items-center gap-2 text-sm text-text-muted" aria-label="Breadcrumb">
-            <Link href="/library" className="hover:text-atlantean-teal transition-colors">
+            <Link href="/library" className="hover:text-crystal transition-colors">
               Library
             </Link>
             <span aria-hidden="true">/</span>
-            <Link href={`/library/${collectionSlug}`} className="hover:text-atlantean-teal transition-colors">
+            <Link href={`/library/${collectionSlug}`} className="hover:text-crystal transition-colors">
               {collection?.name}
             </Link>
             <span aria-hidden="true">/</span>
@@ -108,11 +108,11 @@ export default async function TextPage({ params }: Props) {
             <header className="mb-12">
               <div className="mb-4 flex flex-wrap items-center gap-3">
                 <span className="text-3xl">{collection?.icon}</span>
-                <span className="rounded-full border border-atlantean-teal/40 bg-atlantean-teal/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-atlantean-teal">
+                <span className="rounded-full border border-crystal/40 bg-crystal/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-crystal">
                   {text.frontmatter.format}
                 </span>
                 {text.frontmatter.difficulty && (
-                  <span className="rounded-full border border-cosmic-border-bright bg-cosmic-raised px-3 py-1 text-xs uppercase tracking-[0.2em] text-text-muted">
+                  <span className="rounded-full border border-white/15 bg-cosmic-raised px-3 py-1 text-xs uppercase tracking-[0.2em] text-text-muted">
                     {text.frontmatter.difficulty}
                   </span>
                 )}
@@ -132,7 +132,7 @@ export default async function TextPage({ params }: Props) {
                   {text.frontmatter.situations.map((situation) => (
                     <span
                       key={situation}
-                      className="rounded-full border border-gold-medium/30 bg-gold-dark/20 px-3 py-1 text-xs text-gold-bright"
+                      className="rounded-full border border-brand-gold/30 bg-brand-gold/20 px-3 py-1 text-xs text-brand-gold"
                     >
                       {situation}
                     </span>
@@ -144,13 +144,13 @@ export default async function TextPage({ params }: Props) {
               <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-text-muted">
                 {text.frontmatter.elements && text.frontmatter.elements.length > 0 && (
                   <div className="flex items-center gap-2">
-                    <span className="text-atlantean-teal">Elements:</span>
+                    <span className="text-crystal">Elements:</span>
                     <span>{text.frontmatter.elements.join(', ')}</span>
                   </div>
                 )}
                 {text.frontmatter.luminors && text.frontmatter.luminors.length > 0 && (
                   <div className="flex items-center gap-2">
-                    <span className="text-gold-bright">Luminors:</span>
+                    <span className="text-brand-gold">Luminors:</span>
                     <span className="capitalize">{text.frontmatter.luminors.join(', ')}</span>
                   </div>
                 )}
@@ -195,7 +195,7 @@ export default async function TextPage({ params }: Props) {
                     </p>
                   ),
                   blockquote: ({ children }) => (
-                    <blockquote className="my-8 border-l-4 border-atlantean-teal/60 bg-cosmic-surface/50 pl-6 py-4 pr-4 rounded-r-lg italic text-text-primary">
+                    <blockquote className="my-8 border-l-4 border-crystal/60 bg-cosmic-surface/50 pl-6 py-4 pr-4 rounded-r-lg italic text-text-primary">
                       {children}
                     </blockquote>
                   ),
@@ -216,15 +216,15 @@ export default async function TextPage({ params }: Props) {
                     <strong className="font-semibold text-text-primary">{children}</strong>
                   ),
                   em: ({ children }) => (
-                    <em className="italic text-atlantean-teal/90">{children}</em>
+                    <em className="italic text-crystal/90">{children}</em>
                   ),
                   hr: () => (
-                    <hr className="my-12 border-cosmic-border" />
+                    <hr className="my-12 border-white/10" />
                   ),
                   a: ({ href, children }) => (
                     <a
                       href={href}
-                      className="text-atlantean-teal underline decoration-atlantean-teal/30 hover:decoration-atlantean-teal transition-colors"
+                      className="text-crystal underline decoration-crystal/30 hover:decoration-crystal transition-colors"
                     >
                       {children}
                     </a>
@@ -236,14 +236,14 @@ export default async function TextPage({ params }: Props) {
             </article>
 
             {/* Text Navigation */}
-            <nav className="mt-16 flex items-stretch gap-4 border-t border-cosmic-border pt-8">
+            <nav className="mt-16 flex items-stretch gap-4 border-t border-white/10 pt-8">
               {prevText ? (
                 <Link
                   href={`/library/${prevText.slug}`}
-                  className="group flex-1 rounded-xl border border-cosmic-border bg-cosmic-surface p-6 transition-all hover:border-atlantean-teal/50 hover:shadow-[0_0_30px_rgba(127,255,212,0.1)]"
+                  className="group flex-1 rounded-xl border border-white/10 bg-cosmic-surface p-6 transition-all hover:border-crystal/50 hover:shadow-[0_0_30px_rgba(127,255,212,0.1)]"
                 >
                   <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-2">Previous</p>
-                  <p className="font-display font-semibold text-text-primary group-hover:text-atlantean-teal transition-colors">
+                  <p className="font-display font-semibold text-text-primary group-hover:text-crystal transition-colors">
                     {prevText.frontmatter.title}
                   </p>
                 </Link>
@@ -254,10 +254,10 @@ export default async function TextPage({ params }: Props) {
               {nextText ? (
                 <Link
                   href={`/library/${nextText.slug}`}
-                  className="group flex-1 rounded-xl border border-cosmic-border bg-cosmic-surface p-6 text-right transition-all hover:border-atlantean-teal/50 hover:shadow-[0_0_30px_rgba(127,255,212,0.1)]"
+                  className="group flex-1 rounded-xl border border-white/10 bg-cosmic-surface p-6 text-right transition-all hover:border-crystal/50 hover:shadow-[0_0_30px_rgba(127,255,212,0.1)]"
                 >
                   <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-2">Next</p>
-                  <p className="font-display font-semibold text-text-primary group-hover:text-atlantean-teal transition-colors">
+                  <p className="font-display font-semibold text-text-primary group-hover:text-crystal transition-colors">
                     {nextText.frontmatter.title}
                   </p>
                 </Link>
@@ -272,8 +272,8 @@ export default async function TextPage({ params }: Props) {
             <div className="sticky top-24 space-y-8">
               {/* Table of Contents */}
               {tocHeadings.length > 0 && (
-                <div className="rounded-xl border border-cosmic-border bg-cosmic-surface p-6">
-                  <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-atlantean-teal">
+                <div className="rounded-xl border border-white/10 bg-cosmic-surface p-6">
+                  <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-crystal">
                     Contents
                   </h2>
                   <nav aria-label="Table of contents">
@@ -285,7 +285,7 @@ export default async function TextPage({ params }: Props) {
                         >
                           <a
                             href={`#${heading.slug}`}
-                            className="block text-sm text-text-muted hover:text-atlantean-teal transition-colors"
+                            className="block text-sm text-text-muted hover:text-crystal transition-colors"
                           >
                             {heading.text}
                           </a>
@@ -298,8 +298,8 @@ export default async function TextPage({ params }: Props) {
 
               {/* Related Texts */}
               {relatedTexts.length > 0 && (
-                <div className="rounded-xl border border-cosmic-border bg-cosmic-surface p-6">
-                  <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold-bright">
+                <div className="rounded-xl border border-white/10 bg-cosmic-surface p-6">
+                  <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-brand-gold">
                     Related Texts
                   </h2>
                   <ul className="space-y-3">
@@ -309,7 +309,7 @@ export default async function TextPage({ params }: Props) {
                           href={`/library/${related.slug}`}
                           className="group block"
                         >
-                          <p className="text-sm font-semibold text-text-primary group-hover:text-atlantean-teal transition-colors">
+                          <p className="text-sm font-semibold text-text-primary group-hover:text-crystal transition-colors">
                             {related.frontmatter.title}
                           </p>
                           <p className="text-xs text-text-muted mt-1">
@@ -325,7 +325,7 @@ export default async function TextPage({ params }: Props) {
               {/* Back to Collection */}
               <Link
                 href={`/library/${collectionSlug}`}
-                className="flex items-center gap-2 rounded-xl border border-cosmic-border bg-cosmic-surface p-4 text-sm text-text-muted hover:border-atlantean-teal/50 hover:text-atlantean-teal transition-all"
+                className="flex items-center gap-2 rounded-xl border border-white/10 bg-cosmic-surface p-4 text-sm text-text-muted hover:border-crystal/50 hover:text-crystal transition-all"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />

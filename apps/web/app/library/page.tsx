@@ -20,22 +20,22 @@ export default async function LibraryPage() {
   return (
     <main className="mx-auto max-w-7xl px-6 pb-24 pt-12">
       {/* Tab Navigation */}
-      <nav className="mb-12 flex items-center gap-4 border-b border-cosmic-border pb-4">
+      <nav className="mb-12 flex items-center gap-4 border-b border-white/10 pb-4">
         <Link
           href="/library"
-          className="rounded-full bg-atlantean-teal px-4 py-2 text-sm font-semibold text-cosmic-deep"
+          className="rounded-full bg-brand-primary px-4 py-2 text-sm font-semibold text-white font-sans shadow-glow-brand"
         >
           Browse Library
         </Link>
         <Link
           href="/library/codex"
-          className="rounded-full border border-cosmic-border px-4 py-2 text-sm text-text-muted hover:border-atlantean-teal/50 hover:text-atlantean-teal transition-colors"
+          className="rounded-full glass border border-white/10 px-4 py-2 text-sm text-text-muted hover:border-crystal/50 hover:text-crystal transition-colors font-sans"
         >
           Luminor Codex
         </Link>
         <Link
           href="/library/graph"
-          className="rounded-full border border-cosmic-border px-4 py-2 text-sm text-text-muted hover:border-atlantean-teal/50 hover:text-atlantean-teal transition-colors"
+          className="rounded-full glass border border-white/10 px-4 py-2 text-sm text-text-muted hover:border-crystal/50 hover:text-crystal transition-colors font-sans"
         >
           Relationship Graph
         </Link>

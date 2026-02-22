@@ -48,27 +48,27 @@ const BondIndicator = React.forwardRef<HTMLDivElement, BondIndicatorProps>(
         text: 'text-text-secondary',
       },
       intermediate: {
-        bg: 'from-atlantean-primary to-atlantean-teal',
-        glow: 'shadow-atlantean',
-        text: 'text-atlantean-teal',
+        bg: 'from-atlantean-primary to-crystal',
+        glow: 'shadow-glow-brand',
+        text: 'text-crystal',
       },
       advanced: {
-        bg: 'from-draconic-sky to-atlantean-teal',
+        bg: 'from-draconic-sky to-crystal',
         glow: 'shadow-info',
         text: 'text-draconic-sky-bright',
       },
       expert: {
-        bg: 'from-draconic-gold to-gold-bright',
+        bg: 'from-draconic-gold to-brand-gold',
         glow: 'shadow-draconic',
-        text: 'text-draconic-gold-bright',
+        text: 'text-draconic-brand-gold',
       },
       master: {
-        bg: 'from-draconic-crimson to-draconic-gold',
+        bg: 'from-fire to-draconic-gold',
         glow: 'shadow-glow-lg',
-        text: 'text-draconic-gold-bright',
+        text: 'text-draconic-brand-gold',
       },
       legendary: {
-        bg: 'from-creation-prism-purple via-creation-gold to-creation-prism-cyan',
+        bg: 'from-brand-primary via-creation-gold to-creation-prism-cyan',
         glow: 'shadow-creation animate-pulse-glow',
         text: 'text-creation-gold-pure text-glow-creation',
       },
@@ -95,7 +95,7 @@ const BondIndicator = React.forwardRef<HTMLDivElement, BondIndicatorProps>(
 
           <div className="flex-1 min-w-[100px]">
             <Progress.Root
-              className="relative h-3 overflow-hidden rounded-full bg-cosmic-border"
+              className="relative h-3 overflow-hidden rounded-full bg-white/10"
               value={percentage}
             >
               <Progress.Indicator
@@ -146,7 +146,7 @@ const BondIndicator = React.forwardRef<HTMLDivElement, BondIndicatorProps>(
         </div>
 
         <Progress.Root
-          className="relative h-4 overflow-hidden rounded-full bg-cosmic-border"
+          className="relative h-4 overflow-hidden rounded-full bg-white/10"
           value={percentage}
         >
           <motion.div
@@ -174,8 +174,8 @@ const BondIndicator = React.forwardRef<HTMLDivElement, BondIndicatorProps>(
               className={cn(
                 'h-2 w-2 rounded-full border-2 border-cosmic-deep',
                 level >= milestone
-                  ? 'bg-gold-bright shadow-glow-sm'
-                  : 'bg-cosmic-border'
+                  ? 'bg-brand-gold shadow-glow-sm'
+                  : 'bg-white/10'
               )}
               style={{
                 left: `${(milestone / maxLevel) * 100}%`,

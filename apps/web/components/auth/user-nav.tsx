@@ -41,7 +41,7 @@ export function UserNav() {
           </button>
           <button
             onClick={openSignup}
-            className="px-5 py-2.5 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep text-sm font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all"
+            className="px-5 py-2.5 rounded-xl bg-crystal text-cosmic-deep text-sm font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all"
           >
             Get Started
           </button>
@@ -70,7 +70,7 @@ export function UserNav() {
             className="w-8 h-8 rounded-full object-cover"
           />
         ) : (
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-semibold text-sm">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-crystal to-brand-primary flex items-center justify-center text-cosmic-deep font-semibold text-sm">
             {userInitial}
           </div>
         )}

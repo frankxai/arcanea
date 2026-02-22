@@ -46,7 +46,7 @@ export function WordReveal({ text, className = "" }: { text: string; className?:
 
 export function GradientText({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <span className={`bg-gradient-to-r from-atlantean-teal via-cosmic-blue to-gold-bright bg-clip-text text-transparent ${className}`}>
+    <span className={`bg-gradient-to-r from-crystal via-brand-secondary to-brand-gold bg-clip-text text-transparent ${className}`}>
       {children}
     </span>
   );

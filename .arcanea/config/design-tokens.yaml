@@ -1,82 +1,138 @@
-# Arcanea Design System Tokens
-# Portable design system — usable by any tool or framework
+# Arcanea Design System Tokens v2.0
+# Portable design system - usable by any tool or framework
+# Source of truth: .arcanea/design/DESIGN_BIBLE.md
 
 colors:
   cosmic:
     void: "#0b0e14"
-    deep: "#0f1318"
-    surface: "#141820"
-    raised: "#1a1f2a"
-    elevated: "#1f2535"
-    overlay: "#252b3a"
-
-  arcane:
-    crystal: "#7fffd4"
-    fire: "#ff6b35"
-    water: "#78a6ff"
-    earth: "#4ade80"
-    void: "#9966ff"
-    gold: "#ffd700"
+    deep: "#121826"
+    surface: "#1a2332"
+    raised: "#242f42"
+    elevated: "#2d3a52"
+    overlay: "#364562"
 
   brand:
-    primary: "#8b5cf6"     # Violet
-    accent: "#7fffd4"      # Teal/Cyan
-    gold: "#ffd700"        # Achievement
-    secondary: "#78a6ff"   # Cosmic Blue
+    primary: "#8b5cf6"     # Violet - primary actions
+    accent: "#7fffd4"      # Crystal - brand signature, highlights
+    gold: "#ffd700"        # Achievement, premium
+    secondary: "#78a6ff"   # Cosmic Blue - secondary actions
+
+  primary-scale:
+    50: "#f5f3ff"
+    100: "#ede9fe"
+    200: "#ddd6fe"
+    300: "#c4b5fd"
+    400: "#a78bfa"
+    500: "#8b5cf6"
+    600: "#7c3aed"
+    700: "#6d28d9"
+    800: "#5b21b6"
+    900: "#4c1d95"
 
   elements:
+    crystal:
+      standard: "#7fffd4"
+      bright: "#99ffe0"
+      deep: "#5ce6b8"
+      glow: "rgba(127, 255, 212, 0.3)"
     fire:
-      primary: "#ff6b35"
+      standard: "#ff6b35"
+      bright: "#ff8c5a"
+      deep: "#d94e1f"
       glow: "rgba(255, 107, 53, 0.3)"
     water:
-      primary: "#78a6ff"
+      standard: "#78a6ff"
+      bright: "#9dbfff"
+      deep: "#5a8ce6"
       glow: "rgba(120, 166, 255, 0.3)"
-    earth:
-      primary: "#4ade80"
-      glow: "rgba(74, 222, 128, 0.3)"
-    wind:
-      primary: "#e2e8f0"
-      glow: "rgba(226, 232, 240, 0.3)"
     void:
-      primary: "#9966ff"
+      standard: "#9966ff"
+      bright: "#b38cff"
+      deep: "#7a4dcc"
       glow: "rgba(153, 102, 255, 0.3)"
+    gold:
+      standard: "#ffd700"
+      bright: "#ffe44d"
+      deep: "#ccac00"
+      glow: "rgba(255, 215, 0, 0.3)"
+    wind:
+      standard: "#00ff88"
+      bright: "#33ffaa"
+      deep: "#00cc6d"
+      glow: "rgba(0, 255, 136, 0.3)"
+    earth:
+      standard: "#8b7355"
+      bright: "#a89070"
+      deep: "#6e5940"
+      glow: "rgba(139, 115, 85, 0.3)"
+
+  text:
+    primary: "#e6eefc"     # 14.2:1 contrast on void (AAA)
+    secondary: "#9bb1d0"   # 7.5:1 contrast on void (AAA)
+    muted: "#708094"       # 4.8:1 contrast on void (AA)
+    disabled: "#515b6b"    # 3.1:1 (disabled only)
+
+  semantic:
+    success: "#20cc73"
+    warning: "#ffa500"
+    error: "#f52952"
+    info: "#26b8e6"
 
 typography:
   display: "Cinzel, serif"
   body: "Crimson Pro, serif"
   sans: "Inter, system-ui, sans-serif"
   mono: "JetBrains Mono, monospace"
-  sizes:
-    xs: "0.75rem"
-    sm: "0.875rem"
-    base: "1rem"
-    lg: "1.125rem"
-    xl: "1.25rem"
-    "2xl": "1.5rem"
-    "3xl": "1.875rem"
-    "4xl": "2.25rem"
-    "5xl": "3rem"
+  fluid-scale:
+    xs: "clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem)"
+    sm: "clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem)"
+    base: "clamp(0.9rem, 0.85rem + 0.25vw, 1rem)"
+    lg: "clamp(1.1rem, 1rem + 0.5vw, 1.25rem)"
+    xl: "clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)"
+    2xl: "clamp(1.5rem, 1.25rem + 1.25vw, 2rem)"
+    3xl: "clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem)"
+    4xl: "clamp(2.25rem, 1.75rem + 2.5vw, 3rem)"
+    5xl: "clamp(3rem, 2rem + 5vw, 4.5rem)"
+    hero: "clamp(3rem, 1.5rem + 7.5vw, 7rem)"
 
 effects:
   glass:
-    blur: "blur(16px)"
-    background: "rgba(20, 24, 32, 0.6)"
-    border: "1px solid rgba(127, 255, 212, 0.1)"
-  glass_strong:
-    blur: "blur(24px)"
-    background: "rgba(20, 24, 32, 0.8)"
-    border: "1px solid rgba(127, 255, 212, 0.15)"
+    subtle:
+      background: "rgba(18, 24, 38, 0.4)"
+      blur: "blur(8px)"
+      border: "1px solid rgba(127, 255, 212, 0.06)"
+    standard:
+      background: "rgba(18, 24, 38, 0.65)"
+      blur: "blur(16px)"
+      border: "1px solid rgba(127, 255, 212, 0.12)"
+    strong:
+      background: "rgba(18, 24, 38, 0.85)"
+      blur: "blur(24px)"
+      border: "1px solid rgba(127, 255, 212, 0.18)"
+  liquid-glass:
+    blur: "blur(40px) saturate(1.8) brightness(1.1)"
+    border: "1px solid rgba(255, 255, 255, 0.1)"
+  iridescent:
+    blur: "blur(24px) saturate(1.5)"
+    animation: "iridescent-shift 8s ease-in-out infinite"
+
   glow:
-    crystal: "0 0 20px rgba(127, 255, 212, 0.3)"
-    gold: "0 0 20px rgba(255, 215, 0, 0.3)"
-    violet: "0 0 20px rgba(139, 92, 246, 0.3)"
+    sm: "0 0 10px rgba(127, 255, 212, 0.15)"
+    md: "0 0 20px rgba(127, 255, 212, 0.25)"
+    lg: "0 0 40px rgba(127, 255, 212, 0.35)"
+    xl: "0 0 60px rgba(127, 255, 212, 0.45)"
+    brand: "0 0 20px rgba(139, 92, 246, 0.3)"
+
   gradients:
-    cosmic_mesh: "radial-gradient(ellipse at 20% 50%, rgba(139, 92, 246, 0.08), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(127, 255, 212, 0.06), transparent 50%)"
-    aurora: "linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(127, 255, 212, 0.1), rgba(255, 215, 0, 0.05))"
+    cosmic-mesh: "radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.03), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(153, 102, 255, 0.03), transparent 50%)"
+    aurora: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(127, 255, 212, 0.06), rgba(255, 215, 0, 0.04))"
+    brand: "linear-gradient(135deg, #8b5cf6, #7fffd4)"
 
 spacing:
   unit: "4px"
-  scales: [0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 64]
+  section-padding: "py-24 lg:py-32"
+  container-max: "max-w-7xl"
+  card-padding: "p-6 lg:p-8"
 
 borders:
   radius:
@@ -84,6 +140,7 @@ borders:
     md: "0.5rem"
     lg: "0.75rem"
     xl: "1rem"
+    2xl: "1.5rem"
     full: "9999px"
 
 breakpoints:
@@ -91,14 +148,31 @@ breakpoints:
   md: "768px"
   lg: "1024px"
   xl: "1280px"
-  "2xl": "1536px"
+  2xl: "1536px"
 
 animation:
   duration:
+    instant: "100ms"
     fast: "150ms"
-    normal: "300ms"
-    slow: "500ms"
-    dramatic: "1000ms"
+    normal: "250ms"
+    smooth: "400ms"
+    flowing: "600ms"
+    cosmic: "1000ms"
   easing:
     default: "cubic-bezier(0.4, 0, 0.2, 1)"
     spring: "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    cosmic: "cubic-bezier(0.22, 1, 0.36, 1)"
+    snappy: "cubic-bezier(0.2, 0, 0, 1)"
+
+icons:
+  library: "lucide-react"
+  sizes:
+    inline: "16px (w-4 h-4)"
+    nav: "20px (w-5 h-5)"
+    card: "24px (w-6 h-6)"
+    feature: "32px (w-8 h-8)"
+    hero: "48px (w-12 h-12)"
+  rules:
+    - "NEVER use emoji as icons"
+    - "Icons inherit text color by default"
+    - "Stroke width 1.5px for UI, 2px for emphasis"

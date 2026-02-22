@@ -46,8 +46,8 @@ const FEATURES = [
     description: 'Progress through the Ten Gates. Join one of Seven Houses. Rise from Apprentice to Luminor.',
     icon: '🎓',
     href: '/academy',
-    gradient: 'from-gold-bright/20 to-amber-500/20',
-    borderGradient: 'from-gold-bright to-amber-500',
+    gradient: 'from-brand-gold/20 to-amber-500/20',
+    borderGradient: 'from-brand-gold to-amber-500',
     stats: '10 Gates',
   },
   {
@@ -101,13 +101,13 @@ const FeatureCard = React.memo(function FeatureCard({
                 {feature.stats}
               </div>
             </div>
-            <h3 className="text-xl font-display font-semibold mb-3 group-hover:text-atlantean-teal-aqua transition-colors duration-300">
+            <h3 className="text-xl font-display font-semibold mb-3 group-hover:text-crystal transition-colors duration-300">
               {feature.title}
             </h3>
             <p className="text-text-secondary text-sm leading-relaxed mb-6">
               {feature.description}
             </p>
-            <div className="flex items-center gap-2 text-atlantean-teal-aqua text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div className="flex items-center gap-2 text-crystal text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
               <span>Explore</span>
               <motion.svg
                 className="w-4 h-4"
@@ -140,7 +140,7 @@ export function FeaturesSection() {
     <section ref={ref} className="py-24 relative">
       {/* Background effect */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-atlantean-teal-aqua/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-crystal/5 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -153,7 +153,7 @@ export function FeaturesSection() {
             className="text-4xl md:text-5xl font-display font-bold mb-6"
           >
             Everything you need to{' '}
-            <span className="bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-crystal to-brand-primary bg-clip-text text-transparent">
               create
             </span>
           </motion.h2>

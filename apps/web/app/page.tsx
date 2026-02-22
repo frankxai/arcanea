@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { BookOpen, GraduationCap, Palette } from "lucide-react";
 import { getCollections, getAllTexts } from "@/lib/content";
 import { HeroV3, LogosSection, LuminorShowcase, FeaturesV2, WisdomsSection, HowItWorks, SocialProof, TestimonialsV2, PricingSection, FAQSection, CTASection } from "@/components/landing";
 import { Navbar } from "@/components/navigation";
@@ -82,18 +83,18 @@ export default async function Page() {
             <div className="grid md:grid-cols-3 gap-6">
               <Link
                 href="/library"
-                className="group p-8 rounded-3xl border border-white/10 bg-cosmic-surface/30 hover:border-atlantean-teal-aqua/30 hover:bg-cosmic-surface/50 transition-all duration-300"
+                className="group p-8 rounded-3xl glass border border-crystal/10 hover:border-crystal/30 hover-lift transition-all duration-smooth"
               >
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-atlantean-teal-aqua/20 to-atlantean-teal-aqua/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <span className="text-3xl">📚</span>
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-crystal/20 to-crystal/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-7 h-7 text-crystal" />
                 </div>
-                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-atlantean-teal-aqua transition-colors">
+                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-crystal transition-colors">
                   The Library
                 </h3>
-                <p className="text-sm text-text-secondary mb-4">
+                <p className="font-sans text-sm text-text-secondary mb-4">
                   {collections.length} collections of wisdom for creators. Ancient knowledge meets modern practice.
                 </p>
-                <span className="text-sm text-atlantean-teal-aqua font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="font-sans text-sm text-crystal font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                   Browse Library
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </span>
@@ -101,18 +102,18 @@ export default async function Page() {
 
               <Link
                 href="/academy"
-                className="group p-8 rounded-3xl border border-white/10 bg-cosmic-surface/30 hover:border-gold-bright/30 hover:bg-cosmic-surface/50 transition-all duration-300"
+                className="group p-8 rounded-3xl glass border border-brand-gold/10 hover:border-brand-gold/30 hover-lift transition-all duration-smooth"
               >
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-bright/20 to-gold-bright/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <span className="text-3xl">🎓</span>
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <GraduationCap className="w-7 h-7 text-brand-gold" />
                 </div>
-                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-gold-bright transition-colors">
+                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-brand-gold transition-colors">
                   Academy
                 </h3>
-                <p className="text-sm text-text-secondary mb-4">
+                <p className="font-sans text-sm text-text-secondary mb-4">
                   Ten Gates progression to creative mastery. Begin as Apprentice, ascend to Luminor.
                 </p>
-                <span className="text-sm text-gold-bright font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="font-sans text-sm text-brand-gold font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                   Enter Academy
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </span>
@@ -120,18 +121,18 @@ export default async function Page() {
 
               <Link
                 href="/studio"
-                className="group p-8 rounded-3xl border border-white/10 bg-cosmic-surface/30 hover:border-draconic-crimson/30 hover:bg-cosmic-surface/50 transition-all duration-300"
+                className="group p-8 rounded-3xl glass border border-brand-primary/10 hover:border-brand-primary/30 hover-lift transition-all duration-smooth"
               >
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-draconic-crimson/20 to-draconic-crimson/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <span className="text-3xl">🎨</span>
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-primary/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Palette className="w-7 h-7 text-brand-primary" />
                 </div>
-                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-draconic-crimson transition-colors">
+                <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-brand-primary transition-colors">
                   Creation Studio
                 </h3>
-                <p className="text-sm text-text-secondary mb-4">
+                <p className="font-sans text-sm text-text-secondary mb-4">
                   Image, music, video, and story creation tools. Manifest your vision with AI.
                 </p>
-                <span className="text-sm text-draconic-crimson font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="font-sans text-sm text-brand-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                   Open Studio
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </span>
@@ -163,7 +164,7 @@ export default async function Page() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center text-cosmic-deep font-bold text-lg font-display">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-crystal to-brand-primary flex items-center justify-center text-cosmic-deep font-bold text-lg font-display">
                   A
                 </div>
                 <span className="font-display text-xl font-semibold">Arcanea</span>
@@ -216,7 +217,7 @@ export default async function Page() {
 
           <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-text-muted">
-              © 2025 Arcanea. Building the future of creative intelligence.
+              © 2026 Arcanea. Building the future of creative intelligence.
             </p>
             <div className="flex gap-6 text-sm text-text-muted">
               <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>

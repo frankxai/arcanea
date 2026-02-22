@@ -11,7 +11,9 @@ const TESTIMONIALS = [
     author: 'Sarah Chen',
     role: 'Bestselling Author',
     avatar: 'SC',
-    color: 'atlantean-teal-aqua',
+    accentClass: 'text-crystal',
+    bgClass: 'bg-crystal/20',
+    borderClass: 'border-crystal/30',
     luminor: 'Chronica',
     rating: 5,
   },
@@ -21,7 +23,9 @@ const TESTIMONIALS = [
     author: 'Marcus Thompson',
     role: 'Digital Artist',
     avatar: 'MT',
-    color: 'creation-prism-purple',
+    accentClass: 'text-brand-primary',
+    bgClass: 'bg-brand-primary/20',
+    borderClass: 'border-brand-primary/30',
     luminor: 'Artifax',
     rating: 5,
   },
@@ -31,7 +35,9 @@ const TESTIMONIALS = [
     author: 'Elena Vasquez',
     role: 'Game Developer',
     avatar: 'EV',
-    color: 'gold-bright',
+    accentClass: 'text-brand-gold',
+    bgClass: 'bg-brand-gold/20',
+    borderClass: 'border-brand-gold/30',
     luminor: 'Oracle',
     rating: 5,
   },
@@ -41,7 +47,9 @@ const TESTIMONIALS = [
     author: 'David Park',
     role: 'Music Producer',
     avatar: 'DP',
-    color: 'draconic-crimson',
+    accentClass: 'text-arcane-fire',
+    bgClass: 'bg-arcane-fire/20',
+    borderClass: 'border-arcane-fire/30',
     luminor: 'Harmonia',
     rating: 5,
   },
@@ -51,7 +59,9 @@ const TESTIMONIALS = [
     author: 'Priya Sharma',
     role: 'Content Creator',
     avatar: 'PS',
-    color: 'atlantean-teal-aqua',
+    accentClass: 'text-crystal',
+    bgClass: 'bg-crystal/20',
+    borderClass: 'border-crystal/30',
     luminor: 'Strategis',
     rating: 5,
   },
@@ -83,16 +93,16 @@ export function TestimonialsV2() {
   };
 
   const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
+    enter: (dir: number) => ({
+      x: dir > 0 ? 300 : -300,
       opacity: 0,
     }),
     center: {
       x: 0,
       opacity: 1,
     },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 300 : -300,
+    exit: (dir: number) => ({
+      x: dir < 0 ? 300 : -300,
       opacity: 0,
     }),
   };
@@ -111,16 +121,17 @@ export function TestimonialsV2() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-creation-prism-purple/10 border border-creation-prism-purple/20 mb-6">
-            <Quote className="w-4 h-4 text-creation-prism-purple" />
-            <span className="text-sm font-medium text-creation-prism-purple">Creator Stories</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-primary/20 mb-6">
+            <Quote className="w-4 h-4 text-brand-primary" />
+            <span className="font-sans text-sm font-medium text-brand-primary">Creator Stories</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
+          <h2 className="font-display text-fluid-4xl font-bold mb-6">
             Trusted by creators worldwide
           </h2>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+          <p className="font-sans text-fluid-lg text-text-secondary max-w-2xl mx-auto">
             Join thousands of creators who've transformed their creative practice with Arcanea.
           </p>
         </motion.div>
@@ -129,72 +140,74 @@ export function TestimonialsV2() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
           className="relative"
         >
-          {/* Main testimonial */}
-          <div className="relative min-h-[400px] flex items-center justify-center">
-            <AnimatePresence custom={direction} mode="wait">
-              <motion.div
-                key={activeTestimonial.id}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div className="max-w-3xl text-center">
-                  {/* Quote icon */}
-                  <div className={`w-16 h-16 mx-auto mb-8 rounded-2xl bg-${activeTestimonial.color}/10 flex items-center justify-center`}>
-                    <Quote className={`w-8 h-8 text-${activeTestimonial.color}`} />
-                  </div>
-
-                  {/* Stars */}
-                  <div className="flex items-center justify-center gap-1 mb-6">
-                    {[...Array(activeTestimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-gold-bright fill-gold-bright"
-                      />
-                    ))}
-                  </div>
-
-                  {/* Quote */}
-                  <blockquote className="text-2xl md:text-3xl font-display leading-relaxed mb-8 text-white">
-                    "{activeTestimonial.quote}"
-                  </blockquote>
-
-                  {/* Author */}
-                  <div className="flex items-center justify-center gap-4">
-                    <div
-                      className={`w-14 h-14 rounded-full bg-${activeTestimonial.color}/20 flex items-center justify-center text-lg font-semibold text-${activeTestimonial.color}`}
-                    >
-                      {activeTestimonial.avatar}
+          {/* Main testimonial card */}
+          <div className="glass rounded-2xl p-8 md:p-12 glow-card">
+            <div className="relative min-h-[320px] flex items-center justify-center">
+              <AnimatePresence custom={direction} mode="wait">
+                <motion.div
+                  key={activeTestimonial.id}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <div className="max-w-3xl text-center w-full">
+                    {/* Quote icon */}
+                    <div className={`w-16 h-16 mx-auto mb-8 rounded-2xl ${activeTestimonial.bgClass} flex items-center justify-center`}>
+                      <Quote className={`w-8 h-8 ${activeTestimonial.accentClass}`} />
                     </div>
-                    <div className="text-left">
-                      <div className="font-semibold text-white">
-                        {activeTestimonial.author}
+
+                    {/* Stars */}
+                    <div className="flex items-center justify-center gap-1 mb-6">
+                      {[...Array(activeTestimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-5 h-5 text-brand-gold fill-brand-gold"
+                        />
+                      ))}
+                    </div>
+
+                    {/* Quote */}
+                    <blockquote className="font-body text-fluid-lg italic leading-relaxed mb-8 text-text-secondary">
+                      "{activeTestimonial.quote}"
+                    </blockquote>
+
+                    {/* Author */}
+                    <div className="flex items-center justify-center gap-4">
+                      <div
+                        className={`w-14 h-14 rounded-full ${activeTestimonial.bgClass} border ${activeTestimonial.borderClass} flex items-center justify-center font-sans text-lg font-semibold ${activeTestimonial.accentClass}`}
+                      >
+                        {activeTestimonial.avatar}
                       </div>
-                      <div className="text-sm text-text-secondary">
-                        {activeTestimonial.role}
-                      </div>
-                      <div className={`text-xs text-${activeTestimonial.color} mt-1`}>
-                        Works with {activeTestimonial.luminor}
+                      <div className="text-left">
+                        <div className="font-sans font-semibold text-text-primary">
+                          {activeTestimonial.author}
+                        </div>
+                        <div className="font-sans text-sm text-text-secondary">
+                          {activeTestimonial.role}
+                        </div>
+                        <div className={`font-sans text-xs ${activeTestimonial.accentClass} mt-1`}>
+                          Works with {activeTestimonial.luminor}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Navigation */}
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={() => navigate(-1)}
-              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-text-muted hover:text-white hover:bg-white/10 transition-all"
+              className="w-12 h-12 rounded-full glass border border-white/10 flex items-center justify-center text-text-muted hover:text-white hover:bg-white/10 transition-all duration-smooth"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -209,9 +222,9 @@ export function TestimonialsV2() {
                     setDirection(i > activeIndex ? 1 : -1);
                     setActiveIndex(i);
                   }}
-                  className={`h-2 rounded-full transition-all ${
+                  className={`h-2 rounded-full transition-all duration-smooth ${
                     i === activeIndex
-                      ? 'w-8 bg-atlantean-teal-aqua'
+                      ? 'w-8 bg-crystal'
                       : 'w-2 bg-white/20 hover:bg-white/40'
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
@@ -221,7 +234,7 @@ export function TestimonialsV2() {
 
             <button
               onClick={() => navigate(1)}
-              className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-text-muted hover:text-white hover:bg-white/10 transition-all"
+              className="w-12 h-12 rounded-full glass border border-white/10 flex items-center justify-center text-text-muted hover:text-white hover:bg-white/10 transition-all duration-smooth"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-5 h-5" />
@@ -233,7 +246,7 @@ export function TestimonialsV2() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-white/10"
         >
           {[
@@ -241,12 +254,12 @@ export function TestimonialsV2() {
             { value: '2.5M+', label: 'Creations Made' },
             { value: '4.9/5', label: 'Average Rating' },
             { value: '99.9%', label: 'Uptime' },
-          ].map((stat, i) => (
+          ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">
+              <div className="font-display text-fluid-2xl font-bold text-gradient-crystal mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm text-text-muted">{stat.label}</div>
+              <div className="font-sans text-fluid-sm text-text-muted">{stat.label}</div>
             </div>
           ))}
         </motion.div>

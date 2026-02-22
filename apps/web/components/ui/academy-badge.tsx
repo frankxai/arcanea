@@ -35,18 +35,18 @@ const AcademyBadge = React.forwardRef<HTMLDivElement, AcademyBadgeProps>(
     const academyStyles = {
       default: {
         bg: 'bg-cosmic-surface',
-        border: 'border-gold-medium',
-        text: 'text-gold-bright',
+        border: 'border-brand-gold',
+        text: 'text-brand-gold',
         shadow: 'shadow-glow-sm',
       },
       atlantean: {
         bg: 'bg-atlantean-deep/30',
-        border: 'border-atlantean-teal',
-        text: 'text-atlantean-teal',
-        shadow: 'shadow-atlantean',
+        border: 'border-crystal',
+        text: 'text-crystal',
+        shadow: 'shadow-glow-brand',
       },
       draconic: {
-        bg: 'bg-draconic-crimson-deep/30',
+        bg: 'bg-fire-deep/30',
         border: 'border-draconic-gold',
         text: 'text-draconic-gold',
         shadow: 'shadow-draconic',

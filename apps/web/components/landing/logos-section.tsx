@@ -60,21 +60,22 @@ export function LogosSection() {
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
-    <section ref={ref} className="py-16 border-y border-white/5 overflow-hidden">
+    <section ref={ref} className="py-16 overflow-hidden glass-subtle">
       <div className="max-w-7xl mx-auto px-6">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center text-sm text-text-muted uppercase tracking-wider mb-10"
+          transition={{ duration: 0.5 }}
+          className="text-center font-sans text-fluid-sm text-text-muted uppercase tracking-widest mb-10"
         >
-          Featured in leading publications
+          As seen in leading publications
         </motion.p>
 
         {/* Animated logo strip */}
         <div className="relative">
           {/* Gradient masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-cosmic-deep to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-cosmic-deep to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-cosmic-void to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-cosmic-void to-transparent z-10" />
 
           {/* Scrolling logos */}
           <motion.div
@@ -93,8 +94,8 @@ export function LogosSection() {
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 0.4 } : {}}
                 transition={{ delay: 0.1 * (i % LOGOS.length) }}
-                whileHover={{ opacity: 0.8 }}
-                className="flex-shrink-0 text-white transition-opacity cursor-default"
+                whileHover={{ opacity: 0.9 }}
+                className="flex-shrink-0 text-text-muted hover:text-text-primary transition-colors duration-smooth cursor-default"
               >
                 {logo.svg}
               </motion.div>

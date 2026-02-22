@@ -132,7 +132,7 @@ export default function GuidesPage() {
               <input
                 type="text"
                 placeholder="Search guides..."
-                className="w-full px-4 py-3 pl-11 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-muted focus:outline-none focus:border-atlantean-teal-aqua"
+                className="w-full px-4 py-3 pl-11 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-muted focus:outline-none focus:border-crystal"
               />
               <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -179,7 +179,7 @@ export default function GuidesPage() {
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <h2 className="font-display font-semibold mb-2 group-hover:text-atlantean-teal-aqua transition-colors">
+                    <h2 className="font-display font-semibold mb-2 group-hover:text-crystal transition-colors">
                       {guide.title}
                     </h2>
                     <p className="text-sm text-text-secondary mb-4 line-clamp-2">
@@ -223,7 +223,7 @@ export default function GuidesPage() {
           <p className="text-text-secondary mb-4">Can't find what you're looking for?</p>
           <Link
             href="/chat"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-crystal text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all"
           >
             Ask a Luminor
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

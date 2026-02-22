@@ -143,8 +143,8 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                       animate={{ opacity: 1, scale: 1 }}
                       className="text-center py-8"
                     >
-                      <div className="w-16 h-16 rounded-full bg-atlantean-teal-aqua/20 flex items-center justify-center mx-auto mb-4">
-                        <Check className="w-8 h-8 text-atlantean-teal-aqua" />
+                      <div className="w-16 h-16 rounded-full bg-crystal/20 flex items-center justify-center mx-auto mb-4">
+                        <Check className="w-8 h-8 text-crystal" />
                       </div>
                       <h3 className="text-xl font-display font-bold mb-2">Check Your Email</h3>
                       <p className="text-text-secondary mb-6">
@@ -152,7 +152,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                       </p>
                       <button
                         onClick={handleClose}
-                        className="px-6 py-2 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold"
+                        className="px-6 py-2 rounded-xl bg-crystal text-cosmic-deep font-semibold"
                       >
                         Got it
                       </button>
@@ -161,7 +161,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                     <>
                       {/* Header */}
                       <div className="text-center mb-6">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center mx-auto mb-4">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-crystal to-brand-primary flex items-center justify-center mx-auto mb-4">
                           <Sparkles className="w-7 h-7 text-cosmic-deep" />
                         </div>
                         <Dialog.Title className="text-xl font-display font-bold">
@@ -175,7 +175,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                           onClick={() => handleTabChange('login')}
                           className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
                             tab === 'login'
-                              ? 'bg-atlantean-teal-aqua text-cosmic-deep'
+                              ? 'bg-crystal text-cosmic-deep'
                               : 'text-text-secondary hover:text-white'
                           }`}
                         >
@@ -185,7 +185,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                           onClick={() => handleTabChange('signup')}
                           className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
                             tab === 'signup'
-                              ? 'bg-atlantean-teal-aqua text-cosmic-deep'
+                              ? 'bg-crystal text-cosmic-deep'
                               : 'text-text-secondary hover:text-white'
                           }`}
                         >
@@ -258,7 +258,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                                 placeholder="Email address"
                                 required
                                 aria-required="true"
-                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none text-sm"
+                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none text-sm"
                               />
                             </div>
 
@@ -273,7 +273,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                                 placeholder="Password"
                                 required
                                 aria-required="true"
-                                className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none text-sm"
+                                className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none text-sm"
                               />
                               <button
                                 type="button"
@@ -288,7 +288,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                             <button
                               type="submit"
                               disabled={isLoading}
-                              className="w-full py-2.5 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all disabled:opacity-50 text-sm"
+                              className="w-full py-2.5 rounded-xl bg-crystal text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all disabled:opacity-50 text-sm"
                             >
                               {isLoading ? 'Signing in...' : 'Sign In'}
                             </button>
@@ -311,7 +311,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                                 placeholder="Username"
                                 required
                                 minLength={3}
-                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none text-sm"
+                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none text-sm"
                               />
                             </div>
 
@@ -323,7 +323,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Email address"
                                 required
-                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none text-sm"
+                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none text-sm"
                               />
                             </div>
 
@@ -336,7 +336,7 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                                   onChange={(e) => setPassword(e.target.value)}
                                   placeholder="Password"
                                   required
-                                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-atlantean-teal-aqua focus:outline-none text-sm"
+                                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-crystal focus:outline-none text-sm"
                                 />
                                 <button
                                   type="button"
@@ -347,16 +347,16 @@ export function AuthModal({ isOpen, onClose, defaultTab = 'login' }: AuthModalPr
                                 </button>
                               </div>
                               <div className="flex gap-3 mt-2 text-xs">
-                                <span className={hasMinLength ? 'text-atlantean-teal-aqua' : 'text-text-muted'}>8+ chars</span>
-                                <span className={hasUppercase ? 'text-atlantean-teal-aqua' : 'text-text-muted'}>Uppercase</span>
-                                <span className={hasNumber ? 'text-atlantean-teal-aqua' : 'text-text-muted'}>Number</span>
+                                <span className={hasMinLength ? 'text-crystal' : 'text-text-muted'}>8+ chars</span>
+                                <span className={hasUppercase ? 'text-crystal' : 'text-text-muted'}>Uppercase</span>
+                                <span className={hasNumber ? 'text-crystal' : 'text-text-muted'}>Number</span>
                               </div>
                             </div>
 
                             <button
                               type="submit"
                               disabled={isLoading}
-                              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all disabled:opacity-50 text-sm"
+                              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-crystal to-brand-primary text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all disabled:opacity-50 text-sm"
                             >
                               {isLoading ? 'Creating...' : 'Create Account'}
                             </button>

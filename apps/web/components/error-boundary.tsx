@@ -68,13 +68,13 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       return (
         <div className="flex min-h-[400px] flex-col items-center justify-center px-4 py-8">
           <div className="mb-6 relative">
-            <div className="absolute inset-0 animate-pulse blur-xl bg-draconic-crimson/20 rounded-full" />
-            <div className="relative bg-draconic-crimson/10 p-4 rounded-full border border-draconic-crimson/30">
-              <AlertCircle className="w-12 h-12 text-draconic-crimson" />
+            <div className="absolute inset-0 animate-pulse blur-xl bg-fire/20 rounded-full" />
+            <div className="relative bg-fire/10 p-4 rounded-full border border-fire/30">
+              <AlertCircle className="w-12 h-12 text-fire" />
             </div>
           </div>
 
-          <h3 className="text-xl font-cinzel font-semibold text-atlantean-teal-aqua mb-2 text-center">
+          <h3 className="text-xl font-display font-semibold text-crystal mb-2 text-center">
             Something Unexpected Happened
           </h3>
 
@@ -93,7 +93,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
           <button
             onClick={this.handleReset}
-            className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-atlantean-teal-aqua/20 to-atlantean-teal-deep/20 hover:from-atlantean-teal-aqua/30 hover:to-atlantean-teal-deep/30 border border-atlantean-teal-aqua/50 rounded-lg text-atlantean-teal-aqua font-semibold transition-all duration-300"
+            className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-crystal/20 to-crystal-deep/20 hover:from-crystal/30 hover:to-crystal-deep/30 border border-crystal/50 rounded-lg text-crystal font-semibold transition-all duration-300"
           >
             <RefreshCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
             Try Again

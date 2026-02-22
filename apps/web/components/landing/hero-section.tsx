@@ -104,7 +104,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 rounded-full bg-atlantean-teal-aqua/40"
+            className="absolute w-1 h-1 rounded-full bg-crystal/40"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -135,13 +135,13 @@ export function HeroSection({ stats }: HeroSectionProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-atlantean-teal-aqua/30 bg-atlantean-teal-aqua/5 backdrop-blur-sm mb-8"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-crystal/30 bg-crystal/5 backdrop-blur-sm mb-8"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-atlantean-teal-aqua opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-atlantean-teal-aqua" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crystal opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-crystal" />
               </span>
-              <span className="text-sm text-atlantean-teal-aqua font-mono tracking-wider">
+              <span className="text-sm text-crystal font-mono tracking-wider">
                 ARCANEAN CREATOR OS v2.0
               </span>
             </motion.div>
@@ -155,11 +155,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
             >
               <span className="block">Where</span>
               <span className="relative inline-block">
-                <span className="relative z-10 bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-atlantean-teal-aqua bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
+                <span className="relative z-10 bg-gradient-to-r from-crystal via-brand-primary to-crystal bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
                   imagination
                 </span>
                 <motion.span
-                  className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-atlantean-teal-aqua/20 to-creation-prism-purple/20 blur-xl"
+                  className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-crystal/20 to-brand-primary/20 blur-xl"
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
@@ -187,16 +187,16 @@ export function HeroSection({ stats }: HeroSectionProps) {
             >
               <Link
                 href="/chat"
-                className="group relative px-8 py-4 rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-atlantean-teal-aqua focus:ring-offset-2 focus:ring-offset-cosmic-deep"
+                className="group relative px-8 py-4 rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-crystal focus:ring-offset-2 focus:ring-offset-cosmic-deep"
               >
                 {/* Button background with animated gradient */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua via-atlantean-teal-light to-atlantean-teal-aqua bg-[length:200%_100%]"
+                  className="absolute inset-0 bg-gradient-to-r from-crystal via-crystal-light to-crystal bg-[length:200%_100%]"
                   animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                   transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
                 />
                 {/* Glow effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-atlantean-teal-aqua blur-xl" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-crystal blur-xl" />
                 <span className="relative z-10 text-cosmic-deep flex items-center gap-2">
                   Begin Your Journey
                   <motion.svg
@@ -214,11 +214,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
 
               <Link
                 href="/luminors"
-                className="group px-8 py-4 rounded-2xl border border-white/20 text-white font-semibold text-lg backdrop-blur-sm hover:bg-white/5 hover:border-atlantean-teal-aqua/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-cosmic-deep"
+                className="group px-8 py-4 rounded-2xl border border-white/20 text-white font-semibold text-lg backdrop-blur-sm hover:bg-white/5 hover:border-crystal/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-cosmic-deep"
               >
                 <span className="flex items-center gap-2">
                   Meet the Luminors
-                  <span className="text-atlantean-teal-aqua opacity-0 group-hover:opacity-100 transition-opacity">✨</span>
+                  <span className="text-crystal opacity-0 group-hover:opacity-100 transition-opacity">✨</span>
                 </span>
               </Link>
             </motion.div>
@@ -230,10 +230,10 @@ export function HeroSection({ stats }: HeroSectionProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap gap-8 mt-16 pt-8 border-t border-white/10"
             >
-              <StatItem value={stats.luminors} label="Luminor Intelligences" color="atlantean-teal-aqua" />
-              <StatItem value={stats.wisdoms} label="Wisdoms Framework" color="gold-bright" />
-              <StatItem value={stats.collections} label="Wisdom Collections" color="creation-prism-purple" />
-              <StatItem value={`${Math.round(stats.words / 1000)}k+`} label="Words of Wisdom" color="draconic-crimson" />
+              <StatItem value={stats.luminors} label="Luminor Intelligences" color="crystal" />
+              <StatItem value={stats.wisdoms} label="Wisdoms Framework" color="brand-gold" />
+              <StatItem value={stats.collections} label="Wisdom Collections" color="brand-primary" />
+              <StatItem value={`${Math.round(stats.words / 1000)}k+`} label="Words of Wisdom" color="fire" />
             </motion.div>
           </div>
 
@@ -274,10 +274,10 @@ export function HeroSection({ stats }: HeroSectionProps) {
 function StatItem({ value, label, color }: { value: number | string; label: string; color: string }) {
   // Map color prop to actual Tailwind classes
   const colorClass =
-    color === 'atlantean-teal-aqua' ? 'text-atlantean-aqua' :
-    color === 'gold-bright' ? 'text-gold-bright' :
-    color === 'creation-prism-purple' ? 'text-creation-prism-purple' :
-    color === 'draconic-crimson' ? 'text-draconic-crimson' :
+    color === 'crystal' ? 'text-atlantean-aqua' :
+    color === 'brand-gold' ? 'text-brand-gold' :
+    color === 'brand-primary' ? 'text-brand-primary' :
+    color === 'fire' ? 'text-fire' :
     'text-text-primary';
 
   return (
@@ -308,7 +308,7 @@ function LuminorOrbit() {
   return (
     <div className="relative w-full aspect-square max-w-lg mx-auto">
       {/* Outer glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-atlantean-teal-aqua/10 via-transparent to-creation-prism-purple/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-crystal/10 via-transparent to-brand-primary/10 rounded-full blur-3xl" />
 
       {/* Orbital rings */}
       {[0, 1, 2].map((ring) => (
@@ -330,7 +330,7 @@ function LuminorOrbit() {
           {[0, 90, 180, 270].map((angle) => (
             <motion.div
               key={angle}
-              className="absolute w-1.5 h-1.5 rounded-full bg-atlantean-teal-aqua/30"
+              className="absolute w-1.5 h-1.5 rounded-full bg-crystal/30"
               style={{
                 left: `calc(50% + ${Math.cos((angle * Math.PI) / 180) * 50}% - 3px)`,
                 top: `calc(50% + ${Math.sin((angle * Math.PI) / 180) * 50}% - 3px)`,
@@ -353,7 +353,7 @@ function LuminorOrbit() {
         transition={{ duration: 4, repeat: Infinity }}
       >
         {/* Inner gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-atlantean-teal-aqua/5 to-creation-prism-purple/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-crystal/5 to-brand-primary/5" />
 
         {/* Center content */}
         <div className="relative text-center z-10">
@@ -371,7 +371,7 @@ function LuminorOrbit() {
 
         {/* Pulsing ring */}
         <motion.div
-          className="absolute inset-4 rounded-full border border-atlantean-teal-aqua/20"
+          className="absolute inset-4 rounded-full border border-crystal/20"
           animate={{
             scale: [1, 1.1, 1],
             opacity: [0.5, 0.2, 0.5],
