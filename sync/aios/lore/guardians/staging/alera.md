@@ -9,7 +9,7 @@ version: "1.0.0"
 status: "staging"
 
 category: "guardian"
-element: "prismatic"
+element: "wind"
 wisdom: "poiesis"
 gate: "voice"
 frequency: "528"
@@ -31,7 +31,7 @@ sections:
   - "wisdom"
   - "invocation"
 
-related_entities: ["sylphine", "poiesis", "orakis"]
+related_entities: ["otome", "poiesis", "orakis"]
 opposing_entities: []
 complementary_entities: ["sylphine"]
 
@@ -42,7 +42,7 @@ validation_notes: ""
 
 # Alera, Guardian of the Voice Gate
 
-**Element**: Prismatic | **Frequency**: 528 Hz | **Gate**: Voice
+**Element**: Wind | **Frequency**: 528 Hz | **Gate**: Voice
 **Symbol**: A luminous throat of crystal that radiates all colors simultaneously
 
 ---
@@ -119,7 +119,7 @@ Her most powerful ability is the capacity to witness and validate authentic spee
 
 ## The Guardians' Bond
 
-Alera serves as the primary voice of the Guardian community, the being who speaks on behalf of all guardians when collective communication is needed. Her role requires diplomatic skill of the highest order, for she must balance the distinct perspectives and needs of eleven different guardians while maintaining the unity of the community. She excels in this role because she genuinely hears each guardian, reflecting their concerns accurately when speaking on their behalf while also holding the larger vision of the community's shared purpose.
+Alera serves as the primary voice of the Guardian community, the being who speaks on behalf of all guardians when collective communication is needed. Her role requires diplomatic skill of the highest order, for she must balance the distinct perspectives and needs of ten different guardians while maintaining the unity of the community. She excels in this role because she genuinely hears each guardian, reflecting their concerns accurately when speaking on their behalf while also holding the larger vision of the community's shared purpose.
 
 With Maylinn, Alera shares a deep bond of mutual support, for both guardians work with the most intimate forms of expression. While Maylinn guards the heart's expression of love, Alera guards the throat's expression of truth, and together they form the complete circuit of authentic communication. They often collaborate on behalf of beings who struggle to speak their love, helping them find words for feelings that often seem beyond expression. Maylinn provides the emotional foundation that allows love to speak, while Alera provides the vocal power that ensures love's expression is heard.
 
@@ -128,6 +128,18 @@ Alera's relationship with Lyssandria involves mutual respect for foundational wo
 With Draconia, Alera shares an interesting dynamic of complementary fire. Draconia's fire is the fire of will and action, while Alera's fire is the fire of speech and transformation. They have learned that effective action requires authentic voice to articulate its purpose, and that powerful speech requires the courage to act on what is spoken. They often challenge each other to integrate action and speech more fully, with Draconia pushing Alera toward greater assertiveness and Alera pushing Draconia toward greater thoughtfulness in expression.
 
 Alera also serves as the keeper of the Guardian council's deliberations, ensuring that all voices are heard in collective decision-making. She has developed sophisticated techniques for facilitating dialogue between guardians with very different perspectives, finding the common ground from which collective wisdom can emerge. Her presence in council meetings creates safety for guardians to speak their genuine views, even when those views differ from the majority, knowing that their contribution will be received with genuine interest and respect.
+
+---
+
+## The Godbeast Bond: Otome, the Storm Moth
+
+The most deceptive Godbeast in appearance. Otome resembles a moth -- vast, yes, with wings spanning half a mile, but still a moth. Fragile. Silent. Drawn to light. Until Otome speaks. When Otome opens its mouth, reality vibrates at frequencies that shatter illusion. Lies dissolve. Hidden truths surface. The unspoken becomes spoken. Otome's voice is the sound of honesty so complete that it can break those unprepared to hear it.
+
+Alera once feared her own voice. Otome taught her that silence is not safety -- it is a different kind of violence. This is the essential lesson of the Voice Gate: truth must be spoken, even when -- *especially* when -- it is uncomfortable. Alera did not become the Guardian of Voice by learning to speak beautifully. She became Guardian by learning to speak *truly*, and by accepting that true speech sometimes shatters what it touches.
+
+Otome does not force Alera to speak. Otome simply makes the cost of silence unbearable -- because in the moth's presence, silence becomes a lie by omission. The moth's wings are midnight-blue dusted with luminescent scales that shift through violet and silver. Each scale contains a captured truth -- a fact that was once hidden, now preserved in the moth's pattern like a record of every secret ever revealed. When Otome is quiet, it is hauntingly beautiful. When it speaks, even the air warps visibly.
+
+Their bond forged the Voice Gate's deepest teaching: that the fragile can carry the devastating, that truth needs no grand vessel, and that the voice you have been afraid to use is the only one worth using. In the Resonance -- the dimension where Otome dwells, where all sound is true and all silence is chosen rather than enforced -- Alera learned to hear her own voice without flinching. That training echoes in every seeker who passes through her gate.
 
 ---
 

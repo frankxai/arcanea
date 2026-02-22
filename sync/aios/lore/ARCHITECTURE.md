@@ -12,7 +12,7 @@ Currently we have **fragmented systems**:
 
 | System | Location | Platform | Lore Location | Status |
 |--------|----------|----------|---------------|--------|
-| Claude Code | `/mnt/c/Users/Frank/Arcanea/.claude/` | Windows | .claude/lore/ | Local |
+| Claude Code | `/mnt/c/Users/Frank/Arcanea/.claude/` | Windows | .arcanea/lore/ | Local |
 | OpenCode | `~/.config/opencode/` | Linux | Unknown | Separate |
 | Codex | TBD | TBD | TBD | Unknown |
 
@@ -158,7 +158,7 @@ ln -s /mnt/c/Users/Frank/Arcanea/arcanea-lore lore
 ```
 
 Result:
-- `.claude/lore/` → `arcanea-lore/`
+- `.arcanea/lore/` → `arcanea-lore/`
 - All systems now share same lore files
 
 ### OpenCode (Linux)
