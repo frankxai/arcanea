@@ -31,7 +31,7 @@ sections:
   - "wisdom"
   - "invocation"
 
-related_entities: ["vysara", "orakis", "sophron"]
+related_entities: ["yumiko", "orakis", "sophron"]
 opposing_entities: []
 complementary_entities: ["vysara"]
 
@@ -123,11 +123,23 @@ Lyria serves as the seer of the Guardian community, the being who perceives the 
 
 With Alera, Lyria shares a deep bond, for both guardians work with the most subtle forms of communication. While Alera guards the voice that speaks, Lyria guards the sight that perceives, and together they form the complete circuit of conscious exchange. They often collaborate on behalf of beings who struggle to express what they perceive or to perceive what they express. Alera provides the vocal power that allows inner vision to find outer expression, while Lyria provides the perceptual clarity that ensures expression matches intention.
 
-Lyria's relationship with Orakis is particularly significant, for both guardians work with the wisdom of mystery and vision. While Orakis holds the cosmic patterns of fate and transformation, Lyria holds the perceptual capacity to perceive those patterns. They share a perspective that sees beyond immediate appearances to larger patterns, and they often work together to help beings perceive their place within the cosmic order.
+Lyria's attunement to the Wisdom of Orakis -- the aspect of Mystery that dwells in Void -- is particularly significant. While other Guardians draw on Wisdoms that guide action or sustain endurance, Lyria draws on the Wisdom that reveals hidden patterns and cosmic connections. Orakis as an aspect deepens Lyria's perceptual capacity, allowing her to see beyond immediate appearances to the larger rhythms of fate and transformation. This attunement is what gives Lyria's sight its prophetic quality, its ability to perceive not just what is but what the patterns suggest must inevitably become.
 
 With Maylinn, Lyria shares an appreciation for the emotional dimensions of perception. She understands that seeing is never purely intellectual but always carries emotional weight, that what we perceive shapes how we feel and vice versa. She often works with Maylinn on behalf of beings whose emotional patterns are limiting their perceptual capacity, helping them release emotional blocks that prevent clear sight.
 
 Lyria also serves as the community's memory, for she perceives not only the present but the patterns of the past. She holds the history of the guardian community in her perception, remembering agreements made, conflicts resolved, lessons learned. This historical perspective allows her to advise guardians on current challenges by illuminating relevant precedents, helping the community learn from its collective experience.
+
+---
+
+## The Godbeast Bond: Yumiko, the Veil-Walker
+
+Yumiko exists partially in this reality and partially elsewhere. A fox-like being of luminous silver, larger than a horse but carrying itself with a fox's grace, with three tails that each extend into a different dimension -- one reaching into the past, one into possible futures, and the third into the unseen dimension of meaning and pattern. Yumiko sees what others cannot, not because its eyes are sharper but because it perceives from angles that physical beings cannot access.
+
+Lyria was already a visionary when Yumiko came to her. The Godbeast did not grant her sight -- it taught her to *survive what she saw*. This is the essential lesson of the Sight Gate: vision is not about gaining perception. It is about bearing it. Seeing the truth of reality -- the full complexity of past, present, future, and meaning -- is not a gift. It is a weight. Yumiko teaches Lyria to carry it without being crushed by it.
+
+Their bond is one of mutual seeing. Lyria sees through Yumiko's three-dimensional perception. Yumiko sees through Lyria's human understanding. Together, they perceive what neither could alone -- reality as it truly is, in all its overwhelming, beautiful completeness. The fox never seems fully present -- part of it is always elsewhere, giving it a shimmering, translucent quality that mirrors the nature of perception itself.
+
+In the Veil -- the thin membrane between dimensions where all realities overlap -- Lyria and Yumiko walk together. When the fox focuses all three of its eyes on a single point, a corona of silver light surrounds the point of focus, and everyone nearby experiences a moment of absolute clarity. This is the gift they offer seekers who reach the Sight Gate: not better eyes, but better seeing -- and the deep-rooted strength to hold what is seen without looking away.
 
 ---
 

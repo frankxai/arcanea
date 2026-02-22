@@ -92,4 +92,4 @@ Each Guardian has a bonded Godbeast:
 ---
 
 *Updated: February 21, 2026 — Frequencies corrected to match CANON_LOCKED.md*
-*Source of truth: `.claude/lore/CANON_LOCKED.md`*
+*Source of truth: `.arcanea/lore/CANON_LOCKED.md`*

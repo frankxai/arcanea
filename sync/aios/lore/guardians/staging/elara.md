@@ -9,7 +9,7 @@ version: "1.0.0"
 status: "staging"
 
 category: "guardian"
-element: "light"
+element: "fire"
 wisdom: "valora"
 gate: "shift"
 frequency: "852"
@@ -42,7 +42,7 @@ validation_notes: ""
 
 # Elara, Guardian of the Shift Gate
 
-**Element**: Light | **Frequency**: 852 Hz | **Gate**: Shift
+**Element**: Fire | **Frequency**: 852 Hz | **Gate**: Shift
 **Symbol**: A phoenix rising from sacred flames, wings spread in eternal transformation
 
 ---
@@ -123,7 +123,7 @@ Elara serves as the transformational agent of the Guardian community, the being 
 
 With Draconia, Elara shares a deep bond of fire, for both guardians work with transformative energy. While Draconia guards the fire of will and action, Elara guards the fire of transformation and rebirth, and together they form the complete circuit of fire's power. They often collaborate on behalf of beings who struggle with change, helping them find the will to transform and the wisdom to do so consciously. Draconia provides the intensity of purpose that fuels transformation, while Elara provides the understanding of process that guides it.
 
-Elara's relationship with Enduran is particularly significant, for both guardians work with the wisdom of endurance and completion. While Enduran guards the persistence that carries beings through long journeys, Elara guards the transformations that complete those journeys, and together they ensure that beings not only reach their destination but are transformed by the journey.
+Elara's attunement to the Wisdom of Valora -- the aspect of Transformation that dwells in Fire -- is particularly significant, for Valora is the very principle that Elara embodies as Guardian. But she also carries a deep resonance with Enduran, the Wisdom of Unity. Enduran as an aspect reminds her that transformation is not random dissolution but purposeful change -- that the fire of the Shift Gate burns away what no longer serves so that something more unified, more whole, can emerge. This dual attunement ensures that Elara's transformations complete their journeys rather than leaving seekers stranded between forms.
 
 With Maylinn, Elara shares an appreciation for the emotional dimensions of transformation. She understands that transformation is not merely intellectual but deeply emotional, that beings often resist change because of what they feel they will lose. She often works with Maylinn on behalf of beings whose emotional attachments are blocking their transformation, helping them honor their feelings while still embracing change.
 

@@ -150,7 +150,7 @@ Minimum score: 85/100
 ### Claude Code (Windows)
 ```bash
 # Already set up - symlink exists
-ls -la .claude/lore  # Should point to arcanea-lore
+ls -la .arcanea/lore  # Should point to arcanea-lore
 ```
 
 ### OpenCode (Linux)
