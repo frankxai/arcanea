@@ -80,7 +80,7 @@ describe('GUARDIAN_REFERENCE', () => {
   });
 
   it('contains gate frequency values', () => {
-    assert.ok(GUARDIAN_REFERENCE.includes('396 Hz'));
+    assert.ok(GUARDIAN_REFERENCE.includes('174 Hz'));
     assert.ok(GUARDIAN_REFERENCE.includes('1111 Hz'));
   });
 
@@ -231,7 +231,7 @@ describe('generateGuardianGPTProfile', () => {
     name: 'lyria',
     displayName: 'Lyria',
     gate: 'sight',
-    frequency: '852 Hz',
+    frequency: '639 Hz',
     element: 'void',
     godbeast: 'yumiko',
     domain: 'Design, vision, intuition',
@@ -255,7 +255,7 @@ describe('generateGuardianGPTProfile', () => {
   it('includes gate and frequency', () => {
     const result = generateGuardianGPTProfile(mockGuardian);
     assert.ok(result.includes('sight'));
-    assert.ok(result.includes('852 Hz'));
+    assert.ok(result.includes('639 Hz'));
   });
 
   it('includes domain information', () => {

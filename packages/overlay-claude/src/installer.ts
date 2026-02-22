@@ -6,7 +6,7 @@
  *   minimal  — CLAUDE.md + manifest
  *   standard — + 4 skills, 10 Guardian agents, 8 hooks, statusline, AgentDB, helpers
  *   full     — + /channel, /arcanea-status commands
- *   luminor  — + .claude/lore/ directory
+ *   luminor  — + .arcanea/lore/ directory
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';

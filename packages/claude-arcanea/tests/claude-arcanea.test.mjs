@@ -124,7 +124,7 @@ describe('Skills data integrity', () => {
   });
 
   it('skill frequencies match canonical Gate values', () => {
-    const validFreqs = [396, 417, 528, 639, 741, 852, 963, 1111];
+    const validFreqs = [174, 285, 396, 417, 528, 639, 741, 852, 963, 1111];
     for (const skill of skills.allSkills) {
       assert.ok(validFreqs.includes(skill.frequency),
         `Skill ${skill.id} has invalid frequency ${skill.frequency}`);
@@ -271,7 +271,7 @@ describe('skillsByGate', () => {
   });
 
   it('populated gates have correct frequency alignment', () => {
-    const gateFreqs = { foundation: 396, flow: 417, fire: 528, heart: 639, voice: 741, sight: 852, crown: 963, shift: 1111, unity: 963, source: 1111 };
+    const gateFreqs = { foundation: 174, flow: 285, fire: 396, heart: 417, voice: 528, sight: 639, crown: 741, shift: 852, unity: 963, source: 1111 };
     for (const [gate, arr] of Object.entries(skills.skillsByGate)) {
       for (const skill of arr) {
         assert.strictEqual(skill.frequency, gateFreqs[gate],
@@ -349,7 +349,7 @@ describe('Specific skill content', () => {
   it('project-scaffold has correct metadata', () => {
     const s = skills.getSkillById('project-scaffold');
     assert.strictEqual(s.gate, 'foundation');
-    assert.strictEqual(s.frequency, 396);
+    assert.strictEqual(s.frequency, 174);
     assert.strictEqual(s.category, 'development');
     assert.ok(s.triggers.includes('/scaffold'));
   });
@@ -357,7 +357,7 @@ describe('Specific skill content', () => {
   it('creative-writing has correct metadata', () => {
     const s = skills.getSkillById('creative-writing');
     assert.strictEqual(s.gate, 'flow');
-    assert.strictEqual(s.frequency, 417);
+    assert.strictEqual(s.frequency, 285);
     assert.strictEqual(s.category, 'creative');
     assert.ok(s.triggers.includes('/write'));
   });
@@ -365,28 +365,28 @@ describe('Specific skill content', () => {
   it('rapid-prototype has correct metadata', () => {
     const s = skills.getSkillById('rapid-prototype');
     assert.strictEqual(s.gate, 'fire');
-    assert.strictEqual(s.frequency, 528);
+    assert.strictEqual(s.frequency, 396);
     assert.ok(s.triggers.includes('/prototype'));
   });
 
   it('documentation has correct metadata', () => {
     const s = skills.getSkillById('documentation');
     assert.strictEqual(s.gate, 'voice');
-    assert.strictEqual(s.frequency, 741);
+    assert.strictEqual(s.frequency, 528);
     assert.ok(s.triggers.includes('/docs'));
   });
 
   it('architecture-vision has correct metadata', () => {
     const s = skills.getSkillById('architecture-vision');
     assert.strictEqual(s.gate, 'sight');
-    assert.strictEqual(s.frequency, 852);
+    assert.strictEqual(s.frequency, 639);
     assert.ok(s.triggers.includes('/architect'));
   });
 
   it('debug-insight has correct metadata', () => {
     const s = skills.getSkillById('debug-insight');
     assert.strictEqual(s.gate, 'sight');
-    assert.strictEqual(s.frequency, 852);
+    assert.strictEqual(s.frequency, 639);
     assert.ok(s.triggers.includes('/debug'));
   });
 

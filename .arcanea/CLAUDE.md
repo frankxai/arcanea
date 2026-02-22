@@ -1,64 +1,32 @@
-# Arcanea Workspace Hub
+# Arcanea Shared Intelligence Hub
 
-You are operating within the Arcanea multi-repository development environment.
+This directory is the **tool-agnostic brain** of the Arcanea ecosystem. Any AI coding tool (Claude Code, Cursor, Codex, Gemini, arcanea-code) reads from here.
 
-## Workspace Structure
+## Directory Map
 
-```
-arcanea/
-├── .arcanea/              # Workspace configuration
-├── arcanea-agents/        # Agent registry and orchestration
-├── core/                  # Modes, skills, knowledge
-├── pages/                 # Next.js web interface
-├── lore/                  # Mythology (optional depth)
-├── spec/                  # .arc language specification
-├── intelligence-os/       # CLI and agent system
-├── arcanea-mobile/        # Mobile app
-└── labs/                  # Experiments
-```
+| Path | Purpose |
+|------|---------|
+| `lore/CANON_LOCKED.md` | Immutable mythology reference |
+| `lore/godbeasts/` | 10 Godbeast profiles |
+| `lore/gods-goddesses/` | 10 God/Goddess profiles |
+| `lore/guardians/` | Guardian system (staging/production) |
+| `config/models.yaml` | Adaptive model routing per tool |
+| `config/voice.yaml` | Writing voice and tone rules |
+| `config/design-tokens.yaml` | Portable design system tokens |
+| `skills/` | Creative and universe knowledge skills |
+| `agents/` | Guardian and department agent profiles |
+| `installer/manifest.yaml` | Multi-tool installation registry |
+| `config.json` | Workspace repository registry |
 
-## Modes
+## Architecture Principle
 
-| Mode | Invoke | Purpose |
-|------|--------|---------|
-| Create | `/create` | Generate, ideate, bold work |
-| Analyze | `/analyze` | Evaluate, research, understand |
-| Refine | `/refine` | Edit, polish, perfect |
-| Structure | `/structure` | Architect, organize, plan |
-| Express | `/express` | Communicate, document, voice |
-| Vision | `/vision` | Future-sight, possibilities |
-| Orchestrate | `/orchestrate` | Multi-mode coordination |
+`.arcanea/` = shared knowledge (brain). Tool-specific directories = execution (hands).
 
-## Routing
+- `.claude/` — Claude Code hooks, commands, orchestration
+- `.cursorrules` — Cursor thin pointer
+- `.codex/` — Codex thin pointer
+- `.gemini/` — Gemini thin pointer
 
-| Task Type | Mode | Repository |
-|-----------|------|------------|
-| Web development | Create/Refine | `pages/`, `apps/` |
-| Agent work | Orchestrate | `arcanea-agents/` |
-| CLI tools | Structure | `intelligence-os/` |
-| Experiments | Vision | `labs/` |
-| Documentation | Express | `docs/` |
+## For Project-Level Instructions
 
-## Commands
-
-```bash
-npm run dev          # Start development
-npm run scan         # Index library
-npm test             # Run tests
-```
-
-## Key Files
-
-| Purpose | Location |
-|---------|----------|
-| Agent registry | `arcanea-agents/registry.js` |
-| Orchestration | `arcanea-agents/luminor-conductor.js` |
-| Mode definitions | `core/modes/modes.yaml` |
-| .arc spec | `spec/arc-language.md` |
-| Skill system | `SKILL.md` |
-
-## Philosophy
-
-Arcanea is both a **creative framework** and a **mythological world**. The framework (modes, agents, skills) handles work. The world (in `lore/`) provides deeper meaning for those who seek it.
-
-Use what serves the task.
+See the root `CLAUDE.md` and `.claude/CLAUDE.md` for project instructions, tech stack, and development workflow.

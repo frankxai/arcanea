@@ -49,7 +49,7 @@ function getProviderModel(provider) {
 // INLINE LOGIC — guardians.ts (canonical data)
 // ============================================
 
-// Canonical Guardian data matching .claude/lore/ARCANEA_CANON.md
+// Canonical Guardian data matching .arcanea/lore/ARCANEA_CANON.md
 const CHROME_GUARDIANS = [
   { id: 'lyssandria', name: 'Lyssandria', gate: 'Foundation', element: 'Earth',       frequency: 396,  godbeast: 'Kaelith'   },
   { id: 'leyla',      name: 'Leyla',      gate: 'Flow',       element: 'Water',       frequency: 417,  godbeast: 'Veloura'   },

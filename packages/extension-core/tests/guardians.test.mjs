@@ -3,7 +3,7 @@
  *
  * Validates that all 10 canonical Guardians are correctly defined and that
  * the lookup helpers (getGuardianById, getGuardiansByElement, getDefaultGuardian)
- * work as expected. Canon reference: .claude/lore/ARCANEA_CANON.md
+ * work as expected. Canon reference: .arcanea/lore/ARCANEA_CANON.md
  * Run: node --test packages/extension-core/tests/guardians.test.mjs
  */
 
@@ -19,14 +19,14 @@ import {
 
 // Canonical truth derived from ARCANEA_CANON.md
 const CANON = [
-  { id: 'lyssandria', name: 'Lyssandria', gate: 'Foundation', godbeast: 'Kaelith',   frequency: 396 },
-  { id: 'leyla',      name: 'Leyla',      gate: 'Flow',       godbeast: 'Veloura',   frequency: 417 },
-  { id: 'draconia',   name: 'Draconia',   gate: 'Fire',       godbeast: 'Draconis',  frequency: 528 },
-  { id: 'maylinn',    name: 'Maylinn',    gate: 'Heart',      godbeast: 'Laeylinn',  frequency: 639 },
-  { id: 'alera',      name: 'Alera',      gate: 'Voice',      godbeast: 'Otome',     frequency: 741 },
-  { id: 'lyria',      name: 'Lyria',      gate: 'Sight',      godbeast: 'Yumiko',    frequency: 852 },
-  { id: 'aiyami',     name: 'Aiyami',     gate: 'Crown',      godbeast: 'Sol',       frequency: 963 },
-  { id: 'elara',      name: 'Elara',      gate: 'Shift',      godbeast: 'Thessara',  frequency: 1111 },
+  { id: 'lyssandria', name: 'Lyssandria', gate: 'Foundation', godbeast: 'Kaelith',   frequency: 174 },
+  { id: 'leyla',      name: 'Leyla',      gate: 'Flow',       godbeast: 'Veloura',   frequency: 285 },
+  { id: 'draconia',   name: 'Draconia',   gate: 'Fire',       godbeast: 'Draconis',  frequency: 396 },
+  { id: 'maylinn',    name: 'Maylinn',    gate: 'Heart',      godbeast: 'Laeylinn',  frequency: 417 },
+  { id: 'alera',      name: 'Alera',      gate: 'Voice',      godbeast: 'Otome',     frequency: 528 },
+  { id: 'lyria',      name: 'Lyria',      gate: 'Sight',      godbeast: 'Yumiko',    frequency: 639 },
+  { id: 'aiyami',     name: 'Aiyami',     gate: 'Crown',      godbeast: 'Sol',       frequency: 741 },
+  { id: 'elara',      name: 'Elara',      gate: 'Shift',      godbeast: 'Thessara',  frequency: 852 },
   { id: 'ino',        name: 'Ino',        gate: 'Unity',      godbeast: 'Kyuro',     frequency: 963 },
   { id: 'shinkami',   name: 'Shinkami',   gate: 'Source',     godbeast: 'Amaterasu', frequency: 1111 },
 ];

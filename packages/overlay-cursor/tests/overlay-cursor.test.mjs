@@ -424,7 +424,7 @@ describe('generateGuardianMdcFile', () => {
     name: 'elara',
     displayName: 'Elara',
     gate: 'shift',
-    frequency: '1111 Hz',
+    frequency: '852 Hz',
     element: 'wind',
     godbeast: 'thessara',
     domain: 'Perspective shifts, refactoring, transformation',
@@ -457,7 +457,7 @@ describe('generateGuardianMdcFile', () => {
 
   it('content includes frequency', () => {
     const result = generateGuardianMdcFile(mockGuardian);
-    assert.ok(result.content.includes('1111 Hz'));
+    assert.ok(result.content.includes('852 Hz'));
   });
 });
 

@@ -83,7 +83,7 @@ describe('GUARDIAN_REFERENCE (Gemini)', () => {
   });
 
   it('contains frequency values for Foundation and Source gates', () => {
-    assert.ok(GUARDIAN_REFERENCE.includes('396'));
+    assert.ok(GUARDIAN_REFERENCE.includes('174'));
     assert.ok(GUARDIAN_REFERENCE.includes('1111'));
   });
 
@@ -213,7 +213,7 @@ describe('generateGuardianSystemInstruction', () => {
     name: 'draconia',
     displayName: 'Draconia',
     gate: 'fire',
-    frequency: '528 Hz',
+    frequency: '396 Hz',
     element: 'fire',
     godbeast: 'draconis',
     domain: 'Performance, execution, velocity',
@@ -237,7 +237,7 @@ describe('generateGuardianSystemInstruction', () => {
   it('includes gate name and frequency', () => {
     const result = generateGuardianSystemInstruction(mockGuardian);
     assert.ok(result.includes('fire'));
-    assert.ok(result.includes('528 Hz'));
+    assert.ok(result.includes('396 Hz'));
   });
 
   it('includes the antidote principle', () => {
@@ -331,7 +331,7 @@ describe('generateGuardianPromptFile', () => {
     name: 'alera',
     displayName: 'Alera',
     gate: 'voice',
-    frequency: '741 Hz',
+    frequency: '528 Hz',
     element: 'wind',
     godbeast: 'otome',
     domain: 'Truth, expression, APIs',

@@ -143,7 +143,7 @@ export class LoreExplorerProvider implements vscode.TreeDataProvider<LoreNode> {
   private _onDidChangeTreeData = new vscode.EventEmitter<LoreNode | undefined | null | void>();
   readonly onDidChangeTreeData = this._onDidChangeTreeData.event;
 
-  private readonly LORE_SUBDIRS = ['.claude/lore', 'book', 'lore'];
+  private readonly LORE_SUBDIRS = ['.arcanea/lore', 'book', 'lore'];
 
   constructor() {
     vscode.workspace.onDidChangeWorkspaceFolders(() => {
