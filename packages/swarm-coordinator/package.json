@@ -1,0 +1,30 @@
+{
+  "name": "@arcanea/swarm-coordinator",
+  "version": "0.1.0",
+  "description": "Multi-agent swarm coordination with topology-aware task distribution, workflow execution, and Guardian-integrated consensus",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/swarm-coordinator.test.mjs"
+  },
+  "keywords": ["arcanea", "swarm", "coordinator", "agent", "task", "workflow", "orchestration"],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}
