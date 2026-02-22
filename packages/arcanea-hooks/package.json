@@ -1,0 +1,18 @@
+{
+  "name": "@arcanea/hooks",
+  "version": "0.1.0",
+  "description": "Operational hooks system for the Arcanea Intelligence OS — self-optimizing lifecycle hooks with Guardian integration",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test tests/hooks.test.mjs"
+  },
+  "dependencies": {
+    "minimatch": "^9.0.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}
