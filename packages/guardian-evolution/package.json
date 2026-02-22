@@ -1,0 +1,45 @@
+{
+  "name": "@arcanea/guardian-evolution",
+  "version": "0.1.0",
+  "description": "Guardian Evolution — SONA learning, ReasoningBank, pattern extraction, and 7 RL algorithms for Guardian growth",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./algorithms": {
+      "types": "./dist/algorithms/index.d.ts",
+      "import": "./dist/algorithms/index.js"
+    },
+    "./modes": {
+      "types": "./dist/modes/index.d.ts",
+      "import": "./dist/modes/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/evolution.test.mjs"
+  },
+  "keywords": [
+    "arcanea",
+    "guardian",
+    "evolution",
+    "sona",
+    "learning",
+    "neural",
+    "reinforcement-learning"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@arcanea/guardian-memory": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

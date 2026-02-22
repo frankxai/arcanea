@@ -173,8 +173,14 @@ export default function AcademyPage() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/academy/assessment"
+              href="/academy/gate-quiz"
               className="rounded-xl bg-brand-primary px-6 py-3 font-semibold text-white shadow-glow-brand hover:scale-[1.02] transition-all"
+            >
+              Find Your Guardian
+            </Link>
+            <Link
+              href="/academy/assessment"
+              className="rounded-xl glass border border-white/20 px-6 py-3 text-text-secondary transition-colors hover:border-crystal hover:text-crystal"
             >
               Begin Assessment
             </Link>

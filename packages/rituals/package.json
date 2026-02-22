@@ -1,0 +1,38 @@
+{
+  "name": "@arcanea/rituals",
+  "version": "0.1.0",
+  "description": "Arcanea Rituals — lifecycle hooks, Twelve Spirits (background workers), ReasoningBank guidance, and daemon orchestration",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./workers": {
+      "types": "./dist/workers/index.d.ts",
+      "import": "./dist/workers/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/rituals.test.mjs"
+  },
+  "keywords": [
+    "arcanea",
+    "rituals",
+    "hooks",
+    "workers",
+    "spirits",
+    "daemon",
+    "lifecycle"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

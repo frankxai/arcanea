@@ -5,6 +5,8 @@ import { ReactNode } from "react";
 import { Cinzel, Crimson_Pro, Inter, JetBrains_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { AuthProvider } from "@/lib/auth/context";
+import { Navbar } from "@/components/navigation/navbar";
+import { Footer } from "@/components/navigation/footer";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -89,7 +91,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </a>
           <div className="relative min-h-dvh bg-cosmic-void font-sans text-arcanean-text selection:bg-crystal/30 selection:text-crystal">
             <CosmicBackground />
-            <main id="main-content" className="relative mx-auto max-w-6xl p-4">{children}</main>
+            <Navbar />
+            <main id="main-content" className="relative mx-auto max-w-6xl p-4 pt-24">{children}</main>
+            <Footer />
           </div>
         </AuthProvider>
       </body>

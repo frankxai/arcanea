@@ -1,0 +1,50 @@
+{
+  "name": "@arcanea/library-pipeline",
+  "version": "0.1.0",
+  "description": "Living Library Pipeline — staging, Guardian review, and publication of user-created content for the Library of Arcanea",
+  "type": "module",
+  "main": "./dist/library-pipeline.js",
+  "types": "./dist/library-pipeline.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/library-pipeline.d.ts",
+      "import": "./dist/library-pipeline.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "arcanea",
+    "library",
+    "pipeline",
+    "content",
+    "guardian",
+    "review",
+    "publishing"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/os"
+  },
+  "dependencies": {
+    "@arcanea/os": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

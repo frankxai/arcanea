@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { BookOpen, Search, Filter, ArrowRight, Scroll, Feather, Music, Sparkles, Shield, Map, Moon, Users, Heart } from 'lucide-react';
 import Link from 'next/link';
-import { Navbar } from '@/components/navigation';
+
 
 const COLLECTIONS = [
   {
@@ -201,8 +201,6 @@ export default function LibraryPage() {
 
   return (
     <div className="relative min-h-screen bg-cosmic-deep">
-      <Navbar />
-
       {/* Hero */}
       <section
         ref={heroRef}

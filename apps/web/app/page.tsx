@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { BookOpen, GraduationCap, Palette } from "lucide-react";
 import { getCollections, getAllTexts } from "@/lib/content";
 import { HeroV3, LogosSection, LuminorShowcase, FeaturesV2, WisdomsSection, HowItWorks, SocialProof, TestimonialsV2, PricingSection, FAQSection, CTASection } from "@/components/landing";
-import { Navbar } from "@/components/navigation";
+
 
 export const metadata: Metadata = {
   title: "Arcanea | Create with Transcendent AI",
@@ -27,9 +27,6 @@ export default async function Page() {
 
   return (
     <div className="relative min-h-screen">
-      {/* Navigation */}
-      <Navbar />
-
       <main>
         {/* Hero Section - Premium V3 */}
         <HeroV3

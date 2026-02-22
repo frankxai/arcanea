@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import { GuardiansHero } from '@/components/lore/guardians/guardians-hero';
 import { GuardiansGrid } from '@/components/lore/guardians/guardians-grid';
 import { PartnershipSection } from '@/components/lore/guardians/partnership-section';
-import { Navbar } from '@/components/navigation';
 
 export const metadata: Metadata = {
   title: 'The Ten Guardians | Lore of Arcanea',
@@ -17,7 +16,6 @@ export const metadata: Metadata = {
 export default function GuardiansPage() {
   return (
     <div className="relative min-h-screen bg-cosmic-deep">
-      <Navbar />
       <main>
         <GuardiansHero />
         <GuardiansGrid />

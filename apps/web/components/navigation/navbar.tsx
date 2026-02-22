@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sparkles, Palette, BookOpen, GraduationCap, Info } from 'lucide-react';
+import { Menu, X, Sparkles, Palette, BookOpen, GraduationCap, Compass, Users } from 'lucide-react';
 import { UserNav } from '@/components/auth';
 import { cn } from '@/lib/utils';
 
@@ -13,7 +13,8 @@ const navLinks = [
   { href: '/studio', label: 'Studio', icon: Palette },
   { href: '/library', label: 'Library', icon: BookOpen },
   { href: '/academy', label: 'Academy', icon: GraduationCap },
-  { href: '/about', label: 'About', icon: Info },
+  { href: '/lore', label: 'Lore', icon: Compass },
+  { href: '/community', label: 'Community', icon: Users },
 ];
 
 export function Navbar() {

@@ -1,0 +1,82 @@
+{
+  "name": "Arcanea Daily Intelligence Cycle",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "triggerAtHour": 9 }
+          ]
+        }
+      },
+      "name": "Morning Trigger (Foundation Gate)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "command": "git fetch --all && git status --porcelain"
+      },
+      "name": "Git Status Check",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /mnt/c/Users/frank/Arcanea && npx turbo run test --output-logs=errors-only 2>&1 | tail -20"
+      },
+      "name": "Run Test Suite",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /mnt/c/Users/frank/Arcanea && npx turbo run build --output-logs=errors-only 2>&1 | tail -20"
+      },
+      "name": "Build Health Check",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.anthropic.com/v1/messages",
+        "method": "POST",
+        "headers": {
+          "x-api-key": "={{$env.ANTHROPIC_API_KEY}}",
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json"
+        },
+        "body": {
+          "model": "claude-sonnet-4-20250514",
+          "max_tokens": 2000,
+          "messages": [
+            {
+              "role": "user",
+              "content": "You are Shinkami, Guardian of the Source Gate. Analyze this Arcanea daily report and provide strategic recommendations:\n\nGit Status: {{$node['Git Status Check'].json.stdout}}\nTest Results: {{$node['Run Test Suite'].json.stdout}}\nBuild Health: {{$node['Build Health Check'].json.stdout}}\n\nProvide:\n1. Health assessment (1-10)\n2. Top 3 priorities for today\n3. Any blockers or risks\n4. Creative expansion opportunity"
+            }
+          ]
+        }
+      },
+      "name": "Shinkami Analysis",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "channel": "#arcanea-daily",
+        "text": "=🌅 **Arcanea Morning Report** — Guardian: Shinkami\n\n{{$node['Shinkami Analysis'].json.content[0].text}}\n\n---\n*Through the Gates we rise*"
+      },
+      "name": "Post to Slack",
+      "type": "n8n-nodes-base.slack",
+      "position": [1250, 300]
+    }
+  ],
+  "connections": {
+    "Morning Trigger (Foundation Gate)": { "main": [[{ "node": "Git Status Check", "type": "main", "index": 0 }]] },
+    "Git Status Check": { "main": [[{ "node": "Run Test Suite", "type": "main", "index": 0 }]] },
+    "Run Test Suite": { "main": [[{ "node": "Build Health Check", "type": "main", "index": 0 }]] },
+    "Build Health Check": { "main": [[{ "node": "Shinkami Analysis", "type": "main", "index": 0 }]] },
+    "Shinkami Analysis": { "main": [[{ "node": "Post to Slack", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "timezone": "Europe/Amsterdam" }
+}

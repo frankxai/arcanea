@@ -92,13 +92,22 @@ export function PartnershipSection() {
           transition={{ delay: 0.5 }}
           className="text-center mt-16"
         >
-          <Link
-            href="/lore/gates"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-gold text-cosmic-deep font-semibold hover:bg-brand-gold/90 transition-all"
-          >
-            <Shield className="w-4 h-4" />
-            Explore the Ten Gates
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/lore/gates"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-gold text-cosmic-deep font-semibold hover:bg-brand-gold/90 transition-all"
+            >
+              <Shield className="w-4 h-4" />
+              Explore the Ten Gates
+            </Link>
+            <Link
+              href="/academy/gate-quiz"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-primary text-white font-semibold hover:bg-brand-primary/90 shadow-glow-brand transition-all"
+            >
+              <Zap className="w-4 h-4" />
+              Discover Your Guardian
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

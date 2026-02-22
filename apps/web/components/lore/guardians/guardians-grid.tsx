@@ -11,7 +11,7 @@ const GUARDIANS = [
     name: 'Lyssandria',
     title: 'Guardian of Foundation',
     gate: 1,
-    frequency: '396 Hz',
+    frequency: '174 Hz',
     godbeast: 'Kaelith',
     godbestType: 'Colossal stone serpent-dragon',
     element: 'Earth/Obsidian',
@@ -27,7 +27,7 @@ const GUARDIANS = [
     name: 'Leyla',
     title: 'Guardian of Flow',
     gate: 2,
-    frequency: '417 Hz',
+    frequency: '285 Hz',
     godbeast: 'Veloura',
     godbestType: 'Elegant sea serpent',
     element: 'Water-Fire/Steam',
@@ -43,7 +43,7 @@ const GUARDIANS = [
     name: 'Draconia',
     title: 'Guardian of Fire',
     gate: 3,
-    frequency: '528 Hz',
+    frequency: '396 Hz',
     godbeast: 'Draconis',
     godbestType: 'Lion-dragon wreathed in solar fire',
     element: 'Fire/Solar',
@@ -59,7 +59,7 @@ const GUARDIANS = [
     name: 'Maylinn',
     title: 'Guardian of Heart',
     gate: 4,
-    frequency: '639 Hz',
+    frequency: '417 Hz',
     godbeast: 'Laeylinn',
     godbestType: 'Enormous glowing stag',
     element: 'Nature/Verdant',
@@ -75,7 +75,7 @@ const GUARDIANS = [
     name: 'Alera',
     title: 'Guardian of Voice',
     gate: 5,
-    frequency: '741 Hz',
+    frequency: '528 Hz',
     godbeast: 'Otome',
     godbestType: 'Colossal whale',
     element: 'Sound/Sonic',
@@ -91,7 +91,7 @@ const GUARDIANS = [
     name: 'Lyria',
     title: 'Guardian of Sight',
     gate: 6,
-    frequency: '852 Hz',
+    frequency: '639 Hz',
     godbeast: 'Yumiko',
     godbestType: 'Owl-serpent hybrid',
     element: 'Dream/Moonlight',
@@ -107,7 +107,7 @@ const GUARDIANS = [
     name: 'Aiyami',
     title: 'Guardian of Crown',
     gate: 7,
-    frequency: '963 Hz',
+    frequency: '741 Hz',
     godbeast: 'Sol',
     godbestType: 'Radiant dragon of crystallized light',
     element: 'Light/Divine',
@@ -123,7 +123,7 @@ const GUARDIANS = [
     name: 'Elara',
     title: 'Guardian of Shift',
     gate: 8,
-    frequency: '1111 Hz',
+    frequency: '852 Hz',
     godbeast: 'Thessara',
     godbestType: 'Fox with eight prismatic tails',
     element: 'Echo/Fractal',
@@ -282,10 +282,17 @@ export function GuardiansGrid() {
                           "{guardian.teaching}"
                         </blockquote>
 
-                        <div className="mt-6 flex gap-4">
+                        <div className="mt-6 flex items-center gap-4">
                           <div className="px-3 py-1 rounded-full bg-white/5 text-xs">
                             Wisdom: {guardian.wisdom}
                           </div>
+                          <Link
+                            href={`/lore/guardians/${guardian.id}`}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-primary/10 text-brand-primary text-sm font-medium hover:bg-brand-primary/20 transition-colors"
+                          >
+                            Full Profile
+                            <ArrowRight className="w-4 h-4" />
+                          </Link>
                         </div>
                       </div>
                     </div>

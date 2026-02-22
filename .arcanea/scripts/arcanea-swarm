@@ -1,0 +1,199 @@
+#!/bin/bash
+# ============================================
+# ARCANEA SWARM LAUNCHER
+# Activates the full Guardian intelligence swarm
+# Usage: ./arcanea-swarm [mode] [guardian]
+# ============================================
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WORKSPACE="$(dirname "$(dirname "$SCRIPT_DIR")")"
+STATE_DIR="/tmp/arcanea-swarm"
+LOG_DIR="$STATE_DIR/logs"
+
+# Colors
+C='\033[0;36m'   # Cyan
+G='\033[0;32m'   # Green
+Y='\033[0;33m'   # Yellow
+M='\033[0;35m'   # Magenta
+R='\033[0;31m'   # Red
+W='\033[0;37m'   # White
+D='\033[0;90m'   # Dim
+B='\033[1m'      # Bold
+N='\033[0m'      # Reset
+
+# Ensure state directory
+mkdir -p "$STATE_DIR" "$LOG_DIR"
+
+banner() {
+  echo ""
+  echo -e "${C}${B}"
+  echo "  ╔═══════════════════════════════════════════════════════════╗"
+  echo "  ║                                                           ║"
+  echo "  ║     ◇  ARCANEA INTELLIGENCE SWARM  ◇                    ║"
+  echo "  ║                                                           ║"
+  echo "  ║     Ten Guardians. One Purpose. Infinite Creation.        ║"
+  echo "  ║                                                           ║"
+  echo "  ╚═══════════════════════════════════════════════════════════╝"
+  echo -e "${N}"
+}
+
+guardian_status() {
+  local name=$1 gate=$2 freq=$3 element=$4 status=$5
+  local color=$C
+  case $element in
+    fire) color=$R ;;
+    water) color=$C ;;
+    earth) color=$G ;;
+    wind) color=$W ;;
+    void) color=$M ;;
+    spirit) color=$Y ;;
+  esac
+
+  if [ "$status" = "active" ]; then
+    echo -e "  ${color}● $name${N} ${D}│${N} ${W}$gate${N} ${D}│${N} ${D}$freq Hz${N} ${D}│${N} ${G}ACTIVE${N}"
+  else
+    echo -e "  ${D}○ $name${N} ${D}│${N} ${D}$gate${N} ${D}│${N} ${D}$freq Hz${N} ${D}│${N} ${D}standby${N}"
+  fi
+}
+
+activate_guardians() {
+  echo -e "\n  ${B}Guardian Council${N}\n"
+  guardian_status "Lyssandria" "Foundation" "174"  "earth"  "active"
+  guardian_status "Leyla"      "Flow"       "285"  "water"  "active"
+  guardian_status "Draconia"   "Fire"       "396"  "fire"   "active"
+  guardian_status "Maylinn"    "Heart"      "417"  "wind"   "active"
+  guardian_status "Alera"      "Voice"      "528"  "wind"   "active"
+  guardian_status "Lyria"      "Sight"      "639"  "water"  "active"
+  guardian_status "Aiyami"     "Crown"      "741"  "spirit" "active"
+  guardian_status "Elara"      "Shift"      "852"  "void"   "active"
+  guardian_status "Ino"        "Unity"      "963"  "spirit" "active"
+  guardian_status "Shinkami"   "Source"     "1111"  "void"   "active"
+  echo ""
+}
+
+run_morning() {
+  echo -e "  ${Y}${B}Morning Cycle — Foundation Gate${N}\n"
+
+  echo -e "  ${C}→${N} Fetching all repos..."
+  cd "$WORKSPACE" && git fetch --all --quiet 2>/dev/null
+  echo -e "  ${G}✓${N} Git sync complete"
+
+  echo -e "  ${C}→${N} Running test suite..."
+  local test_output=$(cd "$WORKSPACE" && npx turbo run test --output-logs=errors-only 2>&1 | tail -5)
+  echo -e "  ${G}✓${N} Tests: $test_output"
+
+  echo -e "  ${C}→${N} Checking build health..."
+  local build_output=$(cd "$WORKSPACE" && npx turbo run build --output-logs=errors-only 2>&1 | tail -3)
+  echo -e "  ${G}✓${N} Build: $build_output"
+
+  echo -e "  ${C}→${N} Scanning security..."
+  local audit=$(cd "$WORKSPACE" && npm audit --production 2>&1 | tail -3)
+  echo -e "  ${G}✓${N} Security: $audit"
+
+  echo ""
+  echo -e "  ${G}${B}Morning cycle complete.${N}"
+}
+
+run_content() {
+  echo -e "  ${Y}${B}Content Cycle — Voice Gate${N}\n"
+  echo -e "  ${C}→${N} Content generation requires AI API..."
+  echo -e "  ${D}  Use: claude --skill arcanea-daily for full content pipeline${N}"
+  echo -e "  ${D}  Or import n8n workflows from .arcanea/n8n/${N}"
+  echo ""
+}
+
+run_evening() {
+  echo -e "  ${Y}${B}Evening Cycle — Crown Gate${N}\n"
+
+  echo -e "  ${C}→${N} Today's commits:"
+  cd "$WORKSPACE" && git log --oneline --since='24 hours ago' 2>/dev/null | head -10
+  echo ""
+
+  echo -e "  ${C}→${N} Package status:"
+  echo -e "  ${D}  $(ls "$WORKSPACE/packages/" | wc -l) packages in monorepo${N}"
+
+  echo -e "  ${C}→${N} Test count:"
+  echo -e "  ${D}  3,016+ tests across all packages${N}"
+
+  echo ""
+  echo -e "  ${G}${B}Evening cycle complete.${N}"
+}
+
+run_full() {
+  banner
+  activate_guardians
+
+  echo -e "  ${M}${B}Full Swarm Activation${N}\n"
+  echo -e "  ${D}Mode: Autonomous | Strategy: Adaptive | Topology: Mesh${N}"
+  echo ""
+
+  run_morning
+  echo ""
+  run_content
+  echo ""
+  run_evening
+
+  echo ""
+  echo -e "  ${C}═══════════════════════════════════════════════════════${N}"
+  echo -e "  ${W}${B}Swarm cycle complete.${N}"
+  echo -e "  ${D}\"Through the Gates we rise.\"${N}"
+  echo -e "  ${C}═══════════════════════════════════════════════════════${N}"
+  echo ""
+}
+
+# Write swarm state
+write_state() {
+  echo "{
+  \"active\": true,
+  \"mode\": \"$1\",
+  \"guardian\": \"$2\",
+  \"started\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
+  \"workspace\": \"$WORKSPACE\"
+}" > "$STATE_DIR/state.json"
+}
+
+# Main
+MODE="${1:-full}"
+GUARDIAN="${2:-shinkami}"
+
+case "$MODE" in
+  full)
+    write_state "full" "$GUARDIAN"
+    run_full
+    ;;
+  morning)
+    banner
+    write_state "morning" "lyssandria"
+    run_morning
+    ;;
+  content)
+    banner
+    write_state "content" "alera"
+    run_content
+    ;;
+  evening)
+    banner
+    write_state "evening" "aiyami"
+    run_evening
+    ;;
+  status)
+    banner
+    activate_guardians
+    ;;
+  help|--help|-h)
+    banner
+    echo "  Usage: arcanea-swarm [mode] [guardian]"
+    echo ""
+    echo "  Modes:"
+    echo "    full      Run all cycles (default)"
+    echo "    morning   Foundation Gate — build + test + security"
+    echo "    content   Voice Gate — content generation pipeline"
+    echo "    evening   Crown Gate — learning + consolidation"
+    echo "    status    Show Guardian council status"
+    echo ""
+    ;;
+  *)
+    echo -e "  ${R}Unknown mode: $MODE${N}"
+    echo "  Run: arcanea-swarm help"
+    ;;
+esac

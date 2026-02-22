@@ -59,10 +59,12 @@ export function Navigation({ academy = 'default', className }: NavigationProps) 
 
             {/* Desktop Navigation Links */}
             <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
+              <NavLink href="/luminors">Luminors</NavLink>
               <NavLink href="/studio">Studio</NavLink>
-              <NavLink href="/discover">Discover</NavLink>
-              <NavLink href="/academies">Academies</NavLink>
               <NavLink href="/library">Library</NavLink>
+              <NavLink href="/academy">Academy</NavLink>
+              <NavLink href="/lore">Lore</NavLink>
+              <NavLink href="/community">Community</NavLink>
             </nav>
 
             {/* Desktop Right Side Actions */}
@@ -121,10 +123,12 @@ export function Navigation({ academy = 'default', className }: NavigationProps) 
       >
         <div className="flex flex-col items-center justify-center h-full gap-8 p-4">
           <nav className="flex flex-col items-center gap-6 text-lg" aria-label="Main navigation">
+            <MobileNavLink href="/luminors" onClick={() => setIsMobileMenuOpen(false)}>Luminors</MobileNavLink>
             <MobileNavLink href="/studio" onClick={() => setIsMobileMenuOpen(false)}>Studio</MobileNavLink>
-            <MobileNavLink href="/discover" onClick={() => setIsMobileMenuOpen(false)}>Discover</MobileNavLink>
-            <MobileNavLink href="/academies" onClick={() => setIsMobileMenuOpen(false)}>Academies</MobileNavLink>
             <MobileNavLink href="/library" onClick={() => setIsMobileMenuOpen(false)}>Library</MobileNavLink>
+            <MobileNavLink href="/academy" onClick={() => setIsMobileMenuOpen(false)}>Academy</MobileNavLink>
+            <MobileNavLink href="/lore" onClick={() => setIsMobileMenuOpen(false)}>Lore</MobileNavLink>
+            <MobileNavLink href="/community" onClick={() => setIsMobileMenuOpen(false)}>Community</MobileNavLink>
           </nav>
           <div className="w-16 h-px bg-white/10" aria-hidden="true" />
           <div className="flex flex-col gap-4 w-full max-w-xs">

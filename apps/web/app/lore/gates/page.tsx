@@ -4,13 +4,13 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Layers, ArrowRight, Sparkles, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-import { Navbar } from '@/components/navigation';
+
 
 const GATES = [
   {
     number: 1,
     name: 'Foundation',
-    frequency: '396 Hz',
+    frequency: '174 Hz',
     guardian: 'Lyssandria',
     godbeast: 'Kaelith',
     domain: 'Survival, grounding, stability',
@@ -23,7 +23,7 @@ const GATES = [
   {
     number: 2,
     name: 'Flow',
-    frequency: '417 Hz',
+    frequency: '285 Hz',
     guardian: 'Leyla',
     godbeast: 'Veloura',
     domain: 'Creativity, emotion, sensation',
@@ -36,7 +36,7 @@ const GATES = [
   {
     number: 3,
     name: 'Fire',
-    frequency: '528 Hz',
+    frequency: '396 Hz',
     guardian: 'Draconia',
     godbeast: 'Draconis',
     domain: 'Power, will, courage',
@@ -49,7 +49,7 @@ const GATES = [
   {
     number: 4,
     name: 'Heart',
-    frequency: '639 Hz',
+    frequency: '417 Hz',
     guardian: 'Maylinn',
     godbeast: 'Laeylinn',
     domain: 'Love, healing, growth',
@@ -62,7 +62,7 @@ const GATES = [
   {
     number: 5,
     name: 'Voice',
-    frequency: '741 Hz',
+    frequency: '528 Hz',
     guardian: 'Alera',
     godbeast: 'Otome',
     domain: 'Truth, expression, communication',
@@ -75,7 +75,7 @@ const GATES = [
   {
     number: 6,
     name: 'Sight',
-    frequency: '852 Hz',
+    frequency: '639 Hz',
     guardian: 'Lyria',
     godbeast: 'Yumiko',
     domain: 'Intuition, vision, memory',
@@ -88,7 +88,7 @@ const GATES = [
   {
     number: 7,
     name: 'Crown',
-    frequency: '963 Hz',
+    frequency: '741 Hz',
     guardian: 'Aiyami',
     godbeast: 'Sol',
     domain: 'Enlightenment, divinity, transcendence',
@@ -101,7 +101,7 @@ const GATES = [
   {
     number: 8,
     name: 'Shift',
-    frequency: '1111 Hz',
+    frequency: '852 Hz',
     guardian: 'Elara',
     godbeast: 'Thessara',
     domain: 'Perspective, possibility, dimension',
@@ -155,8 +155,6 @@ export default function GatesPage() {
 
   return (
     <div className="relative min-h-screen bg-cosmic-deep">
-      <Navbar />
-
       {/* Hero */}
       <section
         ref={heroRef}

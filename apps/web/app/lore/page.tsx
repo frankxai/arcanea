@@ -5,7 +5,7 @@ import { GuardiansPreview } from '@/components/lore/guardians-preview';
 import { GatesPreview } from '@/components/lore/gates-preview';
 import { LibraryPreview } from '@/components/lore/library-preview';
 import { LoreCTA } from '@/components/lore/lore-cta';
-import { Navbar } from '@/components/navigation';
+
 
 export const metadata: Metadata = {
   title: 'Lore of Arcanea | The Living Mythology',
@@ -21,8 +21,6 @@ export const metadata: Metadata = {
 export default function LorePage() {
   return (
     <div className="relative min-h-screen bg-cosmic-deep">
-      <Navbar />
-
       <main>
         {/* Hero - Immersive entry point */}
         <LoreHero />

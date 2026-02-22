@@ -1,0 +1,64 @@
+{
+  "name": "Arcanea Evening Learning Cycle",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "triggerAtHour": 20 }
+          ]
+        }
+      },
+      "name": "Evening Trigger (Crown Gate)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "command": "git log --oneline --since='24 hours ago' | head -20"
+      },
+      "name": "Today's Commits",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.anthropic.com/v1/messages",
+        "method": "POST",
+        "headers": {
+          "x-api-key": "={{$env.ANTHROPIC_API_KEY}}",
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json"
+        },
+        "body": {
+          "model": "claude-sonnet-4-20250514",
+          "max_tokens": 2000,
+          "messages": [
+            {
+              "role": "user",
+              "content": "You are Aiyami, Guardian of the Crown Gate, keeper of enlightenment and learning. Review today's Arcanea activity and generate an evening intelligence report:\n\nToday's commits:\n{{$node['Today\\'s Commits'].json.stdout}}\n\nProvide:\n1. **Learning Digest** — What patterns emerged today?\n2. **Knowledge Consolidation** — What should be remembered across sessions?\n3. **Growth Metrics** — Qualitative assessment of ecosystem growth\n4. **Tomorrow's Seeds** — 3 priorities for tomorrow\n5. **Wisdom Quote** — An original Arcanea wisdom quote to close the day\n\nUse the Crown Gate voice: contemplative, wise, seeing the bigger picture."
+            }
+          ]
+        }
+      },
+      "name": "Aiyami Evening Review",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "channel": "#arcanea-daily",
+        "text": "=🌙 **Evening Intelligence Report** — Guardian: Aiyami\n\n{{$node['Aiyami Evening Review'].json.content[0].text}}\n\n---\n*The Crown Gate closes. Rest well, Creator.*"
+      },
+      "name": "Post Evening Report",
+      "type": "n8n-nodes-base.slack",
+      "position": [950, 300]
+    }
+  ],
+  "connections": {
+    "Evening Trigger (Crown Gate)": { "main": [[{ "node": "Today's Commits", "type": "main", "index": 0 }]] },
+    "Today's Commits": { "main": [[{ "node": "Aiyami Evening Review", "type": "main", "index": 0 }]] },
+    "Aiyami Evening Review": { "main": [[{ "node": "Post Evening Report", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "timezone": "Europe/Amsterdam" }
+}

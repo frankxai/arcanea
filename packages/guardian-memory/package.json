@@ -1,0 +1,32 @@
+{
+  "name": "@arcanea/guardian-memory",
+  "version": "0.1.0",
+  "description": "Persistent semantic memory for the Ten Guardians — HNSW vector search with Guardian-namespaced vaults",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./hnsw": {
+      "types": "./dist/hnsw-index.d.ts",
+      "import": "./dist/hnsw-index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["arcanea", "guardian", "memory", "hnsw", "vector-search", "ai"],
+  "license": "MIT",
+  "dependencies": {
+    "@arcanea/os": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}
