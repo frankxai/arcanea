@@ -190,3 +190,62 @@
 
 ### Blockers
 - npm publish: Token expired, @arcanea org not created
+
+---
+
+## Session: 2026-02-22 (Wave 5 — AI Slop Elimination)
+
+### Architecture Clarification
+
+| Layer | What It Does | Calls AI? |
+|-------|-------------|-----------|
+| @arcanea/os | Data constants + pure functions | NEVER |
+| Overlay packages | File generators (agent.md, skill.md, hooks) | NEVER |
+| agent.md / skill.md | Static instructions the coding agent READS | ARE the AI |
+| MCP server | Tool provider — data lookups + diagnostics | NO (data only) |
+| Extensions | User-facing products | Chrome: YES (SSE) |
+
+### What Was Fixed
+
+| # | Fix | Before | After |
+|---|-----|--------|-------|
+| 1 | Guardian data consolidated | Duplicated in @arcanea/os AND extension-core | extension-core imports from @arcanea/os, only UI fields (colors, avatars) local |
+| 2 | MCP memory persistence | In-memory Map (dies on restart) | JSON file at ~/.arcanea/memories.json (committed in c315fd9) |
+| 3 | MCP orchestrate removed | Fake AI-calling-AI stub | Replaced with guardian_guidance (pure data lookup) (committed in c315fd9) |
+| 4 | AIOS adapter stubs | execute() returned template strings | execute() throws AdapterNotImplementedError with architecture explanation |
+| 5 | StarlightRuntime renamed | Misleading "Runtime" name | ContextLoader (honest name) + deprecated alias |
+| 6 | Skills claim fixed | "77+ Skills" (inflated) | "70+ Skills" (69 real, 6 stubs marked "Planned") across 29 docs |
+
+### Test Count: 1,284 (0 failures)
+
+| Package | Tests |
+|---------|-------|
+| @arcanea/os | 136 |
+| @arcanea/cli | 137 |
+| @arcanea/auth | 44 |
+| @arcanea/mcp-server | 193 |
+| @arcanea/overlay-claude | 158 |
+| @arcanea/overlay-chatgpt | 70 |
+| @arcanea/overlay-gemini | 70 |
+| @arcanea/overlay-copilot | 69 |
+| @arcanea/overlay-cursor | 77 |
+| @arcanea/extension-core | 112 |
+| chrome-extension | 35 |
+| vscode extension | 40 |
+| claude-arcanea | 52 |
+| starlight-runtime | 23 |
+| arcanea-intelligence-os | 68 |
+
+### Slop Score: ~60% → ~80% Real
+
+| Layer | Before | After |
+|-------|--------|-------|
+| User-facing (CLI, extensions) | 85-95% real | 85-95% real (unchanged, already solid) |
+| Intelligence layer (aios) | ~25% real | ~50% real (stubs honestly labeled) |
+| MCP server | ~70% real | ~90% real (persistence + honest tools) |
+| Documentation | Inflated claims | Accurate counts |
+| Data architecture | Duplicated | Single source of truth |
+
+### Commits
+- `c315fd9` feat(mcp): persistent memory layer + remove opencode references
+- `ea4b07d` fix: eliminate AI slop — consolidate data, honest labels, real persistence

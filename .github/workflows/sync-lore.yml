@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.claude/lore/**'
+      - '.arcanea/lore/**'
       - 'packages/core/src/constants/mythology.ts'
   workflow_dispatch:
 
@@ -58,9 +58,9 @@ jobs:
       - name: Update canonical references
         run: |
           # Sync lore files
-          if [ -d ".claude/lore" ] && [ -d "sync/aios" ]; then
+          if [ -d ".arcanea/lore" ] && [ -d "sync/aios" ]; then
             mkdir -p sync/aios/lore
-            cp -r .claude/lore/* sync/aios/lore/ 2>/dev/null || true
+            cp -r .arcanea/lore/* sync/aios/lore/ 2>/dev/null || true
 
             cd sync/aios
             git config user.name "Arcanea Lore Keeper"

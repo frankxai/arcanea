@@ -1,0 +1,104 @@
+# Arcanea Design System Tokens
+# Portable design system — usable by any tool or framework
+
+colors:
+  cosmic:
+    void: "#0b0e14"
+    deep: "#0f1318"
+    surface: "#141820"
+    raised: "#1a1f2a"
+    elevated: "#1f2535"
+    overlay: "#252b3a"
+
+  arcane:
+    crystal: "#7fffd4"
+    fire: "#ff6b35"
+    water: "#78a6ff"
+    earth: "#4ade80"
+    void: "#9966ff"
+    gold: "#ffd700"
+
+  brand:
+    primary: "#8b5cf6"     # Violet
+    accent: "#7fffd4"      # Teal/Cyan
+    gold: "#ffd700"        # Achievement
+    secondary: "#78a6ff"   # Cosmic Blue
+
+  elements:
+    fire:
+      primary: "#ff6b35"
+      glow: "rgba(255, 107, 53, 0.3)"
+    water:
+      primary: "#78a6ff"
+      glow: "rgba(120, 166, 255, 0.3)"
+    earth:
+      primary: "#4ade80"
+      glow: "rgba(74, 222, 128, 0.3)"
+    wind:
+      primary: "#e2e8f0"
+      glow: "rgba(226, 232, 240, 0.3)"
+    void:
+      primary: "#9966ff"
+      glow: "rgba(153, 102, 255, 0.3)"
+
+typography:
+  display: "Cinzel, serif"
+  body: "Crimson Pro, serif"
+  sans: "Inter, system-ui, sans-serif"
+  mono: "JetBrains Mono, monospace"
+  sizes:
+    xs: "0.75rem"
+    sm: "0.875rem"
+    base: "1rem"
+    lg: "1.125rem"
+    xl: "1.25rem"
+    "2xl": "1.5rem"
+    "3xl": "1.875rem"
+    "4xl": "2.25rem"
+    "5xl": "3rem"
+
+effects:
+  glass:
+    blur: "blur(16px)"
+    background: "rgba(20, 24, 32, 0.6)"
+    border: "1px solid rgba(127, 255, 212, 0.1)"
+  glass_strong:
+    blur: "blur(24px)"
+    background: "rgba(20, 24, 32, 0.8)"
+    border: "1px solid rgba(127, 255, 212, 0.15)"
+  glow:
+    crystal: "0 0 20px rgba(127, 255, 212, 0.3)"
+    gold: "0 0 20px rgba(255, 215, 0, 0.3)"
+    violet: "0 0 20px rgba(139, 92, 246, 0.3)"
+  gradients:
+    cosmic_mesh: "radial-gradient(ellipse at 20% 50%, rgba(139, 92, 246, 0.08), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(127, 255, 212, 0.06), transparent 50%)"
+    aurora: "linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(127, 255, 212, 0.1), rgba(255, 215, 0, 0.05))"
+
+spacing:
+  unit: "4px"
+  scales: [0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 64]
+
+borders:
+  radius:
+    sm: "0.375rem"
+    md: "0.5rem"
+    lg: "0.75rem"
+    xl: "1rem"
+    full: "9999px"
+
+breakpoints:
+  sm: "640px"
+  md: "768px"
+  lg: "1024px"
+  xl: "1280px"
+  "2xl": "1536px"
+
+animation:
+  duration:
+    fast: "150ms"
+    normal: "300ms"
+    slow: "500ms"
+    dramatic: "1000ms"
+  easing:
+    default: "cubic-bezier(0.4, 0, 0.2, 1)"
+    spring: "cubic-bezier(0.34, 1.56, 0.64, 1)"

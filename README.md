@@ -84,7 +84,7 @@ const check = voice.check("Welcome users to our platform");
 
 ### Arcanea Realm — Standalone AI CLI
 
-**[arcanea-realm](https://github.com/frankxai/arcanea-realm)** — forked from OpenCode (105K stars), powered by the same Vercel AI SDK. A full AI creation terminal with 10 Guardian agents, 75+ models, and the Arcanea intelligence layer built in.
+**[arcanea-code](https://github.com/frankxai/arcanea-code)** — forked from OpenCode (105K stars), powered by the same Vercel AI SDK. A full AI creation terminal with 10 Guardian agents, 75+ models, and the Arcanea intelligence layer built in.
 
 ### v0 Design Demos
 

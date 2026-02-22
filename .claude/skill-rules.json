@@ -23,7 +23,7 @@
       "description": "Universe consistency enforcement. The immutable source of truth for all Arcanea lore, cosmology, and nomenclature.",
       "triggers": {
         "keywords": ["canon", "lore", "guardian", "gate", "element", "lumina", "nero", "malachar", "godbeast", "academy", "house", "the arc", "void", "spirit", "shadowfen", "eldrian", "luminor", "apprentice", "mage", "archmage"],
-        "filePatterns": [".claude/lore/**/*", "book/**/*", "*.lore.md", "*.canon.md"],
+        "filePatterns": [".arcanea/lore/**/*", "book/**/*", "*.lore.md", "*.canon.md"],
         "commands": ["/arcanea", "/luminor", "/world-build", "/arcanea-lore-expand", "/arcanea-council"]
       },
       "activationMessage": "Shinkami observes. Canon enforced."
@@ -343,7 +343,7 @@
       "description": "Universe expansion — new locations, cosmology, and metaphysical systems. Aiyami's Crown connects individual creation to the universal whole.",
       "triggers": {
         "keywords": ["world-build", "new location", "new realm", "cosmology", "metaphysics", "universe expansion", "territory", "atlas", "academy"],
-        "filePatterns": ["book/atlas-of-territories/**/*", "book/legends-of-arcanea/**/*", ".claude/lore/**/*"],
+        "filePatterns": ["book/atlas-of-territories/**/*", "book/legends-of-arcanea/**/*", ".arcanea/lore/**/*"],
         "commands": ["/world-build", "/arcanea-lore-expand"]
       },
       "activationMessage": "Aiyami expands the cosmos. New realms emerge."
@@ -487,7 +487,7 @@
       "description": "Character development, personality design, and NPC creation. Leyla breathes life into the imagined — emotion is the current that animates.",
       "triggers": {
         "keywords": ["character", "NPC", "personality", "backstory", "motivation", "character arc", "protagonist", "antagonist", "character sheet"],
-        "filePatterns": [".claude/lore/gods-goddesses/**/*", ".claude/lore/guardians/**/*", ".claude/lore/godbeasts/**/*", "*.character.md"],
+        "filePatterns": [".arcanea/lore/gods-goddesses/**/*", ".arcanea/lore/guardians/**/*", ".arcanea/lore/godbeasts/**/*", "*.character.md"],
         "commands": ["/character-forge"]
       },
       "activationMessage": "Leyla breathes life. The character awakens."

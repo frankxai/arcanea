@@ -119,7 +119,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: arcanea-realm-vsix
+          name: arcanea-code-vsix
           path: packages/vscode/*.vsix
 
   chrome-extension:

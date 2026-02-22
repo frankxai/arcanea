@@ -87,7 +87,7 @@ const leyla = getGuardianById('leyla');
 ## Used By
 
 - [`arcanea-chrome-extension`](../chrome-extension) — Chrome extension with AI chat
-- [`arcanea-realm`](../vscode) — VS Code extension
+- [`arcanea-code`](../vscode) — VS Code extension
 - Future: Firefox, Safari, Edge extensions
 
 ## License

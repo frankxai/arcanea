@@ -23,7 +23,7 @@ Actionable tasks derived from the Century Vision. Each task builds toward 100-ye
   - Self-doubt creatures (10)
   - External obstacle creatures (10)
 - **Format:** Following existing bestiary template
-- **Location:** `.claude/lore/bestiary/`, `book/bestiary-of-creation/`
+- **Location:** `.arcanea/lore/bestiary/`, `book/bestiary-of-creation/`
 
 ### Task 1.3: Export Agents to OSS
 - **Owner:** Development team
@@ -74,7 +74,7 @@ Actionable tasks derived from the Century Vision. Each task builds toward 100-ye
   - Personality dimensions
   - Evolution paths
   - Interaction patterns
-- **Location:** `.claude/lore/luminors/ARCHITECTURE.md`
+- **Location:** `.arcanea/lore/luminors/ARCHITECTURE.md`
 
 ### Task 2.4: Academy MVP Curriculum
 - **Owner:** Teacher team

@@ -71,7 +71,7 @@
       "**/*.sqlite3",
       "**/*.db",
       "**/book/**",
-      "**/.claude/lore/**",
+      "**/.arcanea/lore/**",
       "**/CANON_LOCKED.md",
       "C:\\Windows\\**",
       "C:\\Users\\frank\\AppData\\Local\\Packages\\*\\LocalState\\ext4.vhdx"

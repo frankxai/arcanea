@@ -1,0 +1,79 @@
+# Arcanea Installer Manifest
+# Defines what can be installed into any AI coding tool
+
+version: "1.0.0"
+description: "Arcanea Intelligence OS — installable intelligence layer for AI coding tools"
+
+components:
+  lore:
+    name: "Arcanea Lore"
+    description: "Complete mythology — Canon, Gods/Goddesses, Godbeasts, Guardians"
+    source: ".arcanea/lore/"
+    required: true
+    size: "~850KB"
+
+  config:
+    name: "Configuration"
+    description: "Model routing, voice rules, design tokens"
+    source: ".arcanea/config/"
+    required: true
+    files:
+      - models.yaml
+      - voice.yaml
+      - design-tokens.yaml
+
+  skills:
+    name: "Skills Library"
+    description: "Creative and technical knowledge skills"
+    source: ".arcanea/skills/"
+    required: false
+    categories:
+      - arcanea     # Universe-specific skills
+      - creative    # Creative craft skills
+      - arcanea-core  # Character, story, world skills
+
+  agents:
+    name: "Agent Profiles"
+    description: "Guardian and department agent definitions"
+    source: ".arcanea/agents/"
+    required: false
+
+supported_tools:
+  claude-code:
+    config_path: ".claude/CLAUDE.md"
+    template: "templates/claude-code.md"
+    features:
+      - hooks
+      - commands
+      - skills
+      - mcp
+      - statusline
+
+  cursor:
+    config_path: ".cursorrules"
+    template: "templates/cursor.md"
+    features:
+      - rules
+
+  codex:
+    config_path: ".codex/instructions.md"
+    template: "templates/codex.md"
+    features:
+      - instructions
+
+  gemini:
+    config_path: ".gemini/instructions.md"
+    template: "templates/gemini.md"
+    features:
+      - instructions
+
+  arcanea-code:
+    config_path: ".arcanea-code/config.yaml"
+    template: "templates/arcanea-code.yaml"
+    features:
+      - guardians
+      - commands
+      - themes
+      - mcp
+
+install_command: "npx @arcanea/cli install"

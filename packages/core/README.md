@@ -123,7 +123,7 @@ const color = getElementColor('water'); // → "#4169e1"
 | [`@arcanea/cli`](https://github.com/frankxai/arcanea/tree/main/packages/cli) | CLI with 10 commands |
 | [`@arcanea/mcp-server`](https://github.com/frankxai/arcanea/tree/main/packages/arcanea-mcp) | 30 MCP tools for any AI client |
 | [`arcanea.ai`](https://arcanea.ai) | Live web platform |
-| [`arcanea-realm`](https://github.com/frankxai/arcanea-realm) | Standalone AI CLI (OpenCode fork) |
+| [`arcanea-code`](https://github.com/frankxai/arcanea-code) | Standalone AI CLI (OpenCode fork) |
 
 ## License
 

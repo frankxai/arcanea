@@ -1,4 +1,4 @@
-# arcanea-realm
+# arcanea-code
 
 ## 0.1.1
 

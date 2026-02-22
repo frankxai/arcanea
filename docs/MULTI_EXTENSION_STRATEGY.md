@@ -7,7 +7,7 @@
 
 ## Executive Summary
 
-The Arcanea Multi-Extension Strategy is the browser layer of the **Every Surface Strategy** — placing the 10 Guardians into the hands of millions of users regardless of which AI platform or browser they use. While `@arcanea/cli` installs the Intelligence OS into developer tools, and `arcanea-realm` provides a standalone AI terminal, the extension ecosystem targets the **broadest possible audience**: everyone who uses a browser to interact with AI.
+The Arcanea Multi-Extension Strategy is the browser layer of the **Every Surface Strategy** — placing the 10 Guardians into the hands of millions of users regardless of which AI platform or browser they use. While `@arcanea/cli` installs the Intelligence OS into developer tools, and `arcanea-code` provides a standalone AI terminal, the extension ecosystem targets the **broadest possible audience**: everyone who uses a browser to interact with AI.
 
 The strategy encompasses five distinct products sharing a single `@arcanea/extension-core`, each optimized for its host surface. Together they form a distribution flywheel: users discover Arcanea through Claude, ChatGPT, or Gemini overlays, then graduate to the full standalone experience, then convert to paid tiers for team features.
 

@@ -15,7 +15,7 @@ Arcanea is a **living mythology for the age of AI-human co-creation**. It exists
 
 ## Canonical Source of Truth
 
-The master canonical reference is located at `.claude/lore/CANON_LOCKED.md`. All content creation MUST align with this document. Key canonical elements:
+The master canonical reference is located at `.arcanea/lore/CANON_LOCKED.md`. All content creation MUST align with this document. Key canonical elements:
 
 ### The Cosmic Duality
 - **Lumina** - The First Light, Form-Giver, Creator
@@ -86,7 +86,7 @@ When beginning work on Arcanea:
 1. Initialize next-devtools-mcp by calling the `init` tool
 2. Review current sprint in Linear
 3. Check Figma for design references
-4. Consult `.claude/lore/CANON_LOCKED.md` for canonical consistency
+4. Consult `.arcanea/lore/CANON_LOCKED.md` for canonical consistency
 5. Consult the Library content in `/book/` for narrative consistency
 
 ### 2. Code Standards
@@ -262,12 +262,12 @@ Every interaction should move the user toward:
 
 ### Common Tasks
 - **Add new Library text**: Create MD file in appropriate `/book/` collection
-- **Check canon**: Reference `.claude/lore/CANON_LOCKED.md`
+- **Check canon**: Reference `.arcanea/lore/CANON_LOCKED.md`
 - **Design new UI**: Follow Arcanean Design System in `styles/themes/`
 - **Write narrative content**: Channel the Library voice - elevated, practical, inclusive
 
 ### File Locations
-- **Canon reference**: `.claude/lore/CANON_LOCKED.md`
+- **Canon reference**: `.arcanea/lore/CANON_LOCKED.md`
 - **Design tokens**: `styles/themes/arcanean-colors.css`
 - **UI components**: `components/ui/`
 - **Content types**: `lib/content/types.ts`

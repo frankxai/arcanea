@@ -42,7 +42,7 @@ All components communicate through files in `/tmp/arcanea-*`. Any process can dr
 | `/tmp/arcanea-guardian` | Text | `Lyria` | prompt-submit, guardian-activate |
 | `/tmp/arcanea-gate` | Text | `Sight` | prompt-submit, guardian-activate |
 | `/tmp/arcanea-element` | Text | `Void` | prompt-submit, guardian-activate |
-| `/tmp/arcanea-realm` | Text | `Intelligence Sanctum` | session-start |
+| `/tmp/arcanea-code` | Text | `Intelligence Sanctum` | session-start |
 | `/tmp/arcanea-team` | Text | `Source Council` | session-start |
 | `/tmp/arcanea-tokens.json` | JSON | `{"input":0,"output":0,"total":0}` | context-tracker |
 | `/tmp/arcanea-context-status` | Pipe-delimited | `PEAK\|0\|800\|200000` | context-tracker |

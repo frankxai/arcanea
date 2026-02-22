@@ -34,9 +34,9 @@ Build the story's skeleton before writing prose.
 
 ### Step 1: Canon Check
 For Arcanea-universe stories, ALWAYS:
-- Read `.claude/lore/CANON_LOCKED.md` for canonical facts
-- Read relevant Guardian profile from `.claude/lore/guardians/`
-- Read relevant Godbeast profile from `.claude/lore/godbeasts/`
+- Read `.arcanea/lore/CANON_LOCKED.md` for canonical facts
+- Read relevant Guardian profile from `.arcanea/lore/guardians/`
+- Read relevant Godbeast profile from `.arcanea/lore/godbeasts/`
 - Read existing book content from `book/` for consistency
 - Verify terminology against arcanea-voice skill
 
