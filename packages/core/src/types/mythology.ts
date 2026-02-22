@@ -102,6 +102,8 @@ export interface Guardian {
   helpPatterns?: string[];
   metaphorDomain?: string[];
   signOff?: string;
+  // Routing domains (keywords for task routing)
+  routingDomains?: string[];
 }
 
 // ============================================
@@ -126,6 +128,15 @@ export interface Godbeast {
   guardian: GuardianName;
   form: string;
   power: string;
+  // Rich profile fields (from lore markdown)
+  title?: string;
+  creatureType?: string;
+  element?: Element;
+  frequency?: GateFrequency;
+  colors?: string[];
+  symbol?: string;
+  teaching?: string;
+  realm?: string;
 }
 
 // ============================================

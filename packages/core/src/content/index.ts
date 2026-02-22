@@ -47,3 +47,15 @@ export {
   generateSkillContent,
 } from './skills.js';
 export type { SkillTrigger, OverlaySkillCategory, SkillDefinition } from './skills.js';
+
+// Library content index
+export {
+  LIBRARY_COLLECTIONS,
+  getLibraryCollections,
+  getLibraryCollection,
+  getCollectionsByElement,
+  getCollectionsByGate,
+  getLibraryTextCount,
+  getCollectionsForSituation,
+} from './library.js';
+export type { BookCollection } from './library.js';

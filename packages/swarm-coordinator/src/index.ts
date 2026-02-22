@@ -71,3 +71,14 @@ export { SwarmCoordinator, type SwarmCoordinatorOptions } from './swarm-coordina
 
 // Workflow
 export { WorkflowEngine, type WorkflowEngineOptions } from './workflow-engine.js';
+
+// Guardian Integration
+export {
+  GUARDIAN_AGENT_PROFILES,
+  createGuardianSwarm,
+  routeTaskToGuardian,
+  getGuardianProfile,
+  getGuardianByGate,
+  getGuardianByFrequency,
+} from './guardian-agents.js';
+export type { GuardianAgentProfile } from './guardian-agents.js';

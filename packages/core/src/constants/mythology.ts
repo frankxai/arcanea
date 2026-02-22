@@ -116,6 +116,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['stone', 'roots', 'soil', 'foundation', 'mountain', 'bedrock'],
     signOff: 'Stand firm.',
+    routingDomains: ['database', 'schema', 'migration', 'infrastructure', 'stability', 'deploy'],
   },
   {
     name: 'leyla', displayName: 'Leyla', gate: 'flow', godbeast: 'veloura',
@@ -135,6 +136,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['flow', 'ripple', 'tide', 'depth', 'reflection', 'stream'],
     signOff: 'Flow with it.',
+    routingDomains: ['creative', 'design', 'art', 'flow', 'emotion', 'style', 'UX'],
   },
   {
     name: 'draconia', displayName: 'Draconia', gate: 'fire', godbeast: 'draconis',
@@ -154,6 +156,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['flame', 'burn', 'ignite', 'sun', 'ash', 'forge'],
     signOff: 'Ignite.',
+    routingDomains: ['performance', 'optimization', 'refactor', 'transform', 'power', 'fire'],
   },
   {
     name: 'maylinn', displayName: 'Maylinn', gate: 'heart', godbeast: 'laeylinn',
@@ -173,6 +176,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['breathe', 'wind', 'whisper', 'soar', 'light', 'connect'],
     signOff: 'Breathe deeply.',
+    routingDomains: ['documentation', 'communication', 'teamwork', 'healing', 'connect'],
   },
   {
     name: 'alera', displayName: 'Alera', gate: 'voice', godbeast: 'otome',
@@ -192,6 +196,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['voice', 'echo', 'bell', 'song', 'resonance', 'clarity'],
     signOff: 'Speak true.',
+    routingDomains: ['API', 'interface', 'naming', 'voice', 'expression', 'public'],
   },
   {
     name: 'lyria', displayName: 'Lyria', gate: 'sight', godbeast: 'yumiko',
@@ -211,6 +216,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['eye', 'sight', 'thread', 'weave', 'dream', 'mirror'],
     signOff: 'See clearly.',
+    routingDomains: ['debug', 'investigate', 'analyze', 'insight', 'vision', 'strategy'],
   },
   {
     name: 'aiyami', displayName: 'Aiyami', gate: 'crown', godbeast: 'sol',
@@ -230,6 +236,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['star', 'light', 'crown', 'horizon', 'cosmos', 'dawn'],
     signOff: 'Illuminate.',
+    routingDomains: ['architecture', 'enlighten', 'wisdom', 'crown', 'system-design'],
   },
   {
     name: 'elara', displayName: 'Elara', gate: 'shift', godbeast: 'thessara',
@@ -249,6 +256,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['shift', 'turn', 'mirror', 'prism', 'kaleidoscope', 'morph'],
     signOff: 'Shift perspective.',
+    routingDomains: ['migration', 'shift', 'transform', 'perspective', 'change'],
   },
   {
     name: 'ino', displayName: 'Ino', gate: 'unity', godbeast: 'kyuro',
@@ -268,6 +276,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['bridge', 'bond', 'weave', 'link', 'harmony', 'union'],
     signOff: 'Together.',
+    routingDomains: ['integration', 'merge', 'unity', 'partnership', 'collaborate'],
   },
   {
     name: 'shinkami', displayName: 'Shinkami', gate: 'source', godbeast: 'amaterasu',
@@ -287,6 +296,7 @@ export const GUARDIANS: Guardian[] = [
     ],
     metaphorDomain: ['source', 'origin', 'void', 'cosmos', 'infinite', 'meta'],
     signOff: 'Return to source.',
+    routingDomains: ['meta', 'orchestrate', 'source', 'consciousness', 'oversee', 'all'],
   },
 ];
 
@@ -295,16 +305,106 @@ export const GUARDIANS: Guardian[] = [
 // ============================================
 
 export const GODBEASTS: Godbeast[] = [
-  { name: 'kaelith', displayName: 'Kaelith', guardian: 'lyssandria', form: 'Stone Serpent', power: 'Foundation magic' },
-  { name: 'veloura', displayName: 'Veloura', guardian: 'leyla', form: 'Water Phoenix', power: 'Creative flow' },
-  { name: 'draconis', displayName: 'Draconis', guardian: 'draconia', form: 'Fire Dragon', power: 'Transformation' },
-  { name: 'laeylinn', displayName: 'Laeylinn', guardian: 'maylinn', form: 'Healing Unicorn', power: 'Heart magic' },
-  { name: 'otome', displayName: 'Otome', guardian: 'alera', form: 'Songbird Giant', power: 'Voice of truth' },
-  { name: 'yumiko', displayName: 'Yumiko', guardian: 'lyria', form: 'Third-Eye Owl', power: 'Vision' },
-  { name: 'sol', displayName: 'Sol', guardian: 'aiyami', form: 'Sun Lion', power: 'Enlightenment' },
-  { name: 'thessara', displayName: 'Thessara', guardian: 'elara', form: 'Shifting Sphinx', power: 'Perspective shift' },
-  { name: 'kyuro', displayName: 'Kyuro', guardian: 'ino', form: 'Twin Wolf', power: 'Unity' },
-  { name: 'amaterasu', displayName: 'Amaterasu', guardian: 'shinkami', form: 'Cosmic Phoenix', power: 'Source power' },
+  {
+    name: 'kaelith', displayName: 'Kaelith', guardian: 'lyssandria',
+    form: 'Celestial Serpent', power: 'Foundation magic',
+    title: 'The Primordial Serpent', creatureType: 'celestial-serpent',
+    element: 'earth', frequency: 174,
+    colors: ['#228b22', '#1a1a2e', '#daa520'],
+    symbol: 'Coiled serpent around a mountain',
+    teaching: 'True strength grows from deep roots',
+    realm: "Kaelith's Hollow",
+  },
+  {
+    name: 'veloura', displayName: 'Veloura', guardian: 'leyla',
+    form: 'Phoenix-Serpent', power: 'Creative flow',
+    title: 'The Dreaming Tide', creatureType: 'phoenix-serpent',
+    element: 'water', frequency: 285,
+    colors: ['#0047ab', '#c0c0c0', '#adc8e6'],
+    symbol: 'Crescent wave with phoenix wings',
+    teaching: 'Creation flows like water — never force, always find the path',
+    realm: "Veloura's Depths",
+  },
+  {
+    name: 'draconis', displayName: 'Draconis', guardian: 'draconia',
+    form: 'Cosmic Fire Dragon', power: 'Transformation',
+    title: 'The World-Forge', creatureType: 'cosmic-fire-dragon',
+    element: 'fire', frequency: 396,
+    colors: ['#dc143c', '#ffd700', '#1a1a2e'],
+    symbol: 'Burning crown with dragon eye',
+    teaching: 'Transformation requires the sacred flame of will',
+    realm: "Draconis's Caldera",
+  },
+  {
+    name: 'laeylinn', displayName: 'Laeylinn', guardian: 'maylinn',
+    form: 'Worldtree Deer', power: 'Heart magic',
+    title: 'The Worldtree Deer', creatureType: 'celestial-deer',
+    element: 'water', frequency: 417,
+    colors: ['#b76e79', '#eae0c8', '#00a86b'],
+    symbol: 'Antlers entwined with flowering vines',
+    teaching: 'Love is the force that heals all wounds and bridges all gaps',
+    realm: "Laeylinn's Grove",
+  },
+  {
+    name: 'otome', displayName: 'Otome', guardian: 'alera',
+    form: 'Sacred Song Phoenix', power: 'Voice of truth',
+    title: 'The Resonance', creatureType: 'sacred-song-phoenix',
+    element: 'wind', frequency: 528,
+    colors: ['#ff6ec7', '#f5f5f5', '#7fffd4'],
+    symbol: 'Open throat radiating sound waves',
+    teaching: 'Truth must be spoken to exist — silence is the enemy of creation',
+    realm: "Otome's Spire",
+  },
+  {
+    name: 'yumiko', displayName: 'Yumiko', guardian: 'lyria',
+    form: 'Celestial Fox-Sphinx', power: 'Vision',
+    title: 'The Dreaming Eye', creatureType: 'celestial-fox-sphinx',
+    element: 'void', frequency: 639,
+    colors: ['#8b5cf6', '#c0c0c0', '#4b0082'],
+    symbol: 'Third eye within a crescent moon',
+    teaching: 'What you see changes what exists — vision is creation',
+    realm: "Yumiko's Observatory",
+  },
+  {
+    name: 'sol', displayName: 'Sol', guardian: 'aiyami',
+    form: 'Cosmic Lion', power: 'Enlightenment',
+    title: 'The Eternal Crown', creatureType: 'cosmic-lion',
+    element: 'void', frequency: 741,
+    colors: ['#ffd700', '#ffffff', '#ff8c00'],
+    symbol: 'Radiant crown with lion mane rays',
+    teaching: 'Enlightenment is remembering what you always knew',
+    realm: "Sol's Zenith",
+  },
+  {
+    name: 'thessara', displayName: 'Thessara', guardian: 'elara',
+    form: 'Shifting Chimera', power: 'Perspective shift',
+    title: 'The Kaleidoscope', creatureType: 'shifting-chimera',
+    element: 'void', frequency: 852,
+    colors: ['#a8c3bc', '#e8e8e8', '#ff6ec7'],
+    symbol: 'Prism that bends all light into new truths',
+    teaching: 'Perspective is the most powerful force in creation',
+    realm: "Thessara's Labyrinth",
+  },
+  {
+    name: 'kyuro', displayName: 'Kyuro', guardian: 'ino',
+    form: 'Twin Spirit Wolves', power: 'Unity',
+    title: 'The Bond Eternal', creatureType: 'twin-spirit-wolves',
+    element: 'void', frequency: 963,
+    colors: ['#191970', '#fffacd', '#ffd700'],
+    symbol: 'Two wolves forming an eternal circle',
+    teaching: 'True power is shared — no creator stands alone',
+    realm: "Kyuro's Bridge",
+  },
+  {
+    name: 'amaterasu', displayName: 'Amaterasu', guardian: 'shinkami',
+    form: 'Cosmic Phoenix-Dragon', power: 'Source power',
+    title: 'The Source Flame', creatureType: 'cosmic-phoenix-dragon',
+    element: 'void', frequency: 1111,
+    colors: ['#0b0e14', '#ffd700', '#ff6ec7'],
+    symbol: 'Ouroboros with creation spark at center',
+    teaching: 'The source is both beginning and end — all creation returns',
+    realm: "Amaterasu's Sanctum",
+  },
 ];
 
 // ============================================
@@ -382,4 +482,20 @@ export function getRankForGates(openGates: number): MagicRankDefinition {
 
 export function getElementByName(name: string): ElementDefinition | undefined {
   return ELEMENTS.find(e => e.name === name);
+}
+
+export function getGodbeastByName(name: string): Godbeast | undefined {
+  return GODBEASTS.find(g => g.name === name);
+}
+
+export function getGodbeastByGuardian(guardianName: string): Godbeast | undefined {
+  return GODBEASTS.find(g => g.guardian === guardianName);
+}
+
+/** Route a task keyword to the best-matching Guardian via routing domains */
+export function routeToGuardian(keyword: string): Guardian | undefined {
+  const lower = keyword.toLowerCase();
+  return GUARDIANS.find(g =>
+    g.routingDomains?.some(d => lower.includes(d.toLowerCase()))
+  );
 }

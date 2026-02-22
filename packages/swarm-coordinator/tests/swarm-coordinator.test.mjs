@@ -1225,3 +1225,242 @@ describe('Edge Cases', () => {
     assert.deepEqual(result.executionOrder, ['t1', 't2', 't3']);
   });
 });
+
+// ============================================================================
+// 7. Guardian Agent Integration
+// ============================================================================
+
+describe('Guardian Agent Integration', () => {
+  let SwarmCoordinator, GUARDIAN_AGENT_PROFILES, createGuardianSwarm,
+      routeTaskToGuardian, getGuardianProfile, getGuardianByGate, getGuardianByFrequency;
+
+  beforeEach(async () => {
+    const mod = await import('../dist/index.js');
+    SwarmCoordinator = mod.SwarmCoordinator;
+    GUARDIAN_AGENT_PROFILES = mod.GUARDIAN_AGENT_PROFILES;
+    createGuardianSwarm = mod.createGuardianSwarm;
+    routeTaskToGuardian = mod.routeTaskToGuardian;
+    getGuardianProfile = mod.getGuardianProfile;
+    getGuardianByGate = mod.getGuardianByGate;
+    getGuardianByFrequency = mod.getGuardianByFrequency;
+  });
+
+  describe('Exports', () => {
+    it('exports GUARDIAN_AGENT_PROFILES array', () => {
+      assert.ok(Array.isArray(GUARDIAN_AGENT_PROFILES));
+      assert.equal(GUARDIAN_AGENT_PROFILES.length, 10);
+    });
+
+    it('exports createGuardianSwarm function', () => {
+      assert.equal(typeof createGuardianSwarm, 'function');
+    });
+
+    it('exports routeTaskToGuardian function', () => {
+      assert.equal(typeof routeTaskToGuardian, 'function');
+    });
+
+    it('exports getGuardianProfile function', () => {
+      assert.equal(typeof getGuardianProfile, 'function');
+    });
+
+    it('exports getGuardianByGate function', () => {
+      assert.equal(typeof getGuardianByGate, 'function');
+    });
+
+    it('exports getGuardianByFrequency function', () => {
+      assert.equal(typeof getGuardianByFrequency, 'function');
+    });
+  });
+
+  describe('Guardian Profiles', () => {
+    it('all 10 Guardians have correct canonical frequencies', () => {
+      const expected = {
+        lyssandria: 174, leyla: 285, draconia: 396, maylinn: 417,
+        alera: 528, lyria: 639, aiyami: 741, elara: 852, ino: 963, shinkami: 1111,
+      };
+
+      for (const [name, freq] of Object.entries(expected)) {
+        const profile = GUARDIAN_AGENT_PROFILES.find(p => p.guardianName === name);
+        assert.ok(profile, `Profile for ${name} should exist`);
+        assert.equal(profile.frequency, freq, `${name} should have frequency ${freq}`);
+      }
+    });
+
+    it('each Guardian has routing domains and capabilities', () => {
+      for (const profile of GUARDIAN_AGENT_PROFILES) {
+        assert.ok(profile.routingDomains.length > 0, `${profile.guardianName} should have routing domains`);
+        assert.ok(profile.capabilities.length > 0, `${profile.guardianName} should have capabilities`);
+        assert.ok(profile.gate, `${profile.guardianName} should have a gate`);
+        assert.ok(profile.element, `${profile.guardianName} should have an element`);
+        assert.ok(profile.signOff, `${profile.guardianName} should have a signOff`);
+      }
+    });
+
+    it('Shinkami is the only Source Guardian', () => {
+      const source = GUARDIAN_AGENT_PROFILES.filter(p => p.gate === 'source');
+      assert.equal(source.length, 1);
+      assert.equal(source[0].guardianName, 'shinkami');
+      assert.equal(source[0].frequency, 1111);
+    });
+  });
+
+  describe('Guardian Swarm Creation', () => {
+    it('creates all 10 Guardian agents in the swarm', async () => {
+      const coordinator = new SwarmCoordinator({ topology: 'hierarchical' });
+      await coordinator.initialize();
+
+      const agents = await createGuardianSwarm(coordinator);
+      assert.equal(agents.length, 10);
+
+      const agentList = await coordinator.listAgents();
+      assert.equal(agentList.length, 10);
+    });
+
+    it('Shinkami is spawned as leader', async () => {
+      const coordinator = new SwarmCoordinator({ topology: 'hierarchical' });
+      await coordinator.initialize();
+
+      await createGuardianSwarm(coordinator);
+      const shinkami = coordinator.getAgent('guardian-shinkami');
+      assert.ok(shinkami);
+      assert.equal(shinkami.role, 'leader');
+    });
+
+    it('other Guardians are spawned as workers', async () => {
+      const coordinator = new SwarmCoordinator({ topology: 'hierarchical' });
+      await coordinator.initialize();
+
+      await createGuardianSwarm(coordinator);
+      const leyla = coordinator.getAgent('guardian-leyla');
+      assert.ok(leyla);
+      assert.equal(leyla.role, 'worker');
+    });
+
+    it('Guardian agents have metadata with gate and element', async () => {
+      const coordinator = new SwarmCoordinator({ topology: 'hierarchical' });
+      await coordinator.initialize();
+
+      await createGuardianSwarm(coordinator);
+      const draconia = coordinator.getAgent('guardian-draconia');
+      assert.ok(draconia);
+      assert.equal(draconia.metadata.gate, 'fire');
+      assert.equal(draconia.metadata.element, 'fire');
+      assert.equal(draconia.metadata.frequency, 396);
+    });
+  });
+
+  describe('Task Routing', () => {
+    it('routes database tasks to Lyssandria', () => {
+      const agentId = routeTaskToGuardian({
+        id: 't1', type: 'infrastructure', description: 'Design database schema',
+        priority: 'high',
+      });
+      assert.equal(agentId, 'guardian-lyssandria');
+    });
+
+    it('routes design tasks to Leyla', () => {
+      const agentId = routeTaskToGuardian({
+        id: 't2', type: 'creative', description: 'Design the user interface',
+        priority: 'high',
+      });
+      assert.equal(agentId, 'guardian-leyla');
+    });
+
+    it('routes debug tasks to Lyria', () => {
+      const agentId = routeTaskToGuardian({
+        id: 't3', type: 'debug', description: 'Investigate the failing test',
+        priority: 'high',
+      });
+      assert.equal(agentId, 'guardian-lyria');
+    });
+
+    it('routes API tasks to Alera', () => {
+      const agentId = routeTaskToGuardian({
+        id: 't4', type: 'api', description: 'Design the public API interface',
+        priority: 'high',
+      });
+      assert.equal(agentId, 'guardian-alera');
+    });
+
+    it('routes integration tasks to Ino', () => {
+      const agentId = routeTaskToGuardian({
+        id: 't5', type: 'integration', description: 'Merge the two services',
+        priority: 'high',
+      });
+      assert.equal(agentId, 'guardian-ino');
+    });
+
+    it('routes meta/orchestration tasks to Shinkami', () => {
+      const agentId = routeTaskToGuardian({
+        id: 't6', type: 'meta', description: 'Orchestrate the entire deployment',
+        priority: 'high',
+      });
+      assert.equal(agentId, 'guardian-shinkami');
+    });
+
+    it('defaults to Shinkami for unrecognized tasks', () => {
+      const agentId = routeTaskToGuardian({
+        id: 't7', type: 'unknown', description: 'Something completely random',
+        priority: 'low',
+      });
+      assert.equal(agentId, 'guardian-shinkami');
+    });
+  });
+
+  describe('Profile Lookup', () => {
+    it('getGuardianProfile returns correct profile', () => {
+      const lyria = getGuardianProfile('lyria');
+      assert.ok(lyria);
+      assert.equal(lyria.gate, 'sight');
+      assert.equal(lyria.frequency, 639);
+    });
+
+    it('getGuardianByGate returns correct profile', () => {
+      const heart = getGuardianByGate('heart');
+      assert.ok(heart);
+      assert.equal(heart.guardianName, 'maylinn');
+    });
+
+    it('getGuardianByFrequency returns correct profile', () => {
+      const g528 = getGuardianByFrequency(528);
+      assert.ok(g528);
+      assert.equal(g528.guardianName, 'alera');
+      assert.equal(g528.gate, 'voice');
+    });
+
+    it('returns undefined for unknown name', () => {
+      assert.equal(getGuardianProfile('nonexistent'), undefined);
+    });
+
+    it('returns undefined for unknown gate', () => {
+      assert.equal(getGuardianByGate('nonexistent'), undefined);
+    });
+
+    it('returns undefined for unknown frequency', () => {
+      assert.equal(getGuardianByFrequency(999), undefined);
+    });
+  });
+
+  describe('Full Guardian Workflow', () => {
+    it('creates swarm, routes task, executes on correct Guardian', async () => {
+      const coordinator = new SwarmCoordinator({ topology: 'hierarchical' });
+      await coordinator.initialize();
+
+      await createGuardianSwarm(coordinator);
+
+      const task = {
+        id: 'debug-1',
+        type: 'debug',
+        description: 'Investigate and analyze the memory leak',
+        priority: 'high',
+      };
+
+      const agentId = routeTaskToGuardian(task);
+      assert.equal(agentId, 'guardian-lyria');
+
+      const result = await coordinator.executeTask(agentId, task);
+      assert.equal(result.status, 'completed');
+      assert.equal(result.agentId, 'guardian-lyria');
+    });
+  });
+});
