@@ -10,7 +10,7 @@ version: "1.0.0"
 created: "2026-02-21"
 
 gate: "voice"
-frequency: "741"
+frequency: "528"
 guardian: "Alera"
 element: "void"
 
@@ -33,7 +33,7 @@ approved_date: ""
 
 **Creature Type**: Storm Moth | **Bonded to**: Alera, Goddess of the Voice Gate
 **Symbol**: Vast moth with opened mouth | **Colors**: Midnight-blue, silver-white, deep-violet
-**Frequency**: 741 Hz | **Element**: Void
+**Frequency**: 528 Hz | **Element**: Void
 
 ---
 
@@ -63,7 +63,7 @@ Fragile beauty concealing devastating power. Otome's wings are midnight-blue dus
 
 ## Powers and Domain
 
-**Truth Resonance**: Otome's primary power. When Otome speaks, reality vibrates at the frequency of truth (741 Hz), and all illusions within range dissolve. Lies become visible as shadows. Hidden truths surface like objects in receding water.
+**Truth Resonance**: Otome's primary power. When Otome speaks, reality vibrates at the frequency of truth (528 Hz), and all illusions within range dissolve. Lies become visible as shadows. Hidden truths surface like objects in receding water.
 
 **Silence Breaking**: Where voices have been suppressed -- where truth has been forbidden, where expression has been punished -- Otome's presence breaks the seal. The silence cracks, and what was held back floods out.
 

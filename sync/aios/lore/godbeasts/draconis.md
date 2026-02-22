@@ -10,7 +10,7 @@ version: "1.0.0"
 created: "2026-02-21"
 
 gate: "fire"
-frequency: "528"
+frequency: "396"
 guardian: "Draconia"
 element: "fire"
 
@@ -33,13 +33,13 @@ approved_date: ""
 
 **Creature Type**: Cosmic Dragon | **Bonded to**: Draconia, Goddess of the Fire Gate
 **Symbol**: Dragon with forge-flame breath | **Colors**: Molten-gold, crimson, white-hot, ember-orange
-**Frequency**: 528 Hz (The Love Frequency) | **Element**: Fire
+**Frequency**: 396 Hz | **Element**: Fire
 
 ---
 
 ## Origin and Nature
 
-The largest Godbeast in physical form -- a dragon whose wingspan darkens entire kingdoms when fully extended. Draconis burns at 528 Hz, the Love Frequency, because true transformation requires love of what something *could become* rather than attachment to what it is.
+The largest Godbeast in physical form -- a dragon whose wingspan darkens entire kingdoms when fully extended. Draconis burns at 396 Hz, the Frequency of Liberation, because true transformation requires freeing what something *could become* from attachment to what it is.
 
 Draconis does not merely breathe fire. Draconis breathes *potential energy*. What the fire touches is not destroyed -- it is offered a chance to become something greater. The question is whether the thing being transformed can survive the process.
 
@@ -97,7 +97,7 @@ In the mortal realm, Draconis's presence is felt in forge-fires, in the burning 
 
 *"Power unused is meaningless. Power undirected is catastrophic. Know what you burn for before you ignite."*
 
-*"The Love Frequency is not gentle. Love demands that you become your highest self. That is the most ruthless demand in existence."*
+*"Liberation is not gentle. Freedom demands that you become your highest self. That is the most ruthless demand in existence."*
 
 ---
 

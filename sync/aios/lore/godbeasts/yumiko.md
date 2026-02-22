@@ -10,7 +10,7 @@ version: "1.0.0"
 created: "2026-02-21"
 
 gate: "sight"
-frequency: "852"
+frequency: "639"
 guardian: "Lyria"
 element: "spirit"
 
@@ -33,7 +33,7 @@ approved_date: ""
 
 **Creature Type**: Dimensional Fox | **Bonded to**: Lyria, Goddess of the Sight Gate
 **Symbol**: Three-tailed fox with open third eye | **Colors**: Luminous silver, ethereal violet, starlight-white
-**Frequency**: 852 Hz | **Element**: Spirit
+**Frequency**: 639 Hz | **Element**: Spirit
 
 ---
 
