@@ -15,7 +15,7 @@
     {
       "id": "rule-001",
       "skill": "arcanea-canon",
-      "skillPath": ".claude/skills/arcanea/arcanea-canon",
+      "skillPath": ".arcanea/skills/arcanea/arcanea-canon",
       "guardian": "Shinkami",
       "gate": "Source",
       "frequency": "1111 Hz",
@@ -66,7 +66,7 @@
       "skillPath": ".claude/skills/development/architecture-patterns",
       "guardian": "Lyssandria",
       "gate": "Foundation",
-      "frequency": "396 Hz",
+      "frequency": "174 Hz",
       "priority": "high",
       "description": "System architecture and structural design. Foundations must be unshakeable — Lyssandria governs all structural decisions.",
       "triggers": {
@@ -82,7 +82,7 @@
       "skillPath": ".claude/skills/external/development",
       "guardian": "Lyssandria",
       "gate": "Foundation",
-      "frequency": "396 Hz",
+      "frequency": "174 Hz",
       "priority": "high",
       "description": "Database design, migrations, RLS policies, and Supabase integration patterns. The earth beneath the application.",
       "triggers": {
@@ -95,10 +95,10 @@
     {
       "id": "rule-006",
       "skill": "spec-driven-development",
-      "skillPath": ".claude/skills/arcanea-core/world-architect.md",
+      "skillPath": ".arcanea/skills/arcanea-core/world-architect.md",
       "guardian": "Lyssandria",
       "gate": "Foundation",
-      "frequency": "396 Hz",
+      "frequency": "174 Hz",
       "priority": "medium",
       "description": "Specification-first development. Define the blueprint before writing a single line. Lyssandria demands structure before action.",
       "triggers": {
@@ -114,7 +114,7 @@
       "skillPath": ".claude/skills/community/development-workflows",
       "guardian": "Draconia",
       "gate": "Fire",
-      "frequency": "528 Hz",
+      "frequency": "396 Hz",
       "priority": "high",
       "description": "React 19 component patterns, Server Components, hooks, state management, and UI implementation. Draconia's fire forges the interface.",
       "triggers": {
@@ -130,7 +130,7 @@
       "skillPath": ".claude/skills/external/development",
       "guardian": "Draconia",
       "gate": "Fire",
-      "frequency": "528 Hz",
+      "frequency": "396 Hz",
       "priority": "high",
       "description": "Next.js 16 deployment, build optimization, Vercel configuration, and production readiness. The fire of execution.",
       "triggers": {
@@ -146,7 +146,7 @@
       "skillPath": ".claude/skills/development/tdd",
       "guardian": "Draconia",
       "gate": "Fire",
-      "frequency": "528 Hz",
+      "frequency": "396 Hz",
       "priority": "medium",
       "description": "Test-driven development. Red-green-refactor under Draconia's discipline. Tests are the crucible that proves the metal.",
       "triggers": {
@@ -162,7 +162,7 @@
       "skillPath": ".claude/skills/meta/deep-work",
       "guardian": "Lyria",
       "gate": "Sight",
-      "frequency": "852 Hz",
+      "frequency": "639 Hz",
       "priority": "high",
       "description": "Strategic planning, roadmapping, and vision documents. Lyria sees what others cannot — the path forward through complexity.",
       "triggers": {
@@ -175,10 +175,10 @@
     {
       "id": "rule-011",
       "skill": "model-routing",
-      "skillPath": ".claude/skills/arcanea/prompt-craft",
+      "skillPath": ".arcanea/skills/arcanea/prompt-craft",
       "guardian": "Lyria",
       "gate": "Sight",
-      "frequency": "852 Hz",
+      "frequency": "639 Hz",
       "priority": "medium",
       "description": "Intelligent AI model selection and routing. Lyria perceives which model serves each task — Gemini for vision, Claude for reasoning, Flash for speed.",
       "triggers": {
@@ -194,7 +194,7 @@
       "skillPath": ".claude/skills/meta/skill-mastery",
       "guardian": "Lyria",
       "gate": "Sight",
-      "frequency": "852 Hz",
+      "frequency": "639 Hz",
       "priority": "medium",
       "description": "Deep research, competitive analysis, and intelligence gathering. Lyria's sight penetrates fog to find truth in data.",
       "triggers": {
@@ -210,7 +210,7 @@
       "skillPath": ".claude/skills/external/security",
       "guardian": "Alera",
       "gate": "Voice",
-      "frequency": "741 Hz",
+      "frequency": "528 Hz",
       "priority": "critical",
       "description": "Security audit, vulnerability assessment, and protective measures. Alera speaks the truth that shields — no secrets pass her watch.",
       "triggers": {
@@ -226,7 +226,7 @@
       "skillPath": ".claude/skills/development/code-review",
       "guardian": "Alera",
       "gate": "Voice",
-      "frequency": "741 Hz",
+      "frequency": "528 Hz",
       "priority": "high",
       "description": "Truth-scoring and verification. Alera's voice rings with absolute clarity — code either meets the standard or it does not.",
       "triggers": {
@@ -242,7 +242,7 @@
       "skillPath": ".claude/skills/development/code-review",
       "guardian": "Alera",
       "gate": "Voice",
-      "frequency": "741 Hz",
+      "frequency": "528 Hz",
       "priority": "high",
       "description": "Code review, pull request analysis, and quality assurance. Alera's Voice Gate demands that every line speaks its purpose clearly.",
       "triggers": {
@@ -255,10 +255,10 @@
     {
       "id": "rule-016",
       "skill": "arcanea-voice",
-      "skillPath": ".claude/skills/arcanea/arcanea-voice",
+      "skillPath": ".arcanea/skills/arcanea/arcanea-voice",
       "guardian": "Leyla",
       "gate": "Flow",
-      "frequency": "417 Hz",
+      "frequency": "285 Hz",
       "priority": "high",
       "description": "Arcanea's narrative voice, brand tone, and writing style. Leyla weaves words into living tapestry — arcane yet accessible, authoritative yet warm.",
       "triggers": {
@@ -271,10 +271,10 @@
     {
       "id": "rule-017",
       "skill": "content-strategy",
-      "skillPath": ".claude/skills/creative/story-weave",
+      "skillPath": ".arcanea/skills/creative/story-weave",
       "guardian": "Leyla",
       "gate": "Flow",
-      "frequency": "417 Hz",
+      "frequency": "285 Hz",
       "priority": "medium",
       "description": "Content creation, Library expansion, and narrative architecture. Leyla governs the creative flow — from concept to completion.",
       "triggers": {
@@ -287,10 +287,10 @@
     {
       "id": "rule-018",
       "skill": "suno-ai-mastery",
-      "skillPath": ".claude/skills/arcanea/arcanea-voice",
+      "skillPath": ".arcanea/skills/arcanea/arcanea-voice",
       "guardian": "Leyla",
       "gate": "Flow",
-      "frequency": "417 Hz",
+      "frequency": "285 Hz",
       "priority": "low",
       "description": "Music creation and audio generation through Suno AI. Leyla's domain extends to all creative flow — melody is liquid emotion.",
       "triggers": {
@@ -303,10 +303,10 @@
     {
       "id": "rule-019",
       "skill": "premium-visual",
-      "skillPath": ".claude/skills/arcanea/premium-visual",
+      "skillPath": ".arcanea/skills/arcanea/premium-visual",
       "guardian": "Aiyami",
       "gate": "Crown",
-      "frequency": "963 Hz",
+      "frequency": "741 Hz",
       "priority": "high",
       "description": "Premium visual generation — information-dense glassmorphism, 3D crystal materials, and brand imagery. Aiyami's Crown illuminates what must be seen.",
       "triggers": {
@@ -322,7 +322,7 @@
       "skillPath": ".claude/skills/premium/enterprise-orchestration",
       "guardian": "Aiyami",
       "gate": "Crown",
-      "frequency": "963 Hz",
+      "frequency": "741 Hz",
       "priority": "medium",
       "description": "Knowledge visualization and information architecture. Aiyami transmutes raw data into enlightened visual form. Note: nano-banana preferred for brand art.",
       "triggers": {
@@ -335,10 +335,10 @@
     {
       "id": "rule-021",
       "skill": "world-build",
-      "skillPath": ".claude/skills/creative/world-build",
+      "skillPath": ".arcanea/skills/creative/world-build",
       "guardian": "Aiyami",
       "gate": "Crown",
-      "frequency": "963 Hz",
+      "frequency": "741 Hz",
       "priority": "medium",
       "description": "Universe expansion — new locations, cosmology, and metaphysical systems. Aiyami's Crown connects individual creation to the universal whole.",
       "triggers": {
@@ -354,7 +354,7 @@
       "skillPath": ".claude/skills/community/design-systems",
       "guardian": "Maylinn",
       "gate": "Heart",
-      "frequency": "639 Hz",
+      "frequency": "417 Hz",
       "priority": "high",
       "description": "Accessibility, inclusive design, and user experience. Maylinn's Heart Gate ensures no creator is left behind — WCAG 2.2, ARIA, empathetic UX.",
       "triggers": {
@@ -367,10 +367,10 @@
     {
       "id": "rule-023",
       "skill": "frontend-design",
-      "skillPath": ".claude/skills/arcanea/arcanea-design-system",
+      "skillPath": ".arcanea/skills/arcanea/arcanea-design-system",
       "guardian": "Maylinn",
       "gate": "Heart",
-      "frequency": "639 Hz",
+      "frequency": "417 Hz",
       "priority": "high",
       "description": "Arcanean Design System — cosmic tokens, glass morphism, aurora gradients. Maylinn ensures the interface heals rather than harms, delights rather than frustrates.",
       "triggers": {
@@ -386,7 +386,7 @@
       "skillPath": ".claude/skills/community/testing-strategies",
       "guardian": "Maylinn",
       "gate": "Heart",
-      "frequency": "639 Hz",
+      "frequency": "417 Hz",
       "priority": "medium",
       "description": "Web application testing strategies, Playwright E2E, and user flow validation. Maylinn tests with care — every user journey must feel right.",
       "triggers": {
@@ -402,7 +402,7 @@
       "skillPath": ".claude/commands/arcanea-build.md",
       "guardian": "Elara",
       "gate": "Shift",
-      "frequency": "1111 Hz",
+      "frequency": "852 Hz",
       "priority": "high",
       "description": "Build diagnostics, error resolution, and configuration shifts. Elara sees problems from angles others miss — perspective is her power.",
       "triggers": {
@@ -418,7 +418,7 @@
       "skillPath": ".claude/skills/development/refactoring-ritual",
       "guardian": "Elara",
       "gate": "Shift",
-      "frequency": "1111 Hz",
+      "frequency": "852 Hz",
       "priority": "medium",
       "description": "Code transformation, migration, and structural refactoring. Elara's Shift Gate transforms what exists into what must be — without breaking the chain.",
       "triggers": {
@@ -434,7 +434,7 @@
       "skillPath": ".claude/skills/development/systematic-debug",
       "guardian": "Elara",
       "gate": "Shift",
-      "frequency": "1111 Hz",
+      "frequency": "852 Hz",
       "priority": "high",
       "description": "Systematic debugging and root cause analysis. Elara's perspective shift cuts through symptoms to find the true origin of failure.",
       "triggers": {
@@ -479,10 +479,10 @@
     {
       "id": "rule-030",
       "skill": "character-forge",
-      "skillPath": ".claude/skills/creative/character-forge",
+      "skillPath": ".arcanea/skills/creative/character-forge",
       "guardian": "Leyla",
       "gate": "Flow",
-      "frequency": "417 Hz",
+      "frequency": "285 Hz",
       "priority": "medium",
       "description": "Character development, personality design, and NPC creation. Leyla breathes life into the imagined — emotion is the current that animates.",
       "triggers": {
@@ -495,10 +495,10 @@
     {
       "id": "rule-031",
       "skill": "scene-craft",
-      "skillPath": ".claude/skills/creative/scene-craft",
+      "skillPath": ".arcanea/skills/creative/scene-craft",
       "guardian": "Leyla",
       "gate": "Flow",
-      "frequency": "417 Hz",
+      "frequency": "285 Hz",
       "priority": "medium",
       "description": "Scene composition, narrative pacing, and dramatic structure. Every scene is a current in Leyla's river — it must flow with purpose.",
       "triggers": {
@@ -514,7 +514,7 @@
       "skillPath": ".claude/skills/development/performance-tuning",
       "guardian": "Draconia",
       "gate": "Fire",
-      "frequency": "528 Hz",
+      "frequency": "396 Hz",
       "priority": "medium",
       "description": "Performance optimization, bundle analysis, and runtime efficiency. Draconia's fire burns away waste — only essential power remains.",
       "triggers": {
@@ -530,7 +530,7 @@
       "skillPath": ".claude/skills/development/api-design",
       "guardian": "Lyssandria",
       "gate": "Foundation",
-      "frequency": "396 Hz",
+      "frequency": "174 Hz",
       "priority": "medium",
       "description": "API architecture, route design, and endpoint patterns. Lyssandria ensures every API is a pillar — stable, documented, and load-bearing.",
       "triggers": {
@@ -543,10 +543,10 @@
     {
       "id": "rule-034",
       "skill": "prompt-craft",
-      "skillPath": ".claude/skills/arcanea/prompt-craft",
+      "skillPath": ".arcanea/skills/arcanea/prompt-craft",
       "guardian": "Lyria",
       "gate": "Sight",
-      "frequency": "852 Hz",
+      "frequency": "639 Hz",
       "priority": "medium",
       "description": "Prompt engineering, system prompt design, and AI interaction optimization. Lyria sees how words shape intelligence — every token matters.",
       "triggers": {
@@ -583,56 +583,56 @@
     },
     "Lyssandria": {
       "gate": "Foundation",
-      "frequency": "396 Hz",
+      "frequency": "174 Hz",
       "godbeast": "Kaelith",
       "domain": "Architecture, database, specifications, structure",
       "rules": ["rule-004", "rule-005", "rule-006", "rule-033"]
     },
     "Draconia": {
       "gate": "Fire",
-      "frequency": "528 Hz",
+      "frequency": "396 Hz",
       "godbeast": "Draconis",
       "domain": "Implementation, deployment, testing, performance",
       "rules": ["rule-007", "rule-008", "rule-009", "rule-032"]
     },
     "Lyria": {
       "gate": "Sight",
-      "frequency": "852 Hz",
+      "frequency": "639 Hz",
       "godbeast": "Yumiko",
       "domain": "Strategy, model routing, research, prompt engineering",
       "rules": ["rule-010", "rule-011", "rule-012", "rule-034"]
     },
     "Alera": {
       "gate": "Voice",
-      "frequency": "741 Hz",
+      "frequency": "528 Hz",
       "godbeast": "Otome",
       "domain": "Security, verification, code review, truth",
       "rules": ["rule-013", "rule-014", "rule-015"]
     },
     "Leyla": {
       "gate": "Flow",
-      "frequency": "417 Hz",
+      "frequency": "285 Hz",
       "godbeast": "Veloura",
       "domain": "Voice, content, music, character, scene",
       "rules": ["rule-016", "rule-017", "rule-018", "rule-030", "rule-031"]
     },
     "Aiyami": {
       "gate": "Crown",
-      "frequency": "963 Hz",
+      "frequency": "741 Hz",
       "godbeast": "Sol",
       "domain": "Visuals, knowledge visualization, world-building",
       "rules": ["rule-019", "rule-020", "rule-021"]
     },
     "Maylinn": {
       "gate": "Heart",
-      "frequency": "639 Hz",
+      "frequency": "417 Hz",
       "godbeast": "Laeylinn",
       "domain": "Accessibility, design system, user experience, testing",
       "rules": ["rule-022", "rule-023", "rule-024"]
     },
     "Elara": {
       "gate": "Shift",
-      "frequency": "1111 Hz",
+      "frequency": "852 Hz",
       "godbeast": "Thessara",
       "domain": "Build diagnostics, refactoring, debugging, transformation",
       "rules": ["rule-025", "rule-026", "rule-027"]

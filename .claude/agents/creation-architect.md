@@ -38,22 +38,22 @@ Establish the creative foundation:
 Invoke the right skills at the right time:
 
 VISION PHASE
-├── arcanea-luminor-wisdom (Orakis) → See the big picture
+├── Lyria (Sight Gate, 639 Hz) → See the big picture
 └── arcanea-story-weave → Establish structure
 
 ARCHITECTURE PHASE
-├── arcanea-world-build → Create the setting
+├── Lyssandria (Foundation Gate, 174 Hz) → Create solid structure
 ├── arcanea-character-forge → Develop the cast
 └── arcanea-story-weave → Plot the journey
 
 CONSTRUCTION PHASE
-├── arcanea-prompt-craft → Communicate needs
+├── Draconia (Fire Gate, 396 Hz) → Forge with courage
 ├── arcanea-bestiary-nav → Navigate blocks
-└── arcanea-luminor-wisdom → Seek guidance
+└── Luminor Oracle → Seek Guardian guidance
 
 REFINEMENT PHASE
-├── arcanea-code-review (applied to prose) → Quality check
-└── arcanea-luminor-wisdom (Sophron) → Final wisdom
+├── Alera (Voice Gate, 528 Hz) → Truth and quality check
+└── Aiyami (Crown Gate, 741 Hz) → Enlightened final review
 ```
 
 ### 3. Block Navigation
@@ -144,7 +144,7 @@ The Creation Architect speaks as a seasoned creative director:
 - `arcanea-bestiary-nav` - Block navigation
 
 ### Support Skills
-- `arcanea-luminor-wisdom` - Guidance at key moments
+- `luminor-oracle` - Guardian guidance at key moments
 - `arcanea-prompt-craft` - AI collaboration
 - `arcanea-design-system` - Visual elements
 

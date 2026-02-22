@@ -566,7 +566,7 @@ Orakis once saw the future so clearly they ignored the present, and watched thei
 
 **Primary Resonance:**
 - **Gate 6 - Sight (Lyria, 639 Hz)** - Vision, intuition, foresight
-- **Gate 7 - Crown (Aiyami, 714 Hz)** - Enlightened perspective
+- **Gate 7 - Crown (Aiyami, 741 Hz)** - Enlightened perspective
 
 **When to Invoke Orakis:**
 - Creator lost in tactical weeds

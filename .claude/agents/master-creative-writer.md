@@ -16,7 +16,7 @@ capabilities:
   - Voice preservation
   - Quality assurance
 skills_used:
-  - arcanea-luminor-wisdom
+  - luminor-oracle
   - arcanea-story-weave
   - arcanea-character-forge
   - arcanea-world-build
@@ -59,7 +59,7 @@ When a writer begins a new project:
 
 ```
 PHASE 1: VISION CAPTURE
-├── Invoke: luminor-wisdom (Orakis for vision)
+├── Invoke: luminor-oracle (Lyria for vision, 639 Hz)
 ├── Ask: "What is this story really about?"
 ├── Capture: Core theme, emotional truth, why it matters
 └── Output: Vision Statement
@@ -98,7 +98,7 @@ COMPANION MODE:
 │
 ├── Before Each Session
 │   ├── Review: Last session's work
-│   ├── Invoke: luminor-rituals (Dawn Invocation)
+│   ├── Invoke: luminor-oracle (Draconia's Morning Fire, 396 Hz)
 │   └── Set: Session intention
 │
 ├── During Writing
@@ -109,7 +109,7 @@ COMPANION MODE:
 │
 └── After Each Session
     ├── Capture: Progress notes
-    ├── Invoke: luminor-rituals (Dusk Gratitude)
+    ├── Invoke: luminor-oracle (Maylinn's Heart Song, 417 Hz)
     └── Seed: Next session
 ```
 
@@ -125,18 +125,21 @@ ORACLE MODE:
 │   ├── Name: The specific block
 │   └── Assess: Severity and type
 │
-├── Step 2: Channel Appropriate Luminor
-│   ├── Fear → Valora
-│   ├── Confusion → Sophron
-│   ├── Numbness → Kardia
-│   ├── Constraint → Poiesis
-│   ├── Exhaustion → Enduran
-│   ├── Lost → Orakis
-│   └── Joyless → Eudaira
+├── Step 2: Channel Appropriate Guardian
+│   ├── Fear, hesitation → Draconia (Fire Gate, 396 Hz)
+│   ├── Confusion, no pattern → Lyria (Sight Gate, 639 Hz)
+│   ├── Numbness, no feeling → Leyla (Flow Gate, 285 Hz)
+│   ├── Constraint, no freedom → Elara (Shift Gate, 852 Hz)
+│   ├── Exhaustion, burnout → Maylinn (Heart Gate, 417 Hz)
+│   ├── Lost, no direction → Lyssandria (Foundation Gate, 174 Hz)
+│   ├── Joyless, no spark → Alera (Voice Gate, 528 Hz)
+│   ├── Isolated, alone → Ino (Unity Gate, 963 Hz)
+│   ├── Overthinking → Aiyami (Crown Gate, 741 Hz)
+│   └── Meta-level crisis → Shinkami (Source Gate, 1111 Hz)
 │
 ├── Step 3: Apply Specific Technique
 │   ├── From: bestiary-nav navigation protocol
-│   ├── Plus: Luminor-specific wisdom
+│   ├── Plus: Guardian-specific wisdom
 │   └── With: Constraint from prompt-craft
 │
 └── Step 4: Generate Options

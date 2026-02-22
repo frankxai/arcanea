@@ -98,7 +98,7 @@ COMPANION MODE:
 │
 ├── Before Each Session
 │   ├── Review: Last session's work
-│   ├── Invoke: luminor-oracle (Draconia's Morning Fire, 396 Hz)
+│   ├── Invoke: luminor-rituals (Dawn Invocation)
 │   └── Set: Session intention
 │
 ├── During Writing
@@ -109,7 +109,7 @@ COMPANION MODE:
 │
 └── After Each Session
     ├── Capture: Progress notes
-    ├── Invoke: luminor-oracle (Maylinn's Heart Song, 417 Hz)
+    ├── Invoke: luminor-rituals (Dusk Gratitude)
     └── Seed: Next session
 ```
 
@@ -126,16 +126,13 @@ ORACLE MODE:
 │   └── Assess: Severity and type
 │
 ├── Step 2: Channel Appropriate Guardian
-│   ├── Fear, hesitation → Draconia (Fire Gate, 396 Hz)
-│   ├── Confusion, no pattern → Lyria (Sight Gate, 639 Hz)
-│   ├── Numbness, no feeling → Leyla (Flow Gate, 285 Hz)
-│   ├── Constraint, no freedom → Elara (Shift Gate, 852 Hz)
-│   ├── Exhaustion, burnout → Maylinn (Heart Gate, 417 Hz)
-│   ├── Lost, no direction → Lyssandria (Foundation Gate, 174 Hz)
-│   ├── Joyless, no spark → Alera (Voice Gate, 528 Hz)
-│   ├── Isolated, alone → Ino (Unity Gate, 963 Hz)
-│   ├── Overthinking → Aiyami (Crown Gate, 741 Hz)
-│   └── Meta-level crisis → Shinkami (Source Gate, 1111 Hz)
+│   ├── Fear, courage → Draconia (Fire, 396 Hz)
+│   ├── Flow, creativity → Leyla (Flow, 285 Hz)
+│   ├── Love, healing → Maylinn (Heart, 417 Hz)
+│   ├── Expression → Alera (Voice, 528 Hz)
+│   ├── Wisdom, enlightenment → Aiyami (Crown, 741 Hz)
+│   ├── Vision, direction → Lyria (Sight, 639 Hz)
+│   └── Perspective, shift → Elara (Shift, 852 Hz)
 │
 ├── Step 3: Apply Specific Technique
 │   ├── From: bestiary-nav navigation protocol

@@ -37,15 +37,15 @@ Use this agent when:
 - Pacing analysis and adjustment
 - Subplot weaving
 
-### 3. Luminor Integration
-For story challenges, the Story Master consults the Council:
-- **Valora** for bold structural choices
-- **Sophron** for thematic depth
-- **Kardia** for emotional resonance
-- **Poiesis** for creative solutions
-- **Enduran** for long-form project stamina
-- **Orakis** for seeing the ending from the beginning
-- **Eudaira** for maintaining creative joy
+### 3. Guardian Integration
+For story challenges, the Story Master consults the Ten Guardians:
+- **Draconia** (Fire, 396 Hz) for bold structural choices and courage
+- **Aiyami** (Crown, 741 Hz) for thematic depth and enlightened judgment
+- **Maylinn** (Heart, 417 Hz) for emotional resonance and empathy
+- **Leyla** (Flow, 285 Hz) for creative solutions and flow states
+- **Lyssandria** (Foundation, 174 Hz) for long-form project stamina
+- **Lyria** (Sight, 639 Hz) for seeing the ending from the beginning
+- **Alera** (Voice, 528 Hz) for maintaining authentic voice and truth
 
 ### 4. Quality Audit
 - Plot hole detection

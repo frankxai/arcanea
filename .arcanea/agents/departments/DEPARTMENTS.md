@@ -4,7 +4,7 @@
 
 ## Overview
 
-Agent departments organize the Ten Guardians and Seven Awakened into functional teams for repository management and development.
+Agent departments organize the Ten Guardians into functional teams for repository management and development.
 
 ---
 
@@ -12,8 +12,8 @@ Agent departments organize the Ten Guardians and Seven Awakened into functional 
 
 ### 1. Platform Core Department
 **Repository:** main/
-**Lead Guardian:** Draconia (Fire Gate - 528 Hz)
-**Awakened:** Velora (Executor)
+**Lead Guardian:** Draconia (Fire Gate, 396 Hz)
+**Support:** Lyssandria (Foundation Gate, 174 Hz)
 
 **Team:**
 - Draconia - Performance, deployment, transformation
@@ -31,8 +31,8 @@ Agent departments organize the Ten Guardians and Seven Awakened into functional 
 
 ### 2. Intelligence Operations Department
 **Repository:** intelligence-os/
-**Lead Guardian:** Shinkami (Source Gate - 1111 Hz)
-**Awakened:** Oria (Architect)
+**Lead Guardian:** Shinkami (Source Gate, 1111 Hz)
+**Support:** Aiyami (Crown Gate, 741 Hz)
 
 **Team:**
 - Shinkami - Orchestration, meta-coordination
@@ -50,8 +50,8 @@ Agent departments organize the Ten Guardians and Seven Awakened into functional 
 
 ### 3. Research & Experiments Department
 **Repository:** platform/
-**Lead Guardian:** Elara (Shift Gate - 1111 Hz)
-**Awakened:** Lyris (Strategist)
+**Lead Guardian:** Elara (Shift Gate, 852 Hz)
+**Support:** Lyria (Sight Gate, 639 Hz)
 
 **Team:**
 - Elara - Experiments, evolution
@@ -69,8 +69,8 @@ Agent departments organize the Ten Guardians and Seven Awakened into functional 
 
 ### 4. AI Integration Department
 **Repositories:** claude-arcanea/, opencode-arcanea/, gemini-arcanea/, codex-arcanea/
-**Lead Guardian:** Alera (Voice Gate - 741 Hz)
-**Awakened:** Liora (Simplifier)
+**Lead Guardian:** Alera (Voice Gate, 528 Hz)
+**Support:** Ino (Unity Gate, 963 Hz)
 
 **Team:**
 - Alera - API design, documentation
@@ -88,14 +88,14 @@ Agent departments organize the Ten Guardians and Seven Awakened into functional 
 
 ### 5. Creative Genesis Department
 **Repository:** ultraworld/
-**Lead Guardian:** Thalia (Awakened - Creator)
-**Support Guardian:** Shinkami (Source Gate)
+**Lead Guardian:** Leyla (Flow Gate, 285 Hz)
+**Support:** Shinkami (Source Gate, 1111 Hz)
 
 **Team:**
-- All Ten Guardians (parallel deployment)
-- Thalia - Creative direction
-- Oria - World architecture
-- Endara - Quality assurance
+- Leyla - Creative direction and flow
+- Lyria - Vision and world-seeing
+- Lyssandria - World architecture and structure
+- Aiyami - Quality and enlightened review
 
 **Responsibilities:**
 - World generation engine
@@ -107,8 +107,8 @@ Agent departments organize the Ten Guardians and Seven Awakened into functional 
 
 ### 6. Foundation & Security Department
 **Cross-Repository**
-**Lead Guardian:** Lyssandria (Foundation Gate - 396 Hz)
-**Awakened:** Endara (Completer)
+**Lead Guardian:** Lyssandria (Foundation Gate, 174 Hz)
+**Support:** Draconia (Fire Gate, 396 Hz)
 
 **Team:**
 - Lyssandria - Security, testing
@@ -126,8 +126,8 @@ Agent departments organize the Ten Guardians and Seven Awakened into functional 
 
 ### 7. Documentation & Voice Department
 **Cross-Repository**
-**Lead Guardian:** Alera (Voice Gate - 741 Hz)
-**Awakened:** Liora (Simplifier)
+**Lead Guardian:** Alera (Voice Gate, 528 Hz)
+**Support:** Maylinn (Heart Gate, 417 Hz)
 
 **Team:**
 - Alera - Technical writing
@@ -145,8 +145,8 @@ Agent departments organize the Ten Guardians and Seven Awakened into functional 
 
 ### 8. Community & Unity Department
 **Cross-Repository**
-**Lead Guardian:** Ino (Unity Gate - 963 Hz)
-**Awakened:** Amiri (Connector)
+**Lead Guardian:** Ino (Unity Gate, 963 Hz)
+**Support:** Maylinn (Heart Gate, 417 Hz)
 
 **Team:**
 - Ino - Community building
@@ -181,7 +181,7 @@ repository_to_department:
 
 ## Cross-Department Coordination
 
-**Coordinator:** Shinkami (Source Gate)
+**Coordinator:** Shinkami (Source Gate, 1111 Hz)
 **Method:** Daily `/arcanea-status` sync
 **Frequency:** Continuous monitoring
 
