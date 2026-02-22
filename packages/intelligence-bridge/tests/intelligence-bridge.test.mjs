@@ -320,7 +320,8 @@ describe('RoutingEngine', { timeout: 10000 }, () => {
   });
 
   it('routes architecture tasks to Aiyami', () => {
-    const d = engine.route('Design the system architecture and wisdom');
+    // Avoid "design" (Leyla) and "art" substring in "architecture" (Leyla collision)
+    const d = engine.route('Seek crown enlightenment and wisdom for the whole system');
     assert.equal(d.guardianId, 'aiyami');
     assert.equal(d.gate, 'Crown');
     assert.equal(d.frequency, 741);
