@@ -3,11 +3,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StarlightRuntime = void 0;
+exports.ContextLoader = void 0;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-// The Loader Class
-class StarlightRuntime {
+/**
+ * ContextLoader (formerly StarlightRuntime)
+ *
+ * Reads Starlight Protocol files from disk and concatenates them into
+ * a structured agent context. This is a file loader / context assembler,
+ * not an execution runtime.
+ */
+class ContextLoader {
     constructor(config) {
         this.config = config;
     }
@@ -27,7 +33,7 @@ class StarlightRuntime {
     }
     /**
      * Loads the active context for a specific Agent and Strategy.
-     * This is the "Compiler" step.
+     * Reads and concatenates the relevant protocol files.
      */
     loadContext(dept, agentFile, strategyFile) {
         return {
@@ -62,4 +68,6 @@ Act as the agent defined above. Adhere strictly to the Constitution.
     `.trim();
     }
 }
-exports.StarlightRuntime = StarlightRuntime;
+exports.ContextLoader = ContextLoader;
+// Backwards compatibility alias
+exports.StarlightRuntime = ContextLoader;

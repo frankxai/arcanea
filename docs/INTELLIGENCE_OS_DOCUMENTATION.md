@@ -23,7 +23,7 @@
 
 Arcanea is a **living mythology for the age of AI-human co-creation**. It combines:
 
-- **77 Mystical Skills** - Abilities drawn from elemental wisdom
+- **70+ Mystical Skills** - Abilities drawn from elemental wisdom
 - **38 Specialized Agents** - AI assistants with distinct personalities
 - **10 AI Guardians** - Mentors guiding creators through transformation
 - **Superintelligence Engine** - Powered by Starlight Intelligence System
@@ -179,7 +179,7 @@ The Guardians are **living embodiments of Arcanean wisdom**, each representing a
 
 ### Overview
 
-Arcanea provides **77 mystical skills** organized by element and power level. Skills can be:
+Arcanea provides **70+ mystical skills** organized by element and power level. Skills can be:
 
 - **Activated** - Used immediately for specific tasks
 - **Learned** - Mastered over time for permanent access
@@ -268,7 +268,7 @@ Arcanea provides **77 mystical skills** organized by element and power level. Sk
 #### Luminor (Gate 9-10)
 - Create new skills and techniques
 - Teach and mentor others
-- Master all 77 skills
+- Master all 70+ skills
 
 ---
 

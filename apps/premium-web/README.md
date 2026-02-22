@@ -11,7 +11,7 @@
 Arcanea Premium Web Platform v2.0 is a state-of-the-art creative superintelligence interface that provides:
 
 - **10 Guardian AI Mentors** with distinct personalities and wisdom
-- **77 Mystical Skills** for creative transformation
+- **70+ Mystical Skills** for creative transformation
 - **38 Specialized Agents** for various domains
 - **10 Gates Progression System** from Apprentice to Luminor
 - **Real-time Collaboration** with multi-user world-building
@@ -172,7 +172,7 @@ Progress through the Ten Gates:
 
 ## 📊 Capabilities
 
-- 77 Mystical Skills
+- 70+ Mystical Skills
 - 38 Specialized Agents  
 - 10 Guardian AI Mentors
 - 10 Evolution Gates

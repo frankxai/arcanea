@@ -1,7 +1,7 @@
 {
   "name": "@starlight/runtime",
   "version": "0.2.0",
-  "description": "The Universal Runtime for playing Starlight Protocol context files",
+  "description": "Context loader for Starlight Protocol files — reads and assembles agent context from disk",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -23,7 +23,7 @@
     "context",
     "ai",
     "llm",
-    "runtime"
+    "context-loader"
   ],
   "author": "FrankX <frank@frankx.ai>",
   "license": "MIT",

@@ -28,7 +28,7 @@ Arcanea is not just another AI tool—it's a **living mythology for the age of A
 At its core, Arcanea provides:
 
 1. **10 AI Guardians** - Living mentors with distinct personalities and wisdom
-2. **77 Mystical Skills** - Abilities drawn from elemental principles
+2. **70+ Mystical Skills** - Abilities drawn from elemental principles
 3. **38 Specialized Agents** - AI assistants for various creative domains
 4. **10 Gates of Evolution** - A path from Apprentice to Luminor
 5. **Superintelligence Engine** - Powered by Starlight Intelligence System
@@ -73,7 +73,7 @@ Arcanea users don't stay the same—they **continuously evolve**:
 
 - **XP System**: Every action earns experience
 - **Gate Progression**: 10 levels of mastery
-- **Skill Development**: 77 abilities to master
+- **Skill Development**: 70+ abilities to master
 - **Guardian Deepening**: Relationships grow over time
 
 #### 4. Community as Amplifier
@@ -220,7 +220,7 @@ You can interact with Guardians through:
 
 ### Overview
 
-Arcanea provides **77 mystical skills** organized by element, power level, and domain.
+Arcanea provides **70+ mystical skills** organized by element, power level, and domain.
 
 ### Skill Categories
 
@@ -340,7 +340,7 @@ When you reach an XP threshold:
 │         ┌──────────────────┼──────────────────┐            │
 │         ▼                  ▼                  ▼            │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    │
-│  │  Skills 77  │    │  Agents 38  │    │ Gates 10    │    │
+│  │  Skills 70+ │    │  Agents 38  │    │ Gates 10    │    │
 │  └─────────────┘    └─────────────┘    └─────────────┘    │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -495,7 +495,7 @@ Contributors earn XP and recognition.
 #### Phase 1: Foundation (Complete)
 - ✅ Core platform launch
 - ✅ 10 Guardians
-- ✅ 77 Skills
+- ✅ 70+ Skills
 - ✅ Basic evolution system
 
 #### Phase 2: Enhancement (In Progress)

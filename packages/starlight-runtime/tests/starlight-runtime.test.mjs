@@ -1,5 +1,5 @@
 /**
- * Test suite for @starlight/runtime (StarlightRuntime)
+ * Test suite for @starlight/runtime (ContextLoader, formerly StarlightRuntime)
  * Tests all exports from dist/index.js using Node.js built-in test runner.
  *
  * Note: dist/index.js is compiled CommonJS but package.json has "type": "module".
@@ -14,34 +14,45 @@ import { join } from 'node:path';
 
 // Load the CJS dist via createRequire using the .cjs copy in this tests directory
 const require = createRequire(import.meta.url);
-const { StarlightRuntime } = require('./starlight-runtime.cjs');
+const { ContextLoader, StarlightRuntime } = require('./starlight-runtime.cjs');
 
 // -------------------------------------------------------------------------
 // Class existence
 // -------------------------------------------------------------------------
-describe('StarlightRuntime class', () => {
+describe('ContextLoader class', () => {
   it('is exported as a class (function)', () => {
-    assert.strictEqual(typeof StarlightRuntime, 'function');
+    assert.strictEqual(typeof ContextLoader, 'function');
   });
 
   it('can be instantiated with a rootPath config', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
-    assert.ok(rt instanceof StarlightRuntime);
+    const rt = new ContextLoader({ rootPath: '/tmp' });
+    assert.ok(rt instanceof ContextLoader);
   });
 
   it('has loadContext method', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     assert.strictEqual(typeof rt.loadContext, 'function');
   });
 
   it('has generateSystemPrompt method', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     assert.strictEqual(typeof rt.generateSystemPrompt, 'function');
   });
 
   it('has readMd method', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     assert.strictEqual(typeof rt.readMd, 'function');
+  });
+});
+
+describe('StarlightRuntime backwards-compatibility alias', () => {
+  it('StarlightRuntime is the same class as ContextLoader', () => {
+    assert.strictEqual(StarlightRuntime, ContextLoader);
+  });
+
+  it('instances of StarlightRuntime are instances of ContextLoader', () => {
+    const rt = new ContextLoader({ rootPath: '/tmp' });
+    assert.ok(rt instanceof ContextLoader);
   });
 });
 
@@ -50,7 +61,7 @@ describe('StarlightRuntime class', () => {
 // -------------------------------------------------------------------------
 describe('loadContext', () => {
   it('returns an object with constitution, role, strategy, techStack keys', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const ctx = rt.loadContext('DEPT_TEST', 'agent.md', 'strategy.md');
     assert.strictEqual(typeof ctx, 'object');
     assert.ok('constitution' in ctx);
@@ -60,7 +71,7 @@ describe('loadContext', () => {
   });
 
   it('all context fields are strings', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const ctx = rt.loadContext('DEPT_TEST', 'agent.md', 'strategy.md');
     assert.strictEqual(typeof ctx.constitution, 'string');
     assert.strictEqual(typeof ctx.role, 'string');
@@ -69,7 +80,7 @@ describe('loadContext', () => {
   });
 
   it('returns MISSING marker for non-existent files in /tmp', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const ctx = rt.loadContext('DEPT_FAKE', 'nonexistent.md', 'fake.md');
     // Files won't exist so readMd returns [MISSING: ...] placeholders
     assert.ok(ctx.constitution.includes('[MISSING:') || ctx.constitution === '');
@@ -93,7 +104,7 @@ describe('loadContext', () => {
     writeFileSync(join(stratDir, 'TEST_STRATEGY.md'), '# Strategy\nTest strategy.');
     writeFileSync(join(techDir, 'STARLIGHT_STACK.md'), '# Stack\nNext.js + Supabase.');
 
-    const rt = new StarlightRuntime({ rootPath: tmpRoot });
+    const rt = new ContextLoader({ rootPath: tmpRoot });
     const ctx = rt.loadContext('DEPT_ENG', 'AGENT_TEST.md', 'TEST_STRATEGY.md');
 
     assert.ok(ctx.constitution.includes('Constitution'));
@@ -111,20 +122,20 @@ describe('readMd', () => {
     const tmpRoot = mkdtempSync(join(tmpdir(), 'starlight-readmd-'));
     writeFileSync(join(tmpRoot, 'test.md'), '# Hello World\nThis is test content.');
 
-    const rt = new StarlightRuntime({ rootPath: tmpRoot });
+    const rt = new ContextLoader({ rootPath: tmpRoot });
     const content = rt.readMd('test.md');
     assert.ok(content.includes('Hello World'));
     assert.ok(content.includes('test content'));
   });
 
   it('returns [MISSING: path] when file does not exist', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const content = rt.readMd('definitely-does-not-exist-file.md');
     assert.ok(content.includes('[MISSING:'));
   });
 
   it('returns a string in all cases', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const content = rt.readMd('any-file.md');
     assert.strictEqual(typeof content, 'string');
   });
@@ -135,7 +146,7 @@ describe('readMd', () => {
     mkdirSync(subDir, { recursive: true });
     writeFileSync(join(subDir, 'nested.md'), '# Nested\nNested content here.');
 
-    const rt = new StarlightRuntime({ rootPath: tmpRoot });
+    const rt = new ContextLoader({ rootPath: tmpRoot });
     const content = rt.readMd('00_IDENTITY/nested.md');
     assert.ok(content.includes('Nested'));
   });
@@ -146,7 +157,7 @@ describe('readMd', () => {
 // -------------------------------------------------------------------------
 describe('generateSystemPrompt', () => {
   it('returns a non-empty string', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const ctx = rt.loadContext('DEPT', 'a.md', 'b.md');
     const prompt = rt.generateSystemPrompt(ctx);
     assert.strictEqual(typeof prompt, 'string');
@@ -154,14 +165,14 @@ describe('generateSystemPrompt', () => {
   });
 
   it('contains STARLIGHT PROTOCOL header', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const ctx = rt.loadContext('DEPT', 'a.md', 'b.md');
     const prompt = rt.generateSystemPrompt(ctx);
     assert.ok(prompt.includes('STARLIGHT PROTOCOL'));
   });
 
   it('contains all four sections: CONSTITUTION, TECH STACK, ACTIVE AGENT, COGNITIVE STRATEGY', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const ctx = rt.loadContext('DEPT', 'a.md', 'b.md');
     const prompt = rt.generateSystemPrompt(ctx);
     assert.ok(prompt.includes('CONSTITUTION'));
@@ -187,7 +198,7 @@ describe('generateSystemPrompt', () => {
     writeFileSync(join(stratDir, 'STRATEGY.md'), 'UNIQUE_STRATEGY_CONTENT_ABCDE');
     writeFileSync(join(techDir, 'STARLIGHT_STACK.md'), 'UNIQUE_TECH_CONTENT_FGHIJ');
 
-    const rt = new StarlightRuntime({ rootPath: tmpRoot });
+    const rt = new ContextLoader({ rootPath: tmpRoot });
     const ctx = rt.loadContext('DEPT_ENG', 'AGENT.md', 'STRATEGY.md');
     const prompt = rt.generateSystemPrompt(ctx);
 
@@ -198,14 +209,14 @@ describe('generateSystemPrompt', () => {
   });
 
   it('contains the immediate instruction section', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const ctx = rt.loadContext('DEPT', 'a.md', 'b.md');
     const prompt = rt.generateSystemPrompt(ctx);
     assert.ok(prompt.includes('IMMEDIATE INSTRUCTION') || prompt.includes('Act as the agent'));
   });
 
   it('prompt does not have leading or trailing whitespace (is trimmed)', () => {
-    const rt = new StarlightRuntime({ rootPath: '/tmp' });
+    const rt = new ContextLoader({ rootPath: '/tmp' });
     const ctx = rt.loadContext('DEPT', 'a.md', 'b.md');
     const prompt = rt.generateSystemPrompt(ctx);
     assert.strictEqual(prompt, prompt.trim());
@@ -235,7 +246,7 @@ describe('Integration: full context load to prompt generation', () => {
     writeFileSync(join(dirs[3], 'STARLIGHT_STACK.md'),
       '# Starlight Stack\nNext.js 16 + Supabase + Vercel AI SDK');
 
-    const rt = new StarlightRuntime({ rootPath: tmpRoot });
+    const rt = new ContextLoader({ rootPath: tmpRoot });
     const ctx = rt.loadContext('DEPT_ARCANEA', 'GUARDIAN_LYSSANDRIA.md', 'GATE_STRATEGY.md');
     const prompt = rt.generateSystemPrompt(ctx);
 
@@ -251,8 +262,8 @@ describe('Integration: full context load to prompt generation', () => {
   });
 
   it('multiple instances are independent', () => {
-    const rt1 = new StarlightRuntime({ rootPath: '/tmp/path1' });
-    const rt2 = new StarlightRuntime({ rootPath: '/tmp/path2' });
+    const rt1 = new ContextLoader({ rootPath: '/tmp/path1' });
+    const rt2 = new ContextLoader({ rootPath: '/tmp/path2' });
 
     // Both should work independently
     const ctx1 = rt1.loadContext('DEPT', 'a.md', 'b.md');

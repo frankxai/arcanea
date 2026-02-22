@@ -499,7 +499,7 @@ A platform where creators:
 
 ## The arcanea.ai Intelligence System
 
-### 77 Claude Skills (Examples)
+### 70+ Claude Skills (Examples)
 ```
 /luminor-intelligence     # Strategic AI from 2125
 /starlight-intelligence   # Soul-aligned architecture

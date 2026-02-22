@@ -1,31 +1,28 @@
 /**
- * @arcanea/extension-core — Canonical Guardian Definitions
+ * @arcanea/extension-core — Guardian Definitions
  *
- * The single source of truth for Guardian data used across all Arcanea
- * browser extensions and overlays. UI-specific system prompts belong in
- * each individual extension package — this module provides only the
- * structural, canonical fields.
+ * Canonical fields (id, gate, frequency, godbeast) derived from @arcanea/os.
+ * UI-specific fields (colors, avatars, domain keywords) defined locally.
  *
- * Canonical reference: .claude/lore/ARCANEA_CANON.md
+ * This ensures a single source of truth: if a Guardian's gate or frequency
+ * changes in @arcanea/os, it propagates here automatically.
  */
 
+import {
+  GUARDIANS as OS_GUARDIANS,
+  type Guardian as OSGuardian,
+} from '@arcanea/os';
+
 // ============================================
-// GUARDIAN INTERFACE
+// GUARDIAN INTERFACE (extension-specific shape)
 // ============================================
 
-/**
- * Core Guardian definition shared by all extensions.
- *
- * Fields intentionally excluded from this shared layer:
- * - systemPrompt   — each extension crafts its own context-appropriate prompt
- * - shortDescription — each extension provides its own UI copy
- */
 export interface Guardian {
   /** Lowercase canonical identifier, e.g. 'lyssandria' */
   id: string;
   /** Display name, e.g. 'Lyssandria' */
   name: string;
-  /** Gate name this Guardian presides over, e.g. 'Foundation' */
+  /** Gate name, e.g. 'Foundation' */
   gate: string;
   /** Elemental affinity: 'Earth' | 'Water' | 'Fire' | 'Wind' | 'Void/Spirit' | 'Void' | 'Spirit' */
   element: string;
@@ -35,156 +32,117 @@ export interface Guardian {
   color: string;
   /** Secondary / darker hex color */
   secondaryColor: string;
-  /** rgb() string for use in CSS rgba() calls, e.g. '74,124,89' */
+  /** rgb() string for CSS rgba() calls, e.g. '74,124,89' */
   colorRgb: string;
   /** Domain keywords — used by routing and display */
   domain: string[];
-  /** Emoji avatar for use in UI contexts that permit emoji */
+  /** Emoji avatar */
   avatar: string;
   /** Bonded Godbeast name */
   godbeast: string;
 }
 
 // ============================================
-// CANONICAL GUARDIAN DATA
+// UI-SPECIFIC DATA (not in @arcanea/os)
 // ============================================
 
-export const GUARDIANS: Guardian[] = [
-  {
-    id: 'lyssandria',
-    name: 'Lyssandria',
-    gate: 'Foundation',
-    element: 'Earth',
-    frequency: 396,
-    color: '#4a7c59',
-    colorRgb: '74,124,89',
-    secondaryColor: '#2d5a3d',
+interface GuardianUI {
+  color: string;
+  secondaryColor: string;
+  colorRgb: string;
+  avatar: string;
+  element: string;
+  domain: string[];
+}
+
+const GUARDIAN_UI: Record<string, GuardianUI> = {
+  lyssandria: {
+    color: '#4a7c59', secondaryColor: '#2d5a3d', colorRgb: '74,124,89',
+    avatar: '\u{1F33F}', element: 'Earth',
     domain: ['stability', 'structure', 'survival', 'grounding', 'architecture', 'databases', 'systems'],
-    avatar: '🌿',
-    godbeast: 'Kaelith',
   },
-  {
-    id: 'leyla',
-    name: 'Leyla',
-    gate: 'Flow',
-    element: 'Water',
-    frequency: 417,
-    color: '#4a90d9',
-    colorRgb: '74,144,217',
-    secondaryColor: '#2c5f8a',
+  leyla: {
+    color: '#4a90d9', secondaryColor: '#2c5f8a', colorRgb: '74,144,217',
+    avatar: '\u{1F4A7}', element: 'Water',
     domain: ['creativity', 'emotion', 'flow', 'writing', 'art', 'healing', 'change', 'brainstorming'],
-    avatar: '💧',
-    godbeast: 'Veloura',
   },
-  {
-    id: 'draconia',
-    name: 'Draconia',
-    gate: 'Fire',
-    element: 'Fire',
-    frequency: 528,
-    color: '#e85d04',
-    colorRgb: '232,93,4',
-    secondaryColor: '#9d0208',
+  draconia: {
+    color: '#e85d04', secondaryColor: '#9d0208', colorRgb: '232,93,4',
+    avatar: '\u{1F525}', element: 'Fire',
     domain: ['power', 'will', 'transformation', 'coding', 'execution', 'debugging', 'performance', 'leadership'],
-    avatar: '🔥',
-    godbeast: 'Draconis',
   },
-  {
-    id: 'maylinn',
-    name: 'Maylinn',
-    gate: 'Heart',
-    element: 'Water',
-    frequency: 639,
-    color: '#e91e8c',
-    colorRgb: '233,30,140',
-    secondaryColor: '#880e4f',
+  maylinn: {
+    color: '#e91e8c', secondaryColor: '#880e4f', colorRgb: '233,30,140',
+    avatar: '\u{1F497}', element: 'Water',
     domain: ['love', 'healing', 'relationships', 'empathy', 'community', 'collaboration', 'user experience', 'accessibility'],
-    avatar: '💗',
-    godbeast: 'Laeylinn',
   },
-  {
-    id: 'alera',
-    name: 'Alera',
-    gate: 'Voice',
-    element: 'Wind',
-    frequency: 741,
-    color: '#9966ff',
-    colorRgb: '153,102,255',
-    secondaryColor: '#5c2d91',
+  alera: {
+    color: '#9966ff', secondaryColor: '#5c2d91', colorRgb: '153,102,255',
+    avatar: '\u{1F32C}\uFE0F', element: 'Wind',
     domain: ['truth', 'expression', 'communication', 'writing', 'editing', 'API design', 'documentation', 'clarity'],
-    avatar: '🌬️',
-    godbeast: 'Otome',
   },
-  {
-    id: 'lyria',
-    name: 'Lyria',
-    gate: 'Sight',
-    element: 'Wind',
-    frequency: 852,
-    color: '#7fffd4',
-    colorRgb: '127,255,212',
-    secondaryColor: '#00bfa5',
+  lyria: {
+    color: '#7fffd4', secondaryColor: '#00bfa5', colorRgb: '127,255,212',
+    avatar: '\u{1F441}\uFE0F', element: 'Wind',
     domain: ['intuition', 'vision', 'foresight', 'design', 'patterns', 'research', 'analysis', 'strategy'],
-    avatar: '👁️',
-    godbeast: 'Yumiko',
   },
-  {
-    id: 'aiyami',
-    name: 'Aiyami',
-    gate: 'Crown',
-    element: 'Void/Spirit',
-    frequency: 963,
-    color: '#ffd700',
-    colorRgb: '255,215,0',
-    secondaryColor: '#ff8f00',
+  aiyami: {
+    color: '#ffd700', secondaryColor: '#ff8f00', colorRgb: '255,215,0',
+    avatar: '\u2728', element: 'Void/Spirit',
     domain: ['enlightenment', 'synthesis', 'AI', 'philosophy', 'meta-thinking', 'consciousness', 'product vision'],
-    avatar: '✨',
-    godbeast: 'Sol',
   },
-  {
-    id: 'elara',
-    name: 'Elara',
-    gate: 'Shift',
-    element: 'Void',
-    frequency: 1111,
-    color: '#b388ff',
-    colorRgb: '179,136,255',
-    secondaryColor: '#7c4dff',
+  elara: {
+    color: '#b388ff', secondaryColor: '#7c4dff', colorRgb: '179,136,255',
+    avatar: '\u{1F300}', element: 'Void',
     domain: ['perspective', 'transformation', 'refactoring', 'debugging', 'paradigm shifts', 'reframing', 'innovation'],
-    avatar: '🌀',
-    godbeast: 'Thessara',
   },
-  {
-    id: 'ino',
-    name: 'Ino',
-    gate: 'Unity',
-    element: 'Spirit',
-    frequency: 963,
-    color: '#26c6da',
-    colorRgb: '38,198,218',
-    secondaryColor: '#00838f',
+  ino: {
+    color: '#26c6da', secondaryColor: '#00838f', colorRgb: '38,198,218',
+    avatar: '\u{1F91D}', element: 'Spirit',
     domain: ['partnership', 'integration', 'APIs', 'team dynamics', 'merging systems', 'collaboration', 'harmony'],
-    avatar: '🤝',
-    godbeast: 'Kyuro',
   },
-  {
-    id: 'shinkami',
-    name: 'Shinkami',
-    gate: 'Source',
-    element: 'Void/Spirit',
-    frequency: 1111,
-    color: '#e8e6e3',
-    colorRgb: '232,230,227',
-    secondaryColor: '#9e9c99',
+  shinkami: {
+    color: '#e8e6e3', secondaryColor: '#9e9c99', colorRgb: '232,230,227',
+    avatar: '\u{1F30C}', element: 'Void/Spirit',
     domain: ['meta-consciousness', 'origins', 'first principles', 'creation itself', 'the deepest why', 'meaning'],
-    avatar: '🌌',
-    godbeast: 'Amaterasu',
   },
-];
+};
 
 // ============================================
-// LOOKUP HELPERS
+// BUILD GUARDIANS FROM CANONICAL + UI DATA
 // ============================================
+
+function titleCase(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function buildGuardians(): Guardian[] {
+  return OS_GUARDIANS.map((g: OSGuardian) => {
+    const ui = GUARDIAN_UI[g.name];
+    if (!ui) {
+      throw new Error(`Missing UI data for Guardian: ${g.name}`);
+    }
+    return {
+      id: g.name,
+      name: g.displayName,
+      gate: titleCase(g.gate),
+      element: ui.element,
+      frequency: g.frequency,
+      color: ui.color,
+      secondaryColor: ui.secondaryColor,
+      colorRgb: ui.colorRgb,
+      domain: ui.domain,
+      avatar: ui.avatar,
+      godbeast: titleCase(g.godbeast),
+    };
+  });
+}
+
+// ============================================
+// EXPORTS
+// ============================================
+
+export const GUARDIANS: Guardian[] = buildGuardians();
 
 /**
  * Returns a Guardian by its canonical id, or undefined if not found.
@@ -202,8 +160,7 @@ export function getGuardiansByElement(element: string): Guardian[] {
 }
 
 /**
- * Returns the default Guardian (Lyria, Gate of Sight) used when no routing
- * match is found and no explicit default is configured.
+ * Returns the default Guardian (Lyria, Gate of Sight).
  */
 export function getDefaultGuardian(): Guardian {
   return GUARDIANS.find(g => g.id === 'lyria') ?? GUARDIANS[5];

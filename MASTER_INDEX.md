@@ -119,7 +119,7 @@ node arcanea-cli.js templates create novel-project "My Novel"
 **Technical:**
 ```
 📄 AGENTS_ULTIMATE.md         - 38 agents complete codex (~3,500 words)
-📄 SKILLS_ULTIMATE.md         - 77+ skills catalog (~4,200 words)
+📄 SKILLS_ULTIMATE.md         - 70+ skills catalog (~4,200 words)
 📄 LORE.md                    - Mythology & sacred texts (~10,000 words)
 📄 TESTING_FRAMEWORK.md       - 32 comprehensive tests
 📄 QUALITY_ASSURANCE.md       - QA framework
@@ -185,7 +185,7 @@ node arcanea-cli.js templates create novel-project "My Novel"
 
 | System | Status | Grade | Notes |
 |--------|--------|-------|-------|
-| Games System | ✅ All features work | A+ | XP, leveling, 38 agents, 77+ skills |
+| Games System | ✅ All features work | A+ | XP, leveling, 38 agents, 70+ skills |
 | Business OS | ✅ All features work | A | Time tracking, revenue, clients |
 | GameDev OS | ✅ All features work | A- | Editor, assets, bugs, GDD |
 | Portal | ✅ All features work | A+ | Dashboard, navigation, tracking |
@@ -303,7 +303,7 @@ All systems → localStorage → Storage System → Export/Import via CLI
 | **Total Lines of Code** | 10,000+ | ✅ Written |
 | **Documentation Words** | 37,500+ | ✅ Written |
 | **AI Agents Defined** | 38 | ✅ Complete |
-| **Skills Cataloged** | 77+ | ✅ Complete |
+| **Skills Cataloged** | 70+ | ✅ Complete |
 | **Test Cases** | 32 | ✅ Documented |
 | **Game Modes** | 4 | ✅ Working |
 | **CLI Commands** | 20+ | ✅ Working |

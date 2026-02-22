@@ -112,7 +112,7 @@ Traditional productivity tools treat work as a chore. Arcanea treats it as an **
 **Phase 2: Exploration** (First hour)
 1. User visits `portal.html` - their command center
 2. Explores the 5 elemental courts
-3. Discovers the 77+ available skills
+3. Discovers the 70+ available skills
 4. Completes first tutorial challenges
 
 **Phase 3: Work Begins** (First day)

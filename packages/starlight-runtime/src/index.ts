@@ -14,8 +14,19 @@ export interface AgentContext {
     techStack: string;
 }
 
-// The Loader Class
-export class StarlightRuntime {
+/**
+ * ContextLoader (formerly StarlightRuntime)
+ *
+ * Reads Starlight Protocol files from disk and concatenates them into
+ * a structured agent context. This is a file loader / context assembler,
+ * not an execution runtime.
+ *
+ * Usage:
+ *   const loader = new ContextLoader({ rootPath: './starlight-protocol' });
+ *   const ctx = loader.loadContext('DEPT_ENG', 'AGENT.md', 'STRATEGY.md');
+ *   const prompt = loader.generateSystemPrompt(ctx);
+ */
+export class ContextLoader {
     private config: ProtocolConfig;
 
     constructor(config: ProtocolConfig) {
@@ -23,7 +34,7 @@ export class StarlightRuntime {
     }
 
     // Helper to read MD content
-    private readMd(relativePath: string): string {
+    public readMd(relativePath: string): string {
         try {
             const fullPath = path.join(this.config.rootPath, relativePath);
             if (fs.existsSync(fullPath)) {
@@ -38,7 +49,7 @@ export class StarlightRuntime {
 
     /**
      * Loads the active context for a specific Agent and Strategy.
-     * This is the "Compiler" step.
+     * Reads and concatenates the relevant protocol files.
      */
     public loadContext(dept: string, agentFile: string, strategyFile: string): AgentContext {
         return {
@@ -74,3 +85,10 @@ Act as the agent defined above. Adhere strictly to the Constitution.
     `.trim();
     }
 }
+
+/**
+ * @deprecated Use ContextLoader instead. StarlightRuntime was renamed to
+ * ContextLoader to accurately reflect that it loads/concatenates files
+ * rather than executing code.
+ */
+export const StarlightRuntime = ContextLoader;

@@ -257,10 +257,12 @@ describe('ClaudeAdapter', () => {
     assert.strictEqual(typeof result, 'boolean');
   });
 
-  it('execute returns a string response', async () => {
+  it('execute throws AdapterNotImplementedError (host agent handles execution)', async () => {
     const adapter = new ClaudeAdapter();
-    const result = await adapter.execute('test prompt', {});
-    assert.strictEqual(typeof result, 'string');
+    await assert.rejects(
+      () => adapter.execute('test prompt', {}),
+      { name: 'AdapterNotImplementedError' }
+    );
   });
 });
 
@@ -275,10 +277,12 @@ describe('GeminiAdapter', () => {
     assert.strictEqual(adapter.type, 'gemini');
   });
 
-  it('execute returns a string with Gemini prefix', async () => {
+  it('execute throws AdapterNotImplementedError (host agent handles execution)', async () => {
     const adapter = new GeminiAdapter();
-    const result = await adapter.execute('test prompt', {});
-    assert.ok(result.includes('[Gemini]'));
+    await assert.rejects(
+      () => adapter.execute('test prompt', {}),
+      { name: 'AdapterNotImplementedError' }
+    );
   });
 });
 
@@ -293,10 +297,12 @@ describe('OpenCodeAdapter', () => {
     assert.strictEqual(adapter.type, 'opencode');
   });
 
-  it('execute returns a string with Sisyphus prefix', async () => {
+  it('execute throws AdapterNotImplementedError (host agent handles execution)', async () => {
     const adapter = new OpenCodeAdapter();
-    const result = await adapter.execute('test', {});
-    assert.ok(result.includes('[Sisyphus]'));
+    await assert.rejects(
+      () => adapter.execute('test', {}),
+      { name: 'AdapterNotImplementedError' }
+    );
   });
 });
 
@@ -311,10 +317,12 @@ describe('CodexAdapter', () => {
     assert.strictEqual(adapter.type, 'codex');
   });
 
-  it('execute returns a string with Codex prefix', async () => {
+  it('execute throws AdapterNotImplementedError (host agent handles execution)', async () => {
     const adapter = new CodexAdapter();
-    const result = await adapter.execute('test', {});
-    assert.ok(result.includes('[Codex]'));
+    await assert.rejects(
+      () => adapter.execute('test', {}),
+      { name: 'AdapterNotImplementedError' }
+    );
   });
 });
 
