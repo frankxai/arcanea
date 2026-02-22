@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/extension-core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Shared foundation for all Arcanea browser extensions and overlays",
   "type": "module",
   "exports": {

@@ -1,5 +1,12 @@
 # arcanea-intelligence-os
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies [d37f7bc]
+  - @arcanea/os@0.7.0
+
 ## 0.2.0
 
 ### Minor Changes
