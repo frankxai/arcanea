@@ -1,0 +1,47 @@
+{
+  "name": "@arcanea/prompt-books",
+  "version": "0.1.0",
+  "description": "Arcanea Prompt Books — Shared types, constants, context engine, markdown parser, and weight syntax for AI prompt management",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./types": {
+      "types": "./src/types.ts",
+      "import": "./src/types.ts"
+    },
+    "./constants": {
+      "types": "./src/constants.ts",
+      "import": "./src/constants.ts"
+    },
+    "./context-engine": {
+      "types": "./src/context-engine.ts",
+      "import": "./src/context-engine.ts"
+    },
+    "./markdown": {
+      "types": "./src/markdown.ts",
+      "import": "./src/markdown.ts"
+    },
+    "./weight-syntax": {
+      "types": "./src/weight-syntax.ts",
+      "import": "./src/weight-syntax.ts"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}
