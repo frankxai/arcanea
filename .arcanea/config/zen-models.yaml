@@ -1,0 +1,98 @@
+# Arcanea Zen Model Routing — Free Tier Optimization
+# These models are FREE via OpenCode Zen gateway
+# Optimized for maximum output with zero cost
+
+free_models:
+  big_pickle:
+    id: opencode/big-pickle
+    context: 200000
+    strengths:
+      - Complex reasoning and architecture
+      - Code generation and review
+      - Multi-file understanding
+      - Long context analysis
+    use_for:
+      - Architecture decisions (Lyssandria tasks)
+      - Code generation (Draconia tasks)
+      - Code review (Lyria tasks)
+      - Canon orchestration (Shinkami tasks)
+    budget: 50000  # Keep prompts under 50K for reliability
+
+  minimax_m2_5:
+    id: opencode/minimax-m2.5-free
+    context: 128000
+    strengths:
+      - Fast coding tasks
+      - Documentation writing
+      - Quick fixes and patches
+      - Straightforward implementations
+    use_for:
+      - Quick fixes (Maylinn tasks)
+      - Documentation (Alera tasks)
+      - UI/UX tweaks (Leyla tasks)
+      - Simple implementations
+    budget: 30000
+
+  glm_5:
+    id: opencode/glm-5-free
+    context: 128000
+    strengths:
+      - Research and analysis
+      - Alternative perspectives
+      - Pattern recognition
+    use_for:
+      - Research tasks (Elara tasks)
+      - Perspective shifts
+      - Analysis reports
+    budget: 30000
+
+  kimi_k2_5:
+    id: opencode/kimi-k2.5-free
+    context: 128000
+    strengths:
+      - Integration tasks
+      - API design
+      - Cross-system coordination
+    use_for:
+      - Integration work (Ino tasks)
+      - API design
+      - Cross-package coordination
+    budget: 30000
+
+# Guardian → Model Routing
+guardian_routing:
+  Lyssandria: big_pickle     # Architecture needs deep reasoning
+  Leyla: minimax_m2_5        # Creative UI is straightforward
+  Draconia: big_pickle       # Code gen needs power
+  Maylinn: minimax_m2_5      # Quick fixes are simple
+  Alera: minimax_m2_5        # Documentation is structured
+  Lyria: big_pickle          # Code review needs insight
+  Aiyami: big_pickle         # Enlightenment needs depth
+  Elara: glm_5               # Perspective needs alternatives
+  Ino: kimi_k2_5             # Integration needs coordination
+  Shinkami: big_pickle        # Meta-orchestration needs everything
+
+# Swarm Optimization Rules
+swarm_optimization:
+  max_parallel_agents: 3           # Free tier — don't overwhelm
+  context_budget_per_agent: 30000  # Conservative for reliability
+  compaction_threshold: 50000      # Compact aggressively
+  retry_on_failure: 2              # Retry twice before escalating
+  fallback_chain:                  # If primary model fails
+    - big_pickle
+    - minimax_m2_5
+    - glm_5
+    - kimi_k2_5
+
+  task_decomposition:
+    # Break large tasks into chunks that fit model budgets
+    max_files_per_task: 5
+    max_lines_per_review: 500
+    prefer_focused_over_broad: true
+
+  prompt_optimization:
+    # Shorter prompts = faster + more reliable on free models
+    skip_verbose_examples: true
+    use_structured_output: true
+    include_file_paths_not_contents: true  # Read files via tools, don't paste
+    max_instruction_tokens: 2000
