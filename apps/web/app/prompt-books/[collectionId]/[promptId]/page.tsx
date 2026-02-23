@@ -14,11 +14,13 @@ import { WeightModifier } from '@/components/prompt-books/editor/WeightModifier'
 import { VersionHistoryDrawer } from '@/components/prompt-books/editor/VersionHistoryDrawer'
 import { TagChipBar } from '@/components/prompt-books/tags/TagChipBar'
 import { TagSelector } from '@/components/prompt-books/tags/TagSelector'
+import { ContextPanel } from '@/components/prompt-books/context/ContextPanel'
+import { SaveAsTemplateDialog } from '@/components/prompt-books/templates/SaveAsTemplateDialog'
 import { promptToMd } from '@/lib/prompt-books/markdown'
 import { applyWeight } from '@/lib/prompt-books/weight-syntax'
 import * as service from '@/lib/prompt-books/service'
 import type { WeightSyntaxType } from '@/lib/prompt-books/constants'
-import type { TagCategory } from '@/lib/prompt-books/types'
+import type { TagCategory, ContextConfig, FewShotExample, ChainStep } from '@/lib/prompt-books/types'
 import { cn } from '@/lib/utils'
 
 export default function PromptEditorPage() {
@@ -35,6 +37,7 @@ export default function PromptEditorPage() {
     updatePrompt,
     tags,
     createTag,
+    prompts,
     _client: client,
     _userId: userId,
   } = usePromptBooksStore()
@@ -57,10 +60,31 @@ export default function PromptEditorPage() {
 
   const [historyOpen, setHistoryOpen] = useState(false)
   const [tagSelectorOpen, setTagSelectorOpen] = useState(false)
+  const [saveTemplateOpen, setSaveTemplateOpen] = useState(false)
   const contentRef = useRef<HTMLTextAreaElement>(null)
+
+  // Context engineering state
+  const [contextConfig, setContextConfig] = useState<ContextConfig>(
+    prompt?.contextConfig ?? {}
+  )
+  const [fewShotExamples, setFewShotExamples] = useState<FewShotExample[]>(
+    prompt?.fewShotExamples ?? []
+  )
+  const [chainSteps, setChainSteps] = useState<ChainStep[]>(
+    prompt?.chainSteps ?? []
+  )
 
   // Tag IDs assigned to this prompt
   const assignedTagIds = (prompt?.tags ?? []).map((t) => t.id)
+
+  // Sync context state when prompt loads
+  useEffect(() => {
+    if (prompt) {
+      setContextConfig(prompt.contextConfig ?? {})
+      setFewShotExamples(prompt.fewShotExamples ?? [])
+      setChainSteps(prompt.chainSteps ?? [])
+    }
+  }, [prompt?.id])
 
   // Set active collection and prompt on mount
   useEffect(() => {
@@ -140,6 +164,39 @@ export default function PromptEditorPage() {
     [updateField],
   )
 
+  // Save context config changes to prompt
+  const handleContextConfigChange = useCallback(async (config: ContextConfig) => {
+    setContextConfig(config)
+    if (promptId) {
+      await updatePrompt(promptId, { contextConfig: config })
+    }
+  }, [promptId, updatePrompt])
+
+  const handleFewShotChange = useCallback(async (examples: FewShotExample[]) => {
+    setFewShotExamples(examples)
+    if (promptId) {
+      await updatePrompt(promptId, { fewShotExamples: examples })
+    }
+  }, [promptId, updatePrompt])
+
+  const handleChainStepsChange = useCallback(async (steps: ChainStep[]) => {
+    setChainSteps(steps)
+    if (promptId) {
+      await updatePrompt(promptId, { chainSteps: steps })
+    }
+  }, [promptId, updatePrompt])
+
+  const handleSaveAsTemplate = useCallback(async (data: {
+    name: string
+    description: string
+    category: string
+    variables: { name: string; label: string; type: string; default?: string; required?: boolean }[]
+    isPublic: boolean
+  }) => {
+    if (!client || !userId || !prompt) return
+    await service.saveAsTemplate(client, userId, prompt, data)
+  }, [client, userId, prompt])
+
   // Cmd+S to save
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -181,6 +238,7 @@ export default function PromptEditorPage() {
         onToggleFavorite={handleToggleFavorite}
         onShowHistory={() => setHistoryOpen(true)}
         onExport={handleExport}
+        onSaveAsTemplate={() => setSaveTemplateOpen(true)}
       />
 
       {/* Prompt Type Tabs */}
@@ -224,47 +282,63 @@ export default function PromptEditorPage() {
         </div>
       )}
 
-      {/* Editor + Preview */}
-      <div className={cn('flex-1 flex overflow-hidden', editorSplitView && 'divide-x divide-white/5')}>
-        {/* Editor pane */}
-        <div className={cn('flex-1 overflow-y-auto', editorSplitView ? 'w-1/2' : 'w-full')}>
-          <div className="px-6 py-4 space-y-0">
-            {/* Main content editor */}
-            <ContentEditor
-              value={state.content}
-              onChange={(v) => updateField('content', v)}
-              placeholder={typeConfig.hasNegativePrompt ? 'masterpiece, best quality, 1girl...' : 'Write your prompt here...'}
-              label="Content"
-              showToolbar={!typeConfig.hasNegativePrompt}
-            />
-
-            {/* Negative prompt (image types) */}
-            {typeConfig.hasNegativePrompt && (
-              <NegativePromptEditor
-                value={state.negativeContent}
-                onChange={(v) => updateField('negativeContent', v)}
+      {/* Editor + Preview + Context */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Editor + Preview */}
+        <div className={cn('flex-1 flex overflow-hidden', editorSplitView && 'divide-x divide-white/5')}>
+          {/* Editor pane */}
+          <div className={cn('flex-1 overflow-y-auto', editorSplitView ? 'w-1/2' : 'w-full')}>
+            <div className="px-6 py-4 space-y-0">
+              {/* Main content editor */}
+              <ContentEditor
+                value={state.content}
+                onChange={(v) => updateField('content', v)}
+                placeholder={typeConfig.hasNegativePrompt ? 'masterpiece, best quality, 1girl...' : 'Write your prompt here...'}
+                label="Content"
+                showToolbar={!typeConfig.hasNegativePrompt}
               />
-            )}
 
-            {/* System prompt (chat/code/writing types) */}
-            {typeConfig.hasSystemPrompt && (
-              <SystemPromptEditor
-                value={state.systemPrompt}
-                onChange={(v) => updateField('systemPrompt', v)}
-              />
-            )}
+              {/* Negative prompt (image types) */}
+              {typeConfig.hasNegativePrompt && (
+                <NegativePromptEditor
+                  value={state.negativeContent}
+                  onChange={(v) => updateField('negativeContent', v)}
+                />
+              )}
+
+              {/* System prompt (chat/code/writing types) */}
+              {typeConfig.hasSystemPrompt && (
+                <SystemPromptEditor
+                  value={state.systemPrompt}
+                  onChange={(v) => updateField('systemPrompt', v)}
+                />
+              )}
+            </div>
           </div>
+
+          {/* Preview pane (split view) */}
+          {editorSplitView && (
+            <div className="w-1/2 overflow-y-auto px-6 py-4 bg-white/[0.01]">
+              <div className="text-[10px] font-sans text-text-muted uppercase tracking-wider mb-3">
+                Preview
+              </div>
+              <MarkdownPreview content={state.content} />
+            </div>
+          )}
         </div>
 
-        {/* Preview pane (split view) */}
-        {editorSplitView && (
-          <div className="w-1/2 overflow-y-auto px-6 py-4 bg-white/[0.01]">
-            <div className="text-[10px] font-sans text-text-muted uppercase tracking-wider mb-3">
-              Preview
-            </div>
-            <MarkdownPreview content={state.content} />
-          </div>
-        )}
+        {/* Context Engineering Panel */}
+        <ContextPanel
+          prompt={prompt}
+          typeConfig={typeConfig}
+          contextConfig={contextConfig}
+          fewShotExamples={fewShotExamples}
+          chainSteps={chainSteps}
+          availablePrompts={prompts}
+          onContextConfigChange={handleContextConfigChange}
+          onFewShotChange={handleFewShotChange}
+          onChainStepsChange={handleChainStepsChange}
+        />
       </div>
 
       {/* Version History Drawer */}
@@ -274,6 +348,14 @@ export default function PromptEditorPage() {
         open={historyOpen}
         onClose={() => setHistoryOpen(false)}
         onRestore={handleRestore}
+      />
+
+      {/* Save as Template Dialog */}
+      <SaveAsTemplateDialog
+        prompt={prompt}
+        open={saveTemplateOpen}
+        onClose={() => setSaveTemplateOpen(false)}
+        onSave={handleSaveAsTemplate}
       />
     </div>
   )

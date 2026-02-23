@@ -4,6 +4,7 @@ import { CosmologySection } from '@/components/lore/cosmology-section';
 import { GuardiansPreview } from '@/components/lore/guardians-preview';
 import { GatesPreview } from '@/components/lore/gates-preview';
 import { LibraryPreview } from '@/components/lore/library-preview';
+import { LoreExploreGrid } from '@/components/lore/lore-explore-grid';
 import { LoreCTA } from '@/components/lore/lore-cta';
 
 
@@ -36,6 +37,9 @@ export default function LorePage() {
 
         {/* Library Preview - The Wisdom */}
         <LibraryPreview />
+
+        {/* Explore Grid - All Lore Sub-Pages */}
+        <LoreExploreGrid />
 
         {/* CTA - Begin Your Journey */}
         <LoreCTA />

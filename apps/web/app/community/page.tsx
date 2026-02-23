@@ -23,6 +23,7 @@ import {
   Droplets,
   Leaf,
 } from "lucide-react";
+import { NewsletterForm } from "@/components/community/newsletter-form";
 
 export const metadata: Metadata = {
   title: "Community | Arcanea",
@@ -37,8 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Community | Arcanea — Join the Creation",
-    description:
-      "A living community of creators, builders, and dreamers.",
+    description: "A living community of creators, builders, and dreamers.",
     images: ["/og-community.png"],
   },
 };
@@ -286,7 +286,6 @@ export default function CommunityPage() {
       </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* ── 1. Hero ───────────────────────────────────────────────────────── */}
         <section className="pt-20 pb-20 lg:pt-28 lg:pb-28">
           <div className="relative liquid-glass rounded-3xl overflow-hidden px-8 py-16 sm:px-16 sm:py-20 lg:px-20 lg:py-24">
@@ -305,16 +304,14 @@ export default function CommunityPage() {
 
               <h1 className="text-fluid-hero font-display font-bold mb-6 leading-none tracking-tight">
                 Join the
-                <span className="block text-gradient-brand">
-                  Creation
-                </span>
+                <span className="block text-gradient-brand">Creation</span>
               </h1>
 
               <p className="text-fluid-lg text-text-secondary leading-relaxed max-w-2xl font-body mb-10">
-                Arcanea is not just a platform—it is a living ecosystem of creators,
-                builders, and dreamers aligned by the same conviction: that imagining
-                a good future is the first act of building one. This is where you find
-                your people.
+                Arcanea is not just a platform—it is a living ecosystem of
+                creators, builders, and dreamers aligned by the same conviction:
+                that imagining a good future is the first act of building one.
+                This is where you find your people.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -342,10 +339,15 @@ export default function CommunityPage() {
         </section>
 
         {/* ── 2. Community Spaces ───────────────────────────────────────────── */}
-        <section className="py-16 border-t border-white/5" aria-labelledby="spaces-heading">
+        <section
+          className="py-16 border-t border-white/5"
+          aria-labelledby="spaces-heading"
+        >
           <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-crystal/20 bg-crystal/8 mb-5">
-              <span className="text-xs font-mono tracking-widest uppercase text-crystal">Community Spaces</span>
+              <span className="text-xs font-mono tracking-widest uppercase text-crystal">
+                Community Spaces
+              </span>
             </div>
             <h2
               id="spaces-heading"
@@ -354,8 +356,8 @@ export default function CommunityPage() {
               Where creators gather
             </h2>
             <p className="text-text-secondary font-sans max-w-2xl">
-              Each space serves a distinct purpose in the ecosystem. Join all of them,
-              or start with the one that calls to you.
+              Each space serves a distinct purpose in the ecosystem. Join all of
+              them, or start with the one that calls to you.
             </p>
           </div>
 
@@ -382,10 +384,14 @@ export default function CommunityPage() {
                   <div className="relative">
                     {/* Header row */}
                     <div className="flex items-start justify-between mb-5">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${space.accentClass}`}>
+                      <div
+                        className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${space.accentClass}`}
+                      >
                         <Icon className={`w-5 h-5 ${space.iconColor}`} />
                       </div>
-                      <span className={`text-xs font-mono px-3 py-1 rounded-full border ${space.badgeBg}`}>
+                      <span
+                        className={`text-xs font-mono px-3 py-1 rounded-full border ${space.badgeBg}`}
+                      >
                         {space.badge}
                       </span>
                     </div>
@@ -394,7 +400,9 @@ export default function CommunityPage() {
                     <h3 className="text-xl font-display font-semibold mb-1">
                       {space.name}
                     </h3>
-                    <p className={`text-sm font-mono mb-3 ${space.iconColor} opacity-80`}>
+                    <p
+                      className={`text-sm font-mono mb-3 ${space.iconColor} opacity-80`}
+                    >
                       {space.tagline}
                     </p>
                     <p className="text-text-secondary text-sm leading-relaxed font-sans mb-5">
@@ -404,8 +412,13 @@ export default function CommunityPage() {
                     {/* Highlights */}
                     <ul className="space-y-1.5 mb-6" role="list">
                       {space.highlights.map((item) => (
-                        <li key={item} className="flex items-start gap-2 text-xs text-text-muted font-sans">
-                          <span className={`mt-1 w-1 h-1 rounded-full shrink-0 ${space.iconColor.replace("text-", "bg-")}`} />
+                        <li
+                          key={item}
+                          className="flex items-start gap-2 text-xs text-text-muted font-sans"
+                        >
+                          <span
+                            className={`mt-1 w-1 h-1 rounded-full shrink-0 ${space.iconColor.replace("text-", "bg-")}`}
+                          />
                           {item}
                         </li>
                       ))}
@@ -414,7 +427,9 @@ export default function CommunityPage() {
                     {/* CTA row */}
                     <div className="flex items-center gap-2 text-sm font-semibold opacity-70 group-hover:opacity-100 transition-opacity">
                       <span className={space.iconColor}>{space.cta}</span>
-                      <ArrowUpRight className={`w-3.5 h-3.5 ${space.iconColor} group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform`} />
+                      <ArrowUpRight
+                        className={`w-3.5 h-3.5 ${space.iconColor} group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform`}
+                      />
                     </div>
                   </div>
                 </a>
@@ -424,11 +439,16 @@ export default function CommunityPage() {
         </section>
 
         {/* ── 3. Events ─────────────────────────────────────────────────────── */}
-        <section className="py-16 border-t border-white/5" aria-labelledby="events-heading">
+        <section
+          className="py-16 border-t border-white/5"
+          aria-labelledby="events-heading"
+        >
           <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-gold/20 bg-brand-gold/8 mb-5">
               <Calendar className="w-3 h-3 text-brand-gold" />
-              <span className="text-xs font-mono tracking-widest uppercase text-brand-gold">Gatherings</span>
+              <span className="text-xs font-mono tracking-widest uppercase text-brand-gold">
+                Gatherings
+              </span>
             </div>
             <h2
               id="events-heading"
@@ -437,8 +457,9 @@ export default function CommunityPage() {
               Gatherings of Creators
             </h2>
             <p className="text-text-secondary font-sans max-w-2xl">
-              The Arc turns in cycles. These gatherings mark the moments where the
-              community converges—to celebrate, to create, to advance together.
+              The Arc turns in cycles. These gatherings mark the moments where
+              the community converges—to celebrate, to create, to advance
+              together.
             </p>
           </div>
 
@@ -461,7 +482,10 @@ export default function CommunityPage() {
                       className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
                       style={{ backgroundColor: `${event.accentHex}18` }}
                     >
-                      <EventIcon className="w-4 h-4" style={{ color: event.accentHex }} />
+                      <EventIcon
+                        className="w-4 h-4"
+                        style={{ color: event.accentHex }}
+                      />
                     </div>
 
                     {/* Badge */}
@@ -512,11 +536,16 @@ export default function CommunityPage() {
         </section>
 
         {/* ── 4. Creator Spotlight ─────────────────────────────────────────── */}
-        <section className="py-16 border-t border-white/5" aria-labelledby="spotlight-heading">
+        <section
+          className="py-16 border-t border-white/5"
+          aria-labelledby="spotlight-heading"
+        >
           <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-water/20 bg-water/8 mb-5">
               <Star className="w-3 h-3 text-water" />
-              <span className="text-xs font-mono tracking-widest uppercase text-water">Creator Spotlight</span>
+              <span className="text-xs font-mono tracking-widest uppercase text-water">
+                Creator Spotlight
+              </span>
             </div>
             <h2
               id="spotlight-heading"
@@ -559,16 +588,26 @@ export default function CommunityPage() {
                   {/* Placeholder visual block */}
                   <div
                     className="w-full h-28 rounded-xl mb-5 flex items-center justify-center"
-                    style={{ backgroundColor: `${work.accent}10`, borderColor: `${work.accent}20` }}
+                    style={{
+                      backgroundColor: `${work.accent}10`,
+                      borderColor: `${work.accent}20`,
+                    }}
                     role="img"
                     aria-label={`Visual preview for ${work.title}`}
                   >
-                    <Sparkles className="w-6 h-6 opacity-40" style={{ color: work.accent }} />
+                    <Sparkles
+                      className="w-6 h-6 opacity-40"
+                      style={{ color: work.accent }}
+                    />
                   </div>
 
-                  <h3 className="font-display font-semibold mb-1">{work.title}</h3>
+                  <h3 className="font-display font-semibold mb-1">
+                    {work.title}
+                  </h3>
 
-                  <p className={`text-xs font-mono mb-3 ${work.gateColor} opacity-80`}>
+                  <p
+                    className={`text-xs font-mono mb-3 ${work.gateColor} opacity-80`}
+                  >
                     {work.gate}
                   </p>
 
@@ -577,7 +616,9 @@ export default function CommunityPage() {
                   </p>
 
                   <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                    <span className="text-xs text-text-muted font-sans">{work.creator}</span>
+                    <span className="text-xs text-text-muted font-sans">
+                      {work.creator}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -599,11 +640,16 @@ export default function CommunityPage() {
         </section>
 
         {/* ── 5. Contribution Guide ────────────────────────────────────────── */}
-        <section className="py-16 border-t border-white/5" aria-labelledby="contribute-heading">
+        <section
+          className="py-16 border-t border-white/5"
+          aria-labelledby="contribute-heading"
+        >
           <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-earth/30 bg-earth/10 mb-5">
               <Leaf className="w-3 h-3 text-earth" />
-              <span className="text-xs font-mono tracking-widest uppercase text-earth-bright">Contribute</span>
+              <span className="text-xs font-mono tracking-widest uppercase text-earth-bright">
+                Contribute
+              </span>
             </div>
             <h2
               id="contribute-heading"
@@ -612,8 +658,8 @@ export default function CommunityPage() {
               How to shape Arcanea
             </h2>
             <p className="text-text-secondary font-sans max-w-2xl">
-              The platform, the mythology, and the intelligence layer are all open
-              to contribution. Every form of creative work is welcome here.
+              The platform, the mythology, and the intelligence layer are all
+              open to contribution. Every form of creative work is welcome here.
             </p>
           </div>
 
@@ -624,15 +670,20 @@ export default function CommunityPage() {
                 <div
                   key={item.title}
                   className="group glass rounded-2xl p-6 glow-card hover-lift transition-all"
-                  style={{"--hover-accent": item.hex} as React.CSSProperties}
+                  style={{ "--hover-accent": item.hex } as React.CSSProperties}
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-all group-hover:scale-110"
                     style={{ backgroundColor: `${item.hex}18` }}
                   >
-                    <ContribIcon className="w-4 h-4" style={{ color: item.hex }} />
+                    <ContribIcon
+                      className="w-4 h-4"
+                      style={{ color: item.hex }}
+                    />
                   </div>
-                  <h3 className="font-display font-semibold mb-2">{item.title}</h3>
+                  <h3 className="font-display font-semibold mb-2">
+                    {item.title}
+                  </h3>
                   <p className="text-text-secondary text-sm leading-relaxed font-sans">
                     {item.description}
                   </p>
@@ -663,7 +714,10 @@ export default function CommunityPage() {
         </section>
 
         {/* ── 6. Newsletter CTA ─────────────────────────────────────────────── */}
-        <section className="py-16 border-t border-white/5" aria-labelledby="newsletter-heading">
+        <section
+          className="py-16 border-t border-white/5"
+          aria-labelledby="newsletter-heading"
+        >
           <div className="relative liquid-glass rounded-3xl overflow-hidden p-10 sm:p-14">
             <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/10 via-transparent to-crystal/8 pointer-events-none" />
             <div className="absolute -top-16 -right-16 w-64 h-64 bg-brand-primary/6 rounded-full blur-3xl pointer-events-none" />
@@ -685,35 +739,12 @@ export default function CommunityPage() {
               </h2>
 
               <p className="text-text-secondary font-body leading-relaxed mb-8 max-w-xl">
-                Weekly dispatches from Arcanea — platform updates, Library wisdom,
-                community highlights, and new Guardian capabilities. No noise,
-                only signal.
+                Weekly dispatches from Arcanea — platform updates, Library
+                wisdom, community highlights, and new Guardian capabilities. No
+                noise, only signal.
               </p>
 
-              <form
-                aria-label="Newsletter signup"
-                className="flex flex-col sm:flex-row gap-3 max-w-lg"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <label htmlFor="newsletter-email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  placeholder="Your email address"
-                  className="flex-1 px-4 py-3 rounded-xl glass border border-white/10 bg-white/5 text-text-primary placeholder-text-muted font-sans text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary/40 transition-all"
-                  aria-required="true"
-                />
-                <button
-                  type="submit"
-                  className="shrink-0 px-6 py-3 rounded-xl bg-brand-primary text-white font-semibold text-sm shadow-glow-brand hover:scale-[1.03] hover:shadow-[0_0_28px_rgba(139,92,246,0.45)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/70 focus:ring-offset-2 focus:ring-offset-cosmic-void"
-                >
-                  Subscribe
-                </button>
-              </form>
+              <NewsletterForm />
 
               <p className="mt-3 text-xs text-text-muted font-sans">
                 No spam. Unsubscribe anytime. Your email stays within the realm.
@@ -730,7 +761,10 @@ export default function CommunityPage() {
 
             <div className="px-8 py-16 sm:px-14 sm:py-20 text-center">
               {/* Element icons */}
-              <div className="flex justify-center gap-5 mb-10" aria-hidden="true">
+              <div
+                className="flex justify-center gap-5 mb-10"
+                aria-hidden="true"
+              >
                 <div className="w-8 h-8 rounded-lg bg-fire/15 flex items-center justify-center">
                   <Flame className="w-4 h-4 text-fire" />
                 </div>
@@ -751,15 +785,18 @@ export default function CommunityPage() {
               <blockquote className="max-w-3xl mx-auto">
                 <p className="text-fluid-3xl font-display font-bold leading-snug mb-6">
                   We believe the antidote to a terrible future{" "}
-                  <span className="text-gradient-crystal">is imagining a good one.</span>
+                  <span className="text-gradient-crystal">
+                    is imagining a good one.
+                  </span>
                 </p>
                 <p className="text-xl font-display font-semibold text-brand-gold mb-8">
                   Build it here.
                 </p>
                 <p className="text-text-secondary font-body leading-relaxed max-w-xl mx-auto">
-                  Every creator who joins this community, every skill contributed,
-                  every line of code, every Library text written — all of it is a
-                  vote for the future we want to inhabit. The Arc turns. Begin.
+                  Every creator who joins this community, every skill
+                  contributed, every line of code, every Library text written —
+                  all of it is a vote for the future we want to inhabit. The Arc
+                  turns. Begin.
                 </p>
               </blockquote>
 
@@ -787,7 +824,6 @@ export default function CommunityPage() {
             <div className="h-0.5 w-full bg-gradient-to-r from-earth via-crystal via-water via-brand-primary to-fire" />
           </div>
         </section>
-
       </main>
     </div>
   );

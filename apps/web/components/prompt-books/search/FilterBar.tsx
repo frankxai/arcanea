@@ -1,39 +1,53 @@
-'use client'
+"use client";
 
 // Arcanea Prompt Books — Filter Bar
 // Horizontal bar with prompt type, favorites, tags, and sort controls
 
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  ChevronDown, Star, Tag, X, SlidersHorizontal, Check,
-  ArrowUpDown, Clock, ArrowDownAZ, TrendingUp, CalendarArrowUp,
-  CalendarArrowDown,
-} from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { usePromptBooksStore } from '@/lib/prompt-books/store'
-import { PROMPT_TYPES } from '@/lib/prompt-books/constants'
-import { Badge } from '@/components/ui/badge'
-import type { PromptType, PromptFilters } from '@/lib/prompt-books/types'
+  ChevronDown,
+  Star,
+  Tag,
+  X,
+  SlidersHorizontal,
+  Check,
+  ArrowUpDown,
+  Clock,
+  ArrowDownAZ,
+  TrendingUp,
+  Calendar,
+  CalendarDays,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { usePromptBooksStore } from "@/lib/prompt-books/store";
+import { PROMPT_TYPES } from "@/lib/prompt-books/constants";
+import { Badge } from "@/components/ui/badge";
+import type { PromptType, PromptFilters } from "@/lib/prompt-books/types";
 
 // =====================================================================
 // Types
 // =====================================================================
 
-type SortOption = 'newest' | 'oldest' | 'most_used' | 'alphabetical' | 'recently_used'
+type SortOption =
+  | "newest"
+  | "oldest"
+  | "most_used"
+  | "alphabetical"
+  | "recently_used";
 
 interface SortConfig {
-  label: string
-  icon: React.ComponentType<{ className?: string }>
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const SORT_OPTIONS: Record<SortOption, SortConfig> = {
-  newest: { label: 'Newest', icon: CalendarArrowDown },
-  oldest: { label: 'Oldest', icon: CalendarArrowUp },
-  most_used: { label: 'Most Used', icon: TrendingUp },
-  alphabetical: { label: 'A-Z', icon: ArrowDownAZ },
-  recently_used: { label: 'Recently Used', icon: Clock },
-}
+  newest: { label: "Newest", icon: Calendar },
+  oldest: { label: "Oldest", icon: CalendarDays },
+  most_used: { label: "Most Used", icon: TrendingUp },
+  alphabetical: { label: "A-Z", icon: ArrowDownAZ },
+  recently_used: { label: "Recently Used", icon: Clock },
+};
 
 // =====================================================================
 // Dropdown animation
@@ -45,7 +59,12 @@ const dropdownVariants = {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { type: 'spring' as const, stiffness: 400, damping: 30, mass: 0.6 },
+    transition: {
+      type: "spring" as const,
+      stiffness: 400,
+      damping: 30,
+      mass: 0.6,
+    },
   },
   exit: {
     opacity: 0,
@@ -53,37 +72,37 @@ const dropdownVariants = {
     y: -4,
     transition: { duration: 0.1 },
   },
-}
+};
 
 // =====================================================================
 // Generic Dropdown Hook
 // =====================================================================
 
 function useDropdown() {
-  const [isOpen, setIsOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) return;
     const handler = (e: MouseEvent) => {
       if (!ref.current?.contains(e.target as Node)) {
-        setIsOpen(false)
+        setIsOpen(false);
       }
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [isOpen])
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [isOpen]);
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false)
-    }
-    document.addEventListener('keydown', handler)
-    return () => document.removeEventListener('keydown', handler)
-  }, [isOpen])
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [isOpen]);
 
-  return { isOpen, setIsOpen, ref }
+  return { isOpen, setIsOpen, ref };
 }
 
 // =====================================================================
@@ -95,61 +114,67 @@ export function FilterBar() {
     tags: allTags,
     loadPrompts,
     activeCollectionId,
-  } = usePromptBooksStore()
+  } = usePromptBooksStore();
 
   // ── Filter state ────────────────────────────────────────────────────
-  const [selectedType, setSelectedType] = useState<PromptType | null>(null)
-  const [favoritesOnly, setFavoritesOnly] = useState(false)
-  const [selectedTagIds, setSelectedTagIds] = useState<string[]>([])
-  const [sortBy, setSortBy] = useState<SortOption>('newest')
+  const [selectedType, setSelectedType] = useState<PromptType | null>(null);
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<SortOption>("newest");
 
   // ── Dropdown controls ───────────────────────────────────────────────
-  const typeDropdown = useDropdown()
-  const tagDropdown = useDropdown()
-  const sortDropdown = useDropdown()
+  const typeDropdown = useDropdown();
+  const tagDropdown = useDropdown();
+  const sortDropdown = useDropdown();
 
   // ── Active filter count ─────────────────────────────────────────────
   const activeFilterCount = useMemo(() => {
-    let count = 0
-    if (selectedType) count++
-    if (favoritesOnly) count++
-    if (selectedTagIds.length > 0) count++
-    if (sortBy !== 'newest') count++
-    return count
-  }, [selectedType, favoritesOnly, selectedTagIds, sortBy])
+    let count = 0;
+    if (selectedType) count++;
+    if (favoritesOnly) count++;
+    if (selectedTagIds.length > 0) count++;
+    if (sortBy !== "newest") count++;
+    return count;
+  }, [selectedType, favoritesOnly, selectedTagIds, sortBy]);
 
   // ── Build filters and reload ────────────────────────────────────────
   const applyFilters = useCallback(() => {
-    const filters: PromptFilters = {}
+    const filters: PromptFilters = {};
 
     if (activeCollectionId) {
-      filters.collectionId = activeCollectionId
+      filters.collectionId = activeCollectionId;
     }
     if (selectedType) {
-      filters.promptType = selectedType
+      filters.promptType = selectedType;
     }
     if (favoritesOnly) {
-      filters.isFavorite = true
+      filters.isFavorite = true;
     }
     if (selectedTagIds.length > 0) {
-      filters.tagIds = selectedTagIds
+      filters.tagIds = selectedTagIds;
     }
 
-    loadPrompts(filters)
-  }, [activeCollectionId, selectedType, favoritesOnly, selectedTagIds, loadPrompts])
+    loadPrompts(filters);
+  }, [
+    activeCollectionId,
+    selectedType,
+    favoritesOnly,
+    selectedTagIds,
+    loadPrompts,
+  ]);
 
   // ── Re-apply filters on change ──────────────────────────────────────
   useEffect(() => {
-    applyFilters()
-  }, [applyFilters])
+    applyFilters();
+  }, [applyFilters]);
 
   // ── Clear all ───────────────────────────────────────────────────────
   const clearAll = useCallback(() => {
-    setSelectedType(null)
-    setFavoritesOnly(false)
-    setSelectedTagIds([])
-    setSortBy('newest')
-  }, [])
+    setSelectedType(null);
+    setFavoritesOnly(false);
+    setSelectedTagIds([]);
+    setSortBy("newest");
+  }, []);
 
   // ── Toggle tag ──────────────────────────────────────────────────────
   const toggleTag = useCallback((tagId: string) => {
@@ -157,8 +182,8 @@ export function FilterBar() {
       prev.includes(tagId)
         ? prev.filter((id) => id !== tagId)
         : [...prev, tagId],
-    )
-  }, [])
+    );
+  }, []);
 
   // ── Resolve selected tag names ──────────────────────────────────────
   const selectedTagNames = useMemo(
@@ -167,13 +192,17 @@ export function FilterBar() {
         .map((id) => allTags.find((t) => t.id === id)?.name)
         .filter(Boolean) as string[],
     [selectedTagIds, allTags],
-  )
+  );
 
   // ── All prompt type entries ─────────────────────────────────────────
   const promptTypeEntries = useMemo(
-    () => Object.entries(PROMPT_TYPES) as [PromptType, (typeof PROMPT_TYPES)[PromptType]][],
+    () =>
+      Object.entries(PROMPT_TYPES) as [
+        PromptType,
+        (typeof PROMPT_TYPES)[PromptType],
+      ][],
     [],
-  )
+  );
 
   return (
     <div className="px-6 py-2.5 border-b border-white/5">
@@ -193,22 +222,24 @@ export function FilterBar() {
           <button
             onClick={() => typeDropdown.setIsOpen(!typeDropdown.isOpen)}
             className={cn(
-              'glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans',
-              'flex items-center gap-1.5 transition-all duration-150',
-              'hover:bg-white/[0.06] hover:border-white/10',
-              'border',
+              "glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans",
+              "flex items-center gap-1.5 transition-all duration-150",
+              "hover:bg-white/[0.06] hover:border-white/10",
+              "border",
               selectedType
-                ? 'border-brand-accent/30 text-brand-accent'
-                : 'border-transparent text-text-muted hover:text-text-secondary',
+                ? "border-brand-accent/30 text-brand-accent"
+                : "border-transparent text-text-muted hover:text-text-secondary",
             )}
             aria-haspopup="listbox"
             aria-expanded={typeDropdown.isOpen}
           >
-            <span>{selectedType ? PROMPT_TYPES[selectedType].label : 'Type'}</span>
+            <span>
+              {selectedType ? PROMPT_TYPES[selectedType].label : "Type"}
+            </span>
             <ChevronDown
               className={cn(
-                'w-3 h-3 transition-transform duration-200',
-                typeDropdown.isOpen && 'rotate-180',
+                "w-3 h-3 transition-transform duration-200",
+                typeDropdown.isOpen && "rotate-180",
               )}
             />
           </button>
@@ -223,29 +254,34 @@ export function FilterBar() {
                 role="listbox"
                 aria-label="Prompt type filter"
                 className={cn(
-                  'absolute top-full left-0 mt-1.5 z-50 min-w-[180px]',
-                  'rounded-xl p-1.5',
-                  'bg-[rgba(12,16,28,0.96)] backdrop-blur-[20px]',
-                  'border border-[rgba(127,255,212,0.12)]',
-                  'shadow-[0_8px_32px_rgba(0,0,0,0.5)]',
+                  "absolute top-full left-0 mt-1.5 z-50 min-w-[180px]",
+                  "rounded-xl p-1.5",
+                  "bg-[rgba(12,16,28,0.96)] backdrop-blur-[20px]",
+                  "border border-[rgba(127,255,212,0.12)]",
+                  "shadow-[0_8px_32px_rgba(0,0,0,0.5)]",
                 )}
               >
                 {/* All types option */}
                 <button
                   role="option"
                   aria-selected={!selectedType}
-                  onClick={() => { setSelectedType(null); typeDropdown.setIsOpen(false) }}
+                  onClick={() => {
+                    setSelectedType(null);
+                    typeDropdown.setIsOpen(false);
+                  }}
                   className={cn(
-                    'w-full px-2.5 py-2 rounded-md text-left text-xs font-sans',
-                    'flex items-center justify-between gap-2',
-                    'transition-colors duration-100',
+                    "w-full px-2.5 py-2 rounded-md text-left text-xs font-sans",
+                    "flex items-center justify-between gap-2",
+                    "transition-colors duration-100",
                     !selectedType
-                      ? 'bg-white/[0.06] text-text-primary'
-                      : 'text-text-secondary hover:bg-white/[0.04] hover:text-text-primary',
+                      ? "bg-white/[0.06] text-text-primary"
+                      : "text-text-secondary hover:bg-white/[0.04] hover:text-text-primary",
                   )}
                 >
                   <span>All Types</span>
-                  {!selectedType && <Check className="w-3 h-3 text-brand-accent" />}
+                  {!selectedType && (
+                    <Check className="w-3 h-3 text-brand-accent" />
+                  )}
                 </button>
 
                 <div className="my-1 h-px bg-white/5" role="separator" />
@@ -255,18 +291,23 @@ export function FilterBar() {
                     key={key}
                     role="option"
                     aria-selected={selectedType === key}
-                    onClick={() => { setSelectedType(key); typeDropdown.setIsOpen(false) }}
+                    onClick={() => {
+                      setSelectedType(key);
+                      typeDropdown.setIsOpen(false);
+                    }}
                     className={cn(
-                      'w-full px-2.5 py-2 rounded-md text-left text-xs font-sans',
-                      'flex items-center justify-between gap-2',
-                      'transition-colors duration-100',
+                      "w-full px-2.5 py-2 rounded-md text-left text-xs font-sans",
+                      "flex items-center justify-between gap-2",
+                      "transition-colors duration-100",
                       selectedType === key
-                        ? 'bg-white/[0.06] text-text-primary'
-                        : 'text-text-secondary hover:bg-white/[0.04] hover:text-text-primary',
+                        ? "bg-white/[0.06] text-text-primary"
+                        : "text-text-secondary hover:bg-white/[0.04] hover:text-text-primary",
                     )}
                   >
                     <span>{config.label}</span>
-                    {selectedType === key && <Check className="w-3 h-3 text-brand-accent" />}
+                    {selectedType === key && (
+                      <Check className="w-3 h-3 text-brand-accent" />
+                    )}
                   </button>
                 ))}
               </motion.div>
@@ -278,22 +319,17 @@ export function FilterBar() {
         <button
           onClick={() => setFavoritesOnly(!favoritesOnly)}
           className={cn(
-            'glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans',
-            'flex items-center gap-1.5 transition-all duration-150',
-            'border',
+            "glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans",
+            "flex items-center gap-1.5 transition-all duration-150",
+            "border",
             favoritesOnly
-              ? 'border-brand-gold/30 text-brand-gold'
-              : 'border-transparent text-text-muted hover:text-text-secondary hover:bg-white/[0.06]',
+              ? "border-brand-gold/30 text-brand-gold"
+              : "border-transparent text-text-muted hover:text-text-secondary hover:bg-white/[0.06]",
           )}
           aria-pressed={favoritesOnly}
           aria-label="Filter favorites"
         >
-          <Star
-            className={cn(
-              'w-3 h-3',
-              favoritesOnly && 'fill-brand-gold',
-            )}
-          />
+          <Star className={cn("w-3 h-3", favoritesOnly && "fill-brand-gold")} />
           <span>Favorites</span>
         </button>
 
@@ -302,13 +338,13 @@ export function FilterBar() {
           <button
             onClick={() => tagDropdown.setIsOpen(!tagDropdown.isOpen)}
             className={cn(
-              'glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans',
-              'flex items-center gap-1.5 transition-all duration-150',
-              'hover:bg-white/[0.06]',
-              'border',
+              "glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans",
+              "flex items-center gap-1.5 transition-all duration-150",
+              "hover:bg-white/[0.06]",
+              "border",
               selectedTagIds.length > 0
-                ? 'border-brand-primary/30 text-brand-primary'
-                : 'border-transparent text-text-muted hover:text-text-secondary',
+                ? "border-brand-primary/30 text-brand-primary"
+                : "border-transparent text-text-muted hover:text-text-secondary",
             )}
             aria-haspopup="listbox"
             aria-expanded={tagDropdown.isOpen}
@@ -316,13 +352,13 @@ export function FilterBar() {
             <Tag className="w-3 h-3" />
             <span>
               {selectedTagIds.length > 0
-                ? `${selectedTagIds.length} tag${selectedTagIds.length !== 1 ? 's' : ''}`
-                : 'Tags'}
+                ? `${selectedTagIds.length} tag${selectedTagIds.length !== 1 ? "s" : ""}`
+                : "Tags"}
             </span>
             <ChevronDown
               className={cn(
-                'w-3 h-3 transition-transform duration-200',
-                tagDropdown.isOpen && 'rotate-180',
+                "w-3 h-3 transition-transform duration-200",
+                tagDropdown.isOpen && "rotate-180",
               )}
             />
           </button>
@@ -338,11 +374,11 @@ export function FilterBar() {
                 aria-label="Tags filter"
                 aria-multiselectable="true"
                 className={cn(
-                  'absolute top-full left-0 mt-1.5 z-50 min-w-[200px] max-w-[280px]',
-                  'rounded-xl p-1.5',
-                  'bg-[rgba(12,16,28,0.96)] backdrop-blur-[20px]',
-                  'border border-[rgba(127,255,212,0.12)]',
-                  'shadow-[0_8px_32px_rgba(0,0,0,0.5)]',
+                  "absolute top-full left-0 mt-1.5 z-50 min-w-[200px] max-w-[280px]",
+                  "rounded-xl p-1.5",
+                  "bg-[rgba(12,16,28,0.96)] backdrop-blur-[20px]",
+                  "border border-[rgba(127,255,212,0.12)]",
+                  "shadow-[0_8px_32px_rgba(0,0,0,0.5)]",
                 )}
               >
                 {allTags.length === 0 ? (
@@ -352,7 +388,7 @@ export function FilterBar() {
                 ) : (
                   <div className="max-h-[240px] overflow-y-auto overscroll-contain">
                     {allTags.map((tag) => {
-                      const isSelected = selectedTagIds.includes(tag.id)
+                      const isSelected = selectedTagIds.includes(tag.id);
                       return (
                         <button
                           key={tag.id}
@@ -360,12 +396,12 @@ export function FilterBar() {
                           aria-selected={isSelected}
                           onClick={() => toggleTag(tag.id)}
                           className={cn(
-                            'w-full px-2.5 py-2 rounded-md text-left text-xs font-sans',
-                            'flex items-center justify-between gap-2',
-                            'transition-colors duration-100',
+                            "w-full px-2.5 py-2 rounded-md text-left text-xs font-sans",
+                            "flex items-center justify-between gap-2",
+                            "transition-colors duration-100",
                             isSelected
-                              ? 'bg-white/[0.06] text-text-primary'
-                              : 'text-text-secondary hover:bg-white/[0.04] hover:text-text-primary',
+                              ? "bg-white/[0.06] text-text-primary"
+                              : "text-text-secondary hover:bg-white/[0.04] hover:text-text-primary",
                           )}
                         >
                           <div className="flex items-center gap-2 min-w-0">
@@ -377,9 +413,11 @@ export function FilterBar() {
                             )}
                             <span className="truncate">{tag.name}</span>
                           </div>
-                          {isSelected && <Check className="w-3 h-3 text-brand-accent flex-shrink-0" />}
+                          {isSelected && (
+                            <Check className="w-3 h-3 text-brand-accent flex-shrink-0" />
+                          )}
                         </button>
-                      )
+                      );
                     })}
                   </div>
                 )}
@@ -393,13 +431,13 @@ export function FilterBar() {
           <button
             onClick={() => sortDropdown.setIsOpen(!sortDropdown.isOpen)}
             className={cn(
-              'glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans',
-              'flex items-center gap-1.5 transition-all duration-150',
-              'hover:bg-white/[0.06]',
-              'border',
-              sortBy !== 'newest'
-                ? 'border-brand-accent/30 text-brand-accent'
-                : 'border-transparent text-text-muted hover:text-text-secondary',
+              "glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans",
+              "flex items-center gap-1.5 transition-all duration-150",
+              "hover:bg-white/[0.06]",
+              "border",
+              sortBy !== "newest"
+                ? "border-brand-accent/30 text-brand-accent"
+                : "border-transparent text-text-muted hover:text-text-secondary",
             )}
             aria-haspopup="listbox"
             aria-expanded={sortDropdown.isOpen}
@@ -408,8 +446,8 @@ export function FilterBar() {
             <span>{SORT_OPTIONS[sortBy].label}</span>
             <ChevronDown
               className={cn(
-                'w-3 h-3 transition-transform duration-200',
-                sortDropdown.isOpen && 'rotate-180',
+                "w-3 h-3 transition-transform duration-200",
+                sortDropdown.isOpen && "rotate-180",
               )}
             />
           </button>
@@ -424,39 +462,44 @@ export function FilterBar() {
                 role="listbox"
                 aria-label="Sort order"
                 className={cn(
-                  'absolute top-full right-0 mt-1.5 z-50 min-w-[170px]',
-                  'rounded-xl p-1.5',
-                  'bg-[rgba(12,16,28,0.96)] backdrop-blur-[20px]',
-                  'border border-[rgba(127,255,212,0.12)]',
-                  'shadow-[0_8px_32px_rgba(0,0,0,0.5)]',
+                  "absolute top-full right-0 mt-1.5 z-50 min-w-[170px]",
+                  "rounded-xl p-1.5",
+                  "bg-[rgba(12,16,28,0.96)] backdrop-blur-[20px]",
+                  "border border-[rgba(127,255,212,0.12)]",
+                  "shadow-[0_8px_32px_rgba(0,0,0,0.5)]",
                 )}
               >
-                {(Object.entries(SORT_OPTIONS) as [SortOption, SortConfig][]).map(
-                  ([key, config]) => {
-                    const SortIcon = config.icon
-                    const isActive = sortBy === key
-                    return (
-                      <button
-                        key={key}
-                        role="option"
-                        aria-selected={isActive}
-                        onClick={() => { setSortBy(key); sortDropdown.setIsOpen(false) }}
-                        className={cn(
-                          'w-full px-2.5 py-2 rounded-md text-left text-xs font-sans',
-                          'flex items-center gap-2',
-                          'transition-colors duration-100',
-                          isActive
-                            ? 'bg-white/[0.06] text-text-primary'
-                            : 'text-text-secondary hover:bg-white/[0.04] hover:text-text-primary',
-                        )}
-                      >
-                        <SortIcon className="w-3.5 h-3.5 text-text-muted" />
-                        <span className="flex-1">{config.label}</span>
-                        {isActive && <Check className="w-3 h-3 text-brand-accent" />}
-                      </button>
-                    )
-                  },
-                )}
+                {(
+                  Object.entries(SORT_OPTIONS) as [SortOption, SortConfig][]
+                ).map(([key, config]) => {
+                  const SortIcon = config.icon;
+                  const isActive = sortBy === key;
+                  return (
+                    <button
+                      key={key}
+                      role="option"
+                      aria-selected={isActive}
+                      onClick={() => {
+                        setSortBy(key);
+                        sortDropdown.setIsOpen(false);
+                      }}
+                      className={cn(
+                        "w-full px-2.5 py-2 rounded-md text-left text-xs font-sans",
+                        "flex items-center gap-2",
+                        "transition-colors duration-100",
+                        isActive
+                          ? "bg-white/[0.06] text-text-primary"
+                          : "text-text-secondary hover:bg-white/[0.04] hover:text-text-primary",
+                      )}
+                    >
+                      <SortIcon className="w-3.5 h-3.5 text-text-muted" />
+                      <span className="flex-1">{config.label}</span>
+                      {isActive && (
+                        <Check className="w-3 h-3 text-brand-accent" />
+                      )}
+                    </button>
+                  );
+                })}
               </motion.div>
             )}
           </AnimatePresence>
@@ -501,11 +544,11 @@ export function FilterBar() {
             </Badge>
           ))}
 
-          {sortBy !== 'newest' && (
+          {sortBy !== "newest" && (
             <Badge
               variant="default"
               size="sm"
-              onDismiss={() => setSortBy('newest')}
+              onDismiss={() => setSortBy("newest")}
               dismissLabel="Reset sort order"
             >
               Sort: {SORT_OPTIONS[sortBy].label}
@@ -521,5 +564,5 @@ export function FilterBar() {
         </div>
       )}
     </div>
-  )
+  );
 }

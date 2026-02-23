@@ -821,3 +821,45 @@ export async function importFromJson(
 
   return { collection, promptCount: count }
 }
+
+// =====================================================================
+// SAVE AS TEMPLATE
+// =====================================================================
+
+export async function saveAsTemplate(
+  client: SupabaseClient,
+  userId: string,
+  prompt: Prompt,
+  data: {
+    name: string
+    description: string
+    category: string
+    variables: Array<{ name: string; label: string; type: string; default?: string; required?: boolean }>
+    isPublic: boolean
+  },
+): Promise<Template> {
+  const { data: row, error } = await client
+    .from('pb_templates')
+    .insert({
+      user_id: userId,
+      name: data.name,
+      description: data.description,
+      content: prompt.content,
+      negative_content: prompt.negativeContent,
+      system_prompt: prompt.systemPrompt,
+      prompt_type: prompt.promptType,
+      category: data.category,
+      visibility: data.isPublic ? 'public' : 'private',
+      variables: data.variables,
+      tags: (prompt.tags ?? []).map((t) => t.name),
+      guardian_id: prompt.collectionId ? null : null,
+      context_config: prompt.contextConfig,
+      few_shot_examples: prompt.fewShotExamples,
+      chain_steps: prompt.chainSteps,
+    })
+    .select()
+    .single()
+
+  if (error) throw error
+  return mapTemplate(row)
+}

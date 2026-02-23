@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Grid, List, Plus, Search, Command } from 'lucide-react'
+import { Grid, List, Plus, Search, Command, LayoutGrid, Tag } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { usePromptBooksStore } from '@/lib/prompt-books/store'
@@ -15,18 +15,27 @@ import { QuickCaptureModal } from '@/components/prompt-books/quick-capture/Quick
 import { QuickCaptureFAB } from '@/components/prompt-books/quick-capture/QuickCaptureFAB'
 import { PromptSearch } from '@/components/prompt-books/search/PromptSearch'
 import { FilterBar } from '@/components/prompt-books/search/FilterBar'
-import type { CreateCollectionInput, Prompt } from '@/lib/prompt-books/types'
+import { TemplateGallery } from '@/components/prompt-books/templates/TemplateGallery'
+import { TagManager } from '@/components/prompt-books/tags/TagManager'
+import * as service from '@/lib/prompt-books/service'
+import { createClient } from '@/lib/supabase/client'
+import type { CreateCollectionInput, Prompt, UpdateTagInput } from '@/lib/prompt-books/types'
 
 export default function PromptBooksPage() {
   const {
     collections,
     prompts,
+    tags,
     activeCollectionId,
     viewMode,
     setViewMode,
     createCollection,
     createPrompt,
     updatePrompt,
+    updateTag,
+    deleteTag,
+    addPrompt,
+    _userId: userId,
   } = usePromptBooksStore()
 
   const router = useRouter()
@@ -34,6 +43,8 @@ export default function PromptBooksPage() {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [editingCollection, setEditingCollection] = useState<null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
+  const [templateGalleryOpen, setTemplateGalleryOpen] = useState(false)
+  const [tagManagerOpen, setTagManagerOpen] = useState(false)
 
   const activeCollection = activeCollectionId
     ? collections.find((c) => c.id === activeCollectionId) || null
@@ -81,6 +92,29 @@ export default function PromptBooksPage() {
     }
   }, [])
 
+  const handleInstantiateTemplate = useCallback(async (
+    templateId: string,
+    variables: Record<string, string>,
+    collectionId?: string,
+  ) => {
+    if (!userId) return
+    const client = createClient()
+    const prompt = await service.instantiateTemplate(
+      client, userId, templateId, variables,
+      collectionId || activeCollectionId || undefined,
+    )
+    addPrompt(prompt)
+    router.push(`/prompt-books/${prompt.collectionId || '_all'}/${prompt.id}`)
+  }, [userId, activeCollectionId, addPrompt, router])
+
+  const handleUpdateTag = useCallback(async (id: string, input: UpdateTagInput) => {
+    await updateTag(id, input)
+  }, [updateTag])
+
+  const handleDeleteTag = useCallback(async (id: string) => {
+    await deleteTag(id)
+  }, [deleteTag])
+
   return (
     <div className="flex h-[calc(100dvh-64px)] pt-16">
       {/* Sidebar */}
@@ -120,6 +154,26 @@ export default function PromptBooksPage() {
               <Command className="w-3 h-3" />
               <span>K</span>
             </button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-text-muted hover:text-text-primary"
+              aria-label="Template Gallery"
+              onClick={() => setTemplateGalleryOpen(true)}
+            >
+              <LayoutGrid className="w-4 h-4" />
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-text-muted hover:text-text-primary"
+              aria-label="Manage Tags"
+              onClick={() => setTagManagerOpen(true)}
+            >
+              <Tag className="w-4 h-4" />
+            </Button>
 
             <span className="text-xs font-sans text-text-muted">
               {prompts.length} prompt{prompts.length !== 1 ? 's' : ''}
@@ -200,6 +254,23 @@ export default function PromptBooksPage() {
         onOpenChange={setCaptureOpen}
         onCapture={capture}
         collections={collections.map((c) => ({ id: c.id, name: c.name }))}
+      />
+
+      {/* Template Gallery */}
+      <TemplateGallery
+        open={templateGalleryOpen}
+        onClose={() => setTemplateGalleryOpen(false)}
+        collections={collections.map((c) => ({ id: c.id, name: c.name }))}
+        onInstantiate={handleInstantiateTemplate}
+      />
+
+      {/* Tag Manager */}
+      <TagManager
+        tags={tags}
+        onUpdate={handleUpdateTag}
+        onDelete={handleDeleteTag}
+        open={tagManagerOpen}
+        onClose={() => setTagManagerOpen(false)}
       />
     </div>
   )

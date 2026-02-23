@@ -86,6 +86,13 @@ const LINKS: LinkItem[] = [
     color: "from-crystal to-earth",
   },
   {
+    href: "/academy/gate-quiz",
+    label: "Which Guardian Are You?",
+    description: "Take the quiz. Discover your creative nature",
+    icon: <Compass className="w-5 h-5" />,
+    color: "from-brand-primary to-fire",
+  },
+  {
     href: "/skills",
     label: "Arcanea Skills",
     description: "28 skills for Claude Code. Transform your practice",

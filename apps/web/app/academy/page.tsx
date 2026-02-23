@@ -260,6 +260,48 @@ export default function AcademyPage() {
         </div>
       </section>
 
+      {/* Deep Dive Pages */}
+      <section className="mb-16">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold font-sans">
+          Deep Dive
+        </h2>
+        <div className="grid gap-4 md:grid-cols-3">
+          <Link
+            href="/academy/gates"
+            className="group glass rounded-2xl p-6 hover-lift transition-all border border-transparent hover:border-brand-gold/30"
+          >
+            <h3 className="font-display text-lg font-semibold text-text-primary group-hover:text-brand-gold transition-colors mb-2">
+              The Ten Gates
+            </h3>
+            <p className="text-sm text-text-secondary font-sans">
+              Full vertical pathway from Foundation to Source with detailed teachings.
+            </p>
+          </Link>
+          <Link
+            href="/academy/houses"
+            className="group glass rounded-2xl p-6 hover-lift transition-all border border-transparent hover:border-crystal/30"
+          >
+            <h3 className="font-display text-lg font-semibold text-text-primary group-hover:text-crystal transition-colors mb-2">
+              Seven Houses
+            </h3>
+            <p className="text-sm text-text-secondary font-sans">
+              Discover your elemental path and the traditions of each Academy House.
+            </p>
+          </Link>
+          <Link
+            href="/academy/ranks"
+            className="group glass rounded-2xl p-6 hover-lift transition-all border border-transparent hover:border-brand-primary/30"
+          >
+            <h3 className="font-display text-lg font-semibold text-text-primary group-hover:text-brand-primary transition-colors mb-2">
+              Magic Ranks
+            </h3>
+            <p className="text-sm text-text-secondary font-sans">
+              The complete ascension from Apprentice to Luminor with requirements.
+            </p>
+          </Link>
+        </div>
+      </section>
+
       {/* Current Courses Preview */}
       <section>
         <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-crystal font-sans">

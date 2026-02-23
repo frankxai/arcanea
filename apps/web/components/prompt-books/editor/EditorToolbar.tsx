@@ -2,7 +2,7 @@
 
 import {
   Save, Copy, Trash2, ArrowLeft, Clock, History,
-  SplitSquareHorizontal, Download, Star,
+  SplitSquareHorizontal, Download, Star, Bookmark,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -25,6 +25,7 @@ interface EditorToolbarProps {
   onToggleFavorite?: () => void
   onShowHistory: () => void
   onExport: () => void
+  onSaveAsTemplate?: () => void
 }
 
 export function EditorToolbar({
@@ -45,6 +46,7 @@ export function EditorToolbar({
   onToggleFavorite,
   onShowHistory,
   onExport,
+  onSaveAsTemplate,
 }: EditorToolbarProps) {
   const savedLabel = isSaving
     ? 'Saving...'
@@ -155,6 +157,18 @@ export function EditorToolbar({
           >
             <Download className="w-4 h-4" />
           </Button>
+
+          {onSaveAsTemplate && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onSaveAsTemplate}
+              className="text-text-muted hover:text-brand-accent"
+              aria-label="Save as template"
+            >
+              <Bookmark className="w-4 h-4" />
+            </Button>
+          )}
 
           <Button
             variant="ghost"

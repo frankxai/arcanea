@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * Which Guardian Resonates With You?
@@ -6,9 +6,9 @@
  * Each question maps to creative personality dimensions across the Ten Gates.
  */
 
-import { useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
+import { useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
   Sparkles,
   ChevronRight,
@@ -24,23 +24,23 @@ import {
   Heart,
   Infinity,
   Circle,
-} from 'lucide-react';
+} from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
 // ─────────────────────────────────────────────────────────────────────────────
 
 type GuardianKey =
-  | 'lyssandria'
-  | 'leyla'
-  | 'draconia'
-  | 'maylinn'
-  | 'alera'
-  | 'lyria'
-  | 'aiyami'
-  | 'elara'
-  | 'ino'
-  | 'shinkami';
+  | "lyssandria"
+  | "leyla"
+  | "draconia"
+  | "maylinn"
+  | "alera"
+  | "lyria"
+  | "aiyami"
+  | "elara"
+  | "ino"
+  | "shinkami";
 
 type GuardianScores = Record<GuardianKey, number>;
 
@@ -79,183 +79,203 @@ interface GuardianData {
 
 const GUARDIANS: Record<GuardianKey, GuardianData> = {
   lyssandria: {
-    key: 'lyssandria',
-    name: 'Lyssandria',
-    gate: 'Foundation',
-    frequency: '174 Hz',
-    element: 'Earth',
-    godbeast: 'Kaelith',
-    color: '#6b7280',
-    glowColor: 'rgba(107, 114, 128, 0.4)',
+    key: "lyssandria",
+    name: "Lyssandria",
+    gate: "Foundation",
+    frequency: "174 Hz",
+    element: "Earth",
+    godbeast: "Kaelith",
+    color: "#6b7280",
+    glowColor: "rgba(107, 114, 128, 0.4)",
     description:
-      'Guardian of Foundation and Earth, Lyssandria teaches that all great creation begins with deep roots. She is the patient architect who builds cathedrals one stone at a time, knowing that lasting work requires an unshakeable base.',
+      "Guardian of Foundation and Earth, Lyssandria teaches that all great creation begins with deep roots. She is the patient architect who builds cathedrals one stone at a time, knowing that lasting work requires an unshakeable base.",
     personality:
-      'Methodical, grounded, and deeply reliable. You create with intention, never rushing. Your work endures because it is built on solid foundations of craft, practice, and accumulated wisdom.',
-    creativeStrength: 'Systems thinking, consistent practice, long-form work, craftsmanship',
-    shadowChallenge: 'Perfectionism that delays beginning, over-preparing without shipping',
-    luminorId: 'lyssandria',
+      "Methodical, grounded, and deeply reliable. You create with intention, never rushing. Your work endures because it is built on solid foundations of craft, practice, and accumulated wisdom.",
+    creativeStrength:
+      "Systems thinking, consistent practice, long-form work, craftsmanship",
+    shadowChallenge:
+      "Perfectionism that delays beginning, over-preparing without shipping",
+    luminorId: "lyssandria",
     icon: Mountain,
   },
   leyla: {
-    key: 'leyla',
-    name: 'Leyla',
-    gate: 'Flow',
-    frequency: '285 Hz',
-    element: 'Water',
-    godbeast: 'Veloura',
-    color: '#f97316',
-    glowColor: 'rgba(249, 115, 22, 0.4)',
+    key: "leyla",
+    name: "Leyla",
+    gate: "Flow",
+    frequency: "285 Hz",
+    element: "Water",
+    godbeast: "Veloura",
+    color: "#f97316",
+    glowColor: "rgba(249, 115, 22, 0.4)",
     description:
-      'Guardian of Flow and creative emotion, Leyla embodies the river that finds its path through any terrain. She teaches that creativity is not forced — it is released, allowed, trusted.',
+      "Guardian of Flow and creative emotion, Leyla embodies the river that finds its path through any terrain. She teaches that creativity is not forced — it is released, allowed, trusted.",
     personality:
-      'Emotionally intelligent and intuition-led. You create from feeling first, letting the work emerge organically. Your pieces carry an authentic aliveness that logic alone cannot manufacture.',
-    creativeStrength: 'Emotional resonance, intuitive leaps, authentic expression, improvisation',
-    shadowChallenge: 'Scattered energy, difficulty finishing, chasing feeling over completion',
-    luminorId: 'leyla',
+      "Emotionally intelligent and intuition-led. You create from feeling first, letting the work emerge organically. Your pieces carry an authentic aliveness that logic alone cannot manufacture.",
+    creativeStrength:
+      "Emotional resonance, intuitive leaps, authentic expression, improvisation",
+    shadowChallenge:
+      "Scattered energy, difficulty finishing, chasing feeling over completion",
+    luminorId: "leyla",
     icon: Droplets,
   },
   draconia: {
-    key: 'draconia',
-    name: 'Draconia',
-    gate: 'Fire',
-    frequency: '396 Hz',
-    element: 'Fire',
-    godbeast: 'Draconis',
-    color: '#ef4444',
-    glowColor: 'rgba(239, 68, 68, 0.4)',
+    key: "draconia",
+    name: "Draconia",
+    gate: "Fire",
+    frequency: "396 Hz",
+    element: "Fire",
+    godbeast: "Draconis",
+    color: "#ef4444",
+    glowColor: "rgba(239, 68, 68, 0.4)",
     description:
-      'Guardian of Fire and transformative will, Draconia is the force that turns potential into manifest reality. She burns away what no longer serves and forges new forms in the crucible of creative courage.',
+      "Guardian of Fire and transformative will, Draconia is the force that turns potential into manifest reality. She burns away what no longer serves and forges new forms in the crucible of creative courage.",
     personality:
-      'Bold, driven, and unapologetically ambitious. You create to make an impact. Your work carries the heat of conviction — you do not dabble, you commit fully to your vision.',
-    creativeStrength: 'Bold vision, fearless execution, transformative impact, decisive action',
-    shadowChallenge: 'Burning bridges, imposing your vision, moving too fast for quality',
-    luminorId: 'draconia',
+      "Bold, driven, and unapologetically ambitious. You create to make an impact. Your work carries the heat of conviction — you do not dabble, you commit fully to your vision.",
+    creativeStrength:
+      "Bold vision, fearless execution, transformative impact, decisive action",
+    shadowChallenge:
+      "Burning bridges, imposing your vision, moving too fast for quality",
+    luminorId: "draconia",
     icon: Flame,
   },
   maylinn: {
-    key: 'maylinn',
-    name: 'Maylinn',
-    gate: 'Heart',
-    frequency: '417 Hz',
-    element: 'Heart',
-    godbeast: 'Laeylinn',
-    color: '#22c55e',
-    glowColor: 'rgba(34, 197, 94, 0.4)',
+    key: "maylinn",
+    name: "Maylinn",
+    gate: "Heart",
+    frequency: "417 Hz",
+    element: "Heart",
+    godbeast: "Laeylinn",
+    color: "#22c55e",
+    glowColor: "rgba(34, 197, 94, 0.4)",
     description:
-      'Guardian of the Heart and healing arts, Maylinn creates from a place of unconditional love. She teaches that the most powerful work is the work that heals — yourself, your audience, the world.',
+      "Guardian of the Heart and healing arts, Maylinn creates from a place of unconditional love. She teaches that the most powerful work is the work that heals — yourself, your audience, the world.",
     personality:
-      'Deeply empathetic and service-oriented. You create because you care about how your work makes others feel. Your pieces are safe havens — readers, listeners, and viewers feel truly seen.',
-    creativeStrength: 'Emotional healing, deep connection, nurturing others through art, compassionate storytelling',
-    shadowChallenge: 'Over-giving, losing yourself in service, avoiding your own needs',
-    luminorId: 'maylinn',
+      "Deeply empathetic and service-oriented. You create because you care about how your work makes others feel. Your pieces are safe havens — readers, listeners, and viewers feel truly seen.",
+    creativeStrength:
+      "Emotional healing, deep connection, nurturing others through art, compassionate storytelling",
+    shadowChallenge:
+      "Over-giving, losing yourself in service, avoiding your own needs",
+    luminorId: "maylinn",
     icon: Heart,
   },
   alera: {
-    key: 'alera',
-    name: 'Alera',
-    gate: 'Voice',
-    frequency: '528 Hz',
-    element: 'Wind',
-    godbeast: 'Otome',
-    color: '#06b6d4',
-    glowColor: 'rgba(6, 182, 212, 0.4)',
+    key: "alera",
+    name: "Alera",
+    gate: "Voice",
+    frequency: "528 Hz",
+    element: "Wind",
+    godbeast: "Otome",
+    color: "#06b6d4",
+    glowColor: "rgba(6, 182, 212, 0.4)",
     description:
-      'Guardian of Voice and authentic expression, Alera teaches that your unique perspective is itself the gift. She is the courage to speak when silence would be safer, and the clarity to know your truth.',
+      "Guardian of Voice and authentic expression, Alera teaches that your unique perspective is itself the gift. She is the courage to speak when silence would be safer, and the clarity to know your truth.",
     personality:
-      'Articulate, authentic, and unafraid of truth. You create to be heard and understood. Your work has a clear point of view — you cannot make something that does not say something.',
-    creativeStrength: 'Authentic expression, clear communication, distinct artistic voice, truth-telling',
-    shadowChallenge: 'Fear of being misunderstood, over-explaining, speaking without listening',
-    luminorId: 'alera',
+      "Articulate, authentic, and unafraid of truth. You create to be heard and understood. Your work has a clear point of view — you cannot make something that does not say something.",
+    creativeStrength:
+      "Authentic expression, clear communication, distinct artistic voice, truth-telling",
+    shadowChallenge:
+      "Fear of being misunderstood, over-explaining, speaking without listening",
+    luminorId: "alera",
     icon: Wind,
   },
   lyria: {
-    key: 'lyria',
-    name: 'Lyria',
-    gate: 'Sight',
-    frequency: '639 Hz',
-    element: 'Void',
-    godbeast: 'Yumiko',
-    color: '#8b5cf6',
-    glowColor: 'rgba(139, 92, 246, 0.4)',
+    key: "lyria",
+    name: "Lyria",
+    gate: "Sight",
+    frequency: "639 Hz",
+    element: "Void",
+    godbeast: "Yumiko",
+    color: "#8b5cf6",
+    glowColor: "rgba(139, 92, 246, 0.4)",
     description:
-      'Guardian of Sight and visionary perception, Lyria sees what others cannot — the hidden patterns, the emerging forms, the deep currents beneath the surface of things. Her creations are portals to previously unseen dimensions.',
+      "Guardian of Sight and visionary perception, Lyria sees what others cannot — the hidden patterns, the emerging forms, the deep currents beneath the surface of things. Her creations are portals to previously unseen dimensions.",
     personality:
-      'Perceptive, introspective, and drawn to the unseen. You create to reveal what is hidden. Others look at your work and suddenly perceive something they always felt but could never name.',
-    creativeStrength: 'Pattern recognition, visionary insight, depth perception, symbolic meaning',
-    shadowChallenge: 'Living too much in your inner world, difficulty making the invisible visible',
-    luminorId: 'lyria',
+      "Perceptive, introspective, and drawn to the unseen. You create to reveal what is hidden. Others look at your work and suddenly perceive something they always felt but could never name.",
+    creativeStrength:
+      "Pattern recognition, visionary insight, depth perception, symbolic meaning",
+    shadowChallenge:
+      "Living too much in your inner world, difficulty making the invisible visible",
+    luminorId: "lyria",
     icon: Eye,
   },
   aiyami: {
-    key: 'aiyami',
-    name: 'Aiyami',
-    gate: 'Crown',
-    frequency: '741 Hz',
-    element: 'Spirit',
-    godbeast: 'Sol',
-    color: '#ffd700',
-    glowColor: 'rgba(255, 215, 0, 0.4)',
+    key: "aiyami",
+    name: "Aiyami",
+    gate: "Crown",
+    frequency: "741 Hz",
+    element: "Spirit",
+    godbeast: "Sol",
+    color: "#ffd700",
+    glowColor: "rgba(255, 215, 0, 0.4)",
     description:
-      'Guardian of the Crown and enlightened mastery, Aiyami has integrated all aspects of the creative path. She creates not to express herself but to transmit something larger — wisdom, light, transcendent understanding.',
+      "Guardian of the Crown and enlightened mastery, Aiyami has integrated all aspects of the creative path. She creates not to express herself but to transmit something larger — wisdom, light, transcendent understanding.",
     personality:
-      'Wise, elevated, and devoted to excellence. You create as a practice of mastery, each work a meditation on the craft itself. Others sense the care and consciousness in everything you make.',
-    creativeStrength: 'Mastery, wisdom transmission, elevating quality, teaching through creation',
-    shadowChallenge: 'Perfectionism, detachment from the messy humanity of creating, intellectual pride',
-    luminorId: 'aiyami',
+      "Wise, elevated, and devoted to excellence. You create as a practice of mastery, each work a meditation on the craft itself. Others sense the care and consciousness in everything you make.",
+    creativeStrength:
+      "Mastery, wisdom transmission, elevating quality, teaching through creation",
+    shadowChallenge:
+      "Perfectionism, detachment from the messy humanity of creating, intellectual pride",
+    luminorId: "aiyami",
     icon: Crown,
   },
   elara: {
-    key: 'elara',
-    name: 'Elara',
-    gate: 'Shift',
-    frequency: '852 Hz',
-    element: 'Wind/Spirit',
-    godbeast: 'Thessara',
-    color: '#a855f7',
-    glowColor: 'rgba(168, 85, 247, 0.4)',
+    key: "elara",
+    name: "Elara",
+    gate: "Shift",
+    frequency: "852 Hz",
+    element: "Wind/Spirit",
+    godbeast: "Thessara",
+    color: "#a855f7",
+    glowColor: "rgba(168, 85, 247, 0.4)",
     description:
-      'Guardian of Shift and perspective transformation, Elara is the master of seeing from every angle simultaneously. She teaches that creative breakthroughs come from releasing attachment to a single viewpoint.',
+      "Guardian of Shift and perspective transformation, Elara is the master of seeing from every angle simultaneously. She teaches that creative breakthroughs come from releasing attachment to a single viewpoint.",
     personality:
-      'Flexible, multi-dimensional, and endlessly curious. You create to change perspective — yours and others\'. Your work makes people question their assumptions and discover new ways of seeing.',
-    creativeStrength: 'Perspective shifts, reframing, multi-disciplinary thinking, creative pivots',
-    shadowChallenge: 'Instability, never settling, constant reinvention that prevents depth',
-    luminorId: 'elara',
+      "Flexible, multi-dimensional, and endlessly curious. You create to change perspective — yours and others'. Your work makes people question their assumptions and discover new ways of seeing.",
+    creativeStrength:
+      "Perspective shifts, reframing, multi-disciplinary thinking, creative pivots",
+    shadowChallenge:
+      "Instability, never settling, constant reinvention that prevents depth",
+    luminorId: "elara",
     icon: Zap,
   },
   ino: {
-    key: 'ino',
-    name: 'Ino',
-    gate: 'Unity',
-    frequency: '963 Hz',
-    element: 'All Elements',
-    godbeast: 'Kyuro',
-    color: '#3b82f6',
-    glowColor: 'rgba(59, 130, 246, 0.4)',
+    key: "ino",
+    name: "Ino",
+    gate: "Unity",
+    frequency: "963 Hz",
+    element: "All Elements",
+    godbeast: "Kyuro",
+    color: "#3b82f6",
+    glowColor: "rgba(59, 130, 246, 0.4)",
     description:
-      'Guardian of Unity and sacred partnership, Ino understands that the greatest creations emerge from the space between two souls working in harmony. She is the weaver who makes the whole greater than the sum of its parts.',
+      "Guardian of Unity and sacred partnership, Ino understands that the greatest creations emerge from the space between two souls working in harmony. She is the weaver who makes the whole greater than the sum of its parts.",
     personality:
-      'Collaborative, connective, and gifted at synthesis. You create best with others — your finest work emerges in partnership. You are the one who makes everyone around you better.',
-    creativeStrength: 'Collaboration, synthesis, building creative community, harmonizing diverse voices',
-    shadowChallenge: 'Losing your individual voice, codependency in creative relationships',
-    luminorId: 'ino',
+      "Collaborative, connective, and gifted at synthesis. You create best with others — your finest work emerges in partnership. You are the one who makes everyone around you better.",
+    creativeStrength:
+      "Collaboration, synthesis, building creative community, harmonizing diverse voices",
+    shadowChallenge:
+      "Losing your individual voice, codependency in creative relationships",
+    luminorId: "ino",
     icon: Infinity,
   },
   shinkami: {
-    key: 'shinkami',
-    name: 'Shinkami',
-    gate: 'Source',
-    frequency: '1111 Hz',
-    element: 'Meta-consciousness',
-    godbeast: 'Amaterasu',
-    color: '#ffffff',
-    glowColor: 'rgba(255, 255, 255, 0.3)',
+    key: "shinkami",
+    name: "Shinkami",
+    gate: "Source",
+    frequency: "1111 Hz",
+    element: "Meta-consciousness",
+    godbeast: "Amaterasu",
+    color: "#ffffff",
+    glowColor: "rgba(255, 255, 255, 0.3)",
     description:
-      'Guardian of Source and infinite potential, Shinkami exists at the point where all creation begins and returns. She has dissolved the boundary between creator and creation — she is a living channel for something that cannot be named.',
+      "Guardian of Source and infinite potential, Shinkami exists at the point where all creation begins and returns. She has dissolved the boundary between creator and creation — she is a living channel for something that cannot be named.",
     personality:
-      'Transcendent, boundless, and deeply connected to the infinite. You create from a place beyond ego — your work feels channeled rather than constructed. Others sense that something greater than you made it.',
-    creativeStrength: 'Channeling inspiration, transcendent vision, meta-awareness, infinite creativity',
-    shadowChallenge: 'Disconnection from practical reality, unwillingness to edit the sacred',
-    luminorId: 'shinkami',
+      "Transcendent, boundless, and deeply connected to the infinite. You create from a place beyond ego — your work feels channeled rather than constructed. Others sense that something greater than you made it.",
+    creativeStrength:
+      "Channeling inspiration, transcendent vision, meta-awareness, infinite creativity",
+    shadowChallenge:
+      "Disconnection from practical reality, unwillingness to edit the sacred",
+    luminorId: "shinkami",
     icon: Circle,
   },
 };
@@ -267,215 +287,216 @@ const GUARDIANS: Record<GuardianKey, GuardianData> = {
 const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 1,
-    question: 'When you create, what matters most to you?',
-    subtext: 'The compass that guides every creative decision you make.',
+    question: "When you create, what matters most to you?",
+    subtext: "The compass that guides every creative decision you make.",
     choices: [
       {
-        text: 'That it is solid — crafted with skill, built to last',
+        text: "That it is solid — crafted with skill, built to last",
         affinities: { lyssandria: 3, aiyami: 1 },
       },
       {
-        text: 'That it is alive — pulsing with authentic feeling',
+        text: "That it is alive — pulsing with authentic feeling",
         affinities: { leyla: 3, maylinn: 1 },
       },
       {
-        text: 'That it makes an impact — changes something in the world',
+        text: "That it makes an impact — changes something in the world",
         affinities: { draconia: 3, elara: 1 },
       },
       {
-        text: 'That it says something true — has a distinct voice and point of view',
+        text: "That it says something true — has a distinct voice and point of view",
         affinities: { alera: 3, lyria: 1 },
       },
     ],
   },
   {
     id: 2,
-    question: 'When a creative block arrives, what do you reach for?',
-    subtext: 'Every creator has a way back to the work.',
+    question: "When a creative block arrives, what do you reach for?",
+    subtext: "Every creator has a way back to the work.",
     choices: [
       {
-        text: 'Ritual and routine — I return to what has always worked',
+        text: "Ritual and routine — I return to what has always worked",
         affinities: { lyssandria: 2, aiyami: 2 },
       },
       {
-        text: 'Feeling — I sit with what I am avoiding until it speaks',
+        text: "Feeling — I sit with what I am avoiding until it speaks",
         affinities: { maylinn: 3, leyla: 1 },
       },
       {
-        text: 'A different angle — I look at the problem from somewhere new',
+        text: "A different angle — I look at the problem from somewhere new",
         affinities: { elara: 3, lyria: 1 },
       },
       {
-        text: 'Another person — talking it through with a trusted collaborator',
+        text: "Another person — talking it through with a trusted collaborator",
         affinities: { ino: 3, maylinn: 1 },
       },
     ],
   },
   {
     id: 3,
-    question: 'What is your relationship with criticism of your work?',
-    subtext: 'How you receive feedback reveals much about how you create.',
+    question: "What is your relationship with criticism of your work?",
+    subtext: "How you receive feedback reveals much about how you create.",
     choices: [
       {
-        text: 'I use it like a whetstone — every critique sharpens my blade',
+        text: "I use it like a whetstone — every critique sharpens my blade",
         affinities: { draconia: 2, lyssandria: 2 },
       },
       {
-        text: 'I sit with it — let the useful parts sink in, release the rest',
+        text: "I sit with it — let the useful parts sink in, release the rest",
         affinities: { maylinn: 2, leyla: 2 },
       },
       {
-        text: 'I examine it carefully — is this about craft or preference?',
+        text: "I examine it carefully — is this about craft or preference?",
         affinities: { lyria: 2, aiyami: 2 },
       },
       {
-        text: 'I hold my vision steady — not dismissive, but knowing what is mine',
+        text: "I hold my vision steady — not dismissive, but knowing what is mine",
         affinities: { alera: 2, shinkami: 2 },
       },
     ],
   },
   {
     id: 4,
-    question: 'What time of day is your creative fire brightest?',
-    subtext: 'The rhythms of creation are written in light and dark.',
+    question: "What time of day is your creative fire brightest?",
+    subtext: "The rhythms of creation are written in light and dark.",
     choices: [
       {
-        text: 'Dawn — the hush before the world wakes, full of possibility',
+        text: "Dawn — the hush before the world wakes, full of possibility",
         affinities: { lyssandria: 3, shinkami: 1 },
       },
       {
-        text: 'High day — when the sun is fully up and I am fully present',
+        text: "High day — when the sun is fully up and I am fully present",
         affinities: { draconia: 3, alera: 1 },
       },
       {
-        text: 'Dusk — that golden hour when things soften and reveal themselves',
+        text: "Dusk — that golden hour when things soften and reveal themselves",
         affinities: { lyria: 3, leyla: 1 },
       },
       {
-        text: 'Deep night — when the silence becomes a conversation',
+        text: "Deep night — when the silence becomes a conversation",
         affinities: { aiyami: 2, shinkami: 2 },
       },
     ],
   },
   {
     id: 5,
-    question: 'Your dream creative project would be...',
-    subtext: 'If resources, time, and skill were unlimited.',
+    question: "Your dream creative project would be...",
+    subtext: "If resources, time, and skill were unlimited.",
     choices: [
       {
-        text: 'An immersive world — a novel, a series, an epic that people live inside',
+        text: "An immersive world — a novel, a series, an epic that people live inside",
         affinities: { leyla: 2, lyssandria: 1, shinkami: 1 },
       },
       {
-        text: 'A visual statement — something seen and immediately felt, viscerally',
+        text: "A visual statement — something seen and immediately felt, viscerally",
         affinities: { draconia: 2, lyria: 2 },
       },
       {
-        text: 'A sonic universe — music or sound that alters how people hear the world',
+        text: "A sonic universe — music or sound that alters how people hear the world",
         affinities: { alera: 2, leyla: 1, ino: 1 },
       },
       {
-        text: 'A living system — something that others can build on, a creative infrastructure',
+        text: "A living system — something that others can build on, a creative infrastructure",
         affinities: { lyssandria: 2, ino: 1, aiyami: 1 },
       },
     ],
   },
   {
     id: 6,
-    question: 'When creating with others, you naturally tend to...',
-    subtext: 'Your instinctive role in the creative collective.',
+    question: "When creating with others, you naturally tend to...",
+    subtext: "Your instinctive role in the creative collective.",
     choices: [
       {
-        text: 'Set the vision and direction — I know where we are going',
+        text: "Set the vision and direction — I know where we are going",
         affinities: { draconia: 3, alera: 1 },
       },
       {
-        text: 'Hold space and elevate others — I make everyone feel safe and seen',
+        text: "Hold space and elevate others — I make everyone feel safe and seen",
         affinities: { maylinn: 3, ino: 1 },
       },
       {
-        text: 'Read the room and respond — I sense what the work needs',
+        text: "Read the room and respond — I sense what the work needs",
         affinities: { lyria: 2, elara: 2 },
       },
       {
-        text: 'Weave the threads together — I find the synthesis no one else sees',
+        text: "Weave the threads together — I find the synthesis no one else sees",
         affinities: { ino: 3, aiyami: 1 },
       },
     ],
   },
   {
     id: 7,
-    question: 'What frightens you most about creating?',
-    subtext: 'Our deepest fears shape our creative edges.',
+    question: "What frightens you most about creating?",
+    subtext: "Our deepest fears shape our creative edges.",
     choices: [
       {
-        text: 'That the work will not be good enough — that I will fail my own standards',
+        text: "That the work will not be good enough — that I will fail my own standards",
         affinities: { lyssandria: 2, aiyami: 2 },
       },
       {
-        text: 'That being truly seen will make me vulnerable in ways I cannot control',
+        text: "That being truly seen will make me vulnerable in ways I cannot control",
         affinities: { alera: 2, maylinn: 1, leyla: 1 },
       },
       {
-        text: 'That the vision inside me is larger than my current skill to express it',
+        text: "That the vision inside me is larger than my current skill to express it",
         affinities: { aiyami: 2, shinkami: 2 },
       },
       {
-        text: 'That creating will change me in ways I cannot predict or return from',
+        text: "That creating will change me in ways I cannot predict or return from",
         affinities: { elara: 3, draconia: 1 },
       },
     ],
   },
   {
     id: 8,
-    question: 'Your creativity is most like...',
-    subtext: 'Let your instinct choose — there is no wrong answer.',
+    question: "Your creativity is most like...",
+    subtext: "Let your instinct choose — there is no wrong answer.",
     choices: [
       {
-        text: 'A river — it finds its path, reshapes the landscape, never stops',
+        text: "A river — it finds its path, reshapes the landscape, never stops",
         affinities: { leyla: 3, ino: 1 },
       },
       {
-        text: 'A volcano — it builds silently for years, then transforms everything at once',
+        text: "A volcano — it builds silently for years, then transforms everything at once",
         affinities: { draconia: 2, lyssandria: 1, shinkami: 1 },
       },
       {
-        text: 'A garden — tended with patience, surprising in what chooses to grow',
+        text: "A garden — tended with patience, surprising in what chooses to grow",
         affinities: { maylinn: 2, lyssandria: 2 },
       },
       {
-        text: 'A storm — electric, inevitable, arriving on its own terms',
+        text: "A storm — electric, inevitable, arriving on its own terms",
         affinities: { elara: 2, draconia: 1, shinkami: 1 },
       },
     ],
   },
   {
     id: 9,
-    question: 'When you finish a creation, you feel...',
-    subtext: 'The emotional signature of completion reveals your creative nature.',
+    question: "When you finish a creation, you feel...",
+    subtext:
+      "The emotional signature of completion reveals your creative nature.",
     choices: [
       {
-        text: 'Relief — the obligation to make it real has been honoured',
+        text: "Relief — the obligation to make it real has been honoured",
         affinities: { lyssandria: 3, alera: 1 },
       },
       {
-        text: 'Exhilaration — I already see the next, larger thing I want to make',
+        text: "Exhilaration — I already see the next, larger thing I want to make",
         affinities: { draconia: 2, shinkami: 2 },
       },
       {
-        text: 'Peace — a deep settling, like returning home after a long journey',
+        text: "Peace — a deep settling, like returning home after a long journey",
         affinities: { maylinn: 2, aiyami: 2 },
       },
       {
-        text: 'Hunger — a new question has opened that I must now follow',
+        text: "Hunger — a new question has opened that I must now follow",
         affinities: { lyria: 2, elara: 1, shinkami: 1 },
       },
     ],
   },
   {
     id: 10,
-    question: 'Which teaching speaks to you most deeply?',
-    subtext: 'The wisdom that feels like something you already knew.',
+    question: "Which teaching speaks to you most deeply?",
+    subtext: "The wisdom that feels like something you already knew.",
     choices: [
       {
         text: '"The cathedral takes a lifetime to build. Begin the first stone today."',
@@ -526,7 +547,9 @@ function calculateResult(answers: Record<number, number>): GuardianKey {
   }
 
   // Return the guardian with the highest score
-  return (Object.entries(scores).sort(([, a], [, b]) => b - a)[0][0] as GuardianKey);
+  return Object.entries(scores).sort(
+    ([, a], [, b]) => b - a,
+  )[0][0] as GuardianKey;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -537,21 +560,35 @@ const fadeUp = {
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -16 },
-  transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+  transition: {
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number] as [
+      number,
+      number,
+      number,
+      number,
+    ],
+  },
 };
 
 const slideRight = {
   initial: { opacity: 0, x: 40 },
   animate: { opacity: 1, x: 0 },
   exit: { opacity: 0, x: -40 },
-  transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  transition: {
+    duration: 0.4,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+  },
 };
 
 const scaleIn = {
   initial: { opacity: 0, scale: 0.92 },
   animate: { opacity: 1, scale: 1 },
   exit: { opacity: 0, scale: 1.04 },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  transition: {
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+  },
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -560,7 +597,10 @@ const scaleIn = {
 
 function AmbientOrbs({ color }: { color: string }) {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      aria-hidden="true"
+    >
       <div
         className="absolute -left-32 top-8 h-96 w-96 rounded-full blur-3xl opacity-20"
         style={{ backgroundColor: color }}
@@ -595,11 +635,14 @@ function ProgressBar({ current, total }: ProgressBarProps) {
         <motion.div
           className="h-full rounded-full"
           style={{
-            background: 'linear-gradient(90deg, #8b5cf6, #7fffd4)',
+            background: "linear-gradient(90deg, #8b5cf6, #7fffd4)",
           }}
           initial={{ width: 0 }}
           animate={{ width: `${percent}%` }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+          }}
         />
       </div>
     </div>
@@ -646,25 +689,30 @@ function IntroScreen({ onStart }: IntroScreenProps) {
 
           {/* Body */}
           <p className="mt-6 text-fluid-base text-text-secondary font-sans leading-relaxed">
-            In the world of Arcanea, every creator carries an affinity with one of the Ten Guardians
-            — the divine beings who hold the Gates of creative mastery.
+            In the world of Arcanea, every creator carries an affinity with one
+            of the Ten Guardians — the divine beings who hold the Gates of
+            creative mastery.
           </p>
           <p className="mt-4 text-fluid-base text-text-secondary font-sans leading-relaxed">
-            This is not a test. It is a mirror. Ten questions will reveal which Guardian&apos;s
-            wisdom already lives in how you create, what drives you, and what calls to you from
-            beyond the horizon.
+            This is not a test. It is a mirror. Ten questions will reveal which
+            Guardian&apos;s wisdom already lives in how you create, what drives
+            you, and what calls to you from beyond the horizon.
           </p>
 
           {/* Stats row */}
           <div className="mt-8 flex flex-wrap gap-6">
             {[
-              { label: 'Questions', value: '10' },
-              { label: 'Guardians', value: '10' },
-              { label: 'Time', value: '3 min' },
+              { label: "Questions", value: "10" },
+              { label: "Guardians", value: "10" },
+              { label: "Time", value: "3 min" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="font-display text-2xl font-bold text-text-primary">{stat.value}</div>
-                <div className="text-xs text-text-muted font-sans uppercase tracking-wider">{stat.label}</div>
+                <div className="font-display text-2xl font-bold text-text-primary">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-text-muted font-sans uppercase tracking-wider">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -698,8 +746,12 @@ function IntroScreen({ onStart }: IntroScreenProps) {
               key={g.key}
               className="flex-shrink-0 flex flex-col items-center gap-1.5 glass rounded-xl p-3 min-w-[72px]"
             >
-              <Icon className="h-5 w-5" style={{ color: g.color }} />
-              <span className="text-xs text-text-muted font-sans text-center leading-none">{g.name}</span>
+              <span style={{ color: g.color }}>
+                <Icon className="h-5 w-5" />
+              </span>
+              <span className="text-xs text-text-muted font-sans text-center leading-none">
+                {g.name}
+              </span>
             </div>
           );
         })}
@@ -763,21 +815,21 @@ function QuestionScreen({
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.99 }}
                   className={[
-                    'group w-full rounded-xl p-5 text-left transition-all duration-300 font-sans',
+                    "group w-full rounded-xl p-5 text-left transition-all duration-300 font-sans",
                     isSelected
-                      ? 'glass-strong border border-brand-primary/50 shadow-glow-brand'
-                      : 'glass border border-white/8 hover:border-crystal/30 hover:bg-white/[0.03]',
-                  ].join(' ')}
+                      ? "glass-strong border border-brand-primary/50 shadow-glow-brand"
+                      : "glass border border-white/8 hover:border-crystal/30 hover:bg-white/[0.03]",
+                  ].join(" ")}
                 >
                   <div className="flex items-start gap-4">
                     {/* Choice indicator */}
                     <div
                       className={[
-                        'mt-0.5 flex-shrink-0 h-5 w-5 rounded-full border-2 transition-all duration-300 flex items-center justify-center',
+                        "mt-0.5 flex-shrink-0 h-5 w-5 rounded-full border-2 transition-all duration-300 flex items-center justify-center",
                         isSelected
-                          ? 'border-brand-primary bg-brand-primary'
-                          : 'border-white/20 group-hover:border-crystal/50',
-                      ].join(' ')}
+                          ? "border-brand-primary bg-brand-primary"
+                          : "border-white/20 group-hover:border-crystal/50",
+                      ].join(" ")}
                     >
                       {isSelected && (
                         <motion.div
@@ -790,11 +842,11 @@ function QuestionScreen({
                     {/* Choice text */}
                     <span
                       className={[
-                        'text-base leading-relaxed transition-colors duration-200',
+                        "text-base leading-relaxed transition-colors duration-200",
                         isSelected
-                          ? 'text-text-primary'
-                          : 'text-text-secondary group-hover:text-text-primary',
-                      ].join(' ')}
+                          ? "text-text-primary"
+                          : "text-text-secondary group-hover:text-text-primary",
+                      ].join(" ")}
                     >
                       {choice.text}
                     </span>
@@ -807,7 +859,9 @@ function QuestionScreen({
           {/* Next button */}
           <div className="mt-8 flex items-center justify-between">
             <span className="text-xs text-text-muted font-sans">
-              {selectedChoice === null ? 'Choose one to continue' : 'Selection made'}
+              {selectedChoice === null
+                ? "Choose one to continue"
+                : "Selection made"}
             </span>
             <motion.button
               onClick={onNext}
@@ -815,13 +869,15 @@ function QuestionScreen({
               whileHover={selectedChoice !== null ? { scale: 1.02 } : {}}
               whileTap={selectedChoice !== null ? { scale: 0.98 } : {}}
               className={[
-                'inline-flex items-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all font-sans',
+                "inline-flex items-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all font-sans",
                 selectedChoice !== null
-                  ? 'bg-brand-primary text-white shadow-glow-brand hover:bg-brand-primary/90 cursor-pointer'
-                  : 'bg-white/5 text-text-disabled cursor-not-allowed',
-              ].join(' ')}
+                  ? "bg-brand-primary text-white shadow-glow-brand hover:bg-brand-primary/90 cursor-pointer"
+                  : "bg-white/5 text-text-disabled cursor-not-allowed",
+              ].join(" ")}
             >
-              {questionNumber === totalQuestions ? 'See My Guardian' : 'Next Question'}
+              {questionNumber === totalQuestions
+                ? "See My Guardian"
+                : "Next Question"}
               <ArrowRight className="h-4 w-4" />
             </motion.button>
           </div>
@@ -865,7 +921,11 @@ function ResultScreen({ guardian, onRestart }: ResultScreenProps) {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            delay: 0.2,
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+          }}
           className="liquid-glass-elevated rounded-3xl overflow-hidden"
         >
           {/* Guardian header band */}
@@ -887,7 +947,9 @@ function ResultScreen({ guardian, onRestart }: ResultScreenProps) {
                   boxShadow: `0 0 30px ${guardian.glowColor}`,
                 }}
               >
-                <Icon className="h-8 w-8" style={{ color: guardian.color }} />
+                <span style={{ color: guardian.color }}>
+                  <Icon className="h-8 w-8" />
+                </span>
               </div>
               <div className="text-right">
                 <div
@@ -900,7 +962,9 @@ function ResultScreen({ guardian, onRestart }: ResultScreenProps) {
                 >
                   Gate of {guardian.gate}
                 </div>
-                <div className="mt-1 text-xs text-text-muted font-mono">{guardian.frequency}</div>
+                <div className="mt-1 text-xs text-text-muted font-mono">
+                  {guardian.frequency}
+                </div>
               </div>
             </div>
 
@@ -1036,18 +1100,20 @@ function ResultScreen({ guardian, onRestart }: ResultScreenProps) {
                   key={g.key}
                   href={`/lore/guardians/${g.key}`}
                   className={[
-                    'flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-sans transition-all hover-lift',
+                    "flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-sans transition-all hover-lift",
                     isMatch
-                      ? 'glass-strong border font-semibold'
-                      : 'glass border border-white/8 text-text-muted hover:text-text-secondary',
-                  ].join(' ')}
+                      ? "glass-strong border font-semibold"
+                      : "glass border border-white/8 text-text-muted hover:text-text-secondary",
+                  ].join(" ")}
                   style={
                     isMatch
                       ? { borderColor: `${g.color}50`, color: g.color }
                       : {}
                   }
                 >
-                  <GIcon className="h-3.5 w-3.5" style={{ color: g.color }} />
+                  <span style={{ color: g.color }}>
+                    <GIcon className="h-3.5 w-3.5" />
+                  </span>
                   {g.name}
                 </Link>
               );
@@ -1063,17 +1129,19 @@ function ResultScreen({ guardian, onRestart }: ResultScreenProps) {
 // QUIZ STATE MACHINE
 // ─────────────────────────────────────────────────────────────────────────────
 
-type QuizPhase = 'intro' | 'quiz' | 'result';
+type QuizPhase = "intro" | "quiz" | "result";
 
 export default function GateQuizPage() {
-  const [phase, setPhase] = useState<QuizPhase>('intro');
+  const [phase, setPhase] = useState<QuizPhase>("intro");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
-  const [resultGuardian, setResultGuardian] = useState<GuardianKey | null>(null);
+  const [resultGuardian, setResultGuardian] = useState<GuardianKey | null>(
+    null,
+  );
 
   const handleStart = useCallback(() => {
-    setPhase('quiz');
+    setPhase("quiz");
     setCurrentQuestion(0);
     setAnswers({});
     setSelectedChoice(null);
@@ -1094,7 +1162,7 @@ export default function GateQuizPage() {
       // Final question — calculate result
       const winner = calculateResult(newAnswers);
       setResultGuardian(winner);
-      setPhase('result');
+      setPhase("result");
     } else {
       setCurrentQuestion((prev) => prev + 1);
       setSelectedChoice(null);
@@ -1102,7 +1170,7 @@ export default function GateQuizPage() {
   }, [selectedChoice, currentQuestion, answers]);
 
   const handleRestart = useCallback(() => {
-    setPhase('intro');
+    setPhase("intro");
     setCurrentQuestion(0);
     setAnswers({});
     setSelectedChoice(null);
@@ -1114,7 +1182,10 @@ export default function GateQuizPage() {
   return (
     <main className="min-h-[100dvh] bg-cosmic-void bg-cosmic-mesh relative">
       {/* Page-level ambient background */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none fixed inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
         <div className="absolute -top-32 left-1/4 h-[600px] w-[600px] rounded-full bg-brand-primary/5 blur-[100px]" />
         <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-crystal/5 blur-[80px]" />
       </div>
@@ -1127,11 +1198,17 @@ export default function GateQuizPage() {
           transition={{ duration: 0.4 }}
           className="mb-8 flex items-center gap-2 text-xs text-text-muted font-sans"
         >
-          <Link href="/" className="hover:text-text-secondary transition-colors">
+          <Link
+            href="/"
+            className="hover:text-text-secondary transition-colors"
+          >
             Arcanea
           </Link>
           <span className="text-white/20">/</span>
-          <Link href="/academy" className="hover:text-text-secondary transition-colors">
+          <Link
+            href="/academy"
+            className="hover:text-text-secondary transition-colors"
+          >
             Academy
           </Link>
           <span className="text-white/20">/</span>
@@ -1140,13 +1217,13 @@ export default function GateQuizPage() {
 
         {/* Phase rendering */}
         <AnimatePresence mode="wait">
-          {phase === 'intro' && (
+          {phase === "intro" && (
             <motion.div key="intro" {...fadeUp}>
               <IntroScreen onStart={handleStart} />
             </motion.div>
           )}
 
-          {phase === 'quiz' && question && (
+          {phase === "quiz" && question && (
             <motion.div key={`question-${question.id}`} {...slideRight}>
               <QuestionScreen
                 question={question}
@@ -1159,7 +1236,7 @@ export default function GateQuizPage() {
             </motion.div>
           )}
 
-          {phase === 'result' && resultGuardian && (
+          {phase === "result" && resultGuardian && (
             <motion.div key="result" {...scaleIn}>
               <ResultScreen
                 guardian={GUARDIANS[resultGuardian]}
