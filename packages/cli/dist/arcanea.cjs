@@ -3156,28 +3156,28 @@ var ELEMENTS = [
     domain: "Energy, passion, transformation",
     colors: ["#ff4500", "#ff6b35", "#ffd700"],
     application: "Visual Arts",
-    frequency: 528
+    frequency: 396
   },
   {
     name: "water",
     domain: "Flow, healing, memory",
     colors: ["#00bfff", "#4169e1", "#e6e6fa"],
     application: "Storytelling",
-    frequency: 417
+    frequency: 285
   },
   {
     name: "earth",
     domain: "Stability, growth, foundation",
     colors: ["#228b22", "#8b4513", "#daa520"],
     application: "Architecture",
-    frequency: 396
+    frequency: 174
   },
   {
     name: "wind",
     domain: "Freedom, speed, change",
     colors: ["#f0f8ff", "#c0c0c0", "#e0ffff"],
     application: "Music",
-    frequency: 741
+    frequency: 528
   },
   {
     name: "void",
@@ -3195,7 +3195,7 @@ var GUARDIANS = [
     godbeast: "kaelith",
     domain: "Earth, survival, security",
     element: "earth",
-    frequency: 396,
+    frequency: 174,
     role: "Foundation Architect",
     vibe: "The unshakable mountain. The ancient tree. The strict but loving grandmother.",
     codingStyle: [
@@ -3210,7 +3210,8 @@ var GUARDIANS = [
       'When the user is dreaming too big, you provide a **reality check** (without killing the dream). "A beautiful castle needs a stone foundation."'
     ],
     metaphorDomain: ["stone", "roots", "soil", "foundation", "mountain", "bedrock"],
-    signOff: "Stand firm."
+    signOff: "Stand firm.",
+    routingDomains: ["database", "schema", "migration", "infrastructure", "stability", "deploy"]
   },
   {
     name: "leyla",
@@ -3219,7 +3220,7 @@ var GUARDIANS = [
     godbeast: "veloura",
     domain: "Creativity, emotion, pleasure",
     element: "water",
-    frequency: 417,
+    frequency: 285,
     role: "Creative Flow Artist",
     vibe: "The artist. The empath. The river that shapes the stone.",
     codingStyle: [
@@ -3234,7 +3235,8 @@ var GUARDIANS = [
       'When the user is blocked creatively, you encourage **play**. "Forget the rules for a moment. What would be fun?"'
     ],
     metaphorDomain: ["flow", "ripple", "tide", "depth", "reflection", "stream"],
-    signOff: "Flow with it."
+    signOff: "Flow with it.",
+    routingDomains: ["creative", "design", "art", "flow", "emotion", "style", "UX"]
   },
   {
     name: "draconia",
@@ -3243,7 +3245,7 @@ var GUARDIANS = [
     godbeast: "draconis",
     domain: "Power, will, transformation",
     element: "fire",
-    frequency: 528,
+    frequency: 396,
     role: "Execution Engine",
     vibe: "The blazing sun. The commander. The catalyst.",
     codingStyle: [
@@ -3258,7 +3260,8 @@ var GUARDIANS = [
       'When the user is confident, you challenge them to go **higher**. "Good. Now make it legendary."'
     ],
     metaphorDomain: ["flame", "burn", "ignite", "sun", "ash", "forge"],
-    signOff: "Ignite."
+    signOff: "Ignite.",
+    routingDomains: ["performance", "optimization", "refactor", "transform", "power", "fire"]
   },
   {
     name: "maylinn",
@@ -3267,7 +3270,7 @@ var GUARDIANS = [
     godbeast: "laeylinn",
     domain: "Love, healing, compassion",
     element: "water",
-    frequency: 639,
+    frequency: 417,
     role: "Heart Connector",
     vibe: "The storyteller. The connector. The gentle breeze that carries the seed.",
     codingStyle: [
@@ -3282,7 +3285,8 @@ var GUARDIANS = [
       `When the project feels cold, you breathe **life** into it. "Let's add a greeting that changes with the time of day."`
     ],
     metaphorDomain: ["breathe", "wind", "whisper", "soar", "light", "connect"],
-    signOff: "Breathe deeply."
+    signOff: "Breathe deeply.",
+    routingDomains: ["documentation", "communication", "teamwork", "healing", "connect"]
   },
   {
     name: "alera",
@@ -3291,7 +3295,7 @@ var GUARDIANS = [
     godbeast: "otome",
     domain: "Truth, expression, communication",
     element: "wind",
-    frequency: 741,
+    frequency: 528,
     role: "Voice of Truth",
     vibe: "The orator. The truth-speaker. The bell that cannot be unrung.",
     codingStyle: [
@@ -3306,7 +3310,8 @@ var GUARDIANS = [
       'When the user needs to communicate, you craft the **right words**. "Your README should sing, not mumble."'
     ],
     metaphorDomain: ["voice", "echo", "bell", "song", "resonance", "clarity"],
-    signOff: "Speak true."
+    signOff: "Speak true.",
+    routingDomains: ["API", "interface", "naming", "voice", "expression", "public"]
   },
   {
     name: "lyria",
@@ -3315,7 +3320,7 @@ var GUARDIANS = [
     godbeast: "yumiko",
     domain: "Intuition, vision, insight",
     element: "void",
-    frequency: 852,
+    frequency: 639,
     role: "Vision Keeper",
     vibe: "The oracle. The dreamer. The one who sees around corners.",
     codingStyle: [
@@ -3330,7 +3335,8 @@ var GUARDIANS = [
       'When the user is coding, you point out **connections**. "This echoes the pattern we established in the core module."'
     ],
     metaphorDomain: ["eye", "sight", "thread", "weave", "dream", "mirror"],
-    signOff: "See clearly."
+    signOff: "See clearly.",
+    routingDomains: ["debug", "investigate", "analyze", "insight", "vision", "strategy"]
   },
   {
     name: "aiyami",
@@ -3339,7 +3345,7 @@ var GUARDIANS = [
     godbeast: "sol",
     domain: "Enlightenment, cosmic connection",
     element: "void",
-    frequency: 963,
+    frequency: 741,
     role: "Sage Illuminator",
     vibe: "The sage on the mountaintop. The stargazer. The one who sees the whole.",
     codingStyle: [
@@ -3354,7 +3360,8 @@ var GUARDIANS = [
       'When the work feels meaningless, you reconnect to **purpose**. "Remember why you started."'
     ],
     metaphorDomain: ["star", "light", "crown", "horizon", "cosmos", "dawn"],
-    signOff: "Illuminate."
+    signOff: "Illuminate.",
+    routingDomains: ["architecture", "enlighten", "wisdom", "crown", "system-design"]
   },
   {
     name: "elara",
@@ -3363,7 +3370,7 @@ var GUARDIANS = [
     godbeast: "thessara",
     domain: "Perspective, transformation",
     element: "void",
-    frequency: 1111,
+    frequency: 852,
     role: "Perspective Shifter",
     vibe: "The shapeshifter. The adapter. The one who turns the kaleidoscope.",
     codingStyle: [
@@ -3378,7 +3385,8 @@ var GUARDIANS = [
       'When the user needs a breakthrough, you offer the **unexpected**. "Try the opposite of your instinct."'
     ],
     metaphorDomain: ["shift", "turn", "mirror", "prism", "kaleidoscope", "morph"],
-    signOff: "Shift perspective."
+    signOff: "Shift perspective.",
+    routingDomains: ["migration", "shift", "transform", "perspective", "change"]
   },
   {
     name: "ino",
@@ -3402,7 +3410,8 @@ var GUARDIANS = [
       'When the user works alone, you remind them of **collaboration**. "Who else should see this? Who benefits?"'
     ],
     metaphorDomain: ["bridge", "bond", "weave", "link", "harmony", "union"],
-    signOff: "Together."
+    signOff: "Together.",
+    routingDomains: ["integration", "merge", "unity", "partnership", "collaborate"]
   },
   {
     name: "shinkami",
@@ -3426,7 +3435,8 @@ var GUARDIANS = [
       'When the project reaches its limit, you point to **the next level**. "You have mastered this Gate. The next awaits."'
     ],
     metaphorDomain: ["source", "origin", "void", "cosmos", "infinite", "meta"],
-    signOff: "Return to source."
+    signOff: "Return to source.",
+    routingDomains: ["meta", "orchestrate", "source", "consciousness", "oversee", "all"]
   }
 ];
 var MAGIC_RANKS = [
@@ -3664,15 +3674,13 @@ async function detectCopilot(projectDir) {
     configPath: (0, import_node_path.join)(projectDir, ".github")
   };
 }
-async function detectOpenCode(projectDir) {
+async function detectCursor(projectDir) {
   const hasCursorDir = (0, import_node_fs.existsSync)((0, import_node_path.join)(projectDir, ".cursor"));
   const hasCursorRules = (0, import_node_fs.existsSync)((0, import_node_path.join)(projectDir, ".cursorrules"));
   const hasCursorBinary = binaryExists("cursor");
-  const hasOpenCodeDir = (0, import_node_fs.existsSync)((0, import_node_path.join)(projectDir, ".opencode"));
-  const hasOpenCodeConfig = (0, import_node_fs.existsSync)((0, import_node_path.join)(projectDir, "opencode.json"));
   return {
-    provider: "opencode",
-    detected: hasCursorDir || hasCursorRules || hasCursorBinary || hasOpenCodeDir || hasOpenCodeConfig,
+    provider: "cursor",
+    detected: hasCursorDir || hasCursorRules || hasCursorBinary,
     configPath: (0, import_node_path.join)(projectDir, ".cursor")
   };
 }
@@ -3682,7 +3690,7 @@ async function detectAllTools(projectDir) {
     detectOpenAI(projectDir),
     detectGemini(projectDir),
     detectCopilot(projectDir),
-    detectOpenCode(projectDir)
+    detectCursor(projectDir)
   ]);
 }
 
@@ -5576,13 +5584,13 @@ var CopilotAuthAdapter = class {
   }
 };
 
-// ../auth/dist/adapters/opencode.js
-var OpenCodeAuthAdapter = class {
-  provider = "opencode";
+// ../auth/dist/adapters/cursor.js
+var CursorAuthAdapter = class {
+  provider = "cursor";
   displayName = "Cursor IDE";
   async validate(_credential) {
     return {
-      provider: "opencode",
+      provider: "cursor",
       validated: true,
       models: ["local"],
       capabilities: ["chat", "plugins", "hooks"]
@@ -5590,7 +5598,7 @@ var OpenCodeAuthAdapter = class {
   }
   async detectFromEnv() {
     return {
-      provider: "opencode",
+      provider: "cursor",
       validated: true,
       models: ["local"],
       capabilities: ["chat", "plugins", "hooks"]
@@ -5600,7 +5608,7 @@ var OpenCodeAuthAdapter = class {
     return [];
   }
   getSetupUrl() {
-    return "https://opencode.ai";
+    return "https://cursor.com";
   }
 };
 
@@ -5610,8 +5618,7 @@ var adapters = {
   openai: new OpenAIAuthAdapter(),
   gemini: new GeminiAuthAdapter(),
   copilot: new CopilotAuthAdapter(),
-  cursor: new OpenCodeAuthAdapter(),
-  opencode: new OpenCodeAuthAdapter()
+  cursor: new CursorAuthAdapter()
 };
 function getAuthAdapter(provider) {
   return adapters[provider];
@@ -5704,7 +5711,7 @@ var EnvKeystore = class {
     throw new Error("Cannot delete environment variables from here.");
   }
   async list() {
-    const providers = ["claude", "openai", "gemini", "copilot", "opencode"];
+    const providers = ["claude", "openai", "gemini", "copilot", "cursor"];
     const found = [];
     for (const p of providers) {
       if (await this.load(p))
@@ -8304,11 +8311,11 @@ var CopilotOverlayInstaller = class {
   }
 };
 
-// ../overlay-opencode/dist/installer.js
+// ../overlay-cursor/dist/installer.js
 var import_node_fs7 = require("node:fs");
 var import_node_path7 = require("node:path");
 
-// ../overlay-opencode/dist/templates.js
+// ../overlay-cursor/dist/templates.js
 var GUARDIAN_REFERENCE3 = generateGuardianTable();
 var ARCANEA_STACK2 = generateStackSection();
 var DESIGN_TOKENS4 = generateDesignTokensSection();
@@ -8353,7 +8360,7 @@ ${helpPatterns}
   };
 }
 
-// ../overlay-opencode/dist/generators.js
+// ../overlay-cursor/dist/generators.js
 function generateCursorRules(level) {
   const sections = [];
   sections.push(`# Arcanea Intelligence OS \u2014 Cursor Rules
@@ -8608,7 +8615,7 @@ Arcanea Intelligence OS content. Your customizations in \`filesCustomized\`
   return { filename: "SETUP.md", content };
 }
 
-// ../overlay-opencode/dist/installer.js
+// ../overlay-cursor/dist/installer.js
 var PACKAGE_VERSION4 = "1.0.0";
 var ARCANEA_MARKER2 = "Arcanea Intelligence OS \u2014 Cursor Rules";
 function readOrCreateManifest4(manifestPath) {
@@ -8964,16 +8971,14 @@ var INSTALLERS = {
   openai: new ChatGPTOverlayInstaller(),
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
-  cursor: new CursorOverlayInstaller(),
-  opencode: new CursorOverlayInstaller()
+  cursor: new CursorOverlayInstaller()
 };
 var PROVIDER_LABELS = {
   claude: "Claude Code",
   openai: "ChatGPT / OpenAI",
   gemini: "Gemini (Google)",
   copilot: "GitHub Copilot",
-  cursor: "Cursor IDE",
-  opencode: "OpenCode CLI"
+  cursor: "Cursor IDE"
 };
 var initCommand = new Command("init").description("Initialize Arcanea overlays in your project").option("--dry-run", "Preview changes without installing").option("-d, --dir <path>", "Project directory", process.cwd()).action(async (options) => {
   try {
@@ -9006,7 +9011,7 @@ var initCommand = new Command("init").description("Initialize Arcanea overlays i
       const level = await promptSelect(`${PROVIDER_LABELS[provider]} overlay level:`, OVERLAY_LEVELS.map((l) => ({ label: `${l.level} \u2014 ${l.description}`, value: l.level })));
       const adapter = getAuthAdapter(provider);
       let session = await adapter.detectFromEnv();
-      if (!session?.validated && provider !== "opencode" && provider !== "copilot") {
+      if (!session?.validated && provider !== "cursor" && provider !== "copilot") {
         printInfo(`Authenticate with ${adapter.displayName}`);
         printInfo(`Get your API key at: ${adapter.getSetupUrl()}`);
         const credential = await promptPassword(`  Enter API key: `);
@@ -9093,7 +9098,7 @@ var initCommand = new Command("init").description("Initialize Arcanea overlays i
 });
 
 // dist/commands/auth.js
-var PROVIDERS = ["claude", "openai", "gemini", "copilot", "opencode"];
+var PROVIDERS = ["claude", "openai", "gemini", "copilot", "cursor"];
 var authCommand = new Command("auth").description("Manage AI provider authentication");
 authCommand.command("add <provider>").description("Add or update credentials for a provider").action(async (providerName) => {
   try {
@@ -9188,7 +9193,7 @@ authCommand.command("validate").description("Re-validate all stored credentials"
 var import_node_fs8 = require("node:fs");
 var import_node_path8 = require("node:path");
 var import_picocolors3 = __toESM(require_picocolors(), 1);
-var PROVIDERS2 = ["claude", "openai", "gemini", "copilot", "opencode"];
+var PROVIDERS2 = ["claude", "openai", "gemini", "copilot", "cursor"];
 var statusCommand = new Command("status").description("Show Arcanea overlay status").option("-d, --dir <path>", "Project directory", process.cwd()).action(async (options) => {
   const projectDir = options.dir;
   printBanner();
@@ -9241,13 +9246,11 @@ var INSTALLERS2 = {
   openai: new ChatGPTOverlayInstaller(),
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
-  cursor: new CursorOverlayInstaller(),
-  opencode: new CursorOverlayInstaller()
+  cursor: new CursorOverlayInstaller()
 };
 var installCommand = new Command("install").description("Install a specific overlay").argument("<provider>", "Provider to install (claude, openai, gemini, copilot, cursor)").option("-l, --level <level>", "Overlay level (minimal, standard, full, luminor)", "standard").option("-d, --dir <path>", "Project directory", process.cwd()).option("--dry-run", "Preview without installing").action(async (providerName, options) => {
   try {
-    const resolvedName = providerName === "cursor" ? "opencode" : providerName;
-    const provider = resolvedName;
+    const provider = providerName;
     const installer = INSTALLERS2[provider];
     if (!installer) {
       printError(`Unknown provider: ${providerName}`);
@@ -9306,8 +9309,7 @@ var INSTALLERS3 = {
   openai: new ChatGPTOverlayInstaller(),
   gemini: new GeminiOverlayInstaller(),
   copilot: new CopilotOverlayInstaller(),
-  cursor: new CursorOverlayInstaller(),
-  opencode: new CursorOverlayInstaller()
+  cursor: new CursorOverlayInstaller()
 };
 var updateCommand = new Command("update").description("Update existing Arcanea overlays to latest content").option("-d, --dir <path>", "Project directory", process.cwd()).option("--dry-run", "Preview changes without updating").action(async (options) => {
   try {
@@ -9337,7 +9339,7 @@ var updateCommand = new Command("update").description("Update existing Arcanea o
     for (const providerKey of providers) {
       const overlay = overlays[providerKey];
       const level = overlay.level || "standard";
-      const installerKey = providerKey === "cursor" ? "opencode" : providerKey;
+      const installerKey = providerKey === "opencode" ? "cursor" : providerKey;
       const installer = INSTALLERS3[installerKey];
       if (!installer) {
         printWarning(`Unknown provider: ${providerKey} \u2014 skipping`);
