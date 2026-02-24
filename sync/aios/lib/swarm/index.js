@@ -3,7 +3,7 @@
  *
  * Multi-agent orchestration for complex tasks.
  */
-import { GUARDIANS } from '@arcanea/os';
+import { GUARDIANS } from '@arcanea/core';
 // Default swarm configuration
 export const DEFAULT_SWARM_CONFIG = {
     protocol: 'adaptive',

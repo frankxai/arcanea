@@ -3,7 +3,7 @@
  *
  * Multi-agent orchestration for complex tasks.
  */
-import type { SwarmConfig, SwarmTask, SwarmSession, Agent, GuardianName } from '@arcanea/os';
+import type { SwarmConfig, SwarmTask, SwarmSession, Agent, GuardianName } from '@arcanea/core';
 export declare const DEFAULT_SWARM_CONFIG: SwarmConfig;
 export declare const SISYPHUS: Agent;
 export declare class SwarmManager {

@@ -14,7 +14,7 @@
  *   aios lore <search>          # Search canonical lore
  *   aios status                 # Show current status
  */
-import { GUARDIANS, GATES, ACADEMIES, } from '@arcanea/os';
+import { GUARDIANS, GATES, ACADEMIES, } from '@arcanea/core';
 import { loadGuardians, loadAwakened, getGuardian, getAwakened } from './agents/loader.js';
 // ASCII Art Banner
 const BANNER = `

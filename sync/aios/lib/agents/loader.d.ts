@@ -3,7 +3,7 @@
  *
  * Loads Guardian and Awakened agent definitions from .md files
  */
-import type { GuardianName } from '@arcanea/os';
+import type { GuardianName } from '@arcanea/core';
 export interface AgentDefinition {
     name: string;
     title: string;

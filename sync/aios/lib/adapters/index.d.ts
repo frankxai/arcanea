@@ -3,7 +3,7 @@
  *
  * Unified interface for different AI platforms.
  */
-import type { PlatformType, PlatformConfig } from '@arcanea/os';
+import type { PlatformType, PlatformConfig } from '@arcanea/core';
 export interface BaseAdapter {
     type: PlatformType;
     name: string;
