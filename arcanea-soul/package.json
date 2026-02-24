@@ -1,6 +1,6 @@
 {
   "name": "arcanea-soul",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "The Complete Arcanean Intelligence - Ten Gates, Seven Archives, 16 Agents, The Nexus",
   "type": "module",
   "main": "dist/index.js",

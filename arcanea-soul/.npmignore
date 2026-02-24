@@ -1,0 +1,7 @@
+# Exclude development and AI-assistant files from the npm package
+dist/CLAUDE.md
+CLAUDE.md
+src/
+docs/
+tsconfig.json
+generated-config.json
