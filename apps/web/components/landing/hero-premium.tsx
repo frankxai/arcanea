@@ -228,10 +228,7 @@ function RotatingPhrase() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -30, opacity: 0 }}
-          transition={{
-            enter: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-            exit:  { duration: 0.4, ease: [0.64, 0, 0.78, 0] },
-          }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className={phrase.gradientClass}>{phrase.prefix}</span>
           <span className="text-text-primary"> {phrase.suffix}</span>
@@ -248,7 +245,7 @@ function LivingWatermark() {
   return (
     <motion.div
       className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
-      aria-hidden="true"
+      aria-hidden={true}
     >
       <motion.span
         className="text-[20vw] font-display font-bold uppercase tracking-[0.3em] text-white/[0.018]"
@@ -508,7 +505,7 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          aria-hidden="true"
+          aria-hidden={true}
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -538,7 +535,7 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
           x: mouseX,
           y: mouseY,
         }}
-        aria-hidden="true"
+        aria-hidden={true}
       />
     </section>
   );
