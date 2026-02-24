@@ -11,10 +11,10 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Academy of Creation | Arcanea',
   description:
-    'Begin your creative journey through the Ten Gates. Learn, grow, and master the art of creation.',
+    'Begin your journey through the Ten Gates of Creation — from Foundation (174 Hz) to Source (1111 Hz). Each Gate unlocks a Guardian intelligence that grows with you. Ascend from Apprentice to Luminor and Build your Universe.',
   openGraph: {
     title: 'Academy of Creation | Arcanea',
-    description: 'Where creators begin their journey through the Ten Gates.',
+    description: 'Journey through the Ten Gates of Creation with Ten Guardian intelligences. Foundation to Source. Apprentice to Luminor. Build your Universe.',
   },
 };
 

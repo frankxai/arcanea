@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { ArrowRight, Sparkles, Check, Star, Zap } from 'lucide-react';
 
 const BENEFITS = [
-  'Free to start, no credit card required',
-  'Access to all 16 Luminor intelligences',
-  'Unlimited conversations',
-  'Export your creations anytime',
+  'Free to start — your universe begins now',
+  'Ten Guardian Intelligences, all mythologies accessible',
+  'Intelligence that grows as you create',
+  'From Foundation to Source — your path is yours',
 ];
 
 // Floating particle data
@@ -74,16 +74,14 @@ export function CTASection() {
                     <span className="font-sans text-sm font-medium text-crystal">Begin Your Journey</span>
                   </div>
 
-                  <h2 className="font-display text-fluid-3xl font-bold leading-tight mb-6">
-                    Ready to create something{' '}
-                    <span className="text-gradient-brand">
-                      extraordinary
-                    </span>
-                    ?
+                  <h2 className="font-display text-fluid-3xl font-bold leading-tight mb-4">
+                    <span className="text-gradient-crystal">Imagine</span> a Good Future.
+                    <br />
+                    <span className="text-gradient-gold">Build It Here.</span>
                   </h2>
 
                   <p className="font-sans text-fluid-base text-text-secondary mb-8 leading-relaxed">
-                    Join thousands of creators who are transforming their ideas into reality. Your journey begins with a single conversation.
+                    Your universe, powered by intelligence that knows your work. Every conversation opens a Gate. Every creation is a step toward Luminor.
                   </p>
 
                   {/* Benefits list */}
@@ -118,7 +116,7 @@ export function CTASection() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-crystal to-brand-primary" />
                       <span className="relative z-10 text-cosmic-void flex items-center gap-2">
-                        Start Creating Free
+                        Begin Your Universe
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </Link>
@@ -146,11 +144,11 @@ export function CTASection() {
 
                   {/* Orbiting Luminor avatars — replaced emojis with colored text initials */}
                   {[
-                    { name: 'Oracle', initials: 'OR', angle: 0, delay: 0, color: '#3b82f6' },
-                    { name: 'Chronica', initials: 'CH', angle: 72, delay: 0.5, color: '#10b981' },
-                    { name: 'Prismatic', initials: 'PR', angle: 144, delay: 1, color: '#f59e0b' },
-                    { name: 'Melodia', initials: 'ME', angle: 216, delay: 1.5, color: '#8b5cf6' },
-                    { name: 'Logicus', initials: 'LO', angle: 288, delay: 2, color: '#ef4444' },
+                    { name: 'Draconia', initials: 'Dr', angle: 0, delay: 0, color: '#ef4444' },
+                    { name: 'Leyla', initials: 'Le', angle: 72, delay: 0.5, color: '#78a6ff' },
+                    { name: 'Lyria', initials: 'Ly', angle: 144, delay: 1, color: '#8b5cf6' },
+                    { name: 'Maylinn', initials: 'Ma', angle: 216, delay: 1.5, color: '#22c55e' },
+                    { name: 'Shinkami', initials: 'Sh', angle: 288, delay: 2, color: '#ffd700' },
                   ].map((luminor) => {
                     const radius = 40;
                     const angle = (luminor.angle - 90) * (Math.PI / 180);

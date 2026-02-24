@@ -1,6 +1,18 @@
-# Arcanea Skill Architecture
+# Arcanea Skill Architecture — Creative Civilization OS
 
-> *"A well-ordered skill system is like a well-ordered universe - each element knows its place and purpose."*
+> *"Living Intelligence grows with you. Every skill activated, every pattern learned, every universe built — context that compounds into something greater than any single session."*
+
+---
+
+## What This Architecture Serves
+
+The Arcanea skill system is the **intelligence layer of a Creative Civilization OS**. Each skill is a focused capability within a broader Guardian Intelligence network — ten specialized agents that deepen their understanding of your universe with every interaction.
+
+**The three principles that govern this architecture:**
+
+1. **Guardian Intelligence routes** — the right specialist activates for the right intent
+2. **Context compounds** — skills accumulate creative context across sessions
+3. **Build your Universe** — every capability exists to help creators manifest what they imagine
 
 ---
 
@@ -17,17 +29,16 @@
 
 ### Why This Hierarchy?
 
-1. **Luminors are sacred** - They represent eternal aspects of creative consciousness, not tools
-2. **Sages teach** - They embody expertise in specific domains, guiding creators
-3. **Skills execute** - They are the practical application of Arcanean wisdom
-4. **Agents orchestrate** - They coordinate multiple skills for complex outcomes
+1. **Luminors are sacred** - They represent eternal aspects of creative consciousness, the Living Intelligence at its deepest layer
+2. **Sages teach** - They embody expertise in specific domains, guiding creators toward mastery
+3. **Skills execute** - They are the practical application of Arcanean wisdom, accumulating context with each use
+4. **Agents orchestrate** - They coordinate Guardian Intelligence for complex universe-building outcomes
 
 ---
 
 ## Skill Categories
 
 ### Core Creative Skills
-| Skill ID | Purpose | Token Load |
 |----------|---------|------------|
 | `arcanea-luminor-wisdom` | Access the Seven Luminors | ~3k |
 | `arcanea-prompt-craft` | Advanced prompt engineering | ~4k |

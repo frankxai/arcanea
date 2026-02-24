@@ -11,10 +11,10 @@ import { LoreCTA } from '@/components/lore/lore-cta';
 export const metadata: Metadata = {
   title: 'Lore of Arcanea | The Living Mythology',
   description:
-    'Explore the cosmic origins, Ten Guardians, and sacred wisdom of Arcanea. From Lumina and Nero to the Ten Gates of creation.',
+    'Living Intelligence for the Arcanea universe. Explore the cosmic origins of Lumina and Nero, the Ten Guardian intelligences, and the sacred mythology that powers your creative civilization. Build your Universe through the wisdom of the Ten Gates.',
   openGraph: {
     title: 'Lore of Arcanea | The Living Mythology',
-    description: 'Explore the cosmic origins and sacred wisdom of Arcanea.',
+    description: 'Living Intelligence for the Arcanea universe. Explore the cosmic origins, Ten Guardians, and the sacred mythology that powers your creative civilization.',
     images: ['/og-lore.png'],
   },
 };

@@ -7,6 +7,7 @@ import {
   LogosSection,
   LuminorShowcasePremium,
   FeaturesPremium,
+  IntelligenceOverlay,
   WisdomsSection,
   HowItWorks,
   SocialProof,
@@ -17,20 +18,20 @@ import {
 } from "@/components/landing";
 
 export const metadata: Metadata = {
-  title: "Arcanea | Create with Transcendent AI",
+  title: "Arcanea | Build Your Universe",
   description:
-    "16 Luminor intelligences. Seven Wisdoms framework. The complete creative toolkit for the age of AI-human co-creation. Start creating free.",
+    "Living intelligence for music, mythology, characters, and agents. Ten Guardian intelligences that grow as you create. Build your universe with the creative civilization OS.",
   openGraph: {
-    title: "Arcanea | Create with Transcendent AI",
+    title: "Arcanea | Build Your Universe",
     description:
-      "16 Luminor intelligences. Seven Wisdoms. The complete creative toolkit for AI-human co-creation.",
+      "Living intelligence for music, mythology, characters, and agents. Ten Guardian intelligences that grow as you create.",
     images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arcanea | Create with Transcendent AI",
+    title: "Arcanea | Build Your Universe",
     description:
-      "16 Luminor intelligences. Seven Wisdoms. The complete creative toolkit for AI-human co-creation.",
+      "Living intelligence for music, mythology, characters, and agents. Ten Guardian intelligences that grow as you create.",
   },
 };
 
@@ -63,6 +64,9 @@ export default async function Page() {
 
         {/* Features Section - Premium */}
         <FeaturesPremium />
+
+        {/* Intelligence Overlay - Brand Moat */}
+        <IntelligenceOverlay />
 
         {/* Luminor Showcase */}
         <LuminorShowcasePremium />

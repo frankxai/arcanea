@@ -16,3 +16,4 @@ export { PricingSection } from "./pricing-section";
 export { PricingPremium } from "./pricing-premium";
 export { TestimonialsV2 } from "./testimonials-v2";
 export { FAQSection } from "./faq-section";
+export { IntelligenceOverlay } from "./intelligence-overlay";
