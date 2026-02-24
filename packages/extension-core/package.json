@@ -23,7 +23,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@arcanea/os": "workspace:*"
+    "@arcanea/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

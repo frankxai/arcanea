@@ -1,0 +1,51 @@
+{
+  "name": "@arcanea/skill-registry",
+  "version": "0.1.0",
+  "description": "Dynamic skill discovery and activation with capability matching, versioning, and Guardian-aware routing",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/skill-registry.test.mjs"
+  },
+  "keywords": [
+    "arcanea",
+    "skill",
+    "registry",
+    "discovery",
+    "capability",
+    "agent"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/skill-registry"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "typescript": "^5.5.0"
+  }
+}
