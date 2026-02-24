@@ -310,6 +310,15 @@ importers:
         specifier: ^5.5.4
         version: 5.9.2
 
+  packages/agent-bus:
+    devDependencies:
+      '@types/node':
+        specifier: ^25.3.0
+        version: 25.3.0
+      typescript:
+        specifier: ^5.5.0
+        version: 5.9.3
+
   packages/aios:
     dependencies:
       '@arcanea/os':
@@ -493,6 +502,15 @@ importers:
         specifier: ^5.5.4
         version: 5.9.3
 
+  packages/flow-engine:
+    devDependencies:
+      '@types/node':
+        specifier: ^25.3.0
+        version: 25.3.0
+      typescript:
+        specifier: ^5.5.0
+        version: 5.9.3
+
   packages/guardian-evolution:
     dependencies:
       '@arcanea/guardian-memory':
@@ -619,6 +637,15 @@ importers:
         version: 5.9.3
 
   packages/rituals:
+    devDependencies:
+      '@types/node':
+        specifier: ^25.3.0
+        version: 25.3.0
+      typescript:
+        specifier: ^5.5.0
+        version: 5.9.3
+
+  packages/skill-registry:
     devDependencies:
       '@types/node':
         specifier: ^25.3.0

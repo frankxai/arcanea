@@ -1,96 +1,104 @@
-# Task Plan: Arcanea Production Publishing — All 29 Packages to npm
+# Task Plan: Wave 4 — Runtime Intelligence
 
 **Status**: IN PROGRESS
 **Date**: 2026-02-24
-**Goal**: Get all 29 @arcanea npm packages published, all GitHub repos synced, and the entire ecosystem production-ready
-**Previous Plan**: Overlay Ecosystem Deep Audit (Waves 1-3 COMPLETE, 580 tests passing)
+**Goal**: Build the Runtime Intelligence layer — agent-to-agent communication, flow orchestration, and skill discovery
+**Previous**: All 27 packages published to npm, CI/CD configured, READMEs created
 
 ---
 
-## Current State
+## Architecture Overview
 
-### Git Sync Status (ALL DONE)
-| Repo | Status |
-|------|--------|
-| `frankxai/arcanea` (monorepo) | Synced |
-| `frankxai/claude-arcanea` | Synced (60 guardian assets pushed) |
-| `frankxai/arcanea-opencode` | Synced on `dev` branch |
-| `frankxai/arcanea-ai-app` | Clean & synced |
+Wave 4 builds three new packages on top of existing infrastructure:
 
-### Package Readiness Audit (29 packages)
-- **19/29 fully configured** for publishing
-- **7 missing `files` field**: hooks, chrome-extension, council, guardian-evolution, guardian-memory, rituals, arcanea-code
-- **8 missing `publishConfig`**: hooks, chrome-extension, prompt-books, council, guardian-evolution, guardian-memory, rituals, swarm-coordinator, arcanea-code
-- **1 missing build script**: prompt-books
-- **2 missing dist/**: library-pipeline (os/), prompt-books
-- **npm auth**: NOT logged in on this machine
+```
+┌─────────────────────────────────────────────────────┐
+│              WAVE 4: RUNTIME INTELLIGENCE            │
+├─────────────────────────────────────────────────────┤
+│  @arcanea/agent-bus       ← message backbone        │
+│  @arcanea/skill-registry  ← dynamic discovery       │
+│  @arcanea/flow-engine     ← advanced orchestration  │
+├─────────────────────────────────────────────────────┤
+│              EXISTING (extend/integrate)             │
+│  swarm-coordinator  intelligence-bridge  council    │
+│  sona-learner  arcanea-hooks  creative-pipeline     │
+└─────────────────────────────────────────────────────┘
+```
 
-### Monorepo Infrastructure
-- Turborepo for builds (`turbo run build`)
-- Changesets for versioning (`@changesets/cli`)
-- Release script: `turbo run build --filter=!@arcanea/mobile && changeset publish`
-- pnpm workspaces
+### Existing Infrastructure
+- **SwarmCoordinator**: Agent lifecycle, task distribution, basic workflows
+- **IntelligenceBridge**: EventBus, Guardian routing, feedback loop
+- **Council**: Consensus protocols (Raft, Byzantine, Gossip, Gate-Quorum)
+- **SonaLearner**: Trajectory-based RL, pattern extraction
+- **Hooks**: Lifecycle instrumentation with priority execution
+
+### Gaps to Fill
+- ❌ No request-response agent messaging (only event broadcast)
+- ❌ No message correlation or delivery guarantees
+- ❌ No dynamic skill registration or capability discovery
+- ❌ No conditional branching or dynamic tasks in workflows
+- ❌ No workflow state persistence or recovery
 
 ---
 
-## Phase 1: Fix Package Configs [in_progress]
+## Phase 1: @arcanea/agent-bus [in_progress]
 
-Fix all 10 packages missing required npm publishing fields.
+Communication backbone for agent-to-agent messaging.
 
-### Packages needing `publishConfig`:
-```
-@arcanea/hooks, @arcanea/chrome-extension, @arcanea/prompt-books,
-@arcanea/council, @arcanea/guardian-evolution, @arcanea/guardian-memory,
-@arcanea/rituals, @arcanea/swarm-coordinator, arcanea-code
-```
+**Features:**
+- Request-response with correlation IDs
+- Pub-sub with topic filtering
+- Message queuing with delivery guarantees
+- Dead letter queue for failed deliveries
+- Message TTL and expiry
+- Middleware pipeline (intercept, transform, log)
 
-### Packages needing `files` field:
-```
-@arcanea/hooks, @arcanea/chrome-extension, @arcanea/council,
-@arcanea/guardian-evolution, @arcanea/guardian-memory, @arcanea/rituals,
-arcanea-code
-```
-
-### Packages needing build script:
-```
-@arcanea/prompt-books
-```
-
-Standard publishConfig to add:
-```json
-"publishConfig": { "access": "public" }
-```
-
-Standard files to add:
-```json
-"files": ["dist", "README.md"]
-```
+**Build on:** IntelligenceBridge EventBus pattern, SwarmCoordinator agent:message events
 
 ---
 
-## Phase 2: Build Verification [pending]
+## Phase 2: @arcanea/skill-registry [pending]
 
-Run `turbo run build` across all packages and fix any build failures.
+Dynamic skill discovery and activation.
 
----
+**Features:**
+- Runtime skill registration with metadata
+- Semantic capability matching (beyond keyword)
+- Skill versioning and compatibility
+- Health checks and availability tracking
+- Skill composition (chain skills into pipelines)
+- Guardian-affinity aware matching
 
-## Phase 3: npm Auth Setup [pending]
-
-User runs `npm login --scope=@arcanea` interactively, or provides token.
-
----
-
-## Phase 4: Publish All Packages [pending]
-
-Use changesets to publish all packages to npm @arcanea org.
+**Build on:** Agent capabilities in SwarmCoordinator, Guardian domains in IntelligenceBridge
 
 ---
 
-## Phase 5: Verify & Index [pending]
+## Phase 3: @arcanea/flow-engine [pending]
 
-- Verify all packages are live on npmjs.com
-- Update MASTER_INDEX.md with links to all published packages
-- Verify arcanea-ai-app deployment
+Advanced workflow orchestration extending SwarmCoordinator.
+
+**Features:**
+- Conditional branching (if/else/switch)
+- Parallel + sequential execution control
+- Dynamic task generation at runtime
+- Workflow state persistence and recovery
+- Compensation/rollback patterns (saga)
+- Timeout and retry strategies
+- Nested workflow composition
+
+**Build on:** WorkflowEngine in SwarmCoordinator
+
+---
+
+## Phase 4: Integration & Testing [pending]
+
+Wire everything together and test across the ecosystem.
+
+---
+
+## Phase 5: Publish Wave 4 Packages [pending]
+
+Version bump, changeset, publish to npm.
 
 ---
 
@@ -98,12 +106,3 @@ Use changesets to publish all packages to npm @arcanea org.
 | Error | Attempt | Resolution |
 |-------|---------|------------|
 | (none yet) | | |
-
----
-
-## Previous Session Notes (Overlay Audit)
-- Waves 1-3 COMPLETE: 580 tests passing
-- overlay-opencode renamed to overlay-cursor
-- Shared content layer unified across 5 overlays
-- 13 skills system with auto-activation
-- Wave 4 (Runtime Intelligence) still pending
