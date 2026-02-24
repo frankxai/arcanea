@@ -1,109 +1,206 @@
 /**
- * Agentic Flow Statusline for Claude Code
- * Shows model, tokens, cost, swarm status, and memory usage
+ * Arcanea Intelligence OS — Claude Code Statusline
+ *
+ * Line 1 (top):  Arcanea ⟡ {model} │ {guardian} │ {gate} │ {element}
+ * Line 2 (main): ⟡ {repo} │ {branch} │ {mcp} MCPs │ ⚙ {hooks} hooks │ 🧠 {vault} vault │ ↑{in} ↓{out}
  */
 
-import { execSync } from 'child_process';
+import { execSync, spawnSync } from 'child_process';
+import { readFileSync, existsSync } from 'fs';
 
-// Cache for expensive operations
-let lastSwarmCheck = 0;
-let cachedSwarmStatus = null;
-const CACHE_TTL = 5000; // 5 seconds
+// ─── Helpers ────────────────────────────────────────────────────────────────
 
-/**
- * Get swarm status (cached)
- */
-function getSwarmStatus() {
-  const now = Date.now();
-  if (cachedSwarmStatus && (now - lastSwarmCheck) < CACHE_TTL) {
-    return cachedSwarmStatus;
-  }
+function read(path, fallback = '') {
+  try { return readFileSync(path, 'utf-8').trim(); } catch { return fallback; }
+}
 
+function readJson(path, fallback = {}) {
+  try { return JSON.parse(readFileSync(path, 'utf-8')); } catch { return fallback; }
+}
+
+function fmt(n) {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000)     return `${(n / 1_000).toFixed(1)}K`;
+  return String(n);
+}
+
+// ─── Live state ─────────────────────────────────────────────────────────────
+
+function getGuardian() {
+  return read('/tmp/arcanea-guardian', 'Shinkami');
+}
+
+function getGate() {
+  return read('/tmp/arcanea-gate', 'Source');
+}
+
+function getElement() {
+  const el = read('/tmp/arcanea-element', 'Void');
+  // Element → symbol
+  const symbols = { Fire: '✦ Fire', Water: '✦ Water', Earth: '✦ Earth', Wind: '✦ Wind', Void: '✦ Void', Spirit: '✦ Spirit' };
+  return symbols[el] || `✦ ${el}`;
+}
+
+function getModel(ctx) {
+  if (!ctx.model) return 'Sonnet';
+  const m = ctx.model;
+  if (m.includes('opus-4'))   return 'Opus 4';
+  if (m.includes('sonnet-4')) return 'Sonnet 4';
+  if (m.includes('haiku-4'))  return 'Haiku 4';
+  if (m.includes('sonnet'))   return 'Sonnet';
+  if (m.includes('opus'))     return 'Opus';
+  if (m.includes('haiku'))    return 'Haiku';
+  return m.replace('claude-', '').split('-')[0];
+}
+
+// ─── Repo detection ─────────────────────────────────────────────────────────
+
+let _repoCache = null;
+function getRepo() {
+  if (_repoCache) return _repoCache;
   try {
-    const result = execSync('npx agentic-flow@alpha mcp status 2>/dev/null || echo "idle"', {
-      encoding: 'utf-8',
-      timeout: 2000
-    }).trim();
-
-    cachedSwarmStatus = result.includes('running') ? '🐝' : '⚡';
-    lastSwarmCheck = now;
-    return cachedSwarmStatus;
+    const remote = execSync('git remote get-url origin 2>/dev/null', { encoding: 'utf-8', timeout: 1000 }).trim();
+    const match = remote.match(/\/([^/]+?)(?:\.git)?$/);
+    _repoCache = match ? match[1] : 'arcanea';
   } catch {
-    cachedSwarmStatus = '⚡';
-    lastSwarmCheck = now;
-    return cachedSwarmStatus;
+    _repoCache = 'arcanea';
   }
+  return _repoCache;
 }
 
-/**
- * Format token count
- */
-function formatTokens(tokens) {
-  if (tokens >= 1000000) {
-    return `${(tokens / 1000000).toFixed(1)}M`;
-  }
-  if (tokens >= 1000) {
-    return `${(tokens / 1000).toFixed(1)}K`;
-  }
-  return String(tokens);
+function getBranch(ctx) {
+  return ctx.gitBranch || 'main';
 }
 
-/**
- * Format cost
- */
-function formatCost(cost) {
-  if (cost >= 1) {
-    return `$${cost.toFixed(2)}`;
+// ─── MCP count ──────────────────────────────────────────────────────────────
+
+let _mcpCache = null;
+let _mcpAt = 0;
+function getMcpCount() {
+  const now = Date.now();
+  if (_mcpCache !== null && now - _mcpAt < 30_000) return _mcpCache;
+
+  // Count from settings files
+  const paths = [
+    '/home/frankx/.claude/settings.json',
+    '/home/frankx/.claude/mcp.json',
+    `${process.env.HOME || '/home/frankx'}/.claude/settings.json`,
+  ];
+
+  let total = 0;
+  const seen = new Set();
+  for (const p of paths) {
+    try {
+      const d = readJson(p);
+      const servers = d.mcpServers || {};
+      for (const k of Object.keys(servers)) {
+        if (!seen.has(k)) { seen.add(k); total++; }
+      }
+    } catch {}
   }
-  return `$${cost.toFixed(4)}`;
+  // Also check claude.ai MCP tools (deferred tools = connected MCPs)
+  // Conservative: count from what we know is connected
+  _mcpCache = total || '—';
+  _mcpAt = now;
+  return _mcpCache;
 }
 
-/**
- * Main statusline export
- */
-export default function statusline(context) {
-  const parts = [];
+// ─── Hooks count ────────────────────────────────────────────────────────────
 
-  // Agentic Flow indicator
-  parts.push('🤖');
+let _hooksCache = null;
+function getHooksCount() {
+  if (_hooksCache) return _hooksCache;
+  try {
+    const result = spawnSync('ls', ['/mnt/c/Users/frank/Arcanea/.claude/hooks/'], { encoding: 'utf-8', timeout: 500 });
+    _hooksCache = (result.stdout || '').split('\n').filter(Boolean).length;
+  } catch {
+    _hooksCache = 13; // known count
+  }
+  return _hooksCache;
+}
 
-  // Model name (shortened)
-  if (context.model) {
-    const model = context.model
-      .replace('claude-', '')
-      .replace('-20250514', '')
-      .replace('sonnet-4', 'S4')
-      .replace('opus-4', 'O4')
-      .replace('haiku-3.5', 'H3.5');
-    parts.push(model);
+// ─── AgentDB vault ──────────────────────────────────────────────────────────
+
+let _vaultCache = null;
+let _vaultAt = 0;
+function getVaultCount() {
+  const now = Date.now();
+  if (_vaultCache !== null && now - _vaultAt < 60_000) return _vaultCache;
+  try {
+    const result = spawnSync('python3', [
+      '-c',
+      `import sqlite3; db=sqlite3.connect('/home/frankx/.arcanea/agentdb.sqlite3'); c=db.cursor(); c.execute('SELECT COUNT(*) FROM vault_entries'); print(c.fetchone()[0]); db.close()`
+    ], { encoding: 'utf-8', timeout: 1000 });
+    _vaultCache = parseInt(result.stdout.trim(), 10) || 0;
+  } catch {
+    _vaultCache = 0;
+  }
+  _vaultAt = now;
+  return _vaultCache;
+}
+
+// ─── Intelligence level ─────────────────────────────────────────────────────
+
+let _intelCache = null;
+let _intelAt = 0;
+function getIntelligence() {
+  const now = Date.now();
+  if (_intelCache !== null && now - _intelAt < 30_000) return _intelCache;
+  try {
+    const d = readJson('/mnt/c/Users/frank/Arcanea/.claude-flow/.trend-cache.json');
+    _intelCache = d.intelligence || 75;
+  } catch {
+    _intelCache = 75;
+  }
+  _intelAt = now;
+  return _intelCache;
+}
+
+// ─── Cost ───────────────────────────────────────────────────────────────────
+
+function fmtCost(cost) {
+  if (!cost || cost === 0) return null;
+  return cost >= 1 ? `$${cost.toFixed(2)}` : `$${cost.toFixed(4)}`;
+}
+
+// ─── Main ────────────────────────────────────────────────────────────────────
+
+export default function statusline(ctx) {
+  const guardian = getGuardian();
+  const gate     = getGate();
+  const element  = getElement();
+  const model    = getModel(ctx);
+  const repo     = getRepo();
+  const branch   = getBranch(ctx);
+  const mcp      = getMcpCount();
+  const hooks    = getHooksCount();
+  const vault    = getVaultCount();
+  const intel    = getIntelligence();
+
+  // Token row
+  const inTok  = ctx.inputTokens  ? `↑${fmt(ctx.inputTokens)}`  : '';
+  const outTok = ctx.outputTokens ? `↓${fmt(ctx.outputTokens)}` : '';
+  const cost   = fmtCost(ctx.totalCost);
+
+  // ── Line 1: Brand + Oracle state ──────────────────────────────────────────
+  const line1Parts = [
+    `Arcanea ⟡ ${model}`,
+    `${guardian} │ ${gate}`,
+    element,
+  ];
+  if (cost) line1Parts.push(cost);
+
+  // ── Line 2: Dev context + metrics ─────────────────────────────────────────
+  const line2Parts = [
+    `⎇ ${repo}/${branch}`,
+    `⚙ ${mcp} MCP`,
+    `🪝 ${hooks} hooks`,
+    `🧠 ${intel}%`,
+    `🗄 ${vault} vault`,
+  ];
+  if (inTok || outTok) {
+    line2Parts.push([inTok, outTok].filter(Boolean).join(' '));
   }
 
-  // Token usage
-  if (context.inputTokens !== undefined || context.outputTokens !== undefined) {
-    const input = formatTokens(context.inputTokens || 0);
-    const output = formatTokens(context.outputTokens || 0);
-    parts.push(`↑${input} ↓${output}`);
-  }
-
-  // Cost
-  if (context.totalCost !== undefined && context.totalCost > 0) {
-    parts.push(formatCost(context.totalCost));
-  }
-
-  // Swarm/MCP status indicator
-  parts.push(getSwarmStatus());
-
-  // Session time
-  if (context.sessionStartTime) {
-    const elapsed = Math.floor((Date.now() - context.sessionStartTime) / 1000);
-    const mins = Math.floor(elapsed / 60);
-    const secs = elapsed % 60;
-    if (mins > 0) {
-      parts.push(`${mins}m${secs}s`);
-    } else {
-      parts.push(`${secs}s`);
-    }
-  }
-
-  return parts.join(' │ ');
+  return line1Parts.join(' │ ') + '\n' + line2Parts.join('  ');
 }
