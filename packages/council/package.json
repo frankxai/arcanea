@@ -22,12 +22,28 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/council.test.mjs"
   },
-  "keywords": ["arcanea", "council", "consensus", "guardian", "byzantine", "raft", "gossip"],
+  "keywords": [
+    "arcanea",
+    "council",
+    "consensus",
+    "guardian",
+    "byzantine",
+    "raft",
+    "gossip"
+  ],
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@arcanea/guardian-memory": "workspace:*"
   },
   "devDependencies": {
+    "@types/node": "^25.3.0",
     "typescript": "^5.5.0"
   }
 }

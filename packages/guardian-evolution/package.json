@@ -36,6 +36,8 @@
     "reinforcement-learning"
   ],
   "license": "MIT",
+  "files": ["dist", "README.md"],
+  "publishConfig": { "access": "public" },
   "dependencies": {
     "@arcanea/guardian-memory": "workspace:*"
   },

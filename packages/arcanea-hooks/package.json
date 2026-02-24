@@ -12,7 +12,23 @@
   "dependencies": {
     "minimatch": "^9.0.6"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "arcanea",
+    "hooks",
+    "lifecycle",
+    "guardian",
+    "ai"
+  ],
+  "license": "MIT",
   "devDependencies": {
+    "@types/node": "^25.3.0",
     "typescript": "^5.5.0"
   }
 }

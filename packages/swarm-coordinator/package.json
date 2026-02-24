@@ -22,9 +22,25 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/swarm-coordinator.test.mjs"
   },
-  "keywords": ["arcanea", "swarm", "coordinator", "agent", "task", "workflow", "orchestration"],
+  "keywords": [
+    "arcanea",
+    "swarm",
+    "coordinator",
+    "agent",
+    "task",
+    "workflow",
+    "orchestration"
+  ],
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
+    "@types/node": "^25.3.0",
     "typescript": "^5.5.0"
   }
 }

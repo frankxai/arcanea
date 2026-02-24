@@ -46,6 +46,7 @@
     "directory": "packages/creative-pipeline"
   },
   "devDependencies": {
+    "@types/node": "^25.3.0",
     "typescript": "^5.5.0"
   },
   "publishConfig": {
