@@ -33,7 +33,7 @@
   "files": ["dist", "README.md"],
   "publishConfig": { "access": "public" },
   "dependencies": {
-    "@arcanea/os": "workspace:*"
+    "@arcanea/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

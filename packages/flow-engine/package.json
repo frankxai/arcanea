@@ -1,0 +1,51 @@
+{
+  "name": "@arcanea/flow-engine",
+  "version": "0.1.0",
+  "description": "Advanced workflow orchestration with conditional branching, state persistence, saga patterns, and dynamic task generation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/flow-engine.test.mjs"
+  },
+  "keywords": [
+    "arcanea",
+    "flow",
+    "engine",
+    "workflow",
+    "orchestration",
+    "saga"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/flow-engine"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "typescript": "^5.5.0"
+  }
+}
