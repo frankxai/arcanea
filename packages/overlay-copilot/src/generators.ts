@@ -3,7 +3,7 @@
  * Produces .github/copilot-instructions.md and related config files.
  */
 
-import type { OverlayLevel } from '@arcanea/os';
+import type { OverlayLevel } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,

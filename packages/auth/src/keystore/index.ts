@@ -3,7 +3,7 @@
  * Creates the appropriate keystore based on platform capabilities.
  */
 
-import type { Keystore, ProviderType } from '@arcanea/os';
+import type { Keystore, ProviderType } from '@arcanea/core';
 import { EncryptedFileKeystore } from './encrypted-file.js';
 import { EnvKeystore } from './env.js';
 

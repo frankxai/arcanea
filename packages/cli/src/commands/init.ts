@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import pc from 'picocolors';
-import { detectAllTools, type ProviderType, type OverlayLevel, type InstallResult, OVERLAY_LEVELS } from '@arcanea/os';
+import { detectAllTools, type ProviderType, type OverlayLevel, type InstallResult, OVERLAY_LEVELS } from '@arcanea/core';
 import { getAuthAdapter, createKeystore, maskCredential } from '@arcanea/auth';
 import { ClaudeOverlayInstaller } from '@arcanea/overlay-claude';
 import { ChatGPTOverlayInstaller } from '@arcanea/overlay-chatgpt';

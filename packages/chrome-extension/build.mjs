@@ -10,6 +10,7 @@ const sharedConfig = {
   target: 'es2022',
   sourcemap: isWatch ? 'inline' : false,
   minify: !isWatch,
+  external: ['node:fs', 'node:path', 'node:os', 'node:child_process', 'node:crypto'],
   define: {
     'process.env.NODE_ENV': isWatch ? '"development"' : '"production"',
   },

@@ -21,7 +21,7 @@ import {
   generateLoreSectionCondensed,
   generateDesignTokensSection,
   generateStackSection,
-} from '@arcanea/os';
+} from '@arcanea/core';
 
 // ---------------------------------------------------------------------------
 // Voice Bible — re-exported from @arcanea/os

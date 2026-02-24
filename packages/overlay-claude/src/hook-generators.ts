@@ -20,7 +20,7 @@ import {
   TOOL_COST_ESTIMATES,
   GUARDIAN_VERBS,
   GUARDIANS,
-} from '@arcanea/os';
+} from '@arcanea/core';
 
 // ─── Session Start Hook ──────────────────────────────────────────────────────
 

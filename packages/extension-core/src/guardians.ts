@@ -11,7 +11,7 @@
 import {
   GUARDIANS as OS_GUARDIANS,
   type Guardian as OSGuardian,
-} from '@arcanea/os';
+} from '@arcanea/core';
 
 // ============================================
 // GUARDIAN INTERFACE (extension-specific shape)

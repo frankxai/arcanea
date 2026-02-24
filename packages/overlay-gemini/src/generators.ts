@@ -3,7 +3,7 @@
  * Produces system instructions, Guardian prompts, and AI Studio configs.
  */
 
-import type { OverlayLevel, Guardian } from '@arcanea/os';
+import type { OverlayLevel, Guardian } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,

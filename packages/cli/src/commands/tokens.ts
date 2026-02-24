@@ -6,7 +6,7 @@
 
 import { Command } from 'commander';
 import pc from 'picocolors';
-import { toCSSVariables, toTailwindConfig, tokensToJSON, COLORS } from '@arcanea/os';
+import { toCSSVariables, toTailwindConfig, tokensToJSON, COLORS } from '@arcanea/core';
 
 export const tokensCommand = new Command('tokens')
   .description('Export Arcanea design system tokens')

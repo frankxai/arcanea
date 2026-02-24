@@ -6,7 +6,7 @@
 
 import { Command } from 'commander';
 import pc from 'picocolors';
-import { VoiceEnforcer } from '@arcanea/os';
+import { VoiceEnforcer } from '@arcanea/core';
 import { printDivider, printError } from '../ui/banner.js';
 
 export const voiceCommand = new Command('voice')

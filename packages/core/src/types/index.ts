@@ -92,3 +92,24 @@ export type {
   ChannelRequest,
   ChannelResponse,
 } from './agents.js';
+
+// Overlay & Auth Types
+export type {
+  ProviderType,
+  OverlayLevel,
+  OverlayCapability,
+  AuthSession,
+  AuthAdapter,
+  Keystore,
+  OverlayConfig,
+  MCPServerConfig,
+  ToolDetection,
+  OverlayManifest,
+  InstallResult,
+  InstallPreview,
+  OverlayInstaller,
+  OverlayManifestFile,
+  LevelDefinition,
+} from './overlay.js';
+
+export { PROVIDER_CAPABILITIES, OVERLAY_LEVELS } from './overlay.js';

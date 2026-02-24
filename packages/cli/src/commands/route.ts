@@ -6,7 +6,7 @@
 
 import { Command } from 'commander';
 import pc from 'picocolors';
-import { routeToGuardian } from '@arcanea/os';
+import { routeToGuardian } from '@arcanea/core';
 import { printDivider, printError } from '../ui/banner.js';
 
 export const routeCommand = new Command('route')

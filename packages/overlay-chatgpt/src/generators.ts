@@ -3,7 +3,7 @@
  * Produces Custom GPT configs, system prompts, and Guardian GPTs.
  */
 
-import type { OverlayLevel, Guardian } from '@arcanea/os';
+import type { OverlayLevel, Guardian } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,

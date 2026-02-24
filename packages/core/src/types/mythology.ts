@@ -95,6 +95,12 @@ export interface Guardian {
   frequency: GateFrequency;
   description?: string;
   archetype?: string;
+  role?: string;
+  vibe?: string;
+  codingStyle?: string[];
+  helpPatterns?: string[];
+  metaphorDomain?: string[];
+  signOff?: string;
 }
 
 // ============================================

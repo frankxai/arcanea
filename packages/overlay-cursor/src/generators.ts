@@ -3,7 +3,7 @@
  * Produces .cursorrules and .cursor/rules/*.mdc files.
  */
 
-import type { OverlayLevel, Guardian } from '@arcanea/os';
+import type { OverlayLevel, Guardian } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,

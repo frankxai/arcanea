@@ -3,7 +3,7 @@
  * Cursor is local-first — no authentication required.
  */
 
-import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/os';
+import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/core';
 
 export class CursorAuthAdapter implements AuthAdapter {
   provider: ProviderType = 'cursor';

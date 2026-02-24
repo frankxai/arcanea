@@ -2,7 +2,7 @@
  * Content templates for Claude Code overlay files.
  */
 
-import type { Guardian } from '@arcanea/os';
+import type { Guardian } from '@arcanea/core';
 
 /**
  * Rich agent template using full Guardian profile data.

@@ -19,8 +19,8 @@ import type {
   ToolDetection,
   InstallResult,
   InstallPreview,
-} from '@arcanea/os';
-import { generateClaudeMd, OVERLAY_LEVELS, GUARDIANS } from '@arcanea/os';
+} from '@arcanea/core';
+import { generateClaudeMd, OVERLAY_LEVELS, GUARDIANS } from '@arcanea/core';
 import { generateSkillFile, getSkillIdsForLevel, generateAgentFile } from './generators.js';
 import {
   getAllHookFiles,

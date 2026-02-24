@@ -11,7 +11,7 @@
  * - alwaysApply: true means the rule is injected into every AI context
  */
 
-import type { Guardian } from '@arcanea/os';
+import type { Guardian } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,
@@ -19,7 +19,7 @@ import {
   generateLoreSectionCondensed,
   generateDesignTokensSection,
   generateStackSection,
-} from '@arcanea/os';
+} from '@arcanea/core';
 
 // ---------------------------------------------------------------------------
 // Voice Bible — re-exported from @arcanea/os

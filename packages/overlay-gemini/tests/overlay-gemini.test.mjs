@@ -83,7 +83,7 @@ describe('GUARDIAN_REFERENCE (Gemini)', () => {
   });
 
   it('contains frequency values for Foundation and Source gates', () => {
-    assert.ok(GUARDIAN_REFERENCE.includes('174'));
+    assert.ok(GUARDIAN_REFERENCE.includes('396'));
     assert.ok(GUARDIAN_REFERENCE.includes('1111'));
   });
 

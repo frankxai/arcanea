@@ -13,7 +13,7 @@ import type {
   ToolDetection,
   InstallResult,
   InstallPreview,
-} from '@arcanea/os';
+} from '@arcanea/core';
 import {
   generateCopilotInstructionsFile,
   generateCopilotIgnore,

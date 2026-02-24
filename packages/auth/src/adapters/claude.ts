@@ -2,7 +2,7 @@
  * Claude/Anthropic Auth Adapter
  */
 
-import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/os';
+import type { AuthSession, AuthAdapter, ProviderType } from '@arcanea/core';
 import { httpValidate } from '../validate.js';
 
 export class ClaudeAuthAdapter implements AuthAdapter {

@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import type { ProviderType, OverlayLevel } from '@arcanea/os';
+import type { ProviderType, OverlayLevel } from '@arcanea/core';
 import { ClaudeOverlayInstaller } from '@arcanea/overlay-claude';
 import { ChatGPTOverlayInstaller } from '@arcanea/overlay-chatgpt';
 import { GeminiOverlayInstaller } from '@arcanea/overlay-gemini';

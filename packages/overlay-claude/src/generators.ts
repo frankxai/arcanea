@@ -6,12 +6,12 @@
  * are installed at higher overlay levels.
  */
 
-import type { OverlayLevel, Guardian } from '@arcanea/os';
+import type { OverlayLevel, Guardian } from '@arcanea/core';
 import {
   SKILL_DEFINITIONS,
   getSkillsForLevel,
   generateSkillContent,
-} from '@arcanea/os';
+} from '@arcanea/core';
 import { generateAgentContent, COMMAND_TEMPLATE } from './templates.js';
 
 export function generateSkillFile(

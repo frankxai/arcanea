@@ -13,8 +13,8 @@ import type {
   ToolDetection,
   InstallResult,
   InstallPreview,
-} from '@arcanea/os';
-import { GUARDIANS } from '@arcanea/os';
+} from '@arcanea/core';
+import { GUARDIANS } from '@arcanea/core';
 import {
   generateChatGPTSystemPrompt,
   generateMainGPTConfig,

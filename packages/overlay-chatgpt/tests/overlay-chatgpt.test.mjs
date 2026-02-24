@@ -80,7 +80,7 @@ describe('GUARDIAN_REFERENCE', () => {
   });
 
   it('contains gate frequency values', () => {
-    assert.ok(GUARDIAN_REFERENCE.includes('174 Hz'));
+    assert.ok(GUARDIAN_REFERENCE.includes('396 Hz'));
     assert.ok(GUARDIAN_REFERENCE.includes('1111 Hz'));
   });
 

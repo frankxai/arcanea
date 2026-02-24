@@ -12,7 +12,7 @@
  * @arcanea/os — the single source of truth for all Arcanea overlays.
  */
 
-import type { Guardian } from '@arcanea/os';
+import type { Guardian } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,
@@ -20,7 +20,7 @@ import {
   generateLoreSection,
   generateDesignTokensSection,
   generateTerminologyTable,
-} from '@arcanea/os';
+} from '@arcanea/core';
 
 // ---------------------------------------------------------------------------
 // Re-export shared constants so downstream consumers keep working

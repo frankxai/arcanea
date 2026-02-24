@@ -41,7 +41,10 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { GuardianName, GateName, Element } from '@arcanea/os';
+// Type aliases matching @arcanea/core mythology types (avoids circular dependency)
+type GuardianName = 'lyssandria' | 'leyla' | 'draconia' | 'maylinn' | 'alera' | 'lyria' | 'aiyami' | 'elara' | 'ino' | 'shinkami';
+type GateName = 'foundation' | 'flow' | 'fire' | 'heart' | 'voice' | 'sight' | 'crown' | 'shift' | 'unity' | 'source';
+type Element = 'fire' | 'water' | 'earth' | 'wind' | 'void';
 
 // ============================================
 // COLLECTION TYPE — every /book/ subfolder

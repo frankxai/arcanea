@@ -6,7 +6,7 @@
  * ChatGPT-specific functions (generateCustomGPTConfig, generateGuardianGPTProfile) remain local.
  */
 
-import type { Guardian } from '@arcanea/os';
+import type { Guardian } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,
@@ -15,7 +15,7 @@ import {
   generateLoreSection,
   generateDesignTokensSection,
   generateTerminologyTable,
-} from '@arcanea/os';
+} from '@arcanea/core';
 
 // ---------------------------------------------------------------------------
 // Re-export shared constants from @arcanea/os

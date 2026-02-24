@@ -445,7 +445,7 @@ describe('generateGuardianProfile', () => {
     const lyssandria = GUARDIANS.find(g => g.name === 'lyssandria');
     const profile = generateGuardianProfile(lyssandria);
     assert.ok(profile.includes('Coding Philosophy'));
-    assert.ok(profile.includes('solid architecture') || profile.includes('scalable'));
+    assert.ok(profile.includes('structured') || profile.includes('defensive'));
   });
 
   it('should include how you help section', () => {
