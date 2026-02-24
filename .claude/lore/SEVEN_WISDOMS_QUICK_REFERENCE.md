@@ -104,13 +104,13 @@
 
 ## Guardian Gate Connections
 
-**SOPHRON** → Foundation (Lyssandria, 396 Hz), Voice (Alera, 741 Hz)
-**KARDIA** → Heart (Maylinn, 639 Hz), Flow (Leyla, 417 Hz)
-**VALORA** → Fire (Draconia, 528 Hz), Shift (Elara, 852 Hz)
-**EUDAIRA** → Flow (Leyla, 417 Hz), Shift (Elara, 852 Hz)
-**ORAKIS** → Sight (Lyria, 852 Hz), Crown (Aiyami, 963 Hz)
-**POIESIS** → Flow (Leyla, 417 Hz), Voice (Alera, 741 Hz)
-**ENDURAN** → Foundation (Lyssandria, 396 Hz), Unity (Ino, 963 Hz)
+**SOPHRON** → Foundation (Lyssandria, 174 Hz), Voice (Alera, 528 Hz)
+**KARDIA** → Heart (Maylinn, 417 Hz), Flow (Leyla, 285 Hz)
+**VALORA** → Fire (Draconia, 396 Hz), Shift (Elara, 852 Hz)
+**EUDAIRA** → Flow (Leyla, 285 Hz), Shift (Elara, 852 Hz)
+**ORAKIS** → Sight (Lyria, 639 Hz), Crown (Aiyami, 714 Hz)
+**POIESIS** → Flow (Leyla, 285 Hz), Voice (Alera, 528 Hz)
+**ENDURAN** → Foundation (Lyssandria, 174 Hz), Unity (Ino, 963 Hz)
 
 ---
 

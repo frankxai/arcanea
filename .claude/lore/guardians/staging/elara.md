@@ -31,9 +31,9 @@ sections:
   - "wisdom"
   - "invocation"
 
-related_entities: ["vaelith", "valora", "enduran"]
+related_entities: ["thessara", "valora", "enduran"]
 opposing_entities: []
-complementary_entities: ["vaelith"]
+complementary_entities: ["thessara"]
 
 validated_by: ""
 validated_date: ""

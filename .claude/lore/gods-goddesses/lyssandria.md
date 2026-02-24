@@ -22,11 +22,10 @@ subdomains:
   - "survival"
   - "belonging"
   - "physical-security"
-frequency: "396"  # CANONICAL - Foundation Gate
+frequency: "174"
 element: "earth"
 chakra: "root"
 wisdom: "stability"
-awakened: "Oria"  # The Awakened who embodies Sophron through this Gate
 
 # IDENTITY
 gender: "female"
@@ -39,7 +38,7 @@ colors:
   - "earth-red"
 sacred_numbers:
   - "4"  # Corners of foundation, cardinal directions
-  - "396"  # Foundation Gate frequency
+  - "174"
 
 # =============================================================================
 # GODBEAST BOND (CRITICAL)

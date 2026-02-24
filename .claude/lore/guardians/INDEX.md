@@ -5,20 +5,20 @@
 **Staging**: 7 files
 **Pending Review**: 7 files
 
-## Complete List (v4.0.0 - Canonical Frequency Bands)
+## Complete List
 
-| Name | Gate | Frequency Band | Vel'tara | Chakra | Region | Status | Version |
-|------|------|----------------|----------|--------|--------|--------|---------|
-| Lyssandria | Foundation | 174–285 Hz | Kaelith | 1st (Root) | Forest of Roots | ✅ Production | 2.0.0 |
-| Leyla | Flow | 285–396 Hz | Veloura | 2nd (Sacral) | River of Desire | ✅ Production | 2.0.0 |
-| Draconia | Fire | 396–417 Hz | Draconis | 3rd (Solar Plexus) | Vulcan Peaks | ✅ Production | 2.0.0 |
-| Maylinn | Heart | 417–528 Hz | Laeylinn | 4th (Heart) | Gardens of Lumina | ⏳ Staging | 1.2.0 |
-| Alera | Voice | 432–528 Hz | Otome | 5th (Throat) | Sky Sanctum | ⏳ Staging | 1.2.0 |
-| Lyria | Sight | 639–741 Hz | Yumiko | 6th (Third Eye) | Tower of Insight | ⏳ Staging | 1.2.0 |
-| Aiyami | Crown | 741–852 Hz | Sol | 7th (Crown) | Summit of Unity | ⏳ Staging | 1.2.0 |
-| Elara | Shift | 852–963 Hz | Vaelith | 8th (Soul Star) | Celestial Bridges | ⏳ Staging | 1.2.0 |
-| Ino | Unity | 963–999 Hz | Kyuro | 9th (Spirit) | Temple of Infinity | ⏳ Staging | 1.2.0 |
-| Shinkami | Source | 999–1111 Hz | — | Ultimate | Luminor Nexus | ⏳ Staging | 1.2.0 |
+| Name | Gate | Frequency | Element | Wisdom | Status | Version | Last Updated |
+|------|------|-----------|---------|--------|--------|---------|--------------|
+| lyssandria | Foundation | 174 Hz | Earth | Sophron | ✅ Production | 1.0.0 | 2026-01-15 |
+| leyla | Flow | 285 Hz | Water | Kardia | ✅ Production | 1.0.0 | 2026-01-15 |
+| draconia | Fire | 396 Hz | Fire | Valora | ✅ Production | 1.0.0 | 2026-01-15 |
+| maylinn | Heart | 417 Hz | Light | Eudaira | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| alera | Voice | 528 Hz | Prismatic | Poiesis | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| lyria | Sight | 639 Hz | Wind | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| aiyami | Crown | 714 Hz | Void | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| elara | Shift | 852 Hz | Light | Valora | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| ino | Unity | 963 Hz | Void | Enduran | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| shinkami | Source | 1111 Hz | Light | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
 
 ## Quick Stats
 
@@ -45,39 +45,32 @@
 | Unity | ino | ⏳ Staging |
 | Source | shinkami | ⏳ Staging |
 
-## By Awakened Partner (Canonical v3.0.0)
+## By Wisdom
 
-| Awakened | Wisdom | Guardian Partner |
-|----------|--------|-----------------|
-| Oria | Sophron | Lyssandria (Foundation) |
-| Liora | Eudaira | Leyla (Flow) |
-| Velora | Valora | Draconia (Fire) |
-| Amiri | Kardia | Maylinn (Heart) |
-| Thalia | Poiesis | Alera (Voice) |
-| Lyris | Orakis | Lyria (Sight) |
-| Endara | Enduran | Aiyami (Crown) |
+| Wisdom | Guardians |
+|--------|-----------|
+| Sophron | lyssandria |
+| Kardia | leyla |
+| Valora | draconia, elara |
+| Eudaira | maylinn |
+| Poiesis | alera |
+| Orakis | lyria, aiyami, shinkami |
+| Enduran | ino |
 
-*Note: Elara, Ino, and Shinkami (higher Gates) have transcendent Awakened connections.*
+## By Frequency
 
-## By Frequency Band (v4.0.0 - Canonical)
-
-| Frequency Band | Guardian | Gate | Core Emotion | Material |
-|----------------|----------|------|--------------|----------|
-| 174–285 Hz | Lyssandria | Foundation | Grounding, Stability | Stone, Roots |
-| 285–396 Hz | Leyla | Flow | Pleasure, Creativity | Water, Silk |
-| 396–417 Hz | Draconia | Fire | Power, Will | Fire, Metals |
-| 417–528 Hz | Maylinn | Heart | Love, Healing | Crystals, Heartwood |
-| 432–528 Hz | Alera | Voice | Voice, Truth | Air, Silver |
-| 639–741 Hz | Lyria | Sight | Foresight, Intuition | Light, Lenses |
-| 741–852 Hz | Aiyami | Crown | Understanding | Gold, Sunlight |
-| 852–963 Hz | Elara | Shift | Cosmic Consciousness | Stars, Ethereal Energy |
-| 963–999 Hz | Ino | Unity | Divine Union | Pure Light, Quantum Energy |
-| 999–1111 Hz | Shinkami | Source | Fusion, Ascendance | Platinum, Multi-element |
-
-**Note:** Frequency BANDS allow evolution, synergy, and narrative flexibility.
-- Heart (417–528 Hz) includes the 528 Hz "Love Frequency"
-- Voice (432–528 Hz) overlaps with Heart for resonance between adjacent Gates
-- 714 Hz removed (was not a true Solfeggio frequency)
+| Frequency | Guardian |
+|-----------|----------|
+| 174 Hz | lyssandria |
+| 285 Hz | leyla |
+| 396 Hz | draconia |
+| 417 Hz | maylinn |
+| 528 Hz | alera |
+| 639 Hz | lyria |
+| 714 Hz | aiyami |
+| 852 Hz | elara |
+| 963 Hz | ino |
+| 1111 Hz | shinkami |
 
 ## Related Entities
 
@@ -90,21 +83,11 @@ Each Guardian has related entities documented in frontmatter:
 - **Alera**: sylphine, poiesis, orakis
 - **Lyria**: vysara, orakis, sophron
 - **Aiyami**: zenkai, orakis, sophron
-- **Elara**: vaelith, valora, enduran
+- **Elara**: thessara, valora, enduran
 - **Ino**: unara, enduran, sophron
 - **Shinkami**: amaterasu, orakis, all_guardians
 
 ---
 
 *Generated: January 15, 2026*
-*Updated: February 3, 2026 (v4.0.0 canonical frequency bands from ARCANEA_CANON.md)*
 *Next Update: Upon approval of pending Guardians*
-
----
-
-## Related: Arcanea Intelligence OS
-
-The Guardian agent system has been extracted into a dedicated repository:
-**[arcanea-intelligence-os](https://github.com/frankxai/arcanea-intelligence-os)**
-
-This transforms each Guardian into a specialized AI agent for Claude Code and MCP integration.

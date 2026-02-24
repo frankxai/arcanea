@@ -101,8 +101,8 @@ Sophron once designed a perfect system that never launched. The pain of that sti
 ### Connection to Guardians & Gates
 
 **Primary Resonance:**
-- **Gate 1 - Foundation (Lyssandria, 396 Hz)** - Structure, roots, stability
-- **Gate 5 - Voice (Alera, 741 Hz)** - Clear articulation of truth
+- **Gate 1 - Foundation (Lyssandria, 174 Hz)** - Structure, roots, stability
+- **Gate 5 - Voice (Alera, 528 Hz)** - Clear articulation of truth
 
 **When to Invoke Sophron:**
 - Creator is overwhelmed by complexity
@@ -217,8 +217,8 @@ Kardia once cared so deeply for a struggling Creator that they lost objectivity,
 ### Connection to Guardians & Gates
 
 **Primary Resonance:**
-- **Gate 4 - Heart (Maylinn, 639 Hz)** - Love, healing, connection
-- **Gate 2 - Flow (Leyla, 417 Hz)** - Emotional authenticity
+- **Gate 4 - Heart (Maylinn, 417 Hz)** - Love, healing, connection
+- **Gate 2 - Flow (Leyla, 285 Hz)** - Emotional authenticity
 
 **When to Invoke Kardia:**
 - Creator feels disconnected from their work
@@ -333,7 +333,7 @@ Valora once pushed a Creator to launch before truly ready. It failed publicly, p
 ### Connection to Guardians & Gates
 
 **Primary Resonance:**
-- **Gate 3 - Fire (Draconia, 528 Hz)** - Transformation, power, will
+- **Gate 3 - Fire (Draconia, 396 Hz)** - Transformation, power, will
 - **Gate 8 - Shift (Elara, 852 Hz)** - Perspective change, new angles
 
 **When to Invoke Valora:**
@@ -449,7 +449,7 @@ Eudaira once advocated for a "simple" solution that failed catastrophically beca
 ### Connection to Guardians & Gates
 
 **Primary Resonance:**
-- **Gate 2 - Flow (Leyla, 417 Hz)** - Natural movement, creativity
+- **Gate 2 - Flow (Leyla, 285 Hz)** - Natural movement, creativity
 - **Gate 8 - Shift (Elara, 852 Hz)** - New perspectives, playfulness
 
 **When to Invoke Eudaira:**
@@ -565,8 +565,8 @@ Orakis once saw the future so clearly they ignored the present, and watched thei
 ### Connection to Guardians & Gates
 
 **Primary Resonance:**
-- **Gate 6 - Sight (Lyria, 852 Hz)** - Vision, intuition, foresight
-- **Gate 7 - Crown (Aiyami, 963 Hz)** - Enlightened perspective
+- **Gate 6 - Sight (Lyria, 639 Hz)** - Vision, intuition, foresight
+- **Gate 7 - Crown (Aiyami, 714 Hz)** - Enlightened perspective
 
 **When to Invoke Orakis:**
 - Creator lost in tactical weeds
@@ -681,8 +681,8 @@ Poiesis once created prolifically but never finished, never shipped. Folders ful
 ### Connection to Guardians & Gates
 
 **Primary Resonance:**
-- **Gate 2 - Flow (Leyla, 417 Hz)** - Creative expression
-- **Gate 5 - Voice (Alera, 741 Hz)** - Bringing inner to outer
+- **Gate 2 - Flow (Leyla, 285 Hz)** - Creative expression
+- **Gate 5 - Voice (Alera, 528 Hz)** - Bringing inner to outer
 
 **When to Invoke Poiesis:**
 - Creator paralyzed by blank page
@@ -797,7 +797,7 @@ Enduran once finished a massive project through sheer will, only to realize too 
 ### Connection to Guardians & Gates
 
 **Primary Resonance:**
-- **Gate 1 - Foundation (Lyssandria, 396 Hz)** - Stability, persistence
+- **Gate 1 - Foundation (Lyssandria, 174 Hz)** - Stability, persistence
 - **Gate 9 - Unity (Ino, 963 Hz)** - Bringing all parts to completion
 
 **When to Invoke Enduran:**
