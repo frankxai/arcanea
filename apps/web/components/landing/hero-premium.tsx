@@ -365,7 +365,7 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
               icon: Wand2,
               value: stats.wisdoms,
               label: "Wisdoms",
-              color: "gold",
+              color: "brand-gold",
             },
             {
               icon: Globe,
