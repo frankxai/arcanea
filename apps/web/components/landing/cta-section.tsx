@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { ArrowRight, Sparkles, Check } from 'lucide-react';
 
 const BENEFITS = [
-  'Free to start, no credit card required',
-  'Access to all 16 Luminor intelligences',
-  'Unlimited conversations',
-  'Export your creations anytime',
+  'Free to start — your universe begins now',
+  'Ten Guardian Intelligences, all mythologies accessible',
+  'Intelligence that grows as you create',
+  'From Foundation to Source — your path is yours',
 ];
 
 export function CTASection() {

@@ -508,3 +508,29 @@ Context: First Essence created
 ---
 
 *Every word in Arcanea is a spell. Cast them with intention, consistency, and care.*
+
+---
+
+## Updated Phrase System (2026-02-24)
+
+### Primary H1 (cycling)
+"Create your Universe" / "Design your Luminor" / "Build your Myth" / "Forge your Legacy" / "Compose your Music" / "Summon your Guardian"
+
+### Badge
+"Living Intelligence" (replaces "Creative Intelligence Infrastructure")
+
+### Key Phrases
+- "Intelligence that grows as you create."
+- "Every AI. One intelligence."
+- "From Foundation to Source."
+- "Your universe, powered by intelligence that knows your work."
+- "Build your mythology. Make your music. Deploy your agents."
+- CTA ONLY: "Imagine a Good Future. Build It Here."
+
+### Rules
+- Never use "infrastructure" in hero/marketing copy
+- "Living" is the differentiator — intelligence that lives, grows, knows
+- "Your" = sovereignty and personalization
+- "Universe" = the biggest promise (limitless, personal, mythic)
+
+See full bible: `.arcanea/messaging/MESSAGING_BIBLE.md`

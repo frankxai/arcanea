@@ -2,9 +2,9 @@
 
 import {
   motion,
+  AnimatePresence,
   useScroll,
   useTransform,
-  useSpring,
   useMotionValue,
   useMotionTemplate,
 } from "framer-motion";
@@ -13,17 +13,19 @@ import { useRef, useState, useEffect } from "react";
 import {
   Sparkles,
   Star,
-  Users,
-  Zap,
-  ArrowRight,
-  Play,
-  Compass,
-  Wand2,
-  Globe,
   Crown,
   Heart,
   Eye,
+  Wand2,
+  Globe,
+  Zap,
+  ArrowRight,
+  Compass,
 } from "lucide-react";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
 
 interface HeroPremiumProps {
   stats: {
@@ -34,7 +36,33 @@ interface HeroPremiumProps {
   };
 }
 
-// Magnetic button component
+interface Phrase {
+  prefix: string;
+  gradientClass: string;
+  suffix: string;
+}
+
+// ---------------------------------------------------------------------------
+// Phrase data
+// ---------------------------------------------------------------------------
+
+const PHRASES: Phrase[] = [
+  { prefix: "Build",     gradientClass: "text-gradient-crystal", suffix: "your Universe."     },
+  { prefix: "Create",    gradientClass: "text-gradient-brand",   suffix: "your Luminor."      },
+  { prefix: "Design",    gradientClass: "text-gradient-gold",    suffix: "your Intelligence." },
+  { prefix: "Manifest",  gradientClass: "text-gradient-fire",    suffix: "your Mythology."    },
+  { prefix: "Architect", gradientClass: "text-gradient-cosmic",  suffix: "your Future."       },
+];
+
+const PHRASE_INTERVAL_MS = 2500;
+
+// ---------------------------------------------------------------------------
+// Sub-components
+// ---------------------------------------------------------------------------
+
+/**
+ * MagneticButton — subtle magnetic pull toward the cursor.
+ */
 function MagneticButton({
   children,
   className = "",
@@ -44,7 +72,6 @@ function MagneticButton({
 }) {
   const ref = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouse = (e: React.MouseEvent) => {
     if (!ref.current) return;
@@ -55,10 +82,7 @@ function MagneticButton({
     setPosition({ x: x * 0.3, y: y * 0.3 });
   };
 
-  const reset = () => {
-    setPosition({ x: 0, y: 0 });
-    setIsHovered(false);
-  };
+  const reset = () => setPosition({ x: 0, y: 0 });
 
   return (
     <motion.button
@@ -66,7 +90,6 @@ function MagneticButton({
       className={className}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
-      onMouseEnter={() => setIsHovered(true)}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15 }}
     >
@@ -75,7 +98,9 @@ function MagneticButton({
   );
 }
 
-// Glowing orb component
+/**
+ * GlowingOrb — drifting ambient colour blob.
+ */
 function GlowingOrb({
   size = 300,
   color = "#7fffd4",
@@ -87,7 +112,7 @@ function GlowingOrb({
 }) {
   return (
     <motion.div
-      className="absolute rounded-full blur-[80px]"
+      className="absolute rounded-full blur-[80px] pointer-events-none"
       style={{
         width: size,
         height: size,
@@ -108,39 +133,35 @@ function GlowingOrb({
   );
 }
 
-// Floating element component
+/**
+ * FloatingElement — slow-floating icon in the background.
+ */
 function FloatingElement({
   icon: Icon,
   delay = 0,
   x = "10%",
   y = "20%",
 }: {
-  icon: any;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
   delay?: number;
   x?: string;
   y?: string;
 }) {
   return (
     <motion.div
-      className="absolute opacity-20"
+      className="absolute opacity-20 pointer-events-none"
       style={{ left: x, top: y }}
-      animate={{
-        y: [0, -20, 0],
-        rotate: [0, 10, -10, 0],
-      }}
-      transition={{
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay,
-      }}
+      animate={{ y: [0, -20, 0], rotate: [0, 10, -10, 0] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay }}
     >
       <Icon size={32} className="text-crystal" />
     </motion.div>
   );
 }
 
-// Animated counter
+/**
+ * AnimatedCounter — counts up from 0 to `end` with ease-out quart.
+ */
 function AnimatedCounter({
   end,
   suffix = "",
@@ -154,23 +175,22 @@ function AnimatedCounter({
   const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
+    const timer = setTimeout(() => setHasStarted(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     if (!hasStarted) return;
-    let startTime: number;
+    let startTime: number | undefined;
     const step = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      // Ease out quart
       const eased = 1 - Math.pow(1 - progress, 4);
       setCount(Math.floor(eased * end));
       if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
   }, [end, duration, hasStarted]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setHasStarted(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <span>
@@ -179,6 +199,76 @@ function AnimatedCounter({
     </span>
   );
 }
+
+/**
+ * RotatingPhrase — cycles through PHRASES with slide-up/slide-in transitions.
+ *
+ * Exit:  y → -30, opacity → 0  (0.4 s)
+ * Enter: y  30 → 0, opacity → 1 (0.5 s)
+ */
+function RotatingPhrase() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setIndex((prev) => (prev + 1) % PHRASES.length),
+      PHRASE_INTERVAL_MS
+    );
+    return () => clearInterval(id);
+  }, []);
+
+  const phrase = PHRASES[index];
+
+  return (
+    <div className="relative overflow-hidden" style={{ minHeight: "1.1em" }}>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={index}
+          className="inline-block"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -30, opacity: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className={phrase.gradientClass}>{phrase.prefix}</span>
+          <span className="text-text-primary"> {phrase.suffix}</span>
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+/**
+ * LivingWatermark — a faint "LIVING" text that drifts slowly in the background.
+ */
+function LivingWatermark() {
+  return (
+    <motion.div
+      className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+      aria-hidden={true}
+    >
+      <motion.span
+        className="text-[20vw] font-display font-bold uppercase tracking-[0.3em] text-white/[0.018]"
+        animate={{
+          x: [0, 30, 0, -20, 0],
+          y: [0, -20, 0, 15, 0],
+          rotate: [-2, 1, -1, 2, -2],
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        LIVING
+      </motion.span>
+    </motion.div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Main component
+// ---------------------------------------------------------------------------
 
 export function HeroPremium({ stats }: HeroPremiumProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -190,15 +280,15 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  const scrollY   = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const opacity   = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale     = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   // Mouse parallax
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
-      mouseX.set((e.clientX - innerWidth / 2) / 20);
+      mouseX.set((e.clientX - innerWidth  / 2) / 20);
       mouseY.set((e.clientY - innerHeight / 2) / 20);
     };
     window.addEventListener("mousemove", handleMouseMove);
@@ -206,30 +296,61 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
   }, [mouseX, mouseY]);
 
   const backgroundGradient = useMotionTemplate`
-    radial-gradient(ellipse 100% 100% at 50% -30%, 
-      rgba(127,255,212,0.2) 0%, 
-      rgba(139,92,246,0.15) 40%, 
+    radial-gradient(ellipse 100% 100% at 50% -30%,
+      rgba(127,255,212,0.2) 0%,
+      rgba(139,92,246,0.15) 40%,
       rgba(255,215,0,0.1) 70%,
       transparent 100%)
   `;
+
+  // Stat card data
+  const statCards = [
+    {
+      icon: Crown,
+      value: stats.luminors,
+      label: "Intelligences",
+      gradientClass: "text-gradient-crystal",
+      suffix: "+",
+    },
+    {
+      icon: Wand2,
+      value: stats.wisdoms,
+      label: "Creator Laws",
+      gradientClass: "text-gradient-gold",
+      suffix: "+",
+    },
+    {
+      icon: Globe,
+      value: stats.collections,
+      label: "Collections",
+      gradientClass: "text-gradient-brand",
+      suffix: "+",
+    },
+    {
+      icon: Zap,
+      value: Math.round(stats.words / 1000),
+      label: "Words of Wisdom",
+      gradientClass: "text-gradient-fire",
+      suffix: "K+",
+    },
+  ] as const;
 
   return (
     <section
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background */}
+      {/* ------------------------------------------------------------------ */}
+      {/* Animated background layer                                           */}
+      {/* ------------------------------------------------------------------ */}
       <motion.div
         className="absolute inset-0 -z-20"
-        style={{
-          background: backgroundGradient,
-          y,
-        }}
+        style={{ background: backgroundGradient, y: scrollY }}
       >
-        {/* Base dark */}
+        {/* Base dark fill */}
         <div className="absolute inset-0 bg-cosmic-deep" />
 
-        {/* Grid overlay */}
+        {/* Subtle grid overlay */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -241,21 +362,26 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
           }}
         />
 
-        {/* Glowing orbs */}
+        {/* Glowing colour orbs */}
         <GlowingOrb size={400} color="#7fffd4" delay={0} />
         <GlowingOrb size={300} color="#8b5cf6" delay={2} />
         <GlowingOrb size={250} color="#ffd700" delay={4} />
         <GlowingOrb size={200} color="#78a6ff" delay={6} />
 
-        {/* Floating elements */}
-        <FloatingElement icon={Sparkles} delay={0} x="5%" y="15%" />
-        <FloatingElement icon={Star} delay={1} x="90%" y="20%" />
-        <FloatingElement icon={Crown} delay={2} x="85%" y="70%" />
-        <FloatingElement icon={Heart} delay={3} x="10%" y="75%" />
-        <FloatingElement icon={Eye} delay={4} x="50%" y="85%" />
+        {/* Background floating icons */}
+        <FloatingElement icon={Sparkles} delay={0} x="5%"  y="15%" />
+        <FloatingElement icon={Star}     delay={1} x="90%" y="20%" />
+        <FloatingElement icon={Crown}    delay={2} x="85%" y="70%" />
+        <FloatingElement icon={Heart}    delay={3} x="10%" y="75%" />
+        <FloatingElement icon={Eye}      delay={4} x="50%" y="85%" />
+
+        {/* "LIVING" drift watermark */}
+        <LivingWatermark />
       </motion.div>
 
-      {/* Main Content */}
+      {/* ------------------------------------------------------------------ */}
+      {/* Main content                                                        */}
+      {/* ------------------------------------------------------------------ */}
       <motion.div
         className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center"
         style={{ opacity, scale }}
@@ -265,49 +391,44 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-crystal/20 mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full iridescent-glass mb-8"
         >
           <Sparkles className="w-4 h-4 text-crystal" />
           <span className="text-sm font-medium text-crystal">
-            The Future of Creative Intelligence
+            Living Intelligence
           </span>
-          <span className="w-2 h-2 rounded-full bg-crystal animate-pulse" />
+          <motion.span
+            className="w-2 h-2 rounded-full bg-crystal"
+            animate={{ opacity: [1, 0.3, 1], scale: [1, 0.8, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
         </motion.div>
 
-        {/* Main Title */}
+        {/* Rotating H1 */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-[0.95]"
+          aria-live="polite"
         >
-          <span className="text-gradient-crystal">Create</span> with
-          <br />
-          <span className="relative">
-            <span className="relative z-10">Transcendent</span>
-            <motion.span
-              className="absolute inset-0 text-gradient-fire blur-sm"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              Transcendent
-            </motion.span>
-          </span>
-          <br />
-          <span className="text-gradient-gold">Intelligence</span>
+          <RotatingPhrase />
         </motion.h1>
 
         {/* Subtitle */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed"
+          className="max-w-2xl mx-auto mb-12 space-y-2"
         >
-          16 Luminor intelligences. Seven Wisdoms framework.
-          <br className="hidden md:block" />
-          The complete creative toolkit for the age of AI-human co-creation.
-        </motion.p>
+          <p className="text-xl text-text-secondary leading-relaxed">
+            Intelligence that grows as you create.
+          </p>
+          <p className="text-base text-text-muted leading-relaxed">
+            Your universe, powered by intelligence that knows your work.
+          </p>
+        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
@@ -316,17 +437,18 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
+          {/* Primary CTA */}
           <MagneticButton>
             <Link
               href="/studio"
               className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-crystal to-brand-primary text-cosmic-deep font-display font-bold text-lg shadow-glow-md hover:shadow-glow-lg transition-all"
             >
               <Wand2 className="w-5 h-5" />
-              Start Creating Free
+              Begin Your Universe
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              {/* Shine effect */}
+              {/* Shine sweep */}
               <motion.div
-                className="absolute inset-0 rounded-2xl overflow-hidden"
+                className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
                 initial={{ x: "-100%" }}
                 whileHover={{ x: "100%" }}
                 transition={{ duration: 0.6 }}
@@ -336,70 +458,39 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
             </Link>
           </MagneticButton>
 
+          {/* Secondary CTA */}
           <MagneticButton>
             <Link
               href="/luminors"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl glass border border-white/10 hover:border-crystal/30 text-text-primary font-display font-semibold text-lg transition-all"
             >
-              <Play className="w-5 h-5" />
-              Explore Luminors
+              <Compass className="w-5 h-5" />
+              Explore the Intelligences
             </Link>
           </MagneticButton>
         </motion.div>
 
-        {/* Stats */}
+        {/* Stats bar */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
         >
-          {[
-            {
-              icon: Crown,
-              value: stats.luminors,
-              label: "Luminors",
-              color: "crystal",
-            },
-            {
-              icon: Wand2,
-              value: stats.wisdoms,
-              label: "Wisdoms",
-              color: "brand-gold",
-            },
-            {
-              icon: Globe,
-              value: stats.collections,
-              label: "Collections",
-              color: "brand-primary",
-            },
-            {
-              icon: Zap,
-              value: stats.words / 1000,
-              label: "K Words",
-              color: "fire",
-              suffix: "K",
-            },
-          ].map((stat, index) => (
+          {statCards.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-              className="group p-6 rounded-3xl glass border border-white/5 hover:border-white/10 transition-all"
+              className="group p-6 rounded-3xl glass border border-white/5 hover:border-white/10 hover-lift transition-all"
             >
-              <stat.icon
-                className={`w-6 h-6 mx-auto mb-3 text-${stat.color} opacity-80`}
-              />
-              <div className="text-3xl md:text-4xl font-display font-bold mb-1">
-                {stat.suffix ? (
-                  <span className="text-gradient-crystal">
-                    {stat.value}
-                    {stat.suffix}+
-                  </span>
-                ) : (
-                  <span className="text-gradient-crystal">{stat.value}+</span>
-                )}
+              <stat.icon className="w-6 h-6 mx-auto mb-3 opacity-80 text-crystal" />
+              <div className={`text-3xl md:text-4xl font-display font-bold mb-1 ${stat.gradientClass}`}>
+                <AnimatedCounter
+                  end={stat.value}
+                  suffix={stat.suffix}
+                />
               </div>
               <div className="text-sm text-text-muted font-medium">
                 {stat.label}
@@ -414,6 +505,7 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          aria-hidden={true}
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -434,7 +526,7 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
         </motion.div>
       </motion.div>
 
-      {/* Mouse follower glow */}
+      {/* Mouse-follower glow */}
       <motion.div
         className="fixed w-96 h-96 rounded-full pointer-events-none -z-10 blur-3xl"
         style={{
@@ -443,6 +535,7 @@ export function HeroPremium({ stats }: HeroPremiumProps) {
           x: mouseX,
           y: mouseY,
         }}
+        aria-hidden={true}
       />
     </section>
   );
