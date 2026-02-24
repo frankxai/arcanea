@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Heart, Reply, MoreVertical } from 'lucide-react';
 import { Comment } from '@/lib/types/profile';
@@ -28,7 +28,7 @@ export function CommentSection({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
 
-  const handleSubmit = async () => {
+  const handleSubmit = React.useCallback(async () => {
     if (!newComment.trim() || !onAddComment) return;
 
     setIsSubmitting(true);
@@ -41,16 +41,16 @@ export function CommentSection({
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [newComment, onAddComment]);
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = React.useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSubmit();
     }
-  };
+  }, [handleSubmit]);
 
-  const formatTimeAgo = (dateString: string) => {
+  const formatTimeAgo = React.useCallback((dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
     const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
@@ -60,7 +60,7 @@ export function CommentSection({
     if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
     if (seconds < 604800) return `${Math.floor(seconds / 86400)}d ago`;
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  };
+  }, []);
 
   return (
     <div className="space-y-6">

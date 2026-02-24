@@ -1,21 +1,46 @@
-/**
- * Framer Motion Type Fix for React 19
- *
- * React 19's event handler types conflict with Framer Motion's.
- * This declaration merges the types to make them compatible.
- */
+import 'framer-motion';
+import { HTMLAttributes, RefAttributes, ImgHTMLAttributes } from 'react';
 
-import { HTMLMotionProps as OriginalHTMLMotionProps } from 'framer-motion';
-import { DragEventHandler, HTMLAttributes } from 'react';
-
+// Fix framer-motion types for React 19 compatibility
 declare module 'framer-motion' {
-  // Override HTMLMotionProps to be more permissive with React 19 event handlers
-  export interface HTMLMotionProps<TagName extends keyof JSX.IntrinsicElements>
-    extends Omit<OriginalHTMLMotionProps<TagName>, 'onDrag' | 'onDragStart' | 'onDragEnd'>,
-      Omit<HTMLAttributes<Element>, 'onDrag' | 'onDragStart' | 'onDragEnd'> {
-    // Allow both framer-motion and React drag handlers
-    onDrag?: OriginalHTMLMotionProps<TagName>['onDrag'] | DragEventHandler<Element>;
-    onDragStart?: OriginalHTMLMotionProps<TagName>['onDragStart'] | DragEventHandler<Element>;
-    onDragEnd?: OriginalHTMLMotionProps<TagName>['onDragEnd'] | DragEventHandler<Element>;
+  export interface MotionProps extends HTMLAttributes<HTMLElement>, RefAttributes<HTMLElement> {
+    // Allow all standard HTML attributes on motion components
+    className?: string;
+    onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+    onMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
+    onMouseLeave?: (event: React.MouseEvent<HTMLElement>) => void;
+    onFocus?: (event: React.FocusEvent<HTMLElement>) => void;
+    onBlur?: (event: React.FocusEvent<HTMLElement>) => void;
+    onSubmit?: (event: React.FormEvent<HTMLElement>) => void;
+    onChange?: (event: React.ChangeEvent<HTMLElement>) => void;
+    disabled?: boolean;
+    type?: string;
+    href?: string;
+    target?: string;
+    rel?: string;
+    'aria-label'?: string;
+    'aria-hidden'?: boolean;
+    role?: string;
+    tabIndex?: number;
+    id?: string;
+    style?: React.CSSProperties;
+
+    // Image attributes for motion.img
+    src?: string;
+    alt?: string;
+    width?: number | string;
+    height?: number | string;
+    loading?: 'lazy' | 'eager';
+
+    // Input/form attributes
+    placeholder?: string;
+    value?: string | number | readonly string[];
+    name?: string;
+    required?: boolean;
+    autoComplete?: string;
+    autoFocus?: boolean;
+
+    // Button/link attributes
+    download?: boolean | string;
   }
 }

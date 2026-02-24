@@ -98,9 +98,10 @@ async function getLuminorBonds(userId: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }): Promise<Metadata> {
-  const profile = await getProfile(params.username);
+  const { username } = await params;
+  const profile = await getProfile(username);
 
   if (!profile) {
     return {
@@ -127,8 +128,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProfilePage({ params }: { params: { username: string } }) {
-  const profile = await getProfile(params.username);
+export default async function ProfilePage({ params }: { params: Promise<{ username: string }> }) {
+  const { username } = await params;
+  const profile = await getProfile(username);
 
   if (!profile) {
     notFound();

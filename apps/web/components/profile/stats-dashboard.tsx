@@ -75,7 +75,7 @@ export function StatsDashboard({ stats, creations }: StatsDashboardProps) {
     gradient,
     index,
   }: {
-    icon: any;
+    icon: React.ComponentType<{ className?: string }>;
     label: string;
     value: string | number;
     gradient: string;

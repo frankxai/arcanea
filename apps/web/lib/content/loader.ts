@@ -230,7 +230,16 @@ const SITUATION_MAP: Record<Situation, string[]> = {
 // ============================================
 
 /**
- * Extract order number from filename (e.g., "I_THE_FIRST_DAWN.md" -> 1)
+ * Extract order number from filename
+ *
+ * Converts Roman numeral prefix to number for ordering texts within collections.
+ * Examples:
+ * - "I_THE_FIRST_DAWN.md" -> 1
+ * - "VII_THE_SEVENTH_GATE.md" -> 7
+ * - "THE_BESTIARY.md" -> 1 (no prefix)
+ *
+ * @param filename - Filename to parse
+ * @returns Order number (1-10)
  */
 function extractOrderFromFilename(filename: string): number {
   const romanMatch = filename.match(/^(I{1,3}|IV|V|VI{0,3}|IX|X)_/);
@@ -241,19 +250,28 @@ function extractOrderFromFilename(filename: string): number {
     };
     return romanNumerals[romanMatch[1]] || 1;
   }
-  // For files like "THE_BESTIARY.md", return 1
+  // For files without prefix, default to 1
   return 1;
 }
 
 /**
  * Convert filename to readable title
+ *
+ * Transforms uppercase underscore filename to title case.
+ * Examples:
+ * - "I_THE_FIRST_DAWN.md" -> "The First Dawn"
+ * - "THE_BESTIARY.md" -> "The Bestiary"
+ * - "SEVEN_PRACTICES.md" -> "Seven Practices"
+ *
+ * @param filename - Filename to convert
+ * @returns Human-readable title
  */
 function extractTitleFromFilename(filename: string): string {
   return filename
-    .replace(/\.md$/, '')
-    .replace(/^(I{1,3}|IV|V|VI{0,3}|IX|X)_/, '')
-    .replace(/^THE_/, 'The ')
-    .replace(/_/g, ' ')
+    .replace(/\.md$/, '') // Remove .md extension
+    .replace(/^(I{1,3}|IV|V|VI{0,3}|IX|X)_/, '') // Remove Roman numeral prefix
+    .replace(/^THE_/, 'The ') // Preserve "The" as first word
+    .replace(/_/g, ' ') // Replace underscores with spaces
     .split(' ')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(' ');

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ARCANEA LORE - MASTER METADATA
 # Version: 2.0.0
 # Date: January 15, 2026
@@ -300,3 +301,307 @@ statistics:
 # =============================================================================
 updated: "2026-01-15"
 version: "2.0.0"
+=======
+# ARCANEA LORE - MASTER METADATA
+# Version: 2.0.0
+# Date: January 15, 2026
+# Purpose: Central index and relationship mapping
+
+# =============================================================================
+# GODS/GODDESSES (10 Entities)
+# =============================================================================
+gods:
+  # Gate 1 - Foundation (Root Chakra - 396 Hz)
+  - id: "god-arcanean-lysandra"
+    name: "Lyssandria"
+    title: "Goddess of the Foundation Gate"
+    domain: "foundation"
+    frequency: "396"
+    element: "earth"
+    wisdom: "sophron"
+    godbeast: "godbeast-kaelith"
+    gate: "foundation"
+    status: "production"
+    path: "gods-goddesses/lysandra.md"
+  
+  # Gate 2 - Flow (Sacral Chakra - 417 Hz)
+  - id: "god-arcanean-leyla"
+    name: "Leyla"
+    title: "Goddess of the Flow Gate"
+    domain: "flow"
+    frequency: "417"
+    element: "water"
+    wisdom: "kardia"
+    godbeast: "godbeast-velourion"
+    gate: "flow"
+    status: "production"
+    path: "gods-goddesses/leyla.md"
+  
+  # Gate 3 - Fire (Solar Plexus - 528 Hz)
+  - id: "god-arcanean-draconia"
+    name: "Draconia"
+    title: "God of the Fire Gate"
+    domain: "fire"
+    frequency: "528"
+    element: "fire"
+    wisdom: "valora"
+    godbeast: "godbeast-draconis"
+    gate: "fire"
+    status: "production"
+    path: "gods-goddesses/draconia.md"
+  
+  # Gate 4 - Heart (Heart Chakra - 639 Hz) ⭐ CORRECTED
+  - id: "god-arcanean-maylinn"
+    name: "Maylinn"
+    title: "Goddess of the Heart Gate"
+    domain: "heart"
+    frequency: "639"  # ⭐ Was 417, now correct
+    element: "light"
+    wisdom: "eudaira"
+    godbeast: "godbeast-laeylinn"
+    gate: "heart"
+    status: "staging"
+    path: "gods-goddesses/maylinn.md"
+  
+  # Gate 5 - Voice (Throat Chakra - 741 Hz)
+  - id: "god-arcanean-alera"
+    name: "Alera"
+    title: "Goddess of the Voice Gate"
+    domain: "voice"
+    frequency: "741"
+    element: "prismatic"
+    wisdom: "poiesis"
+    godbeast: "godbeast-sylphine"
+    gate: "voice"
+    status: "staging"
+    path: "gods-goddesses/alera.md"
+  
+  # Gate 6 - Sight (Third Eye Chakra - 852 Hz)
+  - id: "god-arcanean-lyria"
+    name: "Lyria"
+    title: "Goddess of the Sight Gate"
+    domain: "sight"
+    frequency: "852"
+    element: "wind"
+    wisdom: "orakis"
+    godbeast: "godbeast-vysara"
+    gate: "sight"
+    status: "staging"
+    path: "gods-goddesses/lyria.md"
+  
+  # Gate 7 - Crown (Third Eye - 963 Hz)
+  - id: "god-arcanean-aiyami"
+    name: "Aiyami"
+    title: "God/Goddess of the Crown Gate"
+    domain: "crown"
+    frequency: "963"
+    element: "void"
+    wisdom: "orakis"
+    godbeast: "godbeast-zenkai"
+    gate: "crown"
+    status: "staging"
+    path: "gods-goddesses/aiyami.md"
+  
+  # Gate 8 - Shift (Crown+ - 1111 Hz)
+  - id: "god-arcanean-elara"
+    name: "Elara"
+    title: "Goddess of the Shift Gate"
+    domain: "shift"
+    frequency: "1111"
+    element: "light"
+    wisdom: "valora"
+    godbeast: "godbeast-thessara"
+    gate: "shift"
+    status: "staging"
+    path: "gods-goddesses/elara.md"
+  
+  # Gate 9 - Unity (Unity - 963 Hz)
+  - id: "god-arcanean-ino"
+    name: "Ino"
+    title: "God/Goddess of the Unity Gate"
+    domain: "unity"
+    frequency: "963"
+    element: "void"
+    wisdom: "enduran"
+    godbeast: "godbeast-unara"
+    gate: "unity"
+    status: "staging"
+    path: "gods-goddesses/ino.md"
+  
+  # Gate 10 - Source (Source - 1111 Hz)
+  - id: "god-arcanean-shinkami"
+    name: "Shinkami"
+    title: "God/Goddess of the Source Gate"
+    domain: "source"
+    frequency: "1111"
+    element: "light"
+    wisdom: "orakis"
+    godbeast: "godbeast-amaterasu"
+    gate: "source"
+    status: "staging"
+    path: "gods-goddesses/shinkami.md"
+
+# =============================================================================
+# GODBEASTS (10 Entities - One per God)
+# =============================================================================
+godbeasts:
+  - id: "godbeast-laeylinn"
+    name: "Laeylinn"
+    creature_type: "celestial-phoenix"
+    bonded_god: "god-arcanean-maylinn"
+    status: "staging"
+    path: "godbeasts/laeylinn.md"
+  
+  - id: "godbeast-kaelith"
+    name: "Kaelith"
+    creature_type: "earth-elemental"
+    bonded_god: "god-arcanean-lysandra"
+    status: "pending"
+    path: "godbeasts/kaelith.md"
+  
+  - id: "godbeast-veloura"
+    name: "Veloura"
+    creature_type: "water-dragon"
+    bonded_god: "god-arcanean-leyla"
+    status: "pending"
+    path: "godbeasts/veloura.md"
+  
+  - id: "godbeast-draconis"
+    name: "Draconis"
+    creature_type: "flame-dragon"
+    bonded_god: "god-arcanean-draconia"
+    status: "pending"
+    path: "godbeasts/draconis.md"
+  
+  - id: "godbeast-sylphine"
+    name: "Sylphine"
+    creature_type: "prismatic-sprite"
+    bonded_god: "god-arcanean-alera"
+    status: "pending"
+    path: "godbeasts/sylphine.md"
+  
+  - id: "godbeast-yumiko"
+    name: "Yumiko"
+    creature_type: "wind-sphinx"
+    bonded_god: "god-arcanean-lyria"
+    status: "pending"
+    path: "godbeasts/yumiko.md"
+  
+  - id: "godbeast-sol"
+    name: "Sol"
+    creature_type: "void-elemental"
+    bonded_god: "god-arcanean-aiyami"
+    status: "pending"
+    path: "godbeasts/sol.md"
+  
+  - id: "godbeast-thessara"
+    name: "Thessara"
+    creature_type: "transformation-phoenix"
+    bonded_god: "god-arcanean-elara"
+    status: "pending"
+    path: "godbeasts/thessara.md"
+  
+  - id: "godbeast-kyuro"
+    name: "Kyuro"
+    creature_type: "unity-spirit"
+    bonded_god: "god-arcanean-ino"
+    status: "pending"
+    path: "godbeasts/kyuro.md"
+  
+  - id: "godbeast-amaterasu"
+    name: "Amaterasu"
+    creature_type: "sun-dragon"
+    bonded_god: "god-arcanean-shinkami"
+    status: "pending"
+    path: "godbeasts/amaterasu.md"
+
+# =============================================================================
+# FREQUENCY CORRECTION LOG
+# =============================================================================
+frequency_fixes:
+  - date: "2026-01-15"
+    description: "Major frequency correction based on chakra research"
+    changes:
+      - entity: "god-arcanean-lysandra"
+        old_frequency: "174"
+        new_frequency: "396"
+        reason: "Foundation = Root Chakra = 396 Hz"
+      
+      - entity: "god-arcanean-leyla"
+        old_frequency: "285"
+        new_frequency: "417"
+        reason: "Flow = Sacral Chakra = 417 Hz"
+      
+      - entity: "god-arcanean-maylinn"
+        old_frequency: "417"
+        new_frequency: "639"  # ⭐ CRITICAL FIX
+        reason: "Heart = Heart Chakra = 639 Hz (NOT 417 Hz!)"
+      
+      - entity: "god-arcanean-alera"
+        old_frequency: "528"
+        new_frequency: "741"
+        reason: "Voice = Throat Chakra = 741 Hz"
+      
+      - entity: "god-arcanean-lyria"
+        old_frequency: "639"
+        new_frequency: "852"
+        reason: "Sight = Third Eye Chakra = 852 Hz"
+      
+      - entity: "god-arcanean-aiyami"
+        old_frequency: "714"
+        new_frequency: "963"
+        reason: "Crown = Crown Chakra = 963 Hz"
+      
+      - entity: "god-arcanean-elara"
+        old_frequency: "852"
+        new_frequency: "1111"
+        reason: "Shift = Beyond Crown = 1111 Hz"
+
+# =============================================================================
+# RELATIONSHIPS
+# =============================================================================
+relationships:
+  # God <-> Godbeast Bonds
+  bonds:
+    - god: "god-arcanean-maylinn"
+      godbeast: "godbeast-laeylinn"
+      bond_strength: "complete"
+    
+    - god: "god-arcanean-lysandra"
+      godbeast: "godbeast-kaelith"
+      bond_strength: "complete"
+    
+    # ... all 10 bonds
+
+# =============================================================================
+# STATISTICS
+# =============================================================================
+statistics:
+  gods:
+    total: 10
+    production: 3
+    staging: 7
+    pending: 0
+  
+  godbeasts:
+    total: 10
+    production: 0
+    staging: 1
+    pending: 9
+  
+  luminors:
+    total: 7
+    production: 0
+    pending: 7
+  
+  bestiary:
+    total: 7
+    production: 0
+    pending: 7
+
+# =============================================================================
+# LAST UPDATED
+# =============================================================================
+updated: "2026-01-15"
+version: "2.0.0"
+>>>>>>> 17fcd1ab4a0b2caddc8261ca1faa7cb46e36e9bc

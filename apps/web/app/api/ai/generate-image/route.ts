@@ -31,6 +31,17 @@ interface ImageGenerationRequest {
   variationCount?: number; // For variations
 }
 
+interface GeneratedImage {
+  id: string;
+  url: string;
+  base64?: string;
+  storageUrl?: string;
+  metadata: {
+    cost?: number;
+    [key: string]: unknown;
+  };
+}
+
 export async function POST(req: NextRequest) {
   try {
     // Authentication
@@ -109,17 +120,24 @@ export async function POST(req: NextRequest) {
     let result;
     let images;
 
+    // Convert width/height to aspect ratio
+    const getAspectRatio = (w?: number, h?: number): "1:1" | "16:9" | "9:16" | "4:3" | "3:4" | undefined => {
+      if (!w || !h) return "1:1";
+      const ratio = w / h;
+      if (ratio > 1.5) return "16:9";
+      if (ratio < 0.67) return "9:16";
+      if (ratio > 1.2) return "4:3";
+      if (ratio < 0.83) return "3:4";
+      return "1:1";
+    };
+
+    const aspectRatio = getAspectRatio(width, height);
+
     switch (operation) {
       case 'generate':
         result = await imagen.generateImage(prompt, {
-          width,
-          height,
-          style,
-          mood,
-          quality,
+          aspectRatio,
           numberOfImages,
-          academyTheme,
-          kingdomOfLightStyle,
         });
         images = [result];
         break;
@@ -129,11 +147,7 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({ error: 'Edit prompt is required' }, { status: 400 });
         }
         result = await imagen.editImage(imageUrl!, editPrompt, {
-          width,
-          height,
-          style,
-          mood,
-          quality,
+          aspectRatio,
         });
         images = [result];
         break;
@@ -143,13 +157,7 @@ export async function POST(req: NextRequest) {
           prompt,
           variationCount || 3,
           {
-            width,
-            height,
-            style,
-            mood,
-            quality,
-            academyTheme,
-            kingdomOfLightStyle,
+            aspectRatio,
           }
         );
         break;
@@ -160,7 +168,7 @@ export async function POST(req: NextRequest) {
 
     // Upload images to Supabase Storage
     const uploadedImages = await Promise.all(
-      images.map(async (img: any) => {
+      images.map(async (img: GeneratedImage) => {
         try {
           // Convert base64 to buffer
           const base64Data = img.base64 || img.url.split(',')[1];
@@ -198,7 +206,7 @@ export async function POST(req: NextRequest) {
     );
 
     // Log usage to database
-    const totalCost = images.reduce((sum: number, img: any) => sum + (img.metadata.cost || 0), 0);
+    const totalCost = images.reduce((sum: number, img: GeneratedImage) => sum + (img.metadata?.cost || 0), 0);
     await supabase.from('ai_usage').insert({
       user_id: userId,
       operation: `image_${operation}`,

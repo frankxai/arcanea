@@ -44,12 +44,12 @@ export function errorResponse(
   code: ErrorCode,
   message: string,
   status = 500,
-  details?: any
+  details?: Record<string, unknown> | { errors: unknown[] }
 ): NextResponse<ApiResponse> {
   const error: ApiError = {
     code,
     message,
-    ...(details && { details }),
+    ...(details ? { details: details as Record<string, unknown> } : {}),
   };
 
   return NextResponse.json(
@@ -107,7 +107,7 @@ export function handleApiError(error: unknown): NextResponse<ApiResponse> {
  * @returns Validation result
  */
 export function validateRequiredFields(
-  body: any,
+  body: Record<string, unknown>,
   fields: string[]
 ): { valid: boolean; missing?: string[] } {
   const missing = fields.filter((field) => {
@@ -127,10 +127,10 @@ export function validateRequiredFields(
  * @param request - Request object
  * @returns Parsed body or null if invalid
  */
-export async function parseRequestBody(request: Request): Promise<any | null> {
+export async function parseRequestBody(request: Request): Promise<Record<string, unknown> | null> {
   try {
     const body = await request.json();
-    return body;
+    return body as Record<string, unknown>;
   } catch (error) {
     return null;
   }
@@ -184,15 +184,21 @@ export function methodNotAllowedResponse(allowedMethods: string[]): NextResponse
 }
 
 /**
- * Pagination helpers
+ * Parse pagination parameters from URL search params
+ *
+ * Ensures page is at least 1 and pageSize is between 1 and 100.
+ *
+ * @param searchParams - URL search parameters
+ * @returns Validated pagination params
  */
 export function parsePaginationParams(
   searchParams: URLSearchParams
-): { page: number; pageSize: number } {
-  const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
-  const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get('pageSize') || '20', 10)));
+): { page: number; pageSize: number; offset: number } {
+  const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10) || 1)
+  const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get('pageSize') || '20', 10) || 20))
+  const offset = (page - 1) * pageSize
 
-  return { page, pageSize };
+  return { page, pageSize, offset }
 }
 
 /**
@@ -210,16 +216,24 @@ export function parseBoolean(value: string | null, defaultValue = false): boolea
 /**
  * Sanitize string input
  *
+ * Trims whitespace and optionally limits length.
+ * Does NOT remove HTML/special characters - use a dedicated
+ * sanitization library for that.
+ *
  * @param input - String to sanitize
  * @param maxLength - Maximum allowed length
  * @returns Sanitized string
  */
 export function sanitizeString(input: string, maxLength?: number): string {
-  let sanitized = input.trim();
-
-  if (maxLength && sanitized.length > maxLength) {
-    sanitized = sanitized.substring(0, maxLength);
+  if (typeof input !== 'string') {
+    return ''
   }
 
-  return sanitized;
+  let sanitized = input.trim()
+
+  if (maxLength && maxLength > 0 && sanitized.length > maxLength) {
+    sanitized = sanitized.substring(0, maxLength)
+  }
+
+  return sanitized
 }

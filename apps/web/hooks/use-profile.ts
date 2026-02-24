@@ -7,17 +7,26 @@ export function useProfile(username: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function fetchProfile() {
       try {
         setIsLoading(true);
+        setError(null);
         // TODO: Replace with actual API call
-        const response = await fetch(`/api/profiles/${username}`);
+        const response = await fetch(`/api/profiles/${username}`, {
+          signal: abortController.signal,
+        });
         if (!response.ok) {
           throw new Error('Failed to fetch profile');
         }
         const data = await response.json();
         setProfile(data);
       } catch (err) {
+        // Ignore abort errors
+        if (err instanceof Error && err.name === 'AbortError') {
+          return;
+        }
         setError(err instanceof Error ? err : new Error('Unknown error'));
       } finally {
         setIsLoading(false);
@@ -25,6 +34,10 @@ export function useProfile(username: string) {
     }
 
     fetchProfile();
+
+    return () => {
+      abortController.abort();
+    };
   }, [username]);
 
   return { profile, isLoading, error };
@@ -66,10 +79,12 @@ export function useUpdateProfile() {
 
 export function useFollowUser() {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
 
   const followUser = async (userId: string) => {
     try {
       setIsLoading(true);
+      setError(null);
 
       // TODO: Replace with actual API call
       const response = await fetch('/api/follows', {
@@ -84,7 +99,9 @@ export function useFollowUser() {
 
       return await response.json();
     } catch (err) {
-      throw err instanceof Error ? err : new Error('Unknown error');
+      const error = err instanceof Error ? err : new Error('Unknown error');
+      setError(error);
+      throw error;
     } finally {
       setIsLoading(false);
     }
@@ -93,6 +110,7 @@ export function useFollowUser() {
   const unfollowUser = async (userId: string) => {
     try {
       setIsLoading(true);
+      setError(null);
 
       // TODO: Replace with actual API call
       const response = await fetch(`/api/follows/${userId}`, {
@@ -105,13 +123,15 @@ export function useFollowUser() {
 
       return await response.json();
     } catch (err) {
-      throw err instanceof Error ? err : new Error('Unknown error');
+      const error = err instanceof Error ? err : new Error('Unknown error');
+      setError(error);
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { followUser, unfollowUser, isLoading };
+  return { followUser, unfollowUser, isLoading, error };
 }
 
 export function useIsFollowing(userId: string | null) {
@@ -124,15 +144,23 @@ export function useIsFollowing(userId: string | null) {
       return;
     }
 
+    const abortController = new AbortController();
+
     async function checkFollowing() {
       try {
         // TODO: Replace with actual API call
-        const response = await fetch(`/api/follows/check/${userId}`);
+        const response = await fetch(`/api/follows/check/${userId}`, {
+          signal: abortController.signal,
+        });
         if (response.ok) {
           const data = await response.json();
           setIsFollowing(data.isFollowing);
         }
       } catch (err) {
+        // Ignore abort errors
+        if (err instanceof Error && err.name === 'AbortError') {
+          return;
+        }
         console.error('Failed to check following status:', err);
       } finally {
         setIsLoading(false);
@@ -140,6 +168,10 @@ export function useIsFollowing(userId: string | null) {
     }
 
     checkFollowing();
+
+    return () => {
+      abortController.abort();
+    };
   }, [userId]);
 
   return { isFollowing, isLoading, setIsFollowing };

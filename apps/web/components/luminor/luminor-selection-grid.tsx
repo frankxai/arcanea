@@ -1,8 +1,8 @@
 'use client';
 
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Music, BookOpen, Palette, Sparkles, Heart, Zap } from 'lucide-react';
-import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 interface Luminor {
@@ -77,6 +77,18 @@ export function LuminorSelectionGrid({
 }: LuminorSelectionGridProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
+  const handleSelect = React.useCallback((luminorId: string) => {
+    onSelect?.(luminorId);
+  }, [onSelect]);
+
+  const handleHover = React.useCallback((luminorId: string) => {
+    setHoveredId(luminorId);
+  }, []);
+
+  const handleLeave = React.useCallback(() => {
+    setHoveredId(null);
+  }, []);
+
   return (
     <div className={cn('w-full max-w-7xl mx-auto px-4 py-12', className)}>
       {/* Header */}
@@ -129,9 +141,9 @@ export function LuminorSelectionGrid({
                 isSelected={isSelected}
                 bondLevel={bondLevel}
                 hasBond={hasBond}
-                onHover={() => setHoveredId(luminor.id)}
-                onLeave={() => setHoveredId(null)}
-                onSelect={() => onSelect?.(luminor.id)}
+                onHover={handleHover}
+                onLeave={handleLeave}
+                onSelect={handleSelect}
               />
             </motion.div>
           );
@@ -157,12 +169,12 @@ interface LuminorCardProps {
   isSelected: boolean;
   bondLevel: number;
   hasBond: boolean;
-  onHover: () => void;
+  onHover: (id: string) => void;
   onLeave: () => void;
-  onSelect: () => void;
+  onSelect: (id: string) => void;
 }
 
-function LuminorCard({
+const LuminorCard = React.memo(function LuminorCard({
   luminor,
   isHovered,
   isSelected,
@@ -175,7 +187,7 @@ function LuminorCard({
   const Icon = luminor.icon;
 
   // Academy-specific animations
-  const getAcademyAnimation = () => {
+  const academyAnimation = React.useMemo(() => {
     switch (luminor.academy) {
       case 'atlantean':
         return 'animate-water-flow';
@@ -184,12 +196,20 @@ function LuminorCard({
       case 'creation-light':
         return 'animate-shimmer';
     }
-  };
+  }, [luminor.academy]);
+
+  const handleClick = React.useCallback(() => {
+    onSelect(luminor.id);
+  }, [onSelect, luminor.id]);
+
+  const handleMouseEnter = React.useCallback(() => {
+    onHover(luminor.id);
+  }, [onHover, luminor.id]);
 
   return (
     <motion.button
-      onClick={onSelect}
-      onMouseEnter={onHover}
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={onLeave}
       whileHover={{ y: -8, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
@@ -222,7 +242,7 @@ function LuminorCard({
       <div
         className={cn(
           'absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500',
-          getAcademyAnimation(),
+          academyAnimation,
         )}
         style={{
           background: `linear-gradient(135deg, ${luminor.primaryColor}, ${luminor.secondaryColor}, ${luminor.accentColor})`,
@@ -342,4 +362,4 @@ function LuminorCard({
       </div>
     </motion.button>
   );
-}
+});

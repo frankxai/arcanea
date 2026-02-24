@@ -94,7 +94,7 @@ export async function PATCH(
         'VALIDATION_ERROR',
         'Invalid input',
         400,
-        validation.error.errors
+        { errors: validation.error.errors }
       );
     }
 

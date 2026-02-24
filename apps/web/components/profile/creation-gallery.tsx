@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Grid, LayoutGrid, Filter, SortAsc } from 'lucide-react';
 import { Creation, FilterType, SortOption } from '@/lib/types/profile';
@@ -78,27 +78,27 @@ export function CreationGallery({
     };
   }, [onLoadMore, hasMore, isLoading]);
 
-  const handleCreationClick = (creation: Creation) => {
+  const handleCreationClick = React.useCallback((creation: Creation) => {
     setSelectedCreation(creation);
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = React.useCallback(() => {
     setSelectedCreation(null);
-  };
+  }, []);
 
-  const handleNext = () => {
+  const handleNext = React.useCallback(() => {
     if (!selectedCreation) return;
     const currentIndex = filteredCreations.findIndex((c) => c.id === selectedCreation.id);
     const nextIndex = (currentIndex + 1) % filteredCreations.length;
     setSelectedCreation(filteredCreations[nextIndex]);
-  };
+  }, [selectedCreation, filteredCreations]);
 
-  const handlePrevious = () => {
+  const handlePrevious = React.useCallback(() => {
     if (!selectedCreation) return;
     const currentIndex = filteredCreations.findIndex((c) => c.id === selectedCreation.id);
     const prevIndex = (currentIndex - 1 + filteredCreations.length) % filteredCreations.length;
     setSelectedCreation(filteredCreations[prevIndex]);
-  };
+  }, [selectedCreation, filteredCreations]);
 
   const filterOptions: { value: FilterType; label: string }[] = [
     { value: 'all', label: 'All' },

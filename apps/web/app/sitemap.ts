@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://arcanea.ai';
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://arcanea.com';
 
     return [
         // Core Pages

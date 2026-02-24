@@ -114,9 +114,10 @@ export const ChatInput: React.FC<ChatInputProps> = ({
                 </div>
                 <button
                   onClick={() => removeAttachment(index)}
+                  aria-label={`Remove attachment ${file.name}`}
                   className="absolute top-1 right-1 w-5 h-5 rounded-full bg-red-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                 >
-                  <X className="w-3 h-3 text-white" />
+                  <X className="w-3 h-3 text-white" aria-hidden="true" />
                 </button>
               </div>
             ))}
@@ -163,12 +164,17 @@ export const ChatInput: React.FC<ChatInputProps> = ({
                 onClick={() => fileInputRef.current?.click()}
                 disabled={disabled || uploadingImage}
                 className="p-2 rounded-lg text-gray-400 hover:text-gray-300 hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                title="Attach image"
+                aria-label={uploadingImage ? "Uploading image" : "Attach image"}
               >
+                {uploadingImage && (
+                  <span className="sr-only" role="status" aria-live="polite">
+                    Uploading image...
+                  </span>
+                )}
                 {uploadingImage ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
                 ) : (
-                  <Image className="w-5 h-5" />
+                  <Image className="w-5 h-5" aria-hidden="true" />
                 )}
               </button>
 
@@ -181,9 +187,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({
                   backgroundColor: canSend ? luminorColor : '#374151',
                   boxShadow: canSend ? `0 0 20px ${luminorColor}40` : 'none',
                 }}
-                title="Send message (Enter)"
+                aria-label="Send message (Press Enter)"
               >
-                <Send className="w-5 h-5 text-white" />
+                <Send className="w-5 h-5 text-white" aria-hidden="true" />
               </button>
             </div>
           </div>

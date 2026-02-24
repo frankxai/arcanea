@@ -17,7 +17,7 @@ export interface ChatMessageProps {
   className?: string;
 }
 
-const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(
+const ChatMessage = React.memo<ChatMessageProps>(React.forwardRef<HTMLDivElement, ChatMessageProps>(
   (
     {
       className,
@@ -30,7 +30,7 @@ const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(
     },
     ref
   ) => {
-    const academyClasses = getAcademyClasses(academy);
+    const academyClasses = React.useMemo(() => getAcademyClasses(academy), [academy]);
     const isUser = role === 'user';
 
     return (
@@ -119,7 +119,7 @@ const ChatMessage = React.forwardRef<HTMLDivElement, ChatMessageProps>(
       </motion.div>
     );
   }
-);
+));
 
 ChatMessage.displayName = 'ChatMessage';
 

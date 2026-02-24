@@ -1,9 +1,9 @@
 'use client';
 
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, MessageCircle, Eye, Play, Image as ImageIcon } from 'lucide-react';
 import { Creation } from '@/lib/types/profile';
-import { useState } from 'react';
 
 interface CreationCardProps {
   creation: Creation;
@@ -11,11 +11,11 @@ interface CreationCardProps {
   index?: number;
 }
 
-export function CreationCard({ creation, onClick, index = 0 }: CreationCardProps) {
+export const CreationCard = React.memo(function CreationCard({ creation, onClick, index = 0 }: CreationCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const getTypeIcon = () => {
+  const getTypeIcon = React.useCallback(() => {
     switch (creation.type) {
       case 'video':
         return <Play className="w-5 h-5" />;
@@ -24,9 +24,9 @@ export function CreationCard({ creation, onClick, index = 0 }: CreationCardProps
       default:
         return null;
     }
-  };
+  }, [creation.type]);
 
-  const getTypeColor = () => {
+  const typeColor = React.useMemo(() => {
     switch (creation.type) {
       case 'video':
         return 'from-red-500 to-pink-500';
@@ -39,9 +39,9 @@ export function CreationCard({ creation, onClick, index = 0 }: CreationCardProps
       default:
         return 'from-slate-500 to-slate-600';
     }
-  };
+  }, [creation.type]);
 
-  const getAcademyColor = () => {
+  const academyColor = React.useMemo(() => {
     switch (creation.academy) {
       case 'Lumina':
         return 'from-yellow-400 to-orange-400';
@@ -54,7 +54,11 @@ export function CreationCard({ creation, onClick, index = 0 }: CreationCardProps
       default:
         return 'from-slate-400 to-slate-500';
     }
-  };
+  }, [creation.academy]);
+
+  const handleHoverStart = React.useCallback(() => setIsHovered(true), []);
+  const handleHoverEnd = React.useCallback(() => setIsHovered(false), []);
+  const handleImageLoad = React.useCallback(() => setImageLoaded(true), []);
 
   return (
     <motion.div
@@ -62,8 +66,8 @@ export function CreationCard({ creation, onClick, index = 0 }: CreationCardProps
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
       whileHover={{ y: -8 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
       onClick={onClick}
       className="group relative cursor-pointer rounded-2xl overflow-hidden bg-slate-900/50 backdrop-blur-sm border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/20"
     >
@@ -79,14 +83,14 @@ export function CreationCard({ creation, onClick, index = 0 }: CreationCardProps
           className={`w-full h-full object-cover transition-all duration-500 ${
             isHovered ? 'scale-110' : 'scale-100'
           } ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-          onLoad={() => setImageLoaded(true)}
+          onLoad={handleImageLoad}
         />
 
         {/* Type Badge */}
         <div className="absolute top-3 left-3">
           <motion.div
             whileHover={{ scale: 1.1 }}
-            className={`px-3 py-1.5 rounded-full bg-gradient-to-r ${getTypeColor()} text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-sm`}
+            className={`px-3 py-1.5 rounded-full bg-gradient-to-r ${typeColor} text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg backdrop-blur-sm`}
           >
             {getTypeIcon()}
             <span className="capitalize">{creation.type}</span>
@@ -98,7 +102,7 @@ export function CreationCard({ creation, onClick, index = 0 }: CreationCardProps
           <div className="absolute top-3 right-3">
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className={`px-3 py-1.5 rounded-full bg-gradient-to-r ${getAcademyColor()} text-white text-xs font-semibold shadow-lg backdrop-blur-sm`}
+              className={`px-3 py-1.5 rounded-full bg-gradient-to-r ${academyColor} text-white text-xs font-semibold shadow-lg backdrop-blur-sm`}
             >
               {creation.academy}
             </motion.div>
@@ -186,4 +190,6 @@ export function CreationCard({ creation, onClick, index = 0 }: CreationCardProps
       )}
     </motion.div>
   );
-}
+});
+
+CreationCard.displayName = 'CreationCard';
