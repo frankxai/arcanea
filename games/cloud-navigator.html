@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Navigator - Arcanea Sky Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <style>
+        :root {
+            --wind-primary: #b39ddb;
+            --wind-dark: #7e57c2;
+            --wind-glow: #d1c4e9;
+            --gold-light: #ffd700;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); min-height: 100vh; overflow: hidden; touch-action: none; }
+        .game-header { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: var(--bg-card); z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .back-btn { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.25rem; }
+        .game-title { font-family: 'Cinzel', serif; font-size: 1.25rem; background: linear-gradient(135deg, var(--wind-primary), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-pill { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.875rem; }
+        .stat-value { font-weight: 600; color: var(--gold-light); }
+        #game-container { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; }
+        .agent-panel { position: fixed; bottom: 20px; left: 20px; right: 20px; background: var(--bg-card); border: 2px solid var(--wind-primary); border-radius: 16px; padding: 1rem; z-index: 50; display: none; }
+        .agent-panel.active { display: block; }
+    </style>
+</head>
+<body>
+    <header class="game-header">
+        <div style="display:flex;align-items:center;gap:0.75rem">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <div class="game-title">☁️ Cloud Navigator</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem">
+            <div class="stat-pill"><span>⭐</span><span class="stat-value" id="xpDisplay">0</span></div>
+            <div class="stat-pill"><span>💎</span><span class="stat-value" id="collectiblesDisplay">0</span></div>
+        </div>
+    </header>
+    <div id="game-container"></div>
+    <div class="agent-panel" id="agentPanel">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem">
+            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--wind-primary),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:1.25rem">🌪️</div>
+            <div><div style="font-weight:600;color:var(--wind-primary)">Wind-Rider</div><div style="font-size:0.75rem;color:var(--text-secondary)">The Sky Dancer</div></div>
+        </div>
+        <div id="agentMessage" style="color:var(--text-secondary);line-height:1.5">Use arrow keys to glide between floating islands. Collect artifacts!</div>
+    </div>
+    <script>
+        const GameState = { xp: 0, collectibles: 0, totalCollectibles: 15 };
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: window.innerWidth,
+            height: window.innerHeight - 60,
+            backgroundColor: '#87CEEB',
+            physics: {
+                default: 'arcade',
+                arcade: { gravity: { y: 500 }, debug: false }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            },
+            scale: { mode: Phaser.Scale.RESIZE }
+        };
+        let game, player, cursors, platforms, collectiblesGroup;
+        window.addEventListener('load', () => {
+            game = new Phaser.Game(config);
+            showAgentMessage('Use arrow keys to move and jump!');
+        });
+        function preload() {
+            const graphics = this.make.graphics();
+            graphics.fillStyle(0xE0E0E0);
+            graphics.fillCircle(32, 32, 30);
+            graphics.generateTexture('cloud', 64, 64);
+            graphics.clear();
+            graphics.fillStyle(0xFFD700);
+            graphics.fillStar(16, 16, 5, 14, 7);
+            graphics.generateTexture('artifact', 32, 32);
+            graphics.clear();
+            graphics.fillStyle(0xB39DDB);
+            graphics.fillCircle(16, 16, 12);
+            graphics.generateTexture('player', 32, 32);
+            graphics.clear();
+        }
+        function create() {
+            const width = this.scale.width, height = this.scale.height;
+            platforms = this.physics.add.staticGroup();
+            // Create floating islands
+            for (let i = 0; i < 10; i++) {
+                const x = Phaser.Math.Between(100, width - 100);
+                const y = Phaser.Math.Between(100, height - 150);
+                const scale = 0.5 + Math.random() * 0.5;
+                platforms.create(x, y, 'cloud').setScale(scale).refreshBody();
+            }
+            // Ground platform
+            platforms.create(width / 2, height - 30, 'cloud').setScale(2, 0.5).refreshBody();
+            player = this.physics.add.sprite(100, height - 100, 'player');
+            player.setBounce(0.1);
+            player.setCollideWorldBounds(true);
+            this.physics.add.collider(player, platforms);
+            cursors = this.input.keyboard.createCursorKeys();
+            // Collectibles
+            collectiblesGroup = this.physics.add.group();
+            for (let i = 0; i < GameState.totalCollectibles; i++) {
+                const x = Phaser.Math.Between(50, width - 50);
+                const y = Phaser.Math.Between(50, height - 200);
+                collectiblesGroup.create(x, y, 'artifact');
+            }
+            this.physics.add.overlap(player, collectiblesGroup, collectArtifact, null, this);
+        }
+        function update() {
+            if (cursors.left.isDown) {
+                player.setVelocityX(-200);
+            } else if (cursors.right.isDown) {
+                player.setVelocityX(200);
+            } else {
+                player.setVelocityX(0);
+            }
+            if (cursors.up.isDown && player.body.touching.down) {
+                player.setVelocityY(-400);
+            }
+        }
+        function collectArtifact(player, artifact) {
+            artifact.disableBody(true, true);
+            GameState.collectibles++;
+            const xpGain = 25;
+            GameState.xp += xpGain;
+            document.getElementById('xpDisplay').textContent = GameState.xp;
+            document.getElementById('collectiblesDisplay').textContent = GameState.collectibles + '/' + GameState.totalCollectibles;
+            if (GameState.collectibles === GameState.totalCollectibles) {
+                showAgentMessage('All artifacts collected! Excellent navigation!');
+                syncWithArcanea(200, 'all_collected');
+            }
+        }
+        function showAgentMessage(msg) {
+            document.getElementById('agentMessage').textContent = msg;
+            document.getElementById('agentPanel').classList.add('active');
+            setTimeout(() => document.getElementById('agentPanel').classList.remove('active'), 4000);
+        }
+        function goBack() { window.location.href = '../games-v2.html'; }
+        function syncWithArcanea(xp, reason) {
+            if (window.Arcanea && window.Arcanea.awardXP) {
+                window.Arcanea.awardXP({ gameId: 'cloud-navigator', amount: xp, reason: reason, agent: '@wind-rider' });
+            }
+        }
+    </script>
+</body>
+</html>

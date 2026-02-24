@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+:root {
+  --arcane-fire: #ff6b35;
+  --arcane-water: #4fc3f7;
+  --arcane-earth: #22c55e;
+  --arcane-wind: #a855f7;
+  --arcane-void: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Orbitron', monospace;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-5px, -5px); }
+  50% { transform: translate(5px, -5px); }
+  75% { transform: translate(-5px, 5px); }
+}
+
+.shake {
+  animation: shake 0.3s;
+}
+
+.arcane-glow {
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+.arcane-button {
+  background: linear-gradient(45deg, var(--arcane-fire), #f7931e);
+  transition: all 0.3s ease;
+}
+
+.arcane-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 107, 53, 0.5);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--arcane-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--arcane-fire);
+  border-radius: 4px;
+}
+
+.game-container {
+  position: relative;
+  background: linear-gradient(135deg, var(--arcane-void), #302b63, #24243e);
+}

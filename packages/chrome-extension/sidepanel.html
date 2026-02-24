@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcanea — Guardian AI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void: #0b0e14;
+      --surface: #12151c;
+      --raised: #1a1d26;
+      --elevated: #21242f;
+      --overlay: #282b38;
+      --border: rgba(127, 255, 212, 0.1);
+      --border-hover: rgba(127, 255, 212, 0.25);
+      --teal: #7fffd4;
+      --gold: #ffd700;
+      --violet: #9966ff;
+      --red: #ff4d4d;
+      --text-primary: #e8e6e3;
+      --text-secondary: #8b8d93;
+      --text-muted: #555860;
+      --guardian-color: #7fffd4;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--void);
+      color: var(--text-primary);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .sp-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .sp-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--guardian-color), transparent);
+      opacity: 0.3;
+    }
+
+    .sp-logo {
+      font-size: 14px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--teal), var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      flex-shrink: 0;
+    }
+
+    .sp-guardian-selector {
+      flex: 1;
+      overflow-x: auto;
+      display: flex;
+      gap: 6px;
+      padding: 2px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .sp-guardian-selector::-webkit-scrollbar { display: none; }
+
+    .sp-guardian-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-family: inherit;
+    }
+
+    .sp-guardian-chip:hover {
+      border-color: var(--chip-color, var(--border-hover));
+      color: var(--chip-color, var(--text-primary));
+    }
+
+    .sp-guardian-chip.active {
+      border-color: var(--chip-color, var(--teal));
+      background: color-mix(in srgb, var(--chip-color, var(--teal)) 10%, transparent);
+      color: var(--chip-color, var(--teal));
+    }
+
+    .sp-guardian-chip .chip-emoji {
+      font-size: 13px;
+    }
+
+    .sp-header-actions {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .sp-icon-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .sp-icon-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--teal);
+    }
+
+    .sp-icon-btn.active {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: rgba(127,255,212,0.08);
+    }
+
+    /* ── Tabs ── */
+    .sp-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+
+    .sp-tab {
+      flex: 1;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .sp-tab:hover { color: var(--text-secondary); }
+    .sp-tab.active {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+    }
+
+    /* ── Action Bar ── */
+    .sp-action-bar {
+      display: flex;
+      gap: 6px;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex-shrink: 0;
+    }
+
+    .sp-action-bar::-webkit-scrollbar { display: none; }
+
+    .sp-action-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .sp-action-pill:hover {
+      border-color: var(--border-hover);
+      color: var(--teal);
+      background: rgba(127,255,212,0.04);
+    }
+
+    /* ── Messages Area ── */
+    .sp-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(127,255,212,0.2) transparent;
+    }
+
+    .sp-messages::-webkit-scrollbar { width: 4px; }
+    .sp-messages::-webkit-scrollbar-track { background: transparent; }
+    .sp-messages::-webkit-scrollbar-thumb { background: rgba(127,255,212,0.2); border-radius: 2px; }
+
+    /* ── Welcome screen ── */
+    .sp-welcome {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      text-align: center;
+      padding: 24px;
+      gap: 12px;
+    }
+
+    .sp-welcome-avatar {
+      font-size: 40px;
+      line-height: 1;
+    }
+
+    .sp-welcome-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--guardian-color);
+    }
+
+    .sp-welcome-gate {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .sp-welcome-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      max-width: 240px;
+      line-height: 1.5;
+    }
+
+    /* ── Message Bubbles ── */
+    .sp-message {
+      display: flex;
+      gap: 8px;
+      max-width: 100%;
+    }
+
+    .sp-message.user { flex-direction: row-reverse; }
+
+    .sp-msg-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      align-self: flex-end;
+    }
+
+    .sp-msg-avatar.user {
+      background: rgba(127,255,212,0.1);
+      border-color: rgba(127,255,212,0.25);
+    }
+
+    .sp-msg-bubble {
+      max-width: calc(100% - 44px);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      border: 1px solid var(--border);
+    }
+
+    .sp-message.user .sp-msg-bubble {
+      background: rgba(127,255,212,0.06);
+      border-color: rgba(127,255,212,0.15);
+      border-bottom-right-radius: 4px;
+    }
+
+    .sp-message.assistant .sp-msg-bubble {
+      background: var(--surface);
+      border-bottom-left-radius: 4px;
+    }
+
+    /* Markdown-like content */
+    .sp-msg-bubble strong { color: var(--text-primary); font-weight: 600; }
+    .sp-msg-bubble em { color: var(--text-secondary); font-style: italic; }
+    .sp-msg-bubble code {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      background: rgba(127,255,212,0.08);
+      border: 1px solid rgba(127,255,212,0.12);
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: var(--teal);
+    }
+    .sp-msg-bubble pre {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      overflow-x: auto;
+      margin: 6px 0;
+      font-size: 12px;
+    }
+    .sp-msg-bubble pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--text-primary);
+    }
+    .sp-msg-bubble ul, .sp-msg-bubble ol {
+      padding-left: 18px;
+      margin: 4px 0;
+    }
+    .sp-msg-bubble li { margin: 2px 0; }
+    .sp-msg-bubble p { margin: 4px 0; }
+    .sp-msg-bubble h1, .sp-msg-bubble h2, .sp-msg-bubble h3 {
+      color: var(--guardian-color);
+      margin: 8px 0 4px;
+      font-weight: 600;
+    }
+    .sp-msg-bubble h1 { font-size: 15px; }
+    .sp-msg-bubble h2 { font-size: 14px; }
+    .sp-msg-bubble h3 { font-size: 13px; }
+    .sp-msg-bubble a { color: var(--teal); text-decoration: underline; }
+    .sp-msg-bubble blockquote {
+      border-left: 3px solid var(--guardian-color);
+      padding-left: 10px;
+      color: var(--text-secondary);
+      margin: 6px 0;
+      font-style: italic;
+    }
+
+    /* ── Typing Indicator ── */
+    .sp-typing {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 12px;
+    }
+
+    .sp-typing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--guardian-color);
+      animation: typing-bounce 1.4s ease infinite;
+    }
+
+    .sp-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .sp-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing-bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    /* ── Error State ── */
+    .sp-error {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255,77,77,0.06);
+      border: 1px solid rgba(255,77,77,0.2);
+      color: #ff8080;
+      font-size: 13px;
+    }
+
+    /* ── Input Area ── */
+    .sp-input-area {
+      padding: 10px 12px 12px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+
+    .sp-context-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .sp-context-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .sp-context-toggle:hover {
+      border-color: var(--border);
+      color: var(--text-secondary);
+    }
+
+    .sp-context-toggle.active {
+      color: var(--teal);
+      border-color: rgba(127,255,212,0.2);
+      background: rgba(127,255,212,0.04);
+    }
+
+    .sp-context-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      transition: background 0.2s;
+    }
+
+    .sp-context-toggle.active .sp-context-dot {
+      background: var(--teal);
+      box-shadow: 0 0 6px var(--teal);
+    }
+
+    .sp-char-count {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .sp-input-row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .sp-textarea {
+      flex: 1;
+      background: var(--raised);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: inherit;
+      resize: none;
+      min-height: 40px;
+      max-height: 120px;
+      overflow-y: auto;
+      outline: none;
+      transition: border-color 0.2s;
+      line-height: 1.5;
+    }
+
+    .sp-textarea::placeholder { color: var(--text-muted); }
+
+    .sp-textarea:focus {
+      border-color: rgba(127,255,212,0.3);
+    }
+
+    .sp-send-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid rgba(127,255,212,0.3);
+      background: rgba(127,255,212,0.1);
+      color: var(--teal);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .sp-send-btn:hover {
+      background: rgba(127,255,212,0.18);
+      border-color: rgba(127,255,212,0.5);
+      transform: scale(1.05);
+    }
+
+    .sp-send-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── History Tab ── */
+    .sp-history {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sp-history.visible { display: flex; }
+
+    .sp-history-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sp-history-item:hover {
+      border-color: var(--border-hover);
+      background: var(--raised);
+    }
+
+    .sp-history-emoji { font-size: 16px; flex-shrink: 0; }
+
+    .sp-history-content { flex: 1; min-width: 0; }
+
+    .sp-history-preview {
+      font-size: 12px;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sp-history-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── Hidden tab content ── */
+    .sp-tab-content { display: none; }
+    .sp-tab-content.active { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div class="sp-header">
+    <span class="sp-logo">✦ Arcanea</span>
+    <div class="sp-guardian-selector" id="sp-guardian-selector">
+      <!-- Populated by sidepanel.ts -->
+    </div>
+    <div class="sp-header-actions">
+      <button class="sp-icon-btn" id="sp-context-btn" title="Toggle page context">📄</button>
+      <button class="sp-icon-btn" id="sp-clear-btn" title="Clear conversation">🗑</button>
+    </div>
+  </div>
+
+  <div class="sp-tabs">
+    <button class="sp-tab active" data-tab="chat">Chat</button>
+    <button class="sp-tab" data-tab="history">History</button>
+  </div>
+
+  <div class="sp-tab-content active" id="tab-chat">
+    <div class="sp-action-bar">
+      <button class="sp-action-pill" data-action="summarize">📖 Summarize</button>
+      <button class="sp-action-pill" data-action="explain">💡 Explain</button>
+      <button class="sp-action-pill" data-action="translate">🌐 Translate</button>
+      <button class="sp-action-pill" data-action="codereview">🔍 Code Review</button>
+      <button class="sp-action-pill" data-action="improve">✏️ Improve</button>
+    </div>
+
+    <div class="sp-messages" id="sp-messages">
+      <div class="sp-welcome" id="sp-welcome">
+        <div class="sp-welcome-avatar" id="sp-welcome-avatar">👁️</div>
+        <div class="sp-welcome-name" id="sp-welcome-name">Lyria</div>
+        <div class="sp-welcome-gate" id="sp-welcome-gate">GATE OF SIGHT • WIND • 852 HZ</div>
+        <div class="sp-welcome-desc" id="sp-welcome-desc">Guardian of vision and intuition. Ask me anything about strategy, design, or the patterns beneath the surface.</div>
+      </div>
+    </div>
+
+    <div class="sp-input-area">
+      <div class="sp-context-bar">
+        <button class="sp-context-toggle active" id="sp-context-toggle">
+          <span class="sp-context-dot"></span>
+          <span id="sp-context-label">Page context on</span>
+        </button>
+        <span class="sp-char-count" id="sp-char-count"></span>
+      </div>
+      <div class="sp-input-row">
+        <textarea
+          class="sp-textarea"
+          id="sp-input"
+          placeholder="Ask your Guardian anything..."
+          rows="1"
+        ></textarea>
+        <button class="sp-send-btn" id="sp-send-btn" title="Send (Enter)">↑</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sp-tab-content" id="tab-history">
+    <div class="sp-history" id="sp-history"></div>
+  </div>
+
+  <script src="sidepanel.js" type="module"></script>
+</body>
+</html>

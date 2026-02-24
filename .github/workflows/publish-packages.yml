@@ -1,0 +1,151 @@
+name: Publish Packages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/core/**'
+      - 'packages/cli/**'
+      - 'packages/arcanea-mcp/**'
+      - 'packages/auth/**'
+      - 'packages/overlay-*/**'
+      - 'packages/extension-core/**'
+      - 'packages/vscode/**'
+      - 'packages/chrome-extension/**'
+      - 'packages/aios/**'
+      - 'packages/claude-arcanea/**'
+      - 'packages/starlight-runtime/**'
+      - '.changeset/**'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: |
+          pnpm --filter @arcanea/os run build
+          pnpm --filter @arcanea/auth run build
+          pnpm --filter @arcanea/extension-core run build
+          pnpm --filter "@arcanea/overlay-*" run build
+          pnpm --filter @arcanea/mcp-server run build
+          pnpm --filter @arcanea/cli run build
+          pnpm --filter arcanea-intelligence-os run build
+          pnpm --filter claude-arcanea run build
+
+      - name: Type check
+        run: |
+          for pkg in core auth extension-core cli arcanea-mcp overlay-claude overlay-chatgpt overlay-gemini overlay-copilot overlay-cursor; do
+            echo "Type-checking packages/$pkg..."
+            npx tsc --noEmit -p packages/$pkg/tsconfig.json
+          done
+
+      - name: Run tests
+        run: |
+          node --test \
+            packages/core/tests/*.test.mjs \
+            packages/auth/tests/*.test.mjs \
+            packages/extension-core/tests/*.test.mjs \
+            packages/arcanea-mcp/tests/*.test.mjs \
+            packages/overlay-claude/tests/*.test.mjs \
+            packages/chrome-extension/tests/*.test.mjs \
+            packages/cli/tests/*.test.mjs
+
+      - name: Create Release PR or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm changeset publish
+          version: pnpm changeset version
+          title: 'chore: version packages'
+          commit: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  vscode-extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build @arcanea/os dependency
+        run: pnpm --filter @arcanea/os run build
+
+      - name: Build VS Code extension
+        working-directory: packages/vscode
+        run: |
+          npx esbuild ./src/extension.ts \
+            --bundle \
+            --outfile=dist/extension.js \
+            --external:vscode \
+            --format=cjs \
+            --platform=node \
+            --minify
+
+      - name: Package VSIX
+        working-directory: packages/vscode
+        run: npx @vscode/vsce package --no-dependencies
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arcanea-code-vsix
+          path: packages/vscode/*.vsix
+
+  chrome-extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @arcanea/os run build
+          pnpm --filter @arcanea/extension-core run build
+
+      - name: Build Chrome extension
+        working-directory: packages/chrome-extension
+        run: node build.mjs
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arcanea-chrome-extension
+          path: packages/chrome-extension/dist/

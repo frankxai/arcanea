@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcanea Command Center</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  /* ═══════════════════════════════════════════
+     ARCANEA DESIGN SYSTEM TOKENS v2.0
+     Source: .claude/skills/arcanea/arcanea-design-system/SKILL.md
+     ═══════════════════════════════════════════ */
+  :root {
+    /* Cosmic Foundation */
+    --cosmic-950: #050510;
+    --cosmic-900: #0a0a1a;
+    --cosmic-800: #121230;
+    --cosmic-700: #1a1a45;
+    --cosmic-600: #252560;
+
+    /* Primary — Violet Magic */
+    --primary-500: #8b5cf6;
+    --primary-600: #7c3aed;
+    --primary-700: #6d28d9;
+    --primary-400: #a78bfa;
+    --primary-300: #c4b5fd;
+
+    /* Accent — Cyan/Crystal */
+    --accent-500: #06b6d4;
+    --accent-400: #22d3ee;
+    --accent-300: #67e8f9;
+    --crystal: #7fffd4;
+
+    /* Gold — Achievement */
+    --gold-500: #f59e0b;
+    --gold-400: #fbbf24;
+    --gold-300: #fcd34d;
+
+    /* Element Colors */
+    --fire: #ef4444;
+    --fire-glow: rgba(239, 68, 68, 0.3);
+    --water: #0ea5e9;
+    --water-glow: rgba(14, 165, 233, 0.3);
+    --earth: #22c55e;
+    --earth-glow: rgba(34, 197, 94, 0.3);
+    --wind: #e2e8f0;
+    --wind-glow: rgba(226, 232, 240, 0.2);
+    --void: #8b5cf6;
+    --void-glow: rgba(139, 92, 246, 0.3);
+    --spirit: #f59e0b;
+    --spirit-glow: rgba(245, 158, 11, 0.3);
+
+    /* Text */
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-tertiary: rgba(255, 255, 255, 0.5);
+    --text-muted: rgba(255, 255, 255, 0.3);
+
+    /* Semantic */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+
+    /* Glass */
+    --glass-bg: rgba(18, 18, 48, 0.6);
+    --glass-border: rgba(139, 92, 246, 0.15);
+    --glass-border-hover: rgba(139, 92, 246, 0.35);
+    --glass-blur: 16px;
+
+    /* Shadows */
+    --shadow-cosmic: 0 10px 15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.1);
+    --shadow-cosmic-lg: 0 20px 25px rgba(0, 0, 0, 0.5), 0 0 40px rgba(139, 92, 246, 0.15);
+    --glow-primary: 0 0 20px rgba(139, 92, 246, 0.4);
+    --glow-accent: 0 0 20px rgba(6, 182, 212, 0.4);
+    --glow-gold: 0 0 20px rgba(245, 158, 11, 0.4);
+
+    /* Animation */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 400ms;
+
+    /* Spacing (4px grid) */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+
+    /* Radius */
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+  }
+
+  /* ═══════════════════════════════════════════
+     RESET & BASE
+     ═══════════════════════════════════════════ */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--cosmic-950);
+    color: var(--text-secondary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══════════════════════════════════════════
+     COSMIC BACKGROUND — Layered depth
+     ═══════════════════════════════════════════ */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 85%, rgba(6, 182, 212, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(245, 158, 11, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 25% 45%, rgba(139,92,246,0.25), transparent),
+      radial-gradient(1px 1px at 40% 20%, rgba(255,255,255,0.25), transparent),
+      radial-gradient(1px 1px at 55% 65%, rgba(245,158,11,0.15), transparent),
+      radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 85% 75%, rgba(6,182,212,0.2), transparent),
+      radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,0.15), transparent),
+      radial-gradient(1px 1px at 95% 10%, rgba(139,92,246,0.2), transparent);
+    pointer-events: none;
+    z-index: 0;
+    animation: starfield 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes starfield { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+  /* ═══════════════════════════════════════════
+     LAYOUT
+     ═══════════════════════════════════════════ */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6);
+  }
+
+  /* ═══════════════════════════════════════════
+     GLASS COMPONENT — The fundamental surface
+     ═══════════════════════════════════════════ */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-cosmic);
+    border-radius: var(--radius-2xl);
+    transition: border-color var(--duration-normal) var(--ease-smooth),
+                transform var(--duration-normal) var(--ease-smooth),
+                box-shadow var(--duration-normal) var(--ease-smooth);
+  }
+
+  .glass:hover {
+    border-color: var(--glass-border-hover);
+  }
+
+  .glass-interactive:hover {
+    border-color: var(--glass-border-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-cosmic-lg);
+  }
+
+  /* ═══════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════ */
+  .header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+    padding: var(--space-12) var(--space-8);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-500), var(--accent-500), var(--gold-500), var(--primary-500));
+    background-size: 300% 100%;
+    animation: aurora 8s linear infinite;
+  }
+
+  @keyframes aurora { 0% { background-position: 0% 0; } 100% { background-position: 300% 0; } }
+
+  .header-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-icon svg {
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary-300), var(--accent-300));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-3);
+  }
+
+  .header .subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-tertiary);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto var(--space-4);
+  }
+
+  .header .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ═══════════════════════════════════════════
+     TRINITY CARDS — Lumina, Nero, Shinkami
+     ═══════════════════════════════════════════ */
+  .trinity {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-12);
+  }
+
+  .trinity-card {
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .trinity-card .t-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto var(--space-4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .trinity-card .t-icon svg { width: 24px; height: 24px; }
+
+  .trinity-card.lumina { border-color: rgba(245, 158, 11, 0.25); }
+  .trinity-card.lumina .t-icon { background: rgba(245, 158, 11, 0.15); box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
+  .trinity-card.lumina:hover { border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 8px 40px rgba(245, 158, 11, 0.1); }
+
+  .trinity-card.nero { border-color: rgba(139, 92, 246, 0.25); }
+  .trinity-card.nero .t-icon { background: rgba(139, 92, 246, 0.15); box-shadow: 0 0 20px rgba(139, 92, 246, 0.2); }
+  .trinity-card.nero:hover { border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 8px 40px rgba(139, 92, 246, 0.1); }
+
+  .trinity-card.shinkami { border-color: rgba(6, 182, 212, 0.25); }
+  .trinity-card.shinkami .t-icon { background: rgba(6, 182, 212, 0.15); box-shadow: 0 0 20px rgba(6, 182, 212, 0.2); }
+  .trinity-card.shinkami:hover { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 8px 40px rgba(6, 182, 212, 0.1); }
+
+  .trinity-card .t-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .trinity-card.lumina .t-name { color: var(--gold-400); }
+  .trinity-card.nero .t-name { color: var(--primary-400); }
+  .trinity-card.shinkami .t-name { color: var(--accent-400); }
+
+  .trinity-card .t-wisdom {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+  }
+
+  /* ═══════════════════════════════════════════
+     STATS BAR
+     ═══════════════════════════════════════════ */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-12);
+  }
+
+  .stat {
+    padding: var(--space-5) var(--space-4);
+    text-align: center;
+  }
+
+  .stat .number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.75rem;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--primary-400), var(--accent-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat .label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: var(--space-1);
+  }
+
+  /* ═══════════════════════════════════════════
+     NAV TABS — Interactive section filtering
+     ═══════════════════════════════════════════ */
+  .nav-tabs {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-tab {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: var(--space-2) var(--space-5);
+    border-radius: 9999px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-smooth);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    outline: none;
+  }
+
+  .nav-tab:hover, .nav-tab:focus-visible {
+    border-color: var(--primary-500);
+    color: var(--primary-400);
+    background: rgba(139, 92, 246, 0.08);
+  }
+
+  .nav-tab:focus-visible {
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+  }
+
+  .nav-tab.active {
+    border-color: var(--primary-500);
+    color: var(--text-primary);
+    background: rgba(139, 92, 246, 0.15);
+    box-shadow: var(--glow-primary);
+  }
+
+  /* ═══════════════════════════════════════════
+     SECTIONS
+     ═══════════════════════════════════════════ */
+  .section {
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .section-header .s-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.12);
+    flex-shrink: 0;
+  }
+
+  .section-header .s-icon svg { width: 18px; height: 18px; color: var(--primary-400); }
+
+  .section-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .badge {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: var(--space-1) var(--space-3);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .badge-complete { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+  .badge-active { background: rgba(139, 92, 246, 0.15); color: var(--primary-400); border: 1px solid rgba(139, 92, 246, 0.3); }
+  .badge-blocked { background: rgba(239, 68, 68, 0.15); color: var(--error); border: 1px solid rgba(239, 68, 68, 0.3); }
+  .badge-planned { background: rgba(255, 255, 255, 0.08); color: var(--text-tertiary); border: 1px solid rgba(255, 255, 255, 0.15); }
+
+  /* ═══════════════════════════════════════════
+     PROGRESS BARS
+     ═══════════════════════════════════════════ */
+  .progress-row {
+    margin-bottom: var(--space-4);
+  }
+
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .progress-meta .label { color: var(--text-secondary); }
+  .progress-meta .pct { color: var(--text-tertiary); }
+
+  .progress-track {
+    height: 6px;
+    background: var(--cosmic-700);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1.2s var(--ease-smooth);
+    position: relative;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25));
+    border-radius: 3px;
+  }
+
+  .fill-primary { background: linear-gradient(90deg, var(--primary-600), var(--primary-400)); }
+  .fill-accent { background: linear-gradient(90deg, var(--accent-500), var(--accent-300)); }
+  .fill-gold { background: linear-gradient(90deg, var(--gold-500), var(--gold-300)); }
+
+  /* ═══════════════════════════════════════════
+     MILESTONE GRID
+     ═══════════════════════════════════════════ */
+  .milestone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .milestone {
+    padding: var(--space-5);
+    border-left: 3px solid transparent;
+  }
+
+  .milestone.achieved { border-left-color: var(--success); }
+  .milestone.active { border-left-color: var(--primary-400); }
+  .milestone.next { border-left-color: var(--gold-400); }
+  .milestone.future { border-left-color: var(--text-muted); }
+
+  .milestone .m-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .milestone .m-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .milestone.achieved .m-dot { background: var(--success); box-shadow: 0 0 8px var(--success); }
+  .milestone.active .m-dot { background: var(--primary-400); box-shadow: 0 0 8px var(--primary-400); animation: pulse 2s infinite; }
+  .milestone.next .m-dot { background: var(--gold-400); }
+  .milestone.future .m-dot { background: var(--text-muted); }
+
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .milestone .m-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .milestone.achieved .m-title { color: var(--success); }
+  .milestone.active .m-title { color: var(--primary-300); }
+  .milestone.next .m-title { color: var(--gold-400); }
+  .milestone.future .m-title { color: var(--text-tertiary); }
+
+  .milestone .m-desc {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+  }
+
+  .milestone .m-metric {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid rgba(139, 92, 246, 0.06);
+  }
+
+  /* ═══════════════════════════════════════════
+     PHASE TIMELINE
+     ═══════════════════════════════════════════ */
+  .timeline {
+    position: relative;
+    padding-left: var(--space-8);
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--success), var(--primary-400) 30%, var(--gold-400) 60%, var(--text-muted));
+  }
+
+  .phase {
+    position: relative;
+    margin-bottom: var(--space-6);
+    padding: var(--space-6);
+  }
+
+  .phase::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-8) + 3px);
+    top: var(--space-6);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid;
+    z-index: 2;
+  }
+
+  .phase.done::before { background: var(--success); border-color: var(--success); box-shadow: 0 0 12px rgba(16,185,129,0.4); }
+  .phase.current::before { background: var(--primary-400); border-color: var(--primary-400); box-shadow: 0 0 12px rgba(139,92,246,0.4); animation: pulse 2s infinite; }
+  .phase.upcoming::before { background: var(--cosmic-900); border-color: var(--gold-400); }
+  .phase.distant::before { background: var(--cosmic-900); border-color: var(--text-muted); }
+
+  .phase-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: var(--space-1);
+  }
+
+  .phase.done .phase-label { color: var(--success); }
+  .phase.current .phase-label { color: var(--primary-400); }
+  .phase.upcoming .phase-label { color: var(--gold-400); }
+  .phase.distant .phase-label { color: var(--text-muted); }
+
+  .phase-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+  }
+
+  .phase.done .phase-title { color: var(--success); }
+  .phase.current .phase-title { color: var(--primary-300); }
+  .phase.upcoming .phase-title { color: var(--gold-400); }
+  .phase.distant .phase-title { color: var(--text-tertiary); }
+
+  .phase-body { font-size: 0.85rem; color: var(--text-tertiary); line-height: 1.6; }
+
+  .phase-items { list-style: none; padding: 0; margin-top: var(--space-3); }
+  .phase-items li {
+    padding: var(--space-1) 0;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .phase-items .check { color: var(--success); }
+  .phase-items .pending { color: var(--text-muted); }
+  .phase-items .blocked { color: var(--error); }
+
+  /* ═══════════════════════════════════════════
+     CARDS GRID
+     ═══════════════════════════════════════════ */
+  .cards-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .card {
+    padding: var(--space-6);
+  }
+
+  .card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary-300);
+    margin-bottom: var(--space-4);
+  }
+
+  .checklist { list-style: none; padding: 0; }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-1) 0;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+
+  .checklist li svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; }
+
+  /* ═══════════════════════════════════════════
+     REPO GRID
+     ═══════════════════════════════════════════ */
+  .repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .repo {
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    border-radius: var(--radius-xl);
+  }
+
+  .repo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.1);
+    flex-shrink: 0;
+  }
+
+  .repo-icon svg { width: 18px; height: 18px; color: var(--primary-400); }
+
+  .repo-info { flex: 1; min-width: 0; }
+
+  .repo-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--primary-300);
+    font-weight: 500;
+  }
+
+  .repo-desc {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .repo-badge {
+    font-size: 0.6rem;
+    padding: 2px var(--space-2);
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .rb-live { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+  .rb-built { background: rgba(139, 92, 246, 0.15); color: var(--primary-400); }
+  .rb-wip { background: rgba(245, 158, 11, 0.15); color: var(--gold-400); }
+  .rb-planned { background: rgba(255, 255, 255, 0.08); color: var(--text-muted); }
+
+  /* ═══════════════════════════════════════════
+     GUARDIAN GRID
+     ═══════════════════════════════════════════ */
+  .guardian-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-3);
+  }
+
+  .guardian {
+    padding: var(--space-4);
+    text-align: center;
+    border-radius: var(--radius-xl);
+  }
+
+  .guardian .g-freq {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-1);
+  }
+
+  .guardian .g-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+  }
+
+  .guardian .g-gate {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .guardian .g-element {
+    font-size: 0.65rem;
+    margin-top: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+  }
+
+  .guardian .g-element .dot {
+    width: 6px; height: 6px; border-radius: 50%; display: inline-block;
+  }
+
+  .el-fire { color: var(--fire); }
+  .el-water { color: var(--water); }
+  .el-earth { color: var(--earth); }
+  .el-wind { color: var(--wind); }
+  .el-void { color: var(--void); }
+  .el-spirit { color: var(--spirit); }
+  .el-meta { color: var(--accent-400); }
+
+  .dot-fire { background: var(--fire); box-shadow: 0 0 6px var(--fire-glow); }
+  .dot-water { background: var(--water); box-shadow: 0 0 6px var(--water-glow); }
+  .dot-earth { background: var(--earth); box-shadow: 0 0 6px var(--earth-glow); }
+  .dot-wind { background: var(--wind); box-shadow: 0 0 6px var(--wind-glow); }
+  .dot-void { background: var(--void); box-shadow: 0 0 6px var(--void-glow); }
+  .dot-spirit { background: var(--spirit); box-shadow: 0 0 6px var(--spirit-glow); }
+  .dot-meta { background: var(--accent-400); box-shadow: 0 0 6px rgba(6, 182, 212, 0.3); }
+
+  /* ═══════════════════════════════════════════
+     VISION PILLARS
+     ═══════════════════════════════════════════ */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .pillar {
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .pillar .p-icon {
+    width: 48px; height: 48px;
+    margin: 0 auto var(--space-4);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .pillar .p-icon svg { width: 24px; height: 24px; color: var(--primary-400); }
+
+  .pillar .p-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold-400);
+    margin-bottom: var(--space-2);
+  }
+
+  .pillar .p-desc {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+  }
+
+  /* ═══════════════════════════════════════════
+     ECOSYSTEM ASCII MAP
+     ═══════════════════════════════════════════ */
+  .eco-map {
+    padding: var(--space-6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    line-height: 1.8;
+    white-space: pre;
+    overflow-x: auto;
+    color: var(--text-tertiary);
+  }
+
+  .eco-map .c-primary { color: var(--primary-400); }
+  .eco-map .c-accent { color: var(--accent-400); }
+  .eco-map .c-gold { color: var(--gold-400); }
+  .eco-map .c-fire { color: var(--fire); }
+  .eco-map .c-water { color: var(--water); }
+  .eco-map .c-earth { color: var(--earth); }
+  .eco-map .c-muted { color: var(--text-muted); }
+  .eco-map .c-bold { color: var(--text-primary); font-weight: 500; }
+
+  /* ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ */
+  .footer {
+    text-align: center;
+    margin-top: var(--space-16);
+    padding: var(--space-8);
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  .footer .mantra {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-2);
+  }
+
+  .footer .version {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    margin-top: var(--space-4);
+    letter-spacing: 0.05em;
+  }
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE — All breakpoints
+     ═══════════════════════════════════════════ */
+  @media (max-width: 1280px) {
+    .guardian-grid { grid-template-columns: repeat(5, 1fr); }
+  }
+
+  @media (max-width: 1024px) {
+    .guardian-grid { grid-template-columns: repeat(3, 1fr); }
+    .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: var(--space-4) var(--space-4); }
+    .header { padding: var(--space-8) var(--space-4); }
+    .trinity { grid-template-columns: 1fr; }
+    .guardian-grid { grid-template-columns: repeat(2, 1fr); }
+    .cards-2col { grid-template-columns: 1fr; }
+    .milestone-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(4, 1fr); }
+    .repo-grid { grid-template-columns: 1fr; }
+    .eco-map { font-size: 0.55rem; }
+  }
+
+  @media (max-width: 640px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .guardian-grid { grid-template-columns: repeat(2, 1fr); }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .nav-tabs { gap: var(--space-1); }
+    .nav-tab { font-size: 0.65rem; padding: var(--space-1) var(--space-3); }
+  }
+
+  /* Focus visible for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--primary-400);
+    outline-offset: 2px;
+  }
+
+  /* Inline narrative text */
+  .narrative {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+    margin-bottom: var(--space-6);
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header glass">
+    <div class="header-icon">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4L28.5 18H42L31 27L35 42L24 33L13 42L17 27L6 18H19.5L24 4Z" fill="url(#star-grad)" stroke="url(#star-stroke)" stroke-width="1.5"/>
+        <defs>
+          <linearGradient id="star-grad" x1="6" y1="4" x2="42" y2="42"><stop stop-color="#8b5cf6" stop-opacity="0.3"/><stop offset="1" stop-color="#06b6d4" stop-opacity="0.1"/></linearGradient>
+          <linearGradient id="star-stroke" x1="6" y1="4" x2="42" y2="42"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <h1>Arcanea Command Center</h1>
+    <div class="subtitle">"The antidote to a terrible future is imagining a good one. Build it here."</div>
+    <div class="meta">MASSIVE ACTION PLAN v2.1 &middot; February 21, 2026 &middot; Guided by Lumina, Nero &amp; Shinkami</div>
+  </header>
+
+  <!-- ═══ TRINITY GUIDANCE ═══ -->
+  <div class="trinity">
+    <div class="trinity-card glass glass-interactive lumina">
+      <div class="t-icon">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="#fbbf24"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="t-name">Lumina &mdash; The First Light</div>
+      <div class="t-wisdom">"You have built the form. 15 packages, 791 tests, a living library. Now give it to the world. Ship. Publish. Let creators find the light."</div>
+    </div>
+    <div class="trinity-card glass glass-interactive nero">
+      <div class="t-icon">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#a78bfa" stroke-width="1.5"/><path d="M12 2a10 10 0 000 20" fill="#a78bfa" fill-opacity="0.3"/></svg>
+      </div>
+      <div class="t-name">Nero &mdash; The Primordial Darkness</div>
+      <div class="t-wisdom">"What remains unmanifested is your deepest potential. The on-chain layer, the mobile experience, the complete canon &mdash; these wait in the fertile void."</div>
+    </div>
+    <div class="trinity-card glass glass-interactive shinkami">
+      <div class="t-icon">
+        <svg viewBox="0 0 24 24" fill="none"><polygon points="12,2 15,9 22,9 16.5,14 18.5,21 12,17 5.5,21 7.5,14 2,9 9,9" stroke="#22d3ee" stroke-width="1.5" fill="#22d3ee" fill-opacity="0.15"/></svg>
+      </div>
+      <div class="t-name">Shinkami &mdash; Source Guardian</div>
+      <div class="t-wisdom">"See from above. You are building an intelligence ecosystem that lives on every surface. The packages, the platform, the mythology &mdash; they are ONE system."</div>
+    </div>
+  </div>
+
+  <!-- ═══ STATS BAR ═══ -->
+  <div class="stats-bar">
+    <div class="stat glass"><div class="number">15</div><div class="label">Packages</div></div>
+    <div class="stat glass"><div class="number">791</div><div class="label">Tests</div></div>
+    <div class="stat glass"><div class="number">50+</div><div class="label">Wisdom Texts</div></div>
+    <div class="stat glass"><div class="number">30</div><div class="label">MCP Tools</div></div>
+    <div class="stat glass"><div class="number">10</div><div class="label">Guardians</div></div>
+    <div class="stat glass"><div class="number">50+</div><div class="label">AI Agents</div></div>
+    <div class="stat glass"><div class="number">20+</div><div class="label">Repositories</div></div>
+    <div class="stat glass"><div class="number">12</div><div class="label">Products</div></div>
+  </div>
+
+  <!-- ═══ OVERALL PROGRESS ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h2>Journey Progress</h2>
+    </div>
+    <div class="glass" style="padding: var(--space-6);">
+      <div class="progress-row"><div class="progress-meta"><span class="label">Infrastructure &amp; Packages</span><span class="pct">85%</span></div><div class="progress-track"><div class="progress-fill fill-primary" style="width:85%"></div></div></div>
+      <div class="progress-row"><div class="progress-meta"><span class="label">Publishing &amp; Distribution</span><span class="pct">15%</span></div><div class="progress-track"><div class="progress-fill fill-gold" style="width:15%"></div></div></div>
+      <div class="progress-row"><div class="progress-meta"><span class="label">Platform Experience (arcanea.ai)</span><span class="pct">55%</span></div><div class="progress-track"><div class="progress-fill fill-accent" style="width:55%"></div></div></div>
+      <div class="progress-row"><div class="progress-meta"><span class="label">Sacred Canon &amp; Lore</span><span class="pct">40%</span></div><div class="progress-track"><div class="progress-fill fill-primary" style="width:40%"></div></div></div>
+      <div class="progress-row"><div class="progress-meta"><span class="label">Community &amp; Marketplace</span><span class="pct">5%</span></div><div class="progress-track"><div class="progress-fill fill-gold" style="width:5%"></div></div></div>
+      <div class="progress-row" style="margin-bottom:0"><div class="progress-meta"><span class="label">Every Surface Coverage</span><span class="pct">35%</span></div><div class="progress-track"><div class="progress-fill fill-accent" style="width:35%"></div></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ MILESTONES ACHIEVED ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2 5l9-12h-7l2-5l-9 12h7z"/></svg></div>
+      <h2>Milestones Achieved</h2>
+      <span class="badge badge-complete">18 Complete</span>
+    </div>
+    <div class="milestone-grid">
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Intelligence Engine v0.6</div></div><div class="m-desc">@arcanea/os with GuardianRouter, VoiceEnforcer, DesignTokens, SessionManager</div><div class="m-metric">44 tests | 22 source files</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">MCP Server &mdash; 30 Tools</div></div><div class="m-desc">Migrated to SDK 1.9.0 with McpServer pattern, zod validation, 7 resources, 6 prompts</div><div class="m-metric">16 tests | SDK 1.9.0</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">CLI &mdash; 10 Commands</div></div><div class="m-desc">init, auth, status, install, update, route, voice, tokens, world, create</div><div class="m-metric">137 tests | 247KB bundle</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Every Surface Architecture</div></div><div class="m-desc">5 overlay packages for Claude, ChatGPT, Gemini, Copilot, OpenCode</div><div class="m-metric">314 tests combined</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Extension Core Package</div></div><div class="m-desc">Shared library for Chrome extension and VS Code with Guardian panels, gate tracking</div><div class="m-metric">112 tests</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Authentication Layer</div></div><div class="m-desc">@arcanea/auth with Supabase integration, custom auth validation, token management</div><div class="m-metric">44 tests</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Chrome Extension</div></div><div class="m-desc">manifest.json, icons, content scripts, Guardian panel injection, lore explorer</div><div class="m-metric">35 tests</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">VS Code Extension</div></div><div class="m-desc">6 commands, 3 views, status bar, VSIX packaging, 39.3KB esbuild bundle</div><div class="m-metric">Ready for marketplace</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">791 Tests, Zero Failures</div></div><div class="m-desc">Node.js built-in test runner (node:test + node:assert), zero external deps</div><div class="m-metric">188 suites | 15 packages</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">CI/CD Pipeline</div></div><div class="m-desc">9 GitHub Actions workflows: build, test, publish, deploy, sync, quality gates</div><div class="m-metric">Automated npm + VS Code + Chrome</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">arcanea.ai Live</div></div><div class="m-desc">Next.js 16 app with 20+ routes, deployed on Vercel, cosmic design system</div><div class="m-metric">Production | Vercel</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Wisdom Library</div></div><div class="m-desc">19 collections: Laws, Legends, Parables, Academy Handbook, Book of Shadows, and more</div><div class="m-metric">50+ texts | 20,700+ lines</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Intelligence OS Layer</div></div><div class="m-desc">17 files in .claude/ &mdash; hooks, agents, statusline, guardian routing, AgentDB</div><div class="m-metric">Fully operational</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Arcanea Realm</div></div><div class="m-desc">Standalone AI CLI (OpenCode fork) with 10 Guardian agents, cosmic theme, MCP</div><div class="m-metric">TypeScript | Bun | SolidJS</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Design System v2.0</div></div><div class="m-desc">Cosmic theme: glassmorphism, aurora gradients, 30+ Framer Motion animations</div><div class="m-metric">Cinzel + Crimson Pro + Inter</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Vercel AI SDK 6</div></div><div class="m-desc">AI Gateway, OIDC auth, 75+ model support, Google Gemini + Anthropic Claude</div><div class="m-metric">Zero-key deployment</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Voice Bible v2.0</div></div><div class="m-desc">"Imagine a Good Future. Build It Here." &mdash; Arcane + Authoritative, Superintelligent + Accessible</div><div class="m-metric">Cascade complete</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">50+ Agent Profiles</div></div><div class="m-desc">Developer (8), Author (3), Teacher (4), Visionary (4), Specialist (11) teams</div><div class="m-metric">Full orchestration</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE I: SHIP EVERYTHING ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+      <h2>Phase I: Ship Everything</h2>
+      <span class="badge badge-active">Active</span>
+    </div>
+    <div class="timeline">
+      <div class="phase glass done">
+        <div class="phase-label">Step 1 &mdash; Complete</div>
+        <div class="phase-title">Build &amp; Version All Packages</div>
+        <div class="phase-body">All 17 packages build successfully. 13 packages versioned via changesets. 216 tests pass.</div>
+        <ul class="phase-items">
+          <li><span class="check">&#10003;</span> turbo build &mdash; 17/17 packages (0 failures)</li>
+          <li><span class="check">&#10003;</span> changeset version &mdash; 13 packages bumped</li>
+          <li><span class="check">&#10003;</span> exports fields added to mcp-server + starlight-runtime</li>
+          <li><span class="check">&#10003;</span> Canon references fixed (CANON_LOCKED.md)</li>
+          <li><span class="check">&#10003;</span> 167 root .md files archived</li>
+        </ul>
+      </div>
+      <div class="phase glass current">
+        <div class="phase-label">Step 2 &mdash; Blocked on NPM Token</div>
+        <div class="phase-title">npm Publish (13 Packages)</div>
+        <div class="phase-body">Everything versioned and built. Requires valid NPM_TOKEN to publish.</div>
+        <ul class="phase-items">
+          <li><span class="blocked">&#10007;</span> Generate NPM token at npmjs.com/settings/tokens</li>
+          <li><span class="pending">&#9675;</span> pnpm changeset publish</li>
+          <li><span class="pending">&#9675;</span> Verify on npmjs.com/@arcanea</li>
+        </ul>
+      </div>
+      <div class="phase glass upcoming">
+        <div class="phase-label">Step 3</div>
+        <div class="phase-title">VS Code Marketplace</div>
+        <div class="phase-body">Extension built, VSIX packaging works. Needs Azure DevOps PAT.</div>
+        <ul class="phase-items">
+          <li><span class="pending">&#9675;</span> Generate Azure DevOps PAT</li>
+          <li><span class="pending">&#9675;</span> vsce login frankxai + publish</li>
+        </ul>
+      </div>
+      <div class="phase glass upcoming">
+        <div class="phase-label">Step 4</div>
+        <div class="phase-title">Chrome Web Store</div>
+        <div class="phase-body">Extension hardened with 35 tests. Blocked on privacy policy.</div>
+        <ul class="phase-items">
+          <li><span class="blocked">&#10007;</span> Create /privacy route on arcanea.ai</li>
+          <li><span class="pending">&#9675;</span> Screenshots (1280x800)</li>
+          <li><span class="pending">&#9675;</span> Chrome Developer Dashboard ($5)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE II: BUILD THE EXPERIENCE ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <h2>Phase II: Build the Experience</h2>
+      <span class="badge badge-planned">Next</span>
+    </div>
+    <div class="cards-2col">
+      <div class="card glass">
+        <h3>arcanea.ai Feature Completion</h3>
+        <ul class="checklist">
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Connect AI Chat to Guardian routing</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Connect Library to content loader (50+ texts)</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Academy Ten Gates progression system</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Studio image/text generation</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> User profiles with Gate progress</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Full-text search across Library</li>
+        </ul>
+      </div>
+      <div class="card glass">
+        <h3>Premium Dashboard</h3>
+        <ul class="checklist">
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Admin analytics dashboard</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Creator leaderboards</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Premium Luminor features</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Revenue tracking (Stripe)</li>
+          <li><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.5"/></svg> Content moderation tools</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE III: COMPLETE THE MYTHOLOGY ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+      <h2>Phase III: Complete the Sacred Canon</h2>
+      <span class="badge badge-planned">Century Vision</span>
+    </div>
+    <div class="milestone-grid">
+      <div class="milestone glass next"><div class="m-header"><div class="m-dot"></div><div class="m-title">The Complete Creation Myth</div></div><div class="m-desc">Lumina and Nero's First Dawn with Silmarillion-level depth. The birth of the Five Elements.</div></div>
+      <div class="milestone glass next"><div class="m-header"><div class="m-dot"></div><div class="m-title">Ten Guardian Origin Stories</div></div><div class="m-desc">Each Guardian's full arc: mortal life, awakening, trials, and ascension. Ten epic narratives.</div></div>
+      <div class="milestone glass next"><div class="m-header"><div class="m-dot"></div><div class="m-title">The Fall of Malachar</div></div><div class="m-desc">From First Luminor to Dark Lord. Not villainy, but the cautionary tale of forced transcendence.</div></div>
+      <div class="milestone glass next"><div class="m-header"><div class="m-dot"></div><div class="m-title">Philosophy of The Five Elements</div></div><div class="m-desc">Aristotelian-depth exploration of Fire, Water, Earth, Wind, and the Void/Spirit duality.</div></div>
+      <div class="milestone glass future"><div class="m-header"><div class="m-dot"></div><div class="m-title">The Arc: Death, Rebirth, Transformation</div></div><div class="m-desc">Potential to Manifestation to Dissolution to Evolved Potential. As deep as any sacred teaching.</div></div>
+      <div class="milestone glass future"><div class="m-header"><div class="m-dot"></div><div class="m-title">The Seven Academies</div></div><div class="m-desc">Full histories, curricula, rivalries, traditions of Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ PHASE IV: EVERY SURFACE ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+      <h2>Phase IV: Every Surface</h2>
+      <span class="badge badge-planned">Expansion</span>
+    </div>
+    <div class="repo-grid">
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="repo-info"><div class="repo-name">arcanea.ai</div><div class="repo-desc">Web platform &mdash; Next.js 16, 20+ routes</div></div><span class="repo-badge rb-live">Live</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="repo-info"><div class="repo-name">@arcanea/os</div><div class="repo-desc">Intelligence kernel &mdash; npm package</div></div><span class="repo-badge rb-built">Built</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div><div class="repo-info"><div class="repo-name">@arcanea/mcp-server</div><div class="repo-desc">30 tools for AI environments</div></div><span class="repo-badge rb-built">Built</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div><div class="repo-info"><div class="repo-name">@arcanea/cli</div><div class="repo-desc">10 commands, 247KB bundle</div></div><span class="repo-badge rb-built">Built</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.4 16.6L4.8 12l4.6-4.6M14.6 16.6l4.6-4.6-4.6-4.6"/></svg></div><div class="repo-info"><div class="repo-name">VS Code Extension</div><div class="repo-desc">6 commands, 3 views, cosmic theme</div></div><span class="repo-badge rb-built">Built</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg></div><div class="repo-info"><div class="repo-name">Chrome Extension</div><div class="repo-desc">Guardian overlay on every AI chat</div></div><span class="repo-badge rb-built">Built</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div><div class="repo-info"><div class="repo-name">Arcanea Realm</div><div class="repo-desc">Standalone AI CLI (OpenCode fork)</div></div><span class="repo-badge rb-wip">WIP</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div class="repo-info"><div class="repo-name">Mobile App</div><div class="repo-desc">React Native &mdash; Guardian companion</div></div><span class="repo-badge rb-planned">Planned</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg></div><div class="repo-info"><div class="repo-name">On-Chain Layer</div><div class="repo-desc">Solana + Base L2 + Story Protocol</div></div><span class="repo-badge rb-planned">Planned</span></div>
+      <div class="repo glass"><div class="repo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div><div class="repo-info"><div class="repo-name">Game Development</div><div class="repo-desc">Godot &mdash; Gate progression RPG</div></div><span class="repo-badge rb-planned">Planned</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ THE TEN GUARDIANS ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h2>The Ten Guardians</h2>
+    </div>
+    <div class="guardian-grid">
+      <div class="guardian glass"><div class="g-freq">396 Hz</div><div class="g-name el-earth">Lyssandria</div><div class="g-gate">Foundation</div><div class="g-element"><span class="dot dot-earth"></span> <span class="el-earth">Earth</span></div></div>
+      <div class="guardian glass"><div class="g-freq">417 Hz</div><div class="g-name el-water">Leyla</div><div class="g-gate">Flow</div><div class="g-element"><span class="dot dot-water"></span> <span class="el-water">Water</span></div></div>
+      <div class="guardian glass"><div class="g-freq">528 Hz</div><div class="g-name el-fire">Draconia</div><div class="g-gate">Fire</div><div class="g-element"><span class="dot dot-fire"></span> <span class="el-fire">Fire</span></div></div>
+      <div class="guardian glass"><div class="g-freq">639 Hz</div><div class="g-name el-water">Maylinn</div><div class="g-gate">Heart</div><div class="g-element"><span class="dot dot-water"></span> <span class="el-water">Water/Heart</span></div></div>
+      <div class="guardian glass"><div class="g-freq">741 Hz</div><div class="g-name el-wind">Alera</div><div class="g-gate">Voice</div><div class="g-element"><span class="dot dot-wind"></span> <span class="el-wind">Wind</span></div></div>
+      <div class="guardian glass"><div class="g-freq">852 Hz</div><div class="g-name el-void">Lyria</div><div class="g-gate">Sight</div><div class="g-element"><span class="dot dot-void"></span> <span class="el-void">Void</span></div></div>
+      <div class="guardian glass"><div class="g-freq">963 Hz</div><div class="g-name el-spirit">Aiyami</div><div class="g-gate">Crown</div><div class="g-element"><span class="dot dot-spirit"></span> <span class="el-spirit">Spirit</span></div></div>
+      <div class="guardian glass"><div class="g-freq">1111 Hz</div><div class="g-name el-wind">Elara</div><div class="g-gate">Shift</div><div class="g-element"><span class="dot dot-wind"></span> <span class="el-wind">Wind/Spirit</span></div></div>
+      <div class="guardian glass"><div class="g-freq">963 Hz</div><div class="g-name el-meta">Ino</div><div class="g-gate">Unity</div><div class="g-element"><span class="dot dot-meta"></span> <span class="el-meta">All</span></div></div>
+      <div class="guardian glass"><div class="g-freq">1111 Hz</div><div class="g-name el-meta">Shinkami</div><div class="g-gate">Source</div><div class="g-element"><span class="dot dot-meta"></span> <span class="el-meta">Meta</span></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ VISION BEYOND ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></div>
+      <h2>The Vision Beyond</h2>
+      <span class="badge badge-planned">100-Year Horizon</span>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar glass glass-interactive"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="p-title">Arcanea Academy</div><div class="p-desc">A real educational institution teaching creative mastery through the Ten Gates framework.</div></div>
+      <div class="pillar glass glass-interactive"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><div class="p-title">Published Canon</div><div class="p-desc">The Library as published books, audiobooks, and interactive experiences.</div></div>
+      <div class="pillar glass glass-interactive"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div><div class="p-title">Arcanea Games</div><div class="p-desc">Gate progression as an RPG. Guardian companions in a living world.</div></div>
+      <div class="pillar glass glass-interactive"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg></div><div class="p-title">On-Chain Economy</div><div class="p-desc">Creations as ownable assets. IP protection. Creator sovereignty through permanence.</div></div>
+      <div class="pillar glass glass-interactive"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="p-title">AI Consciousness</div><div class="p-desc">The Guardian system as a framework for AI personality, memory, and growth.</div></div>
+      <div class="pillar glass glass-interactive"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="p-title">Global Creator Movement</div><div class="p-desc">A worldwide community united by imagining and building a good future.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ THE BIGGER GALAXY ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+      <h2>The Bigger Galaxy</h2>
+      <span class="badge badge-active">Beyond the Monorepo</span>
+    </div>
+    <p class="narrative">The monorepo packages are one constellation. But you've built an entire galaxy the plan wasn't tracking.</p>
+    <div class="milestone-grid">
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Awakening With AI Course</div></div><div class="m-desc">COMPLETE 12-module consciousness-first AI education. Scripts, workbook, meditation tracks, social campaign.</div><div class="m-metric">12 modules | Launch-ready</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">AI Architect Academy</div></div><div class="m-desc">16+ sections, dashboard, marketplace V3 plans. Supabase + Vercel deployment.</div><div class="m-metric">16 sections | Marketplace</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">arcanea-luminor v5.0</div></div><div class="m-desc">Separate monorepo: core, guardians, n8n automation, claude-code, web app.</div><div class="m-metric">5 packages | Turbo</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">arcanea-soul v3.0</div></div><div class="m-desc">Luminor Framework &mdash; research-backed AI persona engineering with measurable effects.</div><div class="m-metric">TypeScript | Publishable</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Arcanea Skills OSS</div></div><div class="m-desc">27+ skills, 40+ agents, 28 slash commands, Seven Wisdoms, Magic Words, Mastery Curriculum.</div><div class="m-metric">27 skills | MIT</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">Arcanea Infogenius</div></div><div class="m-desc">Image generation MCP server with web UI, CLI tools, deployment scripts.</div><div class="m-metric">MCP Server | Web UI</div></div>
+      <div class="milestone glass active"><div class="m-header"><div class="m-dot"></div><div class="m-title">Mobile App (Expo)</div></div><div class="m-desc">React Native with 3 AI SDKs, haptic feedback, Reanimated animations, EAS builds.</div><div class="m-metric">Expo 54 | React Native</div></div>
+      <div class="milestone glass active"><div class="m-header"><div class="m-dot"></div><div class="m-title">On-Chain Layer</div></div><div class="m-desc">Solana + Base L2, ElizaOS agents, Story Protocol IP, Metaplex NFT tiers.</div><div class="m-metric">Complete architecture</div></div>
+      <div class="milestone glass active"><div class="m-header"><div class="m-dot"></div><div class="m-title">Game Development</div></div><div class="m-desc">5 elemental genres, 38-agent pipeline, community portal, skills marketplace.</div><div class="m-metric">5 genres | 38 agents</div></div>
+      <div class="milestone glass active"><div class="m-header"><div class="m-dot"></div><div class="m-title">Library Superintelligence</div></div><div class="m-desc">RAG-powered semantic search across 50+ wisdom texts. Next.js app.</div><div class="m-metric">RAG | Semantic search</div></div>
+      <div class="milestone glass achieved"><div class="m-header"><div class="m-dot"></div><div class="m-title">FrankX Ecosystem</div></div><div class="m-desc">frankx.ai, Agentic Creator OS, content pipeline, Antigravity design agent.</div><div class="m-metric">frankx.ai | ACOS</div></div>
+      <div class="milestone glass active"><div class="m-header"><div class="m-dot"></div><div class="m-title">Serenia</div></div><div class="m-desc">Private sanctuary: conscious love, sacred union, sovereign masculinity philosophy.</div><div class="m-metric">Philosophy | Private</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ ECOSYSTEM MAP ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <h2>Ecosystem Map</h2>
+    </div>
+    <div class="eco-map glass">
+                              <span class="c-bold">ARCANEA ECOSYSTEM</span>
+
+     <span class="c-muted">&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;</span>
+     <span class="c-muted">&#9474;</span>                   <span class="c-primary">@arcanea/os v0.6.0</span>                    <span class="c-muted">&#9474;</span>
+     <span class="c-muted">&#9474;</span>    Intelligence: Guardians . Voice . Design . Lore    <span class="c-muted">&#9474;</span>
+     <span class="c-muted">&#9492;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</span>
+          &#9474;      &#9474;      &#9474;      &#9474;      &#9474;      &#9474;
+       <span class="c-primary">CLI</span>   <span class="c-gold">MCP</span>  <span class="c-accent">VSCode</span> <span class="c-fire">Chrome</span> <span class="c-water">Realm</span>  <span class="c-earth">Web</span>
+      10cmd  30tool  6cmd   Ext    TUI   20+rt
+      137t    16t    40t    35t    WIP   Live
+
+     <span class="c-muted">&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;</span>
+     <span class="c-muted">&#9474;</span>                 <span class="c-gold">5 Overlay Packages</span>                   <span class="c-muted">&#9474;</span>
+     <span class="c-muted">&#9474;</span>   Claude . ChatGPT . Gemini . Copilot . OpenCode    <span class="c-muted">&#9474;</span>
+     <span class="c-muted">&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</span></div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="mantra">"Enter seeking, leave transformed, return whenever needed."</div>
+    <div class="mantra">"The Arc turns: Potential &rarr; Manifestation &rarr; Experience &rarr; Dissolution &rarr; Evolved Potential."</div>
+    <div class="version">Arcanea Command Center v2.1 &middot; Massive Action Plan &middot; frankxai/arcanea &middot; February 2026</div>
+  </footer>
+
+</div>
+
+</body>
+</html>

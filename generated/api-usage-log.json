@@ -1,0 +1,48 @@
+{
+  "summary": {
+    "today": {
+      "date": "2025-01-31",
+      "total_cost": 0.10,
+      "calls": 2
+    },
+    "this_week": {
+      "start": "2025-01-27",
+      "end": "2025-02-02",
+      "total_cost": 0.10,
+      "calls": 2
+    },
+    "all_time": {
+      "total_cost": 0.10,
+      "calls": 2
+    }
+  },
+  "usage": [
+    {
+      "timestamp": "2025-01-31T12:00:00Z",
+      "api": "Google Imagen 4.0 Ultra",
+      "model": "imagen-4.0-ultra-generate-001",
+      "operation": "image_generation",
+      "description": "Multi-agent creative platform - transcendent style",
+      "cost": 0.06,
+      "output": "arcanea-multi-agent-platform-transcendent.png",
+      "size_mb": 1.50
+    },
+    {
+      "timestamp": "2025-01-31T12:15:00Z",
+      "api": "Google Nano Banana Pro",
+      "model": "gemini-3-pro-image-preview",
+      "operation": "image_generation",
+      "description": "Multi-agent creative platform - transcendent style (comparison)",
+      "cost": 0.04,
+      "output": "arcanea-multi-agent-nano-banana-pro.png",
+      "size_mb": 0.67
+    }
+  ],
+  "pricing_reference": {
+    "nano_banana": 0.02,
+    "nano_banana_pro": 0.04,
+    "imagen_4_fast": 0.02,
+    "imagen_4": 0.04,
+    "imagen_4_ultra": 0.06
+  }
+}

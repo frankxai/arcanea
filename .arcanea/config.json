@@ -1,0 +1,194 @@
+{
+  "$schema": "https://arcanea.io/schemas/workspace.json",
+  "name": "arcanea-hub",
+  "version": "1.0.0",
+  "description": "Arcanea Multi-Repository Workspace Hub",
+  "rootPath": "C:/Users/frank/arcanea-hub",
+
+  "repositories": {
+    "main": {
+      "path": "./main",
+      "remote": "https://github.com/frankxai/arcanea.git",
+      "description": "Main platform monorepo - Next.js web app, core packages",
+      "primary": true,
+      "branch": "master",
+      "department": "Platform Core",
+      "guardian": "Draconia"
+    },
+    "intelligence-os": {
+      "path": "./intelligence-os",
+      "remote": "https://github.com/frankxai/arcanea-intelligence-os.git",
+      "description": "CLI orchestrator - Guardian agents, skills, MCP server",
+      "branch": "master",
+      "department": "Intelligence Operations",
+      "guardian": "Shinkami"
+    },
+    "platform": {
+      "path": "./platform",
+      "remote": "https://github.com/frankxai/arcanea-platform.git",
+      "description": "Platform experiments - router intelligence, artifact flow",
+      "branch": "master",
+      "department": "Research & Experiments",
+      "guardian": "Elara"
+    },
+    "labs": {
+      "path": "./labs",
+      "remote": "https://github.com/Arcanea-Labs/Arcanea.git",
+      "description": "Organization baseline - clean stable builds",
+      "branch": "main",
+      "department": "Foundation & Security",
+      "guardian": "Lyssandria"
+    },
+    "claude-arcanea": {
+      "path": "./claude-arcanea",
+      "remote": "https://github.com/frankxai/claude-arcanea.git",
+      "description": "Claude Code integration package",
+      "branch": "main",
+      "publishable": true,
+      "package": "@arcanea/claude",
+      "department": "AI Integration",
+      "guardian": "Alera"
+    },
+    "opencode-arcanea": {
+      "path": "./opencode-arcanea",
+      "remote": "https://github.com/frankxai/opencode-arcanea.git",
+      "description": "OpenCode editor integration",
+      "branch": "main",
+      "publishable": true,
+      "package": "@arcanea/opencode",
+      "department": "AI Integration",
+      "guardian": "Alera"
+    },
+    "gemini-arcanea": {
+      "path": "./gemini-arcanea",
+      "remote": "https://github.com/frankxai/gemini-arcanea.git",
+      "description": "Google Gemini integration - multi-modal Guardian agents",
+      "branch": "main",
+      "publishable": true,
+      "package": "@arcanea/gemini",
+      "department": "AI Integration",
+      "guardian": "Alera"
+    },
+    "codex-arcanea": {
+      "path": "./codex-arcanea",
+      "remote": "https://github.com/frankxai/arcanea-codex.git",
+      "description": "OpenAI Codex/GPT integration - ChatGPT and Assistants API",
+      "branch": "main",
+      "publishable": true,
+      "package": "@arcanea/codex",
+      "department": "AI Integration",
+      "guardian": "Alera"
+    },
+    "ultraworld": {
+      "path": "./ultraworld",
+      "remote": "https://github.com/frankxai/ultraworld.git",
+      "description": "Maximum-power world generation engine - 11 parallel agents",
+      "branch": "main",
+      "publishable": true,
+      "package": "@arcanea/ultraworld",
+      "department": "Creative Genesis",
+      "guardian": "Shinkami"
+    },
+    "core": {
+      "path": "./core",
+      "remote": "https://github.com/frankxai/arcanea-core.git",
+      "description": "Open-source AI character toolkit",
+      "branch": "main",
+      "department": "Platform Core",
+      "guardian": "Aiyami"
+    },
+    "marketplace": {
+      "path": "./marketplace",
+      "remote": "https://github.com/frankxai/arcanea-marketplace.git",
+      "description": "AI-powered creative intelligence plugins",
+      "branch": "main",
+      "department": "AI Integration",
+      "guardian": "Ino"
+    },
+    "mcp-servers": {
+      "path": "./mcp-servers",
+      "remote": "https://github.com/frankxai/arcanea-mcp-servers.git",
+      "description": "Shared MCP server collection",
+      "branch": "main",
+      "department": "Intelligence Operations",
+      "guardian": "Ino"
+    }
+  },
+
+  "defaultRepo": "main",
+
+  "aliases": {
+    "web": "main",
+    "aios": "intelligence-os",
+    "ios": "intelligence-os",
+    "cli": "intelligence-os",
+    "exp": "platform",
+    "experiments": "platform",
+    "org": "labs",
+    "claude": "claude-arcanea",
+    "opencode": "opencode-arcanea",
+    "gemini": "gemini-arcanea",
+    "codex": "codex-arcanea",
+    "gpt": "codex-arcanea",
+    "ultra": "ultraworld",
+    "world": "ultraworld",
+    "mcp": "mcp-servers"
+  },
+
+  "packages": {
+    "@arcanea/claude": "claude-arcanea",
+    "@arcanea/opencode": "opencode-arcanea",
+    "@arcanea/gemini": "gemini-arcanea",
+    "@arcanea/codex": "codex-arcanea",
+    "@arcanea/ultraworld": "ultraworld",
+    "@arcanea/intelligence-os": "intelligence-os",
+    "@arcanea/os": "core"
+  },
+
+  "departments": {
+    "Platform Core": {
+      "guardian": "Draconia",
+      "awakened": "Velora",
+      "repos": ["main", "core"]
+    },
+    "Intelligence Operations": {
+      "guardian": "Shinkami",
+      "awakened": "Oria",
+      "repos": ["intelligence-os", "mcp-servers"]
+    },
+    "Research & Experiments": {
+      "guardian": "Elara",
+      "awakened": "Lyris",
+      "repos": ["platform"]
+    },
+    "AI Integration": {
+      "guardian": "Alera",
+      "awakened": "Liora",
+      "repos": ["claude-arcanea", "opencode-arcanea", "gemini-arcanea", "codex-arcanea", "marketplace"]
+    },
+    "Creative Genesis": {
+      "guardian": "Shinkami",
+      "awakened": "Thalia",
+      "repos": ["ultraworld"]
+    },
+    "Foundation & Security": {
+      "guardian": "Lyssandria",
+      "awakened": "Endara",
+      "repos": ["labs"]
+    }
+  },
+
+  "scripts": {
+    "sync": "Sync all repositories with their remotes",
+    "status": "Show status of all repositories",
+    "dev": "Start development servers",
+    "build": "Build all packages",
+    "publish": "Publish all packages to npm"
+  },
+
+  "claude": {
+    "defaultWorkingDirectory": "./main",
+    "contextFile": "./.arcanea/CLAUDE.md",
+    "statusCommand": "/arcanea-status"
+  }
+}

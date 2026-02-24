@@ -1,0 +1,23 @@
+{
+  "name": "@arcanea/chrome-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Arcanea Intelligence OS for Chrome — Guardian-powered AI on every webpage",
+  "scripts": {
+    "dev": "node build.mjs --watch",
+    "build": "node build.mjs",
+    "icons:generate": "node generate-icons.mjs",
+    "clean": "rm -rf dist",
+    "test": "node --test tests/*.test.mjs",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@arcanea/extension-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.36",
+    "esbuild": "^0.24.0",
+    "pngjs": "^7.0.0",
+    "typescript": "^5.5.0"
+  }
+}

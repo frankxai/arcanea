@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Arcanea Prompt Books - LIVE DEMO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-gradient {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(30, 41, 59, 0.5));
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { motion, AnimatePresence } = window.Motion;
+
+        // === DATA ===
+        const PROMPTS = [
+            { id: 1, name: 'Character Motivation', desc: 'Generate deep motivations', category: 'Character', tags: ['motivation', 'character'], template: 'Create motivation for {archetype} who fears {fear} and desires {desire}' },
+            { id: 2, name: 'World Building', desc: 'Design fantasy worlds', category: 'World', tags: ['world', 'fantasy'], template: 'Design world with {element} magic where {society} governs' },
+            { id: 3, name: 'Dialogue Generator', desc: 'Create authentic dialogue', category: 'Story', tags: ['dialogue', 'writing'], template: 'Write dialogue: {character} discovers {truth} while feeling {emotion}' },
+            { id: 4, name: 'Spell Creation', desc: 'Design magical spells', category: 'Magic', tags: ['magic', 'spells'], template: 'Create {element} spell called {name}: costs {cost}, effect is {effect}' },
+            { id: 5, name: 'Conflict Generator', desc: 'Compelling conflicts', category: 'Story', tags: ['conflict', 'plot'], template: 'Conflict: {character} chooses between {obligation} and {desire}' },
+            { id: 6, name: 'NPC Creation', desc: 'Quick NPCs', category: 'Character', tags: ['npc', 'rpg'], template: 'Create {role} named {name} with personality {trait}' }
+        ];
+
+        const CHARACTERS = [
+            { id: 1, name: 'Kira Vance', archetype: 'Storm Seeker', role: 'Rogue Cloud Harvester', traits: ['determined', 'resourceful', 'cybernetic arm'] },
+            { id: 2, name: 'Jaxon Prime', archetype: 'Crystal Guardian', role: 'Library Keeper', traits: ['wise', 'patient', 'protective'] },
+            { id: 3, name: 'Lyra Nightshade', archetype: 'Shadow Weaver', role: 'Spy', traits: ['cunning', 'loyal', 'brooding'] },
+            { id: 4, name: 'Theron Flame', archetype: 'Fire Dancer', role: 'Entertainer', traits: ['passionate', 'charismatic', 'reckless'] }
+        ];
+
+        const WORLDS = [
+            { id: 1, name: 'Venus Floating Cities', elements: ['plasma', 'storm'], magic: 'Storm Channeling', desc: 'Cities float above toxic clouds' },
+            { id: 2, name: 'Crystal Realms', elements: ['crystal', 'light'], magic: 'Resonance', desc: 'World made of living crystals' },
+            { id: 3, name: 'Shadow Nexus', elements: ['shadow', 'void'], magic: 'Void Manipulation', desc: 'Light and darkness blend' }
+        ];
+
+        // === COMPONENTS ===
+        function App() {
+            const [tab, setTab] = useState('prompts');
+            const [search, setSearch] = useState('');
+            const [selectedPrompt, setSelectedPrompt] = useState(null);
+            const [filledPrompt, setFilledPrompt] = useState('');
+            const [copied, setCopied] = useState(false);
+
+            const filteredPrompts = PROMPTS.filter(p => 
+                p.name.toLowerCase().includes(search.toLowerCase()) ||
+                p.tags.some(t => t.toLowerCase().includes(search.toLowerCase()))
+            );
+
+            const filteredChars = CHARACTERS.filter(c => 
+                c.name.toLowerCase().includes(search.toLowerCase())
+            );
+
+            const filteredWorlds = WORLDS.filter(w => 
+                w.name.toLowerCase().includes(search.toLowerCase())
+            );
+
+            const usePrompt = (prompt) => {
+                setSelectedPrompt(prompt);
+                setFilledPrompt(prompt.template);
+            };
+
+            const copyToClipboard = () => {
+                navigator.clipboard.writeText(filledPrompt);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            };
+
+            return (
+                <div className="container mx-auto px-4 py-8">
+                    {/* Header */}
+                    <motion.div initial={{opacity:0, y:-20}} animate={{opacity:1, y:0}} className="text-center mb-8">
+                        <h1 className="text-5xl font-bold gradient-text mb-2">📚 Arcanea Prompt Books</h1>
+                        <p className="text-gray-300 text-lg">Your library of magical prompts, characters, and worlds</p>
+                    </motion.div>
+
+                    {/* Search */}
+                    <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} className="mb-6">
+                        <div className="card-gradient rounded-xl p-4 border border-slate-700">
+                            <input
+                                type="text"
+                                placeholder="🔍 Search prompts, characters, worlds..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            />
+                        </div>
+                    </motion.div>
+
+                    {/* Tabs */}
+                    <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{delay:0.1}} className="mb-6">
+                        <div className="card-gradient rounded-xl p-2 border border-slate-700 flex gap-2">
+                            {[
+                                { id: 'prompts', label: '✨ Spells', icon: '🔮' },
+                                { id: 'characters', label: '🧙 Characters', icon: '👤' },
+                                { id: 'worlds', label: '🌍 Worlds', icon: '🌍' }
+                            ].map(t => (
+                                <button
+                                    key={t.id}
+                                    onClick={() => setTab(t.id)}
+                                    className={`flex-1 px-4 py-3 rounded-lg font-medium transition-all ${
+                                        tab === t.id 
+                                            ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg' 
+                                            : 'text-gray-400 hover:text-white hover:bg-slate-700/50'
+                                    }`}
+                                >
+                                    {t.icon} {t.label}
+                                </button>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Content */}
+                    <AnimatePresence mode="wait">
+                        {tab === 'prompts' && (
+                            <motion.div 
+                                key="prompts"
+                                initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-20}}
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                            >
+                                {filteredPrompts.map((prompt, i) => (
+                                    <motion.div
+                                        key={prompt.id}
+                                        initial={{opacity:0, scale:0.9}}
+                                        animate={{opacity:1, scale:1}}
+                                        transition={{delay:i*0.1}}
+                                        whileHover={{scale:1.02, y:-2}}
+                                        onClick={() => usePrompt(prompt)}
+                                        className="card-gradient rounded-xl p-6 border border-slate-700 hover:border-purple-500 cursor-pointer transition-all"
+                                    >
+                                        <h3 className="text-lg font-bold text-white mb-1">{prompt.name}</h3>
+                                        <span className="text-xs px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full">{prompt.category}</span>
+                                        <p className="text-gray-400 text-sm mt-3">{prompt.desc}</p>
+                                        <div className="flex flex-wrap gap-2 mt-3">
+                                            {prompt.tags.map((tag, i) => (
+                                                <span key={i} className="text-xs px-2 py-1 bg-slate-700 text-gray-300 rounded-full">#{tag}</span>
+                                            ))}
+                                        </div>
+                                        <button className="w-full mt-4 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium">
+                                            ✨ Use Spell
+                                        </button>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        )}
+
+                        {tab === 'characters' && (
+                            <motion.div 
+                                key="chars"
+                                initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-20}}
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                            >
+                                {filteredChars.map((char, i) => (
+                                    <motion.div
+                                        key={char.id}
+                                        initial={{opacity:0, scale:0.9}}
+                                        animate={{opacity:1, scale:1}}
+                                        transition={{delay:i*0.1}}
+                                        className="card-gradient rounded-xl p-6 border border-slate-700"
+                                    >
+                                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4">
+                                            <span className="text-2xl">👤</span>
+                                        </div>
+                                        <h3 className="text-lg font-bold text-white">{char.name}</h3>
+                                        <p className="text-sm text-purple-400">{char.archetype}</p>
+                                        <p className="text-xs text-gray-400 mt-1">{char.role}</p>
+                                        <div className="flex flex-wrap gap-2 mt-3">
+                                            {char.traits.map((trait, i) => (
+                                                <span key={i} className="text-xs px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full">{trait}</span>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        )}
+
+                        {tab === 'worlds' && (
+                            <motion.div 
+                                key="worlds"
+                                initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-20}}
+                                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                            >
+                                {filteredWorlds.map((world, i) => (
+                                    <motion.div
+                                        key={world.id}
+                                        initial={{opacity:0, scale:0.9}}
+                                        animate={{opacity:1, scale:1}}
+                                        transition={{delay:i*0.1}}
+                                        className="card-gradient rounded-xl p-6 border border-slate-700"
+                                    >
+                                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mb-4">
+                                            <span className="text-2xl">🌍</span>
+                                        </div>
+                                        <h3 className="text-lg font-bold text-white">{world.name}</h3>
+                                        <p className="text-sm text-green-400">{world.magic}</p>
+                                        <p className="text-gray-300 text-sm mt-2">{world.desc}</p>
+                                        <div className="flex flex-wrap gap-2 mt-3">
+                                            {world.elements.map((el, i) => (
+                                                <span key={i} className="text-xs px-2 py-1 bg-green-500/20 text-green-300 rounded-full">{el}</span>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    {/* Modal */}
+                    <AnimatePresence>
+                        {selectedPrompt && (
+                            <motion.div
+                                initial={{opacity:0}}
+                                animate={{opacity:1}}
+                                exit={{opacity:0}}
+                                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                                onClick={() => setSelectedPrompt(null)}
+                            >
+                                <motion.div
+                                    initial={{opacity:0, scale:0.9}}
+                                    animate={{opacity:1, scale:1}}
+                                    exit={{opacity:0, scale:0.9}}
+                                    onClick={e => e.stopPropagation()}
+                                    className="bg-slate-800 rounded-2xl max-w-2xl w-full p-6 border border-slate-700"
+                                >
+                                    <div className="flex justify-between items-center mb-4">
+                                        <h2 className="text-2xl font-bold text-white">{selectedPrompt.name}</h2>
+                                        <button onClick={() => setSelectedPrompt(null)} className="text-2xl">✕</button>
+                                    </div>
+                                    
+                                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                                        Edit template (fill in the {braces}):
+                                    </label>
+                                    <textarea
+                                        value={filledPrompt}
+                                        onChange={e => setFilledPrompt(e.target.value)}
+                                        className="w-full h-40 p-4 bg-slate-700/50 border border-slate-600 rounded-lg text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    />
+                                    
+                                    <div className="flex gap-3 mt-4">
+                                        <button
+                                            onClick={copyToClipboard}
+                                            className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium flex items-center justify-center gap-2"
+                                        >
+                                            {copied ? '✓' : '📋'} {copied ? 'Copied!' : 'Copy'}
+                                        </button>
+                                        <button className="px-6 py-3 bg-slate-700 text-white rounded-lg font-medium">
+                                            🤖 Use with AI
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>

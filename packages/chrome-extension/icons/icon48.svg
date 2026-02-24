@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg-grad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#1a1d26"/>
+      <stop offset="100%" stop-color="#0b0e14"/>
+    </radialGradient>
+  </defs>
+  <rect width="48" height="48" rx="9.600000000000001" fill="url(#bg-grad)"/>
+  <circle cx="24" cy="24" r="19.68" fill="none" stroke="#7fffd4" stroke-width="1.2000000000000002" stroke-opacity="0.3"/>
+  <text x="24" y="32.4" text-anchor="middle" font-family="system-ui, -apple-system, serif" font-size="24" fill="#7fffd4" font-weight="bold">✦</text>
+</svg>

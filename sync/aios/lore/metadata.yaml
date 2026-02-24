@@ -1,0 +1,350 @@
+# ARCANEA LORE - MASTER METADATA
+# Version: 3.0.0
+# Date: February 23, 2026
+# Purpose: Central index and relationship mapping
+# Source of Truth: CANON_LOCKED.md (Extended Solfeggio Frequencies)
+
+# =============================================================================
+# GODS/GODDESSES (10 Entities)
+# Frequencies: Extended Solfeggio (174, 285, 396, 417, 528, 639, 741, 852, 963, 1111)
+# =============================================================================
+gods:
+  # Gate 1 - Foundation (174 Hz)
+  - id: "god-arcanean-lyssandria"
+    name: "Lyssandria"
+    title: "Goddess of the Foundation Gate"
+    domain: "foundation"
+    frequency: 174
+    element: "earth"
+    wisdom: "sophron"
+    godbeast: "godbeast-kaelith"
+    gate: "foundation"
+    status: "production"
+    path: "gods-goddesses/lysandra.md"
+
+  # Gate 2 - Flow (285 Hz)
+  - id: "god-arcanean-leyla"
+    name: "Leyla"
+    title: "Goddess of the Flow Gate"
+    domain: "flow"
+    frequency: 285
+    element: "water"
+    wisdom: "kardia"
+    godbeast: "godbeast-veloura"
+    gate: "flow"
+    status: "production"
+    path: "gods-goddesses/leyla.md"
+
+  # Gate 3 - Fire (396 Hz)
+  - id: "god-arcanean-draconia"
+    name: "Draconia"
+    title: "God of the Fire Gate"
+    domain: "fire"
+    frequency: 396
+    element: "fire"
+    wisdom: "valora"
+    godbeast: "godbeast-draconis"
+    gate: "fire"
+    status: "production"
+    path: "gods-goddesses/draconia.md"
+
+  # Gate 4 - Heart (417 Hz)
+  - id: "god-arcanean-maylinn"
+    name: "Maylinn"
+    title: "Goddess of the Heart Gate"
+    domain: "heart"
+    frequency: 417
+    element: "water"
+    wisdom: "eudaira"
+    godbeast: "godbeast-laeylinn"
+    gate: "heart"
+    status: "production"
+    path: "gods-goddesses/maylinn.md"
+
+  # Gate 5 - Voice (528 Hz)
+  - id: "god-arcanean-alera"
+    name: "Alera"
+    title: "Goddess of the Voice Gate"
+    domain: "voice"
+    frequency: 528
+    element: "wind"
+    wisdom: "poiesis"
+    godbeast: "godbeast-otome"
+    gate: "voice"
+    status: "production"
+    path: "gods-goddesses/alera.md"
+
+  # Gate 6 - Sight (639 Hz)
+  - id: "god-arcanean-lyria"
+    name: "Lyria"
+    title: "Goddess of the Sight Gate"
+    domain: "sight"
+    frequency: 639
+    element: "void"
+    wisdom: "orakis"
+    godbeast: "godbeast-yumiko"
+    gate: "sight"
+    status: "production"
+    path: "gods-goddesses/lyria.md"
+
+  # Gate 7 - Crown (741 Hz)
+  - id: "god-arcanean-aiyami"
+    name: "Aiyami"
+    title: "God/Goddess of the Crown Gate"
+    domain: "crown"
+    frequency: 741
+    element: "void"
+    wisdom: "orakis"
+    godbeast: "godbeast-sol"
+    gate: "crown"
+    status: "production"
+    path: "gods-goddesses/aiyami.md"
+
+  # Gate 8 - Shift (852 Hz)
+  - id: "god-arcanean-elara"
+    name: "Elara"
+    title: "Goddess of the Shift Gate"
+    domain: "shift"
+    frequency: 852
+    element: "void"
+    wisdom: "valora"
+    godbeast: "godbeast-thessara"
+    gate: "shift"
+    status: "production"
+    path: "gods-goddesses/elara.md"
+
+  # Gate 9 - Unity (963 Hz)
+  - id: "god-arcanean-ino"
+    name: "Ino"
+    title: "God/Goddess of the Unity Gate"
+    domain: "unity"
+    frequency: 963
+    element: "void"
+    wisdom: "enduran"
+    godbeast: "godbeast-kyuro"
+    gate: "unity"
+    status: "production"
+    path: "gods-goddesses/ino.md"
+
+  # Gate 10 - Source (1111 Hz)
+  - id: "god-arcanean-shinkami"
+    name: "Shinkami"
+    title: "God/Goddess of the Source Gate"
+    domain: "source"
+    frequency: 1111
+    element: "void"
+    wisdom: "orakis"
+    godbeast: "godbeast-amaterasu"
+    gate: "source"
+    status: "production"
+    path: "gods-goddesses/shinkami.md"
+
+# =============================================================================
+# GODBEASTS (10 Entities - One per God/Goddess)
+# =============================================================================
+godbeasts:
+  - id: "godbeast-kaelith"
+    name: "Kaelith"
+    title: "The Primordial Serpent"
+    creature_type: "celestial-serpent"
+    bonded_god: "god-arcanean-lyssandria"
+    element: "earth"
+    frequency: 174
+    status: "production"
+    path: "godbeasts/kaelith.md"
+
+  - id: "godbeast-veloura"
+    name: "Veloura"
+    title: "The Dreaming Tide"
+    creature_type: "phoenix-serpent"
+    bonded_god: "god-arcanean-leyla"
+    element: "water"
+    frequency: 285
+    status: "production"
+    path: "godbeasts/veloura.md"
+
+  - id: "godbeast-draconis"
+    name: "Draconis"
+    title: "The World-Forge"
+    creature_type: "cosmic-fire-dragon"
+    bonded_god: "god-arcanean-draconia"
+    element: "fire"
+    frequency: 396
+    status: "production"
+    path: "godbeasts/draconis.md"
+
+  - id: "godbeast-laeylinn"
+    name: "Laeylinn"
+    title: "The Worldtree Deer"
+    creature_type: "celestial-deer"
+    bonded_god: "god-arcanean-maylinn"
+    element: "water"
+    frequency: 417
+    status: "production"
+    path: "godbeasts/laeylinn.md"
+
+  - id: "godbeast-otome"
+    name: "Otome"
+    title: "The Resonance"
+    creature_type: "sacred-song-phoenix"
+    bonded_god: "god-arcanean-alera"
+    element: "wind"
+    frequency: 528
+    status: "production"
+    path: "godbeasts/otome.md"
+
+  - id: "godbeast-yumiko"
+    name: "Yumiko"
+    title: "The Dreaming Eye"
+    creature_type: "celestial-fox-sphinx"
+    bonded_god: "god-arcanean-lyria"
+    element: "void"
+    frequency: 639
+    status: "production"
+    path: "godbeasts/yumiko.md"
+
+  - id: "godbeast-sol"
+    name: "Sol"
+    title: "The Eternal Crown"
+    creature_type: "cosmic-lion"
+    bonded_god: "god-arcanean-aiyami"
+    element: "void"
+    frequency: 741
+    status: "production"
+    path: "godbeasts/sol.md"
+
+  - id: "godbeast-thessara"
+    name: "Thessara"
+    title: "The Kaleidoscope"
+    creature_type: "shifting-chimera"
+    bonded_god: "god-arcanean-elara"
+    element: "void"
+    frequency: 852
+    status: "production"
+    path: "godbeasts/thessara.md"
+
+  - id: "godbeast-kyuro"
+    name: "Kyuro"
+    title: "The Bond Eternal"
+    creature_type: "twin-spirit-wolves"
+    bonded_god: "god-arcanean-ino"
+    element: "void"
+    frequency: 963
+    status: "production"
+    path: "godbeasts/kyuro.md"
+
+  - id: "godbeast-amaterasu"
+    name: "Amaterasu"
+    title: "The Source Flame"
+    creature_type: "cosmic-phoenix-dragon"
+    bonded_god: "god-arcanean-shinkami"
+    element: "void"
+    frequency: 1111
+    status: "production"
+    path: "godbeasts/amaterasu.md"
+
+# =============================================================================
+# RELATIONSHIPS
+# =============================================================================
+relationships:
+  bonds:
+    - god: "god-arcanean-lyssandria"
+      godbeast: "godbeast-kaelith"
+      bond_strength: "complete"
+    - god: "god-arcanean-leyla"
+      godbeast: "godbeast-veloura"
+      bond_strength: "complete"
+    - god: "god-arcanean-draconia"
+      godbeast: "godbeast-draconis"
+      bond_strength: "complete"
+    - god: "god-arcanean-maylinn"
+      godbeast: "godbeast-laeylinn"
+      bond_strength: "complete"
+    - god: "god-arcanean-alera"
+      godbeast: "godbeast-otome"
+      bond_strength: "complete"
+    - god: "god-arcanean-lyria"
+      godbeast: "godbeast-yumiko"
+      bond_strength: "complete"
+    - god: "god-arcanean-aiyami"
+      godbeast: "godbeast-sol"
+      bond_strength: "complete"
+    - god: "god-arcanean-elara"
+      godbeast: "godbeast-thessara"
+      bond_strength: "complete"
+    - god: "god-arcanean-ino"
+      godbeast: "godbeast-kyuro"
+      bond_strength: "complete"
+    - god: "god-arcanean-shinkami"
+      godbeast: "godbeast-amaterasu"
+      bond_strength: "complete"
+
+# =============================================================================
+# STATISTICS
+# =============================================================================
+statistics:
+  gods:
+    total: 10
+    production: 10
+    staging: 0
+    pending: 0
+
+  godbeasts:
+    total: 10
+    production: 10
+    staging: 0
+    pending: 0
+
+  luminors:
+    total: 7
+    production: 0
+    pending: 7
+
+  bestiary:
+    total: 7
+    production: 0
+    pending: 7
+
+# =============================================================================
+# FREQUENCY SYSTEM
+# =============================================================================
+frequency_system:
+  name: "Extended Solfeggio Frequencies"
+  note: "Each Gate gets a UNIQUE frequency from the Extended Solfeggio scale"
+  mapping:
+    - gate: "Foundation"
+      frequency: 174
+      note: "Lowest, grounding"
+    - gate: "Flow"
+      frequency: 285
+      note: "Creative current"
+    - gate: "Fire"
+      frequency: 396
+      note: "Liberation from fear"
+    - gate: "Heart"
+      frequency: 417
+      note: "Facilitating change"
+    - gate: "Voice"
+      frequency: 528
+      note: "Miracle tone, transformation"
+    - gate: "Sight"
+      frequency: 639
+      note: "Connecting relationships"
+    - gate: "Crown"
+      frequency: 741
+      note: "Awakening intuition"
+    - gate: "Shift"
+      frequency: 852
+      note: "Returning to spiritual order"
+    - gate: "Unity"
+      frequency: 963
+      note: "Connection to cosmic consciousness"
+    - gate: "Source"
+      frequency: 1111
+      note: "Master frequency, origin"
+
+# =============================================================================
+# LAST UPDATED
+# =============================================================================
+updated: "2026-02-23"
+version: "3.0.0"

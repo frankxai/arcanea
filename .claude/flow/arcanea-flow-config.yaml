@@ -1,0 +1,69 @@
+# Arcanea Flow Configuration
+# Orchestration layer for the Arcanea Intelligence OS
+
+name: arcanea-flow
+version: 1.0.0
+description: Agent orchestration for Arcanea — mythology-driven multi-agent coordination
+
+# Default topology
+topology: hierarchical
+strategy: adaptive
+maxAgents: 10
+
+# Guardian-to-Model routing
+models:
+  leadership:
+    shinkami: google/gemini-2.5-pro
+    lyssandria: google/gemini-2.5-pro
+    draconia: anthropic/claude-opus-4-6
+  specialist:
+    lyria: google/gemini-2.5-pro
+    alera: google/gemini-2.5-pro
+    leyla: google/gemini-2.5-pro
+  foundation:
+    aiyami: google/gemini-2.5-pro
+  amplifier:
+    elara: anthropic/claude-opus-4-6
+    ino: google/gemini-2.5-flash
+    maylinn: google/gemini-2.5-flash
+
+# Task routing keywords
+routing:
+  lyssandria: [architect, design, system, infrastructure, schema, database, foundation]
+  draconia: [implement, code, build, refactor, reform, transform, fire]
+  lyria: [strategy, plan, roadmap, priority, timing, navigate, sight]
+  alera: [review, audit, security, quality, compliance, truth, voice]
+  leyla: [create, write, narrative, content, creative, flow, weave]
+  aiyami: [explain, teach, principle, wisdom, lesson, crown, sage]
+  shinkami: [coordinate, orchestrate, route, workflow, source, meta]
+  maylinn: [test, care, heal, accessibility, experience, heart, gentle]
+  elara: [reframe, shift, pivot, paradigm, assumption, destroy]
+  ino: [collaborate, together, integrate, team, unity, connect]
+
+# Orchestration patterns (from SIS v3.0)
+patterns:
+  - council_deliberation    # All 7 agents weigh in
+  - parallel_specialist     # Multiple specialists in parallel
+  - sequential_pipeline     # One after another
+  - hierarchical_delegation # Orchestrator delegates down
+  - adversarial_review      # Build vs. Review tension
+  - swarm_consensus         # Emergent group decision
+
+# Memory configuration
+memory:
+  backend: sqlite
+  path: /tmp/arcanea-agentdb.sqlite3
+  ttl_default: 604800  # 7 days
+  namespaces:
+    - general
+    - research
+    - development
+    - creative
+    - lore
+    - vault
+
+# Swarm defaults
+swarm:
+  healthCheckInterval: 5000
+  autoRecovery: true
+  faultTolerance: auto-recovery

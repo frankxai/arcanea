@@ -1,0 +1,56 @@
+{
+  "name": "@arcanea/intelligence-bridge",
+  "version": "0.1.0",
+  "description": "Intelligence bridge for Arcanea — connects hooks, SONA, token optimizer, and memory into a unified RL feedback loop",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "test": "node --test tests/intelligence-bridge.test.mjs",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "arcanea",
+    "intelligence-bridge",
+    "guardian",
+    "reinforcement-learning",
+    "feedback-loop",
+    "routing",
+    "event-bus",
+    "pipeline",
+    "typescript"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/intelligence-bridge"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "typescript": "^5.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

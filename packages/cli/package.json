@@ -1,0 +1,75 @@
+{
+  "name": "@arcanea/cli",
+  "version": "0.7.0",
+  "description": "Arcanea Realm — Your AI Creation Realm. Overlay any AI tool with arcane intelligence.",
+  "homepage": "https://github.com/frankxai/arcanea/tree/main/packages/cli#readme",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "arcanea": "./dist/arcanea.cjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/arcanea.cjs",
+    "dist/index.js",
+    "dist/index.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc && node build.mjs",
+    "build:ts": "tsc",
+    "build:bundle": "node build.mjs",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "start": "node dist/arcanea.cjs",
+    "prepublishOnly": "npm run build",
+    "test": "node --test tests/*.test.mjs",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "arcanea",
+    "cli",
+    "ai",
+    "overlay",
+    "claude",
+    "chatgpt",
+    "gemini",
+    "copilot",
+    "opencode"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/cli"
+  },
+  "dependencies": {
+    "@arcanea/os": "workspace:*",
+    "@arcanea/auth": "workspace:*",
+    "@arcanea/overlay-claude": "workspace:*",
+    "@arcanea/overlay-chatgpt": "workspace:*",
+    "@arcanea/overlay-gemini": "workspace:*",
+    "@arcanea/overlay-copilot": "workspace:*",
+    "@arcanea/overlay-cursor": "workspace:*",
+    "commander": "^12.0.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

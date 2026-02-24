@@ -1,0 +1,64 @@
+{
+  "name": "arcanea-fire-dodge",
+  "version": "1.0.0",
+  "description": "Arcanea Fire Element Action Game - Test Your Reflexes",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "arcanea",
+    "fire-element",
+    "action-game",
+    "dodge-game",
+    "next.js",
+    "arcade"
+  ],
+  "author": "Arcanea Collective",
+  "license": "Arcanean Collective License",
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "framer-motion": "^10.16.0",
+    "zustand": "^4.4.0",
+    "socket.io-client": "^4.7.0",
+    "axios": "^1.5.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "eslint": "^8.50.0",
+    "eslint-config-next": "^14.0.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arcanea/arcanea-fire-dodge"
+  },
+  "homepage": "https://portal.arcanea.ai/games/fire-dodge",
+  "arcanean": {
+    "element": "fire",
+    "guardian": "@game-arcane-forge",
+    "difficulty": "adaptive",
+    "multiplayer": true,
+    "portal_integration": true,
+    "leaderboard": true,
+    "achievements": true
+  }
+}

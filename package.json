@@ -19,6 +19,8 @@
     "dev:sanctuary": "turbo run dev --filter=@arcanea/sanctuary",
     "build": "turbo run build",
     "test": "turbo run test",
+    "test:all": "node --test packages/*/tests/*.test.mjs",
+    "test:quick": "node --test packages/extension-core/tests/*.test.mjs packages/auth/tests/*.test.mjs packages/core/tests/*.test.mjs packages/arcanea-mcp/tests/*.test.mjs",
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
     "clean": "turbo run clean",
@@ -51,7 +53,7 @@
     "typescript": "^5.5.4"
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=20.9.0",
     "pnpm": ">=8.0.0"
   },
   "packageManager": "pnpm@8.15.0",
@@ -81,5 +83,11 @@
   "bugs": {
     "url": "https://github.com/frankxai/arcanea/issues"
   },
-  "homepage": "https://arcanea.ai"
+  "homepage": "https://arcanea.ai",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19.0.0",
+      "@types/react-dom": "^19.0.0"
+    }
+  }
 }

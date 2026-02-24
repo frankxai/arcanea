@@ -21,33 +21,31 @@ Only load full lore context when explicitly needed.
 ## Foundation Documents (Load Order)
 
 ### Critical - Always Consult First
-1. **History Timeline** - `foundations/history-timeline.md`
+1. **Canon Reference** - `.arcanea/lore/CANON_LOCKED.md`
    - Eight Ages with dates and events
    - Earth-Arcanea synchronization (2026 = Eighth Age, Year 126)
+   - Ten Gates, Five Elements, Cosmic Duality
    - Key prophecies and their fulfillment
 
-2. **Earth-Arcanea Echoes** - `foundations/earth-arcanea-echoes.md`
-   - Why pyramids, Greek gods, Harry Potter connect to Arcanea
-   - Gate frequencies → Technology mapping
-   - Fantasy authors as Archive channelers
-   - 2026 current state and prophecy tracking
+2. **Guardian Profiles** - `.arcanea/lore/gods-goddesses/`
+   - Full profiles for all Ten Guardians
+   - Domains, frequencies, teachings, sacred sites
 
-3. **Vector Index** - `foundations/VECTOR_INDEX.md`
-   - Chunking strategy for RAG systems
-   - Retrieval query → chunk mapping
-   - Embedding metadata format
+3. **Godbeast Codex** - `.arcanea/lore/godbeasts/`
+   - All Ten Godbeast profiles
+   - Bonding mechanics, dungeon associations
 
 ### Supporting Canon
-- `ARCANEA_CANON.md` - Master canon reference
+- `book/legends-of-arcanea/` - Founding myths (Lumina, Nero, Guardians)
 - `book/laws-of-arcanea/` - Magic physics
 
 ## Context Loading Strategy
 When triggered, you should:
-1. **Timeline Questions**: Read `foundations/history-timeline.md`
-2. **Earth Connection**: Read `foundations/earth-arcanea-echoes.md`
-3. **Canon Validation**: Read `.claude/lore/ARCANEA_CANON.md`
+1. **Canon Validation**: Read `.arcanea/lore/CANON_LOCKED.md`
+2. **Guardian Details**: Read `.arcanea/lore/gods-goddesses/[guardian].md`
+3. **Godbeast Details**: Read `.arcanea/lore/godbeasts/[godbeast].md`
 4. **Magic Rules**: Read `book/laws-of-arcanea/`
-5. **Semantic Search**: Use `VECTOR_INDEX.md` chunk references
+5. **Earth Connection**: Read `book/legends-of-arcanea/` for founding myths
 
 ## The Eight Ages (Quick Reference)
 

@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Phoenix Rising - Arcanea Roguelike</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <style>
+        :root {
+            --fire-primary: #ff6b35;
+            --fire-dark: #d84315;
+            --fire-glow: #ff9e6d;
+            --gold-light: #ffd700;
+            --gold-medium: #ffb300;
+            --gold-dark: #ff8f00;
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-elevated: #1a1a28;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --health: #f44336;
+            --mana: #4fc3f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        /* Header */
+        .game-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(180deg, var(--bg-card) 0%, transparent 100%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.25rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        .game-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--fire-primary), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .stat-icon {
+            font-size: 0.875rem;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        /* Game Container */
+        #game-container {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .phoenix-icon {
+            width: 100px;
+            height: 100px;
+            font-size: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: phoenixRise 2s ease infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes phoenixRise {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.1); }
+        }
+
+        .loading-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--fire-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .loading-subtext {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* HUD */
+        .hud {
+            position: fixed;
+            top: 70px;
+            left: 10px;
+            right: 10px;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .hud-section {
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            pointer-events: auto;
+        }
+
+        .health-bar, .mana-bar {
+            width: 150px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--health), #ff6b6b);
+            transition: width 0.3s ease;
+        }
+
+        .mana-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--mana), #80d8ff);
+            transition: width 0.3s ease;
+        }
+
+        .hud-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .hud-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Ability Bar */
+        .ability-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 50;
+        }
+
+        .ability-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-card);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .ability-btn:hover {
+            border-color: var(--fire-primary);
+            transform: scale(1.05);
+        }
+
+        .ability-btn.on-cooldown {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .ability-icon {
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+        }
+
+        .ability-key {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+        }
+
+        .cooldown-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: height 0.1s linear;
+        }
+
+        /* Game Over Screen */
+        .game-over {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 15, 0.95);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+
+        .game-over.active {
+            display: flex;
+        }
+
+        .game-over-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--fire-primary);
+            margin-bottom: 1rem;
+        }
+
+        .game-over-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        .stat-box-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+        }
+
+        .stat-box-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Agent Panel */
+        .agent-panel {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 2px solid var(--fire-primary);
+            border-radius: 16px;
+            padding: 1rem;
+            z-index: 40;
+            display: none;
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .agent-panel.active {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .agent-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--fire-primary), var(--gold-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .agent-name {
+            font-weight: 600;
+            color: var(--fire-primary);
+        }
+
+        .agent-role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .agent-message {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.9375rem;
+        }
+
+        /* Touch Controls */
+        .touch-controls {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            z-index: 40;
+            display: none;
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .touch-controls {
+                display: block;
+            }
+        }
+
+        .d-pad {
+            width: 150px;
+            height: 150px;
+            position: relative;
+        }
+
+        .d-btn {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .d-btn:active {
+            background: rgba(255, 107, 53, 0.3);
+            border-color: var(--fire-primary);
+        }
+
+        .d-up { top: 0; left: 50px; }
+        .d-down { bottom: 0; left: 50px; }
+        .d-left { top: 50px; left: 0; }
+        .d-right { top: 50px; right: 0; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 1rem;
+            }
+
+            .hud-section {
+                padding: 0.5rem 0.75rem;
+            }
+
+            .health-bar, .mana-bar {
+                width: 100px;
+            }
+
+            .ability-btn {
+                width: 50px;
+                height: 50px;
+            }
+
+            .ability-icon {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="phoenix-icon">🦅</div>
+        <div class="loading-text">Phoenix Rising</div>
+        <div class="loading-subtext">Descending into the dungeon...</div>
+    </div>
+
+    <!-- Header -->
+    <header class="game-header">
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <div class="game-title">🦅 Phoenix Rising</div>
+        </div>
+        <div class="header-right">
+            <div class="stat-pill">
+                <span class="stat-icon">⭐</span>
+                <span class="stat-value" id="xpDisplay">0</span>
+            </div>
+            <div class="stat-pill">
+                <span class="stat-icon">🏆</span>
+                <span class="stat-value" id="floorDisplay">1</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HUD -->
+    <div class="hud">
+        <div class="hud-section">
+            <div class="health-bar">
+                <div class="health-fill" id="healthFill" style="width: 100%;"></div>
+            </div>
+            <div class="hud-text">
+                ❤️ <span class="hud-value" id="healthText">100/100</span>
+            </div>
+        </div>
+        <div class="hud-section">
+            <div class="mana-bar">
+                <div class="mana-fill" id="manaFill" style="width: 100%;"></div>
+            </div>
+            <div class="hud-text">
+                💙 <span class="hud-value" id="manaText">50/50</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container"></div>
+
+    <!-- Ability Bar -->
+    <div class="ability-bar">
+        <div class="ability-btn" id="ability1" onclick="useAbility(1)">
+            <div class="ability-icon">🔥</div>
+            <div class="ability-key">1</div>
+            <div class="cooldown-overlay" id="cd1" style="height: 0%;"></div>
+        </div>
+        <div class="ability-btn" id="ability2" onclick="useAbility(2)">
+            <div class="ability-icon">⚡</div>
+            <div class="ability-key">2</div>
+            <div class="cooldown-overlay" id="cd2" style="height: 0%;"></div>
+        </div>
+        <div class="ability-btn" id="ability3" onclick="useAbility(3)">
+            <div class="ability-icon">🛡️</div>
+            <div class="ability-key">3</div>
+            <div class="cooldown-overlay" id="cd3" style="height: 0%;"></div>
+        </div>
+        <div class="ability-btn" id="ability4" onclick="useAbility(4)">
+            <div class="ability-icon">💊</div>
+            <div class="ability-key">4</div>
+            <div class="cooldown-overlay" id="cd4" style="height: 0%;"></div>
+        </div>
+    </div>
+
+    <!-- Touch Controls -->
+    <div class="touch-controls">
+        <div class="d-pad">
+            <div class="d-btn d-up" ontouchstart="movePlayer('up')" onmousedown="movePlayer('up')">▲</div>
+            <div class="d-btn d-down" ontouchstart="movePlayer('down')" onmousedown="movePlayer('down')">▼</div>
+            <div class="d-btn d-left" ontouchstart="movePlayer('left')" onmousedown="movePlayer('left')">◀</div>
+            <div class="d-btn d-right" ontouchstart="movePlayer('right')" onmousedown="movePlayer('right')">▶</div>
+        </div>
+    </div>
+
+    <!-- Agent Panel -->
+    <div class="agent-panel" id="agentPanel">
+        <div class="agent-header">
+            <div class="agent-avatar" id="agentAvatar">🦅</div>
+            <div>
+                <div class="agent-name" id="agentName">Phoenix-Artisan</div>
+                <div class="agent-role" id="agentRole">The Cyclical Creator</div>
+            </div>
+        </div>
+        <div class="agent-message" id="agentMessage">
+            Welcome to the dungeon, brave soul. Death is not the end - you will rise again, stronger than before. 
+            Explore, fight, and grow. The phoenix always rises from the ashes.
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div class="game-over" id="gameOver">
+        <div class="game-over-title">☠️ You Have Fallen</div>
+        <div class="game-over-stats">
+            <div class="stat-box">
+                <div class="stat-box-value" id="finalFloor">1</div>
+                <div class="stat-box-label">Floor Reached</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="finalXP">0</div>
+                <div class="stat-box-label">XP Earned</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="finalKills">0</div>
+                <div class="stat-box-label">Enemies Defeated</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="finalGold">0</div>
+                <div class="stat-box-label">Gold Collected</div>
+            </div>
+        </div>
+        <button class="back-btn" onclick="restartGame()" style="padding: 1rem 2rem; font-size: 1rem; font-weight: 600; background: linear-gradient(135deg, var(--fire-primary), var(--gold-light)); color: #000; border: none;">
+            🦅 Rise Again
+        </button>
+    </div>
+
+    <script>
+        // Game State
+        const GameState = {
+            xp: 0,
+            totalXP: 0,
+            floor: 1,
+            health: 100,
+            maxHealth: 100,
+            mana: 50,
+            maxMana: 50,
+            gold: 0,
+            kills: 0,
+            playerLevel: 1,
+            abilities: {
+                1: { cooldown: 0, maxCooldown: 3000 }, // Fireball
+                2: { cooldown: 0, maxCooldown: 5000 }, // Lightning
+                3: { cooldown: 0, maxCooldown: 8000 }, // Shield
+                4: { cooldown: 0, maxCooldown: 10000 } // Heal
+            },
+            dungeon: [],
+            enemies: [],
+            items: [],
+            unlockedAbilities: [1],
+            permanentUpgrades: {
+                maxHealthBonus: 0,
+                damageBonus: 0,
+                goldMultiplier: 1
+            }
+        };
+
+        // Tile Types
+        const TILES = {
+            WALL: 0,
+            FLOOR: 1,
+            DOOR: 2,
+            PLAYER: 3,
+            ENEMY: 4,
+            ITEM: 5,
+            STAIR: 6
+        };
+
+        // Dungeon Config
+        const DUNGEON_SIZE = 20;
+        const TILE_SIZE = 32;
+
+        // Phaser Config
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: window.innerWidth,
+            height: window.innerHeight - 60,
+            backgroundColor: '#0a0a0f',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 0 },
+                    debug: false
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            },
+            scale: {
+                mode: Phaser.Scale.RESIZE,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+
+        let game;
+        let player;
+        let cursors;
+        let wasd;
+        let dungeonLayer;
+        let enemyGroup;
+        let projectileGroup;
+        let itemGroup;
+        let particles;
+
+        // Initialize
+        window.addEventListener('load', () => {
+            game = new Phaser.Game(config);
+            
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+                showAgentMessage('Phoenix-Artisan', 'The Cyclical Creator', '🦅',
+                    'Welcome to the dungeon! Use WASD or arrow keys to move. Click abilities or press 1-4 to use them. Defeat enemies and find the stairs to descend deeper!');
+            }, 2000);
+        });
+
+        function preload() {
+            // Generate textures programmatically
+            const graphics = this.make.graphics();
+            
+            // Wall texture
+            graphics.fillStyle(0x2a2a3a);
+            graphics.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
+            graphics.lineStyle(1, 0x3a3a4a);
+            graphics.strokeRect(0, 0, TILE_SIZE, TILE_SIZE);
+            graphics.generateTexture('wall', TILE_SIZE, TILE_SIZE);
+            graphics.clear();
+
+            // Floor texture
+            graphics.fillStyle(0x1a1a28);
+            graphics.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
+            graphics.lineStyle(1, 0x2a2a38);
+            graphics.strokeRect(0, 0, TILE_SIZE, TILE_SIZE);
+            graphics.generateTexture('floor', TILE_SIZE, TILE_SIZE);
+            graphics.clear();
+
+            // Player texture
+            graphics.fillStyle(0xff6b35);
+            graphics.fillCircle(16, 16, 12);
+            graphics.generateTexture('player', TILE_SIZE, TILE_SIZE);
+            graphics.clear();
+
+            // Enemy texture
+            graphics.fillStyle(0xd84315);
+            graphics.fillCircle(16, 16, 10);
+            graphics.generateTexture('enemy', TILE_SIZE, TILE_SIZE);
+            graphics.clear();
+
+            // Projectile texture
+            graphics.fillStyle(0xffd700);
+            graphics.fillCircle(8, 8, 6);
+            graphics.generateTexture('projectile', 16, 16);
+            graphics.clear();
+
+            // Item texture
+            graphics.fillStyle(0xffd700);
+            graphics.fillStar(16, 16, 5, 10, 5);
+            graphics.generateTexture('item', TILE_SIZE, TILE_SIZE);
+            graphics.clear();
+
+            // Stair texture
+            graphics.fillStyle(0x4caf50);
+            graphics.fillRect(4, 4, 24, 24);
+            graphics.generateTexture('stair', TILE_SIZE, TILE_SIZE);
+            graphics.clear();
+        }
+
+        function create() {
+            const width = this.scale.width;
+            const height = this.scale.height;
+
+            // Generate dungeon
+            generateDungeon();
+
+            // Create tilemap
+            dungeonLayer = this.add.group();
+            renderDungeon(this);
+
+            // Create player
+            const startPos = findEmptySpot();
+            player = this.physics.add.sprite(
+                startPos.x * TILE_SIZE + TILE_SIZE/2,
+                startPos.y * TILE_SIZE + TILE_SIZE/2,
+                'player'
+            );
+            player.setCollideWorldBounds(true);
+
+            // Camera follow
+            this.cameras.main.startFollow(player);
+            this.cameras.main.setZoom(1.5);
+            this.cameras.main.setBounds(0, 0, DUNGEON_SIZE * TILE_SIZE, DUNGEON_SIZE * TILE_SIZE);
+
+            // Create groups
+            enemyGroup = this.physics.add.group();
+            projectileGroup = this.physics.add.group();
+            itemGroup = this.physics.add.group();
+
+            // Spawn enemies
+            spawnEnemies(this);
+
+            // Spawn items
+            spawnItems(this);
+
+            // Spawn stairs
+            const stairPos = findEmptySpot();
+            const stair = this.physics.add.sprite(
+                stairPos.x * TILE_SIZE + TILE_SIZE/2,
+                stairPos.y * TILE_SIZE + TILE_SIZE/2,
+                'stair'
+            );
+            stair.setData('type', 'stair');
+            itemGroup.add(stair);
+
+            // Input
+            cursors = this.input.keyboard.createCursorKeys();
+            wasd = this.input.keyboard.addKeys({
+                up: Phaser.Input.Keyboard.KeyCodes.W,
+                down: Phaser.Input.Keyboard.KeyCodes.S,
+                left: Phaser.Input.Keyboard.KeyCodes.A,
+                right: Phaser.Input.Keyboard.KeyCodes.D
+            });
+
+            // Ability keys
+            this.input.keyboard.on('keydown-ONE', () => useAbility(1));
+            this.input.keyboard.on('keydown-TWO', () => useAbility(2));
+            this.input.keyboard.on('keydown-THREE', () => useAbility(3));
+            this.input.keyboard.on('keydown-FOUR', () => useAbility(4));
+
+            // Mouse click for attack
+            this.input.on('pointerdown', (pointer) => {
+                const worldPoint = this.cameras.main.getWorldPoint(pointer.x, pointer.y);
+                fireProjectile(this, worldPoint.x, worldPoint.y);
+            });
+
+            // Collisions
+            this.physics.add.overlap(projectileGroup, enemyGroup, hitEnemy, null, this);
+            this.physics.add.overlap(player, enemyGroup, playerHit, null, this);
+            this.physics.add.overlap(player, itemGroup, collectItem, null, this);
+
+            // Particle system
+            particles = this.add.particles(0, 0, 'projectile', {
+                speed: 100,
+                scale: { start: 0.5, end: 0 },
+                blendMode: 'ADD',
+                lifespan: 500,
+                quantity: 2
+            });
+            particles.stop();
+
+            // Resize handler
+            this.scale.on('resize', (gameSize) => {
+                this.cameras.main.setViewport(0, 0, gameSize.width, gameSize.height);
+            });
+        }
+
+        function update(time, delta) {
+            // Player movement
+            const speed = 150;
+            player.setVelocity(0);
+
+            if (cursors.left.isDown || wasd.left.isDown) {
+                player.setVelocityX(-speed);
+            } else if (cursors.right.isDown || wasd.right.isDown) {
+                player.setVelocityX(speed);
+            }
+
+            if (cursors.up.isDown || wasd.up.isDown) {
+                player.setVelocityY(-speed);
+            } else if (cursors.down.isDown || wasd.down.isDown) {
+                player.setVelocityY(speed);
+            }
+
+            // Check wall collision
+            checkWallCollision(this);
+
+            // Update cooldowns
+            updateCooldowns(delta);
+
+            // Enemy AI
+            enemyGroup.children.entries.forEach(enemy => {
+                if (enemy.active) {
+                    const dist = Phaser.Math.Distance.Between(player.x, player.y, enemy.x, enemy.y);
+                    if (dist < 200) {
+                        const angle = Phaser.Math.Angle.Between(enemy.x, enemy.y, player.x, player.y);
+                        enemy.setVelocity(Math.cos(angle) * 80, Math.sin(angle) * 80);
+                    } else {
+                        enemy.setVelocity(0);
+                    }
+                }
+            });
+
+            // Check death
+            if (GameState.health <= 0) {
+                gameOver();
+            }
+        }
+
+        // Dungeon Generation
+        function generateDungeon() {
+            GameState.dungeon = [];
+            for (let y = 0; y < DUNGEON_SIZE; y++) {
+                GameState.dungeon[y] = [];
+                for (let x = 0; x < DUNGEON_SIZE; x++) {
+                    // Border walls
+                    if (x === 0 || x === DUNGEON_SIZE - 1 || y === 0 || y === DUNGEON_SIZE - 1) {
+                        GameState.dungeon[y][x] = TILES.WALL;
+                    } else {
+                        // Random walls
+                        GameState.dungeon[y][x] = Math.random() < 0.2 ? TILES.WALL : TILES.FLOOR;
+                    }
+                }
+            }
+        }
+
+        function renderDungeon(scene) {
+            for (let y = 0; y < DUNGEON_SIZE; y++) {
+                for (let x = 0; x < DUNGEON_SIZE; x++) {
+                    const tile = GameState.dungeon[y][x];
+                    const sprite = scene.add.image(
+                        x * TILE_SIZE + TILE_SIZE/2,
+                        y * TILE_SIZE + TILE_SIZE/2,
+                        tile === TILES.WALL ? 'wall' : 'floor'
+                    );
+                    sprite.setData('gridX', x);
+                    sprite.setData('gridY', y);
+                    dungeonLayer.add(sprite);
+                }
+            }
+        }
+
+        function findEmptySpot() {
+            let x, y;
+            do {
+                x = Phaser.Math.Between(1, DUNGEON_SIZE - 2);
+                y = Phaser.Math.Between(1, DUNGEON_SIZE - 2);
+            } while (GameState.dungeon[y][x] === TILES.WALL);
+            return { x, y };
+        }
+
+        function spawnEnemies(scene) {
+            const enemyCount = 5 + GameState.floor * 2;
+            for (let i = 0; i < enemyCount; i++) {
+                const pos = findEmptySpot();
+                const enemy = scene.physics.add.sprite(
+                    pos.x * TILE_SIZE + TILE_SIZE/2,
+                    pos.y * TILE_SIZE + TILE_SIZE/2,
+                    'enemy'
+                );
+                enemy.setData('health', 30 + GameState.floor * 10);
+                enemy.setData('maxHealth', 30 + GameState.floor * 10);
+                enemy.setData('damage', 10 + GameState.floor * 2);
+                enemyGroup.add(enemy);
+            }
+        }
+
+        function spawnItems(scene) {
+            const itemCount = Phaser.Math.Between(3, 6);
+            for (let i = 0; i < itemCount; i++) {
+                const pos = findEmptySpot();
+                const item = scene.physics.add.sprite(
+                    pos.x * TILE_SIZE + TILE_SIZE/2,
+                    pos.y * TILE_SIZE + TILE_SIZE/2,
+                    'item'
+                );
+                const types = ['gold', 'health', 'mana'];
+                item.setData('type', types[Phaser.Math.Between(0, types.length - 1)]);
+                item.setData('value', Phaser.Math.Between(10, 50) * GameState.floor);
+                itemGroup.add(item);
+            }
+        }
+
+        function checkWallCollision(scene) {
+            const gridX = Math.floor(player.x / TILE_SIZE);
+            const gridY = Math.floor(player.y / TILE_SIZE);
+            
+            if (GameState.dungeon[gridY] && GameState.dungeon[gridY][gridX] === TILES.WALL) {
+                // Push player back
+                player.x = player.prevX || player.x;
+                player.y = player.prevY || player.y;
+                player.setVelocity(0);
+            } else {
+                player.prevX = player.x;
+                player.prevY = player.y;
+            }
+        }
+
+        function fireProjectile(scene, targetX, targetY) {
+            const angle = Phaser.Math.Angle.Between(player.x, player.y, targetX, targetY);
+            const projectile = scene.physics.add.sprite(player.x, player.y, 'projectile');
+            projectileGroup.add(projectile);
+            
+            const speed = 300;
+            projectile.setVelocity(Math.cos(angle) * speed, Math.sin(angle) * speed);
+            
+            // Destroy after 1 second
+            scene.time.delayedCall(1000, () => {
+                if (projectile.active) {
+                    projectile.destroy();
+                }
+            });
+        }
+
+        function hitEnemy(projectile, enemy) {
+            projectile.destroy();
+            
+            const damage = 20 + GameState.permanentUpgrades.damageBonus;
+            const health = enemy.getData('health') - damage;
+            enemy.setData('health', health);
+            
+            // Visual feedback
+            enemy.setTint(0xff0000);
+            setTimeout(() => enemy.clearTint(), 200);
+            
+            if (health <= 0) {
+                enemy.destroy();
+                GameState.kills++;
+                const xpGain = 10 * GameState.floor;
+                GameState.xp += xpGain;
+                GameState.totalXP += xpGain;
+                updateUI();
+                
+                // Particles
+                particles.emitParticleAt(enemy.x, enemy.y, 10);
+            }
+        }
+
+        function playerHit(player, enemy) {
+            const damage = enemy.getData('damage');
+            GameState.health = Math.max(0, GameState.health - damage);
+            updateUI();
+            
+            // Knockback
+            const angle = Phaser.Math.Angle.Between(enemy.x, enemy.y, player.x, player.y);
+            player.setVelocity(Math.cos(angle) * 200, Math.sin(angle) * 200);
+            
+            // Visual feedback
+            player.setTint(0xff0000);
+            setTimeout(() => player.clearTint(), 300);
+            
+            // Screen shake
+            game.scene.scenes[0].cameras.main.shake(200, 0.01);
+        }
+
+        function collectItem(player, item) {
+            const type = item.getData('type');
+            const value = item.getData('value');
+            
+            switch(type) {
+                case 'gold':
+                    GameState.gold += Math.floor(value * GameState.permanentUpgrades.goldMultiplier);
+                    showFloatingText(`+${value}g`, item.x, item.y, '#ffd700');
+                    break;
+                case 'health':
+                    GameState.health = Math.min(GameState.maxHealth, GameState.health + value);
+                    showFloatingText(`+${value} HP`, item.x, item.y, '#4caf50');
+                    break;
+                case 'mana':
+                    GameState.mana = Math.min(GameState.maxMana, GameState.mana + value);
+                    showFloatingText(`+${value} MP`, item.x, item.y, '#4fc3f7');
+                    break;
+                case 'stair':
+                    nextFloor();
+                    return;
+            }
+            
+            item.destroy();
+            updateUI();
+        }
+
+        function showFloatingText(text, x, y, color) {
+            const scene = game.scene.scenes[0];
+            const floating = scene.add.text(x, y, text, {
+                fontSize: '16px',
+                color: color,
+                fontFamily: 'Inter',
+                fontStyle: 'bold'
+            }).setOrigin(0.5);
+            
+            scene.tweens.add({
+                targets: floating,
+                y: y - 30,
+                alpha: 0,
+                duration: 1000,
+                onComplete: () => floating.destroy()
+            });
+        }
+
+        function useAbility(abilityNum) {
+            if (!GameState.unlockedAbilities.includes(abilityNum)) return;
+            
+            const ability = GameState.abilities[abilityNum];
+            if (ability.cooldown > 0) return;
+            
+            const scene = game.scene.scenes[0];
+            
+            switch(abilityNum) {
+                case 1: // Fireball
+                    if (GameState.mana >= 10) {
+                        GameState.mana -= 10;
+                        // AOE damage
+                        enemyGroup.children.entries.forEach(enemy => {
+                            const dist = Phaser.Math.Distance.Between(player.x, player.y, enemy.x, enemy.y);
+                            if (dist < 100) {
+                                const damage = 50;
+                                const health = enemy.getData('health') - damage;
+                                enemy.setData('health', health);
+                                if (health <= 0) {
+                                    enemy.destroy();
+                                    GameState.kills++;
+                                    GameState.xp += 10 * GameState.floor;
+                                }
+                            }
+                        });
+                        // Visual effect
+                        const fireball = scene.add.circle(player.x, player.y, 100, 0xff6b35, 0.5);
+                        scene.tweens.add({
+                            targets: fireball,
+                            scale: 0,
+                            alpha: 0,
+                            duration: 500,
+                            onComplete: () => fireball.destroy()
+                        });
+                        ability.cooldown = ability.maxCooldown;
+                    }
+                    break;
+                    
+                case 2: // Lightning
+                    if (GameState.mana >= 15) {
+                        GameState.mana -= 15;
+                        // Chain damage
+                        let target = null;
+                        let minDist = Infinity;
+                        enemyGroup.children.entries.forEach(enemy => {
+                            const dist = Phaser.Math.Distance.Between(player.x, player.y, enemy.x, enemy.y);
+                            if (dist < minDist) {
+                                minDist = dist;
+                                target = enemy;
+                            }
+                        });
+                        if (target) {
+                            const damage = 80;
+                            const health = target.getData('health') - damage;
+                            target.setData('health', health);
+                            if (health <= 0) {
+                                target.destroy();
+                                GameState.kills++;
+                                GameState.xp += 10 * GameState.floor;
+                            }
+                            // Lightning effect
+                            const lightning = scene.add.line(0, 0, player.x, player.y, target.x, target.y, 0x4fc3f7);
+                            lightning.setLineWidth(3);
+                            setTimeout(() => lightning.destroy(), 200);
+                        }
+                        ability.cooldown = ability.maxCooldown;
+                    }
+                    break;
+                    
+                case 3: // Shield
+                    if (GameState.mana >= 20) {
+                        GameState.mana -= 20;
+                        // Invulnerability for 3 seconds
+                        player.setData('shielded', true);
+                        player.setTint(0x4fc3f7);
+                        setTimeout(() => {
+                            player.setData('shielded', false);
+                            player.clearTint();
+                        }, 3000);
+                        ability.cooldown = ability.maxCooldown;
+                    }
+                    break;
+                    
+                case 4: // Heal
+                    if (GameState.mana >= 25) {
+                        GameState.mana -= 25;
+                        GameState.health = Math.min(GameState.maxHealth, GameState.health + 50);
+                        showFloatingText('+50 HP', player.x, player.y - 30, '#4caf50');
+                        ability.cooldown = ability.maxCooldown;
+                    }
+                    break;
+            }
+            
+            updateUI();
+        }
+
+        function updateCooldowns(delta) {
+            for (const [key, ability] of Object.entries(GameState.abilities)) {
+                if (ability.cooldown > 0) {
+                    ability.cooldown = Math.max(0, ability.cooldown - delta);
+                    const percent = (ability.cooldown / ability.maxCooldown) * 100;
+                    document.getElementById(`cd${key}`).style.height = `${percent}%`;
+                }
+            }
+        }
+
+        function nextFloor() {
+            GameState.floor++;
+            
+            // Heal partially
+            GameState.health = Math.min(GameState.maxHealth, GameState.health + 30);
+            GameState.mana = GameState.maxMana;
+            
+            // Unlock abilities
+            if (GameState.floor === 3 && !GameState.unlockedAbilities.includes(2)) {
+                GameState.unlockedAbilities.push(2);
+                showAgentMessage('Phoenix-Artisan', 'The Cyclical Creator', '🦅',
+                    'You have unlocked the Lightning ability! Press 2 to strike your nearest enemy with thunder.');
+            }
+            if (GameState.floor === 5 && !GameState.unlockedAbilities.includes(3)) {
+                GameState.unlockedAbilities.push(3);
+                showAgentMessage('Phoenix-Artisan', 'The Cyclical Creator', '🦅',
+                    'You have unlocked the Shield ability! Press 3 to become invulnerable for 3 seconds.');
+            }
+            if (GameState.floor === 7 && !GameState.unlockedAbilities.includes(4)) {
+                GameState.unlockedAbilities.push(4);
+                showAgentMessage('Phoenix-Artisan', 'The Cyclical Creator', '🦅',
+                    'You have unlocked the Heal ability! Press 4 to restore 50 health points.');
+            }
+            
+            // Restart scene
+            const scene = game.scene.scenes[0];
+            scene.scene.restart();
+            
+            updateUI();
+        }
+
+        function gameOver() {
+            document.getElementById('finalFloor').textContent = GameState.floor;
+            document.getElementById('finalXP').textContent = GameState.totalXP;
+            document.getElementById('finalKills').textContent = GameState.kills;
+            document.getElementById('finalGold').textContent = GameState.gold;
+            document.getElementById('gameOver').classList.add('active');
+            
+            // Sync with Arcanea
+            syncWithArcanea();
+        }
+
+        function restartGame() {
+            // Keep some XP and permanent upgrades
+            GameState.permanentUpgrades.maxHealthBonus += 10;
+            GameState.permanentUpgrades.damageBonus += 5;
+            
+            // Reset run
+            GameState.floor = 1;
+            GameState.health = 100 + GameState.permanentUpgrades.maxHealthBonus;
+            GameState.maxHealth = 100 + GameState.permanentUpgrades.maxHealthBonus;
+            GameState.mana = 50;
+            GameState.gold = 0;
+            GameState.kills = 0;
+            GameState.xp = 0;
+            GameState.unlockedAbilities = [1];
+            
+            document.getElementById('gameOver').classList.remove('active');
+            
+            // Restart scene
+            const scene = game.scene.scenes[0];
+            scene.scene.restart();
+            
+            updateUI();
+            
+            showAgentMessage('Phoenix-Artisan', 'The Cyclical Creator', '🦅',
+                'You rise again from the ashes! You keep your experience and permanent upgrades. Go deeper this time!');
+        }
+
+        function updateUI() {
+            document.getElementById('xpDisplay').textContent = GameState.xp.toLocaleString();
+            document.getElementById('floorDisplay').textContent = GameState.floor;
+            
+            const healthPercent = (GameState.health / GameState.maxHealth) * 100;
+            document.getElementById('healthFill').style.width = `${healthPercent}%`;
+            document.getElementById('healthText').textContent = `${GameState.health}/${GameState.maxHealth}`;
+            
+            const manaPercent = (GameState.mana / GameState.maxMana) * 100;
+            document.getElementById('manaFill').style.width = `${manaPercent}%`;
+            document.getElementById('manaText').textContent = `${GameState.mana}/${GameState.maxMana}`;
+        }
+
+        function showAgentMessage(name, role, avatar, message) {
+            document.getElementById('agentName').textContent = name;
+            document.getElementById('agentRole').textContent = role;
+            document.getElementById('agentAvatar').textContent = avatar;
+            document.getElementById('agentMessage').textContent = message;
+            document.getElementById('agentPanel').classList.add('active');
+            
+            setTimeout(() => {
+                document.getElementById('agentPanel').classList.remove('active');
+            }, 8000);
+        }
+
+        function goBack() {
+            window.location.href = 'games-v2.html';
+        }
+
+        function movePlayer(direction) {
+            const speed = 150;
+            player.setVelocity(0);
+            
+            switch(direction) {
+                case 'up': player.setVelocityY(-speed); break;
+                case 'down': player.setVelocityY(speed); break;
+                case 'left': player.setVelocityX(-speed); break;
+                case 'right': player.setVelocityX(speed); break;
+            }
+        }
+
+        function syncWithArcanea() {
+            const data = {
+                totalXP: GameState.totalXP,
+                deepestFloor: GameState.floor,
+                totalKills: GameState.kills,
+                permanentUpgrades: GameState.permanentUpgrades,
+                lastRun: new Date().toISOString()
+            };
+            localStorage.setItem('phoenixRisingData', JSON.stringify(data));
+            
+            if (window.Arcanea && window.Arcanea.awardXP) {
+                window.Arcanea.awardXP({
+                    gameId: 'phoenix-rising',
+                    amount: GameState.totalXP,
+                    reason: `dungeon_run_floor_${GameState.floor}`,
+                    agent: '@phoenix-artisan'
+                });
+            }
+            
+            window.dispatchEvent(new CustomEvent('phoenixRisingComplete', {
+                detail: data
+            }));
+        }
+
+        // Load saved data
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('phoenixRisingData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                GameState.permanentUpgrades = data.permanentUpgrades || { maxHealthBonus: 0, damageBonus: 0, goldMultiplier: 1 };
+                GameState.maxHealth = 100 + GameState.permanentUpgrades.maxHealthBonus;
+                GameState.health = GameState.maxHealth;
+            }
+            updateUI();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('agentPanel').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

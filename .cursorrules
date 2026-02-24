@@ -1,0 +1,37 @@
+# Arcanea — Cursor Configuration
+# Thin pointer to shared intelligence at .arcanea/
+
+## Source of Truth
+- **Canon**: `.arcanea/lore/CANON_LOCKED.md`
+- **Voice**: `.arcanea/config/voice.yaml`
+- **Design Tokens**: `.arcanea/config/design-tokens.yaml`
+- **Model Routing**: `.arcanea/config/models.yaml`
+- **Skills**: `.arcanea/skills/`
+- **Agents**: `.arcanea/agents/`
+
+## Tech Stack
+- **Framework**: Next.js 16 (App Router) + React 19
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS with Arcanean Design System
+- **Database**: Supabase (PostgreSQL + Auth + Realtime)
+- **AI**: Vercel AI SDK 6, Google Gemini, Anthropic Claude
+- **Deployment**: Vercel
+
+## Coding Standards
+- Strict TypeScript, no `any` unless absolutely necessary
+- Server Components by default, Client Components only when needed
+- Elevated but accessible voice — mythic but practical
+- Every feature should feel magical, not mundane
+- Comment the "Why", not just the "How"
+
+## Design System
+- **Primary**: Violet (#8b5cf6)
+- **Accent**: Teal (#7fffd4)
+- **Gold**: Achievement (#ffd700)
+- **Fonts**: Cinzel (display), Crimson Pro (body), Inter (UI), JetBrains Mono (code)
+- **Effects**: Glass morphism (blur 16px), aurora gradients, cosmic glows
+
+## Architecture Principle
+`.arcanea/` = the brain (shared knowledge). Tool configs = the hands (execution).
+All lore, voice rules, design tokens, and agent profiles live in `.arcanea/`.
+This file is a pointer, not a source of truth.

@@ -1,0 +1,56 @@
+{
+  "name": "@arcanea/hybrid-memory",
+  "version": "0.1.0",
+  "description": "Hybrid memory backend for Arcanea — SQL queries + vector search + Guardian-namespaced storage",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "test": "node --test tests/hybrid-memory.test.mjs",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "arcanea",
+    "hybrid-memory",
+    "guardian",
+    "vector-search",
+    "sql-backend",
+    "hnsw",
+    "cosine-similarity",
+    "memory-backend",
+    "typescript"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/hybrid-memory"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

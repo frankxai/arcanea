@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcanea — Settings</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void: #0b0e14;
+      --surface: #12151c;
+      --raised: #1a1d26;
+      --elevated: #21242f;
+      --border: rgba(127, 255, 212, 0.1);
+      --border-hover: rgba(127, 255, 212, 0.3);
+      --teal: #7fffd4;
+      --gold: #ffd700;
+      --violet: #9966ff;
+      --red: #ff4d4d;
+      --text-primary: #e8e6e3;
+      --text-secondary: #8b8d93;
+      --text-muted: #555860;
+    }
+
+    body {
+      background: var(--void);
+      color: var(--text-primary);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* ── Layout ── */
+    .options-layout {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    .options-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 28px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .options-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--teal), var(--violet), transparent);
+      opacity: 0.4;
+    }
+
+    .logo-mark {
+      font-size: 28px;
+      background: linear-gradient(135deg, var(--teal), var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-title {
+      font-size: 22px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--teal), var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--teal);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* ── Form Fields ── */
+    .field {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .field:last-child { border-bottom: none; }
+
+    .field:hover { background: rgba(127,255,212,0.015); }
+
+    .field-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .field-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .field-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .field-control {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Inputs */
+    .key-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px 14px;
+      flex-direction: column;
+    }
+
+    .key-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    input[type="password"],
+    input[type="text"],
+    select,
+    textarea {
+      background: var(--raised);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 13px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="password"]:focus,
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(127,255,212,0.35);
+    }
+
+    input[type="password"],
+    input[type="text"] {
+      flex: 1;
+      min-width: 0;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    select {
+      cursor: pointer;
+      min-width: 160px;
+    }
+
+    select option {
+      background: var(--raised);
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: rgba(127,255,212,0.12);
+      border-color: rgba(127,255,212,0.3);
+      color: var(--teal);
+    }
+
+    .btn-primary:hover {
+      background: rgba(127,255,212,0.2);
+      border-color: rgba(127,255,212,0.5);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+    }
+
+    .btn-danger {
+      background: rgba(255,77,77,0.08);
+      border-color: rgba(255,77,77,0.2);
+      color: #ff8080;
+    }
+
+    .btn-danger:hover {
+      background: rgba(255,77,77,0.15);
+      border-color: rgba(255,77,77,0.4);
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    /* Toggle switch */
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 2px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--text-muted);
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+
+    .toggle input:checked + .toggle-slider {
+      background: rgba(127,255,212,0.12);
+      border-color: rgba(127,255,212,0.4);
+    }
+
+    .toggle input:checked + .toggle-slider::before {
+      left: calc(100% - 20px);
+      background: var(--teal);
+      box-shadow: 0 0 8px rgba(127,255,212,0.5);
+    }
+
+    /* ── Key status badge ── */
+    .key-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .key-status.set {
+      background: rgba(127,255,212,0.1);
+      border: 1px solid rgba(127,255,212,0.2);
+      color: var(--teal);
+    }
+
+    .key-status.unset {
+      background: rgba(85,88,96,0.2);
+      border: 1px solid rgba(85,88,96,0.3);
+      color: var(--text-muted);
+    }
+
+    /* ── Guardian grid in settings ── */
+    .guardian-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 8px;
+      padding: 16px 20px;
+    }
+
+    .guardian-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--raised);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .guardian-option:hover {
+      border-color: var(--option-color, var(--border-hover));
+    }
+
+    .guardian-option.selected {
+      border-color: var(--option-color, var(--teal));
+      background: color-mix(in srgb, var(--option-color, var(--teal)) 8%, var(--raised));
+    }
+
+    .guardian-option-emoji { font-size: 18px; }
+
+    .guardian-option-info { flex: 1; min-width: 0; }
+
+    .guardian-option-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .guardian-option-gate {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ── Shortcuts ── */
+    .shortcut-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .shortcut-row:last-child { border-bottom: none; }
+
+    .shortcut-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .shortcut-keys {
+      display: flex;
+      gap: 4px;
+    }
+
+    .kbd {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: 'Courier New', monospace;
+      color: var(--text-secondary);
+    }
+
+    /* ── Data management ── */
+    .data-actions {
+      display: flex;
+      gap: 10px;
+      padding: 16px 20px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Toast notification ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 12px 20px;
+      background: var(--raised);
+      border: 1px solid rgba(127,255,212,0.2);
+      border-radius: 10px;
+      color: var(--teal);
+      font-size: 13px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      z-index: 1000;
+      transform: translateY(0);
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+
+    .toast.error {
+      border-color: rgba(255,77,77,0.3);
+      color: #ff8080;
+    }
+
+    .toast.hidden {
+      transform: translateY(12px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── Version badge ── */
+    .version-badge {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      padding-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="options-layout">
+    <div class="options-header">
+      <div>
+        <div class="logo-mark">✦</div>
+      </div>
+      <div>
+        <div class="logo-title">Arcanea Settings</div>
+        <div class="logo-sub">Guardian Intelligence OS — Configuration</div>
+      </div>
+    </div>
+
+    <!-- API Keys -->
+    <div class="section">
+      <div class="section-title">AI Providers</div>
+      <div class="section-card">
+        <!-- Anthropic -->
+        <div>
+          <div class="field">
+            <div class="field-info">
+              <div class="field-label">Anthropic (Claude)</div>
+              <div class="field-hint">Powers claude-opus-4-6 — Recommended for best Guardian experience.</div>
+            </div>
+            <div class="field-control">
+              <span class="key-status unset" id="anthropic-status">Not set</span>
+            </div>
+          </div>
+          <div class="key-input-row">
+            <div class="key-input-wrap">
+              <input type="password" id="anthropic-key" placeholder="sk-ant-..." autocomplete="off" />
+              <button class="btn btn-ghost btn-sm" id="anthropic-toggle-visible">Show</button>
+              <button class="btn btn-primary btn-sm" id="anthropic-save">Save</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google -->
+        <div style="border-top: 1px solid var(--border)">
+          <div class="field">
+            <div class="field-info">
+              <div class="field-label">Google AI (Gemini)</div>
+              <div class="field-hint">Powers Gemini 2.0 Flash — Fast and capable alternative.</div>
+            </div>
+            <div class="field-control">
+              <span class="key-status unset" id="google-status">Not set</span>
+            </div>
+          </div>
+          <div class="key-input-row">
+            <div class="key-input-wrap">
+              <input type="password" id="google-key" placeholder="AIza..." autocomplete="off" />
+              <button class="btn btn-ghost btn-sm" id="google-toggle-visible">Show</button>
+              <button class="btn btn-primary btn-sm" id="google-save">Save</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OpenAI -->
+        <div style="border-top: 1px solid var(--border)">
+          <div class="field">
+            <div class="field-info">
+              <div class="field-label">OpenAI (GPT-4o)</div>
+              <div class="field-hint">Powers GPT-4o — Strong for coding and analysis.</div>
+            </div>
+            <div class="field-control">
+              <span class="key-status unset" id="openai-status">Not set</span>
+            </div>
+          </div>
+          <div class="key-input-row">
+            <div class="key-input-wrap">
+              <input type="password" id="openai-key" placeholder="sk-..." autocomplete="off" />
+              <button class="btn btn-ghost btn-sm" id="openai-toggle-visible">Show</button>
+              <button class="btn btn-primary btn-sm" id="openai-save">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Default Provider -->
+    <div class="section">
+      <div class="section-title">Default Provider</div>
+      <div class="section-card">
+        <div class="field">
+          <div class="field-info">
+            <div class="field-label">Active AI Provider</div>
+            <div class="field-hint">Choose which AI model powers your Guardian conversations.</div>
+          </div>
+          <div class="field-control">
+            <select id="provider-select">
+              <option value="anthropic">Claude (Anthropic)</option>
+              <option value="google">Gemini (Google)</option>
+              <option value="openai">GPT-4o (OpenAI)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Default Guardian -->
+    <div class="section">
+      <div class="section-title">Default Guardian</div>
+      <div class="section-card">
+        <div class="guardian-options-grid" id="guardian-options-grid">
+          <!-- Populated by options.ts -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Behavior -->
+    <div class="section">
+      <div class="section-title">Behavior</div>
+      <div class="section-card">
+        <div class="field">
+          <div class="field-info">
+            <div class="field-label">Floating Selection Button</div>
+            <div class="field-hint">Show "Ask Guardian" button when text is selected on any page.</div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" id="toggle-floating-btn" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-info">
+            <div class="field-label">Include Page Context by Default</div>
+            <div class="field-hint">Automatically provide the current page content to the Guardian.</div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" id="toggle-page-context" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-info">
+            <div class="field-label">Keyboard Shortcuts</div>
+            <div class="field-hint">Enable Ctrl+Shift+A (open panel) and Ctrl+Shift+S (summarize).</div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" id="toggle-shortcuts" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Reference -->
+    <div class="section">
+      <div class="section-title">Keyboard Shortcuts</div>
+      <div class="section-card">
+        <div class="shortcut-row">
+          <span class="shortcut-label">Open Guardian Side Panel</span>
+          <div class="shortcut-keys">
+            <span class="kbd">Ctrl</span>
+            <span class="kbd">Shift</span>
+            <span class="kbd">A</span>
+          </div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-label">Summarize Current Page</span>
+          <div class="shortcut-keys">
+            <span class="kbd">Ctrl</span>
+            <span class="kbd">Shift</span>
+            <span class="kbd">S</span>
+          </div>
+        </div>
+        <div class="shortcut-row">
+          <span class="shortcut-label">Writing Assistant (focused input)</span>
+          <div class="shortcut-keys">
+            <span class="kbd">Ctrl</span>
+            <span class="kbd">Shift</span>
+            <span class="kbd">Space</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Management -->
+    <div class="section">
+      <div class="section-title">Data Management</div>
+      <div class="section-card">
+        <div class="data-actions">
+          <button class="btn btn-ghost" id="btn-export">Export Data</button>
+          <button class="btn btn-ghost" id="btn-import">Import Data</button>
+          <button class="btn btn-danger" id="btn-clear-history">Clear History</button>
+          <button class="btn btn-danger" id="btn-clear-all">Clear All Data</button>
+        </div>
+        <input type="file" id="import-file" accept=".json" style="display:none" />
+      </div>
+    </div>
+
+    <div class="version-badge">Arcanea Guardian AI v0.1.0 — Intelligence OS for every surface</div>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="options.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "name": "@arcanea/council",
+  "version": "0.1.0",
+  "description": "Guardian Council consensus mechanics — Byzantine, Raft, Gossip, and Gate Quorum protocols for the Ten Guardians",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./consensus": {
+      "types": "./dist/consensus/index.d.ts",
+      "import": "./dist/consensus/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/council.test.mjs"
+  },
+  "keywords": [
+    "arcanea",
+    "council",
+    "consensus",
+    "guardian",
+    "byzantine",
+    "raft",
+    "gossip"
+  ],
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@arcanea/guardian-memory": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "typescript": "^5.5.0"
+  }
+}

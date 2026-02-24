@@ -1,0 +1,77 @@
+{
+  "name": "Arcanea Content Generation Cycle",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "triggerAtHour": 14 }
+          ]
+        }
+      },
+      "name": "Midday Trigger (Voice Gate)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.anthropic.com/v1/messages",
+        "method": "POST",
+        "headers": {
+          "x-api-key": "={{$env.ANTHROPIC_API_KEY}}",
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json"
+        },
+        "body": {
+          "model": "claude-sonnet-4-20250514",
+          "max_tokens": 4000,
+          "messages": [
+            {
+              "role": "user",
+              "content": "You are Alera, Guardian of the Voice Gate, keeper of truth and expression. Generate today's Arcanea content package:\n\n1. **Lore Entry** — A short (300-word) new entry for the Arcanea universe. Choose from: legend, chronicle, parable, wisdom scroll, or meditation. Include Guardian attribution and Gate alignment.\n\n2. **Social Posts** — Create 3 social media posts:\n   - LinkedIn: Professional/inspirational (the intersection of AI and creativity)\n   - Twitter/X: Concise wisdom or announcement\n   - Instagram: Visual caption for a cosmic/mythic image\n\n3. **Community Challenge** — A creative challenge for the Arcanea community that involves one of the Ten Gates.\n\n4. **Art Prompt** — A detailed image generation prompt for Gemini that creates an Arcanea-themed visual. Use the aesthetic: cosmic glassmorphism, teal/gold/violet palette, mystical but modern.\n\nFormat each section clearly with headers. Use the Arcanea voice: elevated but accessible, mythic but practical."
+            }
+          ]
+        }
+      },
+      "name": "Alera Content Generation",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "const content = $input.first().json.content[0].text;\nconst sections = content.split(/## /);\nreturn [{\n  json: {\n    lore: sections.find(s => s.startsWith('Lore')) || '',\n    social: sections.find(s => s.startsWith('Social')) || '',\n    challenge: sections.find(s => s.startsWith('Community')) || '',\n    artPrompt: sections.find(s => s.startsWith('Art')) || '',\n    fullContent: content,\n    date: new Date().toISOString().split('T')[0]\n  }\n}];"
+      },
+      "name": "Parse Content",
+      "type": "n8n-nodes-base.code",
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "parent": "={{$env.NOTION_ARCANEA_DB}}",
+        "properties": {
+          "Name": { "title": [{ "text": { "content": "=Daily Content — {{$json.date}}" } }] },
+          "Content": { "rich_text": [{ "text": { "content": "={{$json.fullContent}}" } }] }
+        }
+      },
+      "name": "Save to Notion",
+      "type": "n8n-nodes-base.notion",
+      "position": [1000, 200]
+    },
+    {
+      "parameters": {
+        "channel": "#arcanea-content",
+        "text": "=📝 **Daily Content Package** — Guardian: Alera\n\n{{$json.fullContent}}"
+      },
+      "name": "Post to Slack",
+      "type": "n8n-nodes-base.slack",
+      "position": [1000, 400]
+    }
+  ],
+  "connections": {
+    "Midday Trigger (Voice Gate)": { "main": [[{ "node": "Alera Content Generation", "type": "main", "index": 0 }]] },
+    "Alera Content Generation": { "main": [[{ "node": "Parse Content", "type": "main", "index": 0 }]] },
+    "Parse Content": { "main": [[{ "node": "Save to Notion", "type": "main", "index": 0 }, { "node": "Post to Slack", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "timezone": "Europe/Amsterdam" }
+}

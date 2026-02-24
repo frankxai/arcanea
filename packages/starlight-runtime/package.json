@@ -1,0 +1,53 @@
+{
+  "name": "@arcanea/starlight-runtime",
+  "version": "0.2.0",
+  "description": "Context loader for Starlight Protocol files — reads and assembles agent context from disk",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "test": "node --test tests/*.test.mjs",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "starlight",
+    "agent",
+    "protocol",
+    "context",
+    "ai",
+    "llm",
+    "context-loader"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea.git",
+    "directory": "packages/starlight-runtime"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "zod": "^3.22.4",
+    "ai": "^3.0.19",
+    "@ai-sdk/anthropic": "^0.0.9",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.19"
+  }
+}

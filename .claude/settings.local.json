@@ -1,0 +1,88 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch:*)",
+      "Bash(npm install:*)",
+      "Bash(cat:*)",
+      "Bash(bash .claude/*:*)",
+      "Bash(python3:*)",
+      "Bash(node:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/prompt-submit.sh \"$USER_PROMPT\""
+          },
+          {
+            "type": "command",
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/model-route.sh \"$USER_PROMPT\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Task|Bash|Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 3000,
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/pre-tool.sh \"$TOOL_NAME\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 3000,
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/voice-check.sh \"$TOOL_INPUT\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Task|Bash|Write|Edit|Read|Grep|Glob|WebFetch|WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 3000,
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/post-tool.sh \"$TOOL_NAME\""
+          },
+          {
+            "type": "command",
+            "timeout": 3000,
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/context-tracker.sh \"$TOOL_NAME\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 5000,
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-end.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

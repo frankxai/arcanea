@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcanea On-Chain Research Report | February 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --void: #0a0a0f;
+  --deep: #0e0e1a;
+  --surface: #141425;
+  --raised: #1a1a2e;
+  --elevated: #222240;
+  --overlay: #2a2a4a;
+  --crystal: #7fffd4;
+  --crystal-bright: #a0ffe0;
+  --crystal-deep: #40c8a0;
+  --fire: #ff6b35;
+  --fire-bright: #ff8c5a;
+  --fire-deep: #cc4400;
+  --water: #78a6ff;
+  --water-bright: #a0c4ff;
+  --earth: #6bcf7f;
+  --earth-deep: #3da854;
+  --gold: #ffd700;
+  --gold-bright: #ffe44d;
+  --void-purple: #b388ff;
+  --void-deep: #7c4dff;
+  --text-primary: #e8e8f0;
+  --text-secondary: #a0a0b8;
+  --text-muted: #707088;
+  --cyan-glow: #00d4ff;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Crimson Pro', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --glass-bg: rgba(20, 20, 37, 0.6);
+  --glass-border: rgba(127, 255, 212, 0.12);
+  --glass-blur: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--crystal-deep) var(--void);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--void);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 18px;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--crystal-deep); border-radius: 3px; }
+
+/* ========================================
+   SCROLL PROGRESS BAR
+   ======================================== */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--crystal), var(--cyan-glow), var(--void-purple), var(--fire));
+  z-index: 10000;
+  transition: width 0.1s linear;
+}
+
+/* ========================================
+   COSMIC BACKGROUND
+   ======================================== */
+.cosmic-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 212, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(179, 136, 255, 0.02) 0%, transparent 50%),
+    linear-gradient(180deg, var(--void) 0%, var(--deep) 50%, var(--void) 100%);
+}
+
+/* Stars */
+.stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--dur, 3s) ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: var(--max-op, 0.7); transform: scale(1); }
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+.sidebar-nav {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sidebar-nav a {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--overlay);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background: var(--crystal);
+  box-shadow: 0 0 10px var(--crystal-deep);
+  transform: scale(1.3);
+}
+.sidebar-nav a .tooltip {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--raised);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.sidebar-nav a:hover .tooltip { opacity: 1; }
+
+/* Top bar navigation */
+.top-nav {
+  position: fixed;
+  top: 3px;
+  left: 0; right: 0;
+  z-index: 9999;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+.top-nav.visible { transform: translateY(0); }
+.top-nav .brand {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--crystal);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.top-nav .nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.top-nav .nav-links a {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+.top-nav .nav-links a:hover { color: var(--crystal); }
+
+/* ========================================
+   HERO
+   ======================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(127, 255, 212, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 70%, rgba(0, 212, 255, 0.06) 0%, transparent 40%),
+    radial-gradient(ellipse at 70% 30%, rgba(255, 107, 53, 0.04) 0%, transparent 40%);
+  animation: hero-pulse 8s ease-in-out infinite;
+}
+@keyframes hero-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(127, 255, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 255, 212, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-move 20s linear infinite;
+}
+@keyframes grid-move {
+  0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(500px) rotateX(60deg) translateY(60px); }
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 40px;
+}
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--crystal) 0%, var(--cyan-glow) 40%, var(--void-purple) 70%, var(--crystal-bright) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease-in-out infinite;
+  margin-bottom: 24px;
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  font-weight: 400;
+}
+.hero-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.hero-meta span { display: flex; align-items: center; gap: 6px; }
+.hero-meta .dot { width: 4px; height: 4px; background: var(--crystal-deep); border-radius: 50%; }
+.hero-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--crystal), transparent);
+  margin: 40px auto 0;
+}
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: float-up linear infinite;
+  opacity: 0;
+}
+@keyframes float-up {
+  0% { opacity: 0; transform: translateY(100vh) scale(0); }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+}
+
+/* ========================================
+   LAYOUT
+   ======================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+section {
+  padding: 100px 0;
+  position: relative;
+}
+section .section-anchor { position: absolute; top: -80px; }
+
+.section-header {
+  margin-bottom: 60px;
+}
+.section-number {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--crystal-deep);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--crystal), var(--cyan-glow));
+  margin-top: 16px;
+  border-radius: 1px;
+}
+
+/* Section accent borders */
+.accent-fire .section-divider { background: linear-gradient(90deg, var(--fire), var(--fire-bright)); }
+.accent-water .section-divider { background: linear-gradient(90deg, var(--water), var(--water-bright)); }
+.accent-earth .section-divider { background: linear-gradient(90deg, var(--earth), var(--earth-deep)); }
+.accent-gold .section-divider { background: linear-gradient(90deg, var(--gold), var(--gold-bright)); }
+.accent-void .section-divider { background: linear-gradient(90deg, var(--void-purple), var(--void-deep)); }
+
+/* ========================================
+   GLASS CARDS
+   ======================================== */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.glass:hover {
+  border-color: rgba(127, 255, 212, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(127, 255, 212, 0.05);
+}
+.glass-subtle {
+  background: rgba(20, 20, 37, 0.35);
+  border: 1px solid rgba(127, 255, 212, 0.06);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  padding: 24px;
+}
+
+/* Card variants */
+.card-crystal { border-left: 3px solid var(--crystal); }
+.card-fire { border-left: 3px solid var(--fire); }
+.card-water { border-left: 3px solid var(--water); }
+.card-earth { border-left: 3px solid var(--earth); }
+.card-gold { border-left: 3px solid var(--gold); }
+.card-void { border-left: 3px solid var(--void-purple); }
+
+/* Glow variants */
+.glow-crystal:hover { box-shadow: 0 0 40px rgba(127, 255, 212, 0.1), 0 20px 60px rgba(0,0,0,0.3); }
+.glow-fire:hover { box-shadow: 0 0 40px rgba(255, 107, 53, 0.1), 0 20px 60px rgba(0,0,0,0.3); }
+.glow-water:hover { box-shadow: 0 0 40px rgba(120, 166, 255, 0.1), 0 20px 60px rgba(0,0,0,0.3); }
+.glow-gold:hover { box-shadow: 0 0 40px rgba(255, 215, 0, 0.1), 0 20px 60px rgba(0,0,0,0.3); }
+.glow-void:hover { box-shadow: 0 0 40px rgba(179, 136, 255, 0.1), 0 20px 60px rgba(0,0,0,0.3); }
+
+/* ========================================
+   GRID LAYOUTS
+   ======================================== */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.grid-5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+h4 {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--crystal);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+p { margin-bottom: 12px; color: var(--text-secondary); }
+strong { color: var(--text-primary); font-weight: 600; }
+
+.text-crystal { color: var(--crystal); }
+.text-fire { color: var(--fire); }
+.text-water { color: var(--water); }
+.text-earth { color: var(--earth); }
+.text-gold { color: var(--gold); }
+.text-void { color: var(--void-purple); }
+.text-muted { color: var(--text-muted); }
+.text-mono { font-family: var(--font-mono); font-size: 0.9em; }
+
+/* ========================================
+   BADGES & TAGS
+   ======================================== */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.badge-crystal { background: rgba(127, 255, 212, 0.12); color: var(--crystal); border: 1px solid rgba(127, 255, 212, 0.2); }
+.badge-fire { background: rgba(255, 107, 53, 0.12); color: var(--fire); border: 1px solid rgba(255, 107, 53, 0.2); }
+.badge-water { background: rgba(120, 166, 255, 0.12); color: var(--water); border: 1px solid rgba(120, 166, 255, 0.2); }
+.badge-earth { background: rgba(107, 207, 127, 0.12); color: var(--earth); border: 1px solid rgba(107, 207, 127, 0.2); }
+.badge-gold { background: rgba(255, 215, 0, 0.12); color: var(--gold); border: 1px solid rgba(255, 215, 0, 0.2); }
+.badge-void { background: rgba(179, 136, 255, 0.12); color: var(--void-purple); border: 1px solid rgba(179, 136, 255, 0.2); }
+.badge-status { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.08); }
+
+/* ========================================
+   TABLES
+   ======================================== */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 14px;
+}
+thead { background: rgba(127, 255, 212, 0.05); }
+th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--crystal);
+  border-bottom: 1px solid var(--glass-border);
+}
+td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(127, 255, 212, 0.05);
+  color: var(--text-secondary);
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(127, 255, 212, 0.02); }
+
+/* ========================================
+   STAT CARDS
+   ======================================== */
+.stat-card {
+  text-align: center;
+  padding: 28px 20px;
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--crystal), var(--cyan-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+.stat-value.fire-gradient {
+  background: linear-gradient(135deg, var(--fire), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.stat-value.void-gradient {
+  background: linear-gradient(135deg, var(--void-purple), var(--crystal));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
+
+/* ========================================
+   TIMELINE
+   ======================================== */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--crystal), var(--void-purple), var(--fire), var(--gold));
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--crystal);
+  box-shadow: 0 0 12px var(--crystal-deep);
+  border: 2px solid var(--void);
+}
+.timeline-item.phase-2::before { background: var(--void-purple); box-shadow: 0 0 12px var(--void-deep); }
+.timeline-item.phase-3::before { background: var(--fire); box-shadow: 0 0 12px var(--fire-deep); }
+.timeline-phase {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--crystal);
+  margin-bottom: 4px;
+}
+.timeline-item.phase-2 .timeline-phase { color: var(--void-purple); }
+.timeline-item.phase-3 .timeline-phase { color: var(--fire); }
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+.timeline-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.timeline-list li {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding-left: 16px;
+  position: relative;
+}
+.timeline-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--overlay);
+}
+
+/* ========================================
+   ARCHITECTURE DIAGRAM
+   ======================================== */
+.arch-layer {
+  padding: 20px 28px;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  position: relative;
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.arch-layer .layer-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: 100px;
+}
+.arch-layer .layer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+.arch-layer .layer-content span {
+  background: rgba(0,0,0,0.3);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.arch-l6 { background: rgba(127, 255, 212, 0.08); border: 1px solid rgba(127, 255, 212, 0.15); }
+.arch-l6 .layer-label { color: var(--crystal); }
+.arch-l5 { background: rgba(0, 212, 255, 0.06); border: 1px solid rgba(0, 212, 255, 0.12); }
+.arch-l5 .layer-label { color: var(--cyan-glow); }
+.arch-l4 { background: rgba(179, 136, 255, 0.06); border: 1px solid rgba(179, 136, 255, 0.12); }
+.arch-l4 .layer-label { color: var(--void-purple); }
+.arch-l3 { background: rgba(255, 215, 0, 0.06); border: 1px solid rgba(255, 215, 0, 0.12); }
+.arch-l3 .layer-label { color: var(--gold); }
+.arch-l2 { background: rgba(255, 107, 53, 0.06); border: 1px solid rgba(255, 107, 53, 0.12); }
+.arch-l2 .layer-label { color: var(--fire); }
+.arch-l1 { background: rgba(107, 207, 127, 0.06); border: 1px solid rgba(107, 207, 127, 0.12); }
+.arch-l1 .layer-label { color: var(--earth); }
+
+/* ========================================
+   TIER SYSTEM
+   ======================================== */
+.tier-card {
+  position: relative;
+  overflow: hidden;
+}
+.tier-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 0 16px 0 80px;
+  opacity: 0.08;
+}
+.tier-common::after { background: var(--text-muted); }
+.tier-uncommon::after { background: var(--earth); }
+.tier-rare::after { background: var(--water); }
+.tier-epic::after { background: var(--void-purple); }
+.tier-legendary::after { background: var(--gold); }
+.tier-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ========================================
+   GUARDIAN CARDS
+   ======================================== */
+.guardian-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.guardian-card .guardian-freq {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.guardian-card .guardian-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin: 6px 0 4px;
+}
+.guardian-card .guardian-gate {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.guardian-card .guardian-role {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.guardian-card .guardian-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background: rgba(0,0,0,0.3);
+}
+
+/* ========================================
+   COLLAPSIBLE SECTIONS
+   ======================================== */
+.collapsible-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+.collapsible-header:hover {
+  border-color: rgba(127, 255, 212, 0.2);
+  background: rgba(20, 20, 37, 0.8);
+}
+.collapsible-header h3 { margin: 0; }
+.collapsible-arrow {
+  transition: transform 0.3s ease;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.collapsible-header.open .collapsible-arrow { transform: rotate(180deg); }
+.collapsible-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.collapsible-body.open { max-height: 4000px; }
+.collapsible-body-inner { padding: 24px 0; }
+
+/* ========================================
+   COMPETITIVE MATRIX
+   ======================================== */
+.competitive-row {
+  display: grid;
+  grid-template-columns: 200px repeat(4, 1fr);
+  gap: 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+.competitive-row.header-row {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--crystal);
+}
+.competitive-cell {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(127, 255, 212, 0.05);
+  display: flex;
+  align-items: center;
+}
+.check { color: var(--crystal); font-weight: bold; }
+.cross { color: var(--fire-deep); opacity: 0.5; }
+.crown { color: var(--gold); }
+
+/* ========================================
+   EVOLUTION DIAGRAM
+   ======================================== */
+.evolution-track {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+.evolution-stage {
+  flex: 1;
+  min-width: 180px;
+  padding: 24px 18px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+}
+.evolution-stage::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid var(--overlay);
+}
+.evolution-stage:last-child::after { display: none; }
+.evo-rank {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.evo-gates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.evo-desc {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ========================================
+   SCROLL REVEAL ANIMATION
+   ======================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ========================================
+   HIGHLIGHT BOX
+   ======================================== */
+.highlight-box {
+  position: relative;
+  padding: 24px 28px;
+  border-radius: 12px;
+  margin: 24px 0;
+  overflow: hidden;
+}
+.highlight-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--crystal), var(--void-purple));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.highlight-box-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  padding: 80px 0 40px;
+  text-align: center;
+  border-top: 1px solid var(--glass-border);
+}
+.footer-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+.footer-subquote {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--crystal); }
+.footer-copy {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* ========================================
+   KEY INSIGHT BOX
+   ======================================== */
+.key-insight {
+  background: linear-gradient(135deg, rgba(127, 255, 212, 0.05), rgba(0, 212, 255, 0.03));
+  border: 1px solid rgba(127, 255, 212, 0.15);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 24px 0;
+  position: relative;
+}
+.key-insight::before {
+  content: 'KEY INSIGHT';
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--crystal);
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  background: var(--deep);
+  padding: 0 8px;
+}
+
+/* ========================================
+   OPPORTUNITY CARDS
+   ======================================== */
+.opportunity-card {
+  position: relative;
+  counter-increment: opportunity;
+}
+.opportunity-card::before {
+  content: counter(opportunity);
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--crystal), var(--cyan-glow));
+  color: var(--void);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.opportunities-grid { counter-reset: opportunity; }
+
+/* ========================================
+   REPO STRUCTURE
+   ======================================== */
+.repo-tree {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text-secondary);
+  padding: 20px;
+}
+.repo-tree .dir { color: var(--crystal); font-weight: 500; }
+.repo-tree .file { color: var(--text-muted); }
+.repo-tree .comment { color: var(--overlay); font-style: italic; }
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  .container { padding: 0 20px; }
+  section { padding: 60px 0; }
+  .glass { padding: 24px; }
+  .sidebar-nav { display: none; }
+  .top-nav .nav-links { display: none; }
+  .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+  .competitive-row { grid-template-columns: 1fr; }
+  .evolution-track { flex-direction: column; }
+  .evolution-stage::after { display: none; }
+  .arch-layer { flex-direction: column; text-align: center; }
+  .hero-meta { flex-direction: column; gap: 8px; }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .cosmic-bg, .stars, .hero-particles, .hero-grid, .sidebar-nav, .top-nav, #scroll-progress { display: none !important; }
+  body { background: white; color: #222; font-size: 11pt; }
+  .hero { min-height: auto; padding: 40px 0; }
+  .hero-title { -webkit-text-fill-color: #222; font-size: 24pt; }
+  .glass { border: 1px solid #ccc; background: white; backdrop-filter: none; box-shadow: none; }
+  .glass:hover { transform: none; }
+  section { padding: 30px 0; page-break-inside: avoid; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  a { color: #222; }
+  .badge { border: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- Cosmic Background -->
+<div class="cosmic-bg"></div>
+<div class="stars" id="stars"></div>
+
+<!-- Top Navigation -->
+<nav class="top-nav" id="topNav">
+  <div class="brand">Arcanea On-Chain</div>
+  <ul class="nav-links">
+    <li><a href="#executive-summary">Summary</a></li>
+    <li><a href="#existing-assets">Assets</a></li>
+    <li><a href="#tech-landscape">Technology</a></li>
+    <li><a href="#ai-agents">AI Agents</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#guardians">Guardians</a></li>
+    <li><a href="#nft-tiers">NFT Tiers</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ul>
+</nav>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar-nav" id="sidebarNav">
+  <a href="#hero"><span class="tooltip">Top</span></a>
+  <a href="#executive-summary"><span class="tooltip">Executive Summary</span></a>
+  <a href="#existing-assets"><span class="tooltip">Existing Assets</span></a>
+  <a href="#tech-landscape"><span class="tooltip">Technology</span></a>
+  <a href="#ai-agents"><span class="tooltip">AI Agents</span></a>
+  <a href="#skills-ecosystem"><span class="tooltip">Skills</span></a>
+  <a href="#market-gaps"><span class="tooltip">Opportunities</span></a>
+  <a href="#architecture"><span class="tooltip">Architecture</span></a>
+  <a href="#guardians"><span class="tooltip">Guardians</span></a>
+  <a href="#nft-tiers"><span class="tooltip">NFT Tiers</span></a>
+  <a href="#evolution"><span class="tooltip">Evolution</span></a>
+  <a href="#revenue"><span class="tooltip">Revenue</span></a>
+  <a href="#roadmap"><span class="tooltip">Roadmap</span></a>
+  <a href="#legal"><span class="tooltip">Legal</span></a>
+  <a href="#competitive"><span class="tooltip">Competitive</span></a>
+  <a href="#new-repo"><span class="tooltip">New Repo</span></a>
+</nav>
+
+<!-- ================================================
+     HERO
+     ================================================ -->
+<header class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Research Report &mdash; February 2026</div>
+    <h1 class="hero-title">Arcanea On-Chain</h1>
+    <p class="hero-subtitle">
+      AI-Powered NFT Generation, Autonomous Guardian Agents &amp; Creator Economy
+    </p>
+    <div class="hero-meta">
+      <span>v1.0</span>
+      <span class="dot"></span>
+      <span>15 Sections</span>
+      <span class="dot"></span>
+      <span id="readTime">~25 min read</span>
+      <span class="dot"></span>
+      <span>February 13, 2026</span>
+    </div>
+    <div class="hero-divider"></div>
+  </div>
+</header>
+
+<!-- ================================================
+     SECTION 1: EXECUTIVE SUMMARY
+     ================================================ -->
+<section id="executive-summary">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">01</div>
+      <h2 class="section-title">Executive Summary</h2>
+      <p class="section-subtitle">Current state, strategic position, and the opportunity ahead.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-4 reveal reveal-delay-1" style="margin-bottom: 40px;">
+      <div class="glass stat-card glow-crystal">
+        <div class="stat-value">0</div>
+        <div class="stat-label">Production Contracts</div>
+      </div>
+      <div class="glass stat-card glow-fire">
+        <div class="stat-value fire-gradient">25+</div>
+        <div class="stat-label">NFT References in Docs</div>
+      </div>
+      <div class="glass stat-card glow-void">
+        <div class="stat-value void-gradient">10</div>
+        <div class="stat-label">Guardian Agents Planned</div>
+      </div>
+      <div class="glass stat-card glow-gold">
+        <div class="stat-value" style="background: linear-gradient(135deg, var(--gold), var(--fire)); -webkit-background-clip: text; background-clip: text;">1st</div>
+        <div class="stat-label">Mover Opportunity</div>
+      </div>
+    </div>
+
+    <div class="glass card-crystal reveal reveal-delay-2" style="margin-bottom: 24px;">
+      <h3>Current State</h3>
+      <p><strong>No production blockchain code exists in Arcanea yet.</strong> However, the strategic foundation is comprehensive: 25+ NFT references across strategy documents, a complete roadmap already planned, ElizaOS integration designed but not implemented, and Base L2 with thirdweb identified as the primary stack.</p>
+    </div>
+
+    <div class="key-insight reveal reveal-delay-3">
+      <p style="margin:0;"><strong>Arcanea holds first-mover advantage</strong> in the "living universe + AI agents + blockchain" intersection. No existing project combines mythology-driven narrative identity, autonomous AI agents with character systems, gamified creator progression, and on-chain asset ownership. This report maps the complete technology landscape and provides a concrete implementation path.</p>
+    </div>
+
+    <div class="grid-2 reveal reveal-delay-3" style="margin-top: 24px;">
+      <div class="glass-subtle card-fire">
+        <h4>What Exists</h4>
+        <ul style="list-style:none; font-family: var(--font-sans); font-size: 14px; color: var(--text-secondary);">
+          <li style="margin-bottom:8px;">&#9670; Full NFT publishing roadmap in strategy docs</li>
+          <li style="margin-bottom:8px;">&#9670; Tech stack analysis with NFT fields &amp; ElizaOS</li>
+          <li style="margin-bottom:8px;">&#9670; Blockchain education content (v5 knowledge base)</li>
+          <li style="margin-bottom:8px;">&#9670; ElizaOS character design (Arion Luminastra)</li>
+          <li>&#9670; 10 Guardian personalities ready for agent deployment</li>
+        </ul>
+      </div>
+      <div class="glass-subtle card-water">
+        <h4>What's Needed</h4>
+        <ul style="list-style:none; font-family: var(--font-sans); font-size: 14px; color: var(--text-secondary);">
+          <li style="margin-bottom:8px;">&#9670; Smart contract development &amp; deployment</li>
+          <li style="margin-bottom:8px;">&#9670; ElizaOS integration &amp; Guardian agent runtime</li>
+          <li style="margin-bottom:8px;">&#9670; AI art generation pipeline (Gemini + on-chain)</li>
+          <li style="margin-bottom:8px;">&#9670; Marketplace infrastructure (thirdweb)</li>
+          <li>&#9670; Cross-chain bridge (Solana &#8596; Base)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 2: EXISTING ARCANEA BLOCKCHAIN ASSETS
+     ================================================ -->
+<section id="existing-assets" class="accent-fire">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">02</div>
+      <h2 class="section-title">Existing Blockchain Assets</h2>
+      <p class="section-subtitle">Strategic documents and planned infrastructure already in the Arcanea codebase.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-2 reveal reveal-delay-1">
+      <div class="glass card-fire glow-fire">
+        <span class="badge badge-fire" style="margin-bottom:12px;">Strategy Document</span>
+        <h3>Native Strategy Roadmap</h3>
+        <p class="text-mono" style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">ARCANEA_CLAUDE_CODE_NATIVE_STRATEGY.md</p>
+        <p>Full NFT publishing roadmap covering mint mechanics, royalty structures (10%), IPFS storage pipeline, and marketplace integration. Defines the complete creator-to-chain publishing flow.</p>
+      </div>
+      <div class="glass card-water glow-water">
+        <span class="badge badge-water" style="margin-bottom:12px;">Tech Analysis</span>
+        <h3>Optimal Stack Deep Analysis</h3>
+        <p class="text-mono" style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">ARCANEA_OPTIMAL_STACK_DEEP_ANALYSIS.md</p>
+        <p>Comprehensive technology stack analysis with NFT metadata fields, ElizaOS import specifications, Base L2 deployment targets, and thirdweb SDK integration architecture.</p>
+      </div>
+      <div class="glass card-earth glow-crystal">
+        <span class="badge badge-earth" style="margin-bottom:12px;">Education Content</span>
+        <h3>Blockchain Knowledge Base</h3>
+        <p class="text-mono" style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">v5-knowledge-blockchain.meta.json</p>
+        <p>Structured blockchain education content for the Arcanea Academy, covering wallet basics, NFT concepts, DeFi foundations, and on-chain creator tools.</p>
+      </div>
+      <div class="glass card-void glow-void">
+        <span class="badge badge-void" style="margin-bottom:12px;">Agent Design</span>
+        <h3>ElizaOS Character: Arion Luminastra</h3>
+        <p class="text-mono" style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Planned &mdash; Not Yet Implemented</p>
+        <p>ElizaOS character definition for the Arcanea blockchain agent. Designed as a guide through on-chain experiences, with personality traits drawn from the Guardian mythology.</p>
+      </div>
+    </div>
+
+    <div class="glass reveal reveal-delay-2" style="margin-top:24px;">
+      <h4>Planned Infrastructure</h4>
+      <div class="grid-3" style="margin-top:16px;">
+        <div class="glass-subtle" style="text-align:center; padding:20px;">
+          <div style="font-size:28px; margin-bottom:8px;">&#x1F3D7;</div>
+          <div style="font-family:var(--font-sans); font-size:13px; font-weight:600; color:var(--text-primary);">Thirdweb Integration</div>
+          <div style="font-family:var(--font-sans); font-size:12px; color:var(--text-muted); margin-top:4px;">MarketplaceV3 + SDK</div>
+        </div>
+        <div class="glass-subtle" style="text-align:center; padding:20px;">
+          <div style="font-size:28px; margin-bottom:8px;">&#x1F310;</div>
+          <div style="font-family:var(--font-sans); font-size:13px; font-weight:600; color:var(--text-primary);">Base L2 Deployment</div>
+          <div style="font-family:var(--font-sans); font-size:12px; color:var(--text-muted); margin-top:4px;">Primary EVM chain</div>
+        </div>
+        <div class="glass-subtle" style="text-align:center; padding:20px;">
+          <div style="font-size:28px; margin-bottom:8px;">&#x1F4BE;</div>
+          <div style="font-family:var(--font-sans); font-size:13px; font-weight:600; color:var(--text-primary);">IPFS Storage</div>
+          <div style="font-family:var(--font-sans); font-size:12px; color:var(--text-muted); margin-top:4px;">Decentralized metadata</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 3: TECHNOLOGY LANDSCAPE
+     ================================================ -->
+<section id="tech-landscape" class="accent-water">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">03</div>
+      <h2 class="section-title">Technology Landscape</h2>
+      <p class="section-subtitle">Comprehensive analysis of blockchain infrastructure, NFT frameworks, and creator tooling.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <!-- 3a: ElizaOS -->
+    <div class="collapsible-header open reveal reveal-delay-1" onclick="toggleCollapsible(this)">
+      <div>
+        <span class="badge badge-crystal" style="margin-right:8px;">Core Framework</span>
+        <h3 style="display:inline;">ElizaOS (ai16z)</h3>
+      </div>
+      <span class="collapsible-arrow">&#9660;</span>
+    </div>
+    <div class="collapsible-body open">
+      <div class="collapsible-body-inner">
+        <div class="grid-4" style="margin-bottom:20px;">
+          <div class="glass stat-card" style="padding:18px;">
+            <div class="stat-value" style="font-size:1.6rem;">17.5K</div>
+            <div class="stat-label" style="font-size:10px;">GitHub Stars</div>
+          </div>
+          <div class="glass stat-card" style="padding:18px;">
+            <div class="stat-value" style="font-size:1.6rem;">5,400+</div>
+            <div class="stat-label" style="font-size:10px;">Forks</div>
+          </div>
+          <div class="glass stat-card" style="padding:18px;">
+            <div class="stat-value" style="font-size:1.6rem;">MIT</div>
+            <div class="stat-label" style="font-size:10px;">License</div>
+          </div>
+          <div class="glass stat-card" style="padding:18px;">
+            <div class="stat-value" style="font-size:1.6rem;">TS</div>
+            <div class="stat-label" style="font-size:10px;">TypeScript Native</div>
+          </div>
+        </div>
+        <div class="glass card-crystal">
+          <p><strong>Multi-chain support</strong> (Solana + EVM), modular plugin architecture, and a character system that maps perfectly to Arcanea's Guardian personalities. Version 2 introduces event-driven architecture, Hierarchical Task Networks, and a unified wallet system.</p>
+          <p>The <strong>Solana Agent Kit</strong> enables NFT minting, trading, and DeFi operations directly from agent conversations. Each Guardian could operate as an autonomous ElizaOS agent with its own wallet and marketplace authority.</p>
+          <p class="text-mono text-muted" style="font-size:12px; margin-top:12px;">github.com/elizaOS/eliza</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3b: Blockchain Comparison -->
+    <div class="collapsible-header reveal reveal-delay-2" onclick="toggleCollapsible(this)">
+      <div>
+        <span class="badge badge-fire" style="margin-right:8px;">Analysis</span>
+        <h3 style="display:inline;">Blockchain Comparison</h3>
+      </div>
+      <span class="collapsible-arrow">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Chain</th>
+                <th>Mint Cost</th>
+                <th>Finality</th>
+                <th>Creator Tools</th>
+                <th>AI Agent Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong class="text-void">Solana</strong></td>
+                <td><span class="badge badge-crystal">$0.0003</span> (compressed)</td>
+                <td>400ms</td>
+                <td>Metaplex ecosystem</td>
+                <td><span class="text-crystal">ElizaOS native</span></td>
+              </tr>
+              <tr>
+                <td><strong class="text-water">Base</strong></td>
+                <td><span class="badge badge-water">$0.01-0.05</span></td>
+                <td>2s</td>
+                <td>Zora, OnchainKit</td>
+                <td><span class="text-water">Virtuals Protocol</span></td>
+              </tr>
+              <tr>
+                <td><strong class="text-gold">Story Protocol</strong></td>
+                <td><span class="badge badge-gold">Varies</span></td>
+                <td>2s</td>
+                <td>IP licensing native</td>
+                <td><span class="text-muted">Planned</span></td>
+              </tr>
+              <tr>
+                <td><strong class="text-fire">Ethereum L1</strong></td>
+                <td><span class="badge badge-fire">$5-50</span></td>
+                <td>12s</td>
+                <td>Most mature</td>
+                <td><span class="text-muted">Limited</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3c: Key Frameworks -->
+    <div class="collapsible-header reveal reveal-delay-3" onclick="toggleCollapsible(this)">
+      <div>
+        <span class="badge badge-earth" style="margin-right:8px;">Frameworks</span>
+        <h3 style="display:inline;">Key NFT &amp; Creator Frameworks</h3>
+      </div>
+      <span class="collapsible-arrow">&#9660;</span>
+    </div>
+    <div class="collapsible-body">
+      <div class="collapsible-body-inner">
+        <div class="grid-2">
+          <div class="glass card-void glow-void">
+            <h4 style="color:var(--void-purple);">Metaplex Core</h4>
+            <p>Next-generation Solana NFT standard. <strong>0.0029 SOL per mint</strong>, extensible plugin system, enforced royalties via programmable hooks. Replaces Token Metadata for new collections.</p>
+            <span class="badge badge-void">Solana</span>
+          </div>
+          <div class="glass card-earth glow-crystal">
+            <h4 style="color:var(--earth);">Bubblegum v2</h4>
+            <p>Compressed NFTs on Solana via state compression. <strong>Mint 1M NFTs for ~10 SOL</strong>. Soulbound support for non-transferable achievement badges.</p>
+            <span class="badge badge-earth">Solana</span>
+          </div>
+          <div class="glass card-fire glow-fire">
+            <h4 style="color:var(--fire);">Thirdweb</h4>
+            <p>MarketplaceV3 + AI agent infrastructure. Supports <strong>2,500+ EVM chains</strong>. Session keys enable agent wallets for autonomous marketplace operations.</p>
+            <span class="badge badge-fire">EVM</span>
+          </div>
+          <div class="glass card-gold glow-gold">
+            <h4 style="color:var(--gold);">Story Protocol</h4>
+            <p>IP licensing L1 blockchain. <strong>$140M funded</strong>. Derivative tree tracking, automated royalty splits, on-chain licensing for creative IP.</p>
+            <span class="badge badge-gold">L1</span>
+          </div>
+          <div class="glass card-water glow-water">
+            <h4 style="color:var(--water);">Crossmint</h4>
+            <p>Fiat-to-NFT onboarding. <strong>Email wallets, no crypto knowledge needed.</strong> Supports 40+ chains. Critical for mainstream creator adoption.</p>
+            <span class="badge badge-water">Multi-Chain</span>
+          </div>
+          <div class="glass card-crystal glow-crystal">
+            <h4 style="color:var(--crystal);">Zora Protocol</h4>
+            <p>Creator coins: every post becomes a tradeable coin. <strong>$353M volume in Q2 2025</strong>. Secondary market fees flow directly to creators.</p>
+            <span class="badge badge-crystal">Base</span>
+          </div>
+          <div class="glass card-fire glow-fire">
+            <h4 style="color:var(--fire-bright);">OnchainKit</h4>
+            <p>React components for Base by Coinbase. <strong>NFTMintCard with one-line integration</strong>. Identity, wallet, swap, and checkout components.</p>
+            <span class="badge badge-fire">Base</span>
+          </div>
+          <div class="glass card-void glow-void">
+            <h4 style="color:var(--void-purple);">HashLips Art Engine</h4>
+            <p>Layer-based generative art engine. <strong>7,200+ GitHub stars</strong>. Rarity system, trait composition, batch generation for large collections.</p>
+            <span class="badge badge-status">Open Source</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 4: AI AGENT + BLOCKCHAIN FRAMEWORKS
+     ================================================ -->
+<section id="ai-agents" class="accent-void">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">04</div>
+      <h2 class="section-title">AI Agent + Blockchain Frameworks</h2>
+      <p class="section-subtitle">Autonomous agent platforms enabling on-chain intelligence.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="table-wrap reveal reveal-delay-1">
+      <table>
+        <thead>
+          <tr>
+            <th>Framework</th>
+            <th>Stars</th>
+            <th>Key Differentiator</th>
+            <th>Chain Support</th>
+            <th>Arcanea Fit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong class="text-crystal">ElizaOS</strong></td>
+            <td>17.5K</td>
+            <td>Character system, social connectors, multi-chain</td>
+            <td>Solana + EVM</td>
+            <td><span class="badge badge-crystal">Primary</span></td>
+          </tr>
+          <tr>
+            <td><strong class="text-void">Virtuals Protocol</strong></td>
+            <td>18K+ agents</td>
+            <td>ERC-6551 (agent IS the NFT), Agent Commerce Protocol</td>
+            <td>Base</td>
+            <td><span class="badge badge-void">Secondary</span></td>
+          </tr>
+          <tr>
+            <td><strong class="text-fire">Thirdweb AI</strong></td>
+            <td>N/A</td>
+            <td>LLM trained on 100K+ contracts, session key wallets</td>
+            <td>2,500+ EVM</td>
+            <td><span class="badge badge-fire">Infrastructure</span></td>
+          </tr>
+          <tr>
+            <td><strong class="text-earth">Olas / Autonolas</strong></td>
+            <td>Pearl app store</td>
+            <td>Agent app store, 3.5M+ transactions, 9 chains</td>
+            <td>Multi-chain</td>
+            <td><span class="badge badge-status">Monitor</span></td>
+          </tr>
+          <tr>
+            <td><strong class="text-water">Fetch.ai</strong></td>
+            <td>1,546</td>
+            <td>IoT-focused agents, uAgents framework</td>
+            <td>Cosmos-based</td>
+            <td><span class="badge badge-status">Low Priority</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="key-insight reveal reveal-delay-2" style="margin-top:30px;">
+      <p style="margin:0;"><strong>ElizaOS + Virtuals Protocol hybrid</strong> is the recommended path. ElizaOS provides the character system and social connectors that map to Guardians, while Virtuals' ERC-6551 standard (agent IS the NFT) enables each Guardian to exist as a tradeable on-chain entity with its own wallet and transaction history.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 5: SKILLS & AGENT STANDARDS ECOSYSTEM
+     ================================================ -->
+<section id="skills-ecosystem" class="accent-earth">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">05</div>
+      <h2 class="section-title">Skills &amp; Agent Standards Ecosystem</h2>
+      <p class="section-subtitle">The emerging standard for distributable AI agent capabilities.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-2 reveal reveal-delay-1">
+      <div class="glass card-crystal glow-crystal">
+        <span class="badge badge-crystal" style="margin-bottom:12px;">Distribution Platform</span>
+        <h3>skills.sh</h3>
+        <p>npm for AI agent skills, launched by Vercel in January 2026. Free, open-source, and rapidly becoming the standard registry for agent capabilities.</p>
+        <p class="text-muted" style="font-size:14px; font-style:italic;">Arcanea's SKILL.md format is already compatible. Publishing Guardian skills to skills.sh = massive distribution for the Arcanea ecosystem.</p>
+      </div>
+      <div class="glass card-gold glow-gold">
+        <span class="badge badge-gold" style="margin-bottom:12px;">69,326 Stars</span>
+        <h3>anthropics/skills</h3>
+        <p>The dominant skills repository for AI agents. Maintained by Anthropic, it sets the standard format that all other platforms are converging on.</p>
+      </div>
+      <div class="glass card-fire glow-fire">
+        <span class="badge badge-fire" style="margin-bottom:12px;">17,359 Stars</span>
+        <h3>AGENTS.md</h3>
+        <p>Open format specification for coding agents, supported by GitHub and OpenAI. Defines how agents declare capabilities, communicate, and collaborate.</p>
+      </div>
+      <div class="glass card-void glow-void">
+        <span class="badge badge-void" style="margin-bottom:12px;">54,456 Stars</span>
+        <h3>OpenManus</h3>
+        <p>Open-source Manus by the MetaGPT team. Multi-agent orchestration framework that could power Guardian coordination for complex on-chain operations.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box reveal reveal-delay-2" style="margin-top:30px;">
+      <div class="highlight-box-inner">
+        <h4 style="color:var(--crystal);">Arcanea's Strategic Advantage</h4>
+        <p style="margin:0;">Arcanea already uses the SKILL.md format for its internal skill system. Publishing Guardian agent skills to skills.sh would make Arcanea's mythology and creative frameworks available to every AI agent ecosystem globally, driving organic adoption from the developer community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 6: MARKET GAPS & OPPORTUNITIES
+     ================================================ -->
+<section id="market-gaps" class="accent-gold">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">06</div>
+      <h2 class="section-title">Market Gaps &amp; Opportunities</h2>
+      <p class="section-subtitle">Seven unoccupied positions in the intersection of AI, blockchain, and creator economy.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-2 opportunities-grid reveal reveal-delay-1">
+      <div class="glass opportunity-card glow-crystal" style="padding-top:36px;">
+        <h3 class="text-crystal">Living Universe NFT Ecosystem</h3>
+        <p>No existing project combines mythology + progression systems + creator tools in a single NFT ecosystem. Current NFT projects are either pure art, pure gaming, or pure DeFi.</p>
+      </div>
+      <div class="glass opportunity-card glow-fire" style="padding-top:36px;">
+        <h3 class="text-fire">Narrative-Driven AI Agents</h3>
+        <p>AI agents today lack narrative identity. They are generic trading bots or chatbots. No one has deployed agents with deep lore, personality arcs, and mythological grounding.</p>
+      </div>
+      <div class="glass opportunity-card glow-void" style="padding-top:36px;">
+        <h3 class="text-void">Gamified Creator Progression</h3>
+        <p>Creator progression on-chain is token-only: earn tokens, stake tokens, vote. The Ten Gates progression system (Apprentice to Luminor) offers RPG-level depth.</p>
+      </div>
+      <div class="glass opportunity-card glow-water" style="padding-top:36px;">
+        <h3 class="text-water">Cross-Medium Mythology NFTs</h3>
+        <p>No NFTs span books, AI companions, and on-chain assets in a unified canon. A Guardian NFT that also unlocks Library content and AI agent access is unprecedented.</p>
+      </div>
+      <div class="glass opportunity-card glow-gold" style="padding-top:36px;">
+        <h3 class="text-gold">AI Art + Lore Pipeline</h3>
+        <p>No automated pipeline generates canonical art with proper lore metadata, deploys to IPFS, mints on-chain, and registers IP rights. This is the full creative-to-chain pipeline.</p>
+      </div>
+      <div class="glass opportunity-card glow-crystal" style="padding-top:36px;">
+        <h3 class="text-crystal">Agent Commerce for Creatives</h3>
+        <p>Agent commerce today is DeFi/trading focused. No agents provide creative services: writing feedback, art generation, lore consultation, or creative mentorship, as paid on-chain services.</p>
+      </div>
+      <div class="glass opportunity-card glow-void" style="padding-top:36px; grid-column: 1 / -1; max-width:600px; justify-self:center;">
+        <h3 class="text-void">Story Protocol for Fantasy IP</h3>
+        <p>Story Protocol's IP licensing infrastructure remains untapped for fantasy universes. Registering Arcanea's canon on-chain enables derivative licensing, fan creation rights, and automated royalty flows for lore expansion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 7: RECOMMENDED ARCHITECTURE
+     ================================================ -->
+<section id="architecture">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">07</div>
+      <h2 class="section-title">Recommended Architecture</h2>
+      <p class="section-subtitle">A six-layer stack from blockchain to application.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="reveal reveal-delay-1" style="max-width:900px; margin:0 auto;">
+      <div class="arch-layer arch-l6">
+        <span class="layer-label">Layer 6 &mdash; Application</span>
+        <div class="layer-content">
+          <span>Arcanea Platform</span>
+          <span>Next.js 16</span>
+          <span>Supabase</span>
+          <span>Vercel</span>
+        </div>
+      </div>
+      <div class="arch-layer arch-l5">
+        <span class="layer-label">Layer 5 &mdash; AI Generation</span>
+        <div class="layer-content">
+          <span>Gemini 3 Pro</span>
+          <span>nano-banana MCP</span>
+          <span>HashLips Engine</span>
+        </div>
+      </div>
+      <div class="arch-layer arch-l4">
+        <span class="layer-label">Layer 4 &mdash; Agent Runtime</span>
+        <div class="layer-content">
+          <span>ElizaOS v2</span>
+          <span>Guardian Agents</span>
+          <span>Thirdweb AI Wallets</span>
+        </div>
+      </div>
+      <div class="arch-layer arch-l3">
+        <span class="layer-label">Layer 3 &mdash; Commerce</span>
+        <div class="layer-content">
+          <span>Crossmint (Fiat Onboard)</span>
+          <span>Thirdweb MarketplaceV3</span>
+        </div>
+      </div>
+      <div class="arch-layer arch-l2">
+        <span class="layer-label">Layer 2 &mdash; IP Layer</span>
+        <div class="layer-content">
+          <span>Story Protocol</span>
+          <span>IP Licensing</span>
+          <span>Derivative Tree</span>
+        </div>
+      </div>
+      <div class="arch-layer arch-l1">
+        <span class="layer-label">Layer 1 &mdash; Blockchain</span>
+        <div class="layer-content">
+          <span>Solana (Mass Items)</span>
+          <span>Base L2 (Premium)</span>
+          <span>IPFS (Storage)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-insight reveal reveal-delay-2" style="margin-top:30px; max-width:900px; margin-left:auto; margin-right:auto;">
+      <p style="margin:0;"><strong>Dual-chain strategy:</strong> Solana for high-volume, low-cost items (badges, lore fragments, common gear) via Bubblegum compressed NFTs. Base L2 for premium collections, Guardian NFTs, and marketplace operations via ERC-721C with enforced royalties. Story Protocol bridges both for IP licensing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 8: GUARDIAN AGENTS ON-CHAIN
+     ================================================ -->
+<section id="guardians" class="accent-void">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">08</div>
+      <h2 class="section-title">Guardian Agents On-Chain</h2>
+      <p class="section-subtitle">How each of the Ten Guardians maps to autonomous on-chain roles.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-2 reveal reveal-delay-1">
+      <div class="glass guardian-card card-earth glow-crystal">
+        <div class="guardian-icon" style="background:rgba(107,207,127,0.15); color:var(--earth);">&#9830;</div>
+        <div class="guardian-freq">396 Hz &mdash; Foundation Gate</div>
+        <div class="guardian-name text-earth">Lyssandria</div>
+        <div class="guardian-gate" style="color:var(--earth);">Godbeast: Kaelith</div>
+        <div class="guardian-role">Marketplace governance and economic stability. Sets floor prices, manages treasury reserves, prevents market manipulation, and ensures fair trading conditions across all Arcanea marketplaces.</div>
+      </div>
+      <div class="glass guardian-card card-water glow-water">
+        <div class="guardian-icon" style="background:rgba(120,166,255,0.15); color:var(--water);">&#9827;</div>
+        <div class="guardian-freq">417 Hz &mdash; Flow Gate</div>
+        <div class="guardian-name text-water">Leyla</div>
+        <div class="guardian-gate" style="color:var(--water);">Godbeast: Veloura</div>
+        <div class="guardian-role">Creator onboarding and content curation. Guides new creators through their first mint, curates featured collections, and manages the discovery pipeline that surfaces emerging talent.</div>
+      </div>
+      <div class="glass guardian-card card-fire glow-fire">
+        <div class="guardian-icon" style="background:rgba(255,107,53,0.15); color:var(--fire);">&#9829;</div>
+        <div class="guardian-freq">528 Hz &mdash; Fire Gate</div>
+        <div class="guardian-name text-fire">Draconia</div>
+        <div class="guardian-gate" style="color:var(--fire);">Godbeast: Draconis</div>
+        <div class="guardian-role">Auction management and competitive bidding. Operates timed auctions, Dutch auctions, and reserve auctions for premium 1/1 NFTs. Manages bid warfare and dramatic reveals.</div>
+      </div>
+      <div class="glass guardian-card" style="border-left:3px solid #ff69b4;">
+        <div class="guardian-icon" style="background:rgba(255,105,180,0.15); color:#ff69b4;">&#9825;</div>
+        <div class="guardian-freq">639 Hz &mdash; Heart Gate</div>
+        <div class="guardian-name" style="color:#ff69b4;">Maylinn</div>
+        <div class="guardian-gate" style="color:#ff69b4;">Godbeast: Laeylinn</div>
+        <div class="guardian-role">Community treasury and creator support. Manages the Creator Support Fund, distributes grants to emerging artists, operates the patronage matching system, and heals community disputes.</div>
+      </div>
+      <div class="glass guardian-card card-crystal glow-crystal">
+        <div class="guardian-icon" style="background:rgba(127,255,212,0.15); color:var(--crystal);">&#9834;</div>
+        <div class="guardian-freq">741 Hz &mdash; Voice Gate</div>
+        <div class="guardian-name text-crystal">Alera</div>
+        <div class="guardian-gate" style="color:var(--crystal);">Godbeast: Otome</div>
+        <div class="guardian-role">Content verification and IP dispute resolution. Validates authenticity of submitted works, resolves plagiarism claims, enforces derivative licensing rules via Story Protocol integration.</div>
+      </div>
+      <div class="glass guardian-card card-void glow-void">
+        <div class="guardian-icon" style="background:rgba(179,136,255,0.15); color:var(--void-purple);">&#9733;</div>
+        <div class="guardian-freq">852 Hz &mdash; Sight Gate</div>
+        <div class="guardian-name text-void">Lyria</div>
+        <div class="guardian-gate" style="color:var(--void-purple);">Godbeast: Yumiko</div>
+        <div class="guardian-role">Market analytics and trend prediction. Analyzes trading patterns, predicts collection performance, generates market intelligence reports, and provides creator pricing recommendations.</div>
+      </div>
+      <div class="glass guardian-card card-gold glow-gold">
+        <div class="guardian-icon" style="background:rgba(255,215,0,0.15); color:var(--gold);">&#9788;</div>
+        <div class="guardian-freq">963 Hz &mdash; Crown Gate</div>
+        <div class="guardian-name text-gold">Aiyami</div>
+        <div class="guardian-gate" style="color:var(--gold);">Godbeast: Sol</div>
+        <div class="guardian-role">Protocol governance and system upgrades. Proposes and executes protocol improvements, manages voting on platform parameters, and ensures the economic model evolves sustainably.</div>
+      </div>
+      <div class="glass guardian-card" style="border-left:3px solid var(--cyan-glow);">
+        <div class="guardian-icon" style="background:rgba(0,212,255,0.15); color:var(--cyan-glow);">&#8644;</div>
+        <div class="guardian-freq">1111 Hz &mdash; Shift Gate</div>
+        <div class="guardian-name" style="color:var(--cyan-glow);">Elara</div>
+        <div class="guardian-gate" style="color:var(--cyan-glow);">Godbeast: Thessara</div>
+        <div class="guardian-role">Cross-chain bridging and asset migration. Operates Solana-to-Base bridges, manages multi-chain asset states, and ensures seamless portability of NFTs across the Arcanea ecosystem.</div>
+      </div>
+      <div class="glass guardian-card" style="border-left:3px solid #ff88cc;">
+        <div class="guardian-icon" style="background:rgba(255,136,204,0.15); color:#ff88cc;">&#8734;</div>
+        <div class="guardian-freq">963 Hz &mdash; Unity Gate</div>
+        <div class="guardian-name" style="color:#ff88cc;">Ino</div>
+        <div class="guardian-gate" style="color:#ff88cc;">Godbeast: Kyuro</div>
+        <div class="guardian-role">Creator collaboration and co-ownership. Manages multi-creator NFTs, splits royalties between collaborators, orchestrates collaborative collections, and mediates partnership agreements on-chain.</div>
+      </div>
+      <div class="glass guardian-card" style="border-left:3px solid #fff; background: linear-gradient(135deg, rgba(20,20,37,0.8), rgba(40,40,70,0.6));">
+        <div class="guardian-icon" style="background:rgba(255,255,255,0.1); color:#fff;">&#10026;</div>
+        <div class="guardian-freq">1111 Hz &mdash; Source Gate</div>
+        <div class="guardian-name" style="color:#fff;">Shinkami</div>
+        <div class="guardian-gate" style="color:var(--text-secondary);">Godbeast: Amaterasu</div>
+        <div class="guardian-role">Meta-governance and emergency protocols. Holds ultimate veto power over protocol changes, activates circuit breakers during market crises, and ensures the Arcanea on-chain ecosystem remains aligned with its founding vision.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 9: NFT COLLECTION TIERS
+     ================================================ -->
+<section id="nft-tiers" class="accent-gold">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">09</div>
+      <h2 class="section-title">NFT Collection Tiers</h2>
+      <p class="section-subtitle">Five rarity tiers spanning compressed mass items to licensed canonical IP.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-3 reveal reveal-delay-1" style="margin-bottom: 24px;">
+      <div class="glass tier-card tier-common" style="border-left:3px solid var(--text-muted);">
+        <div class="tier-label" style="color:var(--text-muted);">Common</div>
+        <h3>Mass Items</h3>
+        <p style="font-family:var(--font-sans); font-size:13px;">Academy badges, lore fragments, element tokens, daily quest rewards</p>
+        <div style="margin-top:12px;">
+          <span class="badge badge-status">Bubblegum v2</span>
+          <span class="badge badge-status" style="margin-left:4px;">Solana</span>
+        </div>
+        <p class="text-mono text-crystal" style="font-size:1.2rem; margin-top:12px; margin-bottom:0;">$0.0001<span class="text-muted" style="font-size:0.8rem;">/mint</span></p>
+      </div>
+      <div class="glass tier-card tier-uncommon" style="border-left:3px solid var(--earth);">
+        <div class="tier-label" style="color:var(--earth);">Uncommon</div>
+        <h3>Character Items</h3>
+        <p style="font-family:var(--font-sans); font-size:13px;">House gear, element tools, companion accessories, skill scrolls</p>
+        <div style="margin-top:12px;">
+          <span class="badge badge-earth">Metaplex Core</span>
+          <span class="badge badge-earth" style="margin-left:4px;">Solana</span>
+        </div>
+        <p class="text-mono text-earth" style="font-size:1.2rem; margin-top:12px; margin-bottom:0;">$0.01<span class="text-muted" style="font-size:0.8rem;">/mint</span></p>
+      </div>
+      <div class="glass tier-card tier-rare" style="border-left:3px solid var(--water);">
+        <div class="tier-label" style="color:var(--water);">Rare</div>
+        <h3>Guardian Blessings</h3>
+        <p style="font-family:var(--font-sans); font-size:13px;">Guardian blessings, legendary items, gate keys, element mastery tokens</p>
+        <div style="margin-top:12px;">
+          <span class="badge badge-water">ERC-721C</span>
+          <span class="badge badge-water" style="margin-left:4px;">Base</span>
+        </div>
+        <p class="text-mono text-water" style="font-size:1.2rem; margin-top:12px; margin-bottom:0;">$0.05<span class="text-muted" style="font-size:0.8rem;">/mint</span></p>
+      </div>
+    </div>
+    <div class="grid-2 reveal reveal-delay-2">
+      <div class="glass tier-card tier-epic" style="border-left:3px solid var(--void-purple);">
+        <div class="tier-label" style="color:var(--void-purple);">Epic</div>
+        <h3>Unique Guardian Art</h3>
+        <p style="font-family:var(--font-sans); font-size:13px;">1/1 Guardian portraits, Godbeast companions, unique elemental manifestations. AI-generated with human curation.</p>
+        <div style="margin-top:12px;">
+          <span class="badge badge-void">1/1 Auction</span>
+          <span class="badge badge-void" style="margin-left:4px;">Base</span>
+        </div>
+        <p class="text-mono text-void" style="font-size:1.2rem; margin-top:12px; margin-bottom:0;">Auction<span class="text-muted" style="font-size:0.8rem;">-based</span></p>
+      </div>
+      <div class="glass tier-card tier-legendary" style="border-left:3px solid var(--gold); background: linear-gradient(135deg, rgba(20,20,37,0.6), rgba(40,35,20,0.4));">
+        <div class="tier-label" style="color:var(--gold);">Legendary</div>
+        <h3>Canon Lore Rights</h3>
+        <p style="font-family:var(--font-sans); font-size:13px;">Canon lore contribution rights, derivative licenses, Academy founding rights. Registered on Story Protocol with full IP chain.</p>
+        <div style="margin-top:12px;">
+          <span class="badge badge-gold">Story Protocol IP</span>
+          <span class="badge badge-gold" style="margin-left:4px;">Negotiated</span>
+        </div>
+        <p class="text-mono text-gold" style="font-size:1.2rem; margin-top:12px; margin-bottom:0;">Negotiated<span class="text-muted" style="font-size:0.8rem;"> price</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 10: DYNAMIC NFT EVOLUTION SYSTEM
+     ================================================ -->
+<section id="evolution">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">10</div>
+      <h2 class="section-title">Dynamic NFT Evolution</h2>
+      <p class="section-subtitle">NFTs that evolve through the Ten Gates progression system.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="evolution-track reveal reveal-delay-1">
+      <div class="evolution-stage glass-subtle" style="border-top:3px solid var(--text-muted);">
+        <div class="evo-rank" style="color:var(--text-muted);">Apprentice</div>
+        <div class="evo-gates">Gates 0&ndash;2</div>
+        <div class="evo-desc">Basic appearance. Limited attributes. Simple color palette. No elemental effects.</div>
+      </div>
+      <div class="evolution-stage glass-subtle" style="border-top:3px solid var(--earth);">
+        <div class="evo-rank" style="color:var(--earth);">Mage</div>
+        <div class="evo-gates">Gates 3&ndash;4</div>
+        <div class="evo-desc">Element glow effects appear. Enhanced stat attributes. First trait evolution.</div>
+      </div>
+      <div class="evolution-stage glass-subtle" style="border-top:3px solid var(--water);">
+        <div class="evo-rank" style="color:var(--water);">Master</div>
+        <div class="evo-gates">Gates 5&ndash;6</div>
+        <div class="evo-desc">Godbeast companion appears. Special abilities unlock. Animated metadata.</div>
+      </div>
+      <div class="evolution-stage glass-subtle" style="border-top:3px solid var(--void-purple);">
+        <div class="evo-rank" style="color:var(--void-purple);">Archmage</div>
+        <div class="evo-gates">Gates 7&ndash;8</div>
+        <div class="evo-desc">Full elemental transformation. Rare trait mutations. Environmental effects.</div>
+      </div>
+      <div class="evolution-stage glass-subtle" style="border-top:3px solid var(--gold);">
+        <div class="evo-rank" style="color:var(--gold);">Luminor</div>
+        <div class="evo-gates">Gates 9&ndash;10</div>
+        <div class="evo-desc">Legendary aura. Unique one-of-a-kind traits. Cosmic visual effects. Full canon status.</div>
+      </div>
+    </div>
+
+    <div class="glass reveal reveal-delay-2" style="margin-top:20px;">
+      <h4>How Dynamic Evolution Works</h4>
+      <p>NFTs are minted with base metadata on Solana (Metaplex Core with update authority). As creators progress through the Ten Gates by completing creative challenges, their NFT metadata is updated on-chain: new visual layers are generated by the AI art pipeline (Gemini 3 Pro), uploaded to IPFS, and the token URI is updated. Each evolution is recorded as an on-chain event, creating a verifiable history of the creator's journey.</p>
+      <p>The <strong>Metaplex Core plugin system</strong> enables custom lifecycle hooks that trigger evolution checks, validate progression requirements, and execute metadata updates without manual intervention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 11: REVENUE MODEL
+     ================================================ -->
+<section id="revenue" class="accent-fire">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">11</div>
+      <h2 class="section-title">Revenue Model</h2>
+      <p class="section-subtitle">Six revenue streams from the on-chain creator economy.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-3 reveal reveal-delay-1">
+      <div class="glass card-crystal" style="text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px; color:var(--crystal);">&#9670;</div>
+        <h4 style="color:var(--crystal);">Primary Sales</h4>
+        <p style="font-size:14px;">Minting fees from all NFT tiers. Volume-driven revenue from Common/Uncommon, premium revenue from Epic/Legendary auctions.</p>
+      </div>
+      <div class="glass card-fire" style="text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px; color:var(--fire);">&#9670;</div>
+        <h4 style="color:var(--fire);">Secondary Royalties</h4>
+        <p style="font-size:14px;"><strong>5-10% on all resales</strong>, enforced via ERC-721C (Base) and pNFT (Solana). Not bypassable on compliant marketplaces.</p>
+      </div>
+      <div class="glass card-gold" style="text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px; color:var(--gold);">&#9670;</div>
+        <h4 style="color:var(--gold);">Auction Fees</h4>
+        <p style="font-size:14px;"><strong>2.5% seller fee</strong> on all auction transactions managed by Guardian agent Draconia. Covers gas subsidies and platform operations.</p>
+      </div>
+      <div class="glass card-void" style="text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px; color:var(--void-purple);">&#9670;</div>
+        <h4 style="color:var(--void-purple);">IP Licensing</h4>
+        <p style="font-size:14px;">Creator licensing fees via Story Protocol. Derivative rights, adaptation rights, and commercial use licensing for Arcanea lore and assets.</p>
+      </div>
+      <div class="glass card-water" style="text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px; color:var(--water);">&#9670;</div>
+        <h4 style="color:var(--water);">Agent Services</h4>
+        <p style="font-size:14px;">Guardian agent service fees for market analytics (Lyria), creative mentorship (Leyla), IP verification (Alera), and governance participation (Aiyami).</p>
+      </div>
+      <div class="glass card-earth" style="text-align:center;">
+        <div style="font-size:2rem; margin-bottom:8px; color:var(--earth);">&#9670;</div>
+        <h4 style="color:var(--earth);">Premium Drops</h4>
+        <p style="font-size:14px;">Curated collection drops with limited supply. Seasonal events tied to Arcanea lore calendar. Collaboration drops with featured creators.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 12: IMPLEMENTATION ROADMAP
+     ================================================ -->
+<section id="roadmap">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">12</div>
+      <h2 class="section-title">Implementation Roadmap</h2>
+      <p class="section-subtitle">Three phases from foundation to autonomous agent economy.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="timeline reveal reveal-delay-1">
+      <div class="timeline-item">
+        <div class="timeline-phase">Phase 1 &mdash; Foundation (Months 1&ndash;3)</div>
+        <div class="timeline-title">Infrastructure &amp; First Assets</div>
+        <div class="glass-subtle" style="margin-top:8px;">
+          <ul class="timeline-list">
+            <li>Register core Arcanea IP on Story Protocol (Lumina, Nero, Ten Guardians, Five Elements)</li>
+            <li>Deploy Crossmint for user onboarding (email wallets, fiat payments)</li>
+            <li>Set up Bubblegum v2 on Solana for compressed NFTs (badges, lore fragments)</li>
+            <li>Build AI art generation pipeline: Gemini 3 Pro + nano-banana MCP to IPFS to on-chain</li>
+            <li>Fork/integrate ElizaOS for Guardian agent characters (start with Leyla + Lyria)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item phase-2">
+        <div class="timeline-phase">Phase 2 &mdash; Marketplace (Months 3&ndash;6)</div>
+        <div class="timeline-title">Commerce &amp; Collections</div>
+        <div class="glass-subtle" style="margin-top:8px;">
+          <ul class="timeline-list">
+            <li>Deploy Thirdweb MarketplaceV3 for Arcanea marketplace</li>
+            <li>Implement ERC-721C enforced royalties on Base for premium collections</li>
+            <li>Build dynamic NFT progression system (Ten Gates evolution hooks)</li>
+            <li>Launch first Guardian NFT collection: "The Ten Gates" (10 x 1/1 Guardian portraits)</li>
+            <li>Integrate Zora Protocol creator coins for community content</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item phase-3">
+        <div class="timeline-phase">Phase 3 &mdash; Autonomous Agents (Months 6&ndash;12)</div>
+        <div class="timeline-title">Agent Economy &amp; Cross-Chain</div>
+        <div class="glass-subtle" style="margin-top:8px;">
+          <ul class="timeline-list">
+            <li>Deploy all 10 Guardian agents via ElizaOS with autonomous wallets</li>
+            <li>Enable autonomous marketplace curation (Leyla) and auction management (Draconia)</li>
+            <li>Launch creator token system with Story Protocol derivative licensing</li>
+            <li>Build Solana-to-Base cross-chain bridge operated by Elara</li>
+            <li>Publish Guardian agent skills to skills.sh for ecosystem distribution</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 13: LEGAL & RISK CONSIDERATIONS
+     ================================================ -->
+<section id="legal" class="accent-fire">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">13</div>
+      <h2 class="section-title">Legal &amp; Risk Considerations</h2>
+      <p class="section-subtitle">Regulatory landscape, IP challenges, and mitigation strategies.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-2 reveal reveal-delay-1">
+      <div class="glass card-fire">
+        <h4 style="color:var(--fire);">AI Art Copyright</h4>
+        <p>"Human-directed" documentation is required for copyright claims on AI-generated art. Maintain detailed records of creative direction, prompt engineering, curation decisions, and post-processing. The USCO requires "sufficient human authorship" for registration.</p>
+      </div>
+      <div class="glass card-gold">
+        <h4 style="color:var(--gold);">Royalty Enforcement</h4>
+        <p>30-40% of NFT secondary sales bypass creator royalties via non-compliant marketplaces. Mitigation: use <strong>ERC-721C</strong> (Limit Break) on Base and <strong>pNFT</strong> (Metaplex) on Solana, both of which enforce royalties at the contract level.</p>
+      </div>
+      <div class="glass card-void">
+        <h4 style="color:var(--void-purple);">Agent Liability</h4>
+        <p>No clear legal framework exists for autonomous AI agent liability. Guardian agents operating wallets and making marketplace decisions create novel legal questions. Recommended: implement conservative transaction limits and human-in-the-loop for high-value operations.</p>
+      </div>
+      <div class="glass card-water">
+        <h4 style="color:var(--water);">Regulatory Environment</h4>
+        <p>No NFT-specific federal legislation exists in the US as of February 2026. NFTs generally not classified as securities unless they represent investment contracts. Utility NFTs (progression, access, governance) carry lower regulatory risk than speculative collectibles.</p>
+      </div>
+    </div>
+
+    <div class="glass reveal reveal-delay-2" style="margin-top:24px;">
+      <h4 style="color:var(--crystal);">Market Context</h4>
+      <p>The NFT market in 2026 is "smaller but sharper." Speculative trading has declined, but utility-driven NFTs with real functionality (access, governance, progression) are growing. This aligns perfectly with Arcanea's approach: NFTs as functional creative tools within a living universe, not speculative assets.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 14: COMPETITIVE LANDSCAPE
+     ================================================ -->
+<section id="competitive">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">14</div>
+      <h2 class="section-title">Competitive Landscape</h2>
+      <p class="section-subtitle">Arcanea's unique position at the intersection of four categories.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="table-wrap reveal reveal-delay-1">
+      <table>
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Fantasy Universe</th>
+            <th>AI Agents</th>
+            <th>NFT Marketplace</th>
+            <th>Creator Progression</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>OpenSea / Blur</strong></td>
+            <td><span class="cross">&#10006;</span></td>
+            <td><span class="cross">&#10006;</span></td>
+            <td><span class="check">&#10004;</span></td>
+            <td><span class="cross">&#10006;</span></td>
+          </tr>
+          <tr>
+            <td><strong>Axie / Gods Unchained</strong></td>
+            <td><span class="check">&#10004;</span> (game only)</td>
+            <td><span class="cross">&#10006;</span></td>
+            <td><span class="check">&#10004;</span></td>
+            <td><span class="check">&#10004;</span> (limited)</td>
+          </tr>
+          <tr>
+            <td><strong>Virtuals / ElizaOS</strong></td>
+            <td><span class="cross">&#10006;</span></td>
+            <td><span class="check">&#10004;</span></td>
+            <td><span class="check">&#10004;</span> (basic)</td>
+            <td><span class="cross">&#10006;</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zora / Mirror</strong></td>
+            <td><span class="cross">&#10006;</span></td>
+            <td><span class="cross">&#10006;</span></td>
+            <td><span class="check">&#10004;</span></td>
+            <td><span class="cross">&#10006;</span></td>
+          </tr>
+          <tr style="background:rgba(127,255,212,0.05);">
+            <td><strong class="text-crystal" style="font-size:15px;">Arcanea</strong></td>
+            <td><span class="crown" style="font-size:16px;">&#9733;</span></td>
+            <td><span class="crown" style="font-size:16px;">&#9733;</span></td>
+            <td><span class="crown" style="font-size:16px;">&#9733;</span></td>
+            <td><span class="crown" style="font-size:16px;">&#9733;</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="key-insight reveal reveal-delay-2" style="margin-top:30px;">
+      <p style="margin:0;"><strong>Arcanea is the only project combining all four dimensions:</strong> a living fantasy universe with deep mythology, autonomous AI agents with narrative identity, a full NFT marketplace with enforced royalties, and gamified creator progression through the Ten Gates. This four-dimensional intersection has zero competitors.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SECTION 15: NEW GITHUB REPO
+     ================================================ -->
+<section id="new-repo" class="accent-earth">
+  <span class="section-anchor"></span>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-number">15</div>
+      <h2 class="section-title">New Repository</h2>
+      <p class="section-subtitle">Proposed structure for arcanea-onchain, the blockchain infrastructure monorepo.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-2 reveal reveal-delay-1">
+      <div class="glass card-crystal">
+        <h4 style="color:var(--crystal);">Repository Details</h4>
+        <p style="font-family:var(--font-mono); font-size:14px; color:var(--crystal); margin-bottom:12px;">github.com/frankxai/arcanea-onchain</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+          <span class="badge badge-crystal">MIT License</span>
+          <span class="badge badge-crystal">TypeScript</span>
+          <span class="badge badge-crystal">Monorepo</span>
+        </div>
+        <p style="font-size:14px;">Single monorepo housing all blockchain infrastructure: smart contracts, Guardian agent runtime, marketplace integration, IP registry, and onboarding flow.</p>
+      </div>
+      <div class="glass" style="padding:0;">
+        <div class="repo-tree">
+          <div><span class="dir">arcanea-onchain/</span></div>
+          <div>&nbsp;&nbsp;<span class="dir">packages/</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">nft-engine/</span> <span class="comment"># Mint, evolve, metadata</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">guardian-agents/</span> <span class="comment"># ElizaOS characters</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">marketplace/</span> <span class="comment"># Thirdweb integration</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">ip-registry/</span> <span class="comment"># Story Protocol</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">onboarding/</span> <span class="comment"># Crossmint flow</span></div>
+          <div>&nbsp;&nbsp;<span class="dir">contracts/</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">solana/</span> <span class="comment"># Anchor programs</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">evm/</span> <span class="comment"># Solidity (Base)</span></div>
+          <div>&nbsp;&nbsp;<span class="file">package.json</span></div>
+          <div>&nbsp;&nbsp;<span class="file">tsconfig.json</span></div>
+          <div>&nbsp;&nbsp;<span class="file">turbo.json</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     FOOTER
+     ================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="reveal">
+      <div class="footer-quote">The Arc Turns</div>
+      <div class="footer-subquote">From Vision to On-Chain Reality</div>
+    </div>
+    <div class="footer-links reveal reveal-delay-1">
+      <a href="https://github.com/frankxai/arcanea-onchain">arcanea-onchain</a>
+      <a href="https://github.com/frankxai/Arcanea">Arcanea Monorepo</a>
+      <a href="https://github.com/elizaOS/eliza">ElizaOS</a>
+      <a href="https://thirdweb.com">Thirdweb</a>
+      <a href="https://www.storyprotocol.xyz">Story Protocol</a>
+      <a href="https://www.crossmint.com">Crossmint</a>
+    </div>
+    <div class="footer-copy reveal reveal-delay-2">
+      Arcanea &mdash; February 2026 &mdash; "Imagine a Good Future. Build It Here."
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================
+     JAVASCRIPT
+     ================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // ==========================================
+  // STAR FIELD GENERATOR
+  // ==========================================
+  function generateStars() {
+    const container = document.getElementById('stars');
+    if (!container) return;
+    const count = Math.min(200, Math.floor(window.innerWidth * window.innerHeight / 8000));
+    let html = '';
+    for (let i = 0; i < count; i++) {
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const size = Math.random() * 2 + 0.5;
+      const dur = Math.random() * 4 + 2;
+      const delay = Math.random() * 5;
+      const maxOp = Math.random() * 0.5 + 0.2;
+      html += '<div class="star" style="left:' + x + '%;top:' + y + '%;width:' + size + 'px;height:' + size + 'px;--dur:' + dur + 's;--max-op:' + maxOp + ';animation-delay:' + delay + 's;"></div>';
+    }
+    container.innerHTML = html;
+  }
+
+  // ==========================================
+  // HERO PARTICLE GENERATOR
+  // ==========================================
+  function generateParticles() {
+    const container = document.getElementById('heroParticles');
+    if (!container) return;
+    const colors = ['var(--crystal)', 'var(--cyan-glow)', 'var(--void-purple)', 'var(--fire)', 'var(--gold)'];
+    let html = '';
+    for (let i = 0; i < 30; i++) {
+      const x = Math.random() * 100;
+      const size = Math.random() * 4 + 1;
+      const dur = Math.random() * 8 + 6;
+      const delay = Math.random() * 10;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      html += '<div class="particle" style="left:' + x + '%;width:' + size + 'px;height:' + size + 'px;background:' + color + ';animation-duration:' + dur + 's;animation-delay:' + delay + 's;"></div>';
+    }
+    container.innerHTML = html;
+  }
+
+  // ==========================================
+  // SCROLL PROGRESS BAR
+  // ==========================================
+  function updateScrollProgress() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = progress + '%';
+  }
+
+  // ==========================================
+  // TOP NAV VISIBILITY
+  // ==========================================
+  function updateTopNav() {
+    const nav = document.getElementById('topNav');
+    if (!nav) return;
+    if (window.scrollY > window.innerHeight * 0.5) {
+      nav.classList.add('visible');
+    } else {
+      nav.classList.remove('visible');
+    }
+  }
+
+  // ==========================================
+  // SCROLL REVEAL (Intersection Observer)
+  // ==========================================
+  function initRevealObserver() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        el.classList.add('visible');
+      });
+      return;
+    }
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  }
+
+  // ==========================================
+  // SIDEBAR NAV ACTIVE STATE
+  // ==========================================
+  function updateSidebarActive() {
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+    let currentId = 'hero';
+    sections.forEach(function(section) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.4) {
+        currentId = section.id;
+      }
+    });
+    navLinks.forEach(function(link) {
+      if (link.getAttribute('href') === '#' + currentId) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // ==========================================
+  // READ TIME CALCULATION
+  // ==========================================
+  function calculateReadTime() {
+    const text = document.body.innerText || '';
+    const wordCount = text.split(/\s+/).filter(Boolean).length;
+    const minutes = Math.ceil(wordCount / 220);
+    const el = document.getElementById('readTime');
+    if (el) {
+      el.textContent = '~' + minutes + ' min read';
+    }
+  }
+
+  // ==========================================
+  // SCROLL EVENT HANDLER (throttled)
+  // ==========================================
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateScrollProgress();
+        updateTopNav();
+        updateSidebarActive();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  // ==========================================
+  // INIT
+  // ==========================================
+  window.addEventListener('DOMContentLoaded', function() {
+    generateStars();
+    generateParticles();
+    initRevealObserver();
+    calculateReadTime();
+    updateScrollProgress();
+    updateTopNav();
+    updateSidebarActive();
+  });
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function() {
+    generateStars();
+  });
+
+})();
+
+// ==========================================
+// COLLAPSIBLE SECTIONS (global scope)
+// ==========================================
+function toggleCollapsible(header) {
+  header.classList.toggle('open');
+  var body = header.nextElementSibling;
+  if (body && body.classList.contains('collapsible-body')) {
+    body.classList.toggle('open');
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+name: Arcanea Test Suite
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Full Package Tests (109 tests)
+  cli-tests:
+    name: CLI Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20, 22]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: |
+          pnpm --filter @arcanea/os run build
+          pnpm --filter @arcanea/auth run build
+          pnpm --filter @arcanea/extension-core run build
+          pnpm --filter "@arcanea/overlay-*" run build
+          pnpm --filter @arcanea/mcp-server run build
+          pnpm --filter @arcanea/cli run build
+          pnpm --filter arcanea-intelligence-os run build
+          pnpm --filter @starlight/runtime run build
+          pnpm --filter claude-arcanea run build
+          pnpm --filter arcanea-code exec -- esbuild src/guardians.ts --outfile=tests/_guardians.mjs --format=esm --platform=node
+
+      - name: Run all tests (847 tests)
+        run: node --test packages/*/tests/*.test.mjs
+        env:
+          CI: true
+          NO_COLOR: '1'
+
+  # TypeScript Type Check
+  typecheck:
+    name: TypeScript
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check all packages
+        run: |
+          pnpm --filter @arcanea/os run build
+          pnpm --filter @arcanea/auth run build
+          pnpm --filter @arcanea/extension-core run build
+          pnpm --filter "@arcanea/overlay-*" run build
+          pnpm --filter @arcanea/mcp-server run build
+          pnpm --filter @arcanea/cli run build
+          pnpm --filter arcanea-intelligence-os run build
+          pnpm --filter "@starlight/runtime" run build
+
+  # Security Audit
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: pnpm audit
+        run: pnpm audit --audit-level=high || true
+
+  # Test Summary
+  summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [cli-tests, typecheck]
+    if: always()
+
+    steps:
+      - name: Results
+        run: |
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Suite | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| CLI Tests | ${{ needs.cli-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| TypeScript | ${{ needs.typecheck.result }} |" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.cli-tests.result }}" != "success" ] || [ "${{ needs.typecheck.result }}" != "success" ]; then
+            exit 1
+          fi
