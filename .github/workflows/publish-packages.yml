@@ -4,17 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'packages/core/**'
-      - 'packages/cli/**'
-      - 'packages/arcanea-mcp/**'
-      - 'packages/auth/**'
-      - 'packages/overlay-*/**'
-      - 'packages/extension-core/**'
-      - 'packages/vscode/**'
-      - 'packages/chrome-extension/**'
-      - 'packages/aios/**'
-      - 'packages/claude-arcanea/**'
-      - 'packages/starlight-runtime/**'
+      - 'packages/**'
       - '.changeset/**'
   workflow_dispatch:
 
@@ -44,34 +34,11 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Build packages
-        run: |
-          pnpm --filter @arcanea/os run build
-          pnpm --filter @arcanea/auth run build
-          pnpm --filter @arcanea/extension-core run build
-          pnpm --filter "@arcanea/overlay-*" run build
-          pnpm --filter @arcanea/mcp-server run build
-          pnpm --filter @arcanea/cli run build
-          pnpm --filter arcanea-intelligence-os run build
-          pnpm --filter claude-arcanea run build
-
-      - name: Type check
-        run: |
-          for pkg in core auth extension-core cli arcanea-mcp overlay-claude overlay-chatgpt overlay-gemini overlay-copilot overlay-cursor; do
-            echo "Type-checking packages/$pkg..."
-            npx tsc --noEmit -p packages/$pkg/tsconfig.json
-          done
+      - name: Build all packages
+        run: pnpm turbo run build --filter='./packages/*' --filter='!@arcanea/chrome-extension'
 
       - name: Run tests
-        run: |
-          node --test \
-            packages/core/tests/*.test.mjs \
-            packages/auth/tests/*.test.mjs \
-            packages/extension-core/tests/*.test.mjs \
-            packages/arcanea-mcp/tests/*.test.mjs \
-            packages/overlay-claude/tests/*.test.mjs \
-            packages/chrome-extension/tests/*.test.mjs \
-            packages/cli/tests/*.test.mjs
+        run: pnpm turbo run test --filter='./packages/*' --continue
 
       - name: Create Release PR or Publish
         id: changesets
