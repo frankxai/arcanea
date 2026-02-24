@@ -1,0 +1,34 @@
+{
+  "$schema": "skill-profile-v1",
+  "name": "Arcanea Gate 5: Voice",
+  "description": "Skills for the Voice gate - public work, shipping, building audience",
+  "version": "1.0.0",
+  "gate": {
+    "number": 5,
+    "name": "Voice",
+    "guardian": "Alera",
+    "element": "Prismatic",
+    "frequency": "528 Hz"
+  },
+  "priority_skills": [
+    "seo-content-writer",
+    "social-content",
+    "content-creator",
+    "seo-fundamentals",
+    "programmatic-seo"
+  ],
+  "secondary_skills": [
+    "seo-keyword-strategist",
+    "launch-strategy",
+    "viral-generator-builder"
+  ],
+  "learning_objectives": [
+    "Ship work publicly with confidence",
+    "Build and engage audience",
+    "Master content distribution"
+  ],
+  "triggers": {
+    "keywords": ["voice", "publish", "audience", "reach", "shipping"],
+    "commands": ["/gate-5"]
+  }
+}

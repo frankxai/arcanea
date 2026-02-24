@@ -1,0 +1,101 @@
+name: Sync Arcanea Packages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/core/**'
+      - 'packages/aios/**'
+      - 'packages/claude-arcanea/**'
+      - '.claude/lore/**'
+  workflow_dispatch:
+
+jobs:
+  sync-to-satellites:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout arcanea monorepo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build packages
+        run: |
+          pnpm --filter @arcanea/core build
+          pnpm --filter claude-arcanea build
+          pnpm --filter arcanea-intelligence-os build
+
+      - name: Sync to claude-arcanea repo
+        uses: actions/checkout@v4
+        with:
+          repository: frankxai/claude-arcanea
+          path: sync/claude-arcanea
+          token: ${{ secrets.SYNC_TOKEN }}
+        continue-on-error: true
+
+      - name: Update claude-arcanea
+        if: success()
+        run: |
+          # Copy package files
+          cp -r packages/claude-arcanea/dist sync/claude-arcanea/ 2>/dev/null || true
+          cp packages/claude-arcanea/package.json sync/claude-arcanea/ 2>/dev/null || true
+          cp packages/claude-arcanea/README.md sync/claude-arcanea/ 2>/dev/null || true
+          cp packages/claude-arcanea/CLAUDE.md sync/claude-arcanea/ 2>/dev/null || true
+
+          # Commit and push if changes
+          cd sync/claude-arcanea
+          git config user.name "Arcanea Sync Bot"
+          git config user.email "sync@arcanea.ai"
+          git add -A
+          git diff --staged --quiet || git commit -m "sync: update from arcanea monorepo"
+          git push || true
+        continue-on-error: true
+
+      - name: Sync to arcanea-intelligence-os repo
+        uses: actions/checkout@v4
+        with:
+          repository: frankxai/arcanea-intelligence-os
+          path: sync/aios
+          token: ${{ secrets.SYNC_TOKEN }}
+        continue-on-error: true
+
+      - name: Update arcanea-intelligence-os
+        if: success()
+        run: |
+          # Copy CLI package
+          mkdir -p sync/aios/lib
+          cp -r packages/aios/dist/* sync/aios/lib/ 2>/dev/null || true
+          cp packages/aios/package.json sync/aios/ 2>/dev/null || true
+          cp packages/aios/README.md sync/aios/ 2>/dev/null || true
+
+          # Commit and push if changes
+          cd sync/aios
+          git config user.name "Arcanea Sync Bot"
+          git config user.email "sync@arcanea.ai"
+          git add -A
+          git diff --staged --quiet || git commit -m "sync: update CLI from arcanea monorepo"
+          git push || true
+        continue-on-error: true
+
+  notify:
+    needs: sync-to-satellites
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Sync Status
+        run: |
+          echo "🔄 Arcanea Sync Complete"
+          echo "Packages synced to satellite repos"

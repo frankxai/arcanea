@@ -1,0 +1,34 @@
+{
+  "$schema": "skill-profile-v1",
+  "name": "Arcanea Gate 8: Shift",
+  "description": "Skills for the Shift gate - style evolution, reinvention, creative longevity",
+  "version": "1.0.0",
+  "gate": {
+    "number": 8,
+    "name": "Shift",
+    "guardian": "Elara",
+    "element": "Arcane",
+    "frequency": "852 Hz"
+  },
+  "priority_skills": [
+    "react-modernization",
+    "framework-migration-legacy-modernize",
+    "framework-migration-code-migrate",
+    "legacy-modernizer",
+    "dependency-upgrade"
+  ],
+  "secondary_skills": [
+    "code-refactoring-refactor-clean",
+    "next-upgrade",
+    "skill-rails-upgrade"
+  ],
+  "learning_objectives": [
+    "Master creative reinvention",
+    "Evolve style while maintaining essence",
+    "Build systems for longevity"
+  ],
+  "triggers": {
+    "keywords": ["shift", "evolve", "reinvent", "modernize", "transform"],
+    "commands": ["/gate-8"]
+  }
+}

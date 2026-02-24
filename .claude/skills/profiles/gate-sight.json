@@ -1,0 +1,34 @@
+{
+  "$schema": "skill-profile-v1",
+  "name": "Arcanea Gate 6: Sight",
+  "description": "Skills for the Sight gate - pattern recognition, intuition, strategic decisions",
+  "version": "1.0.0",
+  "gate": {
+    "number": 6,
+    "name": "Sight",
+    "guardian": "Lyria",
+    "element": "Wind",
+    "frequency": "639 Hz"
+  },
+  "priority_skills": [
+    "deep-research",
+    "data-storytelling",
+    "competitive-landscape",
+    "market-sizing-analysis",
+    "data-scientist"
+  ],
+  "secondary_skills": [
+    "business-analyst",
+    "quant-analyst",
+    "research-engineer"
+  ],
+  "learning_objectives": [
+    "Develop pattern recognition abilities",
+    "Make data-informed strategic decisions",
+    "Trust and refine creative intuition"
+  ],
+  "triggers": {
+    "keywords": ["sight", "pattern", "research", "analysis", "strategy"],
+    "commands": ["/gate-6"]
+  }
+}

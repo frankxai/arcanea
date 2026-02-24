@@ -1,0 +1,63 @@
+{
+  "name": "Arcanea - Where Imagination Becomes Reality",
+  "short_name": "Arcanea",
+  "description": "Create realms, summon guardians, and build with AI. A social platform where creators manifest their visions with AI companions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e27",
+  "theme_color": "#7fffd4",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["creativity", "education", "social", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Chat with Luminors",
+      "short_name": "Chat",
+      "description": "Start a conversation with AI Guardians",
+      "url": "/chat",
+      "icons": [{ "src": "/shortcuts/chat-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Library",
+      "short_name": "Library",
+      "description": "Explore the Library of Arcanea",
+      "url": "/library",
+      "icons": [{ "src": "/shortcuts/library-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Academy",
+      "short_name": "Academy",
+      "description": "Learn at the Academy of Creation",
+      "url": "/academy",
+      "icons": [{ "src": "/shortcuts/academy-icon.png", "sizes": "96x96" }]
+    }
+  ]
+}

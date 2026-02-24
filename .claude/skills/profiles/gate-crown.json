@@ -1,0 +1,34 @@
+{
+  "$schema": "skill-profile-v1",
+  "name": "Arcanea Gate 7: Crown",
+  "description": "Skills for the Crown gate - teaching, thought leadership, creative influence",
+  "version": "1.0.0",
+  "gate": {
+    "number": 7,
+    "name": "Crown",
+    "guardian": "Aiyami",
+    "element": "Void",
+    "frequency": "741 Hz"
+  },
+  "priority_skills": [
+    "tutorial-engineer",
+    "docs-architect",
+    "writing-skills",
+    "documentation-templates",
+    "course-design"
+  ],
+  "secondary_skills": [
+    "doc-coauthoring",
+    "mermaid-expert",
+    "reference-builder"
+  ],
+  "learning_objectives": [
+    "Transform knowledge into teaching",
+    "Build thought leadership platform",
+    "Create lasting educational impact"
+  ],
+  "triggers": {
+    "keywords": ["crown", "teach", "lead", "influence", "education"],
+    "commands": ["/gate-7"]
+  }
+}
