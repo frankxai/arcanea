@@ -1,0 +1,63 @@
+{
+  "name": "claude-arcanea",
+  "version": "0.1.0",
+  "description": "Arcanea Intelligence OS for Claude Code - Mythology-infused AI agent orchestration",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "claude-arcanea": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./skills": {
+      "types": "./dist/skills/index.d.ts",
+      "import": "./dist/skills/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "CLAUDE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli.js",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "arcanea",
+    "claude",
+    "claude-code",
+    "ai",
+    "agents",
+    "mythology",
+    "swarm",
+    "mcp"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/claude-arcanea.git"
+  },
+  "homepage": "https://github.com/frankxai/claude-arcanea#readme",
+  "dependencies": {
+    "@arcanea/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
