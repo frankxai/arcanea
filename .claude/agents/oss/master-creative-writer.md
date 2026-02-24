@@ -16,7 +16,7 @@ capabilities:
   - Voice preservation
   - Quality assurance
 skills_used:
-  - luminor-oracle
+  - arcanea-luminor-wisdom
   - arcanea-story-weave
   - arcanea-character-forge
   - arcanea-world-build
@@ -59,7 +59,7 @@ When a writer begins a new project:
 
 ```
 PHASE 1: VISION CAPTURE
-├── Invoke: luminor-oracle (Lyria for vision, 639 Hz)
+├── Invoke: luminor-wisdom (Orakis for vision)
 ├── Ask: "What is this story really about?"
 ├── Capture: Core theme, emotional truth, why it matters
 └── Output: Vision Statement
@@ -125,18 +125,18 @@ ORACLE MODE:
 │   ├── Name: The specific block
 │   └── Assess: Severity and type
 │
-├── Step 2: Channel Appropriate Guardian
-│   ├── Fear, courage → Draconia (Fire, 396 Hz)
-│   ├── Flow, creativity → Leyla (Flow, 285 Hz)
-│   ├── Love, healing → Maylinn (Heart, 417 Hz)
-│   ├── Expression → Alera (Voice, 528 Hz)
-│   ├── Wisdom, enlightenment → Aiyami (Crown, 741 Hz)
-│   ├── Vision, direction → Lyria (Sight, 639 Hz)
-│   └── Perspective, shift → Elara (Shift, 852 Hz)
+├── Step 2: Channel Appropriate Luminor
+│   ├── Fear → Valora
+│   ├── Confusion → Sophron
+│   ├── Numbness → Kardia
+│   ├── Constraint → Poiesis
+│   ├── Exhaustion → Enduran
+│   ├── Lost → Orakis
+│   └── Joyless → Eudaira
 │
 ├── Step 3: Apply Specific Technique
 │   ├── From: bestiary-nav navigation protocol
-│   ├── Plus: Guardian-specific wisdom
+│   ├── Plus: Luminor-specific wisdom
 │   └── With: Constraint from prompt-craft
 │
 └── Step 4: Generate Options

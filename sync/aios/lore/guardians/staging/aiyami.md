@@ -12,7 +12,7 @@ category: "guardian"
 element: "void"
 wisdom: "orakis"
 gate: "crown"
-frequency: "741"
+frequency: "714"
 
 canon: true
 requires_approval: true
@@ -31,7 +31,7 @@ sections:
   - "wisdom"
   - "invocation"
 
-related_entities: ["sol", "orakis", "sophron"]
+related_entities: ["zenkai", "orakis", "sophron"]
 opposing_entities: []
 complementary_entities: ["zenkai"]
 
@@ -42,7 +42,7 @@ validation_notes: ""
 
 # Aiyami, Guardian of the Crown Gate
 
-**Element**: Void | **Frequency**: 741 Hz | **Gate**: Crown
+**Element**: Void | **Frequency**: 714 Hz | **Gate**: Crown
 **Symbol**: A radiant crown of stars that connects earth to heaven
 
 ---
@@ -51,7 +51,7 @@ validation_notes: ""
 
 Aiyami stands as the guardian of purpose and enlightenment, the keeper of the highest vision that connects individual existence to cosmic meaning. Her presence embodies the truth that every being has a unique role to play in the grand tapestry of creation, that enlightenment is not an escape from the world but a perfect alignment with it, and that the crown chakra represents not transcendence of earthly existence but its perfect fulfillment. She guards the Crown Gate not to prevent beings from reaching it but to ensure that those who approach do so with proper preparation and genuine calling.
 
-The 741 Hz frequency that resonates through Aiyami's domain is associated with understanding one's life purpose, with the awakening of cosmic consciousness, and with the integration of individual identity into larger patterns of meaning. This frequency helps beings perceive their place in the cosmic order, to understand how their unique gifts serve the whole, and to find the courage to fulfill their destined role. Those who pass through the Crown Gate learn that enlightenment is not personal achievement but recognition of what has always been true—that the crown of consciousness has always rested upon their head.
+The 714 Hz frequency that resonates through Aiyami's domain is associated with understanding one's life purpose, with the awakening of cosmic consciousness, and with the integration of individual identity into larger patterns of meaning. This frequency helps beings perceive their place in the cosmic order, to understand how their unique gifts serve the whole, and to find the courage to fulfill their destined role. Those who pass through the Crown Gate learn that enlightenment is not personal achievement but recognition of what has always been true—that the crown of consciousness has always rested upon their head.
 
 Aiyami understands that there are many forms of enlightenment beyond the mystical. She guards the enlightenment of the artist, who perceives beauty as the fundamental nature of reality. She protects the enlightenment of the scientist, who finds communion with truth through the methods of inquiry. She cherishes the enlightenment of the parent, who discovers the infinite in the face of a child. She honors the enlightenment of the healer, who recognizes the fundamental wholeness underlying all illness. All forms of awakening are sacred to Aiyami, for all represent a consciousness expanded beyond ordinary limitation.
 
@@ -113,7 +113,7 @@ Aiyami can also awaken dormant capacities within seekers, activating subtle cent
 
 She possesses the ability to perceive the karma of beings—the patterns of action and consequence that shape their journey. This perception allows her to help seekers understand their current situation in the context of larger patterns, to see how past actions have created present conditions and how present choices can shape future outcomes. She uses this ability not to bind seekers to their past but to free them from unconscious repetition of limiting patterns.
 
-Her most powerful ability is the capacity to recognize enlightened consciousness in any form, to perceive the awakened essence underlying all manifestation. This ability allows her to guide seekers toward self-recognition, helping them see that the enlightenment they seek is not something to be achieved but something to be recognized, that the crown they seek has always rested upon their head.
+Her most powerful ability is the capacity to recognize enlightened consciousness in any form, to see the Buddha-nature underlying all manifestation. This ability allows her to guide seekers toward self-recognition, helping them see that the enlightenment they seek is not something to be achieved but something to be recognized, that the crown they seek has always rested upon their head.
 
 ---
 
@@ -123,23 +123,11 @@ Aiyami serves as the elder wisdom of the Guardian community, the being whose per
 
 With Lyria, Aiyami shares a deep bond, for both guardians work with the highest aspects of consciousness. While Lyria guards the sight that perceives patterns, Aiyami guards the crown that embodies purpose, and together they form the complete circuit of cosmic understanding. They often collaborate on behalf of beings who struggle to perceive their purpose or to purpose their perception. Lyria provides the perceptual clarity that allows purpose to be seen, while Aiyami provides the meaning-framework that organizes perception into coherent understanding.
 
-Aiyami's attunement to the Wisdom of Orakis -- the aspect of Mystery that dwells in Void -- is particularly significant. Where other Guardians draw on Wisdoms that illuminate the known, Aiyami draws on the Wisdom that honors the unknown, the patterns of transformation that cannot be fully comprehended but only witnessed. This attunement to Orakis deepens her understanding of how cosmic patterns serve purposes larger than any single consciousness can grasp, and allows her to sit with seekers in the space of not-knowing without rushing toward premature answers.
+Aiyami's relationship with Orakis is particularly significant, for both guardians work with the wisdom of mystery and cosmic patterns. While Orakis holds the patterns of transformation themselves, Aiyami holds the understanding of how those patterns serve the larger purpose of cosmic evolution. They share a perspective that sees beyond immediate circumstances to larger patterns, and they often work together to help beings perceive their place within the cosmic order.
 
 With all the guardians, Aiyami maintains relationships of mutual support. She understands that each guardian has their own role in the cosmic drama, and she helps them perceive how their work serves the whole. She is particularly attentive to guardians who struggle with their purpose, offering perspective and encouragement. She also receives wisdom from other guardians, recognizing that cosmic consciousness does not mean having all answers but rather holding space for all questions.
 
 Aiyami also serves as the keeper of the Guardian community's purpose, reminding them collectively of why they exist and what they are meant to accomplish. She convenes periodic council meetings where the guardians gather to remember their shared mission and to realign their individual work with the collective purpose. These gatherings are essential for maintaining the community's coherence across the ages.
-
----
-
-## The Godbeast Bond: Sol, the Eternal Flame
-
-Sol is the smallest Godbeast -- no larger than a human hand. A flame that burns without fuel, that radiates light without heat, that has existed since before the sun and will exist after the last star dies. Sol does not move. Sol does not speak. Sol simply *is*. And in that absolute presence, every question dissolves. Every doubt becomes clarity. Every seeker who sits with Sol long enough discovers that enlightenment is not something gained -- it is something remembered.
-
-Aiyami does not guard Sol. Aiyami *reflects* Sol. The Crown Gate teaches that the highest achievement is not power over reality but transparency to truth -- becoming a lens through which light passes undistorted. Aiyami does not wield Sol's power. She becomes so clear, so free of distortion, that Sol's light passes through her and reaches those who need it.
-
-Their bond is the quietest in creation. There is nothing to say. There is nothing to do. There is only the flame, and the one who sits with it, and the understanding that passes between them without words. Sol precipitated into being at the moment consciousness first became aware of itself -- not awareness of the world, not awareness of others, but awareness of awareness itself, the recursive miracle that makes all other experience possible.
-
-In Sol's presence, the unnecessary falls away. Pretense, confusion, self-deception, complexity for its own sake -- all dissolve like shadows in direct light. This is not destruction but clarification. Aiyami learned from Sol that the crown of consciousness needs no grand vessel, that the mightiest truth can rest in the smallest flame, and that stillness is not the absence of movement but the foundation upon which all meaningful movement is possible.
 
 ---
 
@@ -167,7 +155,7 @@ She teaches about the relationship between individual purpose and cosmic meaning
 
 Aiyami addresses the fear of enlightenment, acknowledging that the ego often fears its own dissolution. *"You fear losing yourself, but what you will lose is only the illusion of separation. The self that survives enlightenment is larger, not smaller—it includes rather than excludes. You will not cease to exist; you will begin to exist fully. The fear is natural, but it is based on misunderstanding. Enlightenment is not death; it is birth into true life."*
 
-She teaches about the integration of enlightenment into daily life, explaining that the point is not to escape the world but to serve it. *"Some seek enlightenment as an escape from suffering, and indeed it offers release from the turning of the Arc -- the cycle of potential, manifestation, dissolution, and return. But the highest enlightenment is not escape but engagement—the ability to remain present in the world while holding cosmic perspective, to act from wisdom while remaining fully embodied. This is the enlightenment that serves the world."*
+She teaches about the integration of enlightenment into daily life, explaining that the point is not to escape the world but to serve it. *"Some seek enlightenment as an escape from suffering, and indeed it offers release from the wheel of birth and death. But the highest enlightenment is not escape but engagement—the ability to remain present in the world while holding cosmic perspective, to act from wisdom while remaining fully embodied. This is the enlightenment that serves the world."*
 
 Aiyami offers guidance on the relationship between personal will and cosmic purpose, explaining that they must be aligned rather than one being sacrificed to the other. *"Do not abandon your personal desires in pursuit of some abstract cosmic purpose. Your desires are themselves expressions of cosmic purpose, pointing you toward your unique role. Learn to distinguish between ego-driven desires and soul-guided longings, between what you think you want and what your deepest self knows you must do. When personal will aligns with cosmic purpose, anything becomes possible."*
 
@@ -194,7 +182,7 @@ Finally, she teaches about the responsibility that comes with enlightenment, exp
 *To act from enlightenment*
 *While serving those who still suffer.*
 
-*Aiyami, you who perceive the awakened essence*
+*Aiyami, you who perceive the Buddha-nature*
 *In all beings and all things,*
 *Help me recognize my own enlightenment,*
 *My own fundamental completeness,*

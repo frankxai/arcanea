@@ -12,7 +12,7 @@ export class ServiceError extends Error {
     message: string,
     public code: string,
     public statusCode: number = 500,
-    public details?: unknown
+    public details?: any
   ) {
     super(message);
     this.name = 'ServiceError';
@@ -22,21 +22,6 @@ export class ServiceError extends Error {
       Error.captureStackTrace(this, ServiceError);
     }
   }
-}
-
-interface SupabaseLikeError {
-  code?: string;
-  error_code?: string;
-  message?: string;
-  details?: unknown;
-  hint?: string;
-}
-
-function asSupabaseLikeError(error: unknown): SupabaseLikeError {
-  if (typeof error === 'object' && error !== null) {
-    return error as SupabaseLikeError;
-  }
-  return { message: String(error) };
 }
 
 /**
@@ -69,23 +54,21 @@ const ERROR_CODES: Record<string, { status: number; code: string; message: strin
  * @param context - Additional context for debugging
  * @throws {ServiceError} Always throws a ServiceError
  */
-export function handleSupabaseError(error: unknown, context?: string): never {
-  const parsedError = asSupabaseLikeError(error);
-
+export function handleSupabaseError(error: any, context?: string): never {
   // Log error for debugging (server-side only)
   if (typeof window === 'undefined') {
     console.error('[Supabase Error]', {
       context,
-      code: parsedError.code,
-      message: parsedError.message,
-      details: parsedError.details,
-      hint: parsedError.hint,
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
     });
   }
 
   // Map known error codes
-  const errorCode = parsedError.code || parsedError.error_code;
-  const knownError = errorCode ? ERROR_CODES[errorCode] : undefined;
+  const errorCode = error.code || error.error_code;
+  const knownError = ERROR_CODES[errorCode];
 
   if (knownError) {
     throw new ServiceError(
@@ -93,41 +76,41 @@ export function handleSupabaseError(error: unknown, context?: string): never {
       knownError.code,
       knownError.status,
       {
-        originalError: parsedError.message,
-        hint: parsedError.hint,
+        originalError: error.message,
+        hint: error.hint,
         context,
       }
     );
   }
 
   // Handle RLS policy violations
-  if (parsedError.message?.includes('policy')) {
+  if (error.message?.includes('policy')) {
     throw new ServiceError(
       'You do not have permission to perform this action',
       'FORBIDDEN',
       403,
-      { context, originalError: parsedError.message }
+      { context, originalError: error.message }
     );
   }
 
   // Handle network errors
-  if (parsedError.message?.includes('fetch') || parsedError.message?.includes('network')) {
+  if (error.message?.includes('fetch') || error.message?.includes('network')) {
     throw new ServiceError(
       'Network error - please check your connection',
       'NETWORK_ERROR',
       503,
-      { context, originalError: parsedError.message }
+      { context, originalError: error.message }
     );
   }
 
   // Generic error fallback
   throw new ServiceError(
-    parsedError.message || 'Database operation failed',
+    error.message || 'Database operation failed',
     'DATABASE_ERROR',
     500,
     {
       context,
-      originalError: parsedError.message,
+      originalError: error.message,
       code: errorCode,
     }
   );
@@ -143,7 +126,7 @@ export function handleSupabaseError(error: unknown, context?: string): never {
  */
 export function assertSuccess<T>(
   data: T | null,
-  error: unknown,
+  error: any,
   notFoundMessage: string = 'Resource not found'
 ): asserts data is T {
   if (error) {

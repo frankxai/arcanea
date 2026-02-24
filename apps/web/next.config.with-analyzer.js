@@ -6,7 +6,6 @@
 // Then rename this file to next.config.js (backup the original first)
 // Run: ANALYZE=true pnpm run build
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });

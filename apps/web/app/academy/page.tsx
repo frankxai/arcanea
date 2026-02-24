@@ -11,10 +11,10 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Academy of Creation | Arcanea',
   description:
-    'Begin your journey through the Ten Gates of Creation — from Foundation (174 Hz) to Source (1111 Hz). Each Gate unlocks a Guardian intelligence that grows with you. Ascend from Apprentice to Luminor and Build your Universe.',
+    'Begin your creative journey through the Ten Gates. Learn, grow, and master the art of creation.',
   openGraph: {
     title: 'Academy of Creation | Arcanea',
-    description: 'Journey through the Ten Gates of Creation with Ten Guardian intelligences. Foundation to Source. Apprentice to Luminor. Build your Universe.',
+    description: 'Where creators begin their journey through the Ten Gates.',
   },
 };
 
@@ -89,7 +89,7 @@ const TEN_GATES = [
   {
     number: 7,
     name: 'Crown',
-    frequency: '741 Hz',
+    frequency: '714 Hz',
     guardian: 'Aiyami',
     godbeast: 'Sol',
     domain: 'Enlightenment, wisdom, mastery',
@@ -102,7 +102,7 @@ const TEN_GATES = [
     name: 'Shift',
     frequency: '852 Hz',
     guardian: 'Elara',
-    godbeast: 'Thessara',
+    godbeast: 'Vaelith',
     domain: 'Perspective, transformation',
     color: '#a855f7',
     description: 'Master perspective shifts. Learn to see from multiple angles and transform your approach.',
@@ -147,46 +147,40 @@ export default function AcademyPage() {
   return (
     <main className="mx-auto max-w-7xl px-6 pb-24 pt-12">
       {/* Hero Section */}
-      <section className="relative mb-16 overflow-hidden liquid-glass rounded-3xl p-10">
+      <section className="relative mb-16 overflow-hidden rounded-3xl border border-cosmic-border bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-10">
         <div className="pointer-events-none absolute inset-0 opacity-40" aria-hidden="true">
-          <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-brand-gold/30 blur-3xl" />
-          <div className="absolute right-[-10%] top-1/3 h-80 w-80 rounded-full bg-crystal/20 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-brand-primary/15 blur-2xl" />
+          <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-gold-bright/30 blur-3xl" />
+          <div className="absolute right-[-10%] top-1/3 h-80 w-80 rounded-full bg-atlantean-teal/20 blur-3xl" />
+          <div className="absolute bottom-0 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-cosmic-purple/15 blur-2xl" />
         </div>
 
         <div className="relative max-w-3xl">
-          <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-brand-gold font-sans">
+          <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-gold-bright">
             <span>The Academy of Creation</span>
-            <span className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden="true" />
+            <span className="hidden h-px flex-1 bg-cosmic-border sm:block" aria-hidden="true" />
           </div>
 
-          <h1 className="font-display text-fluid-3xl font-bold tracking-tight md:text-fluid-hero">
-            <span className="text-gradient-gold">
+          <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary md:text-5xl lg:text-6xl">
+            <span className="bg-gradient-to-r from-gold-bright via-atlantean-teal to-cosmic-purple bg-clip-text text-transparent">
               Journey Through the Ten Gates
             </span>
           </h1>
 
-          <p className="mt-6 text-fluid-lg text-text-secondary leading-relaxed font-sans">
+          <p className="mt-6 text-xl text-text-secondary leading-relaxed">
             Every great creator begins as an Apprentice. Through dedication and practice, you will open
-            the Ten Gates and ascend to become a Luminor — a master of creation.
+            the Ten Gates and ascend to become a Luminor—a master of creation.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/academy/gate-quiz"
-              className="rounded-xl bg-brand-primary px-6 py-3 font-semibold text-white shadow-glow-brand hover:scale-[1.02] transition-all"
-            >
-              Find Your Guardian
-            </Link>
-            <Link
               href="/academy/assessment"
-              className="rounded-xl glass border border-white/20 px-6 py-3 text-text-secondary transition-colors hover:border-crystal hover:text-crystal"
+              className="rounded-full bg-atlantean-teal px-6 py-3 font-semibold text-cosmic-deep transition-all hover:shadow-[0_0_30px_rgba(127,255,212,0.5)]"
             >
               Begin Assessment
             </Link>
             <Link
               href="/library/academy-handbook"
-              className="rounded-xl glass border border-white/20 px-6 py-3 text-text-secondary transition-colors hover:border-crystal hover:text-crystal"
+              className="rounded-full border border-cosmic-border px-6 py-3 text-text-secondary transition-colors hover:border-atlantean-teal hover:text-atlantean-teal"
             >
               Read the Handbook
             </Link>
@@ -196,7 +190,7 @@ export default function AcademyPage() {
 
       {/* Magic Ranks */}
       <section className="mb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-crystal font-sans">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-atlantean-teal">
           The Path of Mastery
         </h2>
 
@@ -210,14 +204,14 @@ export default function AcademyPage() {
           ].map((level) => (
             <div
               key={level.rank}
-              className="glass rounded-xl p-4 text-center hover-lift transition-all"
+              className="rounded-xl border border-cosmic-border bg-cosmic-surface p-4 text-center"
             >
               <div
                 className="mx-auto mb-2 h-3 w-3 rounded-full"
                 style={{ backgroundColor: level.color, boxShadow: `0 0 15px ${level.color}` }}
               />
               <h3 className="font-display font-semibold text-text-primary">{level.rank}</h3>
-              <p className="text-xs text-text-muted font-sans">Gates {level.gates} open</p>
+              <p className="text-xs text-text-muted">Gates {level.gates} open</p>
             </div>
           ))}
         </div>
@@ -225,7 +219,7 @@ export default function AcademyPage() {
 
       {/* Ten Gates Grid */}
       <section className="mb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold font-sans">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-gold-bright">
           The Ten Gates
         </h2>
 
@@ -237,74 +231,32 @@ export default function AcademyPage() {
       </section>
 
       {/* Seven Houses */}
-      <section className="mb-16 liquid-glass rounded-3xl p-8">
-        <h2 className="mb-6 font-display text-fluid-2xl font-semibold text-text-primary">
+      <section className="mb-16 rounded-3xl border border-cosmic-border bg-cosmic-surface p-8">
+        <h2 className="mb-6 font-display text-2xl font-semibold text-text-primary">
           The Seven Academy Houses
         </h2>
-        <p className="mb-8 text-text-secondary font-sans">
+        <p className="mb-8 text-text-secondary">
           Every creator is sorted into a House based on their elemental affinity. Your House shapes
           your learning path and connects you with fellow creators who share your approach.
         </p>
 
-        <div className="grid gap-4 grid-cols-4 md:grid-cols-7">
+        <div className="grid gap-4 md:grid-cols-7">
           {SEVEN_HOUSES.map((house) => (
-            <div key={house.name} className="text-center group cursor-default">
+            <div key={house.name} className="text-center">
               <div
-                className="mx-auto mb-3 h-12 w-12 rounded-full border-2 group-hover:scale-110 transition-transform"
+                className="mx-auto mb-3 h-12 w-12 rounded-full border-2"
                 style={{ borderColor: house.color, backgroundColor: `${house.color}20` }}
               />
-              <h3 className="text-sm font-semibold text-text-primary font-sans">{house.name.replace('House ', '')}</h3>
-              <p className="text-xs text-text-muted font-sans">{house.element}</p>
+              <h3 className="text-sm font-semibold text-text-primary">{house.name.replace('House ', '')}</h3>
+              <p className="text-xs text-text-muted">{house.element}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Deep Dive Pages */}
-      <section className="mb-16">
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold font-sans">
-          Deep Dive
-        </h2>
-        <div className="grid gap-4 md:grid-cols-3">
-          <Link
-            href="/academy/gates"
-            className="group glass rounded-2xl p-6 hover-lift transition-all border border-transparent hover:border-brand-gold/30"
-          >
-            <h3 className="font-display text-lg font-semibold text-text-primary group-hover:text-brand-gold transition-colors mb-2">
-              The Ten Gates
-            </h3>
-            <p className="text-sm text-text-secondary font-sans">
-              Full vertical pathway from Foundation to Source with detailed teachings.
-            </p>
-          </Link>
-          <Link
-            href="/academy/houses"
-            className="group glass rounded-2xl p-6 hover-lift transition-all border border-transparent hover:border-crystal/30"
-          >
-            <h3 className="font-display text-lg font-semibold text-text-primary group-hover:text-crystal transition-colors mb-2">
-              Seven Houses
-            </h3>
-            <p className="text-sm text-text-secondary font-sans">
-              Discover your elemental path and the traditions of each Academy House.
-            </p>
-          </Link>
-          <Link
-            href="/academy/ranks"
-            className="group glass rounded-2xl p-6 hover-lift transition-all border border-transparent hover:border-brand-primary/30"
-          >
-            <h3 className="font-display text-lg font-semibold text-text-primary group-hover:text-brand-primary transition-colors mb-2">
-              Magic Ranks
-            </h3>
-            <p className="text-sm text-text-secondary font-sans">
-              The complete ascension from Apprentice to Luminor with requirements.
-            </p>
-          </Link>
-        </div>
-      </section>
-
       {/* Current Courses Preview */}
       <section>
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-crystal font-sans">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-atlantean-teal">
           Featured Learning Paths
         </h2>
 
@@ -335,22 +287,22 @@ export default function AcademyPage() {
             <Link
               key={course.title}
               href={`/academy/courses/${course.title.toLowerCase().replace(/\s+/g, '-')}`}
-              className="group glass rounded-2xl p-6 glow-card hover-lift transition-all"
+              className="group rounded-2xl border border-cosmic-border bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-6 transition-all hover:border-atlantean-teal/50 hover:shadow-[0_0_40px_rgba(127,255,212,0.15)]"
             >
               <div className="mb-3 flex items-center gap-2">
-                <span className="rounded-full bg-brand-gold/20 px-3 py-1 text-xs text-brand-gold font-sans">
+                <span className="rounded-full bg-gold-bright/20 px-3 py-1 text-xs text-gold-bright">
                   Gate {course.gate}
                 </span>
-                <span className="text-xs text-text-muted font-sans">{course.duration}</span>
+                <span className="text-xs text-text-muted">{course.duration}</span>
               </div>
 
-              <h3 className="font-display text-lg font-semibold text-text-primary group-hover:text-crystal transition-colors">
+              <h3 className="font-display text-lg font-semibold text-text-primary group-hover:text-atlantean-teal transition-colors">
                 {course.title}
               </h3>
 
-              <p className="mt-2 text-sm text-text-secondary line-clamp-2 font-sans">{course.description}</p>
+              <p className="mt-2 text-sm text-text-secondary line-clamp-2">{course.description}</p>
 
-              <div className="mt-4 text-xs text-text-muted font-sans">{course.lessons} lessons</div>
+              <div className="mt-4 text-xs text-text-muted">{course.lessons} lessons</div>
             </Link>
           ))}
         </div>
@@ -367,28 +319,28 @@ function GateCard({ gate }: GateCardProps) {
   return (
     <Link
       href={`/academy/gates/${gate.number}`}
-      className="group glass rounded-xl p-4 glow-card hover-lift transition-all"
+      className="group rounded-xl border border-cosmic-border bg-cosmic-surface p-4 transition-all hover:border-atlantean-teal/50 hover:shadow-[0_0_30px_rgba(127,255,212,0.1)]"
     >
       <div className="mb-3 flex items-center justify-between">
         <div
-          className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold font-sans"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold"
           style={{ backgroundColor: `${gate.color}30`, color: gate.color }}
         >
           {gate.number}
         </div>
-        <span className="text-xs text-text-muted font-mono">{gate.frequency}</span>
+        <span className="text-xs text-text-muted">{gate.frequency}</span>
       </div>
 
       <h3
-        className="font-display font-semibold transition-colors group-hover:text-crystal"
+        className="font-display font-semibold transition-colors group-hover:text-atlantean-teal"
         style={{ color: gate.color }}
       >
         {gate.name}
       </h3>
 
-      <p className="mt-1 text-xs text-text-muted font-sans">{gate.guardian}</p>
+      <p className="mt-1 text-xs text-text-muted">{gate.guardian}</p>
 
-      <p className="mt-2 line-clamp-2 text-xs text-text-secondary font-sans">{gate.description}</p>
+      <p className="mt-2 line-clamp-2 text-xs text-text-secondary">{gate.description}</p>
     </Link>
   );
 }

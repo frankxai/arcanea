@@ -1,0 +1,28 @@
+{
+  "project": "Arcanea",
+  "windows_path": "C:\\Users\\Frank\\Arcanea",
+  "linux_path": "/home/frankx/arcanea",
+  "wsl_windows_path": "/mnt/c/Users/Frank/Arcanea",
+
+  "agent_rules": {
+    "build_location": "linux",
+    "edit_location": "windows",
+    "git_location": "windows",
+    "auto_sync": true
+  },
+
+  "commands": {
+    "sync_to_linux": "rsync -a --delete --exclude 'node_modules' --exclude '.next' --exclude '.turbo' --exclude '.git' /mnt/c/Users/Frank/Arcanea/ ~/arcanea/",
+    "sync_to_windows": "rsync -a --delete --exclude 'node_modules' --exclude '.next' --exclude '.turbo' --exclude '.git' ~/arcanea/ /mnt/c/Users/Frank/Arcanea/",
+    "build": "cd ~/arcanea && pnpm run build",
+    "dev": "cd ~/arcanea && pnpm run dev",
+    "test": "cd ~/arcanea && pnpm run test"
+  },
+
+  "auto_detect": {
+    "enabled": true,
+    "on_build": "switch_to_linux_and_sync",
+    "on_edit": "stay_current",
+    "on_commit": "warn_if_not_windows"
+  }
+}

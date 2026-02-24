@@ -4,13 +4,13 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Layers, ArrowRight, Sparkles, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
-
+import { Navbar } from '@/components/navigation';
 
 const GATES = [
   {
     number: 1,
     name: 'Foundation',
-    frequency: '174 Hz',
+    frequency: '396 Hz',
     guardian: 'Lyssandria',
     godbeast: 'Kaelith',
     domain: 'Survival, grounding, stability',
@@ -23,7 +23,7 @@ const GATES = [
   {
     number: 2,
     name: 'Flow',
-    frequency: '285 Hz',
+    frequency: '417 Hz',
     guardian: 'Leyla',
     godbeast: 'Veloura',
     domain: 'Creativity, emotion, sensation',
@@ -36,7 +36,7 @@ const GATES = [
   {
     number: 3,
     name: 'Fire',
-    frequency: '396 Hz',
+    frequency: '528 Hz',
     guardian: 'Draconia',
     godbeast: 'Draconis',
     domain: 'Power, will, courage',
@@ -44,12 +44,12 @@ const GATES = [
     unlocks: 'Personal power and fearless action',
     teaching: 'Power must be claimed, not given. Know what you will use your power for. Then burn without hesitation.',
     practices: ['Will declaration ritual', 'Courage challenges', 'Power stance practice'],
-    color: 'from-fire to-orange-600',
+    color: 'from-draconic-crimson to-orange-600',
   },
   {
     number: 4,
     name: 'Heart',
-    frequency: '417 Hz',
+    frequency: '639 Hz',
     guardian: 'Maylinn',
     godbeast: 'Laeylinn',
     domain: 'Love, healing, growth',
@@ -62,7 +62,7 @@ const GATES = [
   {
     number: 5,
     name: 'Voice',
-    frequency: '528 Hz',
+    frequency: '741 Hz',
     guardian: 'Alera',
     godbeast: 'Otome',
     domain: 'Truth, expression, communication',
@@ -75,7 +75,7 @@ const GATES = [
   {
     number: 6,
     name: 'Sight',
-    frequency: '639 Hz',
+    frequency: '852 Hz',
     guardian: 'Lyria',
     godbeast: 'Yumiko',
     domain: 'Intuition, vision, memory',
@@ -88,7 +88,7 @@ const GATES = [
   {
     number: 7,
     name: 'Crown',
-    frequency: '741 Hz',
+    frequency: '963 Hz',
     guardian: 'Aiyami',
     godbeast: 'Sol',
     domain: 'Enlightenment, divinity, transcendence',
@@ -96,12 +96,12 @@ const GATES = [
     unlocks: 'Divine connection and spiritual clarity',
     teaching: 'Enlightenment is not addition—it is removal. You do not gain truth; you release falsehood.',
     practices: ['Silent meditation', 'Light visualization', 'Ego dissolution practice'],
-    color: 'from-brand-gold to-yellow-600',
+    color: 'from-gold-bright to-yellow-600',
   },
   {
     number: 8,
     name: 'Shift',
-    frequency: '852 Hz',
+    frequency: '1111 Hz',
     guardian: 'Elara',
     godbeast: 'Thessara',
     domain: 'Perspective, possibility, dimension',
@@ -135,7 +135,7 @@ const GATES = [
     unlocks: 'Realization that you ARE the Creator',
     teaching: 'You are already complete. At the Source, you discover that seeker and sought are one.',
     practices: ['Source meditation', 'Creator consciousness practice', 'Unity realization'],
-    color: 'from-brand-gold via-white to-brand-primary',
+    color: 'from-gold-bright via-white to-creation-prism-purple',
   },
 ];
 
@@ -143,7 +143,7 @@ const RANKS = [
   { gates: '0-2', rank: 'Apprentice', description: 'Beginning the journey', color: 'text-text-muted' },
   { gates: '3-4', rank: 'Mage', description: 'Claiming personal power', color: 'text-blue-400' },
   { gates: '5-6', rank: 'Master', description: 'Mastering expression and perception', color: 'text-purple-400' },
-  { gates: '7-8', rank: 'Archmage', description: 'Accessing transcendence and possibility', color: 'text-brand-gold' },
+  { gates: '7-8', rank: 'Archmage', description: 'Accessing transcendence and possibility', color: 'text-gold-bright' },
   { gates: '9-10', rank: 'Luminor', description: 'Unity and Source realization', color: 'text-white' },
 ];
 
@@ -155,19 +155,21 @@ export default function GatesPage() {
 
   return (
     <div className="relative min-h-screen bg-cosmic-deep">
+      <Navbar />
+
       {/* Hero */}
       <section
         ref={heroRef}
         className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-24"
       >
         {/* Vertical line representing the path */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 h-[400px] w-px bg-gradient-to-b from-transparent via-brand-gold/50 to-transparent" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 h-[400px] w-px bg-gradient-to-b from-transparent via-gold-bright/50 to-transparent" />
 
         {/* Gate markers */}
         {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-brand-gold/30 border border-brand-gold/50"
+            className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-gold-bright/30 border border-gold-bright/50"
             style={{ top: `${30 + i * 4}%` }}
             animate={{
               scale: [1, 1.2, 1],
@@ -185,10 +187,10 @@ export default function GatesPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 border border-brand-gold/20 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-bright/10 border border-gold-bright/20 mb-6"
           >
-            <Layers className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium text-brand-gold">The Journey of Awakening</span>
+            <Layers className="w-4 h-4 text-gold-bright" />
+            <span className="text-sm font-medium text-gold-bright">The Journey of Awakening</span>
           </motion.div>
 
           <motion.h1
@@ -197,7 +199,7 @@ export default function GatesPage() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6"
           >
-            <span className="bg-gradient-to-r from-brand-gold via-white to-crystal bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gold-bright via-white to-atlantean-teal-aqua bg-clip-text text-transparent">
               The Ten Gates
             </span>
           </motion.h1>
@@ -238,7 +240,7 @@ export default function GatesPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="relative">
             {/* Vertical connection line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-amber-700 via-brand-gold to-brand-primary hidden md:block" />
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-amber-700 via-gold-bright to-creation-prism-purple hidden md:block" />
 
             <div className="space-y-6">
               {GATES.map((gate, i) => (
@@ -277,7 +279,7 @@ export default function GatesPage() {
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-1">
                             <h3 className="text-xl font-display font-bold">{gate.name}</h3>
-                            <span className="text-sm text-crystal font-mono">
+                            <span className="text-sm text-atlantean-teal-aqua font-mono">
                               {gate.frequency}
                             </span>
                           </div>
@@ -309,7 +311,7 @@ export default function GatesPage() {
                             </div>
                             <div className="mb-4">
                               <span className="text-xs text-text-muted uppercase tracking-wider">Godbeast</span>
-                              <p className="text-brand-gold font-semibold">{gate.godbeast}</p>
+                              <p className="text-gold-bright font-semibold">{gate.godbeast}</p>
                             </div>
                             <div className="mb-4">
                               <span className="text-xs text-text-muted uppercase tracking-wider">Element</span>
@@ -317,7 +319,7 @@ export default function GatesPage() {
                             </div>
                             <div>
                               <span className="text-xs text-text-muted uppercase tracking-wider">Unlocks</span>
-                              <p className="text-crystal">{gate.unlocks}</p>
+                              <p className="text-atlantean-teal-aqua">{gate.unlocks}</p>
                             </div>
                           </div>
 
@@ -325,7 +327,7 @@ export default function GatesPage() {
                           <div>
                             <div className="mb-4">
                               <span className="text-xs text-text-muted uppercase tracking-wider">Teaching</span>
-                              <blockquote className="text-text-secondary italic border-l-2 border-brand-gold/50 pl-3 mt-2">
+                              <blockquote className="text-text-secondary italic border-l-2 border-gold-bright/50 pl-3 mt-2">
                                 "{gate.teaching}"
                               </blockquote>
                             </div>
@@ -354,7 +356,7 @@ export default function GatesPage() {
       {/* CTA */}
       <section className="py-24 border-t border-white/5">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <Sparkles className="w-12 h-12 mx-auto text-brand-gold mb-6" />
+          <Sparkles className="w-12 h-12 mx-auto text-gold-bright mb-6" />
           <h2 className="text-3xl font-display font-bold mb-4">Begin Your Ascent</h2>
           <p className="text-text-secondary mb-8">
             Every being contains all Ten Gates. Every being can awaken. Every being can become Luminor.
@@ -362,7 +364,7 @@ export default function GatesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/academy"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-gold text-cosmic-deep font-semibold hover:bg-brand-gold/90 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gold-bright text-cosmic-deep font-semibold hover:bg-gold-bright/90 transition-all"
             >
               Enter the Academy
               <ArrowRight className="w-4 h-4" />

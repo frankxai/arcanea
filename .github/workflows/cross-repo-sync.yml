@@ -16,9 +16,7 @@ jobs:
   sync-prompt-language:
     name: Sync APL to Standalone Repository
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    env:
-      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    if: contains(github.event.head_commit.modified, 'packages/ai-core') || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
 
     steps:
     - name: Checkout main repository
@@ -26,31 +24,21 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Skip APL sync when PAT is missing
-      if: env.PERSONAL_ACCESS_TOKEN == ''
-      run: echo "PERSONAL_ACCESS_TOKEN is not configured. Skipping APL sync."
-
     - name: Checkout APL repository
-      if: env.PERSONAL_ACCESS_TOKEN != ''
       uses: actions/checkout@v4
       with:
         repository: frankxai/arcanea-prompt-language
-        token: ${{ env.PERSONAL_ACCESS_TOKEN }}
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         path: apl-repo
 
     - name: Sync AI Core to APL Repository
-      if: env.PERSONAL_ACCESS_TOKEN != ''
       run: |
         # Remove old content (except README, package.json, etc.)
         cd apl-repo
         find . -name "*.ts" -not -path "./.git/*" -delete
 
         # Copy updated AI core content
-        if [ -d ../packages/ai-core ]; then
-          cp -r ../packages/ai-core/* .
-        else
-          echo "packages/ai-core not found. Skipping file sync."
-        fi
+        cp -r ../packages/ai-core/* .
 
         # Update version in package.json
         node -e "
@@ -62,7 +50,6 @@ jobs:
         "
 
     - name: Commit and push changes
-      if: env.PERSONAL_ACCESS_TOKEN != ''
       run: |
         cd apl-repo
         git config user.name "Arcanea Sync Bot"
@@ -78,9 +65,7 @@ jobs:
   sync-library-content:
     name: Sync Library to Standalone Repository
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    env:
-      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    if: contains(github.event.head_commit.modified, 'apps/library') || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
 
     steps:
     - name: Checkout main repository
@@ -88,29 +73,19 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Skip library sync when PAT is missing
-      if: env.PERSONAL_ACCESS_TOKEN == ''
-      run: echo "PERSONAL_ACCESS_TOKEN is not configured. Skipping library sync."
-
     - name: Checkout Library repository
-      if: env.PERSONAL_ACCESS_TOKEN != ''
       uses: actions/checkout@v4
       with:
         repository: frankxai/arcanean-library
-        token: ${{ env.PERSONAL_ACCESS_TOKEN }}
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         path: library-repo
 
     - name: Sync Library Content
-      if: env.PERSONAL_ACCESS_TOKEN != ''
       run: |
         cd library-repo
 
         # Sync app content (excluding node_modules)
-        if [ -d ../apps/library ]; then
-          rsync -av --delete --exclude=node_modules --exclude=.git --exclude=README.md --exclude=package.json ../apps/library/ .
-        else
-          echo "apps/library not found. Skipping file sync."
-        fi
+        rsync -av --delete --exclude=node_modules --exclude=.git --exclude=README.md --exclude=package.json ../apps/library/ .
 
         # Update version
         node -e "
@@ -122,7 +97,6 @@ jobs:
         "
 
     - name: Commit and push changes
-      if: env.PERSONAL_ACCESS_TOKEN != ''
       run: |
         cd library-repo
         git config user.name "Arcanea Sync Bot"

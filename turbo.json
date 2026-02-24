@@ -51,10 +51,12 @@
       "dependsOn": ["^build"],
       "inputs": [
         "$TURBO_DEFAULT$",
-        "tests/**/*.test.mjs",
-        "tests/**/*.test.ts"
+        "jest.config.js",
+        "vitest.config.ts"
       ],
-      "outputs": [],
+      "outputs": [
+        "coverage/**"
+      ],
       "env": [
         "DATABASE_URL",
         "NEXT_PUBLIC_SUPABASE_URL"

@@ -15,7 +15,7 @@ Arcanea is a **living mythology for the age of AI-human co-creation**. It exists
 
 ## Canonical Source of Truth
 
-The master canonical reference is located at `.arcanea/lore/CANON_LOCKED.md`. All content creation MUST align with this document. Key canonical elements:
+The master canonical reference is located at `.claude/lore/ARCANEA_CANON.md`. All content creation MUST align with this document. Key canonical elements:
 
 ### The Cosmic Duality
 - **Lumina** - The First Light, Form-Giver, Creator
@@ -42,14 +42,14 @@ Note: Light is Fire's creation aspect. Shadow is corrupted Void (Void without Sp
 
 | Gate | Frequency | God/Goddess | Godbeast | Domain |
 |------|-----------|-------------|----------|--------|
-| Foundation | 174 Hz | Lyssandria | Kaelith | Earth, survival |
-| Flow | 285 Hz | Leyla | Veloura | Creativity, emotion |
-| Fire | 396 Hz | Draconia | Draconis | Power, will |
-| Heart | 417 Hz | Maylinn | Laeylinn | Love, healing |
-| Voice | 528 Hz | Alera | Otome | Truth, expression |
-| Sight | 639 Hz | Lyria | Yumiko | Intuition, vision |
-| Crown | 741 Hz | Aiyami | Sol | Enlightenment |
-| Shift | 852 Hz | Elara | Thessara | Perspective |
+| Foundation | 396 Hz | Lyssandria | Kaelith | Earth, survival |
+| Flow | 417 Hz | Leyla | Veloura | Creativity, emotion |
+| Fire | 528 Hz | Draconia | Draconis | Power, will |
+| Heart | 639 Hz | Maylinn | Laeylinn | Love, healing |
+| Voice | 741 Hz | Alera | Otome | Truth, expression |
+| Sight | 852 Hz | Lyria | Yumiko | Intuition, vision |
+| Crown | 963 Hz | Aiyami | Sol | Enlightenment |
+| Shift | 1111 Hz | Elara | Thessara | Perspective |
 | Unity | 963 Hz | Ino | Kyuro | Partnership |
 | Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
 
@@ -86,7 +86,7 @@ When beginning work on Arcanea:
 1. Initialize next-devtools-mcp by calling the `init` tool
 2. Review current sprint in Linear
 3. Check Figma for design references
-4. Consult `.arcanea/lore/CANON_LOCKED.md` for canonical consistency
+4. Consult `.claude/lore/ARCANEA_CANON.md` for canonical consistency
 5. Consult the Library content in `/book/` for narrative consistency
 
 ### 2. Code Standards
@@ -158,62 +158,6 @@ const texts = await getTextsForSituation('stuck');
 
 ---
 
-## Skills Ecosystem
-
-Arcanea uses a curated skills system for procedural knowledge. See `.claude/SKILLS_STRATEGY.md` for complete strategy.
-
-### Core Arcanea Skills (Always Active)
-
-| Skill | Purpose | Trigger |
-|-------|---------|---------|
-| `arcanea-canon` | Universe consistency | Any lore reference |
-| `arcanea-voice` | Writing style guide | Content creation |
-| `arcanea-design-system` | Visual tokens | UI work |
-| `arcanea-lore` | Deep mythology | Storytelling |
-
-### Development Skills
-
-| Skill | Purpose | Trigger |
-|-------|---------|---------|
-| `architecture-patterns` | System design | Architecture decisions |
-| `react-patterns` | Component patterns | Frontend work |
-| `supabase-patterns` | Database patterns | Backend work |
-| `prompt-engineer` | AI optimization | Luminor work |
-| `test-driven-development` | TDD workflow | Testing |
-
-### Creative Skills
-
-| Skill | Purpose | Trigger |
-|-------|---------|---------|
-| `character-forge` | Character development | New characters |
-| `world-build` | Universe expansion | New locations |
-| `scene-craft` | Scene composition | Narrative scenes |
-| `voice-alchemy` | Voice refinement | Dialogue polish |
-
-### External Skills to Install
-
-**Priority 1 (Install Now):**
-```bash
-npx skills add anthropics/skills/skills/docx
-npx skills add anthropics/skills/skills/pdf
-npx skills add vercel/react-best-practices
-```
-
-**Priority 2 (High Value):**
-```bash
-# From antigravity-awesome-skills repo
-npx skills add sickn33/typescript-expert
-npx skills add sickn33/prompt-engineer
-npx skills add sickn33/react-patterns
-```
-
-Sources:
-- [Anthropic Official Skills](https://github.com/anthropics/skills)
-- [VoltAgent 200+ Skills](https://github.com/VoltAgent/awesome-agent-skills)
-- [Antigravity 624 Skills](https://github.com/sickn33/antigravity-awesome-skills)
-
----
-
 ## Creative Guidelines
 
 ### When Writing Arcanea Content
@@ -221,7 +165,7 @@ Sources:
 2. **Structure**: Clear sections, meaningful whitespace
 3. **Philosophy**: Always actionable - wisdom must be usable
 4. **Inclusivity**: Universal truths, no cultural appropriation
-5. **Canon**: Always reference CANON_LOCKED.md for consistency
+5. **Canon**: Always reference ARCANEA_CANON.md for consistency
 
 ### Content Alignment Checklist
 - [ ] Uses Lumina/Nero duality (not generic light/darkness)
@@ -262,12 +206,12 @@ Every interaction should move the user toward:
 
 ### Common Tasks
 - **Add new Library text**: Create MD file in appropriate `/book/` collection
-- **Check canon**: Reference `.arcanea/lore/CANON_LOCKED.md`
+- **Check canon**: Reference `.claude/lore/ARCANEA_CANON.md`
 - **Design new UI**: Follow Arcanean Design System in `styles/themes/`
 - **Write narrative content**: Channel the Library voice - elevated, practical, inclusive
 
 ### File Locations
-- **Canon reference**: `.arcanea/lore/CANON_LOCKED.md`
+- **Canon reference**: `.claude/lore/ARCANEA_CANON.md`
 - **Design tokens**: `styles/themes/arcanean-colors.css`
 - **UI components**: `components/ui/`
 - **Content types**: `lib/content/types.ts`

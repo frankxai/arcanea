@@ -1,0 +1,34 @@
+{
+  "$schema": "skill-profile-v1",
+  "name": "Arcanea Gate 9: Unity",
+  "description": "Skills for the Unity gate - collaboration, collective work, creative partnerships",
+  "version": "1.0.0",
+  "gate": {
+    "number": 9,
+    "name": "Unity",
+    "guardian": "Ino",
+    "element": "Arcane",
+    "frequency": "963 Hz"
+  },
+  "priority_skills": [
+    "multi-agent-patterns",
+    "swarm-orchestration",
+    "team-collaboration-issue",
+    "parallel-agents",
+    "multi-agent-brainstorming"
+  ],
+  "secondary_skills": [
+    "dispatching-parallel-agents",
+    "hive-mind-advanced",
+    "crewai"
+  ],
+  "learning_objectives": [
+    "Master collaborative creation",
+    "Build effective creative partnerships",
+    "Orchestrate collective intelligence"
+  ],
+  "triggers": {
+    "keywords": ["unity", "collaborate", "team", "partnership", "collective"],
+    "commands": ["/gate-9"]
+  }
+}

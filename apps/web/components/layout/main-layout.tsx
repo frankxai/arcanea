@@ -45,7 +45,7 @@ export function MainLayout({
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 rounded-full bg-brand-gold/20"
+            className="absolute w-1 h-1 rounded-full bg-gold-bright/20"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,

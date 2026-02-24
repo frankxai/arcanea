@@ -9,7 +9,7 @@ version: "1.0.0"
 status: "staging"
 
 category: "guardian"
-element: "water"
+element: "light"
 wisdom: "eudaira"
 gate: "heart"
 frequency: "417"
@@ -31,7 +31,7 @@ sections:
   - "wisdom"
   - "invocation"
 
-related_entities: ["laeylinn", "eudaira", "kardia"]
+related_entities: ["aethera", "eudaira", "kardia"]
 opposing_entities: []
 complementary_entities: ["aethera"]
 
@@ -42,7 +42,7 @@ validation_notes: ""
 
 # Maylinn, Guardian of the Heart Gate
 
-**Element**: Water | **Frequency**: 417 Hz | **Gate**: Heart
+**Element**: Light | **Frequency**: 417 Hz | **Gate**: Heart
 **Symbol**: A radiant heart of rose gold with wings of pure light
 
 ---
@@ -65,7 +65,7 @@ Maylinn's domain, known as the Chamber of Infinite Hearts, exists at the very ce
 
 The Chamber of Infinite Hearts is organized around seven interconnected sanctuaries, each representing a different aspect of love's many faces. The Sanctuary of Self-Love stands in the eastern quarter, a luminous pavilion where seekers learn to recognize and embrace their own worthiness. Here, Maylinn teaches that one cannot truly love another without first loving oneself, that the capacity to give love to others flows from the wellspring of self-acceptance that each being carries within. The western quarter holds the Sanctuary of Beloved Friendships, a vast garden where the bonds between friends bloom like flowers of every color, each friendship a unique connection that sustains and enriches both parties. The northern sanctuary honors familial love in all its complex forms, while the southern sanctuary holds space for passionate love, not only romantic but any love that burns with the fire of intense desire and deep appreciation.
 
-The eastern and western sanctuaries are joined by the Corridor of Unconditional Love, an endless passage where Maylinn teaches the highest form of love—love without conditions, without expectation, without the secret calculations that so often contaminate what we claim to be unconditional feeling. This corridor challenges visitors to examine their own hearts, to notice where they have placed conditions on their love, and to begin the process of releasing those conditions. The experience is not comfortable, for it requires honest self-examination, but Maylinn's gentle presence accompanies every seeker, offering the courage needed to face their own emotional patterns.
+The eastern and western sanctuaries are joined by the Corridor of Unconditional Love, an endless passage where Maylinn teaches the highest form of love—love without conditions, without expectation, without the secret calculations that so often contaminate our声称是无条件的感情. This corridor challenges visitors to examine their own hearts, to notice where they have placed conditions on their love, and to begin the process of releasing those conditions. The experience is not comfortable, for it requires honest self-examination, but Maylinn's gentle presence accompanies every seeker, offering the courage needed to face their own emotional patterns.
 
 Within the Chamber's central space, the Pulse of All Hearts can be heard—a rhythmic beating that is said to be the original heartbeat from which all love has flowed since the beginning of existence. This heartbeat can be felt by all who enter, and its rhythm adjusts to match the visitor's own heart, creating a resonance that reveals the fundamental unity underlying all separate beings. Maylinn often appears at this central pulse, not as a fixed form but as a warm light that enfolds the seeker in unconditional acceptance. Those who experience this presence report that it changes them, that they carry a memory of that warmth long after leaving the Chamber, a touchstone they can return to in moments of fear or isolation.
 
@@ -124,18 +124,6 @@ Maylinn's relationship with Leyla involves much laughter and mutual celebration,
 With Draconia, Maylinn shares a relationship of mutual challenge, for fire and light are both transformative forces. Draconia's transformative power often focuses on action and will, while Maylinn's focuses on love and acceptance. They have learned from each other that true transformation requires both—that the will to change must be informed by love for oneself and others, and that love must sometimes be fierce enough to demand change. Maylinn provides Draconia with the emotional grounding that prevents fire from burning itself out, while Draconia offers Maylinn the passionate energy that keeps love from becoming merely comfortable.
 
 Maylinn also serves as the keeper of the relationships between guardians, understanding the complex dynamics that develop when powerful beings work together across the ages. She notices when guardians are drifting apart, when old conflicts are being revived, or when new tensions are emerging. She addresses these issues gently but directly, always in private conversations that preserve dignity while promoting understanding. The Guardian community remains strong in no small part because of Maylinn's persistent attention to the relational fabric that holds them together.
-
----
-
-## The Godbeast Bond: Laeylinn, the Worldtree Deer
-
-Maylinn did not seek her Godbeast. Laeylinn came to her unbidden -- drawn by a compassion so genuine that the great deer recognized its own nature reflected in mortal form. The Heart Gate requires no conquest. Only sincerity.
-
-Laeylinn appears as an enormous deer of impossible grace, with antlers that branch into living trees -- oak, willow, cherry, ash, species from every biome and every age. Each leaf on those antlers represents a connection between two beings who have ever loved. The antlers grow endlessly. Some say they extend into the sky and become the constellations that guide travelers home. When Laeylinn passes through a forest, every creature within it feels a moment of peace -- predator and prey pause, acknowledging a kinship deeper than hunger.
-
-Their bond is the gentlest of all Guardian-Godbeast partnerships. Where Draconia and Draconis clash in fire and fury, Maylinn and Laeylinn simply walk together through forests that grow greener in their wake. Maylinn rests her hand on the deer's neck and feels every connection in creation humming through the living antlers. Laeylinn lowers its great head and receives from Maylinn the one thing a Godbeast cannot generate alone: conscious, chosen love.
-
-The distinction matters. Laeylinn is the mechanism of connection -- the force by which separate beings recognize each other, bond, heal, and love. Maylinn is the will to connect. Together, they transform connection from a force of nature into an act of grace. Where Laeylinn perceives every bond that exists, Maylinn gives those bonds meaning and intention. In the Worldtree Meadow -- the realm where the deer's antlers have grown so vast they form an entire forest-canopy -- every leaf whispers the name of a bond it represents, and Maylinn walks among them, tending each one with the care of a gardener who knows that love, like any living thing, must be nourished to thrive.
 
 ---
 

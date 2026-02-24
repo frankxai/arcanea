@@ -2,7 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { HelpCircle, Plus, Minus, Mail } from 'lucide-react';
+import { HelpCircle, Plus, Minus } from 'lucide-react';
 
 const FAQS = [
   {
@@ -31,11 +31,11 @@ const FAQS = [
   },
   {
     question: 'Can I cancel my subscription anytime?',
-    answer: "Yes, you can cancel anytime from your account settings. If you cancel, you'll retain access until the end of your current billing period. We also offer a 30-day money-back guarantee on annual plans.",
+    answer: 'Yes, you can cancel anytime from your account settings. If you cancel, you\'ll retain access until the end of your current billing period. We also offer a 30-day money-back guarantee on annual plans.',
   },
   {
     question: 'What happens to my work if I downgrade?',
-    answer: "Your work is always yours. If you downgrade, your existing creations remain accessible. You'll just be limited to the features of your new plan for future work. We never delete your content.",
+    answer: 'Your work is always yours. If you downgrade, your existing creations remain accessible. You\'ll just be limited to the features of your new plan for future work. We never delete your content.',
   },
 ];
 
@@ -60,22 +60,22 @@ function FAQItem({
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.05, duration: 0.4 }}
-      className="border-b border-white/10 last:border-0"
+      transition={{ delay: index * 0.05 }}
+      className="border-b border-white/10"
     >
       <button
         onClick={onToggle}
         className="w-full py-6 flex items-start justify-between gap-4 text-left group"
         aria-expanded={isOpen}
       >
-        <span className="font-sans text-fluid-lg font-semibold text-text-primary group-hover:text-crystal transition-colors duration-smooth">
+        <span className="text-lg font-medium text-white group-hover:text-atlantean-teal-aqua transition-colors">
           {question}
         </span>
         <span
-          className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-smooth ${
+          className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${
             isOpen
-              ? 'bg-crystal text-cosmic-void'
-              : 'glass text-text-muted group-hover:bg-white/10'
+              ? 'bg-atlantean-teal-aqua text-cosmic-deep'
+              : 'bg-white/5 text-text-muted group-hover:bg-white/10'
           }`}
         >
           {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
@@ -87,10 +87,10 @@ function FAQItem({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <p className="font-sans text-fluid-base text-text-secondary leading-relaxed pb-6">{answer}</p>
+            <p className="pb-6 text-text-secondary leading-relaxed">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -107,7 +107,7 @@ export function FAQSection() {
     <section ref={ref} className="py-32 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-crystal/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-atlantean-teal-aqua/5 to-transparent rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-4xl mx-auto px-6">
@@ -115,28 +115,22 @@ export function FAQSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-crystal/20 mb-6">
-            <HelpCircle className="w-4 h-4 text-crystal" />
-            <span className="font-sans text-sm font-medium text-crystal">FAQ</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-atlantean-teal-aqua/10 border border-atlantean-teal-aqua/20 mb-6">
+            <HelpCircle className="w-4 h-4 text-atlantean-teal-aqua" />
+            <span className="text-sm font-medium text-atlantean-teal-aqua">FAQ</span>
           </div>
-          <h2 className="font-display text-fluid-3xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
             Frequently asked questions
           </h2>
-          <p className="font-sans text-fluid-lg text-text-secondary">
+          <p className="text-xl text-text-secondary">
             Everything you need to know about Arcanea.
           </p>
         </motion.div>
 
-        {/* FAQ list container */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.1, duration: 0.6 }}
-          className="glass-subtle rounded-2xl px-8 py-2"
-        >
+        {/* FAQ list */}
+        <div className="border-t border-white/10">
           {FAQS.map((faq, i) => (
             <FAQItem
               key={i}
@@ -147,24 +141,23 @@ export function FAQSection() {
               index={i}
             />
           ))}
-        </motion.div>
+        </div>
 
         {/* Still have questions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="mt-16 text-center glass rounded-2xl p-8 glow-card"
+          transition={{ delay: 0.5 }}
+          className="mt-16 text-center p-8 rounded-2xl bg-cosmic-surface/30 border border-white/10"
         >
-          <h3 className="font-display text-fluid-xl font-semibold mb-3">Still have questions?</h3>
-          <p className="font-sans text-text-secondary mb-6">
+          <h3 className="text-xl font-display font-semibold mb-3">Still have questions?</h3>
+          <p className="text-text-secondary mb-6">
             Can't find the answer you're looking for? Our team is here to help.
           </p>
           <a
             href="mailto:support@arcanea.ai"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-crystal text-cosmic-void font-sans font-semibold hover:bg-crystal/90 transition-colors duration-smooth shadow-glow-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold hover:bg-atlantean-teal-aqua/90 transition-colors"
           >
-            <Mail className="w-4 h-4" />
             Contact Support
           </a>
         </motion.div>

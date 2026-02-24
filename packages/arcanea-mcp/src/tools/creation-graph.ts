@@ -9,7 +9,7 @@ export interface CreationNode {
   name: string;
   element?: string;
   gate?: number;
-  createdAt: string | Date;
+  createdAt: Date;
   metadata: Record<string, any>;
 }
 

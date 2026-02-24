@@ -8,7 +8,7 @@ interface ValidationIssue {
 
 const canonicalNames = {
   guardians: ["Lyssandria", "Leyla", "Draconia", "Maylinn", "Alera", "Lyria", "Aiyami", "Elara", "Ino", "Shinkami"],
-  godbeasts: ["Kaelith", "Veloura", "Draconis", "Laeylinn", "Otome", "Yumiko", "Sol", "Thessara", "Kyuro", "Amaterasu"],
+  godbeasts: ["Kaelith", "Veloura", "Draconis", "Laeylinn", "Otome", "Yumiko", "Sol", "Vaelith", "Kyuro"],
   elements: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"],
   houses: ["Lumina", "Nero", "Pyros", "Aqualis", "Terra", "Ventus", "Synthesis"],
 };
@@ -28,7 +28,7 @@ const guardianGateMap: Record<string, number> = {
 export async function validateCanon(
   content: string,
   contentType?: string
-): Promise<{ content: Array<{ type: "text"; text: string }> }> {
+): Promise<{ content: Array<{ type: string; text: string }> }> {
   const issues: ValidationIssue[] = [];
   const suggestions: string[] = [];
   const lowerContent = content.toLowerCase();

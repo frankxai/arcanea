@@ -1,16 +1,9 @@
 {
   "name": "@arcanea/mcp-server",
-  "version": "0.7.0",
-  "description": "Arcanea MCP Server — 30 tools, 7 resources, 6 prompts. Worldbuilding, Guardian routing, voice enforcement, design tokens, and agent orchestration.",
+  "version": "0.3.0",
+  "description": "Arcanea MCP Server - Worldbuilding toolkit, creative companion, and magic maker",
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
   "bin": {
     "arcanea-mcp": "./dist/cli.js"
   },
@@ -18,29 +11,13 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/cli.js",
-    "clean": "rm -rf dist",
-    "test": "node --test tests/*.test.mjs",
-    "type-check": "tsc --noEmit"
+    "clean": "rm -rf dist"
   },
-  "keywords": [
-    "mcp",
-    "arcanea",
-    "worldbuilding",
-    "creative",
-    "ai",
-    "fantasy"
-  ],
-  "author": "FrankX <frank@frankx.ai>",
+  "keywords": ["mcp", "arcanea", "worldbuilding", "creative", "ai", "fantasy"],
+  "author": "FrankX",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/frankxai/arcanea.git",
-    "directory": "packages/arcanea-mcp"
-  },
   "dependencies": {
-    "@arcanea/os": "workspace:*",
-    "@modelcontextprotocol/sdk": "^1.9.0",
-    "zod": "^3.25.0"
+    "@modelcontextprotocol/sdk": "^0.5.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
@@ -48,12 +25,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "publishConfig": {
-    "access": "public"
   }
 }

@@ -24,7 +24,7 @@ claude-arcanea
 
 This launches Claude Code with the full Arcanea Intelligence OS context, including:
 - 10 Guardians and their Gates
-- 70+ mythology-organized skills
+- 77+ mythology-organized skills
 - The Luminor AI companions
 - Canonical lore and worldbuilding
 
@@ -72,7 +72,7 @@ const skill = getSkillByTrigger('/refactor');
 
 ## Part of the Arcanea Ecosystem
 
-- [`@arcanea/os`](https://github.com/frankxai/arcanea/tree/main/packages/core) - Core types and constants
+- [`@arcanea/core`](https://github.com/frankxai/arcanea/tree/main/packages/core) - Core types and constants
 - [`arcanea-intelligence-os`](https://github.com/frankxai/arcanea-intelligence-os) - Unified CLI
 - [`arcanea`](https://github.com/frankxai/arcanea) - Main platform
 

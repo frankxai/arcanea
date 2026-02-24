@@ -369,7 +369,7 @@ This project uses the Arcanea creative agent system.
 ### Phase 3: MCP v3 Tools
 - [ ] spawn_agent tool
 - [ ] agent_status tool
-- [ ] ~~orchestrate_session tool~~ (removed — use Guardian routing instead)
+- [ ] orchestrate_session tool
 - [ ] MCP sampling integration
 
 ### Phase 4: External Integrations

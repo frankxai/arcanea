@@ -24,15 +24,15 @@ const CosmicGradient = React.forwardRef<HTMLDivElement, CosmicGradientProps>(
   ) => {
     const gradientVariants = {
       cosmic:
-        'bg-gradient-to-br from-crystal/20 via-brand-gold/20 to-fire/20',
+        'bg-gradient-to-br from-atlantean-teal/20 via-gold-bright/20 to-draconic-crimson/20',
       default:
-        'bg-gradient-to-br from-crystal/20 via-brand-gold/20 to-fire/20',
+        'bg-gradient-to-br from-atlantean-teal/20 via-gold-bright/20 to-draconic-crimson/20',
       atlantean:
-        'bg-gradient-to-br from-atlantean-deep via-atlantean-primary to-crystal',
+        'bg-gradient-to-br from-atlantean-deep via-atlantean-primary to-atlantean-teal',
       draconic:
-        'bg-gradient-to-br from-fire via-draconic-gold to-draconic-sky',
+        'bg-gradient-to-br from-draconic-crimson via-draconic-gold to-draconic-sky',
       creation:
-        'bg-gradient-to-br from-creation-gold via-creation-prism-blue to-brand-primary',
+        'bg-gradient-to-br from-creation-gold via-creation-prism-blue to-creation-prism-purple',
     };
 
     const baseClassName = cn(

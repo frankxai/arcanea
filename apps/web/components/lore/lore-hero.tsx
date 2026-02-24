@@ -67,8 +67,8 @@ export function LoreHero() {
             y: mousePosition.y * 30 - 15,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-radial from-brand-gold/30 via-brand-gold/10 to-transparent rounded-full blur-3xl" />
-          <div className="absolute inset-20 bg-gradient-radial from-white/20 via-brand-gold/5 to-transparent rounded-full blur-2xl animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-radial from-gold-bright/30 via-gold-bright/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute inset-20 bg-gradient-radial from-white/20 via-gold-bright/5 to-transparent rounded-full blur-2xl animate-pulse" />
         </motion.div>
 
         {/* Nero - Deep Void (bottom left) */}
@@ -79,8 +79,8 @@ export function LoreHero() {
             y: -mousePosition.y * 30 + 15,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-radial from-brand-primary/30 via-cosmic-void/50 to-transparent rounded-full blur-3xl" />
-          <div className="absolute inset-20 bg-gradient-radial from-brand-primary/10 to-transparent rounded-full blur-2xl" />
+          <div className="absolute inset-0 bg-gradient-radial from-creation-prism-purple/30 via-cosmic-void/50 to-transparent rounded-full blur-3xl" />
+          <div className="absolute inset-20 bg-gradient-radial from-creation-prism-purple/10 to-transparent rounded-full blur-2xl" />
         </motion.div>
 
         {/* World Tree silhouette */}
@@ -118,10 +118,10 @@ export function LoreHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass border border-brand-gold/20 mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-bright/10 border border-gold-bright/20 mb-8"
         >
-          <Sparkles className="w-4 h-4 text-brand-gold" />
-          <span className="text-sm font-medium text-brand-gold">The Living Mythology</span>
+          <Sparkles className="w-4 h-4 text-gold-bright" />
+          <span className="text-sm font-medium text-gold-bright">The Living Mythology</span>
         </motion.div>
 
         {/* Title */}
@@ -129,9 +129,9 @@ export function LoreHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="text-fluid-4xl md:text-fluid-5xl lg:text-8xl font-display font-bold mb-6"
+          className="text-6xl md:text-7xl lg:text-8xl font-display font-bold mb-6"
         >
-          <span className="bg-gradient-to-r from-brand-gold via-white to-brand-primary bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-gold-bright via-white to-creation-prism-purple bg-clip-text text-transparent">
             Lore of Arcanea
           </span>
         </motion.h1>
@@ -141,7 +141,7 @@ export function LoreHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-8 font-body italic"
+          className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-8 font-crimson italic"
         >
           "Before Lumina spoke, there was only Nero—the Fertile Unknown,
           pregnant with infinite possibility. And when the First Light pierced

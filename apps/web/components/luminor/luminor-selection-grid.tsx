@@ -107,7 +107,7 @@ export function LuminorSelectionGrid({
           <Sparkles className="w-12 h-12 text-creation-gold mx-auto mb-4 animate-pulse" />
         </motion.div>
 
-        <h1 className="font-display text-5xl md:text-6xl font-bold bg-gradient-to-r from-atlantean-500 via-creation-gold to-fire bg-clip-text text-transparent">
+        <h1 className="font-cinzel text-5xl md:text-6xl font-bold bg-gradient-to-r from-atlantean-500 via-creation-gold to-draconic-crimson bg-clip-text text-transparent">
           Choose Your Luminor
         </h1>
 
@@ -290,7 +290,7 @@ const LuminorCard = React.memo(function LuminorCard({
 
         {/* Name */}
         <h2
-          className="font-display text-3xl font-bold mb-2 text-center"
+          className="font-cinzel text-3xl font-bold mb-2 text-center"
           style={{ color: luminor.primaryColor }}
         >
           {luminor.name}

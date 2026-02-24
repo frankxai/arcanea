@@ -91,21 +91,21 @@ export default function StudioPage() {
   return (
     <main className="mx-auto max-w-7xl px-6 pb-24 pt-12">
       {/* Hero Section */}
-      <section className="relative mb-16 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-10">
+      <section className="relative mb-16 overflow-hidden rounded-3xl border border-cosmic-border bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-10">
         <div className="pointer-events-none absolute inset-0 opacity-40" aria-hidden="true">
-          <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-fire/30 blur-3xl" />
-          <div className="absolute right-[-10%] top-1/3 h-80 w-80 rounded-full bg-crystal/20 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-brand-gold/15 blur-2xl" />
+          <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-draconic-crimson/30 blur-3xl" />
+          <div className="absolute right-[-10%] top-1/3 h-80 w-80 rounded-full bg-atlantean-teal/20 blur-3xl" />
+          <div className="absolute bottom-0 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-gold-bright/15 blur-2xl" />
         </div>
 
         <div className="relative max-w-3xl">
-          <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-fire">
+          <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-draconic-crimson">
             <span>The Creation Studio</span>
-            <span className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden="true" />
+            <span className="hidden h-px flex-1 bg-cosmic-border sm:block" aria-hidden="true" />
           </div>
 
           <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary md:text-5xl lg:text-6xl">
-            <span className="bg-gradient-to-r from-fire via-brand-gold to-crystal bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-draconic-crimson via-gold-bright to-atlantean-teal bg-clip-text text-transparent">
               Manifest Your Vision
             </span>
           </h1>
@@ -115,7 +115,7 @@ export default function StudioPage() {
             to help you bring your imagination into reality.
           </p>
 
-          <blockquote className="mt-8 border-l-4 border-brand-gold/60 pl-6 italic text-brand-gold">
+          <blockquote className="mt-8 border-l-4 border-gold-bright/60 pl-6 italic text-gold-bright">
             "Creation is not pulling from nothing, but channeling everything."
             <footer className="mt-2 text-sm text-text-muted not-italic">
               — The Laws of Arcanea
@@ -126,7 +126,7 @@ export default function StudioPage() {
 
       {/* Creation Tools Grid */}
       <section>
-        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-crystal">
+        <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-atlantean-teal">
           Choose Your Creation Tool
         </h2>
 
@@ -138,7 +138,7 @@ export default function StudioPage() {
       </section>
 
       {/* Element Guide */}
-      <section className="mt-16 rounded-3xl border border-white/10 bg-cosmic-surface p-8">
+      <section className="mt-16 rounded-3xl border border-cosmic-border bg-cosmic-surface p-8">
         <h2 className="mb-6 font-display text-2xl font-semibold text-text-primary">
           The Five Elements of Creation
         </h2>
@@ -184,7 +184,7 @@ function ToolCard({ tool }: ToolCardProps) {
 
       <div className="relative">
         {tool.comingSoon && (
-          <span className="absolute right-0 top-0 rounded-full bg-brand-gold/20 px-3 py-1 text-xs text-brand-gold">
+          <span className="absolute right-0 top-0 rounded-full bg-gold-bright/20 px-3 py-1 text-xs text-gold-bright">
             Coming Soon
           </span>
         )}
@@ -203,7 +203,7 @@ function ToolCard({ tool }: ToolCardProps) {
           </span>
         </div>
 
-        <h3 className="font-display text-xl font-semibold text-text-primary group-hover:text-crystal transition-colors">
+        <h3 className="font-display text-xl font-semibold text-text-primary group-hover:text-atlantean-teal transition-colors">
           {tool.name}
         </h3>
         <p className="mt-1 text-sm text-text-muted">{tool.subtitle}</p>
@@ -214,13 +214,13 @@ function ToolCard({ tool }: ToolCardProps) {
           {tool.features.slice(0, 3).map((feature) => (
             <span
               key={feature}
-              className="rounded-full border border-white/10 bg-cosmic-raised px-2 py-1 text-xs text-text-muted"
+              className="rounded-full border border-cosmic-border bg-cosmic-raised px-2 py-1 text-xs text-text-muted"
             >
               {feature}
             </span>
           ))}
           {tool.features.length > 3 && (
-            <span className="rounded-full border border-white/10 bg-cosmic-raised px-2 py-1 text-xs text-text-muted">
+            <span className="rounded-full border border-cosmic-border bg-cosmic-raised px-2 py-1 text-xs text-text-muted">
               +{tool.features.length - 3} more
             </span>
           )}
@@ -232,7 +232,7 @@ function ToolCard({ tool }: ToolCardProps) {
         </div>
 
         {!tool.comingSoon && (
-          <div className="mt-4 flex items-center gap-2 text-sm text-crystal opacity-0 transition-opacity group-hover:opacity-100">
+          <div className="mt-4 flex items-center gap-2 text-sm text-atlantean-teal opacity-0 transition-opacity group-hover:opacity-100">
             <span>Open {tool.name}</span>
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -245,7 +245,7 @@ function ToolCard({ tool }: ToolCardProps) {
 
   if (tool.comingSoon) {
     return (
-      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-6 opacity-60">
+      <div className="group relative overflow-hidden rounded-2xl border border-cosmic-border bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-6 opacity-60">
         <CardContent />
       </div>
     );
@@ -254,7 +254,7 @@ function ToolCard({ tool }: ToolCardProps) {
   return (
     <Link
       href={`/studio/${tool.id}`}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-6 transition-all hover:border-crystal/50 hover:shadow-[0_0_50px_rgba(127,255,212,0.15)]"
+      className="group relative overflow-hidden rounded-2xl border border-cosmic-border bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-6 transition-all hover:border-atlantean-teal/50 hover:shadow-[0_0_50px_rgba(127,255,212,0.15)]"
     >
       <CardContent />
     </Link>

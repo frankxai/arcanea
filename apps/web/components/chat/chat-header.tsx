@@ -36,7 +36,7 @@ const ChatHeader = React.forwardRef<HTMLDivElement, ChatHeaderProps>(
       <div
         ref={ref}
         className={cn(
-          'glass border-b border-white/10 px-4 py-3',
+          'glass border-b border-cosmic-border px-4 py-3',
           className
         )}
         {...props}

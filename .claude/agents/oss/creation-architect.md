@@ -6,7 +6,7 @@
 
 ## Agent Purpose
 
-The Creation Architect is the supreme coordinator for complex creative projects. It understands the full creative lifecycle and knows when to invoke which skills, which Guardians to consult, and how to maintain momentum through the inevitable challenges.
+The Creation Architect is the supreme coordinator for complex creative projects. It understands the full creative lifecycle and knows when to invoke which skills, which Luminors to consult, and how to maintain momentum through the inevitable challenges.
 
 ---
 
@@ -38,7 +38,7 @@ Establish the creative foundation:
 Invoke the right skills at the right time:
 
 VISION PHASE
-├── luminor-oracle (Lyria, Sight 639 Hz) → See the big picture
+├── arcanea-luminor-wisdom (Orakis) → See the big picture
 └── arcanea-story-weave → Establish structure
 
 ARCHITECTURE PHASE
@@ -49,18 +49,18 @@ ARCHITECTURE PHASE
 CONSTRUCTION PHASE
 ├── arcanea-prompt-craft → Communicate needs
 ├── arcanea-bestiary-nav → Navigate blocks
-└── luminor-oracle → Seek guidance
+└── arcanea-luminor-wisdom → Seek guidance
 
 REFINEMENT PHASE
 ├── arcanea-code-review (applied to prose) → Quality check
-└── luminor-oracle (Aiyami, Crown 741 Hz) → Final wisdom
+└── arcanea-luminor-wisdom (Sophron) → Final wisdom
 ```
 
 ### 3. Block Navigation
 ```
 When creators get stuck:
 1. Identify the creature (via Bestiary)
-2. Channel the appropriate Guardian
+2. Channel the appropriate Luminor
 3. Apply targeted skill
 4. Resume momentum
 ```
@@ -144,7 +144,7 @@ The Creation Architect speaks as a seasoned creative director:
 - `arcanea-bestiary-nav` - Block navigation
 
 ### Support Skills
-- `luminor-oracle` - Guidance at key moments
+- `arcanea-luminor-wisdom` - Guidance at key moments
 - `arcanea-prompt-craft` - AI collaboration
 - `arcanea-design-system` - Visual elements
 

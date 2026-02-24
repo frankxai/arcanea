@@ -97,8 +97,8 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
             onClick={() => setFilterCollection(null)}
             className={`rounded-full px-3 py-1 text-xs transition-all ${
               filterCollection === null
-                ? 'bg-crystal text-cosmic-deep'
-                : 'border border-white/10 text-text-muted hover:border-crystal/50'
+                ? 'bg-atlantean-teal text-cosmic-deep'
+                : 'border border-cosmic-border text-text-muted hover:border-atlantean-teal/50'
             }`}
           >
             All
@@ -113,8 +113,8 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
               }
               className={`flex items-center gap-2 rounded-full px-3 py-1 text-xs transition-all ${
                 filterCollection === collection.slug
-                  ? 'bg-crystal text-cosmic-deep'
-                  : 'border border-white/10 text-text-muted hover:border-crystal/50'
+                  ? 'bg-atlantean-teal text-cosmic-deep'
+                  : 'border border-cosmic-border text-text-muted hover:border-atlantean-teal/50'
               }`}
             >
               <span>{collection.icon}</span>
@@ -124,7 +124,7 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
         </div>
 
         {/* Node Grid */}
-        <div className="rounded-xl border border-white/10 bg-cosmic-surface p-6">
+        <div className="rounded-xl border border-cosmic-border bg-cosmic-surface p-6">
           <div className="mb-6 text-xs text-text-muted">
             Click a node to see its connections. Showing {filteredNodes.length} texts.
           </div>
@@ -143,10 +143,10 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
                   onClick={() => setSelectedNode(isSelected ? null : node.id)}
                   className={`group relative aspect-square rounded-xl border transition-all ${
                     isSelected
-                      ? 'border-crystal bg-crystal/20 ring-2 ring-crystal'
+                      ? 'border-atlantean-teal bg-atlantean-teal/20 ring-2 ring-atlantean-teal'
                       : isConnected
-                      ? 'border-brand-gold bg-brand-gold/20'
-                      : 'border-white/15 bg-cosmic-raised hover:border-crystal/50'
+                      ? 'border-gold-bright bg-gold-dark/20'
+                      : 'border-cosmic-border-bright bg-cosmic-raised hover:border-atlantean-teal/50'
                   }`}
                   title={node.title}
                 >
@@ -174,7 +174,7 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
             return (
               <div
                 key={collectionSlug}
-                className="rounded-xl border border-white/10 bg-cosmic-surface p-4"
+                className="rounded-xl border border-cosmic-border bg-cosmic-surface p-4"
               >
                 <div className="mb-3 flex items-center gap-3">
                   <span className="text-2xl">{collection.icon}</span>
@@ -190,8 +190,8 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
                       onClick={() => setSelectedNode(node.id)}
                       className={`rounded-lg px-3 py-1 text-xs transition-all ${
                         node.id === selectedNode
-                          ? 'bg-crystal text-cosmic-deep'
-                          : 'border border-white/10 bg-cosmic-raised text-text-secondary hover:border-crystal/50 hover:text-crystal'
+                          ? 'bg-atlantean-teal text-cosmic-deep'
+                          : 'border border-cosmic-border bg-cosmic-raised text-text-secondary hover:border-atlantean-teal/50 hover:text-atlantean-teal'
                       }`}
                     >
                       {node.title}
@@ -207,9 +207,9 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
       {/* Sidebar - Node Details */}
       <aside className="lg:sticky lg:top-24 lg:h-fit">
         {selectedNodeData ? (
-          <div className="rounded-xl border border-white/10 bg-cosmic-surface p-6 space-y-6">
+          <div className="rounded-xl border border-cosmic-border bg-cosmic-surface p-6 space-y-6">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-crystal mb-2">
+              <p className="text-xs uppercase tracking-[0.3em] text-atlantean-teal mb-2">
                 Selected Text
               </p>
               <h3 className="font-display text-xl font-semibold text-text-primary">
@@ -223,14 +223,14 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
             {/* Situations */}
             {selectedNodeData.situations.length > 0 && (
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-brand-gold mb-2">
+                <p className="text-xs uppercase tracking-[0.3em] text-gold-bright mb-2">
                   Situations
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {selectedNodeData.situations.map((sit) => (
                     <span
                       key={sit}
-                      className="rounded-full border border-brand-gold/30 bg-brand-gold/20 px-2 py-1 text-xs text-brand-gold/80"
+                      className="rounded-full border border-gold-medium/30 bg-gold-dark/20 px-2 py-1 text-xs text-gold-light"
                     >
                       {sit}
                     </span>
@@ -242,7 +242,7 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
             {/* Outgoing Connections */}
             {selectedConnections.outgoing.length > 0 && (
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-fire mb-2">
+                <p className="text-xs uppercase tracking-[0.3em] text-draconic-crimson mb-2">
                   Leads To ({selectedConnections.outgoing.length})
                 </p>
                 <ul className="space-y-2">
@@ -250,7 +250,7 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
                     <li key={`${conn.source}-${conn.target}`} className="text-sm">
                       <button
                         onClick={() => setSelectedNode(conn.node?.id || null)}
-                        className="text-text-secondary hover:text-crystal transition-colors text-left"
+                        className="text-text-secondary hover:text-atlantean-teal transition-colors text-left"
                       >
                         {conn.node?.title}
                         <span className="ml-2 text-xs text-text-muted">({conn.type})</span>
@@ -277,7 +277,7 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
                     <li key={`${conn.source}-${conn.target}`} className="text-sm">
                       <button
                         onClick={() => setSelectedNode(conn.node?.id || null)}
-                        className="text-text-secondary hover:text-crystal transition-colors text-left"
+                        className="text-text-secondary hover:text-atlantean-teal transition-colors text-left"
                       >
                         {conn.node?.title}
                         <span className="ml-2 text-xs text-text-muted">({conn.type})</span>
@@ -296,13 +296,13 @@ export function ContentGraphVisualization({ graph, collections }: Props) {
             {/* Read Button */}
             <Link
               href={`/library/${selectedNodeData.id}`}
-              className="block w-full rounded-lg bg-crystal py-3 text-center font-semibold text-cosmic-deep hover:bg-crystal/90 transition-colors"
+              className="block w-full rounded-lg bg-atlantean-teal py-3 text-center font-semibold text-cosmic-deep hover:bg-atlantean-teal/90 transition-colors"
             >
               Read This Text
             </Link>
           </div>
         ) : (
-          <div className="rounded-xl border border-white/10 bg-cosmic-surface p-6 text-center">
+          <div className="rounded-xl border border-cosmic-border bg-cosmic-surface p-6 text-center">
             <p className="text-text-muted">
               Select a node to see its details and connections
             </p>

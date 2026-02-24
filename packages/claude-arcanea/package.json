@@ -1,6 +1,6 @@
 {
   "name": "claude-arcanea",
-  "version": "0.2.1",
+  "version": "0.1.0",
   "description": "Arcanea Intelligence OS for Claude Code - Mythology-infused AI agent orchestration",
   "type": "module",
   "main": "./dist/index.js",
@@ -28,9 +28,7 @@
     "dev": "tsc --watch",
     "start": "node dist/cli.js",
     "clean": "rm -rf dist",
-    "prepublishOnly": "npm run build",
-    "test": "node --test tests/*.test.mjs",
-    "type-check": "tsc --noEmit"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "arcanea",
@@ -50,7 +48,7 @@
   },
   "homepage": "https://github.com/frankxai/claude-arcanea#readme",
   "dependencies": {
-    "@arcanea/os": "workspace:*"
+    "@arcanea/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

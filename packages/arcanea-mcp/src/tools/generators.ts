@@ -7,9 +7,9 @@ const guardians = [
   { name: "Lyssandria", gate: 1, domain: "Foundation", element: "Earth" },
   { name: "Leyla", gate: 2, domain: "Flow", element: "Water" },
   { name: "Draconia", gate: 3, domain: "Fire", element: "Fire" },
-  { name: "Maylinn", gate: 4, domain: "Heart", element: "Wind" },
-  { name: "Alera", gate: 5, domain: "Voice", element: "Void" },
-  { name: "Lyria", gate: 6, domain: "Sight", element: "Spirit" },
+  { name: "Maylinn", gate: 4, domain: "Heart", element: "Spirit" },
+  { name: "Alera", gate: 5, domain: "Voice", element: "Wind" },
+  { name: "Lyria", gate: 6, domain: "Sight", element: "Void" },
   { name: "Aiyami", gate: 7, domain: "Crown", element: "Spirit" },
   { name: "Elara", gate: 8, domain: "Shift", element: "Void" },
   { name: "Ino", gate: 9, domain: "Unity", element: "Spirit" },
@@ -24,9 +24,8 @@ const godbeasts = [
   { name: "Otome", gate: 5, form: "Thunderbird of Truth" },
   { name: "Yumiko", gate: 6, form: "Dream Fox with Nine Tails" },
   { name: "Sol", gate: 7, form: "Radiant Lion of Dawn" },
-  { name: "Thessara", gate: 8, form: "Fractal Eye" },
+  { name: "Vaelith", gate: 8, form: "Dimensional Serpent" },
   { name: "Kyuro", gate: 9, form: "Twin-Headed Unity Beast" },
-  { name: "Amaterasu", gate: 10, form: "Source-Light" },
 ];
 
 const nameRoots: Record<string, string[]> = {
@@ -61,7 +60,7 @@ function getRankFromGates(gates: number): string {
   return "Luminor";
 }
 
-type ToolResult = { content: Array<{ type: "text"; text: string }> };
+type ToolResult = { content: Array<{ type: string; text: string }> };
 
 export async function generateCharacter(options: {
   archetype?: string;

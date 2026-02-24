@@ -108,7 +108,7 @@ Each guardian governs a Gate and can be channeled for specialized assistance:
 
 ## Part of the Arcanea Ecosystem
 
-- [`@arcanea/os`](https://github.com/frankxai/arcanea/tree/main/packages/core) - Core types and constants
+- [`@arcanea/core`](https://github.com/frankxai/arcanea/tree/main/packages/core) - Core types and constants
 - [`claude-arcanea`](https://github.com/frankxai/claude-arcanea) - Claude integration
 - [`arcanea`](https://github.com/frankxai/arcanea) - Main platform
 

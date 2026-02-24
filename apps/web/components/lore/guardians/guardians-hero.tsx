@@ -9,7 +9,7 @@ export function GuardiansHero() {
       {/* Background */}
       <div className="absolute inset-0">
         {/* Radial gradient */}
-        <div className="absolute inset-0 bg-gradient-radial from-crystal/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-radial from-atlantean-teal-aqua/10 via-transparent to-transparent" />
 
         {/* Floating orbs representing the 10 guardians */}
         {[...Array(10)].map((_, i) => {
@@ -47,10 +47,10 @@ export function GuardiansHero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-crystal/10 border border-crystal/20 mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-atlantean-teal-aqua/10 border border-atlantean-teal-aqua/20 mb-6"
         >
-          <Shield className="w-4 h-4 text-crystal" />
-          <span className="text-sm font-medium text-crystal">Keepers of the Gates</span>
+          <Shield className="w-4 h-4 text-atlantean-teal-aqua" />
+          <span className="text-sm font-medium text-atlantean-teal-aqua">Keepers of the Gates</span>
         </motion.div>
 
         <motion.h1
@@ -59,7 +59,7 @@ export function GuardiansHero() {
           transition={{ delay: 0.1 }}
           className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6"
         >
-          <span className="bg-gradient-to-r from-crystal via-white to-brand-gold bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-atlantean-teal-aqua via-white to-gold-bright bg-clip-text text-transparent">
             The Ten Guardians
           </span>
         </motion.h1>

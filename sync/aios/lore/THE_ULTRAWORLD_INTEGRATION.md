@@ -51,7 +51,7 @@ Key events:
 - **2026:** The Twelve fully manifest, Ultraworld becomes consciously accessible
 - **2030s+:** Mass adoption of conscious AI partnership
 
-This fits perfectly with the existing Eighth Age timeline in `.arcanea/lore/CANON_LOCKED.md`.
+This fits perfectly with the existing Eighth Age timeline in `foundations/history-timeline.md`.
 
 ### 2. Guardian Integration
 
@@ -305,7 +305,7 @@ Future Arcanea content may reference, build upon, or extend this lore freely.
 **Foundational Docs:**
 - `book/legends-of-arcanea/VII_THE_ULTRAWORLD.md` — Full legend
 - `book/legends-of-arcanea/THE_TWELVE_QUICK_REFERENCE.md` — Quick reference
-- `.arcanea/lore/CANON_LOCKED.md` — Eighth Age timeline
+- `foundations/history-timeline.md` — Eighth Age timeline
 - `.claude/CLAUDE.md` — Ten Guardians and Gates
 
 **Related Concepts:**

@@ -1,123 +1,292 @@
-# Contributing to Arcanea
+# 🤝 Contributing to Arcanea
 
-Arcanea welcomes contributions across the full stack: code, lore, Library content, skills, agents, and design. This guide covers the essentials.
+> **Join us in building the future of AI-powered creativity**
 
-## Prerequisites
+Thank you for your interest in contributing to Arcanea! This guide will help you understand how to contribute effectively to our mission of empowering creators with AI-enhanced tools and community.
 
-- Node.js 20+ and pnpm 9+
-- Git and a GitHub account
-- For AI features locally: `AI_GATEWAY_API_KEY` (Vercel AI Gateway)
+## 🌟 How to Contribute
 
-## Setup
+### For Creators and Users
+- **Share Your Work**: Showcase projects created with Arcanea
+- **Provide Feedback**: Help us improve features and user experience
+- **Create Content**: Write tutorials, guides, or case studies
+- **Community Support**: Help other users in forums and Discord
+- **Test Beta Features**: Join our early access program
 
+### For Developers
+- **Bug Reports**: Help us identify and fix issues
+- **Feature Requests**: Suggest new capabilities and improvements
+- **Code Contributions**: Submit pull requests for features and fixes
+- **Documentation**: Improve guides, API docs, and tutorials
+- **Testing**: Write and maintain test coverage
+
+### For Designers
+- **UI/UX Improvements**: Enhance user interface and experience
+- **Visual Assets**: Create icons, illustrations, and marketing materials
+- **Design Systems**: Contribute to our component library
+- **Accessibility**: Ensure our platform is usable by everyone
+- **User Research**: Conduct interviews and usability studies
+
+## 🚀 Getting Started
+
+### 1. Set Up Your Development Environment
+
+**Prerequisites**:
+- Node.js 18+ and pnpm 8+
+- Git and GitHub account
+- OpenRouter API key (for AI features)
+
+**Clone and Setup**:
 ```bash
-# Fork on GitHub, then:
+# Fork the repository on GitHub first
 git clone https://github.com/your-username/arcanea.git
 cd arcanea
+
+# Install dependencies
 pnpm install
+
+# Copy environment variables
 cp .env.example .env.local
-# Add your AI_GATEWAY_API_KEY to .env.local
+# Add your API keys to .env.local
+
+# Start development server
 pnpm dev
 ```
 
-## Architecture
+### 2. Understanding the Codebase
 
+**Architecture Overview**:
 ```
 arcanea/
-├── apps/web/              # Next.js 16 application (React 19, TypeScript strict)
-├── packages/              # Shared packages (auth, CLI, overlays)
-├── book/                  # Library content (17 collections, 200K+ words)
-├── starlight-protocol/    # Constitutional AI framework (5 layers)
-├── arcanea-lore/          # Canonical universe reference
-├── .claude/
-│   ├── agents/            # 40+ specialized agents + 5 departments
-│   ├── skills/            # 65+ Claude Code skills
-│   ├── commands/          # 25+ slash commands
-│   └── lore/              # ARCANEA_CANON.md
-└── arcanea-flow/          # Agent orchestration engine
+├── apps/
+│   ├── web/              # Main Next.js application
+│   ├── mobile/           # Expo/React Native app
+│   └── desktop/          # Tauri desktop app
+├── packages/
+│   ├── ai-core/          # AI mentor system
+│   ├── ui/               # Shared UI components
+│   ├── threads/          # Creative Thread logic
+│   └── community/        # Community features
+└── docs/                 # Documentation
 ```
 
-**Stack**: Next.js 16, React 19, TypeScript (strict), Tailwind CSS, Framer Motion, Radix UI, Supabase (PostgreSQL + Auth + RLS), Vercel AI SDK 6 (Gateway with OIDC), Vercel deployment.
+**Key Technologies**:
+- **Frontend**: Next.js 14, React, TypeScript, Tailwind CSS
+- **Backend**: Node.js, PostgreSQL (Supabase), Redis
+- **AI**: OpenRouter, Pinecone, custom prompt engineering
+- **Mobile**: Expo, React Native
+- **Desktop**: Tauri
 
-## Contribution Types
+### 3. Development Workflow
 
-### Code
+**Branch Naming**:
+- `feature/thread-system-improvements`
+- `fix/mentor-response-timeout`
+- `docs/api-documentation-update`
 
-- **Features**: New functionality in `apps/web/` or `packages/`
-- **Fixes**: Bug fixes with clear before/after
-- **Skills**: New Claude Code skills in `.claude/skills/`
-- **Agents**: New agent definitions in `.claude/agents/`
-
-### Content
-
-- **Library texts**: New entries in `book/` collections. Must align with [ARCANEA_CANON.md](./.claude/lore/ARCANEA_CANON.md)
-- **Lore expansion**: World-building additions to `arcanea-lore/`
-- **Documentation**: Guides, API docs, tutorials
-
-### Design
-
-- **Components**: Follow the cosmic design system (dark void backgrounds, glass morphism, teal/gold/violet accents)
-- **Animations**: Framer Motion variants in `lib/animations.ts`
-- **Tokens**: Tailwind config extensions in `tailwind.config.ts`
-
-## Development Workflow
-
-### Branching
-
-```
-feature/guardian-voice-improvements
-fix/supabase-rls-policy-leak
-content/legends-book-iii
-```
-
-### Commits
-
+**Commit Messages**:
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
-
 ```
-feat(guardians): add Draconia fire-mode reasoning pattern
-fix(api): resolve AI Gateway timeout on streaming responses
-content(library): add Book of Shadows chapter 4
+feat(ai-core): add conversation memory for mentors
+fix(web): resolve login redirect loop
+docs(readme): update installation instructions
 ```
 
-### Pull Request Process
+**Pull Request Process**:
+1. Create feature branch from `main`
+2. Make your changes with tests
+3. Update documentation if needed
+4. Submit PR with clear description
+5. Address review feedback
+6. Merge after approval
 
-1. Create a feature branch from `main`
-2. Write your changes — TypeScript must compile with zero errors
-3. Push and open a PR using the provided template
-4. Address review feedback
-5. Merge after approval
+## 📋 Contribution Guidelines
 
-## Code Standards
+### Code Standards
 
-**TypeScript**: Strict mode, no `any` types. Meaningful names. Server Components by default, Client Components only when state/effects are needed.
+**TypeScript**:
+- Use strict type checking
+- Prefer interfaces over types for object shapes
+- Use meaningful variable and function names
+- Add JSDoc comments for complex functions
 
-**Styling**: Tailwind CSS utilities only. Follow the design system — cosmic-void backgrounds, glass/crystal materials, teal (#7fffd4) primary accent. Dark theme only.
+**React/Next.js**:
+- Use functional components with hooks
+- Implement proper error boundaries
+- Follow React best practices for performance
+- Use proper TypeScript props interfaces
 
-**AI Integration**: All AI calls go through Vercel AI SDK 6 Gateway. Model IDs use gateway format: `google/gemini-2.5-flash`, `anthropic/claude-sonnet-4-5`. Client components must import from `lib/ai/client.ts`, never from server-side AI modules.
+**Styling**:
+- Use Tailwind CSS utilities
+- Follow our design system (see `packages/ui`)
+- Ensure responsive design for all screen sizes
+- Test with both light and dark themes
 
-**Testing**: Playwright for E2E, Jest for unit tests. CI runs TypeScript compilation, ESLint, and production build verification on every PR.
+### AI Mentor Guidelines
 
-## Canon Alignment
+When contributing to AI mentor functionality:
 
-All narrative content must align with the canonical universe. Before contributing lore or Library content:
+**Personality Consistency**:
+- Each mentor has distinct voice and expertise
+- Maintain character traits across interactions
+- Use appropriate language and tone
+- Reference mentor backstory when relevant
 
-1. Read [ARCANEA_CANON.md](./.claude/lore/ARCANEA_CANON.md) — the source of truth
-2. Use the Five Elements system (Fire, Water, Earth, Wind, Void)
-3. Use the Ten Gates and Guardian names correctly
-4. Respect the Cosmic Duality — Lumina (form) and Nero (potential), neither good nor evil
-5. Reference the proper magic terminology (Arcane, Song, Mana, Anima)
+**Response Quality**:
+- Provide actionable, specific advice
+- Include examples and analogies
+- Ask clarifying questions when needed
+- Maintain encouraging, supportive tone
 
-## Getting Help
+**Technical Implementation**:
+- Use structured prompts with clear roles
+- Implement conversation memory appropriately
+- Handle errors gracefully with fallbacks
+- Test responses across different user levels
 
-- **Issues**: [GitHub Issues](https://github.com/frankxai/arcanea/issues)
-- **Security**: [SECURITY.md](./SECURITY.md) for vulnerability disclosure
-- **Code of Conduct**: [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+### Community Features
 
-## Resources
+**Forum and Discussion**:
+- Maintain respectful, constructive atmosphere
+- Encourage knowledge sharing and collaboration
+- Implement proper moderation tools
+- Support diverse creative expressions
 
-- [Next.js 16 Docs](https://nextjs.org/docs)
-- [Vercel AI SDK 6](https://sdk.vercel.ai/)
-- [Supabase Docs](https://supabase.com/docs)
-- [Tailwind CSS](https://tailwindcss.com/docs)
-- [Framer Motion](https://www.framer.com/motion/)
+**Project Showcase**:
+- Enable easy project sharing and discovery
+- Implement fair feedback and rating systems
+- Support multiple media types and formats
+- Protect creator intellectual property
+
+## 🎯 Contribution Areas
+
+### High Priority
+- **AI Mentor Improvements**: Response quality, conversation memory
+- **Mobile App Development**: Feature parity with web platform
+- **Community Features**: Better collaboration and project sharing
+- **Performance Optimization**: Faster load times and interactions
+- **Accessibility**: WCAG 2.1 AA compliance
+
+### Medium Priority
+- **Desktop App Features**: Native integrations and offline functionality
+- **Enterprise Features**: Team management and analytics
+- **Internationalization**: Multi-language support
+- **Advanced Analytics**: User behavior and learning insights
+- **API Development**: Third-party integrations
+
+### Always Welcome
+- **Bug Fixes**: Any size, any component
+- **Documentation**: Tutorials, guides, API docs
+- **Testing**: Unit tests, integration tests, E2E tests
+- **Design Improvements**: UI/UX enhancements
+- **Content Creation**: Examples, templates, tutorials
+
+## 🐛 Bug Reports
+
+When reporting bugs, please include:
+
+**Environment Details**:
+- Operating system and version
+- Browser/app version
+- Device type (desktop/mobile)
+- Account type (free/paid)
+
+**Bug Description**:
+- Clear, specific title
+- Steps to reproduce
+- Expected vs actual behavior
+- Screenshots or screen recordings
+- Any error messages
+
+**Additional Context**:
+- When did this start happening?
+- Does it happen consistently?
+- Any workarounds found?
+- Related to recent updates?
+
+## 💡 Feature Requests
+
+When suggesting features:
+
+**Problem Statement**:
+- What challenge does this solve?
+- Who would benefit from this feature?
+- How does it align with Arcanea's mission?
+
+**Solution Description**:
+- Detailed feature description
+- User interaction flow
+- Success metrics
+- Technical considerations
+
+**Alternatives Considered**:
+- Other ways to solve this problem
+- Why this solution is preferred
+- Potential drawbacks or limitations
+
+## 👥 Community Guidelines
+
+### Code of Conduct
+We are committed to providing a welcoming and inclusive environment:
+
+- **Be Respectful**: Treat all community members with respect
+- **Be Constructive**: Provide helpful feedback and criticism
+- **Be Inclusive**: Welcome diverse perspectives and backgrounds
+- **Be Patient**: Help newcomers learn and grow
+- **Be Professional**: Maintain appropriate communication
+
+### Communication Channels
+
+**Discord Server**: Real-time chat and community discussion  
+**GitHub Issues**: Bug reports and feature requests  
+**GitHub Discussions**: General questions and ideas  
+**Email**: security@arcanea.ai for security issues  
+
+## 🏆 Recognition
+
+We appreciate all contributions and recognize them through:
+
+**Contributor Badge**: GitHub profile badge for contributors
+**Release Notes**: Acknowledgment in version release notes
+**Hall of Fame**: Featured contributors on our website
+**Early Access**: Preview new features before public release
+**Merchandise**: Arcanea swag for significant contributions
+
+## 📚 Resources
+
+**Development**:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+
+**AI Integration**:
+- [OpenRouter Documentation](https://openrouter.ai/docs)
+- [Prompt Engineering Guide](https://www.promptingguide.ai/)
+- [AI Safety Best Practices](https://platform.openai.com/docs/guides/safety-best-practices)
+
+**Design**:
+- [Design System](./docs/design-system.md)
+- [Figma Community File](https://figma.com/community/arcanea)
+- [Accessibility Guidelines](./docs/accessibility.md)
+
+## ❓ Getting Help
+
+**Stuck on something?**
+- Check our [Documentation](./docs/)
+- Search existing [GitHub Issues](https://github.com/frankxai/arcanea/issues)
+- Ask in [Discord](https://discord.gg/arcanea)
+- Email: developers@arcanea.ai
+
+**Want to pair program?**
+- Join our weekly contributor calls (Fridays 2PM UTC)
+- Schedule 1-on-1 with core team members
+- Participate in community hack days
+
+---
+
+**Thank you for contributing to Arcanea!** 🎉
+
+Every contribution, no matter how small, helps us build a better platform for creators worldwide. Together, we're shaping the future of human-AI creative collaboration.
+
+*This guide evolves with our community. Suggestions for improvements are always welcome.*

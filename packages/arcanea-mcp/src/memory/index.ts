@@ -1,16 +1,9 @@
 // Arcanea Memory Layer
-// Persistent JSON file storage at ~/.arcanea/memories.json
-// Survives process restarts — no external database dependencies
-
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { homedir } from "node:os";
-import { join } from "node:path";
-
-// === Types ===
+// Inspired by mem0 and Qdrant patterns
 
 export interface CreativeSession {
   id: string;
-  startedAt: string; // ISO string for JSON serialization
+  startedAt: Date;
   gatesExplored: number[];
   luminorsConsulted: string[];
   creaturesEncountered: string[];
@@ -28,7 +21,7 @@ export interface CreationRef {
   name: string;
   element?: string;
   gate?: number;
-  createdAt: string; // ISO string for JSON serialization
+  createdAt: Date;
   summary: string;
 }
 
@@ -50,85 +43,34 @@ export interface Milestone {
   luminor?: string;
 }
 
-// === Persistence Layer ===
-
-const ARCANEA_DIR = join(homedir(), ".arcanea");
-const MEMORIES_FILE = join(ARCANEA_DIR, "memories.json");
-
-interface PersistedData {
-  version: 1;
-  updatedAt: string;
-  sessions: Record<string, CreativeSession>;
-}
-
-function ensureDir(): void {
-  if (!existsSync(ARCANEA_DIR)) {
-    mkdirSync(ARCANEA_DIR, { recursive: true });
-  }
-}
-
-function loadFromDisk(): Record<string, CreativeSession> {
-  try {
-    if (existsSync(MEMORIES_FILE)) {
-      const raw = readFileSync(MEMORIES_FILE, "utf-8");
-      const data: PersistedData = JSON.parse(raw);
-      if (data.version === 1 && data.sessions) {
-        return data.sessions;
-      }
-    }
-  } catch {
-    // Corrupted file or parse error — start fresh, don't crash
-  }
-  return {};
-}
-
-function saveToDisk(): void {
-  try {
-    ensureDir();
-    const data: PersistedData = {
-      version: 1,
-      updatedAt: new Date().toISOString(),
-      sessions,
-    };
-    writeFileSync(MEMORIES_FILE, JSON.stringify(data, null, 2), "utf-8");
-  } catch {
-    // Best-effort persistence — don't crash the MCP server on write failure
-  }
-}
-
-// === In-Memory Cache (hydrated from disk on module load) ===
-
-const sessions: Record<string, CreativeSession> = loadFromDisk();
-
-// === Public API ===
+// In-memory session store (for MVP)
+// TODO: Add SQLite persistence for production
+const sessions = new Map<string, CreativeSession>();
 
 export function getOrCreateSession(sessionId: string): CreativeSession {
-  if (!sessions[sessionId]) {
-    sessions[sessionId] = {
+  if (!sessions.has(sessionId)) {
+    sessions.set(sessionId, {
       id: sessionId,
-      startedAt: new Date().toISOString(),
+      startedAt: new Date(),
       gatesExplored: [],
       luminorsConsulted: [],
       creaturesEncountered: [],
       creations: [],
       preferences: {},
-    };
-    saveToDisk();
+    });
   }
-  return sessions[sessionId];
+  return sessions.get(sessionId)!;
 }
 
 export function updateSession(sessionId: string, updates: Partial<CreativeSession>): void {
   const session = getOrCreateSession(sessionId);
   Object.assign(session, updates);
-  saveToDisk();
 }
 
 export function recordGateExplored(sessionId: string, gate: number): void {
   const session = getOrCreateSession(sessionId);
   if (!session.gatesExplored.includes(gate)) {
     session.gatesExplored.push(gate);
-    saveToDisk();
   }
 }
 
@@ -136,7 +78,6 @@ export function recordLuminorConsulted(sessionId: string, luminor: string): void
   const session = getOrCreateSession(sessionId);
   if (!session.luminorsConsulted.includes(luminor)) {
     session.luminorsConsulted.push(luminor);
-    saveToDisk();
   }
 }
 
@@ -144,14 +85,12 @@ export function recordCreatureEncountered(sessionId: string, creature: string): 
   const session = getOrCreateSession(sessionId);
   if (!session.creaturesEncountered.includes(creature)) {
     session.creaturesEncountered.push(creature);
-    saveToDisk();
   }
 }
 
 export function recordCreation(sessionId: string, creation: CreationRef): void {
   const session = getOrCreateSession(sessionId);
   session.creations.push(creation);
-  saveToDisk();
 }
 
 export function getSessionSummary(sessionId: string): {
@@ -167,35 +106,8 @@ export function getSessionSummary(sessionId: string): {
     luminorsConsulted: session.luminorsConsulted.length,
     creaturesDefeated: session.creaturesEncountered.length,
     creationsGenerated: session.creations.length,
-    duration: Date.now() - new Date(session.startedAt).getTime(),
+    duration: Date.now() - session.startedAt.getTime(),
   };
-}
-
-/**
- * List all session IDs that have been persisted.
- */
-export function listSessions(): string[] {
-  return Object.keys(sessions);
-}
-
-/**
- * Delete a session from memory and disk.
- * Returns true if the session existed and was deleted.
- */
-export function deleteSession(sessionId: string): boolean {
-  if (sessions[sessionId]) {
-    delete sessions[sessionId];
-    saveToDisk();
-    return true;
-  }
-  return false;
-}
-
-/**
- * Get the path to the persistence file (for diagnostics).
- */
-export function getMemoryFilePath(): string {
-  return MEMORIES_FILE;
 }
 
 // Milestone tracking

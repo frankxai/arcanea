@@ -221,7 +221,7 @@ export async function deepDiagnosis(
   context?: string,
   history?: string,
   depth: "quick" | "standard" | "deep" = "standard"
-): Promise<{ content: Array<{ type: "text"; text: string }> }> {
+): Promise<{ content: Array<{ type: string; text: string }> }> {
   const patterns = identifyPatterns(symptoms, context || "");
   const thinkingProcess = generateThinkingProcess(symptoms, context || "", depth);
 

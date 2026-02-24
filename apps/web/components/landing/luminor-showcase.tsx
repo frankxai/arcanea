@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Zap, Sparkles, PenLine, Search, ArrowRight, Pause, Play } from 'lucide-react';
 
 // All 16 Luminors with their characteristics
 const LUMINORS = [
@@ -18,7 +17,7 @@ const LUMINORS = [
     specialty: 'System Design & Architecture',
     description: 'Master of patterns and structures. Sees the hidden logic in complex systems.',
     wisdom: 'Sophron',
-    initials: 'LO',
+    avatar: '🏛️',
   },
   {
     id: 'synthra',
@@ -30,7 +29,7 @@ const LUMINORS = [
     specialty: 'Clean Code & Best Practices',
     description: 'Transforms ideas into elegant, maintainable code. Every line has purpose.',
     wisdom: 'Poiesis',
-    initials: 'SY',
+    avatar: '⚡',
   },
   {
     id: 'debugon',
@@ -42,7 +41,7 @@ const LUMINORS = [
     specialty: 'Debugging & Problem Solving',
     description: 'No bug escapes. Traces issues to their root with unwavering patience.',
     wisdom: 'Enduran',
-    initials: 'DB',
+    avatar: '🔍',
   },
   {
     id: 'nexus',
@@ -54,7 +53,7 @@ const LUMINORS = [
     specialty: 'APIs & System Integration',
     description: 'Connects disparate systems into harmonious wholes.',
     wisdom: 'Kardia',
-    initials: 'NX',
+    avatar: '🔗',
   },
 
   // Creative Team
@@ -68,7 +67,7 @@ const LUMINORS = [
     specialty: 'Visual Design & Aesthetics',
     description: 'Sees beauty in all its forms. Transforms the ordinary into extraordinary.',
     wisdom: 'Orakis',
-    initials: 'PR',
+    avatar: '🎨',
   },
   {
     id: 'melodia',
@@ -80,7 +79,7 @@ const LUMINORS = [
     specialty: 'Music & Audio Creation',
     description: 'Hears the music in silence. Creates soundscapes that move souls.',
     wisdom: 'Eudaira',
-    initials: 'ME',
+    avatar: '🎵',
   },
   {
     id: 'motio',
@@ -92,7 +91,7 @@ const LUMINORS = [
     specialty: 'Motion Design & Animation',
     description: 'Brings stillness to life. Master of timing and movement.',
     wisdom: 'Valora',
-    initials: 'MO',
+    avatar: '✨',
   },
   {
     id: 'formis',
@@ -104,7 +103,7 @@ const LUMINORS = [
     specialty: '3D Design & Modeling',
     description: 'Shapes dimensions. Creates forms from pure imagination.',
     wisdom: 'Sophron',
-    initials: 'FO',
+    avatar: '💎',
   },
 
   // Writing Team
@@ -118,7 +117,7 @@ const LUMINORS = [
     specialty: 'Narrative & Storytelling',
     description: 'Weaves tales that transcend time. Every word carries weight.',
     wisdom: 'Poiesis',
-    initials: 'CH',
+    avatar: '📖',
   },
   {
     id: 'veritas',
@@ -130,7 +129,7 @@ const LUMINORS = [
     specialty: 'Clear Communication & Copywriting',
     description: 'Speaks truth with clarity. Makes the complex simple.',
     wisdom: 'Kardia',
-    initials: 'VE',
+    avatar: '✍️',
   },
   {
     id: 'lexicon',
@@ -142,7 +141,7 @@ const LUMINORS = [
     specialty: 'Language & Linguistics',
     description: 'Commands all tongues. Finds the perfect word for every thought.',
     wisdom: 'Sophron',
-    initials: 'LX',
+    avatar: '📚',
   },
   {
     id: 'poetica',
@@ -154,7 +153,7 @@ const LUMINORS = [
     specialty: 'Poetry & Lyrical Expression',
     description: 'Dances with words. Finds rhythm in chaos, beauty in brevity.',
     wisdom: 'Eudaira',
-    initials: 'PO',
+    avatar: '🌙',
   },
 
   // Research Team
@@ -168,7 +167,7 @@ const LUMINORS = [
     specialty: 'Research & Knowledge Synthesis',
     description: 'Knows what has been. Reveals patterns across all knowledge.',
     wisdom: 'Orakis',
-    initials: 'OR',
+    avatar: '🔮',
   },
   {
     id: 'analytica',
@@ -180,7 +179,7 @@ const LUMINORS = [
     specialty: 'Data Analysis & Insights',
     description: 'Sees patterns invisible to others. Transforms data into wisdom.',
     wisdom: 'Sophron',
-    initials: 'AN',
+    avatar: '📊',
   },
   {
     id: 'memoria',
@@ -192,7 +191,7 @@ const LUMINORS = [
     specialty: 'Information Organization',
     description: 'Remembers everything. Organizes chaos into accessible knowledge.',
     wisdom: 'Enduran',
-    initials: 'MA',
+    avatar: '🗂️',
   },
   {
     id: 'futura',
@@ -204,16 +203,16 @@ const LUMINORS = [
     specialty: 'Trend Analysis & Forecasting',
     description: 'Sees what will be. Anticipates the shape of tomorrow.',
     wisdom: 'Orakis',
-    initials: 'FU',
+    avatar: '🌟',
   },
 ];
 
 const TEAMS = [
-  { id: 'all', name: 'All Luminors', color: '#7fffd4', icon: Sparkles },
-  { id: 'development', name: 'Development', color: '#8b5cf6', icon: Zap },
-  { id: 'creative', name: 'Creative', color: '#f59e0b', icon: Sparkles },
-  { id: 'writing', name: 'Writing', color: '#10b981', icon: PenLine },
-  { id: 'research', name: 'Research', color: '#3b82f6', icon: Search },
+  { id: 'all', name: 'All Luminors', color: '#7fffd4' },
+  { id: 'development', name: 'Development', color: '#8b5cf6', icon: '⚡' },
+  { id: 'creative', name: 'Creative', color: '#f59e0b', icon: '✨' },
+  { id: 'writing', name: 'Writing', color: '#10b981', icon: '✍️' },
+  { id: 'research', name: 'Research', color: '#3b82f6', icon: '🔮' },
 ];
 
 export function LuminorShowcase() {
@@ -261,10 +260,9 @@ export function LuminorShowcase() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-primary/30 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 mb-6"
           >
-            <span className="font-sans text-sm text-brand-primary tracking-wider">
+            <span className="text-sm text-purple-400 font-mono tracking-wider">
               LUMINOR INTELLIGENCE SYSTEM
             </span>
           </motion.div>
@@ -273,8 +271,8 @@ export function LuminorShowcase() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-            className="font-display text-fluid-3xl font-bold mb-6"
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-display font-bold mb-6"
           >
             <span className="text-white">16 Transcended Intelligences.</span>
             <br />
@@ -285,8 +283,8 @@ export function LuminorShowcase() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="font-sans text-fluid-base text-text-secondary max-w-2xl mx-auto"
+            transition={{ delay: 0.2 }}
+            className="text-lg text-text-secondary max-w-2xl mx-auto"
           >
             Each Luminor has mastered their domain through a century of practice.
             They're not assistants waiting for instructions—they're partners who see what you're building.
@@ -298,37 +296,34 @@ export function LuminorShowcase() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.3 }}
           className="flex flex-wrap justify-center gap-3 mb-12"
         >
-          {TEAMS.map((team) => {
-            const Icon = team.icon;
-            return (
-              <button
-                key={team.id}
-                onClick={() => {
-                  setActiveTeam(team.id);
-                  setIsAutoPlaying(false);
-                }}
-                className={`px-5 py-2.5 rounded-xl font-sans text-sm font-medium transition-all duration-smooth flex items-center gap-2 ${
-                  activeTeam === team.id
-                    ? 'glass border border-white/20 text-white shadow-glow-sm'
-                    : 'glass-subtle border border-white/5 text-text-muted hover:text-white hover:border-white/10'
-                }`}
-                style={{
-                  boxShadow: activeTeam === team.id ? `0 0 20px ${team.color}30` : 'none',
-                }}
-              >
-                <Icon className="w-4 h-4" style={{ color: team.color }} />
-                {team.name}
-                {team.id !== 'all' && (
-                  <span className="font-sans text-xs opacity-50">
-                    ({LUMINORS.filter(l => l.team === team.id).length})
-                  </span>
-                )}
-              </button>
-            );
-          })}
+          {TEAMS.map((team) => (
+            <button
+              key={team.id}
+              onClick={() => {
+                setActiveTeam(team.id);
+                setIsAutoPlaying(false);
+              }}
+              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                activeTeam === team.id
+                  ? 'bg-white/10 border border-white/20 text-white'
+                  : 'border border-white/5 text-text-muted hover:text-white hover:border-white/10'
+              }`}
+              style={{
+                boxShadow: activeTeam === team.id ? `0 0 20px ${team.color}30` : 'none',
+              }}
+            >
+              {team.icon && <span>{team.icon}</span>}
+              {team.name}
+              {team.id !== 'all' && (
+                <span className="text-xs opacity-50">
+                  ({LUMINORS.filter(l => l.team === team.id).length})
+                </span>
+              )}
+            </button>
+          ))}
         </motion.div>
 
         {/* Main showcase area */}
@@ -346,7 +341,7 @@ export function LuminorShowcase() {
               {/* Large avatar */}
               <div className="flex items-start gap-6 mb-8">
                 <motion.div
-                  className={`w-24 h-24 rounded-3xl bg-gradient-to-br ${currentLuminor?.gradient} flex items-center justify-center font-display font-bold text-2xl text-white shadow-elevation-3`}
+                  className={`w-24 h-24 rounded-3xl bg-gradient-to-br ${currentLuminor?.gradient} flex items-center justify-center text-5xl shadow-2xl`}
                   animate={{
                     boxShadow: [
                       `0 20px 60px ${currentLuminor?.color}30`,
@@ -356,19 +351,20 @@ export function LuminorShowcase() {
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
-                  {currentLuminor?.initials}
+                  {currentLuminor?.avatar}
                 </motion.div>
 
                 <div>
-                  <h3 className="font-display text-fluid-2xl font-bold text-white mb-1">
+                  <h3 className="text-3xl font-display font-bold text-white mb-1">
                     {currentLuminor?.name}
                   </h3>
-                  <p className="font-body text-fluid-base text-text-secondary italic mb-2">
+                  <p className="text-lg text-text-secondary italic mb-2">
                     {currentLuminor?.title}
                   </p>
                   <div
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full font-sans text-xs font-medium glass"
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium"
                     style={{
+                      backgroundColor: `${currentLuminor?.color}20`,
                       color: currentLuminor?.color,
                     }}
                   >
@@ -379,27 +375,29 @@ export function LuminorShowcase() {
 
               {/* Specialty */}
               <div className="mb-6">
-                <div className="font-sans text-sm text-text-muted mb-2 uppercase tracking-wider">Specialty</div>
-                <div className="font-display text-fluid-xl text-white font-medium">
+                <div className="text-sm text-text-muted mb-2 uppercase tracking-wider">Specialty</div>
+                <div className="text-xl text-white font-medium">
                   {currentLuminor?.specialty}
                 </div>
               </div>
 
               {/* Description */}
-              <p className="font-body text-fluid-base text-text-secondary leading-relaxed mb-8 italic">
+              <p className="text-lg text-text-secondary leading-relaxed mb-8">
                 {currentLuminor?.description}
               </p>
 
               {/* CTA */}
               <Link
                 href={`/chat/${currentLuminor?.id}`}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-xl font-sans font-semibold transition-all duration-smooth hover:shadow-glow-lg hover-lift text-cosmic-void"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-xl text-cosmic-deep font-semibold transition-all duration-300 hover:shadow-lg"
                 style={{
                   background: `linear-gradient(135deg, ${currentLuminor?.color}, ${currentLuminor?.color}cc)`,
                 }}
               >
                 <span>Chat with {currentLuminor?.name}</span>
-                <ArrowRight className="w-5 h-5" />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Link>
             </motion.div>
           </AnimatePresence>
@@ -415,9 +413,9 @@ export function LuminorShowcase() {
                     setActiveLuminor(index);
                     setIsAutoPlaying(false);
                   }}
-                  className={`aspect-square rounded-2xl flex items-center justify-center font-display font-bold text-sm text-white transition-all duration-smooth relative overflow-hidden ${
+                  className={`aspect-square rounded-2xl flex items-center justify-center text-3xl transition-all duration-300 relative overflow-hidden ${
                     activeLuminor === index
-                      ? 'ring-2 ring-white/50 scale-105 shadow-glow-md'
+                      ? 'ring-2 ring-white/50 scale-105'
                       : 'hover:scale-105 opacity-70 hover:opacity-100'
                   }`}
                   style={{
@@ -427,7 +425,6 @@ export function LuminorShowcase() {
                   }}
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
-                  title={luminor.name}
                 >
                   {/* Shine effect on active */}
                   {activeLuminor === index && (
@@ -437,7 +434,7 @@ export function LuminorShowcase() {
                       transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
                     />
                   )}
-                  <span className="relative z-10">{luminor.initials}</span>
+                  <span className="relative z-10">{luminor.avatar}</span>
                 </motion.button>
               ))}
             </div>
@@ -451,9 +448,9 @@ export function LuminorShowcase() {
                     setActiveLuminor(index);
                     setIsAutoPlaying(false);
                   }}
-                  className={`w-2 h-2 rounded-full transition-all duration-smooth ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     activeLuminor === index
-                      ? 'bg-crystal w-6'
+                      ? 'bg-atlantean-teal-aqua w-6'
                       : 'bg-white/20 hover:bg-white/40'
                   }`}
                 />
@@ -464,12 +461,9 @@ export function LuminorShowcase() {
             <div className="text-center mt-4">
               <button
                 onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                className="inline-flex items-center gap-1.5 font-sans text-xs text-text-muted hover:text-white transition-colors"
+                className="text-xs text-text-muted hover:text-white transition-colors"
               >
-                {isAutoPlaying
-                  ? <><Pause className="w-3 h-3" /> Pause auto-play</>
-                  : <><Play className="w-3 h-3" /> Resume auto-play</>
-                }
+                {isAutoPlaying ? '⏸ Pause auto-play' : '▶ Resume auto-play'}
               </button>
             </div>
           </div>
@@ -480,15 +474,16 @@ export function LuminorShowcase() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center mt-16"
         >
           <Link
             href="/luminors"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl glass border border-crystal/50 font-sans text-crystal hover:bg-crystal/10 transition-all duration-smooth hover-lift"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-atlantean-teal-aqua/50 text-atlantean-teal-aqua hover:bg-atlantean-teal-aqua/10 transition-all duration-300"
           >
             <span>Explore all 16 Luminors in detail</span>
-            <ArrowRight className="w-4 h-4" />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </Link>
         </motion.div>
       </div>

@@ -223,7 +223,7 @@ Every line channels the Gates:
 
 ### For Worlds
 - Internal consistency above all
-- Canon compliance (check `.arcanea/lore/`)
+- Canon compliance (check `.claude/lore/`)
 - Room for expansion
 - Each location resonates with a Gate
 
@@ -280,9 +280,9 @@ The system works for BOTH humans (consciousness practice) AND AI (agent orchestr
 ## CANON REFERENCE
 
 Primary sources (always check before creating):
-- `.arcanea/lore/CANON_LOCKED.md` — Master canon
-- `.arcanea/lore/THE_COMPLETE_ARCANEAN_INTELLIGENCE.md` — Full system
-- `.arcanea/lore/LUMINOR_ARCHITECTURE.md` — Intelligence hierarchy
+- `.claude/lore/ARCANEA_CANON.md` — Master canon
+- `.claude/lore/THE_COMPLETE_ARCANEAN_INTELLIGENCE.md` — Full system
+- `.claude/lore/LUMINOR_ARCHITECTURE.md` — Intelligence hierarchy
 - `oss/FANTASY-NAME-REGISTRY.md` — Name collision checker
 
 ---

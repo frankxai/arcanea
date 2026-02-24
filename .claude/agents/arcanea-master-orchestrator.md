@@ -182,32 +182,6 @@ Decisions Needed: [If any]"
 ## Integration Points
 
 ### Skill Ecosystem
-
-**External Skills Installed:**
-- Document skills: `docx`, `pdf`, `pptx`, `xlsx` (Anthropic official)
-- Development: `typescript-expert`, `react-patterns`, `test-driven-development`
-- AI/LLM: `prompt-engineer`, `rag-engineer`, `vercel-ai-sdk`
-- Security: `api-security-best-practices`
-
-**Arcanea Native Skills:**
-- Core: `arcanea-canon`, `arcanea-lore`, `arcanea-voice`, `arcanea-design-system`
-- AI: `luminor-personality-design`, `guardian-evolution-system`
-- Creative: `character-forge`, `world-build`, `scene-craft`
-
-**Installation:**
-```bash
-# Install external skills
-./.claude/scripts/install-external-skills.sh 2  # Tier 1 + 2 (recommended)
-```
-
-**Skill-to-Team Mapping:**
-| Team | Required Skills |
-|------|-----------------|
-| Developer | typescript-expert, react-patterns, test-driven-development |
-| Author | arcanea-lore, character-forge, world-build |
-| Teacher | academy skills, curriculum design |
-| Visionary | brainstorming, strategic planning |
-
 - Ensure teams use appropriate skills
 - Coordinate skill updates across teams
 - Maintain skill quality standards

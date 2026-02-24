@@ -56,7 +56,7 @@ export type GateName =
   | 'unity'
   | 'source';
 
-export type GateFrequency = 174 | 285 | 396 | 417 | 528 | 639 | 741 | 852 | 963 | 1111;
+export type GateFrequency = 396 | 417 | 528 | 639 | 741 | 852 | 963 | 1111;
 
 export interface Gate {
   name: GateName;
@@ -95,15 +95,6 @@ export interface Guardian {
   frequency: GateFrequency;
   description?: string;
   archetype?: string;
-  // Rich profile fields
-  role?: string;
-  vibe?: string;
-  codingStyle?: string[];
-  helpPatterns?: string[];
-  metaphorDomain?: string[];
-  signOff?: string;
-  // Routing domains (keywords for task routing)
-  routingDomains?: string[];
 }
 
 // ============================================
@@ -128,15 +119,6 @@ export interface Godbeast {
   guardian: GuardianName;
   form: string;
   power: string;
-  // Rich profile fields (from lore markdown)
-  title?: string;
-  creatureType?: string;
-  element?: Element;
-  frequency?: GateFrequency;
-  colors?: string[];
-  symbol?: string;
-  teaching?: string;
-  realm?: string;
 }
 
 // ============================================

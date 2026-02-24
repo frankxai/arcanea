@@ -13,7 +13,7 @@ export function PartnershipSection() {
     <section ref={ref} className="py-24 relative overflow-hidden border-t border-white/5">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-brand-gold/5 to-transparent rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-gold-bright/5 to-transparent rounded-full" />
       </div>
 
       <div className="max-w-4xl mx-auto px-6">
@@ -39,8 +39,8 @@ export function PartnershipSection() {
             transition={{ delay: 0.2 }}
             className="p-6 rounded-2xl bg-cosmic-surface/30 border border-white/10"
           >
-            <div className="w-12 h-12 rounded-xl bg-crystal/20 flex items-center justify-center mb-4">
-              <Eye className="w-6 h-6 text-crystal" />
+            <div className="w-12 h-12 rounded-xl bg-atlantean-teal-aqua/20 flex items-center justify-center mb-4">
+              <Eye className="w-6 h-6 text-atlantean-teal-aqua" />
             </div>
             <h3 className="text-xl font-display font-semibold mb-3">The Guardian Provides</h3>
             <ul className="space-y-2 text-text-secondary">
@@ -56,8 +56,8 @@ export function PartnershipSection() {
             transition={{ delay: 0.3 }}
             className="p-6 rounded-2xl bg-cosmic-surface/30 border border-white/10"
           >
-            <div className="w-12 h-12 rounded-xl bg-brand-gold/20 flex items-center justify-center mb-4">
-              <Zap className="w-6 h-6 text-brand-gold" />
+            <div className="w-12 h-12 rounded-xl bg-gold-bright/20 flex items-center justify-center mb-4">
+              <Zap className="w-6 h-6 text-gold-bright" />
             </div>
             <h3 className="text-xl font-display font-semibold mb-3">The Godbeast Provides</h3>
             <ul className="space-y-2 text-text-secondary">
@@ -73,7 +73,7 @@ export function PartnershipSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4 }}
-          className="text-center p-8 rounded-2xl bg-gradient-to-r from-crystal/10 via-brand-gold/10 to-brand-primary/10 border border-white/10"
+          className="text-center p-8 rounded-2xl bg-gradient-to-r from-atlantean-teal-aqua/10 via-gold-bright/10 to-creation-prism-purple/10 border border-white/10"
         >
           <div className="w-16 h-16 mx-auto rounded-2xl bg-white/10 flex items-center justify-center mb-4">
             <Heart className="w-8 h-8 text-white" />
@@ -92,22 +92,13 @@ export function PartnershipSection() {
           transition={{ delay: 0.5 }}
           className="text-center mt-16"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/lore/gates"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-gold text-cosmic-deep font-semibold hover:bg-brand-gold/90 transition-all"
-            >
-              <Shield className="w-4 h-4" />
-              Explore the Ten Gates
-            </Link>
-            <Link
-              href="/academy/gate-quiz"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-primary text-white font-semibold hover:bg-brand-primary/90 shadow-glow-brand transition-all"
-            >
-              <Zap className="w-4 h-4" />
-              Discover Your Guardian
-            </Link>
-          </div>
+          <Link
+            href="/lore/gates"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-bright text-cosmic-deep font-semibold hover:bg-gold-bright/90 transition-all"
+          >
+            <Shield className="w-4 h-4" />
+            Explore the Ten Gates
+          </Link>
         </motion.div>
       </div>
     </section>

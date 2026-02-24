@@ -169,19 +169,19 @@ export function HeroV3({ stats }: HeroV3Props) {
               className="inline-flex mb-10"
             >
               <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-crystal via-brand-primary to-crystal rounded-full opacity-50 group-hover:opacity-100 blur transition-opacity" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-atlantean-teal-aqua rounded-full opacity-50 group-hover:opacity-100 blur transition-opacity" />
                 <Link
                   href="/hub/updates"
                   className="relative flex items-center gap-3 px-5 py-2.5 rounded-full bg-cosmic-deep border border-white/10"
                 >
                   <span className="flex h-2 w-2 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crystal opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-crystal" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-atlantean-teal-aqua opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-atlantean-teal-aqua" />
                   </span>
-                  <span className="text-sm font-medium bg-gradient-to-r from-crystal to-brand-primary bg-clip-text text-transparent">
+                  <span className="text-sm font-medium bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple bg-clip-text text-transparent">
                     Arcanea 2.0 is here
                   </span>
-                  <ArrowRight className="w-4 h-4 text-crystal" />
+                  <ArrowRight className="w-4 h-4 text-atlantean-teal-aqua" />
                 </Link>
               </div>
             </motion.div>
@@ -196,7 +196,7 @@ export function HeroV3({ stats }: HeroV3Props) {
                 <span className="block text-white">Create with</span>
                 <span className="relative inline-block">
                   <motion.span
-                    className="relative z-10 bg-gradient-to-r from-crystal via-brand-primary via-50% to-brand-gold bg-[length:200%_auto] bg-clip-text text-transparent"
+                    className="relative z-10 bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple via-50% to-gold-bright bg-[length:200%_auto] bg-clip-text text-transparent"
                     animate={{ backgroundPosition: ['0% center', '200% center'] }}
                     transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
                   >
@@ -210,7 +210,7 @@ export function HeroV3({ stats }: HeroV3Props) {
                     transition={{ duration: 0.8, delay: 0.6 }}
                   >
                     <motion.div
-                      className="h-full w-full bg-gradient-to-r from-crystal via-brand-primary to-brand-gold"
+                      className="h-full w-full bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-gold-bright"
                       animate={{ x: ['-100%', '100%'] }}
                       transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                     />
@@ -246,7 +246,7 @@ export function HeroV3({ stats }: HeroV3Props) {
               >
                 {/* Animated gradient background */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-crystal via-crystal-light to-crystal"
+                  className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua via-atlantean-teal-light to-atlantean-teal-aqua"
                   animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                   transition={{ duration: 3, repeat: Infinity }}
                   style={{ backgroundSize: '200% 100%' }}
@@ -259,7 +259,7 @@ export function HeroV3({ stats }: HeroV3Props) {
                   transition={{ duration: 0.6 }}
                 />
                 {/* Glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-crystal/50 blur-xl -z-10" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-atlantean-teal-aqua/50 blur-xl -z-10" />
                 <span className="relative z-10 text-cosmic-deep flex items-center gap-2">
                   Start Creating Free
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -292,8 +292,8 @@ export function HeroV3({ stats }: HeroV3Props) {
               className="flex flex-wrap items-center justify-center gap-8 md:gap-12"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-crystal/10 flex items-center justify-center">
-                  <Users className="w-5 h-5 text-crystal" />
+                <div className="w-10 h-10 rounded-xl bg-atlantean-teal-aqua/10 flex items-center justify-center">
+                  <Users className="w-5 h-5 text-atlantean-teal-aqua" />
                 </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white">
@@ -306,8 +306,8 @@ export function HeroV3({ stats }: HeroV3Props) {
               <div className="w-px h-10 bg-white/10 hidden md:block" />
 
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-brand-gold/10 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-brand-gold" />
+                <div className="w-10 h-10 rounded-xl bg-gold-bright/10 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-gold-bright" />
                 </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white">
@@ -320,8 +320,8 @@ export function HeroV3({ stats }: HeroV3Props) {
               <div className="w-px h-10 bg-white/10 hidden md:block" />
 
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center">
-                  <Star className="w-5 h-5 text-brand-primary" />
+                <div className="w-10 h-10 rounded-xl bg-creation-prism-purple/10 flex items-center justify-center">
+                  <Star className="w-5 h-5 text-creation-prism-purple" />
                 </div>
                 <div className="text-left">
                   <div className="text-2xl font-bold text-white flex items-center gap-1">
@@ -381,8 +381,8 @@ export function HeroV3({ stats }: HeroV3Props) {
               {/* Placeholder for video - replace with actual video embed */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-20 h-20 rounded-full bg-crystal/20 flex items-center justify-center mx-auto mb-4">
-                    <Play className="w-10 h-10 text-crystal ml-1" />
+                  <div className="w-20 h-20 rounded-full bg-atlantean-teal-aqua/20 flex items-center justify-center mx-auto mb-4">
+                    <Play className="w-10 h-10 text-atlantean-teal-aqua ml-1" />
                   </div>
                   <p className="text-text-secondary">Demo video coming soon</p>
                 </div>

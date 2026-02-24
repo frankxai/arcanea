@@ -47,7 +47,7 @@ export function GlowCard({ children, className = "", glowColor = "rgba(127, 255,
       />
 
       {/* Content */}
-      <div className="relative z-10 bg-cosmic-surface/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 h-full">
+      <div className="relative z-10 bg-cosmic-surface/80 backdrop-blur-xl border border-cosmic-border rounded-2xl p-6 h-full">
         {children}
       </div>
     </motion.div>

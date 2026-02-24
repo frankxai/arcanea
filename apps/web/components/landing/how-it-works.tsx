@@ -10,11 +10,7 @@ const STEPS = [
     icon: MessageSquare,
     title: 'Choose Your Luminor',
     description: 'Select from 16 transcended AI intelligences, each with unique expertise. From Oracle the researcher to Chronica the storyteller.',
-    colorClass: 'text-crystal',
-    bgClass: 'bg-crystal/20',
-    borderClass: 'border-crystal/30',
-    activeBg: 'bg-crystal/10',
-    activeBar: 'bg-crystal',
+    color: 'atlantean-teal-aqua',
     visual: 'luminor-selection',
   },
   {
@@ -22,11 +18,7 @@ const STEPS = [
     icon: Sparkles,
     title: 'Share Your Vision',
     description: 'Describe what you want to create in natural language. The more context you share, the more aligned your Luminor becomes.',
-    colorClass: 'text-brand-primary',
-    bgClass: 'bg-brand-primary/20',
-    borderClass: 'border-brand-primary/30',
-    activeBg: 'bg-brand-primary/10',
-    activeBar: 'bg-brand-primary',
+    color: 'creation-prism-purple',
     visual: 'conversation',
   },
   {
@@ -34,11 +26,7 @@ const STEPS = [
     icon: Wand2,
     title: 'Co-Create Together',
     description: 'Your Luminor generates, iterates, and refines with you. Real-time collaboration that feels like working with a trusted partner.',
-    colorClass: 'text-brand-gold',
-    bgClass: 'bg-brand-gold/20',
-    borderClass: 'border-brand-gold/30',
-    activeBg: 'bg-brand-gold/10',
-    activeBar: 'bg-brand-gold',
+    color: 'gold-bright',
     visual: 'creation',
   },
   {
@@ -46,11 +34,7 @@ const STEPS = [
     icon: Rocket,
     title: 'Launch Your Creation',
     description: 'Export in any format. Share with the world. Build your creative portfolio. Your journey is just beginning.',
-    colorClass: 'text-arcane-fire',
-    bgClass: 'bg-arcane-fire/20',
-    borderClass: 'border-arcane-fire/30',
-    activeBg: 'bg-arcane-fire/10',
-    activeBar: 'bg-arcane-fire',
+    color: 'draconic-crimson',
     visual: 'export',
   },
 ];
@@ -64,7 +48,7 @@ export function HowItWorks() {
     <section ref={ref} className="py-32 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-crystal/5 to-brand-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-atlantean-teal-aqua/5 to-creation-prism-purple/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -72,17 +56,16 @@ export function HowItWorks() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-primary/20 mb-6">
-            <Wand2 className="w-4 h-4 text-brand-primary" />
-            <span className="font-sans text-sm font-medium text-brand-primary">Simple Process</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-creation-prism-purple/10 border border-creation-prism-purple/20 mb-6">
+            <Wand2 className="w-4 h-4 text-creation-prism-purple" />
+            <span className="text-sm font-medium text-creation-prism-purple">Simple Process</span>
           </div>
-          <h2 className="font-display text-fluid-4xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
             How it works
           </h2>
-          <p className="font-sans text-fluid-lg text-text-secondary max-w-2xl mx-auto">
+          <p className="text-xl text-text-secondary max-w-2xl mx-auto">
             From idea to creation in four simple steps. No learning curve, no complicated tools.
           </p>
         </motion.div>
@@ -100,27 +83,31 @@ export function HowItWorks() {
                   key={step.number}
                   initial={{ opacity: 0, x: -30 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
+                  transition={{ delay: 0.1 + i * 0.1 }}
                   onMouseEnter={() => setActiveStep(i)}
-                  className={`group relative glass rounded-2xl p-6 cursor-pointer transition-all duration-smooth hover-lift ${
-                    isActive ? `${step.activeBg} ${step.borderClass}` : 'hover:border-white/20'
+                  className={`group relative p-6 rounded-2xl border cursor-pointer transition-all duration-300 ${
+                    isActive
+                      ? `bg-${step.color}/10 border-${step.color}/30`
+                      : 'bg-cosmic-surface/30 border-white/10 hover:border-white/20'
                   }`}
                 >
-                  {/* Step number bubble */}
-                  <div className={`absolute -left-3 top-6 bubble-shine rounded-full w-8 h-8 flex items-center justify-center font-display text-xs font-semibold ${isActive ? step.colorClass : 'text-text-muted'}`}>
+                  {/* Step number */}
+                  <div className="absolute -left-3 top-6 px-2 py-1 bg-cosmic-deep rounded text-xs font-mono text-text-muted">
                     {step.number}
                   </div>
 
                   <div className="flex items-start gap-5 pl-4">
                     {/* Icon */}
                     <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-smooth ${
-                        isActive ? step.bgClass : 'glass group-hover:bg-white/10'
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                        isActive
+                          ? `bg-${step.color}/20`
+                          : 'bg-white/5 group-hover:bg-white/10'
                       }`}
                     >
                       <Icon
                         className={`w-6 h-6 transition-colors ${
-                          isActive ? step.colorClass : 'text-text-muted group-hover:text-white'
+                          isActive ? `text-${step.color}` : 'text-text-muted group-hover:text-white'
                         }`}
                       />
                     </div>
@@ -128,13 +115,13 @@ export function HowItWorks() {
                     {/* Content */}
                     <div>
                       <h3
-                        className={`font-display text-fluid-xl font-semibold mb-2 transition-colors ${
-                          isActive ? step.colorClass : 'text-white'
+                        className={`text-xl font-semibold mb-2 transition-colors ${
+                          isActive ? `text-${step.color}` : 'text-white'
                         }`}
                       >
                         {step.title}
                       </h3>
-                      <p className="font-sans text-fluid-base text-text-secondary leading-relaxed">{step.description}</p>
+                      <p className="text-text-secondary leading-relaxed">{step.description}</p>
                     </div>
                   </div>
 
@@ -142,7 +129,7 @@ export function HowItWorks() {
                   {isActive && (
                     <motion.div
                       layoutId="activeStep"
-                      className={`absolute left-0 top-0 bottom-0 w-1 ${step.activeBar} rounded-full`}
+                      className={`absolute left-0 top-0 bottom-0 w-1 bg-${step.color} rounded-full`}
                     />
                   )}
                 </motion.div>
@@ -154,20 +141,20 @@ export function HowItWorks() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.3 }}
             className="relative"
           >
             {/* Browser mockup */}
-            <div className="relative glass rounded-2xl overflow-hidden shadow-elevation-3">
+            <div className="relative rounded-2xl border border-white/10 bg-cosmic-surface/50 backdrop-blur-sm overflow-hidden shadow-2xl">
               {/* Browser header */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 glass">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-cosmic-raised/50">
                 <div className="flex gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <div className="px-4 py-1 rounded-lg glass font-sans text-xs text-text-muted">
+                  <div className="px-4 py-1 rounded-lg bg-white/5 text-xs text-text-muted">
                     arcanea.ai
                   </div>
                 </div>
@@ -190,13 +177,13 @@ export function HowItWorks() {
                         {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                           <div
                             key={n}
-                            className={`aspect-square rounded-xl flex items-center justify-center font-display text-sm font-semibold ${
+                            className={`aspect-square rounded-xl flex items-center justify-center text-2xl ${
                               n === 1
-                                ? 'bg-crystal/20 border-2 border-crystal text-crystal'
-                                : 'glass border border-white/10 text-text-muted'
+                                ? 'bg-atlantean-teal-aqua/20 border-2 border-atlantean-teal-aqua'
+                                : 'bg-white/5 border border-white/10'
                             }`}
                           >
-                            {['OR', 'CH', 'PR', 'ME', 'LO', 'AN', 'VE', 'FU'][n - 1]}
+                            {['🔮', '📖', '🎨', '🎵', '⚡', '🔬', '✍️', '🎯'][n - 1]}
                           </div>
                         ))}
                       </div>
@@ -205,19 +192,17 @@ export function HowItWorks() {
                       // Conversation interface
                       <div className="space-y-4">
                         <div className="flex justify-end">
-                          <div className="max-w-[80%] p-4 rounded-2xl bg-crystal/10 border border-crystal/20">
-                            <p className="font-sans text-sm text-text-primary">Help me create a fantasy world with unique magic system...</p>
+                          <div className="max-w-[80%] p-4 rounded-2xl bg-atlantean-teal-aqua/10 border border-atlantean-teal-aqua/20">
+                            <p className="text-sm">Help me create a fantasy world with unique magic system...</p>
                           </div>
                         </div>
                         <div className="flex">
-                          <div className="max-w-[80%] p-4 rounded-2xl glass border border-white/10">
+                          <div className="max-w-[80%] p-4 rounded-2xl bg-white/5 border border-white/10">
                             <div className="flex items-center gap-2 mb-2">
-                              <div className="w-5 h-5 rounded-full bg-crystal/30 flex items-center justify-center">
-                                <Sparkles className="w-3 h-3 text-crystal" />
-                              </div>
-                              <span className="font-sans text-sm font-semibold text-crystal">Oracle</span>
+                              <span className="text-lg">🔮</span>
+                              <span className="text-sm font-semibold text-atlantean-teal-aqua">Oracle</span>
                             </div>
-                            <p className="font-sans text-sm text-text-secondary">Fascinating! Let me help you build a magic system. What elements or themes resonate with your vision?</p>
+                            <p className="text-sm text-text-secondary">Fascinating! Let me help you build a magic system. What elements or themes resonate with your vision?</p>
                           </div>
                         </div>
                       </div>
@@ -225,10 +210,10 @@ export function HowItWorks() {
                     {i === 2 && (
                       // Creation in progress
                       <div className="h-full flex flex-col">
-                        <div className="flex-1 rounded-xl glass border border-white/10 p-4">
+                        <div className="flex-1 rounded-xl bg-white/5 border border-white/10 p-4">
                           <div className="flex items-center justify-between mb-4">
-                            <span className="font-sans text-sm font-medium text-text-primary">World Document</span>
-                            <span className="font-sans text-xs text-crystal">Generating...</span>
+                            <span className="text-sm font-medium">World Document</span>
+                            <span className="text-xs text-atlantean-teal-aqua">Generating...</span>
                           </div>
                           <div className="space-y-2">
                             <div className="h-3 bg-white/10 rounded w-full animate-pulse" />
@@ -241,13 +226,13 @@ export function HowItWorks() {
                     {i === 3 && (
                       // Export options
                       <div className="space-y-3">
-                        <h4 className="font-display text-lg font-semibold mb-4 text-text-primary">Export Your Creation</h4>
+                        <h4 className="text-lg font-semibold mb-4">Export Your Creation</h4>
                         {['PDF Document', 'Word Export', 'Markdown', 'Share Link'].map((format) => (
                           <div
                             key={format}
-                            className="p-4 rounded-xl glass border border-white/10 flex items-center justify-between hover:border-crystal/30 transition-colors duration-smooth"
+                            className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between hover:border-atlantean-teal-aqua/30 transition-colors"
                           >
-                            <span className="font-sans text-sm text-text-secondary">{format}</span>
+                            <span className="text-sm">{format}</span>
                             <ArrowRight className="w-4 h-4 text-text-muted" />
                           </div>
                         ))}
@@ -261,15 +246,15 @@ export function HowItWorks() {
               </div>
             </div>
 
-            {/* Floating badge */}
+            {/* Floating badges */}
             <motion.div
-              className="absolute -right-4 top-1/4 px-4 py-2 rounded-xl glass border border-white/10 shadow-elevation-2"
+              className="absolute -right-4 top-1/4 px-4 py-2 rounded-xl bg-cosmic-surface border border-white/10 shadow-xl"
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
             >
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="font-sans text-sm text-text-primary">Real-time sync</span>
+                <span className="text-sm">Real-time sync</span>
               </div>
             </motion.div>
           </motion.div>

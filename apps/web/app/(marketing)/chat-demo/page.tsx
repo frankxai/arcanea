@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ChatContainer } from '@/components/chat/chat-container';
 import { ChatInput } from '@/components/chat/chat-input';
 import { LuminorHeader } from '@/components/chat/luminor-header';
-import type { EmotionalTone } from '@/hooks/use-chat';
+import type { Metadata } from 'next';
 
 // Demo data
 const DEMO_LUMINOR = {
@@ -24,7 +24,7 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-  emotionalTone?: EmotionalTone;
+  emotionalTone?: any;
 }
 
 export default function ChatDemoPage() {

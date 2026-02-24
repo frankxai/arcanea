@@ -50,7 +50,7 @@ const ChatMessage = React.memo<ChatMessageProps>(React.forwardRef<HTMLDivElement
           className={cn(
             'flex h-8 w-8 shrink-0 items-center justify-center rounded-full',
             isUser
-              ? 'bg-cosmic-surface border border-white/10'
+              ? 'bg-cosmic-surface border border-cosmic-border'
               : cn(academyClasses.bg, 'border', academyClasses.border)
           )}
         >
@@ -85,7 +85,7 @@ const ChatMessage = React.memo<ChatMessageProps>(React.forwardRef<HTMLDivElement
             className={cn(
               'rounded-lg px-4 py-3 text-sm',
               isUser
-                ? 'bg-cosmic-surface border border-white/10 text-text-primary'
+                ? 'bg-cosmic-surface border border-cosmic-border text-text-primary'
                 : cn(
                     academyClasses.bg,
                     'border',

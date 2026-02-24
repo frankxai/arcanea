@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "updated": "2026-02-23T22:36:00Z",
+  "projects": {
+    "arcanea-core": {
+      "path": "/mnt/c/Users/Frank/Arcanea",
+      "type": "personal",
+      "memory_enabled": true
+    },
+    "arcanea-opencode": {
+      "path": "/mnt/c/Users/Frank/arcanea-opencode",
+      "type": "oss",
+      "memory_enabled": true
+    },
+    "acos-intelligence-system": {
+      "path": "/mnt/c/Users/Frank/acos-intelligence-system",
+      "type": "personal",
+      "memory_enabled": true
+    },
+    "oracle-work": {
+      "path": "/mnt/c/Users/Frank/oracle-work",
+      "type": "oracle",
+      "memory_enabled": true,
+      "separated": true
+    }
+  },
+  "agent_memory": {
+    "default_store": "memory/agents",
+    "sync_interval": "1h"
+  },
+  "model_tiers": {
+    "core": "opencode/minimax-m2.1",
+    "free": "opencode/glm-4.7-free",
+    "premium": "anthropic/claude-opus-4-5"
+  }
+}

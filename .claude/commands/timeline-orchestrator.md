@@ -27,9 +27,9 @@ When this command is invoked, activate the Timeline Orchestrator with:
 
 ### Phase 1: Context Loading
 Load these foundation documents:
-1. `.arcanea/lore/CANON_LOCKED.md` — The Eight Ages and key events
-2. `book/legends-of-arcanea/` — Earth parallels and founding myths
-3. `.arcanea/lore/gods-goddesses/` — Guardian profiles and teachings
+1. `foundations/history-timeline.md` — The Eight Ages and key events
+2. `foundations/earth-arcanea-echoes.md` — Earth parallels and connections
+3. `foundations/VECTOR_INDEX.md` — Chunk references for semantic search
 
 ### Phase 2: Query Classification
 

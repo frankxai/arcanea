@@ -1,0 +1,34 @@
+{
+  "$schema": "skill-profile-v1",
+  "name": "Arcanea Gate 3: Fire",
+  "description": "Skills for the Fire gate - initiative, momentum, overcoming blocks",
+  "version": "1.0.0",
+  "gate": {
+    "number": 3,
+    "name": "Fire",
+    "guardian": "Draconia",
+    "element": "Fire",
+    "frequency": "396 Hz"
+  },
+  "priority_skills": [
+    "spartan-warrior",
+    "kaizen",
+    "tdd-workflow",
+    "executing-plans",
+    "finishing-a-development-branch"
+  ],
+  "secondary_skills": [
+    "concise-planning",
+    "plan-writing",
+    "test-driven-development"
+  ],
+  "learning_objectives": [
+    "Build unstoppable momentum",
+    "Complete projects consistently",
+    "Overcome creative blocks through discipline"
+  ],
+  "triggers": {
+    "keywords": ["fire", "momentum", "discipline", "complete", "ship"],
+    "commands": ["/gate-3"]
+  }
+}

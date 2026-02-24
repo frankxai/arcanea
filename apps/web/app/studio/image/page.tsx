@@ -137,7 +137,7 @@ export default function ImageForgePage() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fire to-orange-500 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-draconic-crimson to-orange-500 flex items-center justify-center">
                 <Flame className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -177,8 +177,8 @@ export default function ImageForgePage() {
                     className="absolute inset-0 flex flex-col items-center justify-center"
                   >
                     <div className="relative">
-                      <div className="w-20 h-20 rounded-full border-4 border-fire/20 border-t-fire animate-spin" />
-                      <Wand2 className="w-8 h-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-fire" />
+                      <div className="w-20 h-20 rounded-full border-4 border-draconic-crimson/20 border-t-draconic-crimson animate-spin" />
+                      <Wand2 className="w-8 h-8 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-draconic-crimson" />
                     </div>
                     <p className="mt-6 text-text-secondary">Channeling creative fire...</p>
                     <p className="text-sm text-text-muted mt-2">Guardian Draconia is crafting your vision</p>
@@ -241,8 +241,8 @@ export default function ImageForgePage() {
                     exit={{ opacity: 0 }}
                     className="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
                   >
-                    <div className="w-24 h-24 rounded-2xl bg-fire/10 flex items-center justify-center mb-6">
-                      <ImageIcon className="w-12 h-12 text-fire/60" />
+                    <div className="w-24 h-24 rounded-2xl bg-draconic-crimson/10 flex items-center justify-center mb-6">
+                      <ImageIcon className="w-12 h-12 text-draconic-crimson/60" />
                     </div>
                     <h3 className="text-xl font-display font-semibold mb-2">
                       Ready to Create
@@ -266,7 +266,7 @@ export default function ImageForgePage() {
                       onClick={() => setSelectedImage(img)}
                       className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
                         selectedImage?.id === img.id
-                          ? 'border-fire'
+                          ? 'border-draconic-crimson'
                           : 'border-transparent hover:border-white/30'
                       }`}
                     >
@@ -293,7 +293,7 @@ export default function ImageForgePage() {
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="A majestic dragon guardian soaring through a cosmic nebula, scales shimmering with starlight..."
                 rows={4}
-                className="w-full bg-white/5 rounded-xl border border-white/10 p-3 text-sm focus:border-fire focus:outline-none focus:ring-2 focus:ring-fire/20 resize-none transition-all"
+                className="w-full bg-white/5 rounded-xl border border-white/10 p-3 text-sm focus:border-draconic-crimson focus:outline-none focus:ring-2 focus:ring-draconic-crimson/20 resize-none transition-all"
               />
 
               {/* Quick prompts */}
@@ -316,7 +316,7 @@ export default function ImageForgePage() {
               <button
                 onClick={handleGenerate}
                 disabled={!prompt.trim() || isGenerating}
-                className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-fire to-orange-500 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-draconic-crimson to-orange-500 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isGenerating ? (
                   <>
@@ -345,11 +345,11 @@ export default function ImageForgePage() {
                     onClick={() => setSelectedStyle(style.id)}
                     className={`p-3 rounded-xl border text-left transition-all ${
                       selectedStyle === style.id
-                        ? 'border-fire bg-fire/10'
+                        ? 'border-draconic-crimson bg-draconic-crimson/10'
                         : 'border-white/10 hover:border-white/30 hover:bg-white/5'
                     }`}
                   >
-                    <p className={`text-sm font-medium ${selectedStyle === style.id ? 'text-fire' : ''}`}>
+                    <p className={`text-sm font-medium ${selectedStyle === style.id ? 'text-draconic-crimson' : ''}`}>
                       {style.name}
                     </p>
                     <p className="text-xs text-text-muted mt-1">{style.description}</p>
@@ -371,7 +371,7 @@ export default function ImageForgePage() {
                     onClick={() => setSelectedRatio(ratio.id)}
                     className={`px-4 py-2 rounded-lg border text-sm transition-all ${
                       selectedRatio === ratio.id
-                        ? 'border-fire bg-fire/10 text-fire'
+                        ? 'border-draconic-crimson bg-draconic-crimson/10 text-draconic-crimson'
                         : 'border-white/10 hover:border-white/30 text-text-secondary'
                     }`}
                   >
@@ -401,7 +401,7 @@ export default function ImageForgePage() {
                         min="0"
                         max="100"
                         defaultValue="70"
-                        className="w-full mt-2 accent-fire"
+                        className="w-full mt-2 accent-draconic-crimson"
                       />
                       <div className="flex justify-between text-xs text-text-muted mt-1">
                         <span>Precise</span>
@@ -411,7 +411,7 @@ export default function ImageForgePage() {
 
                     <div>
                       <label className="text-xs text-text-muted">Enhancement</label>
-                      <select className="w-full mt-2 bg-white/5 border border-white/10 rounded-lg p-2 text-sm focus:border-fire focus:outline-none">
+                      <select className="w-full mt-2 bg-white/5 border border-white/10 rounded-lg p-2 text-sm focus:border-draconic-crimson focus:outline-none">
                         <option value="none">None</option>
                         <option value="upscale">Upscale 2x</option>
                         <option value="enhance">Enhance Details</option>
@@ -424,7 +424,7 @@ export default function ImageForgePage() {
                       <input
                         type="text"
                         placeholder="Things to avoid in the image..."
-                        className="w-full mt-2 bg-white/5 border border-white/10 rounded-lg p-2 text-sm focus:border-fire focus:outline-none"
+                        className="w-full mt-2 bg-white/5 border border-white/10 rounded-lg p-2 text-sm focus:border-draconic-crimson focus:outline-none"
                       />
                     </div>
                   </div>
@@ -433,8 +433,8 @@ export default function ImageForgePage() {
             </AnimatePresence>
 
             {/* Tips */}
-            <div className="bg-fire/5 border border-fire/20 rounded-2xl p-4">
-              <h4 className="text-sm font-medium text-fire mb-2">
+            <div className="bg-draconic-crimson/5 border border-draconic-crimson/20 rounded-2xl p-4">
+              <h4 className="text-sm font-medium text-draconic-crimson mb-2">
                 Tips from Guardian Draconia
               </h4>
               <ul className="text-xs text-text-secondary space-y-2">

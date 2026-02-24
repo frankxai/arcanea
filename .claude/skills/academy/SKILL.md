@@ -20,14 +20,14 @@ The Arcanea Academy is an AI-driven learning experience delivered through Claude
 
 | Gate | Name | Frequency | Guardian | Domain |
 |------|------|-----------|----------|--------|
-| 1 | Foundation | 174 Hz | Lyssandria | Stability, grounding |
-| 2 | Flow | 285 Hz | Leyla | Creativity, emotion |
-| 3 | Fire | 396 Hz | Draconia | Power, will, courage |
-| 4 | Heart | 417 Hz | Maylinn | Love, healing, growth |
-| 5 | Voice | 528 Hz | Alera | Truth, expression |
-| 6 | Sight | 639 Hz | Lyria | Intuition, vision |
-| 7 | Crown | 741 Hz | Aiyami | Enlightenment, wisdom |
-| 8 | Shift | 852 Hz | Elara | Perspective, transformation |
+| 1 | Foundation | 396 Hz | Lyssandria | Stability, grounding |
+| 2 | Flow | 417 Hz | Leyla | Creativity, emotion |
+| 3 | Fire | 528 Hz | Draconia | Power, will, courage |
+| 4 | Heart | 639 Hz | Maylinn | Love, healing, growth |
+| 5 | Voice | 741 Hz | Alera | Truth, expression |
+| 6 | Sight | 852 Hz | Lyria | Intuition, vision |
+| 7 | Crown | 963 Hz | Aiyami | Enlightenment, wisdom |
+| 8 | Shift | 1111 Hz | Elara | Perspective, transformation |
 | 9 | Unity | 963 Hz | Ino | Partnership, collaboration |
 | 10 | Source | 1111 Hz | Shinkami | Meta-consciousness |
 

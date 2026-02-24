@@ -1,9 +1,7 @@
+<<<<<<< HEAD
 # Dependencies
 node_modules/
 .pnpm-store/
-
-# Claude Code worktrees
-.claude/worktrees/
 
 # Next.js
 .next/
@@ -104,74 +102,109 @@ archive/
 .github\instructions\codacy.instructions.md
 experiments/
 
-# Nested Git Repositories (managed independently)
-Nano-Banana-MCP/
-arcanea-ecosystem/
-arcanea-infogenius/
-arcanea-mobile/
-arcanea-opencode/
-arcanea.ai/
-arcaneabot/
-claude-code-oracle-skills/
-codex-arcanea/
-gemini-arcanea/
-infogenius/
-intelligence-os/
-labs/
-oci-ai-architect-skills/
-starlight-intelligence-system/
-arcanea-game-development/
-arcanea-agents/
-claude-arcanea/
-arcanea-companion/
-arcanea-flow/
-arcanea-onchain/
-arcanea-luminor/
-arcanea-library-superintelligence/
-desktop/
+# Separate repositories (not submodules)
+arcanea-intelligence-os/
+=======
+# Dependencies
+node_modules/
+.pnpm-store/
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-.pytest_cache/
-htmlcov/
-.coverage
+# Next.js
+.next/
+out/
+build/
+dist/
 
-# Test results
-test-results/
-playwright-report/
-playwright/.cache/
-reports/
-junit.xml
+# Environment files
+.env
+.env*.local
 
-# Arcanea local data
-.arcanea/data/
-.arcanea/test-data/
+# IDE
+.vscode/
+.idea/
 
-# Binary/generated assets
-*.vsix
-*.pdf
-apps/web/demonstration.html
-apps/web/globals.css
-apps/web/package-lock.json
+# OS
+.DS_Store
+Thumbs.db
 
-# Legacy standalone code (not part of monorepo)
-pages/
-src/
-!packages/*/src/
-!packages/*/src/**
-!apps/*/src/
-!apps/*/src/**
-styles/
-apps/web/app/page.js
+# Logs
+*.log
+logs/
 
-# Additional nested repos
-arcanea-companion/
-arcanea-flow/
-arcanea-onchain/
+# Runtime
+.pnpm-debug.log*
+.yarn-integrity
 
-# Research reports (local only)
-BLOCKCHAIN_AI_RESEARCH_REPORT.md
+# Optional npm cache directory
+.npm
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Temporary folders
+tmp/
+temp/
+
+# Local nested repos
+/ai/
+
+# Asset uploads (development only)
+public/shared-assets/temp-uploads/
+apps/web/public/brand/temp/
+
+# Turbo
+.turbo/
+
+# TypeScript
+*.tsbuildinfo
+
+# Vercel
+.vercel
+
+# React Native / Expo
+.expo/
+.expo-shared/
+*.orig.*
+web-build/
+
+# Mobile development
+*.mobileprovision
+*.p8
+*.p12
+*.key
+*.pem
+
+# IDE specific
+*.swp
+*.swo
+*~
+
+# Agent workflow (local only)
+agents/daily-ideas/*/
+!agents/daily-ideas/templates/
+!agents/daily-ideas/README.md
+
+# Cross-computer compatibility
+# These will be recreated on each machine
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+**/.env.local
+**/node_modules/
+**/.next/
+**/dist/
+**/build/
+**/.cache/
+**/.turbo/
+
+# Archive content (preserved but not synced)
+archive/
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
+experiments/
+>>>>>>> 17fcd1ab4a0b2caddc8261ca1faa7cb46e36e9bc

@@ -1,0 +1,34 @@
+{
+  "$schema": "skill-profile-v1",
+  "name": "Arcanea Gate 2: Flow",
+  "description": "Skills for the Flow gate - emotional regulation, state management, consistent output",
+  "version": "1.0.0",
+  "gate": {
+    "number": 2,
+    "name": "Flow",
+    "guardian": "Leyla",
+    "element": "Water",
+    "frequency": "285 Hz"
+  },
+  "priority_skills": [
+    "context-management-context-save",
+    "context-management-context-restore",
+    "conversation-memory",
+    "context-optimization",
+    "context-window-management"
+  ],
+  "secondary_skills": [
+    "memory-systems",
+    "agent-memory-systems",
+    "context-fundamentals"
+  ],
+  "learning_objectives": [
+    "Master context preservation across sessions",
+    "Develop consistent creative output habits",
+    "Build emotional regulation through systems"
+  ],
+  "triggers": {
+    "keywords": ["flow", "context", "memory", "state", "consistency"],
+    "commands": ["/gate-2"]
+  }
+}

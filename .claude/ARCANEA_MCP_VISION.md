@@ -337,7 +337,7 @@ Everyone benefits
 ### Quality Standards
 
 Every contribution must:
-1. **Align with canon** - Validated against CANON_LOCKED.md
+1. **Align with canon** - Validated against ARCANEA_CANON.md
 2. **Be practically useful** - Tested remedy, not just description
 3. **Follow voice guidelines** - Timeless, not trendy
 4. **Include attribution** - Creator credited

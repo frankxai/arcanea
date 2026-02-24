@@ -173,21 +173,21 @@ export default function BestiaryPage() {
   return (
     <main className="mx-auto max-w-7xl px-6 pb-24 pt-12">
       {/* Hero Section */}
-      <section className="relative mb-16 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-10">
+      <section className="relative mb-16 overflow-hidden rounded-3xl border border-cosmic-border bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-10">
         <div className="pointer-events-none absolute inset-0 opacity-40" aria-hidden="true">
-          <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-fire/30 blur-3xl" />
+          <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-draconic-crimson/30 blur-3xl" />
           <div className="absolute right-[-10%] top-1/3 h-80 w-80 rounded-full bg-cosmic-purple/20 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-brand-gold/10 blur-2xl" />
+          <div className="absolute bottom-0 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-gold-bright/10 blur-2xl" />
         </div>
 
         <div className="relative max-w-3xl">
-          <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-fire">
+          <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.4em] text-draconic-crimson">
             <span>The Bestiary of Creation</span>
-            <span className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden="true" />
+            <span className="hidden h-px flex-1 bg-cosmic-border sm:block" aria-hidden="true" />
           </div>
 
           <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary md:text-5xl lg:text-6xl">
-            <span className="bg-gradient-to-r from-fire via-cosmic-purple to-crystal bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-draconic-crimson via-cosmic-purple to-atlantean-teal bg-clip-text text-transparent">
               Know Your Obstacles
             </span>
           </h1>
@@ -197,7 +197,7 @@ export default function BestiaryPage() {
             obstacles so you may recognize them—and overcome them.
           </p>
 
-          <blockquote className="mt-8 border-l-4 border-brand-gold/60 pl-6 italic text-brand-gold">
+          <blockquote className="mt-8 border-l-4 border-gold-bright/60 pl-6 italic text-gold-bright">
             "To name a thing is to gain power over it."
             <footer className="mt-2 text-sm text-text-muted not-italic">
               — Ancient Arcanean Wisdom
@@ -232,15 +232,15 @@ export default function BestiaryPage() {
       </section>
 
       {/* How to Use */}
-      <section className="rounded-3xl border border-white/10 bg-cosmic-surface p-8">
+      <section className="rounded-3xl border border-cosmic-border bg-cosmic-surface p-8">
         <h2 className="mb-6 font-display text-2xl font-semibold text-text-primary">
           How to Use the Bestiary
         </h2>
 
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-crystal">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-crystal/20 text-sm">1</span>
+            <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-atlantean-teal">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-atlantean-teal/20 text-sm">1</span>
               Recognize
             </h3>
             <p className="text-sm text-text-secondary">
@@ -250,8 +250,8 @@ export default function BestiaryPage() {
           </div>
 
           <div>
-            <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-brand-gold">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-gold/20 text-sm">2</span>
+            <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gold-bright">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold-bright/20 text-sm">2</span>
               Understand
             </h3>
             <p className="text-sm text-text-secondary">
@@ -261,8 +261,8 @@ export default function BestiaryPage() {
           </div>
 
           <div>
-            <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-fire">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-fire/20 text-sm">3</span>
+            <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-draconic-crimson">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-draconic-crimson/20 text-sm">3</span>
               Apply Weakness
             </h3>
             <p className="text-sm text-text-secondary">
@@ -286,7 +286,7 @@ function CreatureCard({ creature }: CreatureCardProps) {
   return (
     <Link
       href={`/bestiary/${creature.id}`}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-6 transition-all hover:border-fire/50 hover:shadow-[0_0_50px_rgba(220,38,38,0.15)]"
+      className="group relative overflow-hidden rounded-2xl border border-cosmic-border bg-gradient-to-br from-cosmic-surface via-cosmic-deep to-cosmic-void p-6 transition-all hover:border-draconic-crimson/50 hover:shadow-[0_0_50px_rgba(220,38,38,0.15)]"
     >
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true">
         <div
@@ -306,7 +306,7 @@ function CreatureCard({ creature }: CreatureCardProps) {
           </span>
         </div>
 
-        <h3 className="font-display text-xl font-semibold text-text-primary group-hover:text-fire transition-colors">
+        <h3 className="font-display text-xl font-semibold text-text-primary group-hover:text-draconic-crimson transition-colors">
           {creature.name}
         </h3>
         <p className="mt-1 text-sm italic text-text-muted">{creature.subtitle}</p>
@@ -315,7 +315,7 @@ function CreatureCard({ creature }: CreatureCardProps) {
 
         <div className="mt-4">
           <p className="text-xs text-text-muted">
-            <span className="font-semibold text-crystal">Weakness:</span>{' '}
+            <span className="font-semibold text-atlantean-teal">Weakness:</span>{' '}
             {creature.weakness}
           </p>
         </div>
@@ -324,14 +324,14 @@ function CreatureCard({ creature }: CreatureCardProps) {
           {creature.symptoms.slice(0, 2).map((symptom) => (
             <span
               key={symptom}
-              className="rounded-full border border-white/10 bg-cosmic-raised px-2 py-1 text-xs text-text-muted"
+              className="rounded-full border border-cosmic-border bg-cosmic-raised px-2 py-1 text-xs text-text-muted"
             >
               {symptom}
             </span>
           ))}
         </div>
 
-        <div className="mt-4 flex items-center gap-2 text-sm text-fire opacity-0 transition-opacity group-hover:opacity-100">
+        <div className="mt-4 flex items-center gap-2 text-sm text-draconic-crimson opacity-0 transition-opacity group-hover:opacity-100">
           <span>Study creature</span>
           <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -71,20 +71,20 @@ export default function DiscoverPage() {
   const getAcademyGradient = (academy: string) => {
     switch (academy) {
       case 'Lumina':
-        return 'from-brand-gold to-fire';
+        return 'from-yellow-500 to-orange-500';
       case 'Umbra':
-        return 'from-brand-primary to-[#4f46e5]';
+        return 'from-purple-600 to-indigo-600';
       case 'Aether':
-        return 'from-crystal to-water';
+        return 'from-cyan-500 to-blue-500';
       case 'Terra':
-        return 'from-earth to-[#10b981]';
+        return 'from-green-500 to-emerald-500';
       default:
-        return 'from-cosmic-raised to-cosmic-elevated';
+        return 'from-slate-500 to-slate-600';
     }
   };
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Header */}
         <motion.div
@@ -92,10 +92,10 @@ export default function DiscoverPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center space-y-4"
         >
-          <h1 className="text-fluid-3xl font-display font-bold text-gradient-crystal">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
             Discover Creations
           </h1>
-          <p className="text-text-secondary text-fluid-lg max-w-2xl mx-auto font-sans">
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             Explore stunning AI creations from talented creators across all academies
           </p>
         </motion.div>
@@ -108,13 +108,13 @@ export default function DiscoverPage() {
           className="max-w-2xl mx-auto"
         >
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-text-muted w-5 h-5" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search creations, styles, or tags..."
-              className="w-full pl-12 pr-4 py-4 rounded-2xl glass text-white placeholder-text-muted border border-white/10 focus:border-crystal focus:outline-none focus:ring-2 focus:ring-crystal/20 transition-all font-sans"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-slate-900/50 backdrop-blur-sm text-white placeholder-slate-500 border border-purple-500/20 focus:border-purple-500/40 outline-none transition-colors"
             />
           </div>
         </motion.div>
@@ -128,10 +128,10 @@ export default function DiscoverPage() {
         >
           <Button
             onClick={() => setSelectedFilter('trending')}
-            className={`px-6 py-3 rounded-xl font-semibold font-sans transition-all flex items-center gap-2 ${
+            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
               selectedFilter === 'trending'
-                ? 'bg-brand-primary text-white shadow-glow-brand'
-                : 'glass text-text-secondary hover:text-white'
+                ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/30'
+                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
             <TrendingUp className="w-4 h-4" />
@@ -140,10 +140,10 @@ export default function DiscoverPage() {
 
           <Button
             onClick={() => setSelectedFilter('recent')}
-            className={`px-6 py-3 rounded-xl font-semibold font-sans transition-all flex items-center gap-2 ${
+            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
               selectedFilter === 'recent'
-                ? 'bg-brand-primary text-white shadow-glow-brand'
-                : 'glass text-text-secondary hover:text-white'
+                ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/30'
+                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
             <Clock className="w-4 h-4" />
@@ -152,10 +152,10 @@ export default function DiscoverPage() {
 
           <Button
             onClick={() => setSelectedFilter('following')}
-            className={`px-6 py-3 rounded-xl font-semibold font-sans transition-all flex items-center gap-2 ${
+            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
               selectedFilter === 'following'
-                ? 'bg-brand-primary text-white shadow-glow-brand'
-                : 'glass text-text-secondary hover:text-white'
+                ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/30'
+                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
             <Users className="w-4 h-4" />
@@ -170,7 +170,7 @@ export default function DiscoverPage() {
           transition={{ delay: 0.3 }}
         >
           <div className="text-center mb-4">
-            <div className="flex items-center justify-center gap-2 text-text-muted text-sm uppercase tracking-wider font-sans">
+            <div className="flex items-center justify-center gap-2 text-slate-400 text-sm uppercase tracking-wider">
               <Sparkles className="w-4 h-4" />
               <span>Filter by Academy</span>
             </div>
@@ -179,10 +179,10 @@ export default function DiscoverPage() {
           <div className="flex flex-wrap gap-3 justify-center">
             <Button
               onClick={() => setSelectedAcademy(null)}
-              className={`px-5 py-2.5 rounded-xl font-medium font-sans transition-all ${
+              className={`px-5 py-2.5 rounded-xl font-medium transition-all duration-300 ${
                 selectedAcademy === null
-                  ? 'glass-strong text-white'
-                  : 'glass text-text-muted hover:text-white'
+                  ? 'bg-gradient-to-r from-slate-600 to-slate-700 text-white'
+                  : 'bg-slate-800/50 text-slate-400 hover:bg-slate-800'
               }`}
             >
               All Academies
@@ -192,10 +192,10 @@ export default function DiscoverPage() {
               <Button
                 key={academy}
                 onClick={() => setSelectedAcademy(academy === selectedAcademy ? null : academy)}
-                className={`px-5 py-2.5 rounded-xl font-medium font-sans transition-all ${
+                className={`px-5 py-2.5 rounded-xl font-medium transition-all duration-300 ${
                   selectedAcademy === academy
-                    ? `bg-gradient-to-r ${getAcademyGradient(academy)} text-white shadow-glow-sm`
-                    : 'glass text-text-muted hover:text-white'
+                    ? `bg-gradient-to-r ${getAcademyGradient(academy)} text-white shadow-lg`
+                    : 'bg-slate-800/50 text-slate-400 hover:bg-slate-800'
                 }`}
               >
                 {academy}
@@ -209,7 +209,7 @@ export default function DiscoverPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="text-center text-text-muted font-sans"
+          className="text-center text-slate-400"
         >
           Showing {filteredCreations.length} creations
         </motion.div>
@@ -233,11 +233,9 @@ export default function DiscoverPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-20"
           >
-            <div className="w-16 h-16 rounded-full glass flex items-center justify-center mx-auto mb-4">
-              <Search className="w-8 h-8 text-text-muted" />
-            </div>
-            <h3 className="text-2xl font-display font-bold text-white mb-2">No creations found</h3>
-            <p className="text-text-secondary font-sans">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-2xl font-bold text-white mb-2">No creations found</h3>
+            <p className="text-slate-400">
               Try adjusting your filters or search query
             </p>
           </motion.div>
@@ -251,7 +249,7 @@ export default function DiscoverPage() {
             transition={{ delay: 0.6 }}
             className="text-center pt-8"
           >
-            <Button className="px-8 py-4 rounded-xl bg-brand-primary text-white font-semibold font-sans shadow-glow-brand hover:scale-[1.02] transition-all">
+            <Button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-purple-500/50">
               Load More Creations
             </Button>
           </motion.div>

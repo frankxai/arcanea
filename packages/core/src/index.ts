@@ -1,11 +1,11 @@
 /**
- * @arcanea/os
+ * @arcanea/core
  *
  * Core types, constants, and utilities for the Arcanea ecosystem.
  *
  * @example
  * ```typescript
- * import { GATES, GUARDIANS, type Guardian } from '@arcanea/os';
+ * import { GATES, GUARDIANS, type Guardian } from '@arcanea/core';
  *
  * const lumina = GUARDIANS.find(g => g.gate === 'foundation');
  * ```
@@ -20,17 +20,5 @@ export * from './constants/index.js';
 // Utilities
 export * from './utils/index.js';
 
-// Generators
-export * from './generators/index.js';
-
-// Detection
-export * from './detection/index.js';
-
-// Content (Shared content layer for overlay packages)
-export * from './content/index.js';
-
-// Engine (Intelligence Layer)
-export * from './engine/index.js';
-
-// Version — kept in sync with package.json
-export const VERSION = '0.6.0';
+// Version
+export const VERSION = '0.1.0';

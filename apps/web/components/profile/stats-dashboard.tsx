@@ -1,6 +1,5 @@
 'use client';
 
-import type { ComponentType } from 'react';
 import { motion } from 'framer-motion';
 import { Image, Video, FolderOpen, Sparkles, Calendar, TrendingUp, Award } from 'lucide-react';
 import { ProfileStats, Creation } from '@/lib/types/profile';
@@ -8,40 +7,6 @@ import { ProfileStats, Creation } from '@/lib/types/profile';
 interface StatsDashboardProps {
   stats: ProfileStats;
   creations: Creation[];
-}
-
-interface StatCardProps {
-  icon: ComponentType<{ className?: string }>;
-  label: string;
-  value: string | number;
-  gradient: string;
-  index: number;
-}
-
-function StatCard({ icon: Icon, label, value, gradient, index }: StatCardProps) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -4, scale: 1.02 }}
-      className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 shadow-lg hover:shadow-purple-500/20"
-    >
-      <div className="flex items-center gap-4">
-        <div
-          className={`p-3 rounded-xl bg-gradient-to-br ${gradient} bg-opacity-20 backdrop-blur-sm`}
-        >
-          <Icon className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <div className={`text-3xl font-bold bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-            {typeof value === 'number' ? value.toLocaleString() : value}
-          </div>
-          <div className="text-slate-400 text-sm uppercase tracking-wider">{label}</div>
-        </div>
-      </div>
-    </motion.div>
-  );
 }
 
 export function StatsDashboard({ stats, creations }: StatsDashboardProps) {
@@ -102,6 +67,42 @@ export function StatsDashboard({ stats, creations }: StatsDashboardProps) {
       unlocked: stats.active_days_streak >= 7,
     },
   ];
+
+  const StatCard = ({
+    icon: Icon,
+    label,
+    value,
+    gradient,
+    index,
+  }: {
+    icon: React.ComponentType<{ className?: string }>;
+    label: string;
+    value: string | number;
+    gradient: string;
+    index: number;
+  }) => (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ y: -4, scale: 1.02 }}
+      className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 shadow-lg hover:shadow-purple-500/20"
+    >
+      <div className="flex items-center gap-4">
+        <div
+          className={`p-3 rounded-xl bg-gradient-to-br ${gradient} bg-opacity-20 backdrop-blur-sm`}
+        >
+          <Icon className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <div className={`text-3xl font-bold bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+            {typeof value === 'number' ? value.toLocaleString() : value}
+          </div>
+          <div className="text-slate-400 text-sm uppercase tracking-wider">{label}</div>
+        </div>
+      </div>
+    </motion.div>
+  );
 
   return (
     <div className="space-y-8">

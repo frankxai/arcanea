@@ -47,7 +47,7 @@ export function LuminorOrb({ name, domain, color, glowColor, description, size =
         className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         initial={false}
       >
-        <h3 className="font-display font-bold text-lg" style={{ color }}>{name}</h3>
+        <h3 className="font-cinzel font-bold text-lg" style={{ color }}>{name}</h3>
         <p className="text-sm text-text-secondary">{domain}</p>
       </motion.div>
 

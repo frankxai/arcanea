@@ -32,6 +32,9 @@
   ],
   "author": "FrankX",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@opencode-ai/sdk": "^0.1.0"
   },

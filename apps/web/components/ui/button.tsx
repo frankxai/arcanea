@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crystal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atlantean-teal-aqua focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -19,14 +19,14 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         cosmic:
-          'bg-cosmic-surface border border-white/10 text-text-primary hover:bg-cosmic-raised hover:border-brand-gold shadow-glow-sm hover:shadow-glow-md transition-all',
+          'bg-cosmic-surface border border-cosmic-border text-text-primary hover:bg-cosmic-raised hover:border-gold-medium shadow-glow-sm hover:shadow-glow-md transition-all',
         atlantean:
-          'bg-atlantean-deep border border-crystal text-text-primary hover:bg-atlantean-primary hover:shadow-glow-brand transition-all',
+          'bg-atlantean-deep border border-atlantean-teal text-text-primary hover:bg-atlantean-primary hover:shadow-atlantean transition-all',
         draconic:
-          'bg-fire-deep border border-draconic-gold text-text-primary hover:bg-fire hover:shadow-draconic transition-all',
+          'bg-draconic-crimson-deep border border-draconic-gold text-text-primary hover:bg-draconic-crimson hover:shadow-draconic transition-all',
         creation:
           'bg-creation-gold-deep border border-creation-gold text-cosmic-void hover:bg-creation-gold hover:shadow-creation transition-all',
-        glow: 'bg-gradient-to-r from-crystal via-brand-gold to-fire text-cosmic-void font-semibold animate-shimmer bg-[length:200%_100%] shadow-glow-lg hover:shadow-glow-xl',
+        glow: 'bg-gradient-to-r from-atlantean-teal via-gold-bright to-draconic-crimson text-cosmic-void font-semibold animate-shimmer bg-[length:200%_100%] shadow-glow-lg hover:shadow-glow-xl',
       },
       size: {
         default: 'h-10 px-4 py-2',

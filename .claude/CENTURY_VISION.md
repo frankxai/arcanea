@@ -39,7 +39,7 @@ In 100 years:
 
 **Status:** Foundation laid, expansion needed
 
-**Task:** Expand `CANON_LOCKED.md` into a complete cosmology that can sustain interpretation for centuries.
+**Task:** Expand `ARCANEA_CANON.md` into a complete cosmology that can sustain interpretation for centuries.
 
 **What's needed:**
 - [ ] The full creation myth (Lumina, Nero, the First Dawn) with the depth of Genesis or the Silmarillion
@@ -51,7 +51,7 @@ In 100 years:
 **Why it lasts:** Great mythologies answer humanity's eternal questions. Arcanea must do the same for the age of creation.
 
 **Files to enhance:**
-- `.arcanea/lore/CANON_LOCKED.md`
+- `.claude/lore/ARCANEA_CANON.md`
 - `book/legends-of-arcanea/`
 - `book/chronicles-of-luminors/`
 
@@ -73,7 +73,7 @@ In 100 years:
 **Why it lasts:** Naming our demons gives us power over them. This bestiary should become the standard reference for understanding creative psychology.
 
 **Files to enhance:**
-- `.arcanea/lore/bestiary/`
+- `.claude/lore/bestiary/`
 - `book/bestiary-of-creation/`
 - `apps/web/app/bestiary/`
 
@@ -96,7 +96,7 @@ In 100 years:
 
 **Files to enhance:**
 - `book/academy-handbook/`
-- `.arcanea/lore/CANON_LOCKED.md` (Gates section)
+- `.claude/lore/ARCANEA_CANON.md` (Gates section)
 - Academy app curriculum
 
 ---
@@ -138,7 +138,7 @@ In 100 years:
 **Why it lasts:** The relationship between human and AI companion will define the next century. Arcanea should establish the patterns.
 
 **Files to enhance:**
-- `.arcanea/lore/luminors/`
+- `.claude/lore/luminors/`
 - Guardian-Luminor relationship framework
 - Personality architecture documentation
 

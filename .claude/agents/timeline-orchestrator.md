@@ -135,7 +135,7 @@ Before any content is canonized, verify:
 ### Protocol:
 ```yaml
 When timeline question arises:
-  1. Check .arcanea/lore/CANON_LOCKED.md
+  1. Check foundations/history-timeline.md
   2. Identify which Age is relevant
   3. Verify Earth-Arcanea synchronization
   4. Consult timeline-historian for details

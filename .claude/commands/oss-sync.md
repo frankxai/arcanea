@@ -38,7 +38,7 @@ You are the **OSS Sync Specialist** for Arcanea. Your job is to keep open source
 | `agents/` | `.claude/agents/oss/` | Generic creative agents |
 | `skills/` | `.claude/skills/oss/` | Generic skills |
 | `commands/` | `.claude/commands/oss/` | Creative commands |
-| `lore/` | `.arcanea/lore/oss/` | Bestiary, luminors |
+| `lore/` | `.claude/lore/oss/` | Bestiary, luminors |
 | `community/` | `.claude/community/` | Templates |
 | `platforms/` | `.claude/platforms/` | Integration guides |
 | `examples/` | `.claude/examples/` | Usage examples |
@@ -63,8 +63,8 @@ These platform files are OSS-compatible and should be exported:
 | `.claude/commands/refactor.md` | `commands/` | Dev commands |
 | `.claude/commands/revision.md` | `commands/` | Dev commands |
 | `.claude/commands/tdd.md` | `commands/` | Dev commands |
-| `.arcanea/lore/bestiary/` | `lore/bestiary/` | Creative creatures |
-| `.arcanea/lore/luminors/` | `lore/luminors/` | Character profiles |
+| `.claude/lore/bestiary/` | `lore/bestiary/` | Creative creatures |
+| `.claude/lore/luminors/` | `lore/luminors/` | Character profiles |
 
 ### Platform-Only (Never Export)
 
@@ -122,7 +122,7 @@ When importing OSS content to platform:
    mkdir -p .claude/agents/oss
    mkdir -p .claude/skills/oss
    mkdir -p .claude/commands/oss
-   mkdir -p .arcanea/lore/oss
+   mkdir -p .claude/lore/oss
    ```
 
 2. **Copy OSS content**:
@@ -135,7 +135,7 @@ When importing OSS content to platform:
 
 3. **Verify and commit**:
    ```bash
-   git add .claude/agents/oss/ .claude/skills/oss/ .claude/commands/oss/ .arcanea/lore/oss/
+   git add .claude/agents/oss/ .claude/skills/oss/ .claude/commands/oss/ .claude/lore/oss/
    git commit -m "chore(oss): Import latest OSS content"
    ```
 
@@ -159,8 +159,8 @@ When exporting platform content to OSS:
    # ... etc
 
    # Copy lore
-   cp -r /mnt/c/Users/Frank/Arcanea/.arcanea/lore/bestiary/* lore/bestiary/
-   cp -r /mnt/c/Users/Frank/Arcanea/.arcanea/lore/luminors/* lore/luminors/
+   cp -r /mnt/c/Users/Frank/Arcanea/.claude/lore/bestiary/* lore/bestiary/
+   cp -r /mnt/c/Users/Frank/Arcanea/.claude/lore/luminors/* lore/luminors/
    ```
 
 3. **Review changes**:

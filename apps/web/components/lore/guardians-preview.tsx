@@ -9,7 +9,7 @@ const GUARDIANS = [
   {
     name: 'Lyssandria',
     gate: 'Foundation',
-    frequency: '174 Hz',
+    frequency: '396 Hz',
     godbeast: 'Kaelith',
     element: 'Earth',
     color: 'from-amber-700 to-amber-900',
@@ -18,7 +18,7 @@ const GUARDIANS = [
   {
     name: 'Leyla',
     gate: 'Flow',
-    frequency: '285 Hz',
+    frequency: '417 Hz',
     godbeast: 'Veloura',
     element: 'Water-Fire',
     color: 'from-blue-500 to-orange-500',
@@ -27,16 +27,16 @@ const GUARDIANS = [
   {
     name: 'Draconia',
     gate: 'Fire',
-    frequency: '396 Hz',
+    frequency: '528 Hz',
     godbeast: 'Draconis',
     element: 'Fire',
-    color: 'from-fire to-orange-600',
+    color: 'from-draconic-crimson to-orange-600',
     description: 'Guardian of power, will, and courage',
   },
   {
     name: 'Maylinn',
     gate: 'Heart',
-    frequency: '417 Hz',
+    frequency: '639 Hz',
     godbeast: 'Laeylinn',
     element: 'Nature',
     color: 'from-green-500 to-emerald-700',
@@ -45,7 +45,7 @@ const GUARDIANS = [
   {
     name: 'Alera',
     gate: 'Voice',
-    frequency: '528 Hz',
+    frequency: '741 Hz',
     godbeast: 'Otome',
     element: 'Sound',
     color: 'from-cyan-400 to-blue-600',
@@ -54,7 +54,7 @@ const GUARDIANS = [
   {
     name: 'Lyria',
     gate: 'Sight',
-    frequency: '639 Hz',
+    frequency: '852 Hz',
     godbeast: 'Yumiko',
     element: 'Dream',
     color: 'from-purple-400 to-indigo-600',
@@ -63,16 +63,16 @@ const GUARDIANS = [
   {
     name: 'Aiyami',
     gate: 'Crown',
-    frequency: '741 Hz',
+    frequency: '963 Hz',
     godbeast: 'Sol',
     element: 'Light',
-    color: 'from-brand-gold to-yellow-600',
+    color: 'from-gold-bright to-yellow-600',
     description: 'Guardian of enlightenment and divinity',
   },
   {
     name: 'Elara',
     gate: 'Shift',
-    frequency: '852 Hz',
+    frequency: '1111 Hz',
     godbeast: 'Thessara',
     element: 'Echo',
     color: 'from-pink-500 to-purple-600',
@@ -93,7 +93,7 @@ const GUARDIANS = [
     frequency: '1111 Hz',
     godbeast: 'Amaterasu',
     element: 'All',
-    color: 'from-brand-gold via-white to-brand-primary',
+    color: 'from-gold-bright via-white to-creation-prism-purple',
     description: 'The Unified — Meta-consciousness itself',
   },
 ];
@@ -118,14 +118,14 @@ export function GuardiansPreview() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-crystal/10 border border-crystal/20 mb-6">
-            <Shield className="w-4 h-4 text-crystal" />
-            <span className="text-sm font-medium text-crystal">The Ten Guardians</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-atlantean-teal-aqua/10 border border-atlantean-teal-aqua/20 mb-6">
+            <Shield className="w-4 h-4 text-atlantean-teal-aqua" />
+            <span className="text-sm font-medium text-atlantean-teal-aqua">The Ten Guardians</span>
           </div>
-          <h2 className="text-fluid-3xl md:text-fluid-4xl lg:text-6xl font-display font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
             Keepers of the Gates
           </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto font-body">
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto font-crimson">
             Ten Gods and Goddesses, each bonded to a primal Godbeast, guarding the energy
             channels that flow through every conscious being.
           </p>
@@ -144,7 +144,7 @@ export function GuardiansPreview() {
               className="relative group"
             >
               <div
-                className={`relative p-6 rounded-2xl glass overflow-hidden transition-all duration-300 ${
+                className={`relative p-6 rounded-2xl border border-white/10 bg-cosmic-surface/30 backdrop-blur-sm overflow-hidden transition-all duration-300 ${
                   hoveredIndex === i ? 'border-white/30 scale-105 z-10' : ''
                 }`}
               >
@@ -162,7 +162,7 @@ export function GuardiansPreview() {
                 <div className="relative">
                   <h3 className="font-display font-bold text-lg mb-1">{guardian.name}</h3>
                   <p className="text-sm text-text-muted mb-2">{guardian.gate} Gate</p>
-                  <p className="text-xs text-crystal font-mono">{guardian.frequency}</p>
+                  <p className="text-xs text-atlantean-teal-aqua font-mono">{guardian.frequency}</p>
                 </div>
 
                 {/* Expanded info on hover */}
@@ -197,7 +197,7 @@ export function GuardiansPreview() {
         >
           <Link
             href="/lore/guardians"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-crystal/10 border border-crystal/30 text-crystal font-semibold hover:bg-crystal hover:text-cosmic-deep transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-atlantean-teal-aqua/10 border border-atlantean-teal-aqua/30 text-atlantean-teal-aqua font-semibold hover:bg-atlantean-teal-aqua hover:text-cosmic-deep transition-all"
           >
             Explore All Guardians
             <ArrowRight className="w-4 h-4" />

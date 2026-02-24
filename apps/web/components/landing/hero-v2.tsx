@@ -78,7 +78,7 @@ export function HeroV2({ stats }: HeroV2Props) {
 
         {/* Floating orbs */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-crystal/20 to-transparent blur-[100px]"
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-atlantean-teal-aqua/20 to-transparent blur-[100px]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -86,7 +86,7 @@ export function HeroV2({ stats }: HeroV2Props) {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-brand-primary/20 to-transparent blur-[100px]"
+          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-creation-prism-purple/20 to-transparent blur-[100px]"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.3, 0.5, 0.3],
@@ -111,16 +111,16 @@ export function HeroV2({ stats }: HeroV2Props) {
           >
             <Link
               href="/hub/updates"
-              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-crystal/10 to-brand-primary/10 border border-crystal/20 backdrop-blur-sm hover:border-crystal/40 transition-all"
+              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-atlantean-teal-aqua/10 to-creation-prism-purple/10 border border-atlantean-teal-aqua/20 backdrop-blur-sm hover:border-atlantean-teal-aqua/40 transition-all"
             >
               <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crystal opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-crystal" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-atlantean-teal-aqua opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-atlantean-teal-aqua" />
               </span>
               <span className="text-sm font-medium text-text-secondary group-hover:text-white transition-colors">
                 Introducing Arcanea 2.0
               </span>
-              <ArrowRight className="w-4 h-4 text-crystal group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-4 h-4 text-atlantean-teal-aqua group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </motion.div>
 
@@ -133,12 +133,12 @@ export function HeroV2({ stats }: HeroV2Props) {
           >
             <span className="block text-white">Create with</span>
             <span className="relative inline-block mt-2">
-              <span className="relative z-10 bg-gradient-to-r from-crystal via-brand-primary to-brand-gold bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
+              <span className="relative z-10 bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-gold-bright bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
                 transcendent AI
               </span>
               {/* Underline glow */}
               <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-[3px] bg-gradient-to-r from-crystal via-brand-primary to-brand-gold rounded-full"
+                className="absolute -bottom-2 left-0 right-0 h-[3px] bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-gold-bright rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={isInView ? { scaleX: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.5 }}
@@ -170,8 +170,8 @@ export function HeroV2({ stats }: HeroV2Props) {
               href="/chat"
               className="group relative px-8 py-4 rounded-2xl font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_50px_rgba(127,255,212,0.4)]"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-crystal to-crystal-light" />
-              <div className="absolute inset-0 bg-gradient-to-r from-crystal via-white/20 to-crystal bg-[length:200%_100%] opacity-0 group-hover:opacity-100 transition-opacity animate-shimmer" />
+              <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua to-atlantean-teal-light" />
+              <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua via-white/20 to-atlantean-teal-aqua bg-[length:200%_100%] opacity-0 group-hover:opacity-100 transition-opacity animate-shimmer" />
               <span className="relative z-10 text-cosmic-deep flex items-center gap-2">
                 Start Creating Free
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -194,15 +194,15 @@ export function HeroV2({ stats }: HeroV2Props) {
             className="flex flex-wrap items-center justify-center gap-6 text-sm text-text-muted"
           >
             <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-crystal" />
+              <Shield className="w-4 h-4 text-atlantean-teal-aqua" />
               <span>Enterprise-grade security</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-brand-gold" />
+              <Zap className="w-4 h-4 text-gold-bright" />
               <span>Real-time responses</span>
             </div>
             <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-brand-primary" />
+              <Star className="w-4 h-4 text-creation-prism-purple" />
               <span>10k+ creators</span>
             </div>
           </motion.div>
@@ -216,7 +216,7 @@ export function HeroV2({ stats }: HeroV2Props) {
           className="mt-20 relative"
         >
           {/* Glow behind the preview */}
-          <div className="absolute inset-0 bg-gradient-to-b from-crystal/20 via-brand-primary/10 to-transparent blur-3xl -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-atlantean-teal-aqua/20 via-creation-prism-purple/10 to-transparent blur-3xl -z-10" />
 
           {/* Browser mockup */}
           <div className="relative rounded-2xl border border-white/10 bg-cosmic-surface/50 backdrop-blur-xl overflow-hidden shadow-2xl">
@@ -237,9 +237,9 @@ export function HeroV2({ stats }: HeroV2Props) {
             {/* Preview content - Bento grid of features */}
             <div className="p-6 grid grid-cols-4 gap-4 min-h-[400px]">
               {/* Main Luminor Card */}
-              <div className="col-span-2 row-span-2 rounded-2xl bg-gradient-to-br from-crystal/10 to-transparent border border-crystal/20 p-6 flex flex-col">
+              <div className="col-span-2 row-span-2 rounded-2xl bg-gradient-to-br from-atlantean-teal-aqua/10 to-transparent border border-atlantean-teal-aqua/20 p-6 flex flex-col">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-crystal to-brand-primary flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-atlantean-teal-aqua to-creation-prism-purple flex items-center justify-center">
                     <Sparkles className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -254,26 +254,26 @@ export function HeroV2({ stats }: HeroV2Props) {
                     <div className="h-2 bg-white/10 rounded w-3/5" />
                   </div>
                 </div>
-                <div className="mt-4 text-xs text-crystal">
+                <div className="mt-4 text-xs text-atlantean-teal-aqua">
                   Generating response...
                 </div>
               </div>
 
               {/* Stats Card */}
-              <div className="rounded-2xl bg-gradient-to-br from-brand-gold/10 to-transparent border border-brand-gold/20 p-4">
-                <div className="text-3xl font-bold text-brand-gold">{stats.luminors}</div>
+              <div className="rounded-2xl bg-gradient-to-br from-gold-bright/10 to-transparent border border-gold-bright/20 p-4">
+                <div className="text-3xl font-bold text-gold-bright">{stats.luminors}</div>
                 <div className="text-xs text-text-muted mt-1">Luminors</div>
               </div>
 
               {/* Wisdom Card */}
-              <div className="rounded-2xl bg-gradient-to-br from-brand-primary/10 to-transparent border border-brand-primary/20 p-4">
-                <div className="text-3xl font-bold text-brand-primary">{stats.wisdoms}</div>
+              <div className="rounded-2xl bg-gradient-to-br from-creation-prism-purple/10 to-transparent border border-creation-prism-purple/20 p-4">
+                <div className="text-3xl font-bold text-creation-prism-purple">{stats.wisdoms}</div>
                 <div className="text-xs text-text-muted mt-1">Wisdoms</div>
               </div>
 
               {/* Collections Card */}
-              <div className="rounded-2xl bg-gradient-to-br from-fire/10 to-transparent border border-fire/20 p-4">
-                <div className="text-3xl font-bold text-fire">{stats.collections}</div>
+              <div className="rounded-2xl bg-gradient-to-br from-draconic-crimson/10 to-transparent border border-draconic-crimson/20 p-4">
+                <div className="text-3xl font-bold text-draconic-crimson">{stats.collections}</div>
                 <div className="text-xs text-text-muted mt-1">Collections</div>
               </div>
 
@@ -289,7 +289,7 @@ export function HeroV2({ stats }: HeroV2Props) {
                 <div className="space-y-2">
                   {['Chronica created a story outline', 'Prismatic generated concept art', 'Oracle researched market trends'].map((activity, i) => (
                     <div key={i} className="flex items-center gap-2 text-xs text-text-muted">
-                      <div className="w-1.5 h-1.5 rounded-full bg-crystal" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-atlantean-teal-aqua" />
                       {activity}
                     </div>
                   ))}
@@ -304,7 +304,7 @@ export function HeroV2({ stats }: HeroV2Props) {
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
-            <span className="text-crystal">+2.5k</span>
+            <span className="text-atlantean-teal-aqua">+2.5k</span>
             <span className="text-text-muted ml-1">this week</span>
           </motion.div>
 
@@ -315,7 +315,7 @@ export function HeroV2({ stats }: HeroV2Props) {
           >
             <div className="flex items-center gap-1">
               {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} className="w-3 h-3 fill-brand-gold text-brand-gold" />
+                <Star key={star} className="w-3 h-3 fill-gold-bright text-gold-bright" />
               ))}
             </div>
             <span className="text-text-muted text-xs">4.9 rating</span>
@@ -337,7 +337,7 @@ export function HeroV2({ stats }: HeroV2Props) {
         >
           <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
             <motion.div
-              className="w-1.5 h-1.5 rounded-full bg-crystal"
+              className="w-1.5 h-1.5 rounded-full bg-atlantean-teal-aqua"
               animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />

@@ -161,7 +161,7 @@ export default function UpdatesPage() {
             <div key={date}>
               {/* Date Header */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="text-lg font-display font-semibold text-crystal">
+                <div className="text-lg font-display font-semibold text-atlantean-teal-aqua">
                   {formatDate(date)}
                 </div>
                 <div className="flex-1 h-px bg-white/10" />
@@ -244,7 +244,7 @@ export default function UpdatesPage() {
         </div>
 
         {/* Subscribe CTA */}
-        <div className="mt-16 p-8 rounded-2xl border border-crystal/30 bg-crystal/5">
+        <div className="mt-16 p-8 rounded-2xl border border-atlantean-teal-aqua/30 bg-atlantean-teal-aqua/5">
           <div className="text-center">
             <h3 className="text-xl font-display font-semibold mb-2">Stay Updated</h3>
             <p className="text-text-secondary mb-6">
@@ -254,9 +254,9 @@ export default function UpdatesPage() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-text-muted focus:outline-none focus:border-crystal"
+                className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-text-muted focus:outline-none focus:border-atlantean-teal-aqua"
               />
-              <button className="px-6 py-3 rounded-xl bg-crystal text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all">
+              <button className="px-6 py-3 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold hover:shadow-[0_0_20px_rgba(127,255,212,0.4)] transition-all">
                 Subscribe
               </button>
             </div>

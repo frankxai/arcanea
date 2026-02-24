@@ -1,0 +1,34 @@
+{
+  "$schema": "skill-profile-v1",
+  "name": "Arcanea Gate 1: Foundation",
+  "description": "Skills for the Foundation gate - workspace, environment, creative infrastructure",
+  "version": "1.0.0",
+  "gate": {
+    "number": 1,
+    "name": "Foundation",
+    "guardian": "Lyssandria",
+    "element": "Earth",
+    "frequency": "174 Hz"
+  },
+  "priority_skills": [
+    "clean-code",
+    "architecture-patterns",
+    "coding-standards",
+    "environment-setup-guide",
+    "file-organizer"
+  ],
+  "secondary_skills": [
+    "git-advanced-workflows",
+    "documentation-templates",
+    "monorepo-management"
+  ],
+  "learning_objectives": [
+    "Establish clean, organized workspace",
+    "Understand foundational architecture patterns",
+    "Create sustainable development environment"
+  ],
+  "triggers": {
+    "keywords": ["foundation", "setup", "workspace", "environment", "organize"],
+    "commands": ["/gate-1", "/academy"]
+  }
+}

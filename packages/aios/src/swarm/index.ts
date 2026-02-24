@@ -11,8 +11,8 @@ import type {
   SwarmProtocol,
   Agent,
   GuardianName,
-} from '@arcanea/os';
-import { GUARDIANS } from '@arcanea/os';
+} from '@arcanea/core';
+import { GUARDIANS } from '@arcanea/core';
 
 // Default swarm configuration
 export const DEFAULT_SWARM_CONFIG: SwarmConfig = {

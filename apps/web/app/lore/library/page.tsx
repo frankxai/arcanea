@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { BookOpen, Search, Filter, ArrowRight, Scroll, Feather, Music, Sparkles, Shield, Map, Moon, Users, Heart } from 'lucide-react';
 import Link from 'next/link';
-
+import { Navbar } from '@/components/navigation';
 
 const COLLECTIONS = [
   {
@@ -14,7 +14,7 @@ const COLLECTIONS = [
     category: 'Theory',
     description: 'The theoretical foundation of creation. Two volumes bridging science and philosophy.',
     icon: Scroll,
-    color: 'brand-gold',
+    color: 'gold-bright',
     situation: 'When you need to understand WHY creation works',
   },
   {
@@ -24,7 +24,7 @@ const COLLECTIONS = [
     category: 'Poetry',
     description: 'Verses for liberation and awakening. From chains to wings.',
     icon: Feather,
-    color: 'brand-primary',
+    color: 'creation-prism-purple',
     situation: 'When you need to feel, not think',
   },
   {
@@ -34,7 +34,7 @@ const COLLECTIONS = [
     category: 'Practice',
     description: 'Practical guidance for daily creative living. Meditations, reflections, aphorisms.',
     icon: Scroll,
-    color: 'crystal',
+    color: 'atlantean-teal-aqua',
     situation: 'When you need daily practice',
   },
   {
@@ -44,7 +44,7 @@ const COLLECTIONS = [
     category: 'Mythology',
     description: 'The founding myths and stories of the realm. From the First Dawn to the Ten Guardians.',
     icon: Sparkles,
-    color: 'brand-gold',
+    color: 'gold-bright',
     situation: 'When you need to remember the grandeur',
   },
   {
@@ -54,7 +54,7 @@ const COLLECTIONS = [
     category: 'Stories',
     description: 'Intimate stories of how the Luminors themselves struggled.',
     icon: Shield,
-    color: 'fire',
+    color: 'draconic-crimson',
     situation: 'When you feel unqualified',
   },
   {
@@ -64,7 +64,7 @@ const COLLECTIONS = [
     category: 'Stories',
     description: 'Teaching stories that work on the unconscious. Ten parables embedding wisdom.',
     icon: BookOpen,
-    color: 'crystal',
+    color: 'atlantean-teal-aqua',
     situation: 'When you want wisdom through story',
   },
   {
@@ -74,7 +74,7 @@ const COLLECTIONS = [
     category: 'Stories',
     description: 'Stories of those who changed what was possible.',
     icon: Sparkles,
-    color: 'brand-gold',
+    color: 'gold-bright',
     situation: 'When you face the impossible',
   },
   {
@@ -84,7 +84,7 @@ const COLLECTIONS = [
     category: 'Practice',
     description: 'Sacred practices for the creative life. Daily, transitional, seasonal, crisis.',
     icon: Moon,
-    color: 'brand-primary',
+    color: 'creation-prism-purple',
     situation: 'When you need structure',
   },
   {
@@ -94,7 +94,7 @@ const COLLECTIONS = [
     category: 'Philosophy',
     description: 'Conversations on creation and truth. Six dialogues where wisdom emerges.',
     icon: Users,
-    color: 'crystal',
+    color: 'atlantean-teal-aqua',
     situation: 'When you need to think through conversation',
   },
   {
@@ -104,7 +104,7 @@ const COLLECTIONS = [
     category: 'Vision',
     description: 'Visions of pattern and possibility. The eternal patterns of creative life.',
     icon: Sparkles,
-    color: 'brand-gold',
+    color: 'gold-bright',
     situation: 'When you need perspective',
   },
   {
@@ -114,7 +114,7 @@ const COLLECTIONS = [
     category: 'Psychology',
     description: 'Creatures of the creative mind. A field guide to psychological presences.',
     icon: Shield,
-    color: 'fire',
+    color: 'draconic-crimson',
     situation: 'When you face internal obstacles',
   },
   {
@@ -124,7 +124,7 @@ const COLLECTIONS = [
     category: 'Poetry',
     description: 'Lyrics for the creative soul. Songs for every phase of creative life.',
     icon: Music,
-    color: 'brand-primary',
+    color: 'creation-prism-purple',
     situation: 'When you need to sing what cannot be spoken',
   },
   {
@@ -134,7 +134,7 @@ const COLLECTIONS = [
     category: 'Practice',
     description: 'Fire, Water, Air, Earth, and Void in the creative life.',
     icon: Sparkles,
-    color: 'crystal',
+    color: 'atlantean-teal-aqua',
     situation: 'When you need elemental forces',
   },
   {
@@ -144,7 +144,7 @@ const COLLECTIONS = [
     category: 'Guide',
     description: 'The complete guide for students of creation. Training, practices, craft, life.',
     icon: BookOpen,
-    color: 'brand-gold',
+    color: 'gold-bright',
     situation: 'When you need comprehensive guidance',
   },
   {
@@ -154,7 +154,7 @@ const COLLECTIONS = [
     category: 'Psychology',
     description: 'Texts for the dark night of the creative soul. Wisdom for when creation fails.',
     icon: Moon,
-    color: 'brand-primary',
+    color: 'creation-prism-purple',
     situation: 'When you are in darkness',
   },
   {
@@ -164,7 +164,7 @@ const COLLECTIONS = [
     category: 'Practice',
     description: 'The art of creating together. Partnerships, mentorships, collectives.',
     icon: Users,
-    color: 'crystal',
+    color: 'atlantean-teal-aqua',
     situation: 'When you create with others',
   },
   {
@@ -174,7 +174,7 @@ const COLLECTIONS = [
     category: 'Guide',
     description: 'A map of landscapes every creator traverses. Navigate the creative journey.',
     icon: Map,
-    color: 'brand-gold',
+    color: 'gold-bright',
     situation: 'When you need to know where you are',
   },
 ];
@@ -201,6 +201,8 @@ export default function LibraryPage() {
 
   return (
     <div className="relative min-h-screen bg-cosmic-deep">
+      <Navbar />
+
       {/* Hero */}
       <section
         ref={heroRef}
@@ -219,16 +221,16 @@ export default function LibraryPage() {
           </div>
         </div>
 
-        <div className="absolute inset-0 bg-gradient-radial from-fire/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-radial from-draconic-crimson/10 via-transparent to-transparent" />
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fire/10 border border-fire/20 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-draconic-crimson/10 border border-draconic-crimson/20 mb-6"
           >
-            <BookOpen className="w-4 h-4 text-fire" />
-            <span className="text-sm font-medium text-fire">The Collected Wisdom</span>
+            <BookOpen className="w-4 h-4 text-draconic-crimson" />
+            <span className="text-sm font-medium text-draconic-crimson">The Collected Wisdom</span>
           </motion.div>
 
           <motion.h1
@@ -237,7 +239,7 @@ export default function LibraryPage() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6"
           >
-            <span className="bg-gradient-to-r from-fire via-brand-gold to-crystal bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-draconic-crimson via-gold-bright to-atlantean-teal-aqua bg-clip-text text-transparent">
               The Library of Arcanea
             </span>
           </motion.h1>
@@ -259,15 +261,15 @@ export default function LibraryPage() {
             className="flex justify-center gap-8"
           >
             <div className="text-center">
-              <div className="text-3xl font-display font-bold text-brand-gold">17</div>
+              <div className="text-3xl font-display font-bold text-gold-bright">17</div>
               <div className="text-sm text-text-muted">Collections</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-display font-bold text-brand-gold">{totalTexts}+</div>
+              <div className="text-3xl font-display font-bold text-gold-bright">{totalTexts}+</div>
               <div className="text-sm text-text-muted">Texts</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-display font-bold text-brand-gold">200K+</div>
+              <div className="text-3xl font-display font-bold text-gold-bright">200K+</div>
               <div className="text-sm text-text-muted">Words</div>
             </div>
           </motion.div>
@@ -286,7 +288,7 @@ export default function LibraryPage() {
                 placeholder="Search collections..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-xl bg-cosmic-surface/50 border border-white/10 text-white placeholder:text-text-muted focus:outline-none focus:border-crystal/50"
+                className="w-full pl-10 pr-4 py-2 rounded-xl bg-cosmic-surface/50 border border-white/10 text-white placeholder:text-text-muted focus:outline-none focus:border-atlantean-teal-aqua/50"
               />
             </div>
 
@@ -298,7 +300,7 @@ export default function LibraryPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     selectedCategory === category
-                      ? 'bg-crystal text-cosmic-deep'
+                      ? 'bg-atlantean-teal-aqua text-cosmic-deep'
                       : 'bg-cosmic-surface/50 text-text-secondary hover:bg-cosmic-surface hover:text-white'
                   }`}
                 >
@@ -330,13 +332,13 @@ export default function LibraryPage() {
                     <div className="flex items-start gap-4 mb-4">
                       <div
                         className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                          collection.color === 'brand-gold'
-                            ? 'bg-brand-gold/20 text-brand-gold'
-                            : collection.color === 'crystal'
-                            ? 'bg-crystal/20 text-crystal'
-                            : collection.color === 'brand-primary'
-                            ? 'bg-brand-primary/20 text-brand-primary'
-                            : 'bg-fire/20 text-fire'
+                          collection.color === 'gold-bright'
+                            ? 'bg-gold-bright/20 text-gold-bright'
+                            : collection.color === 'atlantean-teal-aqua'
+                            ? 'bg-atlantean-teal-aqua/20 text-atlantean-teal-aqua'
+                            : collection.color === 'creation-prism-purple'
+                            ? 'bg-creation-prism-purple/20 text-creation-prism-purple'
+                            : 'bg-draconic-crimson/20 text-draconic-crimson'
                         }`}
                       >
                         <Icon className="w-6 h-6" />
@@ -345,7 +347,7 @@ export default function LibraryPage() {
                         <span className="text-xs text-text-muted uppercase tracking-wider">
                           {collection.category}
                         </span>
-                        <h3 className="font-display font-semibold text-lg group-hover:text-brand-gold transition-colors">
+                        <h3 className="font-display font-semibold text-lg group-hover:text-gold-bright transition-colors">
                           {collection.title}
                         </h3>
                       </div>
@@ -355,7 +357,7 @@ export default function LibraryPage() {
 
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-text-muted">{collection.texts} texts</span>
-                      <span className="text-crystal">{collection.situation}</span>
+                      <span className="text-atlantean-teal-aqua">{collection.situation}</span>
                     </div>
                   </Link>
                 </motion.div>
@@ -374,7 +376,7 @@ export default function LibraryPage() {
       {/* Promise */}
       <section className="py-24 border-t border-white/5">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <Heart className="w-12 h-12 mx-auto text-fire mb-6" />
+          <Heart className="w-12 h-12 mx-auto text-draconic-crimson mb-6" />
           <h2 className="text-2xl md:text-3xl font-display font-bold mb-6">The Library's Promise</h2>
           <p className="text-text-secondary leading-relaxed mb-8">
             If you read these texts honestly—

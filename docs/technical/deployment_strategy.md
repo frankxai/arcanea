@@ -73,7 +73,7 @@ Arcanea uses a modern, globally distributed deployment architecture optimized fo
       "outputDirectory": "apps/studio/.next"
     },
     {
-      "name": "arcanea-codes",
+      "name": "arcanea-realms",
       "buildCommand": "turbo run build --filter=@arcanea/realms",
       "outputDirectory": "apps/realms/.next"
     },

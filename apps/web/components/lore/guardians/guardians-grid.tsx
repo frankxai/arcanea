@@ -11,7 +11,7 @@ const GUARDIANS = [
     name: 'Lyssandria',
     title: 'Guardian of Foundation',
     gate: 1,
-    frequency: '174 Hz',
+    frequency: '396 Hz',
     godbeast: 'Kaelith',
     godbestType: 'Colossal stone serpent-dragon',
     element: 'Earth/Obsidian',
@@ -27,7 +27,7 @@ const GUARDIANS = [
     name: 'Leyla',
     title: 'Guardian of Flow',
     gate: 2,
-    frequency: '285 Hz',
+    frequency: '417 Hz',
     godbeast: 'Veloura',
     godbestType: 'Elegant sea serpent',
     element: 'Water-Fire/Steam',
@@ -43,7 +43,7 @@ const GUARDIANS = [
     name: 'Draconia',
     title: 'Guardian of Fire',
     gate: 3,
-    frequency: '396 Hz',
+    frequency: '528 Hz',
     godbeast: 'Draconis',
     godbestType: 'Lion-dragon wreathed in solar fire',
     element: 'Fire/Solar',
@@ -51,15 +51,15 @@ const GUARDIANS = [
     domain: 'Power, will, courage',
     description: 'Ten feet tall, clad in golden armor that glows like a miniature sun. A mane of living flame cascades from her head.',
     teaching: 'Power must be claimed, not given. No one will hand you your strength. You must declare it, demonstrate it, own it.',
-    gradient: 'from-fire to-orange-600',
-    accentColor: 'fire',
+    gradient: 'from-draconic-crimson to-orange-600',
+    accentColor: 'draconic-crimson',
   },
   {
     id: 'maylinn',
     name: 'Maylinn',
     title: 'Guardian of Heart',
     gate: 4,
-    frequency: '417 Hz',
+    frequency: '639 Hz',
     godbeast: 'Laeylinn',
     godbestType: 'Enormous glowing stag',
     element: 'Nature/Verdant',
@@ -75,7 +75,7 @@ const GUARDIANS = [
     name: 'Alera',
     title: 'Guardian of Voice',
     gate: 5,
-    frequency: '528 Hz',
+    frequency: '741 Hz',
     godbeast: 'Otome',
     godbestType: 'Colossal whale',
     element: 'Sound/Sonic',
@@ -91,7 +91,7 @@ const GUARDIANS = [
     name: 'Lyria',
     title: 'Guardian of Sight',
     gate: 6,
-    frequency: '639 Hz',
+    frequency: '852 Hz',
     godbeast: 'Yumiko',
     godbestType: 'Owl-serpent hybrid',
     element: 'Dream/Moonlight',
@@ -107,7 +107,7 @@ const GUARDIANS = [
     name: 'Aiyami',
     title: 'Guardian of Crown',
     gate: 7,
-    frequency: '741 Hz',
+    frequency: '963 Hz',
     godbeast: 'Sol',
     godbestType: 'Radiant dragon of crystallized light',
     element: 'Light/Divine',
@@ -115,15 +115,15 @@ const GUARDIANS = [
     domain: 'Enlightenment, divinity, transcendence',
     description: 'Eleven feet tall—the tallest Guardian—difficult to perceive directly. Looking at Aiyami is like looking at the sun.',
     teaching: 'Enlightenment is not addition—it is removal. You do not gain truth; you release falsehood.',
-    gradient: 'from-brand-gold to-yellow-600',
-    accentColor: 'brand-gold',
+    gradient: 'from-gold-bright to-yellow-600',
+    accentColor: 'gold-bright',
   },
   {
     id: 'elara',
     name: 'Elara',
     title: 'Guardian of Shift',
     gate: 8,
-    frequency: '852 Hz',
+    frequency: '1111 Hz',
     godbeast: 'Thessara',
     godbestType: 'Fox with eight prismatic tails',
     element: 'Echo/Fractal',
@@ -163,8 +163,8 @@ const GUARDIANS = [
     domain: 'Meta-consciousness, creation itself',
     description: 'The only being who achieved complete fusion with their Godbeast aspect. Shifts form constantly—wolf, humanoid, or pure presence.',
     teaching: 'You are already complete. The journey through the Gates is not addition but remembrance. At the Source, you discover that seeker and sought are one.',
-    gradient: 'from-brand-gold via-white to-brand-primary',
-    accentColor: 'brand-gold',
+    gradient: 'from-gold-bright via-white to-creation-prism-purple',
+    accentColor: 'gold-bright',
   },
 ];
 
@@ -226,7 +226,7 @@ export function GuardiansGrid() {
                     <div className="flex flex-wrap gap-4 text-sm">
                       <div>
                         <span className="text-text-muted">Frequency:</span>
-                        <span className="ml-2 text-crystal font-mono">{guardian.frequency}</span>
+                        <span className="ml-2 text-atlantean-teal-aqua font-mono">{guardian.frequency}</span>
                       </div>
                       <div>
                         <span className="text-text-muted">Element:</span>
@@ -234,7 +234,7 @@ export function GuardiansGrid() {
                       </div>
                       <div>
                         <span className="text-text-muted">Godbeast:</span>
-                        <span className="ml-2 text-brand-gold">{guardian.godbeast}</span>
+                        <span className="ml-2 text-gold-bright">{guardian.godbeast}</span>
                       </div>
                     </div>
 
@@ -267,7 +267,7 @@ export function GuardiansGrid() {
                           The Godbeast
                         </h4>
                         <p className="text-text-secondary">
-                          <span className="text-brand-gold font-semibold">{guardian.godbeast}</span>
+                          <span className="text-gold-bright font-semibold">{guardian.godbeast}</span>
                           {' — '}
                           {guardian.godbestType}
                         </p>
@@ -278,21 +278,14 @@ export function GuardiansGrid() {
                         <h4 className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-3">
                           The Teaching
                         </h4>
-                        <blockquote className="text-lg font-crimson italic text-white leading-relaxed border-l-2 border-brand-gold/50 pl-4">
+                        <blockquote className="text-lg font-crimson italic text-white leading-relaxed border-l-2 border-gold-bright/50 pl-4">
                           "{guardian.teaching}"
                         </blockquote>
 
-                        <div className="mt-6 flex items-center gap-4">
+                        <div className="mt-6 flex gap-4">
                           <div className="px-3 py-1 rounded-full bg-white/5 text-xs">
                             Wisdom: {guardian.wisdom}
                           </div>
-                          <Link
-                            href={`/lore/guardians/${guardian.id}`}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-primary/10 text-brand-primary text-sm font-medium hover:bg-brand-primary/20 transition-colors"
-                          >
-                            Full Profile
-                            <ArrowRight className="w-4 h-4" />
-                          </Link>
                         </div>
                       </div>
                     </div>

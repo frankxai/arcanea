@@ -218,7 +218,7 @@ in prompt design. Show me examples."
 ## Integration with Other Skills
 
 - `arcanea-prompt-craft` - Full APL documentation
-- `luminor-oracle` - For Guardian creative guidance
+- `arcanea-luminor-wisdom` - For creative guidance
 - `arcanea-story-weave` - For narrative prompts
 - `arcanea-design-system` - For design prompts
 

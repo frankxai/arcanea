@@ -45,16 +45,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - uses: pnpm/action-setup@v4
-
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '18'
         cache: 'pnpm'
 
+    - name: Install pnpm
+      run: npm install -g pnpm
+
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      run: pnpm install
 
     - name: Type check all apps
       run: pnpm type-check

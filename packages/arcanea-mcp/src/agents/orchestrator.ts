@@ -15,7 +15,6 @@ import {
 import { AGENTS, getAgent } from "./definitions.js";
 import { getGraphSummary } from "../tools/creation-graph.js";
 import { getSessionSummary, getOrCreateSession } from "../memory/index.js";
-import { getSkillRulesEngine, getFeedbackBridge } from "../skills/index.js";
 
 // Task queue for background execution
 const taskQueue: Map<string, AgentTask> = new Map();
@@ -60,33 +59,11 @@ export function assessWorldState(sessionId: string): WorldState {
 
 /**
  * Phase 0: Intent Gate
- * Check if request matches a skill and should be routed immediately.
- * Uses the SkillRulesEngine (35 rules, Guardian-aligned) first,
- * falls back to legacy matchCreativeSkill for creative-specific routing.
+ * Check if request matches a skill and should be routed immediately
  */
-export function intentGate(
-  request: string,
-  context?: { filePaths?: string[]; command?: string }
-): OrchestratorDecision | null {
-  // Try skill-rules engine first (35 Guardian-aligned rules)
-  const engine = getSkillRulesEngine();
-  const activation = engine.activate(request, context);
-
-  if (activation.activated.length > 0) {
-    const primary = activation.activated[0];
-    const executionId = engine.logExecution(activation);
-
-    return {
-      phase: "intent",
-      action: `route_to_skill:${primary.skill}`,
-      agents: [primary.guardian.toLowerCase()],
-      parallel: activation.activated.length > 1,
-      reasoning: `[${activation.guardian}/${activation.gate}/${activation.frequency}] ${activation.reasoning}${activation.cascaded.length > 0 ? ` | Cascaded: ${activation.cascaded.join(", ")}` : ""} (exec:${executionId})`,
-    };
-  }
-
-  // Fallback to legacy creative skill matching
+export function intentGate(request: string): OrchestratorDecision | null {
   const skill = matchCreativeSkill(request);
+
   if (skill) {
     return {
       phase: "intent",
@@ -430,36 +407,4 @@ export function cancelTask(taskId: string): boolean {
     return true;
   }
   return false;
-}
-
-/**
- * Record feedback on a skill routing decision.
- * Feeds into the RL pipeline via FeedbackBridge → ReasoningBank.
- */
-export async function recordRoutingFeedback(
-  executionId: string,
-  feedback: "positive" | "negative" | "neutral"
-): Promise<void> {
-  const engine = getSkillRulesEngine();
-  const bridge = getFeedbackBridge();
-
-  // Record in skill-rules engine
-  engine.recordFeedback(executionId, feedback);
-
-  // Find the execution log and bridge to ReasoningBank
-  const logs = engine.getExecutionLogs();
-  const log = logs.find(l => l.id === executionId);
-  if (log) {
-    await bridge.bridgeExecution(log);
-  }
-}
-
-/**
- * Get routing accuracy stats across Guardians
- */
-export function getRoutingStats() {
-  return {
-    engine: getSkillRulesEngine().getStats(),
-    bridge: getFeedbackBridge().getStats(),
-  };
 }

@@ -22,7 +22,7 @@ import {
   ACADEMIES,
   type GuardianName,
   type PlatformType,
-} from '@arcanea/os';
+} from '@arcanea/core';
 import { loadGuardians, loadAwakened, getGuardian, getAwakened } from './agents/loader.js';
 
 // ASCII Art Banner

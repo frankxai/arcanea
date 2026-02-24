@@ -176,7 +176,7 @@ export default function ToolsPage() {
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-lg font-display font-semibold mb-2 group-hover:text-crystal transition-colors">
+                    <h3 className="text-lg font-display font-semibold mb-2 group-hover:text-atlantean-teal-aqua transition-colors">
                       {tool.name}
                     </h3>
                     <p className="text-sm text-text-secondary mb-4">

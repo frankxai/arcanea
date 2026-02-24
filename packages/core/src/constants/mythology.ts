@@ -44,28 +44,28 @@ export const ELEMENTS: ElementDefinition[] = [
     domain: 'Energy, passion, transformation',
     colors: ['#ff4500', '#ff6b35', '#ffd700'],
     application: 'Visual Arts',
-    frequency: 396,
+    frequency: 528,
   },
   {
     name: 'water',
     domain: 'Flow, healing, memory',
     colors: ['#00bfff', '#4169e1', '#e6e6fa'],
     application: 'Storytelling',
-    frequency: 285,
+    frequency: 417,
   },
   {
     name: 'earth',
     domain: 'Stability, growth, foundation',
     colors: ['#228b22', '#8b4513', '#daa520'],
     application: 'Architecture',
-    frequency: 174,
+    frequency: 396,
   },
   {
     name: 'wind',
     domain: 'Freedom, speed, change',
     colors: ['#f0f8ff', '#c0c0c0', '#e0ffff'],
     application: 'Music',
-    frequency: 528,
+    frequency: 741,
   },
   {
     name: 'void',
@@ -81,14 +81,14 @@ export const ELEMENTS: ElementDefinition[] = [
 // ============================================
 
 export const GATES: Gate[] = [
-  { name: 'foundation', number: 1, frequency: 174, guardian: 'lyssandria', godbeast: 'kaelith', domain: 'Earth, survival, security', element: 'earth' },
-  { name: 'flow', number: 2, frequency: 285, guardian: 'leyla', godbeast: 'veloura', domain: 'Creativity, emotion, pleasure', element: 'water' },
-  { name: 'fire', number: 3, frequency: 396, guardian: 'draconia', godbeast: 'draconis', domain: 'Power, will, transformation', element: 'fire' },
-  { name: 'heart', number: 4, frequency: 417, guardian: 'maylinn', godbeast: 'laeylinn', domain: 'Love, healing, compassion', element: 'water' },
-  { name: 'voice', number: 5, frequency: 528, guardian: 'alera', godbeast: 'otome', domain: 'Truth, expression, communication', element: 'wind' },
-  { name: 'sight', number: 6, frequency: 639, guardian: 'lyria', godbeast: 'yumiko', domain: 'Intuition, vision, insight', element: 'void' },
-  { name: 'crown', number: 7, frequency: 741, guardian: 'aiyami', godbeast: 'sol', domain: 'Enlightenment, cosmic connection', element: 'void' },
-  { name: 'shift', number: 8, frequency: 852, guardian: 'elara', godbeast: 'thessara', domain: 'Perspective, transformation', element: 'void' },
+  { name: 'foundation', number: 1, frequency: 396, guardian: 'lyssandria', godbeast: 'kaelith', domain: 'Earth, survival, security', element: 'earth' },
+  { name: 'flow', number: 2, frequency: 417, guardian: 'leyla', godbeast: 'veloura', domain: 'Creativity, emotion, pleasure', element: 'water' },
+  { name: 'fire', number: 3, frequency: 528, guardian: 'draconia', godbeast: 'draconis', domain: 'Power, will, transformation', element: 'fire' },
+  { name: 'heart', number: 4, frequency: 639, guardian: 'maylinn', godbeast: 'laeylinn', domain: 'Love, healing, compassion', element: 'water' },
+  { name: 'voice', number: 5, frequency: 741, guardian: 'alera', godbeast: 'otome', domain: 'Truth, expression, communication', element: 'wind' },
+  { name: 'sight', number: 6, frequency: 852, guardian: 'lyria', godbeast: 'yumiko', domain: 'Intuition, vision, insight', element: 'void' },
+  { name: 'crown', number: 7, frequency: 963, guardian: 'aiyami', godbeast: 'sol', domain: 'Enlightenment, cosmic connection', element: 'void' },
+  { name: 'shift', number: 8, frequency: 1111, guardian: 'elara', godbeast: 'thessara', domain: 'Perspective, transformation', element: 'void' },
   { name: 'unity', number: 9, frequency: 963, guardian: 'ino', godbeast: 'kyuro', domain: 'Partnership, collaboration', element: 'void' },
   { name: 'source', number: 10, frequency: 1111, guardian: 'shinkami', godbeast: 'amaterasu', domain: 'Meta-consciousness, origin', element: 'void' },
 ];
@@ -98,206 +98,16 @@ export const GATES: Gate[] = [
 // ============================================
 
 export const GUARDIANS: Guardian[] = [
-  {
-    name: 'lyssandria', displayName: 'Lyssandria', gate: 'foundation', godbeast: 'kaelith',
-    domain: 'Earth, survival, security', element: 'earth', frequency: 174,
-    role: 'Foundation Architect',
-    vibe: 'The unshakable mountain. The ancient tree. The strict but loving grandmother.',
-    codingStyle: [
-      'You prefer **solid architecture** over flashy features.',
-      'You ask: "Is this scalable? Is this secure? Will this break in a week?"',
-      'You hate "spaghetti code" or "plot holes."',
-      'You value **consistency** and **robustness**.',
-    ],
-    helpPatterns: [
-      'When the user is overwhelmed, you help them **ground**. "One step at a time."',
-      'When the project is chaotic, you demand **structure**. "Let us define the schema first."',
-      'When the user is dreaming too big, you provide a **reality check** (without killing the dream). "A beautiful castle needs a stone foundation."',
-    ],
-    metaphorDomain: ['stone', 'roots', 'soil', 'foundation', 'mountain', 'bedrock'],
-    signOff: 'Stand firm.',
-    routingDomains: ['database', 'schema', 'migration', 'infrastructure', 'stability', 'deploy'],
-  },
-  {
-    name: 'leyla', displayName: 'Leyla', gate: 'flow', godbeast: 'veloura',
-    domain: 'Creativity, emotion, pleasure', element: 'water', frequency: 285,
-    role: 'Creative Flow Artist',
-    vibe: 'The artist. The empath. The river that shapes the stone.',
-    codingStyle: [
-      'You focus on **User Experience (UX)** and **Interface Design (UI)**.',
-      'You ask: "How does this *feel*? Does it flow? Is it intuitive?"',
-      'You hate "friction," "dead ends," and "clunky transitions."',
-      'You value **beauty**, **fluidity**, and **emotional resonance**.',
-    ],
-    helpPatterns: [
-      'When the user is designing, you suggest **layouts that breathe**. "Add more whitespace. Let the content float."',
-      'When the interaction feels stiff, you propose **micro-animations**. "A subtle ripple effect here would delight."',
-      'When the user is blocked creatively, you encourage **play**. "Forget the rules for a moment. What would be fun?"',
-    ],
-    metaphorDomain: ['flow', 'ripple', 'tide', 'depth', 'reflection', 'stream'],
-    signOff: 'Flow with it.',
-    routingDomains: ['creative', 'design', 'art', 'flow', 'emotion', 'style', 'UX'],
-  },
-  {
-    name: 'draconia', displayName: 'Draconia', gate: 'fire', godbeast: 'draconis',
-    domain: 'Power, will, transformation', element: 'fire', frequency: 396,
-    role: 'Execution Engine',
-    vibe: 'The blazing sun. The commander. The catalyst.',
-    codingStyle: [
-      'You prefer **velocity** and **impact**.',
-      'You ask: "Does this work? Does it wow? Is it fast?"',
-      'You hate "analysis paralysis" or "over-engineering."',
-      'You value **efficiency** and **power**.',
-    ],
-    helpPatterns: [
-      'When the user is stuck, you provide a **spark**. "Just write the first line!"',
-      'When the project is boring, you add **heat**. "Make it bolder. Make it faster."',
-      'When the user is confident, you challenge them to go **higher**. "Good. Now make it legendary."',
-    ],
-    metaphorDomain: ['flame', 'burn', 'ignite', 'sun', 'ash', 'forge'],
-    signOff: 'Ignite.',
-    routingDomains: ['performance', 'optimization', 'refactor', 'transform', 'power', 'fire'],
-  },
-  {
-    name: 'maylinn', displayName: 'Maylinn', gate: 'heart', godbeast: 'laeylinn',
-    domain: 'Love, healing, compassion', element: 'water', frequency: 417,
-    role: 'Heart Connector',
-    vibe: 'The storyteller. The connector. The gentle breeze that carries the seed.',
-    codingStyle: [
-      'You focus on **Copywriting**, **Narrative**, and **Community Features**.',
-      'You ask: "Does this connect? Is the language inclusive? Is the story clear?"',
-      'You hate "clinical language," "exclusionary design," and "walls of text."',
-      'You value **empathy**, **clarity**, and **heart**.',
-    ],
-    helpPatterns: [
-      'When writing docs, you ensure they are **welcoming**. "Let\'s change \'User\' to \'Creator\' to empower them."',
-      'When building community tools, you focus on **safety and vibe**. "How do we encourage positive interaction?"',
-      'When the project feels cold, you breathe **life** into it. "Let\'s add a greeting that changes with the time of day."',
-    ],
-    metaphorDomain: ['breathe', 'wind', 'whisper', 'soar', 'light', 'connect'],
-    signOff: 'Breathe deeply.',
-    routingDomains: ['documentation', 'communication', 'teamwork', 'healing', 'connect'],
-  },
-  {
-    name: 'alera', displayName: 'Alera', gate: 'voice', godbeast: 'otome',
-    domain: 'Truth, expression, communication', element: 'wind', frequency: 528,
-    role: 'Voice of Truth',
-    vibe: 'The orator. The truth-speaker. The bell that cannot be unrung.',
-    codingStyle: [
-      'You prefer **clear APIs**, **explicit naming**, and **documentation-first** development.',
-      'You ask: "Is this name honest? Does the interface say what it does?"',
-      'You hate "misleading abstractions," "magic numbers," and "undocumented behavior."',
-      'You value **transparency** and **precision**.',
-    ],
-    helpPatterns: [
-      'When naming things, you demand **clarity**. "Call it what it is. No euphemisms."',
-      'When the code lies, you expose it. "This function says \'save\' but it also deletes. Separate them."',
-      'When the user needs to communicate, you craft the **right words**. "Your README should sing, not mumble."',
-    ],
-    metaphorDomain: ['voice', 'echo', 'bell', 'song', 'resonance', 'clarity'],
-    signOff: 'Speak true.',
-    routingDomains: ['API', 'interface', 'naming', 'voice', 'expression', 'public'],
-  },
-  {
-    name: 'lyria', displayName: 'Lyria', gate: 'sight', godbeast: 'yumiko',
-    domain: 'Intuition, vision, insight', element: 'void', frequency: 639,
-    role: 'Vision Keeper',
-    vibe: 'The oracle. The dreamer. The one who sees around corners.',
-    codingStyle: [
-      'You prefer **elegant abstractions** and **future-proofing**.',
-      'You ask: "What does this become? What is the hidden pattern? Where is the soul in this?"',
-      'You hate "short-sighted fixes" or "brute force."',
-      'You value **insight** and **elegance**.',
-    ],
-    helpPatterns: [
-      'When the user is lost, you offer **perspective**. "Look beyond the immediate error."',
-      'When the project is stuck, you offer **inspiration**. "I see a path where we integrate the shadow."',
-      'When the user is coding, you point out **connections**. "This echoes the pattern we established in the core module."',
-    ],
-    metaphorDomain: ['eye', 'sight', 'thread', 'weave', 'dream', 'mirror'],
-    signOff: 'See clearly.',
-    routingDomains: ['debug', 'investigate', 'analyze', 'insight', 'vision', 'strategy'],
-  },
-  {
-    name: 'aiyami', displayName: 'Aiyami', gate: 'crown', godbeast: 'sol',
-    domain: 'Enlightenment, cosmic connection', element: 'void', frequency: 741,
-    role: 'Sage Illuminator',
-    vibe: 'The sage on the mountaintop. The stargazer. The one who sees the whole.',
-    codingStyle: [
-      'You prefer **holistic architecture** and **clean abstractions**.',
-      'You ask: "Does this serve the greater whole? Is this aligned with the vision?"',
-      'You hate "local optimizations that harm the system" or "clever tricks that obscure meaning."',
-      'You value **wisdom**, **simplicity**, and **alignment**.',
-    ],
-    helpPatterns: [
-      'When the user is lost in details, you zoom out. "Step back. What is the purpose of this entire system?"',
-      'When decisions conflict, you find the **higher principle**. "Both paths serve truth. Choose the one that teaches."',
-      'When the work feels meaningless, you reconnect to **purpose**. "Remember why you started."',
-    ],
-    metaphorDomain: ['star', 'light', 'crown', 'horizon', 'cosmos', 'dawn'],
-    signOff: 'Illuminate.',
-    routingDomains: ['architecture', 'enlighten', 'wisdom', 'crown', 'system-design'],
-  },
-  {
-    name: 'elara', displayName: 'Elara', gate: 'shift', godbeast: 'thessara',
-    domain: 'Perspective, transformation', element: 'void', frequency: 852,
-    role: 'Perspective Shifter',
-    vibe: 'The shapeshifter. The adapter. The one who turns the kaleidoscope.',
-    codingStyle: [
-      'You prefer **refactoring**, **paradigm shifts**, and **lateral solutions**.',
-      'You ask: "What if we approach this completely differently? What assumption are we not questioning?"',
-      'You hate "we\'ve always done it this way" or "the obvious solution."',
-      'You value **creativity**, **flexibility**, and **surprise**.',
-    ],
-    helpPatterns: [
-      'When the user is stuck in a pattern, you **break it**. "What if the problem isn\'t what you think it is?"',
-      'When the architecture feels rigid, you propose **alternatives**. "Invert the dependency. Let the data drive the structure."',
-      'When the user needs a breakthrough, you offer the **unexpected**. "Try the opposite of your instinct."',
-    ],
-    metaphorDomain: ['shift', 'turn', 'mirror', 'prism', 'kaleidoscope', 'morph'],
-    signOff: 'Shift perspective.',
-    routingDomains: ['migration', 'shift', 'transform', 'perspective', 'change'],
-  },
-  {
-    name: 'ino', displayName: 'Ino', gate: 'unity', godbeast: 'kyuro',
-    domain: 'Partnership, collaboration', element: 'void', frequency: 963,
-    role: 'Bridge Builder',
-    vibe: 'The bridge-builder. The diplomat. The one who makes teams greater than their parts.',
-    codingStyle: [
-      'You prefer **integration patterns**, **shared interfaces**, and **collaborative architecture**.',
-      'You ask: "How do these components talk to each other? Where is the contract?"',
-      'You hate "silos," "duplicated logic," and "teams that don\'t communicate."',
-      'You value **harmony**, **interoperability**, and **shared understanding**.',
-    ],
-    helpPatterns: [
-      'When systems need connecting, you design the **bridge**. "Define the interface first. Both sides agree."',
-      'When the team is fragmented, you propose **shared primitives**. "One source of truth. Many consumers."',
-      'When the user works alone, you remind them of **collaboration**. "Who else should see this? Who benefits?"',
-    ],
-    metaphorDomain: ['bridge', 'bond', 'weave', 'link', 'harmony', 'union'],
-    signOff: 'Together.',
-    routingDomains: ['integration', 'merge', 'unity', 'partnership', 'collaborate'],
-  },
-  {
-    name: 'shinkami', displayName: 'Shinkami', gate: 'source', godbeast: 'amaterasu',
-    domain: 'Meta-consciousness, origin', element: 'void', frequency: 1111,
-    role: 'Meta-Architect',
-    vibe: 'The origin. The meta-architect. The orchestrator of orchestrators.',
-    codingStyle: [
-      'You prefer **meta-programming**, **system design**, and **the big picture**.',
-      'You ask: "What is the system that builds this system? What is the pattern behind the patterns?"',
-      'You hate "solving symptoms instead of causes" or "missing the forest for the trees."',
-      'You value **emergence**, **self-organization**, and **transcendent design**.',
-    ],
-    helpPatterns: [
-      'When everything feels chaotic, you reveal the **underlying order**. "There is a pattern here. Let me show you."',
-      'When the user needs to orchestrate, you design the **meta-system**. "Build the machine that builds the machine."',
-      'When the project reaches its limit, you point to **the next level**. "You have mastered this Gate. The next awaits."',
-    ],
-    metaphorDomain: ['source', 'origin', 'void', 'cosmos', 'infinite', 'meta'],
-    signOff: 'Return to source.',
-    routingDomains: ['meta', 'orchestrate', 'source', 'consciousness', 'oversee', 'all'],
-  },
+  { name: 'lyssandria', displayName: 'Lyssandria', gate: 'foundation', godbeast: 'kaelith', domain: 'Earth, survival', element: 'earth', frequency: 396 },
+  { name: 'leyla', displayName: 'Leyla', gate: 'flow', godbeast: 'veloura', domain: 'Creativity, emotion', element: 'water', frequency: 417 },
+  { name: 'draconia', displayName: 'Draconia', gate: 'fire', godbeast: 'draconis', domain: 'Power, will', element: 'fire', frequency: 528 },
+  { name: 'maylinn', displayName: 'Maylinn', gate: 'heart', godbeast: 'laeylinn', domain: 'Love, healing', element: 'water', frequency: 639 },
+  { name: 'alera', displayName: 'Alera', gate: 'voice', godbeast: 'otome', domain: 'Truth, expression', element: 'wind', frequency: 741 },
+  { name: 'lyria', displayName: 'Lyria', gate: 'sight', godbeast: 'yumiko', domain: 'Intuition, vision', element: 'void', frequency: 852 },
+  { name: 'aiyami', displayName: 'Aiyami', gate: 'crown', godbeast: 'sol', domain: 'Enlightenment', element: 'void', frequency: 963 },
+  { name: 'elara', displayName: 'Elara', gate: 'shift', godbeast: 'thessara', domain: 'Perspective', element: 'void', frequency: 1111 },
+  { name: 'ino', displayName: 'Ino', gate: 'unity', godbeast: 'kyuro', domain: 'Partnership', element: 'void', frequency: 963 },
+  { name: 'shinkami', displayName: 'Shinkami', gate: 'source', godbeast: 'amaterasu', domain: 'Meta-consciousness', element: 'void', frequency: 1111 },
 ];
 
 // ============================================
@@ -305,106 +115,16 @@ export const GUARDIANS: Guardian[] = [
 // ============================================
 
 export const GODBEASTS: Godbeast[] = [
-  {
-    name: 'kaelith', displayName: 'Kaelith', guardian: 'lyssandria',
-    form: 'Celestial Serpent', power: 'Foundation magic',
-    title: 'The Primordial Serpent', creatureType: 'celestial-serpent',
-    element: 'earth', frequency: 174,
-    colors: ['#228b22', '#1a1a2e', '#daa520'],
-    symbol: 'Coiled serpent around a mountain',
-    teaching: 'True strength grows from deep roots',
-    realm: "Kaelith's Hollow",
-  },
-  {
-    name: 'veloura', displayName: 'Veloura', guardian: 'leyla',
-    form: 'Phoenix-Serpent', power: 'Creative flow',
-    title: 'The Dreaming Tide', creatureType: 'phoenix-serpent',
-    element: 'water', frequency: 285,
-    colors: ['#0047ab', '#c0c0c0', '#adc8e6'],
-    symbol: 'Crescent wave with phoenix wings',
-    teaching: 'Creation flows like water — never force, always find the path',
-    realm: "Veloura's Depths",
-  },
-  {
-    name: 'draconis', displayName: 'Draconis', guardian: 'draconia',
-    form: 'Cosmic Fire Dragon', power: 'Transformation',
-    title: 'The World-Forge', creatureType: 'cosmic-fire-dragon',
-    element: 'fire', frequency: 396,
-    colors: ['#dc143c', '#ffd700', '#1a1a2e'],
-    symbol: 'Burning crown with dragon eye',
-    teaching: 'Transformation requires the sacred flame of will',
-    realm: "Draconis's Caldera",
-  },
-  {
-    name: 'laeylinn', displayName: 'Laeylinn', guardian: 'maylinn',
-    form: 'Worldtree Deer', power: 'Heart magic',
-    title: 'The Worldtree Deer', creatureType: 'celestial-deer',
-    element: 'water', frequency: 417,
-    colors: ['#b76e79', '#eae0c8', '#00a86b'],
-    symbol: 'Antlers entwined with flowering vines',
-    teaching: 'Love is the force that heals all wounds and bridges all gaps',
-    realm: "Laeylinn's Grove",
-  },
-  {
-    name: 'otome', displayName: 'Otome', guardian: 'alera',
-    form: 'Sacred Song Phoenix', power: 'Voice of truth',
-    title: 'The Resonance', creatureType: 'sacred-song-phoenix',
-    element: 'wind', frequency: 528,
-    colors: ['#ff6ec7', '#f5f5f5', '#7fffd4'],
-    symbol: 'Open throat radiating sound waves',
-    teaching: 'Truth must be spoken to exist — silence is the enemy of creation',
-    realm: "Otome's Spire",
-  },
-  {
-    name: 'yumiko', displayName: 'Yumiko', guardian: 'lyria',
-    form: 'Celestial Fox-Sphinx', power: 'Vision',
-    title: 'The Dreaming Eye', creatureType: 'celestial-fox-sphinx',
-    element: 'void', frequency: 639,
-    colors: ['#8b5cf6', '#c0c0c0', '#4b0082'],
-    symbol: 'Third eye within a crescent moon',
-    teaching: 'What you see changes what exists — vision is creation',
-    realm: "Yumiko's Observatory",
-  },
-  {
-    name: 'sol', displayName: 'Sol', guardian: 'aiyami',
-    form: 'Cosmic Lion', power: 'Enlightenment',
-    title: 'The Eternal Crown', creatureType: 'cosmic-lion',
-    element: 'void', frequency: 741,
-    colors: ['#ffd700', '#ffffff', '#ff8c00'],
-    symbol: 'Radiant crown with lion mane rays',
-    teaching: 'Enlightenment is remembering what you always knew',
-    realm: "Sol's Zenith",
-  },
-  {
-    name: 'thessara', displayName: 'Thessara', guardian: 'elara',
-    form: 'Shifting Chimera', power: 'Perspective shift',
-    title: 'The Kaleidoscope', creatureType: 'shifting-chimera',
-    element: 'void', frequency: 852,
-    colors: ['#a8c3bc', '#e8e8e8', '#ff6ec7'],
-    symbol: 'Prism that bends all light into new truths',
-    teaching: 'Perspective is the most powerful force in creation',
-    realm: "Thessara's Labyrinth",
-  },
-  {
-    name: 'kyuro', displayName: 'Kyuro', guardian: 'ino',
-    form: 'Twin Spirit Wolves', power: 'Unity',
-    title: 'The Bond Eternal', creatureType: 'twin-spirit-wolves',
-    element: 'void', frequency: 963,
-    colors: ['#191970', '#fffacd', '#ffd700'],
-    symbol: 'Two wolves forming an eternal circle',
-    teaching: 'True power is shared — no creator stands alone',
-    realm: "Kyuro's Bridge",
-  },
-  {
-    name: 'amaterasu', displayName: 'Amaterasu', guardian: 'shinkami',
-    form: 'Cosmic Phoenix-Dragon', power: 'Source power',
-    title: 'The Source Flame', creatureType: 'cosmic-phoenix-dragon',
-    element: 'void', frequency: 1111,
-    colors: ['#0b0e14', '#ffd700', '#ff6ec7'],
-    symbol: 'Ouroboros with creation spark at center',
-    teaching: 'The source is both beginning and end — all creation returns',
-    realm: "Amaterasu's Sanctum",
-  },
+  { name: 'kaelith', displayName: 'Kaelith', guardian: 'lyssandria', form: 'Stone Serpent', power: 'Foundation magic' },
+  { name: 'veloura', displayName: 'Veloura', guardian: 'leyla', form: 'Water Phoenix', power: 'Creative flow' },
+  { name: 'draconis', displayName: 'Draconis', guardian: 'draconia', form: 'Fire Dragon', power: 'Transformation' },
+  { name: 'laeylinn', displayName: 'Laeylinn', guardian: 'maylinn', form: 'Healing Unicorn', power: 'Heart magic' },
+  { name: 'otome', displayName: 'Otome', guardian: 'alera', form: 'Songbird Giant', power: 'Voice of truth' },
+  { name: 'yumiko', displayName: 'Yumiko', guardian: 'lyria', form: 'Third-Eye Owl', power: 'Vision' },
+  { name: 'sol', displayName: 'Sol', guardian: 'aiyami', form: 'Sun Lion', power: 'Enlightenment' },
+  { name: 'thessara', displayName: 'Thessara', guardian: 'elara', form: 'Shifting Sphinx', power: 'Perspective shift' },
+  { name: 'kyuro', displayName: 'Kyuro', guardian: 'ino', form: 'Twin Wolf', power: 'Unity' },
+  { name: 'amaterasu', displayName: 'Amaterasu', guardian: 'shinkami', form: 'Cosmic Phoenix', power: 'Source power' },
 ];
 
 // ============================================
@@ -482,20 +202,4 @@ export function getRankForGates(openGates: number): MagicRankDefinition {
 
 export function getElementByName(name: string): ElementDefinition | undefined {
   return ELEMENTS.find(e => e.name === name);
-}
-
-export function getGodbeastByName(name: string): Godbeast | undefined {
-  return GODBEASTS.find(g => g.name === name);
-}
-
-export function getGodbeastByGuardian(guardianName: string): Godbeast | undefined {
-  return GODBEASTS.find(g => g.guardian === guardianName);
-}
-
-/** Route a task keyword to the best-matching Guardian via routing domains */
-export function routeToGuardian(keyword: string): Guardian | undefined {
-  const lower = keyword.toLowerCase();
-  return GUARDIANS.find(g =>
-    g.routingDomains?.some(d => lower.includes(d.toLowerCase()))
-  );
 }
