@@ -1,5 +1,5 @@
 {
-  "name": "@starlight/runtime",
+  "name": "@arcanea/starlight-runtime",
   "version": "0.2.0",
   "description": "Context loader for Starlight Protocol files — reads and assembles agent context from disk",
   "main": "dist/index.js",
