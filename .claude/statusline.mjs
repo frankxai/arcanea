@@ -1,206 +1,251 @@
 /**
- * Arcanea Intelligence OS — Claude Code Statusline
+ * Arcanea Intelligence OS — Claude Code Statusline v2.0
  *
- * Line 1 (top):  Arcanea ⟡ {model} │ {guardian} │ {gate} │ {element}
- * Line 2 (main): ⟡ {repo} │ {branch} │ {mcp} MCPs │ ⚙ {hooks} hooks │ 🧠 {vault} vault │ ↑{in} ↓{out}
+ * Line 1: Arcanea ⟡ {model}  │  {guardian} {verb}  │  {gate} · {hz} Hz  │  {element}  │  {cost}
+ * Line 2: ⎇ {repo}/{branch}{dirty}  │  {realm}  │  ⚙ {mcp}  │  🪝 {hooks}  │  🧠 {intel}{trend}  │  🔧 {tools}  │  ↑{in} ↓{out}  │  {duration}
  */
 
 import { execSync, spawnSync } from 'child_process';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, existsSync, statSync } from 'fs';
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
+// ─── Utils ──────────────────────────────────────────────────────────────────
 
-function read(path, fallback = '') {
-  try { return readFileSync(path, 'utf-8').trim(); } catch { return fallback; }
+const read  = (p, fb = '') => { try { return readFileSync(p, 'utf-8').trim(); } catch { return fb; } };
+const readJ = (p, fb = {}) => { try { return JSON.parse(readFileSync(p, 'utf-8')); } catch { return fb; } };
+const fmt   = n => n >= 1e6 ? `${(n/1e6).toFixed(1)}M` : n >= 1e3 ? `${(n/1e3).toFixed(1)}K` : String(n);
+const mins  = ms => { const s = Math.floor(ms/1000); const m = Math.floor(s/60); return m > 0 ? `${m}m` : `${s}s`; };
+
+// ─── Canon: Gate Frequencies ────────────────────────────────────────────────
+
+const GATE_HZ = {
+  Foundation: 174, Flow: 285, Fire: 396, Heart: 417,
+  Voice: 528, Sight: 639, Crown: 741, Shift: 852,
+  Unity: 963, Source: 1111,
+};
+
+const ELEMENT_GLYPH = {
+  Fire: '🔥', Water: '💧', Earth: '🌿', Wind: '🌬',
+  Void: '✦ Void', Spirit: '✧ Spirit',
+};
+
+// ─── Guardian → verb (based on model tier + activity) ───────────────────────
+
+function getVerb(model, toolCount) {
+  // Tier-based primary verb
+  if (model.includes('opus'))   return 'orchestrates';
+  if (model.includes('haiku'))  return 'observes';
+  // Sonnet — activity-based
+  if (toolCount >= 30) return 'forges';
+  if (toolCount >= 15) return 'builds';
+  if (toolCount >= 5)  return 'crafts';
+  return 'creates';
 }
 
-function readJson(path, fallback = {}) {
-  try { return JSON.parse(readFileSync(path, 'utf-8')); } catch { return fallback; }
+// ─── Model label ────────────────────────────────────────────────────────────
+
+function modelLabel(raw) {
+  if (!raw) return 'Sonnet';
+  if (raw.includes('opus-4-6'))   return 'Opus 4.6';
+  if (raw.includes('opus-4-5'))   return 'Opus 4.5';
+  if (raw.includes('opus-4'))     return 'Opus 4';
+  if (raw.includes('sonnet-4-6')) return 'Sonnet 4.6';
+  if (raw.includes('sonnet-4-5')) return 'Sonnet 4.5';
+  if (raw.includes('sonnet-4'))   return 'Sonnet 4';
+  if (raw.includes('haiku-4-5'))  return 'Haiku 4.5';
+  if (raw.includes('haiku-4'))    return 'Haiku 4';
+  if (raw.includes('opus'))       return 'Opus';
+  if (raw.includes('sonnet'))     return 'Sonnet';
+  if (raw.includes('haiku'))      return 'Haiku';
+  return raw.replace('claude-','').split('-20')[0];
 }
 
-function fmt(n) {
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1_000)     return `${(n / 1_000).toFixed(1)}K`;
-  return String(n);
-}
+// ─── Repo from git remote (cached 60s) ──────────────────────────────────────
 
-// ─── Live state ─────────────────────────────────────────────────────────────
-
-function getGuardian() {
-  return read('/tmp/arcanea-guardian', 'Shinkami');
-}
-
-function getGate() {
-  return read('/tmp/arcanea-gate', 'Source');
-}
-
-function getElement() {
-  const el = read('/tmp/arcanea-element', 'Void');
-  // Element → symbol
-  const symbols = { Fire: '✦ Fire', Water: '✦ Water', Earth: '✦ Earth', Wind: '✦ Wind', Void: '✦ Void', Spirit: '✦ Spirit' };
-  return symbols[el] || `✦ ${el}`;
-}
-
-function getModel(ctx) {
-  if (!ctx.model) return 'Sonnet';
-  const m = ctx.model;
-  if (m.includes('opus-4'))   return 'Opus 4';
-  if (m.includes('sonnet-4')) return 'Sonnet 4';
-  if (m.includes('haiku-4'))  return 'Haiku 4';
-  if (m.includes('sonnet'))   return 'Sonnet';
-  if (m.includes('opus'))     return 'Opus';
-  if (m.includes('haiku'))    return 'Haiku';
-  return m.replace('claude-', '').split('-')[0];
-}
-
-// ─── Repo detection ─────────────────────────────────────────────────────────
-
-let _repoCache = null;
+let _repo = null, _repoAt = 0;
 function getRepo() {
-  if (_repoCache) return _repoCache;
+  if (_repo && Date.now() - _repoAt < 60_000) return _repo;
   try {
-    const remote = execSync('git remote get-url origin 2>/dev/null', { encoding: 'utf-8', timeout: 1000 }).trim();
-    const match = remote.match(/\/([^/]+?)(?:\.git)?$/);
-    _repoCache = match ? match[1] : 'arcanea';
-  } catch {
-    _repoCache = 'arcanea';
-  }
-  return _repoCache;
+    const r = execSync('git remote get-url origin 2>/dev/null', { encoding:'utf-8', timeout:800 }).trim();
+    _repo = r.match(/\/([^/]+?)(?:\.git)?$/)?.[1] ?? 'arcanea';
+  } catch { _repo = 'arcanea'; }
+  _repoAt = Date.now();
+  return _repo;
 }
 
-function getBranch(ctx) {
-  return ctx.gitBranch || 'main';
+// ─── Git dirty indicator (cached 10s) ───────────────────────────────────────
+
+let _dirty = '', _dirtyAt = 0;
+function getDirty() {
+  if (Date.now() - _dirtyAt < 10_000) return _dirty;
+  try {
+    const r = execSync('git status --porcelain 2>/dev/null | grep -v "^??" | wc -l', {
+      encoding:'utf-8', timeout:800
+    }).trim();
+    _dirty = parseInt(r,10) > 0 ? ` ●${r}` : '';
+  } catch { _dirty = ''; }
+  _dirtyAt = Date.now();
+  return _dirty;
 }
 
-// ─── MCP count ──────────────────────────────────────────────────────────────
+// ─── Tool call count from session log ───────────────────────────────────────
 
-let _mcpCache = null;
-let _mcpAt = 0;
-function getMcpCount() {
-  const now = Date.now();
-  if (_mcpCache !== null && now - _mcpAt < 30_000) return _mcpCache;
+function getToolCount() {
+  try {
+    const log = read('/tmp/arcanea-session/tool-count', '0');
+    return parseInt(log, 10) || 0;
+  } catch { return 0; }
+}
 
-  // Count from settings files
+// ─── MCP count (all sources, cached 30s) ────────────────────────────────────
+
+let _mcp = 0, _mcpAt = 0;
+function getMcp() {
+  if (Date.now() - _mcpAt < 30_000) return _mcp;
   const paths = [
     '/home/frankx/.claude/settings.json',
     '/home/frankx/.claude/mcp.json',
-    `${process.env.HOME || '/home/frankx'}/.claude/settings.json`,
+    `${process.env.HOME}/.claude/settings.json`,
+    `${process.env.HOME}/.claude/mcp.json`,
   ];
-
-  let total = 0;
   const seen = new Set();
   for (const p of paths) {
-    try {
-      const d = readJson(p);
-      const servers = d.mcpServers || {};
-      for (const k of Object.keys(servers)) {
-        if (!seen.has(k)) { seen.add(k); total++; }
-      }
-    } catch {}
+    const d = readJ(p);
+    for (const k of Object.keys(d.mcpServers ?? {})) seen.add(k);
   }
-  // Also check claude.ai MCP tools (deferred tools = connected MCPs)
-  // Conservative: count from what we know is connected
-  _mcpCache = total || '—';
-  _mcpAt = now;
-  return _mcpCache;
+  // Claude.ai integration MCPs are deferred tools — count distinct prefixes
+  // mcp__claude_ai_Slack, mcp__claude_ai_Notion, mcp__claude_ai_Vercel,
+  // mcp__claude_ai_Figma, mcp__claude_ai_Zapier, mcp__claude_ai_Miro,
+  // mcp__v0, mcp__arcanea-infogenius (8 known integrations)
+  const CLAUDE_AI_MCPS = 8;
+  _mcp = seen.size + CLAUDE_AI_MCPS;
+  _mcpAt = Date.now();
+  return _mcp;
 }
 
-// ─── Hooks count ────────────────────────────────────────────────────────────
+// ─── Hooks count (cached) ────────────────────────────────────────────────────
 
-let _hooksCache = null;
-function getHooksCount() {
-  if (_hooksCache) return _hooksCache;
+let _hooks = null;
+function getHooks() {
+  if (_hooks !== null) return _hooks;
   try {
-    const result = spawnSync('ls', ['/mnt/c/Users/frank/Arcanea/.claude/hooks/'], { encoding: 'utf-8', timeout: 500 });
-    _hooksCache = (result.stdout || '').split('\n').filter(Boolean).length;
-  } catch {
-    _hooksCache = 13; // known count
-  }
-  return _hooksCache;
+    const r = spawnSync('sh', ['-c', 'ls /mnt/c/Users/frank/Arcanea/.claude/hooks/ 2>/dev/null | wc -l'],
+      { encoding:'utf-8', timeout:500 });
+    _hooks = parseInt(r.stdout.trim(), 10) || 13;
+  } catch { _hooks = 13; }
+  return _hooks;
 }
 
-// ─── AgentDB vault ──────────────────────────────────────────────────────────
+// ─── Intelligence % + trend (cached 20s) ────────────────────────────────────
 
-let _vaultCache = null;
-let _vaultAt = 0;
-function getVaultCount() {
-  const now = Date.now();
-  if (_vaultCache !== null && now - _vaultAt < 60_000) return _vaultCache;
+let _intel = 75, _intelPrev = 75, _intelAt = 0;
+function getIntel() {
+  if (Date.now() - _intelAt < 20_000) return { val: _intel, trend: _intelTrend() };
+  _intelPrev = _intel;
+  const d = readJ('/mnt/c/Users/frank/Arcanea/.claude-flow/.trend-cache.json');
+  _intel = d.intelligence ?? 75;
+  _intelAt = Date.now();
+  return { val: _intel, trend: _intelTrend() };
+}
+function _intelTrend() {
+  if (_intel > _intelPrev) return '↑';
+  if (_intel < _intelPrev) return '↓';
+  return '';
+}
+
+// ─── Vault count (cached 60s) ────────────────────────────────────────────────
+
+let _vault = 0, _vaultAt = 0;
+function getVault() {
+  if (Date.now() - _vaultAt < 60_000) return _vault;
   try {
-    const result = spawnSync('python3', [
-      '-c',
-      `import sqlite3; db=sqlite3.connect('/home/frankx/.arcanea/agentdb.sqlite3'); c=db.cursor(); c.execute('SELECT COUNT(*) FROM vault_entries'); print(c.fetchone()[0]); db.close()`
-    ], { encoding: 'utf-8', timeout: 1000 });
-    _vaultCache = parseInt(result.stdout.trim(), 10) || 0;
-  } catch {
-    _vaultCache = 0;
-  }
-  _vaultAt = now;
-  return _vaultCache;
+    const r = spawnSync('python3', ['-c',
+      `import sqlite3; db=sqlite3.connect('/home/frankx/.arcanea/agentdb.sqlite3'); ` +
+      `c=db.cursor(); c.execute('SELECT COUNT(*) FROM vault_entries'); print(c.fetchone()[0]); db.close()`
+    ], { encoding:'utf-8', timeout:800 });
+    _vault = parseInt(r.stdout.trim(), 10) || 0;
+  } catch { _vault = 0; }
+  _vaultAt = Date.now();
+  return _vault;
 }
 
-// ─── Intelligence level ─────────────────────────────────────────────────────
+// ─── Cost formatter ──────────────────────────────────────────────────────────
 
-let _intelCache = null;
-let _intelAt = 0;
-function getIntelligence() {
-  const now = Date.now();
-  if (_intelCache !== null && now - _intelAt < 30_000) return _intelCache;
-  try {
-    const d = readJson('/mnt/c/Users/frank/Arcanea/.claude-flow/.trend-cache.json');
-    _intelCache = d.intelligence || 75;
-  } catch {
-    _intelCache = 75;
-  }
-  _intelAt = now;
-  return _intelCache;
+function fmtCost(c) {
+  if (!c || c < 0.0001) return null;
+  return c >= 1 ? `$${c.toFixed(2)}` : `$${c.toFixed(4)}`;
 }
 
-// ─── Cost ───────────────────────────────────────────────────────────────────
+// ─── Duration ────────────────────────────────────────────────────────────────
 
-function fmtCost(cost) {
-  if (!cost || cost === 0) return null;
-  return cost >= 1 ? `$${cost.toFixed(2)}` : `$${cost.toFixed(4)}`;
+function duration(startMs) {
+  if (!startMs) return null;
+  const s = Math.floor((Date.now() - startMs) / 1000);
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const ss = s % 60;
+  if (h > 0)  return `${h}h${String(m).padStart(2,'0')}m`;
+  if (m > 0)  return `${m}m${String(ss).padStart(2,'0')}s`;
+  return `${ss}s`;
+}
+
+// ─── Intelligence bar (5-block) ──────────────────────────────────────────────
+
+function intelBar(pct) {
+  const filled = Math.round(pct / 20); // 0-5
+  return '█'.repeat(filled) + '░'.repeat(5 - filled);
 }
 
 // ─── Main ────────────────────────────────────────────────────────────────────
 
 export default function statusline(ctx) {
-  const guardian = getGuardian();
-  const gate     = getGate();
-  const element  = getElement();
-  const model    = getModel(ctx);
-  const repo     = getRepo();
-  const branch   = getBranch(ctx);
-  const mcp      = getMcpCount();
-  const hooks    = getHooksCount();
-  const vault    = getVaultCount();
-  const intel    = getIntelligence();
+  // State files
+  const guardian = read('/tmp/arcanea-guardian', 'Shinkami');
+  const gate      = read('/tmp/arcanea-gate',     'Source');
+  const element   = read('/tmp/arcanea-element',  'Void');
+  const realm     = read('/tmp/arcanea-realm',    'Intelligence Sanctum');
+  const focus     = read('/tmp/arcanea-focus',    '');
 
-  // Token row
+  // Derived
+  const hz        = GATE_HZ[gate] ?? '?';
+  const elGlyph   = ELEMENT_GLYPH[element] ?? `✦ ${element}`;
+  const model     = modelLabel(ctx.model ?? '');
+  const toolCount = getToolCount();
+  const verb      = getVerb(ctx.model ?? '', toolCount);
+  const repo      = getRepo();
+  const branch    = ctx.gitBranch ?? 'main';
+  const dirty     = getDirty();
+  const mcp       = getMcp();
+  const hooks     = getHooks();
+  const { val: intel, trend } = getIntel();
+  const vault     = getVault();
+  const cost      = fmtCost(ctx.totalCost);
+  const dur       = duration(ctx.sessionStartTime);
+
   const inTok  = ctx.inputTokens  ? `↑${fmt(ctx.inputTokens)}`  : '';
   const outTok = ctx.outputTokens ? `↓${fmt(ctx.outputTokens)}` : '';
-  const cost   = fmtCost(ctx.totalCost);
 
-  // ── Line 1: Brand + Oracle state ──────────────────────────────────────────
-  const line1Parts = [
+  // ── Line 1: Oracle state ──────────────────────────────────────────────────
+  const l1 = [
     `Arcanea ⟡ ${model}`,
-    `${guardian} │ ${gate}`,
-    element,
+    `${guardian} ${verb}`,
+    `${gate} · ${hz} Hz`,
+    elGlyph,
   ];
-  if (cost) line1Parts.push(cost);
+  if (cost) l1.push(cost);
+  if (focus) l1.push(`↳ ${focus}`);
 
-  // ── Line 2: Dev context + metrics ─────────────────────────────────────────
-  const line2Parts = [
-    `⎇ ${repo}/${branch}`,
+  // ── Line 2: Mission control ───────────────────────────────────────────────
+  const l2 = [
+    `⎇ ${repo}/${branch}${dirty}`,
+    realm,
     `⚙ ${mcp} MCP`,
     `🪝 ${hooks} hooks`,
-    `🧠 ${intel}%`,
-    `🗄 ${vault} vault`,
+    `🧠 [${intelBar(intel)}] ${intel}%${trend}`,
+    `🗄 ${vault}`,
   ];
-  if (inTok || outTok) {
-    line2Parts.push([inTok, outTok].filter(Boolean).join(' '));
-  }
+  if (toolCount > 0) l2.push(`🔧 ${toolCount} calls`);
+  if (inTok || outTok) l2.push([inTok, outTok].filter(Boolean).join(' '));
+  if (dur) l2.push(dur);
 
-  return line1Parts.join(' │ ') + '\n' + line2Parts.join('  ');
+  return l1.join('  │  ') + '\n' + l2.join('  │  ');
 }

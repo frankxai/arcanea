@@ -13,15 +13,20 @@ TIMESTAMP="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 # Ensure session directory exists
 mkdir -p "$SESSION_DIR"
 
-# Read current tool count
+# Read and increment tool count (written to both locations for compatibility)
 COUNT_FILE="$SESSION_DIR/tool-count"
+TMP_COUNT_FILE="/tmp/arcanea-session/tool-count"
 COUNT=$(cat "$COUNT_FILE" 2>/dev/null || echo "0")
+NEW_COUNT=$((COUNT + 1))
+echo "$NEW_COUNT" > "$COUNT_FILE"
+mkdir -p /tmp/arcanea-session
+echo "$NEW_COUNT" > "$TMP_COUNT_FILE"
 
 # Determine output size for logging
 OUTPUT_LEN=${#TOOL_OUTPUT}
 
 # Log tool completion
-echo "[$TIMESTAMP] [#$COUNT] DONE  $TOOL_NAME | Output: ${OUTPUT_LEN} chars" >> "$SESSION_DIR/tools.log"
+echo "[$TIMESTAMP] [#$NEW_COUNT] DONE  $TOOL_NAME | Output: ${OUTPUT_LEN} chars" >> "$SESSION_DIR/tools.log"
 
 # Write significant operations to AgentDB memories
 # Only log Write, Edit, Bash completions with substantial output (meaningful work)
