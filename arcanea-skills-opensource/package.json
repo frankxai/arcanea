@@ -17,7 +17,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target bun --format esm && tsc --emitDeclarationOnly && bun build src/cli/index.ts --outdir dist/cli --target bun --format esm",
+    "build": "bun build src/index.ts --outdir dist --target node --format esm && tsc --emitDeclarationOnly && bun build src/cli/index.ts --outdir dist/cli --target node --format esm",
     "prepublishOnly": "bun run build"
   },
   "keywords": [
