@@ -1,0 +1,66 @@
+{
+  "name": "@arcanea/memory-system",
+  "version": "0.1.0",
+  "description": "Starlight Vault Memory System — 6 typed semantic vaults with Guardian routing, Horizon Ledger, and Mem0-compatible API",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./vaults": {
+      "types": "./dist/vault-manager.d.ts",
+      "import": "./dist/vault-manager.js"
+    },
+    "./horizon": {
+      "types": "./dist/horizon-ledger.d.ts",
+      "import": "./dist/horizon-ledger.js"
+    },
+    "./mem0": {
+      "types": "./dist/mem0-adapter.d.ts",
+      "import": "./dist/mem0-adapter.js"
+    },
+    "./classifier": {
+      "types": "./dist/vault-classifier.d.ts",
+      "import": "./dist/vault-classifier.js"
+    }
+  },
+  "bin": {
+    "starlight": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --import tsx --test src/**/*.test.ts",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "starlight": "node --import tsx src/cli.ts"
+  },
+  "keywords": [
+    "arcanea",
+    "memory",
+    "starlight-vaults",
+    "ai-memory",
+    "semantic-memory",
+    "guardian-routing"
+  ],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.11",
+    "tsx": "^4.21.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
