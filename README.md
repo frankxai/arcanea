@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <div align="center">
 
 # ARCANEA
@@ -604,4 +604,3 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 ```
 
 </div>
->>>>>>> 17fcd1ab4a0b2caddc8261ca1faa7cb46e36e9bc
