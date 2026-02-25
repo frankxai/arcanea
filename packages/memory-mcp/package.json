@@ -1,0 +1,30 @@
+{
+  "name": "@arcanea/memory-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Starlight Vaults — expose 6-vault semantic memory to any MCP-compatible AI tool",
+  "type": "module",
+  "main": "./dist/server.js",
+  "bin": {
+    "arcanea-memory-mcp": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/server.js",
+    "test": "node --import tsx --test src/**/*.test.ts"
+  },
+  "keywords": ["mcp", "memory", "arcanea", "starlight-vaults", "claude", "cursor", "ai-memory"],
+  "author": "FrankX <frank@frankx.ai>",
+  "license": "MIT",
+  "dependencies": {
+    "@arcanea/memory-system": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
