@@ -1,6 +1,6 @@
 {
   "name": "arcanea",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Arcanea - The Creative Intelligence Platform. Skills, agents, and tools for AI-human co-creation.",
   "type": "module",
   "main": "dist/index.js",
