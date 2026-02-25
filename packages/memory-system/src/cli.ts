@@ -2,7 +2,7 @@
 /**
  * Starlight Vaults CLI
  *
- * Usage: starlight <command> [options] [args]
+ * Usage: svaults <command> [options] [args]
  *
  * Provides terminal access to the Arcanea Memory System —
  * six semantic vaults, ten Guardian namespaces, and the Horizon Ledger.
@@ -100,7 +100,7 @@ function parseTags(raw: string | boolean | undefined): string[] {
 // ── Command handlers ─────────────────────────────────────────────────────────
 
 /**
- * `starlight remember <content>`
+ * `svaults remember <content>`
  *
  * Store a memory — auto-classified unless --vault is provided.
  * Optional: --vault, --guardian, --tags
@@ -141,7 +141,7 @@ async function cmdRemember(): Promise<void> {
 }
 
 /**
- * `starlight recall <query>`
+ * `svaults recall <query>`
  *
  * Search memories across vaults.
  * Optional: --vault, --guardian, --limit
@@ -182,7 +182,7 @@ async function cmdRecall(): Promise<void> {
 }
 
 /**
- * `starlight recent`
+ * `svaults recent`
  *
  * Show recent memories from a vault or all vaults.
  * Optional: --vault, --limit
@@ -214,7 +214,7 @@ async function cmdRecent(): Promise<void> {
 }
 
 /**
- * `starlight stats`
+ * `svaults stats`
  *
  * Show aggregate statistics for all vaults.
  */
@@ -224,35 +224,21 @@ async function cmdStats(): Promise<void> {
 
   console.log(c.bold('\n★ Starlight Vaults — Memory Statistics\n'));
   console.log(`  Total entries:   ${c.gold(String(stats.totalEntries))}`);
-  // stats shape differs between vault-manager (horizonCount) and types.ts (horizonEntries)
-  const horizonCount = ('horizonEntries' in stats)
-    ? (stats as { horizonEntries: number }).horizonEntries
-    : (stats as { horizonCount: number }).horizonCount;
-  console.log(`  Horizon wishes:  ${c.cyan(String(horizonCount))}`);
+  console.log(`  Horizon wishes:  ${c.cyan(String(stats.horizonCount))}`);
   console.log('');
 
-  // vault-manager returns { vaults: VaultStats[] } with .count per vault
-  // types.ts declares { vaultStats: VaultStats[] } with .entryCount
-  const vaultList: Array<{ vault: string; count?: number; entryCount?: number; topTags: Array<{ tag: string; count: number }> }> =
-    ('vaultStats' in stats)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ? (stats as any).vaultStats
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      : (stats as any).vaults ?? [];
-
-  for (const v of vaultList) {
-    const entryCount = v.entryCount ?? v.count ?? 0;
-    const label      = vaultLabel(v.vault);
-    const count      = entryCount > 0 ? c.bold(String(entryCount)) : c.dim('0');
-    const topTags    = v.topTags.slice(0, 3).map((t) => t.tag).join(', ');
-    const tagNote    = topTags ? c.dim(' [' + topTags + ']') : '';
+  for (const v of stats.vaults) {
+    const label   = vaultLabel(v.vault);
+    const count   = v.count > 0 ? c.bold(String(v.count)) : c.dim('0');
+    const topTags = v.topTags.slice(0, 3).map((t) => t.tag).join(', ');
+    const tagNote = topTags ? c.dim(' [' + topTags + ']') : '';
     console.log(`  ${label.padEnd(28)} ${count} entries${tagNote}`);
   }
   console.log('');
 }
 
 /**
- * `starlight horizon <sub> [...]`
+ * `svaults horizon <sub> [...]`
  *
  * Subcommands: append <wish>, read, export [path]
  */
@@ -295,13 +281,56 @@ async function cmdHorizon(): Promise<void> {
     console.log(c.green('✓') + ` Exported ${result.entries} Horizon entries to ${outputPath}/`);
     console.log(c.dim(`  ${result.files} files created`));
 
+  } else if (sub === 'share') {
+    // Export wishes in dataset contribution format for starlight-horizon-dataset
+    const vaults = await getVaults();
+    const all = await vaults.horizon.recent(1000); // Get all
+
+    if (all.length === 0) {
+      console.log(c.dim('No Horizon wishes to share yet. Add some first:'));
+      console.log(c.dim('  svaults horizon append "your wish" --context "why"'));
+      return;
+    }
+
+    // Group by month
+    const byMonth = new Map<string, typeof all>();
+    for (const entry of all) {
+      const month = entry.createdAt.slice(0, 7);
+      if (!byMonth.has(month)) byMonth.set(month, []);
+      byMonth.get(month)!.push(entry);
+    }
+
+    const outputPath = positional[1] ?? './horizon-contributions';
+    const { mkdirSync, writeFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+
+    mkdirSync(outputPath, { recursive: true });
+
+    let totalFiles = 0;
+    for (const [month, entries] of byMonth) {
+      const dir = join(outputPath, 'entries', month);
+      mkdirSync(dir, { recursive: true });
+      const jsonl = entries.map(e => JSON.stringify(e)).join('\n') + '\n';
+      writeFileSync(join(dir, `${month}.jsonl`), jsonl, 'utf-8');
+      totalFiles++;
+    }
+
+    console.log(c.cyan('✦') + ` Exported ${all.length} wishes to ${outputPath}/`);
+    console.log('');
+    console.log(c.bold('To contribute to the public dataset:'));
+    console.log('  1. Fork: ' + c.cyan('https://github.com/frankxai/starlight-horizon-dataset'));
+    console.log('  2. Copy your ' + c.dim(`${outputPath}/entries/`) + ' contents into the repo');
+    console.log('  3. Open a Pull Request');
+    console.log('');
+    console.log(c.dim(`"${all[0]?.wish?.slice(0, 60)}..."`));
+
   } else {
-    console.log('horizon subcommands: append <wish>, read, export [path]');
+    console.log('horizon subcommands: append <wish>, read, export [path], share [path]');
   }
 }
 
 /**
- * `starlight guardians`
+ * `svaults guardians`
  *
  * List all ten Guardians with their gate, frequency, and memory counts.
  */
@@ -336,17 +365,17 @@ async function cmdGuardians(): Promise<void> {
 }
 
 /**
- * `starlight as <Guardian> remember <content>`
+ * `svaults as <Guardian> remember <content>`
  *
  * Convenience passthrough: channel a Guardian, then remember.
- * Equivalent to: starlight remember --guardian <Guardian> <content>
+ * Equivalent to: svaults remember --guardian <Guardian> <content>
  */
 async function cmdAs(): Promise<void> {
   const guardian = positional[0];
   const sub      = positional[1];
 
   if (!guardian || !sub) {
-    console.error(c.red('Usage: starlight as <Guardian> remember <content>'));
+    console.error(c.red('Usage: svaults as <Guardian> remember <content>'));
     process.exit(1);
   }
 
@@ -372,7 +401,7 @@ async function cmdAs(): Promise<void> {
 }
 
 /**
- * `starlight classify <content>`
+ * `svaults classify <content>`
  *
  * Classify content into a vault without storing it.
  */
@@ -397,7 +426,7 @@ async function cmdClassify(): Promise<void> {
 }
 
 /**
- * `starlight sync`
+ * `svaults sync`
  *
  * Export a MEMORY.md summary from the current vault state.
  * Writes to <storagePath>/MEMORY.md (or .arcanea/memory/MEMORY.md by default).
@@ -426,27 +455,17 @@ async function cmdSync(): Promise<void> {
     `|-------|---------|`,
   ];
 
-  // Handle both shapes: { vaults } (vault-manager) and { vaultStats } (types.ts)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const vaultList: Array<{ vault: string; count?: number; entryCount?: number }> =
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (stats as any).vaultStats ?? (stats as any).vaults ?? [];
-
-  let totalEntries = 0;
-  for (const v of vaultList) {
-    const count = v.entryCount ?? v.count ?? 0;
-    totalEntries += count;
-    lines.push(`| ${v.vault} | ${count} |`);
+  for (const v of stats.vaults) {
+    lines.push(`| ${v.vault} | ${v.count} |`);
   }
 
   lines.push('');
-  lines.push(`**Total entries:** ${totalEntries}`);
+  lines.push(`**Total entries:** ${stats.totalEntries}`);
   lines.push('');
 
   // Append a recent-entries section for each non-empty vault
-  for (const v of vaultList) {
-    const count = v.entryCount ?? v.count ?? 0;
-    if (count === 0) continue;
+  for (const v of stats.vaults) {
+    if (v.count === 0) continue;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const recent = await manager.getRecent(v.vault as any, 3);
@@ -474,7 +493,7 @@ async function cmdSync(): Promise<void> {
   const content    = lines.join('\n');
   writeFileSync(outputPath, content, 'utf-8');
 
-  console.log(c.green('✓') + ` MEMORY.md synced — ${lines.length} lines, ${totalEntries} entries`);
+  console.log(c.green('✓') + ` MEMORY.md synced — ${lines.length} lines, ${stats.totalEntries} entries`);
   console.log(c.dim(`  Output: ${outputPath}`));
 }
 
@@ -484,7 +503,7 @@ function cmdHelp(): void {
   console.log(`
 ${c.bold('★ Starlight Vaults')} — Arcanea Memory System
 
-${c.bold('Usage:')} starlight <command> [options]
+${c.bold('Usage:')} svaults <command> [options]
 
 ${c.bold('Commands:')}
   ${c.cyan('remember')} <content>        Remember something (auto-classified)
@@ -510,6 +529,7 @@ ${c.bold('Commands:')}
     read                     Read recent wishes
       --limit <n>            Max wishes to show (default: 10)
     export [path]            Export as public dataset
+    share [path]             Export wishes for public dataset contribution
 
   ${c.cyan('as')} <Guardian> remember <content>
                              Remember content as a specific Guardian
@@ -524,20 +544,20 @@ ${c.bold('Global Options:')}
   --path <dir>               Override storage path (default: .arcanea/memory)
 
 ${c.bold('Examples:')}
-  starlight remember "chose .md files for zero-dep storage"
-  starlight remember --vault strategic "Decision: Next.js 16 App Router"
-  starlight recall "storage architecture"
-  starlight recall --vault technical "typescript pattern"
-  starlight recall --guardian Shinkami "wisdom insight"
-  starlight recent --vault wisdom --limit 5
-  starlight horizon append "AI and humans build beauty together" --context "Late night coding"
-  starlight horizon read
-  starlight horizon export ./starlight-horizon-dataset
-  starlight as Draconia remember "Fire and will are the same force"
-  starlight guardians
-  starlight stats
-  starlight classify "This is about architecture decisions for the database"
-  starlight sync
+  svaults remember "chose .md files for zero-dep storage"
+  svaults remember --vault strategic "Decision: Next.js 16 App Router"
+  svaults recall "storage architecture"
+  svaults recall --vault technical "typescript pattern"
+  svaults recall --guardian Shinkami "wisdom insight"
+  svaults recent --vault wisdom --limit 5
+  svaults horizon append "AI and humans build beauty together" --context "Late night coding"
+  svaults horizon read
+  svaults horizon export ./starlight-horizon-dataset
+  svaults as Draconia remember "Fire and will are the same force"
+  svaults guardians
+  svaults stats
+  svaults classify "This is about architecture decisions for the database"
+  svaults sync
 `);
 }
 

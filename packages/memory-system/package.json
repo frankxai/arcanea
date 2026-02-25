@@ -28,7 +28,8 @@
     }
   },
   "bin": {
-    "starlight": "./dist/cli.js"
+    "svaults": "./dist/cli.js",
+    "arcanea-memory": "./dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
@@ -36,7 +37,7 @@
     "test": "node --import tsx --test src/**/*.test.ts",
     "lint": "tsc --noEmit",
     "clean": "rm -rf dist",
-    "starlight": "node --import tsx src/cli.ts"
+    "svaults": "node --import tsx src/cli.ts"
   },
   "keywords": [
     "arcanea",

@@ -191,18 +191,18 @@ export interface MemorySystemConfig {
 
 export interface VaultStats {
   vault: VaultType;
-  entryCount: number;
+  count: number;
   oldestEntry?: string;
   newestEntry?: string;
   topTags: Array<{ tag: string; count: number }>;
-  guardianDistribution: Partial<Record<GuardianName, number>>;
+  guardianDistribution?: Partial<Record<GuardianName, number>>;
 }
 
 export interface MemorySystemStats {
   totalEntries: number;
-  vaultStats: VaultStats[];
-  horizonEntries: number;
-  storageBackend: string;
+  vaults: VaultStats[];
+  horizonCount: number;
+  storagePath: string;
   lastActivity?: string;
 }
 
