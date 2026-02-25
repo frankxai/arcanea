@@ -46,6 +46,8 @@ export { Mem0Adapter } from './mem0-adapter.js';
 
 // Storage backends
 export { FileBackend } from './storage/file-backend.js';
+export { Mem0Backend } from './storage/mem0-backend.js';
+export type { Mem0BackendConfig } from './storage/mem0-backend.js';
 
 // All types
 export type {
