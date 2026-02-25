@@ -1,25 +1,137 @@
-'use client'
+"use client";
 
-import { useState, useCallback, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { Grid, List, Plus, Search, Command, LayoutGrid, Tag } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
-import { usePromptBooksStore } from '@/lib/prompt-books/store'
-import { useQuickCapture } from '@/hooks/use-quick-capture'
-import { PromptBooksSidebar } from '@/components/prompt-books/sidebar/PromptBooksSidebar'
-import { CollectionHeader } from '@/components/prompt-books/collections/CollectionHeader'
-import { CollectionGrid } from '@/components/prompt-books/collections/CollectionGrid'
-import { CollectionDialog } from '@/components/prompt-books/collections/CollectionDialog'
-import { QuickCaptureModal } from '@/components/prompt-books/quick-capture/QuickCaptureModal'
-import { QuickCaptureFAB } from '@/components/prompt-books/quick-capture/QuickCaptureFAB'
-import { PromptSearch } from '@/components/prompt-books/search/PromptSearch'
-import { FilterBar } from '@/components/prompt-books/search/FilterBar'
-import { TemplateGallery } from '@/components/prompt-books/templates/TemplateGallery'
-import { TagManager } from '@/components/prompt-books/tags/TagManager'
-import * as service from '@/lib/prompt-books/service'
-import { createClient } from '@/lib/supabase/client'
-import type { CreateCollectionInput, Prompt, UpdateTagInput } from '@/lib/prompt-books/types'
+import { useState, useCallback, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { usePromptBooksStore } from "@/lib/prompt-books/store";
+import { useQuickCapture } from "@/hooks/use-quick-capture";
+import { PromptBooksSidebar } from "@/components/prompt-books/sidebar/PromptBooksSidebar";
+import { CollectionHeader } from "@/components/prompt-books/collections/CollectionHeader";
+import { CollectionGrid } from "@/components/prompt-books/collections/CollectionGrid";
+import { CollectionDialog } from "@/components/prompt-books/collections/CollectionDialog";
+import { QuickCaptureModal } from "@/components/prompt-books/quick-capture/QuickCaptureModal";
+import { QuickCaptureFAB } from "@/components/prompt-books/quick-capture/QuickCaptureFAB";
+import { PromptSearch } from "@/components/prompt-books/search/PromptSearch";
+import { FilterBar } from "@/components/prompt-books/search/FilterBar";
+import { TemplateGallery } from "@/components/prompt-books/templates/TemplateGallery";
+import { TagManager } from "@/components/prompt-books/tags/TagManager";
+import * as service from "@/lib/prompt-books/service";
+import { createClient } from "@/lib/supabase/client";
+import type {
+  CreateCollectionInput,
+  Prompt,
+  UpdateTagInput,
+} from "@/lib/prompt-books/types";
+
+// ─── Inline SVG Icons ───────────────────────────────────────────────────────────
+const Icons = {
+  Grid: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="3" width="7" height="7" />
+      <rect x="14" y="3" width="7" height="7" />
+      <rect x="14" y="14" width="7" height="7" />
+      <rect x="3" y="14" width="7" height="7" />
+    </svg>
+  ),
+  List: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="8" y1="6" x2="21" y2="6" />
+      <line x1="8" y1="12" x2="21" y2="12" />
+      <line x1="8" y1="18" x2="21" y2="18" />
+      <line x1="3" y1="6" x2="3.01" y2="6" />
+      <line x1="3" y1="12" x2="3.01" y2="12" />
+      <line x1="3" y1="18" x2="3.01" y2="18" />
+    </svg>
+  ),
+  Plus: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+  ),
+  Search: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  ),
+  Command: () => (
+    <svg
+      className="w-3 h-3"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+    </svg>
+  ),
+  LayoutGrid: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="3" width="7" height="7" />
+      <rect x="14" y="3" width="7" height="7" />
+      <rect x="14" y="14" width="7" height="7" />
+      <rect x="3" y="14" width="7" height="7" />
+    </svg>
+  ),
+  Tag: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+      <line x1="7" y1="7" x2="7.01" y2="7" />
+    </svg>
+  ),
+};
 
 export default function PromptBooksPage() {
   const {
@@ -36,84 +148,105 @@ export default function PromptBooksPage() {
     deleteTag,
     addPrompt,
     _userId: userId,
-  } = usePromptBooksStore()
+  } = usePromptBooksStore();
 
-  const router = useRouter()
-  const { open: captureOpen, setOpen: setCaptureOpen, capture } = useQuickCapture()
-  const [dialogOpen, setDialogOpen] = useState(false)
-  const [editingCollection, setEditingCollection] = useState<null>(null)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [templateGalleryOpen, setTemplateGalleryOpen] = useState(false)
-  const [tagManagerOpen, setTagManagerOpen] = useState(false)
+  const router = useRouter();
+  const {
+    open: captureOpen,
+    setOpen: setCaptureOpen,
+    capture,
+  } = useQuickCapture();
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editingCollection, setEditingCollection] = useState<null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [templateGalleryOpen, setTemplateGalleryOpen] = useState(false);
+  const [tagManagerOpen, setTagManagerOpen] = useState(false);
 
   const activeCollection = activeCollectionId
     ? collections.find((c) => c.id === activeCollectionId) || null
-    : null
+    : null;
 
   // ── Cmd+K / Ctrl+K keyboard shortcut ────────────────────────────────
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault()
-        setSearchOpen((prev) => !prev)
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen((prev) => !prev);
       }
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [])
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const handleCreateCollection = useCallback(
     async (data: CreateCollectionInput) => {
-      await createCollection(data)
+      await createCollection(data);
     },
     [createCollection],
-  )
+  );
 
-  const handlePromptSelect = useCallback((id: string) => {
-    const collId = activeCollectionId || '_all'
-    router.push(`/prompt-books/${collId}/${id}`)
-  }, [router, activeCollectionId])
+  const handlePromptSelect = useCallback(
+    (id: string) => {
+      const collId = activeCollectionId || "_all";
+      router.push(`/prompt-books/${collId}/${id}`);
+    },
+    [router, activeCollectionId],
+  );
 
   const handleFavorite = useCallback(
     async (id: string) => {
-      const prompt = prompts.find((p) => p.id === id)
+      const prompt = prompts.find((p) => p.id === id);
       if (prompt) {
-        await updatePrompt(id, { isFavorite: !prompt.isFavorite })
+        await updatePrompt(id, { isFavorite: !prompt.isFavorite });
       }
     },
     [prompts, updatePrompt],
-  )
+  );
 
   const handleCopy = useCallback(async (prompt: Prompt) => {
     try {
-      await navigator.clipboard.writeText(prompt.content)
+      await navigator.clipboard.writeText(prompt.content);
     } catch {
       // Clipboard API not available
     }
-  }, [])
+  }, []);
 
-  const handleInstantiateTemplate = useCallback(async (
-    templateId: string,
-    variables: Record<string, string>,
-    collectionId?: string,
-  ) => {
-    if (!userId) return
-    const client = createClient()
-    const prompt = await service.instantiateTemplate(
-      client, userId, templateId, variables,
-      collectionId || activeCollectionId || undefined,
-    )
-    addPrompt(prompt)
-    router.push(`/prompt-books/${prompt.collectionId || '_all'}/${prompt.id}`)
-  }, [userId, activeCollectionId, addPrompt, router])
+  const handleInstantiateTemplate = useCallback(
+    async (
+      templateId: string,
+      variables: Record<string, string>,
+      collectionId?: string,
+    ) => {
+      if (!userId) return;
+      const client = createClient();
+      const prompt = await service.instantiateTemplate(
+        client,
+        userId,
+        templateId,
+        variables,
+        collectionId || activeCollectionId || undefined,
+      );
+      addPrompt(prompt);
+      router.push(
+        `/prompt-books/${prompt.collectionId || "_all"}/${prompt.id}`,
+      );
+    },
+    [userId, activeCollectionId, addPrompt, router],
+  );
 
-  const handleUpdateTag = useCallback(async (id: string, input: UpdateTagInput) => {
-    await updateTag(id, input)
-  }, [updateTag])
+  const handleUpdateTag = useCallback(
+    async (id: string, input: UpdateTagInput) => {
+      await updateTag(id, input);
+    },
+    [updateTag],
+  );
 
-  const handleDeleteTag = useCallback(async (id: string) => {
-    await deleteTag(id)
-  }, [deleteTag])
+  const handleDeleteTag = useCallback(
+    async (id: string) => {
+      await deleteTag(id);
+    },
+    [deleteTag],
+  );
 
   return (
     <div className="flex h-[calc(100dvh-64px)] pt-16">
@@ -138,20 +271,20 @@ export default function PromptBooksPage() {
               aria-label="Search prompts (Cmd+K)"
               onClick={() => setSearchOpen(true)}
             >
-              <Search className="w-4 h-4" />
+              <Icons.Search />
             </Button>
 
             {/* Cmd+K hint */}
             <button
               onClick={() => setSearchOpen(true)}
               className={cn(
-                'glass-subtle px-2 py-1 rounded-md',
-                'flex items-center gap-1',
-                'text-[10px] font-mono text-text-muted/50',
-                'hover:text-text-muted hover:bg-white/[0.04] transition-all duration-150',
+                "glass-subtle px-2 py-1 rounded-md",
+                "flex items-center gap-1",
+                "text-[10px] font-mono text-text-muted/50",
+                "hover:text-text-muted hover:bg-white/[0.04] transition-all duration-150",
               )}
             >
-              <Command className="w-3 h-3" />
+              <Icons.Command />
               <span>K</span>
             </button>
 
@@ -162,7 +295,7 @@ export default function PromptBooksPage() {
               aria-label="Template Gallery"
               onClick={() => setTemplateGalleryOpen(true)}
             >
-              <LayoutGrid className="w-4 h-4" />
+              <Icons.LayoutGrid />
             </Button>
 
             <Button
@@ -172,11 +305,11 @@ export default function PromptBooksPage() {
               aria-label="Manage Tags"
               onClick={() => setTagManagerOpen(true)}
             >
-              <Tag className="w-4 h-4" />
+              <Icons.Tag />
             </Button>
 
             <span className="text-xs font-sans text-text-muted">
-              {prompts.length} prompt{prompts.length !== 1 ? 's' : ''}
+              {prompts.length} prompt{prompts.length !== 1 ? "s" : ""}
             </span>
           </div>
 
@@ -184,24 +317,28 @@ export default function PromptBooksPage() {
             {/* View mode toggle */}
             <div className="glass-subtle rounded-lg p-0.5 flex">
               <button
-                onClick={() => setViewMode('grid')}
+                onClick={() => setViewMode("grid")}
                 className={cn(
-                  'p-1.5 rounded-md transition-all',
-                  viewMode === 'grid' ? 'glass text-text-primary' : 'text-text-muted hover:text-text-secondary',
+                  "p-1.5 rounded-md transition-all",
+                  viewMode === "grid"
+                    ? "glass text-text-primary"
+                    : "text-text-muted hover:text-text-secondary",
                 )}
                 aria-label="Grid view"
               >
-                <Grid className="w-4 h-4" />
+                <Icons.Grid />
               </button>
               <button
-                onClick={() => setViewMode('list')}
+                onClick={() => setViewMode("list")}
                 className={cn(
-                  'p-1.5 rounded-md transition-all',
-                  viewMode === 'list' ? 'glass text-text-primary' : 'text-text-muted hover:text-text-secondary',
+                  "p-1.5 rounded-md transition-all",
+                  viewMode === "list"
+                    ? "glass text-text-primary"
+                    : "text-text-muted hover:text-text-secondary",
                 )}
                 aria-label="List view"
               >
-                <List className="w-4 h-4" />
+                <Icons.List />
               </button>
             </div>
 
@@ -210,7 +347,7 @@ export default function PromptBooksPage() {
               onClick={() => setCaptureOpen(true)}
               className="liquid-glass hover:scale-[1.02] transition-transform gap-2"
             >
-              <Plus className="w-4 h-4" />
+              <Icons.Plus />
               <span className="font-sans font-medium text-sm">New Prompt</span>
             </Button>
           </div>
@@ -273,5 +410,5 @@ export default function PromptBooksPage() {
         onClose={() => setTagManagerOpen(false)}
       />
     </div>
-  )
+  );
 }
