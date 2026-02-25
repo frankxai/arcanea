@@ -214,7 +214,7 @@ godbeasts:
     path: "godbeasts/sol.md"
 
   - id: "godbeast-thessara"
-    name: "Thessara"
+    name: "Vaelith"
     title: "The Kaleidoscope"
     creature_type: "shifting-chimera"
     bonded_god: "god-arcanean-elara"

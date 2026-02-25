@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/cli",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Arcanea Realm — Your AI Creation Realm. Overlay any AI tool with arcane intelligence.",
   "homepage": "https://github.com/frankxai/arcanea/tree/main/packages/cli#readme",
   "type": "module",
@@ -51,13 +51,13 @@
     "directory": "packages/cli"
   },
   "dependencies": {
-    "@arcanea/core": "workspace:*",
-    "@arcanea/auth": "workspace:*",
-    "@arcanea/overlay-claude": "workspace:*",
-    "@arcanea/overlay-chatgpt": "workspace:*",
-    "@arcanea/overlay-gemini": "workspace:*",
-    "@arcanea/overlay-copilot": "workspace:*",
-    "@arcanea/overlay-cursor": "workspace:*",
+    "@arcanea/core": "^0.1.0",
+    "@arcanea/auth": "^1.0.3",
+    "@arcanea/overlay-claude": "^1.2.0",
+    "@arcanea/overlay-chatgpt": "^1.2.0",
+    "@arcanea/overlay-gemini": "^1.2.0",
+    "@arcanea/overlay-copilot": "^1.2.0",
+    "@arcanea/overlay-cursor": "^1.2.0",
     "commander": "^12.0.0",
     "picocolors": "^1.1.1"
   },

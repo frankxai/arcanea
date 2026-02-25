@@ -103,7 +103,7 @@ const GATES = [
     name: 'Shift',
     frequency: '1111 Hz',
     guardian: 'Elara',
-    godbeast: 'Thessara',
+    godbeast: 'Vaelith',
     domain: 'Perspective, possibility, dimension',
     element: 'Echo/Fractal',
     unlocks: 'Access to infinite possibilities',

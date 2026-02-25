@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/guardian-memory",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Persistent semantic memory for the Ten Guardians — HNSW vector search with Guardian-namespaced vaults",
   "type": "module",
   "main": "./dist/index.js",
@@ -33,7 +33,7 @@
   "files": ["dist", "README.md"],
   "publishConfig": { "access": "public" },
   "dependencies": {
-    "@arcanea/core": "workspace:*"
+    "@arcanea/core": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

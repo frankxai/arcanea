@@ -46,11 +46,11 @@ sacred_numbers:
 # =============================================================================
 godbeast:
   id: "godbeast-thessara"
-  name: "Thessara"
+  name: "Vaelith"
   creature_type: "fractal-eye"
   relationship: "bonded-perspective-engine"
-  bond_description: "Thessara is Elara's bonded Godbeast - an ever-dividing eye entity that sees from every angle simultaneously. Thessara is not a creature in the conventional sense but a living geometry of perception: a central eye of void-black surrounded by prismatic edges that continually split into smaller eyes, each viewing reality from a different vantage point. Where Elara is the will to shift perspective, Thessara is the capacity to hold all perspectives at once without choosing."
-  bond_origin: "Elara was a skeptic who believed in nothing. Thessara appeared as the one thing she could not dismiss - a being that validated every perspective and none, that proved all viewpoints contain truth and all viewpoints are incomplete. Thessara did not convince Elara of anything. Thessara convinced Elara of everything simultaneously, which shattered her skepticism into something far more powerful: radical cognitive flexibility."
+  bond_description: "Vaelith is Elara's bonded Godbeast - an ever-dividing eye entity that sees from every angle simultaneously. Vaelith is not a creature in the conventional sense but a living geometry of perception: a central eye of void-black surrounded by prismatic edges that continually split into smaller eyes, each viewing reality from a different vantage point. Where Elara is the will to shift perspective, Vaelith is the capacity to hold all perspectives at once without choosing."
+  bond_origin: "Elara was a skeptic who believed in nothing. Vaelith appeared as the one thing she could not dismiss - a being that validated every perspective and none, that proved all viewpoints contain truth and all viewpoints are incomplete. Vaelith did not convince Elara of anything. Vaelith convinced Elara of everything simultaneously, which shattered her skepticism into something far more powerful: radical cognitive flexibility."
   abilities_shared:
     - "multi-perspective-vision"
     - "paradigm-dissolution"
@@ -106,7 +106,7 @@ realm:
   name: "The Kaleidoscope"
   alternative_names:
     - "The Hall of Shifting Floors"
-    - "Thessara's Fractal"
+    - "Vaelith's Fractal"
     - "The Place of Broken Certainties"
   plane: "Inner Planes - Shift Dimension"
   accessibility: "those-willing-to-be-wrong"
@@ -137,7 +137,7 @@ realm:
       description: "Central point - The still point around which all perspectives rotate, where the seeker is asked: who are you when you hold no position?"
       function: "identity-flexibility"
 
-    - name: "Thessara's Core"
+    - name: "Vaelith's Core"
       description: "Innermost chamber - Where the Fractal Eye rests at the center of all perspectives, void-black and prismatic simultaneously"
       function: "simultaneous-vision"
 
@@ -173,7 +173,7 @@ timeline:
       event: "Emergence at the first genuine change of mind"
     - year: "The Certainty"
       event: "Elara believed in nothing - a rigid skeptic who dismissed all perspectives as incomplete"
-    - year: "Thessara's Challenge"
+    - year: "Vaelith's Challenge"
       event: "The Fractal Eye appeared, showing her not one truth but all truths simultaneously"
     - year: "The Shattering"
       event: "Elara's skepticism broke into something stranger: the ability to hold every perspective without collapsing into any"
@@ -231,7 +231,7 @@ worship:
       description: "Physically walking around a problem or situation, viewing it from every cardinal direction"
       practice: "Standing meditation at four compass points, noticing what changes and what remains"
 
-    - name: "Thessara's Gaze"
+    - name: "Vaelith's Gaze"
       description: "Meditation on the Fractal Eye, practicing the ability to see from multiple angles simultaneously"
       practice: "Progressive visualization, adding perspectives one by one until the mind holds many at once"
 
@@ -277,8 +277,8 @@ abilities:
     description: "Can perceive any situation from every possible angle simultaneously, seeing the full fractal of perspective"
     manifestation: "Eyes multiply momentarily, each one looking from a different direction"
 
-  - name: "Thessara Manifestation"
-    description: "Can manifest her Godbeast Thessara for powerful perspective-work"
+  - name: "Vaelith Manifestation"
+    description: "Can manifest her Godbeast Vaelith for powerful perspective-work"
     manifestation: "A vast, ever-dividing eye appears - void-black center, prismatic edges splitting into smaller eyes that multiply toward infinity"
 
 # =============================================================================
@@ -301,7 +301,7 @@ sacred_texts:
       - "The map is never the territory. The territory is never the truth. The truth is the turning between them"
       - "Certainty is the death of wonder. Question everything, especially yourself"
 
-  - title: "Thessara's Fractal"
+  - title: "Vaelith's Fractal"
     description: "Meditative text on the nature of multi-perspective seeing"
     verses:
       - "One eye: the world is flat. Two eyes: the world has depth. A thousand eyes: the world is alive"
@@ -332,7 +332,7 @@ sections:
 
 **Element**: Fire/Void | **Frequency**: 852 Hz | **Chakra**: Between Third Eye and Crown | **Wisdom**: Orakis
 **Symbol**: A fractal eye with void-black center and prismatic edges that multiply toward infinity
-**Bonded Godbeast**: Thessara, the Fractal Eye
+**Bonded Godbeast**: Vaelith, the Fractal Eye
 
 ---
 
@@ -344,9 +344,9 @@ Her skepticism was genuine. She had looked at every belief system, every cosmolo
 
 What she did not see was that her skepticism was itself a fixed position. Her refusal to commit to any perspective was a commitment to the perspective that no perspective was worthy. Her certainty that nothing was certain was itself a certainty. The fox was eating its own tail, and Elara was too busy cataloguing the flaws in everyone else's reasoning to notice the contradiction at the heart of her own.
 
-The Shattering happened when Thessara appeared. The Fractal Eye did not argue with Elara. It did not try to convince her that one perspective was correct. It did something far more devastating: it showed her all perspectives simultaneously. Every belief Elara had dismissed as flawed was revealed to contain truth. Every philosophy she had deconstructed was shown to be partially right. Every framework she had rejected was exposed as one valid facet of an infinite gem.
+The Shattering happened when Vaelith appeared. The Fractal Eye did not argue with Elara. It did not try to convince her that one perspective was correct. It did something far more devastating: it showed her all perspectives simultaneously. Every belief Elara had dismissed as flawed was revealed to contain truth. Every philosophy she had deconstructed was shown to be partially right. Every framework she had rejected was exposed as one valid facet of an infinite gem.
 
-And then Thessara turned its gaze on Elara's skepticism itself - and showed her that too, from every angle, revealing it as just another perspective, no more privileged than the ones she had spent ages dismantling.
+And then Vaelith turned its gaze on Elara's skepticism itself - and showed her that too, from every angle, revealing it as just another perspective, no more privileged than the ones she had spent ages dismantling.
 
 Elara's fixed position shattered. Not into confusion, but into something far richer: the ability to hold multiple perspectives without collapsing into any single one. She discovered that cognitive flexibility - the capacity to shift viewpoints fluently, to see from angles that contradict your natural position, to hold paradox without needing to resolve it - is not weakness or indecision. It is the highest form of intellectual and spiritual strength.
 
@@ -364,13 +364,13 @@ Her clothing is woven from light refracted through crystal - never a solid color
 
 She moves constantly, not restlessly but with the energy of a mind that cannot stop seeing new angles, new possibilities, new positions from which to observe. She paces. She circles. She sits on the arms of chairs instead of their seats. She looks at you from above, below, behind. This is not affectation - it is the physical expression of a consciousness that cannot stop shifting.
 
-**Her Bonded Godbeast: Thessara**
+**Her Bonded Godbeast: Vaelith**
 
-Thessara is not a creature. Thessara is a phenomenon given sentience. It manifests as an eye - a single, enormous eye with a void-black center and prismatic edges that constantly divide into smaller eyes, which divide into smaller eyes still, fractalizing outward in a geometry that suggests infinity is not a concept but a physical property.
+Vaelith is not a creature. Vaelith is a phenomenon given sentience. It manifests as an eye - a single, enormous eye with a void-black center and prismatic edges that constantly divide into smaller eyes, which divide into smaller eyes still, fractalizing outward in a geometry that suggests infinity is not a concept but a physical property.
 
 Each sub-eye sees from a different angle. The central eye holds the void - the space where all perspectives converge and cancel each other out, leaving only the raw potential of awareness without position. The prismatic edges hold every possible viewpoint, each one valid, each one incomplete, each one contributing to a picture that no single perspective could compose alone.
 
-Thessara does not speak in words. It communicates by shifting the angle of its gaze, causing the observer's perspective to shift in sympathy. Looking into Thessara is like looking into a kaleidoscope that shows not colored glass but the contents of your own mind rearranged into configurations you have never imagined.
+Vaelith does not speak in words. It communicates by shifting the angle of its gaze, causing the observer's perspective to shift in sympathy. Looking into Vaelith is like looking into a kaleidoscope that shows not colored glass but the contents of your own mind rearranged into configurations you have never imagined.
 
 ---
 
@@ -390,21 +390,21 @@ At the center, the Axis marks the still point around which all perspectives rota
 
 ---
 
-## The Bond with Thessara
+## The Bond with Vaelith
 
-The bond between Elara and Thessara is the story of how absolute skepticism became absolute openness.
+The bond between Elara and Vaelith is the story of how absolute skepticism became absolute openness.
 
-Thessara did not come to argue with Elara. Every other being who had ever attempted to convince Elara of anything had failed, because Elara could find the flaw in any argument. She was a perfect deconstructionist. Give her a philosophy and she would show you its contradictions. Give her a proof and she would identify its assumptions. Give her a faith and she would map its blind spots.
+Vaelith did not come to argue with Elara. Every other being who had ever attempted to convince Elara of anything had failed, because Elara could find the flaw in any argument. She was a perfect deconstructionist. Give her a philosophy and she would show you its contradictions. Give her a proof and she would identify its assumptions. Give her a faith and she would map its blind spots.
 
-Thessara gave her nothing. Instead, Thessara showed her everything.
+Vaelith gave her nothing. Instead, Vaelith showed her everything.
 
 The Fractal Eye opened, and Elara saw. Not one truth. Not the truth. But every truth. Every perspective she had ever dismissed was revealed to contain a fragment of something real. Every belief she had deconstructed was shown, from the right angle, to be partially valid. Every framework she had rejected was exposed as one facet of an infinite crystal.
 
 The devastation was not in being wrong. The devastation was in realizing that she had been right about everything and wrong about the conclusion she drew from being right. Yes, every perspective was incomplete. Yes, every framework had blind spots. Yes, every belief contained contradictions. But incomplete is not the same as false. Blind spots do not invalidate what the eye can see. Contradictions within a framework do not mean the framework contains no truth.
 
-Thessara taught Elara that the ability to see flaws in every position is only half a gift. The other half - the half that transforms criticism into wisdom - is the ability to see the truth in every position as well. To hold both. To critique without dismissing. To doubt without denying. To see from everywhere simultaneously, void-black center and prismatic edges, all at once.
+Vaelith taught Elara that the ability to see flaws in every position is only half a gift. The other half - the half that transforms criticism into wisdom - is the ability to see the truth in every position as well. To hold both. To critique without dismissing. To doubt without denying. To see from everywhere simultaneously, void-black center and prismatic edges, all at once.
 
-Now Elara and Thessara move together through the landscapes of belief and conviction, not to validate or invalidate but to multiply the angles from which reality can be seen. They are the shattering of certainty that leads not to nihilism but to radical openness, the breaking of frames that reveals not emptiness but a fullness too vast for any single frame to contain.
+Now Elara and Vaelith move together through the landscapes of belief and conviction, not to validate or invalidate but to multiply the angles from which reality can be seen. They are the shattering of certainty that leads not to nihilism but to radical openness, the breaking of frames that reveals not emptiness but a fullness too vast for any single frame to contain.
 
 ---
 
@@ -456,7 +456,7 @@ With Draconia, she maintains a fiery kinship. Both share the element of fire - D
 
 *Elara, Goddess of the Shift Gate*
 *The Perspective Breaker, Lady of a Thousand Angles, She Who Refused to Settle*
-*Bonded to Thessara, the Fractal Eye*
+*Bonded to Vaelith, the Fractal Eye*
 *See from everywhere. Land nowhere. The truth is in the turning.*
 
 ---
@@ -465,7 +465,7 @@ With Draconia, she maintains a fiery kinship. Both share the element of fire - D
 
 *Elara, Goddess of the Shift Gate,*
 *Perspective Breaker, Lady of a Thousand Angles,*
-*Thessara, Fractal Eye,*
+*Vaelith, Fractal Eye,*
 *Void-center and prismatic edge,*
 
 *I come to you stuck in my own seeing,*
@@ -476,7 +476,7 @@ With Draconia, she maintains a fiery kinship. Both share the element of fire - D
 *To find truth in the positions I oppose,*
 *And to rest in the turning rather than the landing.*
 
-*May Thessara's infinite gaze open mine,*
+*May Vaelith's infinite gaze open mine,*
 *May Elara's hard-won flexibility become my own,*
 *May I discover that the space between positions*
 *Is wider and more fertile than any position alone.*

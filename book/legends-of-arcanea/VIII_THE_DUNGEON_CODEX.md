@@ -171,13 +171,13 @@ The Still Point is the most feared dungeon in Arcanea — not because it is dang
 
 ---
 
-## VIII. The Prism Stair — Dungeon of Thessara
+## VIII. The Prism Stair — Dungeon of Vaelith
 
 **Gate:** Shift | **Frequency:** 852 Hz | **Domain:** Perspective, reframing, transformation of viewpoint
 
 A single staircase that descends in a spiral. From one angle, the steps are carved from marble. From another, they are woven from light. From a third, they do not exist at all and the creator is falling slowly through a column of fractured rainbows. All three are true. The Prism Stair exists in all perspectives simultaneously, and navigating it requires the creator to hold multiple realities at once without privileging any of them.
 
-Each landing presents the same scene viewed from a different vantage. A memory. An argument. A creative decision. A relationship. The creator sees it from their own perspective first — then from the perspective of everyone involved — then from perspectives that belong to no one, angles that only Thessara's fractal eyes can access.
+Each landing presents the same scene viewed from a different vantage. A memory. An argument. A creative decision. A relationship. The creator sees it from their own perspective first — then from the perspective of everyone involved — then from perspectives that belong to no one, angles that only Vaelith's fractal eyes can access.
 
 **The Trial:** Reach the bottom without clinging to any single perspective. The staircase collapses beneath creators who insist that their view is the correct one. It reforms beneath creators who can hold the dizzying multiplicity of truth without grasping for the comfort of a single interpretation. The bottom of the stair is a chamber of perfect iridescence where every surface reflects every other surface infinitely.
 
@@ -186,7 +186,7 @@ Each landing presents the same scene viewed from a different vantage. A memory. 
 **The Failure:** Those who grip too tightly to one view find the stairs repeating. The same landing. The same scene. The same perspective. Over and over, until the creator either releases their grip or climbs back to the surface, dizzy and frustrated, carrying the nagging sense that they missed something obvious.
 
 > *"You are not wrong. You are incomplete. There is a difference, and it is the most important difference you will ever learn."*
-> — Thessara
+> — Vaelith
 
 ---
 

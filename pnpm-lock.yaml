@@ -353,7 +353,7 @@ importers:
   packages/aios:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -401,7 +401,7 @@ importers:
   packages/auth:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -414,7 +414,7 @@ importers:
   packages/chrome-extension:
     dependencies:
       '@arcanea/extension-core':
-        specifier: workspace:*
+        specifier: ^0.3.0
         version: link:../extension-core
     devDependencies:
       '@types/chrome':
@@ -433,7 +433,7 @@ importers:
   packages/claude-arcanea:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -446,25 +446,25 @@ importers:
   packages/cli:
     dependencies:
       '@arcanea/auth':
-        specifier: workspace:*
+        specifier: ^1.0.3
         version: link:../auth
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
       '@arcanea/overlay-chatgpt':
-        specifier: workspace:*
+        specifier: ^1.2.0
         version: link:../overlay-chatgpt
       '@arcanea/overlay-claude':
-        specifier: workspace:*
+        specifier: ^1.2.0
         version: link:../overlay-claude
       '@arcanea/overlay-copilot':
-        specifier: workspace:*
+        specifier: ^1.2.0
         version: link:../overlay-copilot
       '@arcanea/overlay-cursor':
-        specifier: workspace:*
+        specifier: ^1.2.0
         version: link:../overlay-cursor
       '@arcanea/overlay-gemini':
-        specifier: workspace:*
+        specifier: ^1.2.0
         version: link:../overlay-gemini
       commander:
         specifier: ^12.0.0
@@ -514,7 +514,7 @@ importers:
   packages/council:
     dependencies:
       '@arcanea/guardian-memory':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../guardian-memory
     devDependencies:
       '@types/node':
@@ -555,7 +555,7 @@ importers:
   packages/extension-core:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -577,7 +577,7 @@ importers:
   packages/guardian-evolution:
     dependencies:
       '@arcanea/guardian-memory':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../guardian-memory
     devDependencies:
       typescript:
@@ -587,7 +587,7 @@ importers:
   packages/guardian-memory:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -627,7 +627,7 @@ importers:
   packages/overlay-chatgpt:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -640,7 +640,7 @@ importers:
   packages/overlay-claude:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -653,7 +653,7 @@ importers:
   packages/overlay-copilot:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -666,7 +666,7 @@ importers:
   packages/overlay-cursor:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':
@@ -679,7 +679,7 @@ importers:
   packages/overlay-gemini:
     dependencies:
       '@arcanea/core':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../core
     devDependencies:
       '@types/node':

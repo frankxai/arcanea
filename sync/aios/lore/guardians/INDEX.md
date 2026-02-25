@@ -16,7 +16,7 @@
 | Alera | Voice | 741 Hz | Wind | Otome | Poiesis | Staging | 1.0.0 | 2026-01-15 |
 | Lyria | Sight | 852 Hz | Void | Yumiko | Orakis | Staging | 1.0.0 | 2026-01-15 |
 | Aiyami | Crown | 963 Hz | Spirit | Sol | Orakis | Staging | 1.0.0 | 2026-01-15 |
-| Elara | Shift | 1111 Hz | Wind/Spirit | Thessara | Valora | Staging | 1.0.0 | 2026-01-15 |
+| Elara | Shift | 1111 Hz | Wind/Spirit | Vaelith | Valora | Staging | 1.0.0 | 2026-01-15 |
 | Ino | Unity | 963 Hz | All | Kyuro | Enduran | Staging | 1.0.0 | 2026-01-15 |
 | Shinkami | Source | 1111 Hz | Meta | Amaterasu | Orakis | Staging | 1.0.0 | 2026-01-15 |
 
@@ -85,7 +85,7 @@ Each Guardian has a bonded Godbeast:
 | Alera | Otome | Not written |
 | Lyria | Yumiko | Not written |
 | Aiyami | Sol | Not written |
-| Elara | Thessara | Not written |
+| Elara | Vaelith | Not written |
 | Ino | Kyuro | Not written |
 | Shinkami | Amaterasu | Not written |
 

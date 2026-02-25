@@ -195,7 +195,7 @@ const GODBEASTS: Godbeast[] = [
   },
   {
     id: 'thessara',
-    name: 'Thessara',
+    name: 'Vaelith',
     type: 'Fox of Eight Prismatic Tails',
     element: 'Echo / Fractal',
     elementColor: 'text-brand-secondary',
@@ -208,7 +208,7 @@ const GODBEASTS: Godbeast[] = [
     frequencyLabel: '852 Hz',
     icon: Cat,
     lore:
-      'Thessara\'s eight tails each reflect a different facet of the same moment. When all eight are visible simultaneously, observers experience every possible interpretation of their current situation at once. This is not confusion — it is perspective, given primal form.',
+      'Vaelith\'s eight tails each reflect a different facet of the same moment. When all eight are visible simultaneously, observers experience every possible interpretation of their current situation at once. This is not confusion — it is perspective, given primal form.',
     power: 'Reality refraction, simultaneous perspective, the echo of infinite possibility',
     gradient: 'from-pink-900/30 via-rose-900/20 to-purple-900/30',
     glowColor: 'rgba(120, 166, 255, 0.4)',

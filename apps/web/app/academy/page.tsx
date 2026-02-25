@@ -102,7 +102,7 @@ const TEN_GATES = [
     name: 'Shift',
     frequency: '852 Hz',
     guardian: 'Elara',
-    godbeast: 'Thessara',
+    godbeast: 'Vaelith',
     domain: 'Perspective, transformation',
     color: '#a855f7',
     description: 'Master perspective shifts. Learn to see from multiple angles and transform your approach.',

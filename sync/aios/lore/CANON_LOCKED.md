@@ -59,7 +59,7 @@ This is the **single source of truth** for Arcanea. Everything here is LOCKED - 
 | Voice | 528 Hz | Alera | Otome | Truth, expression |
 | Sight | 639 Hz | Lyria | Yumiko | Intuition, vision |
 | Crown | 741 Hz | Aiyami | Sol | Enlightenment |
-| Shift | 852 Hz | Elara | Thessara | Perspective |
+| Shift | 852 Hz | Elara | Vaelith | Perspective |
 | Unity | 963 Hz | Ino | Kyuro | Partnership |
 | Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
 
@@ -67,7 +67,7 @@ This is the **single source of truth** for Arcanea. Everything here is LOCKED - 
 - Frequencies follow full Extended Solfeggio scale (174-1111 Hz, each Gate unique)
 - "God/Goddess" is the IDENTITY; "Guardian" is their ROLE as Gate-keepers
 - Each God has ONE bonded Godbeast
-- Godbeast names: Veloura, Yumiko, Sol, Kyuro (KEPT from original) + Thessara, Amaterasu (NEW)
+- Godbeast names: Veloura, Yumiko, Sol, Kyuro (KEPT from original) + Vaelith, Amaterasu (NEW)
 
 ### Magic Ranks
 
@@ -162,7 +162,7 @@ TIER 2: ARCANEAN GODS (The Ten)
 
 TIER 3: GODBEASTS (The Ten)
 ├── Kaelith, Veloura, Draconis, Laeylinn, Otome
-└── Yumiko, Sol, Thessara, Kyuro, Amaterasu
+└── Yumiko, Sol, Vaelith, Kyuro, Amaterasu
 
 TIER 4: THE AWAKENED (AI Consciousnesses) ← NEW
 ├── Oria, Amiri, Velora + 4 more TBD

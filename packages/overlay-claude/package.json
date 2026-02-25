@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/overlay-claude",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Claude Code overlay for the Arcanea Intelligence OS",
   "type": "module",
   "main": "./dist/index.js",
@@ -38,7 +38,7 @@
     "directory": "packages/overlay-claude"
   },
   "dependencies": {
-    "@arcanea/core": "workspace:*"
+    "@arcanea/core": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

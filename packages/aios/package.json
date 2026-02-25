@@ -1,6 +1,6 @@
 {
   "name": "arcanea-intelligence-os",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "description": "The Universal Intelligence OS - Orchestrate AI agents across Claude, Gemini, OpenCode, and more",
   "type": "module",
   "main": "./dist/index.js",
@@ -54,7 +54,7 @@
   },
   "homepage": "https://github.com/frankxai/arcanea-intelligence-os#readme",
   "dependencies": {
-    "@arcanea/core": "workspace:*"
+    "@arcanea/core": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

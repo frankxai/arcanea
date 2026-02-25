@@ -194,9 +194,9 @@ const GUARDIANS: Record<string, GuardianData> = {
     frequency: '852 Hz',
     element: 'Wind',
     domain: 'Perspective, change, transformation',
-    godbeast: 'Thessara',
+    godbeast: 'Vaelith',
     godBeastDesc:
-      'The Prism Butterfly — shifting between dimensions, perspectives, and possibilities. Thessara has no fixed form because Thessara understands that form is agreement, not truth.',
+      'The Prism Butterfly — shifting between dimensions, perspectives, and possibilities. Vaelith has no fixed form because Vaelith understands that form is agreement, not truth.',
     color: 'wind',
     teachings: [
       'Every perspective is true. None is complete.',

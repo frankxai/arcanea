@@ -168,7 +168,7 @@ const TEN_GATES: GateData[] = [
     frequency: '852 Hz',
     hz: 852,
     guardian: 'Elara',
-    godbeast: 'Thessara',
+    godbeast: 'Vaelith',
     element: 'Echo',
     domain: 'Perspective, possibility, transformation',
     domainTags: ['Perspective', 'Possibility', 'Reframe'],

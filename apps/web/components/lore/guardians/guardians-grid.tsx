@@ -124,7 +124,7 @@ const GUARDIANS = [
     title: 'Guardian of Shift',
     gate: 8,
     frequency: '1111 Hz',
-    godbeast: 'Thessara',
+    godbeast: 'Vaelith',
     godbestType: 'Fox with eight prismatic tails',
     element: 'Echo/Fractal',
     wisdom: 'Valora',

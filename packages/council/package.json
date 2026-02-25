@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/council",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Guardian Council consensus mechanics — Byzantine, Raft, Gossip, and Gate Quorum protocols for the Ten Guardians",
   "type": "module",
   "main": "./dist/index.js",
@@ -40,7 +40,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcanea/guardian-memory": "workspace:*"
+    "@arcanea/guardian-memory": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^25.3.0",

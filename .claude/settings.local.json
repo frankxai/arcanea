@@ -40,8 +40,8 @@
         "hooks": [
           {
             "type": "command",
-            "timeout": 3000,
-            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/pre-tool.sh \"$TOOL_NAME\""
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/pre-tool.sh \"$TOOL_NAME\"",
+            "timeout": 3000
           }
         ]
       },
@@ -50,8 +50,8 @@
         "hooks": [
           {
             "type": "command",
-            "timeout": 3000,
-            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/voice-check.sh \"$TOOL_INPUT\""
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/voice-check.sh \"$TOOL_INPUT\"",
+            "timeout": 3000
           }
         ]
       }
@@ -62,13 +62,13 @@
         "hooks": [
           {
             "type": "command",
-            "timeout": 3000,
-            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/post-tool.sh \"$TOOL_NAME\""
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/post-tool.sh \"$TOOL_NAME\"",
+            "timeout": 3000
           },
           {
             "type": "command",
-            "timeout": 3000,
-            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/context-tracker.sh \"$TOOL_NAME\""
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/context-tracker.sh \"$TOOL_NAME\"",
+            "timeout": 3000
           }
         ]
       }
@@ -78,11 +78,20 @@
         "hooks": [
           {
             "type": "command",
-            "timeout": 5000,
-            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-end.sh"
+            "command": "bash /mnt/c/Users/frank/Arcanea/.claude/hooks/session-end.sh",
+            "timeout": 5000
           }
         ]
       }
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "next-devtools",
+    "github",
+    "figma-remote-mcp",
+    "notion",
+    "linear-server",
+    "playwright"
+  ],
+  "enableAllProjectMcpServers": true
 }

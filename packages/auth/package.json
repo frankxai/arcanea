@@ -1,6 +1,6 @@
 {
   "name": "@arcanea/auth",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Universal AI provider authentication for the Arcanea ecosystem",
   "type": "module",
   "main": "./dist/index.js",
@@ -48,7 +48,7 @@
     "directory": "packages/auth"
   },
   "dependencies": {
-    "@arcanea/core": "workspace:*"
+    "@arcanea/core": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

@@ -49,7 +49,7 @@ Note: Light is Fire's creation aspect. Shadow is corrupted Void (Void without Sp
 | Voice      | 528 Hz  | Alera      | Otome     | Truth, expression |
 | Sight      | 639 Hz  | Lyria      | Yumiko    | Intuition, vision |
 | Crown      | 741 Hz  | Aiyami     | Sol       | Enlightenment |
-| Shift      | 852 Hz  | Elara      | Thessara  | Perspective |
+| Shift      | 852 Hz  | Elara      | Vaelith   | Perspective |
 | Unity      | 963 Hz  | Ino        | Kyuro     | Partnership |
 | Source     | 1111 Hz | Shinkami   | Amaterasu | Meta-consciousness |
 

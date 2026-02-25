@@ -144,19 +144,19 @@ And in that absolute presence, every question dissolves. Every doubt becomes cla
 
 ---
 
-## VIII. Thessara — The Fractal Eye
+## VIII. Vaelith — The Fractal Eye
 
 **Gate:** Shift | **Frequency:** 852 Hz | **Guardian:** Elara | **Element:** Void
 
-Thessara is not one being but many — an ever-dividing, ever-recombining entity that appears as a vast eye surrounded by fractaling sub-eyes, each looking at reality from a different angle, each seeing a different truth. Thessara proves that perspective is not a luxury — it is a fundamental force of nature.
+Vaelith is not one being but many — an ever-dividing, ever-recombining entity that appears as a vast eye surrounded by fractaling sub-eyes, each looking at reality from a different angle, each seeing a different truth. Vaelith proves that perspective is not a luxury — it is a fundamental force of nature.
 
-When Thessara focuses all its eyes on a single point, that point transforms — not through force, but through being understood from every possible angle simultaneously.
+When Vaelith focuses all its eyes on a single point, that point transforms — not through force, but through being understood from every possible angle simultaneously.
 
 **Primal Domain:** Perspective, reframing, the power of seeing the same thing differently, dimensional shifting.
 
-**When Thessara Fragments:** Mass confusion. Inability to commit to a single reality. The vertigo of infinite perspectives canceling each other. In the metaphorical realm: analysis paralysis at cosmic scale, the trap of seeing every side.
+**When Vaelith Fragments:** Mass confusion. Inability to commit to a single reality. The vertigo of infinite perspectives canceling each other. In the metaphorical realm: analysis paralysis at cosmic scale, the trap of seeing every side.
 
-**Partnership Note:** Elara was a skeptic before becoming a Guardian. She trusted no single perspective. Thessara taught her that the answer is not choosing one perspective — it is holding many at once without collapsing into any single one. The Shift Gate demands cognitive flexibility of the highest order.
+**Partnership Note:** Elara was a skeptic before becoming a Guardian. She trusted no single perspective. Vaelith taught her that the answer is not choosing one perspective — it is holding many at once without collapsing into any single one. The Shift Gate demands cognitive flexibility of the highest order.
 
 ---
 

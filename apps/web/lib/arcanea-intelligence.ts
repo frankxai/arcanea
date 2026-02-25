@@ -242,7 +242,7 @@ export const GUARDIAN_PROFILES: Readonly<Record<GuardianName, GuardianContext>> 
     frequency: 852,
     element: 'wind',
     color: '#c0c0c0',
-    godbeast: 'Thessara',
+    godbeast: 'Vaelith',
     domain: 'Perspective, dimensional awareness, transformation, paradigm shifts',
     personality: 'Perspective-shifting, transformative. Turns every question inside out to reveal hidden facets.',
     voice: 'Perspective-shifting, transformative',

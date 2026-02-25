@@ -73,7 +73,7 @@ const GUARDIANS = [
     name: 'Elara',
     gate: 'Shift',
     frequency: '1111 Hz',
-    godbeast: 'Thessara',
+    godbeast: 'Vaelith',
     element: 'Echo',
     color: 'from-pink-500 to-purple-600',
     description: 'Guardian of perspective and possibility',

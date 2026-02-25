@@ -633,7 +633,7 @@
     "Elara": {
       "gate": "Shift",
       "frequency": "852 Hz",
-      "godbeast": "Thessara",
+      "godbeast": "Vaelith",
       "domain": "Build diagnostics, refactoring, debugging, transformation",
       "rules": ["rule-025", "rule-026", "rule-027"]
     },

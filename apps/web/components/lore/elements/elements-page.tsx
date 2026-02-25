@@ -123,7 +123,7 @@ const ELEMENTS = [
       textGradient: 'text-gradient-crystal',
     },
     guardians: ['Lyria (Gate 6, 639 Hz)', 'Elara (Gate 8, 852 Hz)'],
-    godbeasts: ['Yumiko — Owl-serpent of moonlight', 'Thessara — Fox with eight prismatic tails'],
+    godbeasts: ['Yumiko — Owl-serpent of moonlight', 'Vaelith — Fox with eight prismatic tails'],
     relations: [
       { partner: 'Fire', result: 'Wildfire — ideas that consume', symbol: '+' },
       { partner: 'Earth', result: 'Erosion — slow, irreversible change', symbol: '+' },

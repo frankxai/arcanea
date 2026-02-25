@@ -224,7 +224,7 @@ const GUARDIANS: Record<GuardianKey, GuardianData> = {
     gate: "Shift",
     frequency: "852 Hz",
     element: "Wind/Spirit",
-    godbeast: "Thessara",
+    godbeast: "Vaelith",
     color: "#a855f7",
     glowColor: "rgba(168, 85, 247, 0.4)",
     description:
