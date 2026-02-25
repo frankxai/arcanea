@@ -1,13 +1,56 @@
-'use client';
+"use client";
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Sparkles, ArrowRight, Play } from 'lucide-react';
-import Link from 'next/link';
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import Link from "next/link";
+
+// ─── Inline SVG Icons ───────────────────────────────────────────────────────────
+const Icons = {
+  Sparkles: () => (
+    <svg
+      className="w-5 h-5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" />
+    </svg>
+  ),
+  ArrowRight: () => (
+    <svg
+      className="w-5 h-5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  ),
+  Play: () => (
+    <svg
+      className="w-5 h-5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polygon points="5 3 19 12 5 21 5 3" />
+    </svg>
+  ),
+};
 
 export function LoreCTA() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section ref={ref} className="py-32 relative overflow-hidden">
@@ -25,7 +68,8 @@ export function LoreCTA() {
         >
           {/* Quote */}
           <blockquote className="text-3xl md:text-4xl lg:text-5xl font-display italic text-text-secondary leading-relaxed mb-8">
-            "Enter seeking, leave transformed, return whenever needed."
+            &quot;Enter seeking, leave transformed, return whenever
+            needed.&quot;
           </blockquote>
           <cite className="block text-sm text-text-muted font-mono tracking-wider mb-16">
             — Inscription on the Library Door
@@ -37,16 +81,16 @@ export function LoreCTA() {
               href="/register"
               className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple text-cosmic-deep font-semibold text-lg hover:shadow-glow-lg transition-all"
             >
-              <Sparkles className="w-5 h-5" />
+              <Icons.Sparkles />
               Begin Your Journey
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <Icons.ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
 
             <Link
-              href="/lore/library/legends-of-arcanea/i-the-first-dawn"
+              href="/library/legends-of-arcanea/i-the-first-dawn"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all"
             >
-              <Play className="w-5 h-5" />
+              <Icons.Play />
               Read the First Legend
             </Link>
           </div>

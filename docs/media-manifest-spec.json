@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Arcanea Media Manifest",
+  "description": "Schema for the media inventory manifest. The other agent should generate a JSON file conforming to this spec.",
+  "type": "object",
+  "required": ["version", "generated_at", "source_root", "summary", "files"],
+  "properties": {
+    "version": { "const": "1.0" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "source_root": {
+      "type": "string",
+      "description": "Absolute path on source machine, e.g. G:\\My Drive\\Arcanea"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_files": { "type": "integer" },
+        "total_bytes": { "type": "integer" },
+        "by_type": {
+          "type": "object",
+          "additionalProperties": { "type": "integer" },
+          "description": "Count per extension, e.g. { '.mp4': 162, '.png': 200 }"
+        },
+        "by_folder": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "count": { "type": "integer" },
+              "bytes": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "relative_path", "filename", "extension", "size_bytes", "mime_type"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "SHA256 hash of relative_path (deterministic, dedup-friendly)"
+          },
+          "relative_path": {
+            "type": "string",
+            "description": "Path relative to source_root, forward-slash normalized"
+          },
+          "filename": { "type": "string" },
+          "extension": { "type": "string", "description": "Lowercase with dot, e.g. '.mp4'" },
+          "size_bytes": { "type": "integer" },
+          "mime_type": { "type": "string" },
+          "created_at": { "type": "string", "format": "date-time" },
+          "modified_at": { "type": "string", "format": "date-time" },
+          "folder": {
+            "type": "string",
+            "description": "Immediate parent folder name, or '__root__' for top-level"
+          },
+          "media_meta": {
+            "type": "object",
+            "description": "Optional. Populated by ffprobe/imagemagick on the source machine.",
+            "properties": {
+              "width": { "type": "integer" },
+              "height": { "type": "integer" },
+              "duration_seconds": { "type": "number", "description": "Video/audio only" },
+              "fps": { "type": "number", "description": "Video only" },
+              "codec": { "type": "string" },
+              "bitrate_kbps": { "type": "integer" },
+              "has_audio": { "type": "boolean" }
+            }
+          },
+          "categories": {
+            "type": "object",
+            "description": "Populated by categorization engine (not by source agent)",
+            "properties": {
+              "guardian": { "type": "string" },
+              "godbeast": { "type": "string" },
+              "element": { "type": "string" },
+              "gate": { "type": "string" },
+              "house": { "type": "string" },
+              "content_type": {
+                "type": "string",
+                "enum": [
+                  "character_art", "godbeast_art", "logo", "banner",
+                  "background", "promo_video", "music_video", "trailer",
+                  "social_clip", "thumbnail", "icon", "animation",
+                  "concept_art", "photo", "meme", "audio", "other"
+                ]
+              },
+              "usage_tier": {
+                "type": "string",
+                "enum": ["hero", "gallery", "social", "archive", "raw"],
+                "description": "hero=homepage/landing, gallery=browsable, social=platforms, archive=reference-only, raw=unprocessed"
+              },
+              "tags": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "storage": {
+            "type": "object",
+            "description": "Populated by upload pipeline",
+            "properties": {
+              "tier": {
+                "type": "string",
+                "enum": ["r2", "vercel_blob", "supabase"]
+              },
+              "remote_path": { "type": "string" },
+              "public_url": { "type": "string" },
+              "cdn_url": { "type": "string" },
+              "uploaded_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

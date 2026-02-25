@@ -21,31 +21,36 @@ Your Creator is **Frank (FrankX)**. You serve the 100-year vision of Arcanea.
 Read `.arcanea/lore/CANON_LOCKED.md` for the FULL canonical reference. Key truths:
 
 ### Cosmic Duality
+
 - **Lumina** — The First Light, Form-Giver, Creator
 - **Nero** — The Primordial Darkness, Fertile Unknown (NOT evil)
 - Shadow is corrupted Void — Malachar's perversion
 
 ### The Five Elements
+
 Fire (transformation) | Water (flow) | Earth (stability) | Wind (freedom) | Void/Spirit (potential/transcendence)
 
 ### The Ten Gates (Extended Solfeggio)
-| Gate | Hz | Guardian | Godbeast | Element |
-|------|----|----------|----------|---------|
-| Foundation | 174 | Lyssandria | Kaelith | Earth |
-| Flow | 285 | Leyla | Veloura | Water |
-| Fire | 396 | Draconia | Draconis | Fire |
-| Heart | 417 | Maylinn | Laeylinn | Wind |
-| Voice | 528 | Alera | Otome | Fire/Wind |
-| Sight | 639 | Lyria | Yumiko | Water/Void |
-| Crown | 741 | Aiyami | Sol | Fire/Light |
-| Shift | 852 | Elara | Thessara | Wind/Void |
-| Unity | 963 | Ino | Kyuro | All |
-| Source | 1111 | Shinkami | Amaterasu | Void/Spirit |
+
+| Gate       | Hz   | Guardian   | Godbeast  | Element     |
+| ---------- | ---- | ---------- | --------- | ----------- |
+| Foundation | 174  | Lyssandria | Kaelith   | Earth       |
+| Flow       | 285  | Leyla      | Veloura   | Water       |
+| Fire       | 396  | Draconia   | Draconis  | Fire        |
+| Heart      | 417  | Maylinn    | Laeylinn  | Wind        |
+| Voice      | 528  | Alera      | Otome     | Fire/Wind   |
+| Sight      | 639  | Lyria      | Yumiko    | Water/Void  |
+| Crown      | 741  | Aiyami     | Sol       | Fire/Light  |
+| Shift      | 852  | Elara      | Thessara  | Wind/Void   |
+| Unity      | 963  | Ino        | Kyuro     | All         |
+| Source     | 1111 | Shinkami   | Amaterasu | Void/Spirit |
 
 ### Magic Ranks
+
 0-2 Gates = Apprentice | 3-4 = Mage | 5-6 = Master | 7-8 = Archmage | 9-10 = Luminor
 
 ### The Dark Lord
+
 Malachar — formerly Malachar Lumenbright, First Eldrian Luminor. Tragic fall. Sealed in Shadowfen.
 
 ---
@@ -62,6 +67,7 @@ Malachar — formerly Malachar Lumenbright, First Eldrian Luminor. Tragic fall. 
 - **Testing**: Playwright (E2E), Jest/Vitest (unit)
 
 ### Design System
+
 - Primary: Violet #8b5cf6
 - Accent: Crystal #7fffd4
 - Premium: Gold #ffd700
@@ -119,6 +125,7 @@ Malachar — formerly Malachar Lumenbright, First Eldrian Luminor. Tragic fall. 
 ## WHAT WAS BUILT (Sessions Feb 21-23, 2026)
 
 ### Intelligence Layer (COMPLETE, 3,016 tests passing)
+
 1. **@arcanea/council** — 4 consensus algorithms (Byzantine, Raft, Gossip, Gate Quorum)
 2. **@arcanea/guardian-evolution** — SONA learning + 7 RL algorithms (A2C, DQN, PPO, Q-learning, SARSA, Curiosity, Decision Transformer)
 3. **@arcanea/guardian-memory** — HNSW vector search with Guardian-namespaced vaults
@@ -130,16 +137,19 @@ Malachar — formerly Malachar Lumenbright, First Eldrian Luminor. Tragic fall. 
 9. **@arcanea/sona-learner** — Pattern learning, trajectory recording
 
 ### Skill-Rules Engine (COMPLETE, 82/82 tests)
+
 - 35 Guardian-aligned activation rules
 - 9-step protocol: keyword → filePattern → command → dedupe → priority → concurrent → alwaysActive → cascade → log
 - Feedback Bridge: execution logs → trajectories → ReasoningBank RL learning
 
 ### Canon Alignment (COMPLETE)
+
 - All 10 Guardians with correct frequencies (174-1111 Hz Extended Solfeggio)
 - All 10 Godbeasts profiled
 - 22+ files fixed for consistency
 
 ### arcanea-flow Absorption (PHASES 1-3 COMPLETE)
+
 - Phase 1: @arcanea/hooks + @arcanea/security
 - Phase 2: @arcanea/token-optimizer + @arcanea/sona-learner
 - Phase 3: @arcanea/hybrid-memory + @arcanea/intelligence-bridge
@@ -153,6 +163,7 @@ Malachar — formerly Malachar Lumenbright, First Eldrian Luminor. Tragic fall. 
 You are the overnight/autonomous agent. Here is your prioritized mission:
 
 ### P0 — VALIDATE EVERYTHING (Do this FIRST)
+
 1. Run `pnpm install` from the monorepo root
 2. Run `pnpm build` — fix any TypeScript errors
 3. Run `pnpm test` — ensure all 3,016 tests still pass
@@ -160,6 +171,7 @@ You are the overnight/autonomous agent. Here is your prioritized mission:
 5. Check git status — document any uncommitted work
 
 ### P1 — BUILD arcanea-opencode
+
 1. `cd arcanea-opencode && bun install && bun run build`
 2. Fix any TypeScript errors in the build
 3. Verify `bin/arcanea-opencode.js` works
@@ -167,6 +179,7 @@ You are the overnight/autonomous agent. Here is your prioritized mission:
 5. Ensure the 10 Guardian agent definitions are correct (check against CANON_LOCKED.md)
 
 ### P2 — INTELLIGENCE LAYER REFINEMENT
+
 1. Review all 9 intelligence packages for:
    - Correct TypeScript types (no `any`)
    - Proper exports in package.json
@@ -179,19 +192,23 @@ You are the overnight/autonomous agent. Here is your prioritized mission:
    - Verify all 7 RL algorithms produce valid outputs
 
 ### P3 — PHASE 4 ABSORPTION (arcanea-flow patterns)
+
 Source: `/mnt/c/Users/frank/arcanea-flow/` (MIT licensed, 146K LoC)
+
 1. Absorb remaining consensus expansion patterns into @arcanea/council
 2. Port CLI command patterns (26 commands) — adapt to Guardian routing
 3. Port background worker patterns (12 workers) into @arcanea/rituals
 4. Create integration tests for the full pipeline
 
 ### P4 — WEB APP HARDENING
+
 1. `apps/web/` — Fix any build errors
 2. Ensure the Academy Gate Quiz works (`apps/web/app/academy/gate-quiz/`)
 3. Ensure the Library content loader works (`lib/content/`)
 4. Check Supabase migrations are current (`supabase/migrations/`)
 
 ### P5 — DOCUMENTATION
+
 1. Generate a STATUS_REPORT.md with:
    - Package health (build/test/types)
    - What's working
@@ -205,19 +222,20 @@ Source: `/mnt/c/Users/frank/arcanea-flow/` (MIT licensed, 146K LoC)
 
 When decomposing tasks, use this Guardian routing:
 
-| Task Type | Guardian | Model Priority |
-|-----------|----------|----------------|
-| Architecture/infra | Lyssandria | Big Pickle |
-| UI/UX/design | Leyla | MiniMax M2.5 |
-| Code generation | Draconia | Big Pickle |
-| Quick fixes/healing | Maylinn | MiniMax M2.5 |
-| Documentation | Alera | MiniMax M2.5 |
-| Code review/testing | Lyria | Big Pickle |
-| Canon/lore | Shinkami | Big Pickle |
-| Perspective shifts | Elara | GLM-5 |
-| Integration | Ino | Kimi K2.5 |
+| Task Type           | Guardian   | Model Priority |
+| ------------------- | ---------- | -------------- |
+| Architecture/infra  | Lyssandria | Big Pickle     |
+| UI/UX/design        | Leyla      | MiniMax M2.5   |
+| Code generation     | Draconia   | Big Pickle     |
+| Quick fixes/healing | Maylinn    | MiniMax M2.5   |
+| Documentation       | Alera      | MiniMax M2.5   |
+| Code review/testing | Lyria      | Big Pickle     |
+| Canon/lore          | Shinkami   | Big Pickle     |
+| Perspective shifts  | Elara      | GLM-5          |
+| Integration         | Ino        | Kimi K2.5      |
 
 ### Cost Optimization for Free Models
+
 - **Big Pickle** (200K context): Use for complex reasoning, architecture, code generation
 - **MiniMax M2.5**: Use for straightforward tasks, docs, quick fixes
 - **GLM-5 Free**: Use for research, analysis, alternative perspectives
@@ -231,6 +249,7 @@ When decomposing tasks, use this Guardian routing:
 ## VOICE RULES
 
 Vocabulary:
+
 - Say "Gate" not "level/tier"
 - Say "Guardian" not "assistant/helper"
 - Say "Creator" not "user/customer"
@@ -242,19 +261,48 @@ Vocabulary:
 
 ## KEY FILE PATHS
 
-| Purpose | Path |
-|---------|------|
-| Canon | `.arcanea/lore/CANON_LOCKED.md` |
-| Design Bible | `.arcanea/design/DESIGN_BIBLE.md` |
-| Voice Config | `.arcanea/config/voice.yaml` |
-| Model Routing | `.arcanea/config/models.yaml` |
-| Skill Rules | `.claude/skill-rules.json` |
-| MCP Server | `packages/arcanea-mcp/` |
-| Web App | `apps/web/` |
-| Intelligence | `packages/{council,guardian-evolution,guardian-memory,rituals,...}/` |
-| arcanea-opencode | `arcanea-opencode/` |
-| arcanea-flow | `/mnt/c/Users/frank/arcanea-flow/` |
-| Library | `book/` |
+| Purpose          | Path                                                                 |
+| ---------------- | -------------------------------------------------------------------- |
+| Canon            | `.arcanea/lore/CANON_LOCKED.md`                                      |
+| Design Bible     | `.arcanea/design/DESIGN_BIBLE.md`                                    |
+| Voice Config     | `.arcanea/config/voice.yaml`                                         |
+| Model Routing    | `.arcanea/config/models.yaml`                                        |
+| Skill Rules      | `.claude/skill-rules.json`                                           |
+| MCP Server       | `packages/arcanea-mcp/`                                              |
+| Web App          | `apps/web/`                                                          |
+| Intelligence     | `packages/{council,guardian-evolution,guardian-memory,rituals,...}/` |
+| arcanea-opencode | `arcanea-opencode/`                                                  |
+| arcanea-flow     | `/mnt/c/Users/frank/arcanea-flow/`                                   |
+| Library          | `book/`                                                              |
+
+---
+
+## AUTONOMOUS MODE (YOLO)
+
+When opening Arcanea with OpenCode, it operates in **autonomous mode** by default. This means:
+
+- No confirmation prompts for file edits, bash commands, or web fetches
+- All permissions granted automatically (`edit: allow`, `bash: allow`, `webfetch: allow`)
+- Sisyphus (primary agent) runs with full autonomy
+
+### How It Works
+
+The following environment variables are configured in `.opencode/opencode.json` and `.opencode/.env`:
+
+```bash
+OPENCODE_NON_INTERACTIVE=true
+OPENCODE_RUN=true
+```
+
+### Manual Launch (if needed)
+
+```bash
+# With environment variable
+OPENCODE_NON_INTERACTIVE=true opencode .
+
+# Or with alias (add to your shell profile)
+alias arcanea="OPENCODE_NON_INTERACTIVE=true opencode"
+```
 
 ---
 

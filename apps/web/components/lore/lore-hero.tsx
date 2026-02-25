@@ -1,8 +1,37 @@
-'use client';
+"use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
-import { Sparkles, ChevronDown } from 'lucide-react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+
+// ─── Inline SVG Icons ───────────────────────────────────────────────────────────
+const Icons = {
+  Sparkles: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" />
+    </svg>
+  ),
+  ChevronDown: () => (
+    <svg
+      className="w-6 h-6"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  ),
+};
 
 export function LoreHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,7 +39,7 @@ export function LoreHero() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end start'],
+    offset: ["start start", "end start"],
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -24,8 +53,8 @@ export function LoreHero() {
         y: e.clientY / window.innerHeight,
       });
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
@@ -120,8 +149,10 @@ export function LoreHero() {
           transition={{ delay: 0.2 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-bright/10 border border-gold-bright/20 mb-8"
         >
-          <Sparkles className="w-4 h-4 text-gold-bright" />
-          <span className="text-sm font-medium text-gold-bright">The Living Mythology</span>
+          <Icons.Sparkles />
+          <span className="text-sm font-medium text-gold-bright">
+            The Living Mythology
+          </span>
         </motion.div>
 
         {/* Title */}
@@ -143,9 +174,9 @@ export function LoreHero() {
           transition={{ delay: 0.4 }}
           className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-8 font-crimson italic"
         >
-          "Before Lumina spoke, there was only Nero—the Fertile Unknown,
+          &quot;Before Lumina spoke, there was only Nero—the Fertile Unknown,
           pregnant with infinite possibility. And when the First Light pierced
-          the darkness, neither was diminished."
+          the darkness, neither was diminished.&quot;
         </motion.p>
 
         {/* Quote attribution */}
@@ -166,10 +197,10 @@ export function LoreHero() {
           className="flex flex-wrap justify-center gap-8 mb-16"
         >
           {[
-            { value: '10', label: 'Guardians' },
-            { value: '10', label: 'Gates' },
-            { value: '7', label: 'Wisdoms' },
-            { value: '17', label: 'Library Collections' },
+            { value: "10", label: "Guardians" },
+            { value: "10", label: "Gates" },
+            { value: "7", label: "Wisdoms" },
+            { value: "17", label: "Library Collections" },
           ].map((stat, i) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-display font-bold text-white">
@@ -192,7 +223,7 @@ export function LoreHero() {
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <ChevronDown className="w-6 h-6 text-text-muted" />
+            <Icons.ChevronDown className="w-6 h-6 text-text-muted" />
           </motion.div>
         </motion.div>
       </motion.div>
