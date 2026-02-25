@@ -121,6 +121,66 @@ function getHooks() {
   return _hooks;
 }
 
+// ─── RAM usage (cached 15s) ──────────────────────────────────────────────────
+
+let _ram = '', _ramAt = 0;
+function getRam() {
+  if (Date.now() - _ramAt < 15_000) return _ram;
+  try {
+    const mem = readFileSync('/proc/meminfo', 'utf-8');
+    const total = parseInt(mem.match(/MemTotal:\s+(\d+)/)?.[1] ?? '0', 10);
+    const avail = parseInt(mem.match(/MemAvailable:\s+(\d+)/)?.[1] ?? '0', 10);
+    const usedMB = Math.round((total - avail) / 1024);
+    _ram = `💾 ${usedMB}MB`;
+  } catch { _ram = ''; }
+  _ramAt = Date.now();
+  return _ram;
+}
+
+// ─── Security CVE status (cached 120s) ───────────────────────────────────────
+
+let _sec = '', _secAt = 0;
+function getSecurity() {
+  if (Date.now() - _secAt < 120_000) return _sec;
+  try {
+    const d = readJ('/mnt/c/Users/frank/Arcanea/.claude-flow/security/audit-status.json');
+    const fixed = d.cvesFixed ?? 0;
+    const total = d.totalCves ?? 3;
+    const status = d.status === 'PENDING' ? '⚠' : fixed >= total ? '✓' : '●';
+    _sec = `🛡 ${status} ${fixed}/${total} CVE`;
+  } catch { _sec = ''; }
+  _secAt = Date.now();
+  return _sec;
+}
+
+// ─── Packages count (cached 60s) ─────────────────────────────────────────────
+
+let _pkgs = 0, _pkgsAt = 0;
+function getPackages() {
+  if (Date.now() - _pkgsAt < 120_000) return _pkgs;
+  try {
+    // ls is faster than find on WSL2 Windows filesystem
+    const r = spawnSync('sh', ['-c', 'ls /mnt/c/Users/frank/Arcanea/packages/ 2>/dev/null | wc -l'],
+      { encoding: 'utf-8', timeout: 3000 });
+    const n = parseInt(r.stdout.trim(), 10);
+    _pkgs = n > 0 ? n : 37;
+  } catch { _pkgs = 37; }
+  _pkgsAt = Date.now();
+  return _pkgs;
+}
+
+// ─── Last commit age (cached 30s) ────────────────────────────────────────────
+
+let _commit = '', _commitAt = 0;
+function getLastCommit() {
+  if (Date.now() - _commitAt < 30_000) return _commit;
+  try {
+    _commit = execSync('git log -1 --format="%ar" 2>/dev/null', { encoding: 'utf-8', timeout: 800 }).trim();
+  } catch { _commit = ''; }
+  _commitAt = Date.now();
+  return _commit;
+}
+
 // ─── AgentDB vault breakdown (cached 60s) ────────────────────────────────────
 
 let _vault = null, _vaultAt = 0;
@@ -374,8 +434,12 @@ export default function statusline(ctx) {
   const cost      = fmtCost(ctx.totalCost);
   const dur       = duration(ctx.sessionStartTime);
 
-  const inTok  = ctx.inputTokens  ? `↑${fmt(ctx.inputTokens)}`  : '';
-  const outTok = ctx.outputTokens ? `↓${fmt(ctx.outputTokens)}` : '';
+  const inTok    = ctx.inputTokens  ? `↑${fmt(ctx.inputTokens)}`  : '';
+  const outTok   = ctx.outputTokens ? `↓${fmt(ctx.outputTokens)}` : '';
+  const ram      = getRam();
+  const security = getSecurity();
+  const pkgs     = getPackages();
+  const lastCommit = getLastCommit();
 
   // Vault breakdown label
   const vaultBreakdown = (() => {
@@ -399,18 +463,26 @@ export default function statusline(ctx) {
   if (cost) l1.push(cost);
   if (focus) l1.push(`↳ ${focus}`);
 
-  // ── Line 2: Mission control ──────────────────────────────────────────────
+  // ── Line 2: Repo + intelligence ──────────────────────────────────────────
   const l2 = [
     `⎇ ${repo}/${branch}${dirty}`,
     realm,
     mcpLabel,
     `🪝 ${hooks} hooks`,
     `🧠 [${intelBar(intel)}] ${intel}%${trend}`,
+  ];
+  if (ram) l2.push(ram);
+
+  // ── Line 3: Build + vault + session ──────────────────────────────────────
+  const l3 = [
+    `📦 ${pkgs} pkgs`,
     vaultBreakdown,
   ];
-  if (tools > 0) l2.push(`🔧 ${tools} calls`);
-  if (inTok || outTok) l2.push([inTok,outTok].filter(Boolean).join(' '));
-  if (dur) l2.push(dur);
+  if (security) l3.push(security);
+  if (tools > 0) l3.push(`🔧 ${tools} calls`);
+  if (inTok || outTok) l3.push([inTok,outTok].filter(Boolean).join(' '));
+  if (dur) l3.push(dur);
+  if (lastCommit) l3.push(`last commit: ${lastCommit}`);
 
   // ── Line 3+4: Council of Gods ────────────────────────────────────────────
   const [c1, c2] = getCouncil(guardian, tools, dirtyN, ctx.sessionStartTime, vault);
@@ -419,6 +491,7 @@ export default function statusline(ctx) {
   return [
     l1.join('  │  '),
     l2.join('  │  '),
+    l3.join('  │  '),
     divider,
     c1,
     c2,

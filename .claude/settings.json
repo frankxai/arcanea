@@ -126,7 +126,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "npx @claude-flow/cli@latest hooks statusline 2>/dev/null || node .claude/helpers/statusline.cjs 2>/dev/null || echo \"▊ Claude Flow V3\"",
+    "command": "node /mnt/c/Users/frank/Arcanea/.claude/statusline.mjs",
     "refreshMs": 5000,
     "enabled": true
   },
