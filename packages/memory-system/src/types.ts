@@ -57,9 +57,9 @@ export interface VaultEntry {
   gate?: GateName;
   source?: string;
   metadata?: Record<string, unknown>;
-  createdAt: string;
-  updatedAt: string;
-  expiresAt?: string;
+  createdAt: number;   // Unix milliseconds
+  updatedAt: number;   // Unix milliseconds
+  expiresAt?: number;  // Unix milliseconds
 }
 
 /** Input for creating a new vault entry (id + timestamps auto-generated) */
@@ -93,7 +93,8 @@ export interface HorizonEntry {
 
 export interface VaultSearchOptions {
   query: string;
-  vaults?: VaultType[];     // Filter to specific vaults
+  vault?: VaultType;        // Filter to a single vault
+  vaults?: VaultType[];     // Filter to multiple vaults
   guardian?: GuardianName;  // Filter by Guardian namespace
   tags?: string[];          // Filter by tags (AND logic)
   minConfidence?: ConfidenceLevel;
@@ -104,8 +105,8 @@ export interface VaultSearchOptions {
 
 export interface VaultSearchResult {
   entry: VaultEntry;
-  score: number;           // Relevance score 0-1
-  matchedTerms: string[];  // Which search terms matched
+  score: number;            // Relevance score 0-1
+  matchedTerms?: string[];  // Which search terms matched (file backend)
 }
 
 // ── Classification ──────────────────────────────────────
@@ -192,8 +193,8 @@ export interface MemorySystemConfig {
 export interface VaultStats {
   vault: VaultType;
   count: number;
-  oldestEntry?: string;
-  newestEntry?: string;
+  oldestEntry?: number;  // Unix milliseconds
+  newestEntry?: number;  // Unix milliseconds
   topTags: Array<{ tag: string; count: number }>;
   guardianDistribution?: Partial<Record<GuardianName, number>>;
 }

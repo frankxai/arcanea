@@ -210,7 +210,7 @@ export class Mem0Backend implements StorageBackend {
 
   private mem0ToVaultEntry(data: Mem0MemoryObject): VaultEntry {
     const meta = data.metadata ?? {};
-    const now = new Date().toISOString();
+    const now = Date.now();
     return {
       id:          (meta['arcanea_id'] as string)  ?? data.id,
       vault:       (meta['vault']      as VaultType) ?? 'operational',
@@ -219,9 +219,9 @@ export class Mem0Backend implements StorageBackend {
       confidence:  (meta['confidence'] as VaultEntry['confidence']) ?? 'medium',
       guardian:    meta['guardian']    as VaultEntry['guardian']   | undefined,
       source:      meta['source']      as string                   | undefined,
-      createdAt:   (meta['created_at'] as string)  ?? now,
-      updatedAt:   (meta['created_at'] as string)  ?? now,
-      expiresAt:   meta['expires_at']  as string                   | undefined,
+      createdAt:   meta['created_at'] ? new Date(meta['created_at'] as string).getTime() : now,
+      updatedAt:   meta['created_at'] ? new Date(meta['created_at'] as string).getTime() : now,
+      expiresAt:   meta['expires_at']  ? new Date(meta['expires_at'] as string).getTime() : undefined,
     };
   }
 }

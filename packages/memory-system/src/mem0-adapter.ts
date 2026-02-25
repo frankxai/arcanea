@@ -83,7 +83,7 @@ export class Mem0Adapter {
       const classification = this.classifier.classify(message.content, guardian);
 
       // Create the vault entry
-      const now = new Date().toISOString();
+      const now = Date.now();
       const entry: VaultEntry = {
         id: generateMemoryId('m0'),
         vault: classification.vault,
@@ -220,7 +220,7 @@ export class Mem0Adapter {
     await this.ensureInitialized();
 
     const vault = input.vault ?? this.classifier.classify(input.content, input.guardian).vault;
-    const now = new Date().toISOString();
+    const now = Date.now();
 
     const entry: VaultEntry = {
       id: generateMemoryId('vmem'),
@@ -235,7 +235,7 @@ export class Mem0Adapter {
       metadata: input.metadata,
       createdAt: now,
       updatedAt: now,
-      expiresAt: input.ttl ? new Date(Date.now() + input.ttl * 1000).toISOString() : undefined,
+      expiresAt: input.ttl ? now + input.ttl * 1000 : undefined,
     };
 
     await this.backend.store(entry);
@@ -359,8 +359,8 @@ export class Mem0Adapter {
         source: entry.source,
         ...entry.metadata,
       },
-      created_at: entry.createdAt,
-      updated_at: entry.updatedAt,
+      created_at: new Date(entry.createdAt).toISOString(),
+      updated_at: new Date(entry.updatedAt).toISOString(),
     };
   }
 

@@ -1,103 +1,48 @@
 /**
  * ArcaneMD File-Based Storage Backend
  *
- * Stores each vault entry as an individual .md file with YAML frontmatter.
- * Maintains a per-vault index.json and an in-memory word index for fast search.
- *
- * Directory layout:
- *   {storagePath}/
- *     vaults/
- *       {vault-type}/
- *         {id}.md          (one file per entry)
- *         index.json       (vault-level entry index)
- *     horizon/
- *       entries.jsonl      (append-only JSON Lines)
- *
- * ArcaneMD frontmatter fields:
- *   id, vault, guardian, gate, frequency, tags, confidence,
- *   source, created, updated, expires
+ * One .md file per entry with YAML frontmatter.
+ * Layout: {storagePath}/vaults/{vault}/{id}.md + index.json
+ *         {storagePath}/horizon/entries.jsonl  (append-only)
  */
 
-import {
-  readFile,
-  writeFile,
-  mkdir,
-  appendFile,
-  unlink,
-  readdir,
-  access,
-} from 'node:fs/promises';
+import { readFile, writeFile, mkdir, appendFile, unlink, readdir, access } from 'node:fs/promises';
 import { join } from 'node:path';
 import type {
-  StorageBackend,
-  VaultEntry,
-  VaultType,
-  VaultSearchOptions,
-  VaultSearchResult,
-  ConfidenceLevel,
-  GuardianName,
+  StorageBackend, VaultEntry, VaultType, VaultSearchOptions, VaultSearchResult,
+  ConfidenceLevel, GuardianName,
 } from '../types.js';
 import { VAULT_TYPES, CONFIDENCE_RANK } from '../types.js';
 
-// ── Guardian → Frequency Map ─────────────────────────────
-
-const GUARDIAN_FREQUENCY: Record<GuardianName, number> = {
-  Lyssandria: 174,
-  Leyla: 285,
-  Draconia: 396,
-  Maylinn: 417,
-  Alera: 528,
-  Lyria: 639,
-  Aiyami: 741,
-  Elara: 852,
-  Ino: 963,
-  Shinkami: 1111,
+// ── Guardian → Hz ────────────────────────────────────────
+const GUARDIAN_HZ: Record<GuardianName, number> = {
+  Lyssandria: 174, Leyla: 285, Draconia: 396, Maylinn: 417, Alera: 528,
+  Lyria: 639, Aiyami: 741, Elara: 852, Ino: 963, Shinkami: 1111,
 };
 
-// ── Stop Words ───────────────────────────────────────────
+const STOPWORDS = new Set(['the','a','an','is','in','of','to','and','or','for','with','at','by','it','be','as','on','if','no','so']);
 
-const STOPWORDS = new Set([
-  'the', 'a', 'an', 'is', 'in', 'of', 'to', 'and', 'or', 'for',
-  'with', 'at', 'by', 'it', 'be', 'as', 'on', 'if', 'no', 'so',
-]);
-
-// ── YAML Frontmatter Helpers ─────────────────────────────
-
+// ── YAML Frontmatter ─────────────────────────────────────
 function parseFrontmatter(raw: string): { meta: Record<string, unknown>; body: string } {
   if (!raw.startsWith('---\n')) return { meta: {}, body: raw };
   const end = raw.indexOf('\n---\n', 4);
   if (end === -1) return { meta: {}, body: raw };
-
   const yaml = raw.slice(4, end);
   const body = raw.slice(end + 5).trim();
   const meta: Record<string, unknown> = {};
-
   for (const line of yaml.split('\n')) {
     const colon = line.indexOf(':');
     if (colon === -1) continue;
     const key = line.slice(0, colon).trim();
-    const rawValue = line.slice(colon + 1).trim();
-
-    if (rawValue === 'null' || rawValue === '') {
-      meta[key] = null;
-    } else if (rawValue.startsWith('[')) {
-      // Array: [item1, item2, item3]
-      const inner = rawValue.slice(1, -1);
-      meta[key] = inner
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean);
-    } else if (rawValue === 'true') {
-      meta[key] = true;
-    } else if (rawValue === 'false') {
-      meta[key] = false;
-    } else if (!isNaN(Number(rawValue)) && rawValue !== '') {
-      meta[key] = Number(rawValue);
-    } else {
-      meta[key] = rawValue;
-    }
+    const val = line.slice(colon + 1).trim();
+    if (val === 'null' || val === '') meta[key] = null;
+    else if (val.startsWith('['))
+      meta[key] = val.slice(1, -1).split(',').map((s: string) => s.trim()).filter(Boolean);
+    else if (val === 'true') meta[key] = true;
+    else if (val === 'false') meta[key] = false;
+    else if (val !== '' && !isNaN(Number(val))) meta[key] = Number(val);
+    else meta[key] = val;
   }
-
   return { meta, body };
 }
 
@@ -110,544 +55,298 @@ function serializeFrontmatter(meta: Record<string, unknown>, body: string): stri
   return `---\n${lines.join('\n')}\n---\n\n${body}`;
 }
 
-// ── Entry ↔ ArcaneMD Serialization ───────────────────────
-
-function entryToMarkdown(entry: VaultEntry): string {
-  const frequency =
-    entry.guardian && entry.guardian in GUARDIAN_FREQUENCY
-      ? GUARDIAN_FREQUENCY[entry.guardian as GuardianName]
-      : null;
-
-  const meta: Record<string, unknown> = {
-    id: entry.id,
-    vault: entry.vault,
-    guardian: entry.guardian ?? null,
-    gate: entry.gate ?? null,
-    frequency,
-    tags: entry.tags,
-    confidence: entry.confidence,
-    source: entry.source ?? null,
-    created: entry.createdAt,
-    updated: entry.updatedAt,
-    expires: entry.expiresAt ?? null,
-  };
-
-  return serializeFrontmatter(meta, entry.content);
+// ── Entry ↔ ArcaneMD ─────────────────────────────────────
+function entryToMd(entry: VaultEntry): string {
+  return serializeFrontmatter({
+    id: entry.id, vault: entry.vault,
+    guardian: entry.guardian ?? null, gate: entry.gate ?? null,
+    frequency: entry.guardian ? (GUARDIAN_HZ[entry.guardian as GuardianName] ?? null) : null,
+    tags: entry.tags, confidence: entry.confidence, source: entry.source ?? null,
+    created: entry.createdAt, updated: entry.updatedAt, expires: entry.expiresAt ?? null,
+  }, entry.content);
 }
 
-function markdownToEntry(raw: string): VaultEntry | null {
+function mdToEntry(raw: string): VaultEntry | null {
   const { meta, body } = parseFrontmatter(raw);
-
-  const id = meta['id'];
-  const vault = meta['vault'];
-  const confidence = meta['confidence'];
-
-  if (typeof id !== 'string' || typeof vault !== 'string' || typeof confidence !== 'string') {
-    return null;
-  }
-
-  const tags = Array.isArray(meta['tags'])
-    ? (meta['tags'] as string[])
-    : typeof meta['tags'] === 'string' && meta['tags']
-    ? [meta['tags']]
-    : [];
-
+  const id = meta['id'], vault = meta['vault'], confidence = meta['confidence'];
+  if (typeof id !== 'string' || typeof vault !== 'string' || typeof confidence !== 'string') return null;
+  const tags = Array.isArray(meta['tags']) ? (meta['tags'] as string[]) : [];
   const entry: VaultEntry = {
-    id,
-    vault: vault as VaultType,
-    content: body,
-    tags,
+    id, vault: vault as VaultType, content: body, tags,
     confidence: confidence as ConfidenceLevel,
-    createdAt: typeof meta['created'] === 'string' ? meta['created'] : new Date().toISOString(),
-    updatedAt: typeof meta['updated'] === 'string' ? meta['updated'] : new Date().toISOString(),
+    createdAt: typeof meta['created'] === 'number' ? meta['created'] : (typeof meta['created'] === 'string' ? new Date(meta['created']).getTime() : Date.now()),
+    updatedAt: typeof meta['updated'] === 'number' ? meta['updated'] : (typeof meta['updated'] === 'string' ? new Date(meta['updated']).getTime() : Date.now()),
   };
-
-  if (meta['guardian'] && typeof meta['guardian'] === 'string') {
+  if (meta['guardian'] && typeof meta['guardian'] === 'string')
     entry.guardian = meta['guardian'] as GuardianName;
-  }
-  if (meta['gate'] && typeof meta['gate'] === 'string') {
+  if (meta['gate'] && typeof meta['gate'] === 'string')
     entry.gate = meta['gate'] as import('../types.js').GateName;
-  }
-  if (meta['source'] && typeof meta['source'] === 'string') {
-    entry.source = meta['source'];
-  }
-  if (meta['expires'] && typeof meta['expires'] === 'string') {
-    entry.expiresAt = meta['expires'];
-  }
-
+  if (meta['source'] && typeof meta['source'] === 'string') entry.source = meta['source'];
+  if (meta['expires']) entry.expiresAt = typeof meta['expires'] === 'number' ? meta['expires'] : new Date(meta['expires'] as string).getTime();
   return entry;
 }
 
-// ── Vault Index ──────────────────────────────────────────
-
-interface VaultIndexEntry {
-  id: string;
-  vault: VaultType;
-  createdAt: string;
-  tags: string[];
-  summary: string;
-}
-
-interface VaultIndex {
-  entries: VaultIndexEntry[];
-}
+// ── Vault Index Types ────────────────────────────────────
+interface IndexEntry { id: string; vault: VaultType; createdAt: number; tags: string[]; summary: string; }
+interface VaultIndex { entries: IndexEntry[]; }
 
 // ── FileBackend ──────────────────────────────────────────
-
 export class FileBackend implements StorageBackend {
-  private storagePath: string;
   private initialized = false;
-
-  // In-memory word index: word → Set<entryId>
   private wordIndex = new Map<string, Set<string>>();
-  // Hot cache: last 100 accessed entries
   private entryCache = new Map<string, VaultEntry>();
-  private readonly CACHE_SIZE = 100;
+  private readonly CACHE_MAX = 100;
 
-  constructor(storagePath: string) {
-    this.storagePath = storagePath;
-  }
+  constructor(private storagePath: string) {}
 
-  // ── Lifecycle ───────────────────────────────────────────
-
+  // ── Lifecycle ──────────────────────────────────────────
   async initialize(): Promise<void> {
     if (this.initialized) return;
-
-    // Create directory structure for all vault types
-    for (const vaultType of VAULT_TYPES) {
-      await mkdir(this.vaultDir(vaultType), { recursive: true });
-    }
+    for (const v of VAULT_TYPES) await mkdir(this.vaultDir(v), { recursive: true });
     await mkdir(join(this.storagePath, 'horizon'), { recursive: true });
-
-    // Build in-memory word index from existing .md files
-    await this.buildWordIndex();
-
+    await this.rebuildWordIndex();
     this.initialized = true;
   }
 
-  // ── StorageBackend Implementation ─────────────────────
-
+  // ── Store ──────────────────────────────────────────────
   async store(entry: VaultEntry): Promise<void> {
-    this.ensureInitialized();
-
-    const filePath = this.entryPath(entry.vault, entry.id);
-    const content = entryToMarkdown(entry);
-    await writeFile(filePath, content, 'utf-8');
-
-    // Update word index
-    const text = this.buildIndexText(entry);
-    this.indexEntry(entry.id, text);
-
-    // Update vault index.json
-    await this.updateVaultIndex(entry.vault, entry);
-
-    // Update hot cache
-    this.cacheEntry(entry);
+    this.check();
+    await writeFile(this.entryPath(entry.vault, entry.id), entryToMd(entry), 'utf-8');
+    this.indexAdd(entry.id, this.indexText(entry));
+    await this.upsertVaultIndex(entry.vault, entry);
+    this.cacheSet(entry);
   }
 
+  // ── Retrieve ───────────────────────────────────────────
   async retrieve(id: string): Promise<VaultEntry | null> {
-    this.ensureInitialized();
-
-    // Check hot cache first
+    this.check();
     const cached = this.entryCache.get(id);
     if (cached) return cached;
-
-    // Search each vault directory for the file
-    for (const vaultType of VAULT_TYPES) {
-      const filePath = this.entryPath(vaultType, id);
+    for (const v of VAULT_TYPES) {
       try {
-        await access(filePath);
-        const raw = await readFile(filePath, 'utf-8');
-        const entry = markdownToEntry(raw);
-        if (entry) {
-          this.cacheEntry(entry);
-          return entry;
-        }
-      } catch {
-        // File does not exist in this vault — continue
-      }
+        await access(this.entryPath(v, id));
+        const entry = mdToEntry(await readFile(this.entryPath(v, id), 'utf-8'));
+        if (entry) { this.cacheSet(entry); return entry; }
+      } catch { /* not in this vault */ }
     }
-
     return null;
   }
 
+  // ── Search ─────────────────────────────────────────────
   async search(options: VaultSearchOptions): Promise<VaultSearchResult[]> {
-    this.ensureInitialized();
+    this.check();
+    const { query, vaults, guardian, tags, minConfidence, limit = 20, offset = 0, sortBy = 'relevance' } = options;
+    const tokens = this.tokenize(query);
+    if (!tokens.length) return [];
 
-    const {
-      query,
-      vaults,
-      guardian,
-      tags,
-      minConfidence,
-      limit = 20,
-      offset = 0,
-      sortBy = 'relevance',
-    } = options;
-
-    // Tokenize query and find candidate IDs
-    const queryTokens = this.tokenize(query);
-    if (queryTokens.length === 0) return [];
-
-    // Gather candidate IDs with match counts
-    const matchCounts = new Map<string, number>();
-    for (const token of queryTokens) {
-      // Exact match (weight 2)
-      const exactIds = this.wordIndex.get(token);
-      if (exactIds) {
-        for (const id of exactIds) {
-          matchCounts.set(id, (matchCounts.get(id) ?? 0) + 2);
-        }
-      }
-      // Prefix match for tokens >= 3 chars (weight 1)
-      if (token.length >= 3) {
-        for (const [word, ids] of this.wordIndex) {
-          if (word !== token && word.startsWith(token)) {
-            for (const id of ids) {
-              matchCounts.set(id, (matchCounts.get(id) ?? 0) + 1);
-            }
-          }
+    // Score candidates from word index
+    const scores = new Map<string, number>();
+    for (const tok of tokens) {
+      const exact = this.wordIndex.get(tok);
+      if (exact) for (const id of exact) scores.set(id, (scores.get(id) ?? 0) + 2);
+      if (tok.length >= 3) {
+        for (const [w, ids] of this.wordIndex) {
+          if (w !== tok && w.startsWith(tok))
+            for (const id of ids) scores.set(id, (scores.get(id) ?? 0) + 1);
         }
       }
     }
+    if (!scores.size) return [];
 
-    if (matchCounts.size === 0) return [];
-
-    // Load candidates and apply filters
-    const results: VaultSearchResult[] = [];
     const now = Date.now();
-    const maxScore = queryTokens.length * 2;
+    const maxRaw = tokens.length * 2;
+    const results: VaultSearchResult[] = [];
 
-    for (const [id, rawScore] of matchCounts) {
+    for (const [id, raw] of scores) {
       const entry = await this.retrieve(id);
       if (!entry) continue;
-
-      // Vault filter
-      if (vaults && vaults.length > 0 && !vaults.includes(entry.vault)) continue;
-
-      // Guardian filter
+      if (vaults?.length && !vaults.includes(entry.vault)) continue;
       if (guardian && entry.guardian !== guardian) continue;
-
-      // Tags filter (AND logic)
-      if (tags && tags.length > 0) {
-        if (!tags.every((t) => entry.tags.includes(t))) continue;
-      }
-
-      // Confidence filter
-      if (minConfidence) {
-        if (CONFIDENCE_RANK[entry.confidence] < CONFIDENCE_RANK[minConfidence]) continue;
-      }
-
-      // Expiration filter
+      if (tags?.length && !tags.every((t) => entry.tags.includes(t))) continue;
+      if (minConfidence && CONFIDENCE_RANK[entry.confidence] < CONFIDENCE_RANK[minConfidence]) continue;
       if (entry.expiresAt && new Date(entry.expiresAt).getTime() < now) continue;
 
-      // Score: word matches + recency bonus (0–0.1) + confidence bonus (0–0.1)
-      const wordScore = maxScore > 0 ? rawScore / maxScore : 0;
-      const ageMs = now - new Date(entry.createdAt).getTime();
-      const recencyBonus = Math.max(0, 0.1 - ageMs / (1000 * 60 * 60 * 24 * 30 * 0.1));
-      const confidenceBonus = CONFIDENCE_RANK[entry.confidence] * 0.033;
-      const score = Math.min(1, wordScore + recencyBonus + confidenceBonus);
-
-      // Matched terms for highlighting
-      const matchedTerms = queryTokens.filter((t) => {
-        const ids = this.wordIndex.get(t);
-        if (ids?.has(id)) return true;
-        if (t.length >= 3) {
-          for (const [w, wIds] of this.wordIndex) {
-            if (w.startsWith(t) && wIds.has(id)) return true;
-          }
-        }
+      const wordScore = maxRaw > 0 ? raw / maxRaw : 0;
+      const recencyBonus = Math.max(0, 0.1 - (now - new Date(entry.createdAt).getTime()) / (2_592_000_000));
+      const confBonus = CONFIDENCE_RANK[entry.confidence] * 0.033;
+      const score = Math.min(1, wordScore + recencyBonus + confBonus);
+      const matchedTerms = tokens.filter((t) => {
+        if (this.wordIndex.get(t)?.has(id)) return true;
+        if (t.length >= 3) for (const [w, s] of this.wordIndex) if (w.startsWith(t) && s.has(id)) return true;
         return false;
       });
-
       results.push({ entry, score, matchedTerms });
     }
 
-    // Sort
-    if (sortBy === 'relevance') {
-      results.sort((a, b) => b.score - a.score);
-    } else if (sortBy === 'recency') {
-      results.sort(
-        (a, b) =>
-          new Date(b.entry.updatedAt).getTime() - new Date(a.entry.updatedAt).getTime(),
-      );
-    } else if (sortBy === 'confidence') {
-      results.sort(
-        (a, b) =>
-          CONFIDENCE_RANK[b.entry.confidence] - CONFIDENCE_RANK[a.entry.confidence],
-      );
-    }
+    if (sortBy === 'recency') results.sort((a, b) => new Date(b.entry.updatedAt).getTime() - new Date(a.entry.updatedAt).getTime());
+    else if (sortBy === 'confidence') results.sort((a, b) => CONFIDENCE_RANK[b.entry.confidence] - CONFIDENCE_RANK[a.entry.confidence]);
+    else results.sort((a, b) => b.score - a.score);
 
     return results.slice(offset, offset + limit);
   }
 
-  async list(vault: VaultType, limit?: number, offset: number = 0): Promise<VaultEntry[]> {
-    this.ensureInitialized();
-
+  // ── List ───────────────────────────────────────────────
+  async list(vault: VaultType, limit?: number, offset = 0): Promise<VaultEntry[]> {
+    this.check();
     const index = await this.readVaultIndex(vault);
     const now = Date.now();
-
-    // Resolve entries from index, sorted by createdAt desc
     const sorted = index.entries.slice().sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
-
-    const results: VaultEntry[] = [];
+    const out: VaultEntry[] = [];
     for (const item of sorted) {
       const entry = await this.retrieve(item.id);
       if (!entry) continue;
       if (entry.expiresAt && new Date(entry.expiresAt).getTime() < now) continue;
-      results.push(entry);
+      out.push(entry);
     }
-
-    const sliceEnd = limit !== undefined ? offset + limit : undefined;
-    return results.slice(offset, sliceEnd);
+    return out.slice(offset, limit !== undefined ? offset + limit : undefined);
   }
 
+  // ── Remove ─────────────────────────────────────────────
   async remove(id: string): Promise<boolean> {
-    this.ensureInitialized();
-
-    // Horizon is append-only — no deletion
-    for (const vaultType of VAULT_TYPES) {
-      const filePath = this.entryPath(vaultType, id);
+    this.check();
+    for (const v of VAULT_TYPES) {
+      const path = this.entryPath(v, id);
       try {
-        await access(filePath);
-        // Found the file — read it to remove from word index
-        const raw = await readFile(filePath, 'utf-8');
-        const entry = markdownToEntry(raw);
-        if (entry) {
-          if (vaultType === 'horizon') return false;
-          const text = this.buildIndexText(entry);
-          this.deindexEntry(id, text);
-          this.entryCache.delete(id);
-        }
-        await unlink(filePath);
-        await this.removeFromVaultIndex(vaultType, id);
+        await access(path);
+        if (v === 'horizon') return false; // append-only
+        const entry = mdToEntry(await readFile(path, 'utf-8'));
+        if (entry) { this.indexRemove(id, this.indexText(entry)); this.entryCache.delete(id); }
+        await unlink(path);
+        await this.removeFromVaultIndex(v, id);
         return true;
-      } catch {
-        // Not in this vault — continue
-      }
+      } catch { /* not in this vault */ }
     }
-
     return false;
   }
 
+  // ── Count ──────────────────────────────────────────────
   async count(vault?: VaultType): Promise<number> {
-    this.ensureInitialized();
-
-    if (vault) {
-      const index = await this.readVaultIndex(vault);
-      return index.entries.length;
-    }
-
+    this.check();
+    if (vault) return (await this.readVaultIndex(vault)).entries.length;
     let total = 0;
-    for (const vaultType of VAULT_TYPES) {
-      const index = await this.readVaultIndex(vaultType);
-      total += index.entries.length;
-    }
+    for (const v of VAULT_TYPES) total += (await this.readVaultIndex(v)).entries.length;
     return total;
   }
 
+  // ── Clear ──────────────────────────────────────────────
   async clear(vault?: VaultType): Promise<void> {
-    this.ensureInitialized();
-
-    const targetVaults = vault ? [vault] : VAULT_TYPES.filter((v) => v !== 'horizon');
-
-    for (const vaultType of targetVaults) {
-      if (vaultType === 'horizon') continue; // Never clear horizon
-
-      // Remove all .md files and clear word index entries
-      const dir = this.vaultDir(vaultType);
+    this.check();
+    const targets = vault ? [vault] : VAULT_TYPES.filter((v) => v !== 'horizon');
+    for (const v of targets) {
+      if (v === 'horizon') continue;
       let files: string[] = [];
-      try {
-        files = await readdir(dir);
-      } catch {
-        // Directory may not exist yet
-      }
-
+      try { files = await readdir(this.vaultDir(v)); } catch { continue; }
       for (const file of files) {
         if (!file.endsWith('.md')) continue;
-        const filePath = join(dir, file);
         try {
-          const raw = await readFile(filePath, 'utf-8');
-          const entry = markdownToEntry(raw);
-          if (entry) {
-            this.deindexEntry(entry.id, this.buildIndexText(entry));
-            this.entryCache.delete(entry.id);
-          }
-          await unlink(filePath);
-        } catch {
-          // Ignore errors for individual files
-        }
+          const entry = mdToEntry(await readFile(join(this.vaultDir(v), file), 'utf-8'));
+          if (entry) { this.indexRemove(entry.id, this.indexText(entry)); this.entryCache.delete(entry.id); }
+          await unlink(join(this.vaultDir(v), file));
+        } catch { /* skip */ }
       }
-
-      // Reset vault index
-      await this.writeVaultIndex(vaultType, { entries: [] });
+      await this.writeVaultIndex(v, { entries: [] });
     }
   }
 
-  // ── Horizon-Specific ──────────────────────────────────
-
-  /**
-   * Append a line to the horizon JSONL file.
-   * Used by HorizonLedger for its append-only log.
-   */
+  // ── Horizon extras (public API) ────────────────────────
   async appendHorizonLine(jsonLine: string): Promise<void> {
-    const horizonPath = join(this.storagePath, 'horizon', 'entries.jsonl');
-    await appendFile(horizonPath, jsonLine + '\n', 'utf-8');
+    await appendFile(join(this.storagePath, 'horizon', 'entries.jsonl'), jsonLine + '\n', 'utf-8');
   }
 
-  /**
-   * Read all horizon JSONL lines.
-   */
   async readHorizonLines(): Promise<string[]> {
-    const horizonPath = join(this.storagePath, 'horizon', 'entries.jsonl');
     try {
-      const content = await readFile(horizonPath, 'utf-8');
-      return content.split('\n').filter((line) => line.trim().length > 0);
-    } catch {
-      return [];
-    }
+      const raw = await readFile(join(this.storagePath, 'horizon', 'entries.jsonl'), 'utf-8');
+      return raw.split('\n').filter((l: string) => l.trim().length > 0);
+    } catch { return []; }
   }
 
-  // ── Internal: Paths ───────────────────────────────────
+  // ── Internal: paths ───────────────────────────────────
+  private vaultDir(v: VaultType) { return join(this.storagePath, 'vaults', v); }
+  private entryPath(v: VaultType, id: string) { return join(this.vaultDir(v), `${id}.md`); }
 
-  private vaultDir(vault: VaultType): string {
-    return join(this.storagePath, 'vaults', vault);
+  // ── Internal: vault index ─────────────────────────────
+  private indexJsonPath(v: VaultType) { return join(this.vaultDir(v), 'index.json'); }
+
+  private async readVaultIndex(v: VaultType): Promise<VaultIndex> {
+    try { return JSON.parse(await readFile(this.indexJsonPath(v), 'utf-8')) as VaultIndex; }
+    catch { return { entries: [] }; }
   }
 
-  private entryPath(vault: VaultType, id: string): string {
-    return join(this.vaultDir(vault), `${id}.md`);
+  private async writeVaultIndex(v: VaultType, idx: VaultIndex) {
+    await writeFile(this.indexJsonPath(v), JSON.stringify(idx, null, 2), 'utf-8');
   }
 
-  // ── Internal: Vault Index ─────────────────────────────
-
-  private vaultIndexPath(vault: VaultType): string {
-    return join(this.vaultDir(vault), 'index.json');
-  }
-
-  private async readVaultIndex(vault: VaultType): Promise<VaultIndex> {
-    try {
-      const raw = await readFile(this.vaultIndexPath(vault), 'utf-8');
-      return JSON.parse(raw) as VaultIndex;
-    } catch {
-      return { entries: [] };
-    }
-  }
-
-  private async writeVaultIndex(vault: VaultType, index: VaultIndex): Promise<void> {
-    await writeFile(this.vaultIndexPath(vault), JSON.stringify(index, null, 2), 'utf-8');
-  }
-
-  private async updateVaultIndex(vault: VaultType, entry: VaultEntry): Promise<void> {
-    const index = await this.readVaultIndex(vault);
-    const existing = index.entries.findIndex((e) => e.id === entry.id);
-    const item: VaultIndexEntry = {
-      id: entry.id,
-      vault: entry.vault,
-      createdAt: entry.createdAt,
-      tags: entry.tags,
+  private async upsertVaultIndex(v: VaultType, entry: VaultEntry) {
+    const idx = await this.readVaultIndex(v);
+    const pos = idx.entries.findIndex((e) => e.id === entry.id);
+    const item: IndexEntry = {
+      id: entry.id, vault: v, createdAt: entry.createdAt, tags: entry.tags,
       summary: entry.summary ?? entry.content.slice(0, 120).replace(/\n/g, ' '),
     };
-
-    if (existing >= 0) {
-      index.entries[existing] = item;
-    } else {
-      index.entries.push(item);
-    }
-
-    await this.writeVaultIndex(vault, index);
+    if (pos >= 0) idx.entries[pos] = item; else idx.entries.push(item);
+    await this.writeVaultIndex(v, idx);
   }
 
-  private async removeFromVaultIndex(vault: VaultType, id: string): Promise<void> {
-    const index = await this.readVaultIndex(vault);
-    index.entries = index.entries.filter((e) => e.id !== id);
-    await this.writeVaultIndex(vault, index);
+  private async removeFromVaultIndex(v: VaultType, id: string) {
+    const idx = await this.readVaultIndex(v);
+    idx.entries = idx.entries.filter((e) => e.id !== id);
+    await this.writeVaultIndex(v, idx);
   }
 
-  // ── Internal: Word Index ──────────────────────────────
-
+  // ── Internal: word index ──────────────────────────────
   private tokenize(text: string): string[] {
-    return text
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, ' ')
-      .split(/\s+/)
-      .filter((w) => w.length >= 2 && !STOPWORDS.has(w));
+    return text.toLowerCase().replace(/[^a-z0-9\s-]/g, ' ').split(/\s+/)
+      .filter((w: string) => w.length >= 2 && !STOPWORDS.has(w));
   }
 
-  private buildIndexText(entry: VaultEntry): string {
-    const parts = [entry.content];
-    if (entry.summary) parts.push(entry.summary);
-    if (entry.tags.length > 0) parts.push(entry.tags.join(' '));
-    if (entry.source) parts.push(entry.source);
-    if (entry.guardian) parts.push(entry.guardian);
-    return parts.join(' ');
+  private indexText(entry: VaultEntry): string {
+    return [entry.content, entry.summary, entry.tags.join(' '), entry.source, entry.guardian]
+      .filter(Boolean).join(' ');
   }
 
-  private indexEntry(id: string, text: string): void {
-    for (const word of this.tokenize(text)) {
-      let ids = this.wordIndex.get(word);
-      if (!ids) {
-        ids = new Set();
-        this.wordIndex.set(word, ids);
-      }
-      ids.add(id);
+  private indexAdd(id: string, text: string) {
+    for (const w of this.tokenize(text)) {
+      let s = this.wordIndex.get(w);
+      if (!s) { s = new Set(); this.wordIndex.set(w, s); }
+      s.add(id);
     }
   }
 
-  private deindexEntry(id: string, text: string): void {
-    for (const word of this.tokenize(text)) {
-      const ids = this.wordIndex.get(word);
-      if (ids) {
-        ids.delete(id);
-        if (ids.size === 0) this.wordIndex.delete(word);
-      }
+  private indexRemove(id: string, text: string) {
+    for (const w of this.tokenize(text)) {
+      const s = this.wordIndex.get(w);
+      if (s) { s.delete(id); if (!s.size) this.wordIndex.delete(w); }
     }
   }
 
-  private async buildWordIndex(): Promise<void> {
+  private async rebuildWordIndex() {
     this.wordIndex.clear();
-    for (const vaultType of VAULT_TYPES) {
-      const dir = this.vaultDir(vaultType);
+    for (const v of VAULT_TYPES) {
       let files: string[] = [];
-      try {
-        files = await readdir(dir);
-      } catch {
-        continue;
-      }
+      try { files = await readdir(this.vaultDir(v)); } catch { continue; }
       for (const file of files) {
         if (!file.endsWith('.md')) continue;
         try {
-          const raw = await readFile(join(dir, file), 'utf-8');
-          const entry = markdownToEntry(raw);
-          if (entry) {
-            this.indexEntry(entry.id, this.buildIndexText(entry));
-          }
-        } catch {
-          // Skip unreadable files
-        }
+          const entry = mdToEntry(await readFile(join(this.vaultDir(v), file), 'utf-8'));
+          if (entry) this.indexAdd(entry.id, this.indexText(entry));
+        } catch { /* skip */ }
       }
     }
   }
 
-  // ── Internal: Hot Cache ───────────────────────────────
-
-  private cacheEntry(entry: VaultEntry): void {
-    if (this.entryCache.size >= this.CACHE_SIZE) {
-      // Evict oldest (first inserted) key
-      const firstKey = this.entryCache.keys().next().value;
-      if (firstKey !== undefined) this.entryCache.delete(firstKey);
+  // ── Internal: hot cache ───────────────────────────────
+  private cacheSet(entry: VaultEntry) {
+    if (this.entryCache.size >= this.CACHE_MAX) {
+      const first = this.entryCache.keys().next().value as string | undefined;
+      if (first !== undefined) this.entryCache.delete(first);
     }
     this.entryCache.set(entry.id, entry);
   }
 
-  // ── Internal: Guard ───────────────────────────────────
-
-  private ensureInitialized(): void {
-    if (!this.initialized) {
-      throw new Error(
-        'FileBackend not initialized. Call initialize() before using storage operations.',
-      );
-    }
+  private check() {
+    if (!this.initialized)
+      throw new Error('FileBackend not initialized. Call initialize() before using storage operations.');
   }
 }

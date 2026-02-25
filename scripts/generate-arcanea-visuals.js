@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const API_KEY = 'AIzaSyBv2def7r-0VqmWQ6fkUqgS1q2eR9MjKdc';
+const API_KEY = process.env.GEMINI_API_KEY || (() => { throw new Error('Set GEMINI_API_KEY env var'); })();
 
 // LATEST MODEL - Use this for all production visuals
 const MODEL = 'gemini-3-pro-image-preview';

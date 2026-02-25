@@ -195,8 +195,10 @@ export function parseArcaneMD(fileContent: string): ArcaneMDParseResult {
 
   // ── Build VaultEntry ────────────────────────────────────────────────────────
 
-  const createdAt = meta['created'] as string;
-  const updatedAt = (meta['updated'] as string | null) ?? createdAt;
+  const createdRaw = meta['created'];
+  const updatedRaw = meta['updated'];
+  const createdAt: number = typeof createdRaw === 'number' ? createdRaw : (typeof createdRaw === 'string' ? new Date(createdRaw).getTime() : Date.now());
+  const updatedAt: number = typeof updatedRaw === 'number' ? updatedRaw : (typeof updatedRaw === 'string' ? new Date(updatedRaw).getTime() : createdAt);
 
   const entry: VaultEntry = {
     id:         meta['id'] as string,
@@ -212,7 +214,7 @@ export function parseArcaneMD(fileContent: string): ArcaneMDParseResult {
                   : undefined,
     createdAt,
     updatedAt,
-    expiresAt:  meta['expires'] ? (meta['expires'] as string) : undefined,
+    expiresAt:  meta['expires'] ? (typeof meta['expires'] === 'number' ? meta['expires'] as number : new Date(meta['expires'] as string).getTime()) : undefined,
   };
 
   return { valid: true, entry, errors: [], warnings };
