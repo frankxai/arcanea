@@ -497,6 +497,143 @@ async function cmdSync(): Promise<void> {
   console.log(c.dim(`  Output: ${outputPath}`));
 }
 
+/**
+ * `svaults init`
+ *
+ * Zero-config onboarding: creates vault directories, seeds founding wishes,
+ * optionally syncs MEMORY.md, and writes a CLAUDE_SNIPPET.md starter block.
+ * Optional: --path
+ */
+async function cmdInit(): Promise<void> {
+  const { mkdirSync, writeFileSync, existsSync } = await import('node:fs');
+
+  const projectRoot = (flags['path'] as string) ?? process.cwd();
+  const storagePath = join(projectRoot, '.arcanea', 'memory');
+
+  console.log(c.bold('\n★ Starlight Vaults — Setup\n'));
+
+  // 1. Create vault directories
+  const vaultDirs = ['strategic', 'technical', 'creative', 'operational', 'wisdom'];
+  for (const vault of vaultDirs) {
+    const dir = join(storagePath, 'vaults', vault);
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
+      console.log(c.green('✓') + ` Created ${vault} vault`);
+    } else {
+      console.log(c.dim(`  ${vault} vault already exists`));
+    }
+  }
+
+  // Create horizon directory
+  const horizonDir = join(storagePath, 'horizon');
+  if (!existsSync(horizonDir)) {
+    mkdirSync(horizonDir, { recursive: true });
+    console.log(c.cyan('✦') + ` Created horizon vault (append-only)`);
+  } else {
+    console.log(c.dim(`  horizon vault already exists`));
+  }
+
+  // 2. Initialize the vault system (seeds founding wishes)
+  console.log('');
+  await getVaults();
+  console.log(c.green('✓') + ` Memory system initialized`);
+
+  // 3. Sync MEMORY.md
+  try {
+    const { MemoryBridge } = await import('./memory-bridge.js');
+    const bridge = new MemoryBridge({ vaultStoragePath: storagePath });
+    const result = bridge.sync();
+    console.log(c.green('✓') + ` MEMORY.md created (${result.linesWritten} lines)`);
+  } catch {
+    // MemoryBridge is optional — skip silently if unavailable
+  }
+
+  // 4. Check for CLAUDE.md in the project
+  const claudeMdPath    = join(projectRoot, '.claude', 'CLAUDE.md');
+  const claudeMdAltPath = join(projectRoot, 'CLAUDE.md');
+  const hasClaudeMd     = existsSync(claudeMdPath) || existsSync(claudeMdAltPath);
+
+  // 5. Write a starter CLAUDE.md snippet
+  const memorySnippet = `## Starlight Vaults — Memory System
+
+This project uses Starlight Vaults for structured AI memory.
+Storage: \`.arcanea/memory/\` — 6 semantic vaults.
+
+### Quick Commands
+\`\`\`bash
+svaults remember "architectural decision: [describe it]"
+svaults recall "what we decided about [topic]"
+svaults stats
+svaults horizon append "wish for the future" --context "why"
+\`\`\`
+
+### Vaults
+- strategic: decisions, architecture, roadmaps
+- technical: patterns, code insights, solutions
+- creative: voice, brand, design, narrative
+- operational: session context, current work
+- wisdom: meta-patterns, cross-domain insights
+- horizon: benevolent intentions (permanent)
+`;
+
+  const snippetPath = join(storagePath, 'CLAUDE_SNIPPET.md');
+  writeFileSync(snippetPath, memorySnippet.trim(), 'utf-8');
+
+  // 6. Print success summary
+  console.log('');
+  console.log(c.bold('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'));
+  console.log(c.gold('  ★ Starlight Vaults initialized'));
+  console.log(c.dim('  Storage: ') + c.cyan(storagePath));
+  console.log('');
+  console.log(c.bold('  Quick start:'));
+  console.log('    ' + c.cyan('svaults remember') + ' "first memory"');
+  console.log('    ' + c.cyan('svaults recall')   + ' "search query"');
+  console.log('    ' + c.cyan('svaults stats'));
+
+  if (hasClaudeMd) {
+    console.log('');
+    console.log(c.dim('  Add to your CLAUDE.md:'));
+    console.log('    ' + c.dim('cat ' + snippetPath));
+  }
+
+  console.log('');
+  console.log(c.bold('  Your 10 Guardians await.'));
+  console.log(c.dim('  From Foundation (174 Hz) to Source (1111 Hz).'));
+  console.log(c.bold('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n'));
+}
+
+/**
+ * `svaults forget <id>`
+ *
+ * Remove a memory by its ID. Gracefully blocks Horizon vault entries,
+ * which are append-only by design.
+ */
+async function cmdForget(): Promise<void> {
+  const id = positional[0];
+  if (!id) {
+    console.error(c.red('Error: provide a memory ID to forget'));
+    console.error(c.dim('  Find IDs with: svaults recent'));
+    process.exit(1);
+  }
+
+  const vaults = await getVaults();
+  try {
+    const removed = await vaults.forget(id);
+    if (removed) {
+      console.log(c.green('✓') + ` Forgotten: ${id}`);
+    } else {
+      console.log(c.dim(`Memory not found: ${id}`));
+    }
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('append-only')) {
+      console.log(c.cyan('✦') + ` The Horizon Vault is permanent — wishes cannot be forgotten.`);
+      console.log(c.dim('  This is by design. The Horizon records what we hoped for.'));
+    } else {
+      throw error;
+    }
+  }
+}
+
 // ── Help text ────────────────────────────────────────────────────────────────
 
 function cmdHelp(): void {
@@ -540,16 +677,23 @@ ${c.bold('Commands:')}
 
   ${c.cyan('sync')}                       Export vault state to MEMORY.md
 
+  ${c.cyan('init')}                       Zero-config setup — create vaults, seed memory, write CLAUDE_SNIPPET.md
+    --path <dir>             Project root to initialize (default: cwd)
+
+  ${c.cyan('forget')} <id>               Remove a memory by ID (Horizon entries are permanent)
+
 ${c.bold('Global Options:')}
   --path <dir>               Override storage path (default: .arcanea/memory)
 
 ${c.bold('Examples:')}
+  svaults init
   svaults remember "chose .md files for zero-dep storage"
   svaults remember --vault strategic "Decision: Next.js 16 App Router"
   svaults recall "storage architecture"
   svaults recall --vault technical "typescript pattern"
   svaults recall --guardian Shinkami "wisdom insight"
   svaults recent --vault wisdom --limit 5
+  svaults forget mem_abc123
   svaults horizon append "AI and humans build beauty together" --context "Late night coding"
   svaults horizon read
   svaults horizon export ./starlight-horizon-dataset
@@ -575,6 +719,8 @@ async function main(): Promise<void> {
       case 'guardians': await cmdGuardians(); break;
       case 'classify':  await cmdClassify();  break;
       case 'sync':      await cmdSync();      break;
+      case 'init':      await cmdInit();      break;
+      case 'forget':    await cmdForget();    break;
       case 'help':
       case '--help':
       case '-h':
