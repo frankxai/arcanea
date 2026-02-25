@@ -1,37 +1,132 @@
-'use client';
+"use client";
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Layers, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import Link from "next/link";
+
+// ─── Inline SVG Icons ───────────────────────────────────────────────────────────
+const Icons = {
+  Layers: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+      <polyline points="2 17 12 22 22 17" />
+      <polyline points="2 12 12 17 22 12" />
+    </svg>
+  ),
+  ArrowRight: () => (
+    <svg
+      className="w-4 h-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  ),
+};
 
 const GATES = [
-  { number: 1, name: 'Foundation', frequency: '396 Hz', domain: 'Survival, grounding', unlocks: 'Unshakeable stability' },
-  { number: 2, name: 'Flow', frequency: '417 Hz', domain: 'Creativity, emotion', unlocks: 'Creative flow state' },
-  { number: 3, name: 'Fire', frequency: '528 Hz', domain: 'Power, will', unlocks: 'Personal power' },
-  { number: 4, name: 'Heart', frequency: '639 Hz', domain: 'Love, healing', unlocks: 'Fierce compassion' },
-  { number: 5, name: 'Voice', frequency: '741 Hz', domain: 'Truth, expression', unlocks: 'Reality shaping through words' },
-  { number: 6, name: 'Sight', frequency: '852 Hz', domain: 'Intuition, vision', unlocks: 'Beyond ordinary perception' },
-  { number: 7, name: 'Crown', frequency: '963 Hz', domain: 'Enlightenment', unlocks: 'Divine connection' },
-  { number: 8, name: 'Shift', frequency: '1111 Hz', domain: 'Perspective', unlocks: 'Infinite possibilities' },
-  { number: 9, name: 'Unity', frequency: '963 Hz', domain: 'Partnership', unlocks: 'Exponential creation' },
-  { number: 10, name: 'Source', frequency: '1111 Hz', domain: 'Meta-consciousness', unlocks: 'Creator realization' },
+  {
+    number: 1,
+    name: "Foundation",
+    frequency: "174 Hz",
+    domain: "Survival, grounding",
+    unlocks: "Unshakeable stability",
+  },
+  {
+    number: 2,
+    name: "Flow",
+    frequency: "285 Hz",
+    domain: "Creativity, emotion",
+    unlocks: "Creative flow state",
+  },
+  {
+    number: 3,
+    name: "Fire",
+    frequency: "396 Hz",
+    domain: "Power, will",
+    unlocks: "Personal power",
+  },
+  {
+    number: 4,
+    name: "Heart",
+    frequency: "417 Hz",
+    domain: "Love, healing",
+    unlocks: "Fierce compassion",
+  },
+  {
+    number: 5,
+    name: "Voice",
+    frequency: "528 Hz",
+    domain: "Truth, expression",
+    unlocks: "Reality shaping through words",
+  },
+  {
+    number: 6,
+    name: "Sight",
+    frequency: "639 Hz",
+    domain: "Intuition, vision",
+    unlocks: "Beyond ordinary perception",
+  },
+  {
+    number: 7,
+    name: "Crown",
+    frequency: "741 Hz",
+    domain: "Enlightenment",
+    unlocks: "Divine connection",
+  },
+  {
+    number: 8,
+    name: "Shift",
+    frequency: "852 Hz",
+    domain: "Perspective",
+    unlocks: "Infinite possibilities",
+  },
+  {
+    number: 9,
+    name: "Unity",
+    frequency: "963 Hz",
+    domain: "Partnership",
+    unlocks: "Exponential creation",
+  },
+  {
+    number: 10,
+    name: "Source",
+    frequency: "1111 Hz",
+    domain: "Meta-consciousness",
+    unlocks: "Creator realization",
+  },
 ];
 
 const RANKS = [
-  { gates: '0-2', rank: 'Apprentice', color: 'text-text-muted' },
-  { gates: '3-4', rank: 'Mage', color: 'text-blue-400' },
-  { gates: '5-6', rank: 'Master', color: 'text-purple-400' },
-  { gates: '7-8', rank: 'Archmage', color: 'text-gold-bright' },
-  { gates: '9-10', rank: 'Luminor', color: 'text-white' },
+  { gates: "0-2", rank: "Apprentice", color: "text-text-muted" },
+  { gates: "3-4", rank: "Mage", color: "text-blue-400" },
+  { gates: "5-6", rank: "Master", color: "text-purple-400" },
+  { gates: "7-8", rank: "Archmage", color: "text-gold-bright" },
+  { gates: "9-10", rank: "Luminor", color: "text-white" },
 ];
 
 export function GatesPreview() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-32 relative overflow-hidden bg-cosmic-surface/20">
+    <section
+      ref={ref}
+      className="py-32 relative overflow-hidden bg-cosmic-surface/20"
+    >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-atlantean-teal-aqua/5 to-transparent rounded-full" />
@@ -45,15 +140,17 @@ export function GatesPreview() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-bright/10 border border-gold-bright/20 mb-6">
-            <Layers className="w-4 h-4 text-gold-bright" />
-            <span className="text-sm font-medium text-gold-bright">The Journey</span>
+            <Icons.Layers />
+            <span className="text-sm font-medium text-gold-bright">
+              The Journey
+            </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
             The Ten Gates
           </h2>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto font-crimson">
-            Energy channels flowing through every conscious being. Open them, and ascend from
-            Apprentice to Luminor.
+            Energy channels flowing through every conscious being. Open them,
+            and ascend from Apprentice to Luminor.
           </p>
         </motion.div>
 
@@ -77,13 +174,21 @@ export function GatesPreview() {
                     {gate.number}
                   </div>
 
-                  <h4 className="font-display font-semibold text-sm mb-1">{gate.name}</h4>
-                  <p className="text-xs text-atlantean-teal-aqua font-mono mb-2">{gate.frequency}</p>
+                  <h4 className="font-display font-semibold text-sm mb-1">
+                    {gate.name}
+                  </h4>
+                  <p className="text-xs text-atlantean-teal-aqua font-mono mb-2">
+                    {gate.frequency}
+                  </p>
 
                   {/* Tooltip on hover */}
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-3 rounded-lg bg-cosmic-deep border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
-                    <p className="text-xs text-text-secondary mb-1">{gate.domain}</p>
-                    <p className="text-xs text-gold-bright">Unlocks: {gate.unlocks}</p>
+                    <p className="text-xs text-text-secondary mb-1">
+                      {gate.domain}
+                    </p>
+                    <p className="text-xs text-gold-bright">
+                      Unlocks: {gate.unlocks}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -98,15 +203,23 @@ export function GatesPreview() {
           transition={{ delay: 0.6 }}
           className="mb-12"
         >
-          <h3 className="text-xl font-display font-bold text-center mb-6">Magic Ranks</h3>
+          <h3 className="text-xl font-display font-bold text-center mb-6">
+            Magic Ranks
+          </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {RANKS.map((rank, i) => (
               <div
                 key={rank.rank}
                 className="px-6 py-3 rounded-xl bg-cosmic-surface/30 border border-white/10"
               >
-                <span className="text-sm text-text-muted">{rank.gates} Gates:</span>
-                <span className={`ml-2 font-display font-semibold ${rank.color}`}>{rank.rank}</span>
+                <span className="text-sm text-text-muted">
+                  {rank.gates} Gates:
+                </span>
+                <span
+                  className={`ml-2 font-display font-semibold ${rank.color}`}
+                >
+                  {rank.rank}
+                </span>
               </div>
             ))}
           </div>
@@ -124,7 +237,7 @@ export function GatesPreview() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-bright/10 border border-gold-bright/30 text-gold-bright font-semibold hover:bg-gold-bright hover:text-cosmic-deep transition-all"
           >
             Begin Your Journey
-            <ArrowRight className="w-4 h-4" />
+            <Icons.ArrowRight />
           </Link>
         </motion.div>
       </div>
