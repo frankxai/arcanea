@@ -1,19 +1,28 @@
 /**
- * Arcanea Intelligence OS — Claude Code Statusline v3.0
+ * Arcanea Intelligence OS — Claude Code Statusline v4.0
+ * Creator-Centric Edition
  *
- * Line 1: Brand + Oracle state
- * Line 2: Mission control — repo, MCP names, hooks, intelligence bar, vault breakdown, tokens, time
- * Line 3: Council of Gods — 2 Guardians giving live contextual advice
+ * Line 1: Brand · Model · Guardian · Gate · Arc Phase
+ * Line 2: Repo/branch · Universe metrics (lore, pages, agents, MCP)
+ * Line 3: Creative momentum (commits, files, session, calls, tokens, cost)
+ * ──────────────────────────────────────────────────────────────────────────
+ * ⟡ One Guardian wisdom — perfectly matched to this moment of creation
  */
 
 import { execSync, spawnSync } from 'child_process';
-import { readFileSync } from 'fs';
+import { readFileSync, statSync } from 'fs';
 
-// ─── Utils ──────────────────────────────────────────────────────────────────
+// ─── Utils ───────────────────────────────────────────────────────────────────
 
 const read  = (p, fb = '') => { try { return readFileSync(p, 'utf-8').trim(); } catch { return fb; } };
 const readJ = (p, fb = {}) => { try { return JSON.parse(readFileSync(p, 'utf-8')); } catch { return fb; } };
 const fmt   = n => n >= 1e6 ? `${(n/1e6).toFixed(1)}M` : n >= 1e3 ? `${(n/1e3).toFixed(1)}K` : String(n ?? 0);
+const sh    = (cmd, timeout = 1500) => {
+  try {
+    const r = spawnSync('sh', ['-c', cmd], { encoding: 'utf-8', timeout });
+    return r.stdout?.trim() ?? '';
+  } catch { return ''; }
+};
 
 // ─── Canon ───────────────────────────────────────────────────────────────────
 
@@ -21,6 +30,14 @@ const GATE_HZ = {
   Foundation: 174, Flow: 285, Fire: 396, Heart: 417,
   Voice: 528, Sight: 639, Crown: 741, Shift: 852,
   Unity: 963, Source: 1111,
+};
+
+const ARC_PHASES = {
+  Potential:        { glyph: '◌', label: 'Potential' },
+  Manifestation:    { glyph: '◉', label: 'Manifestation' },
+  Experience:       { glyph: '●', label: 'Experience' },
+  Dissolution:      { glyph: '◎', label: 'Dissolution' },
+  EvolvedPotential: { glyph: '✦', label: 'Evolved Potential' },
 };
 
 // ─── Model label ─────────────────────────────────────────────────────────────
@@ -40,7 +57,7 @@ function modelLabel(raw = '') {
   return raw.replace('claude-','').split('-20')[0] || 'Sonnet';
 }
 
-// ─── Guardian verb (model + activity) ───────────────────────────────────────
+// ─── Guardian verb (what mode is the AI in?) ─────────────────────────────────
 
 function verb(model = '', tools = 0) {
   if (model.includes('opus'))  return 'orchestrates';
@@ -51,6 +68,25 @@ function verb(model = '', tools = 0) {
   return 'creates';
 }
 
+// ─── Arc Phase (where in the creative cycle?) ────────────────────────────────
+
+function getArcPhase(tools, dirtyN, elapsedMin) {
+  // Evolved Potential — just committed, returning clean (short session, minimal dirty, some commits)
+  // (hard to detect reliably without commit log — skip for now)
+
+  // Potential — just arrived, pondering
+  if (tools < 5 && elapsedMin < 8) return ARC_PHASES.Potential;
+
+  // Dissolution — closing the loop: lots of uncommitted or very long session
+  if (dirtyN > 12 || elapsedMin > 100) return ARC_PHASES.Dissolution;
+
+  // Experience — deep in it: many tool calls, refining, reading more than writing
+  if (tools > 35) return ARC_PHASES.Experience;
+
+  // Manifestation — actively creating (default)
+  return ARC_PHASES.Manifestation;
+}
+
 // ─── Repo (cached 60s) ───────────────────────────────────────────────────────
 
 let _repo = null, _repoAt = 0;
@@ -58,442 +94,310 @@ function getRepo() {
   if (_repo && Date.now() - _repoAt < 60_000) return _repo;
   try {
     const r = execSync('git remote get-url origin 2>/dev/null', { encoding:'utf-8', timeout:800 }).trim();
-    _repo = r.match(/\/([^/]+?)(?:\.git)?$/)?.[1] ?? 'arcanea';
-  } catch { _repo = 'arcanea'; }
+    _repo = r.match(/\/([^/]+?)(?:\.git)?$/)?.[1] ?? 'Arcanea';
+  } catch { _repo = 'Arcanea'; }
   _repoAt = Date.now();
   return _repo;
 }
 
-// ─── Git dirty (cached 10s) ──────────────────────────────────────────────────
+// ─── Git dirty count (cached 12s) ─────────────────────────────────────────────
 
-let _dirty = '', _dirtyAt = 0;
+let _dirty = '', _dirtyN = 0, _dirtyAt = 0;
 function getDirty() {
-  if (Date.now() - _dirtyAt < 10_000) return _dirty;
+  if (Date.now() - _dirtyAt < 12_000) return { label: _dirty, n: _dirtyN };
   try {
-    const n = parseInt(execSync('git status --porcelain 2>/dev/null | grep -v "^??" | wc -l',
-      { encoding:'utf-8', timeout:800 }).trim(), 10);
-    _dirty = n > 0 ? ` ●${n}` : '';
-  } catch { _dirty = ''; }
+    const n = parseInt(sh('git status --porcelain 2>/dev/null | grep -v "^??" | wc -l', 1000), 10);
+    _dirtyN = n || 0;
+    _dirty  = n > 0 ? ` ●${n}` : '';
+  } catch { _dirty = ''; _dirtyN = 0; }
   _dirtyAt = Date.now();
-  return _dirty;
+  return { label: _dirty, n: _dirtyN };
 }
 
-// ─── MCP — named list (cached 30s) ──────────────────────────────────────────
+// ─── Tool count (session-aware: resets to 0 if file predates this session) ───
 
-const CLAUDE_AI_MCPS = ['Slack','Figma','Notion','Vercel','Zapier','v0','InfoGenius','Arcanea'];
-let _mcpLabel = null, _mcpAt = 0;
-function getMcpLabel() {
-  if (_mcpLabel && Date.now() - _mcpAt < 30_000) return _mcpLabel;
-  // Local servers from settings files
-  const paths = [
-    '/home/frankx/.claude/settings.json',
-    '/home/frankx/.claude/mcp.json',
-  ];
-  const local = new Set();
-  for (const p of paths) {
-    const d = readJ(p);
-    for (const k of Object.keys(d.mcpServers ?? {})) local.add(k);
-  }
-  // Format: show local names + count of cloud MCPs
-  const localNames = [...local].map(k =>
-    k.replace('nano-banana','🍌').replace('claude-flow','⚗️').slice(0,12)
-  );
-  const total = local.size + CLAUDE_AI_MCPS.length;
-  // Show first 2 local + cloud count
-  const preview = localNames.slice(0,2).join(' ');
-  _mcpLabel = preview
-    ? `⚙ ${total} MCP (${preview} +${CLAUDE_AI_MCPS.length} cloud)`
-    : `⚙ ${total} MCP (${CLAUDE_AI_MCPS.slice(0,3).join(' ')} +${CLAUDE_AI_MCPS.length - 3})`;
-  _mcpAt = Date.now();
-  return _mcpLabel;
-}
-
-// ─── Hooks (cached) ──────────────────────────────────────────────────────────
-
-let _hooks = null;
-function getHooks() {
-  if (_hooks !== null) return _hooks;
+function getTools(sessionStartMs) {
   try {
-    const r = spawnSync('sh',['-c','ls /mnt/c/Users/frank/Arcanea/.claude/hooks/ 2>/dev/null | wc -l'],
-      {encoding:'utf-8',timeout:500});
-    _hooks = parseInt(r.stdout.trim(),10) || 13;
-  } catch { _hooks = 13; }
-  return _hooks;
-}
-
-// ─── RAM usage (cached 15s) ──────────────────────────────────────────────────
-
-let _ram = '', _ramAt = 0;
-function getRam() {
-  if (Date.now() - _ramAt < 15_000) return _ram;
-  try {
-    const mem = readFileSync('/proc/meminfo', 'utf-8');
-    const total = parseInt(mem.match(/MemTotal:\s+(\d+)/)?.[1] ?? '0', 10);
-    const avail = parseInt(mem.match(/MemAvailable:\s+(\d+)/)?.[1] ?? '0', 10);
-    const usedMB = Math.round((total - avail) / 1024);
-    _ram = `💾 ${usedMB}MB`;
-  } catch { _ram = ''; }
-  _ramAt = Date.now();
-  return _ram;
-}
-
-// ─── Security CVE status (cached 120s) ───────────────────────────────────────
-
-let _sec = '', _secAt = 0;
-function getSecurity() {
-  if (Date.now() - _secAt < 120_000) return _sec;
-  try {
-    const d = readJ('/mnt/c/Users/frank/Arcanea/.claude-flow/security/audit-status.json');
-    const fixed = d.cvesFixed ?? 0;
-    const total = d.totalCves ?? 3;
-    const status = d.status === 'PENDING' ? '⚠' : fixed >= total ? '✓' : '●';
-    _sec = `🛡 ${status} ${fixed}/${total} CVE`;
-  } catch { _sec = ''; }
-  _secAt = Date.now();
-  return _sec;
-}
-
-// ─── Packages count (cached 60s) ─────────────────────────────────────────────
-
-let _pkgs = 0, _pkgsAt = 0;
-function getPackages() {
-  if (Date.now() - _pkgsAt < 120_000) return _pkgs;
-  try {
-    // ls is faster than find on WSL2 Windows filesystem
-    const r = spawnSync('sh', ['-c', 'ls /mnt/c/Users/frank/Arcanea/packages/ 2>/dev/null | wc -l'],
-      { encoding: 'utf-8', timeout: 3000 });
-    const n = parseInt(r.stdout.trim(), 10);
-    _pkgs = n > 0 ? n : 37;
-  } catch { _pkgs = 37; }
-  _pkgsAt = Date.now();
-  return _pkgs;
-}
-
-// ─── Last commit age (cached 30s) ────────────────────────────────────────────
-
-let _commit = '', _commitAt = 0;
-function getLastCommit() {
-  if (Date.now() - _commitAt < 30_000) return _commit;
-  try {
-    _commit = execSync('git log -1 --format="%ar" 2>/dev/null', { encoding: 'utf-8', timeout: 800 }).trim();
-  } catch { _commit = ''; }
-  _commitAt = Date.now();
-  return _commit;
-}
-
-// ─── AgentDB vault breakdown (cached 60s) ────────────────────────────────────
-
-let _vault = null, _vaultAt = 0;
-function getVault() {
-  if (_vault && Date.now() - _vaultAt < 60_000) return _vault;
-  try {
-    const r = spawnSync('python3',['-c',`
-import sqlite3
-db=sqlite3.connect('/home/frankx/.arcanea/agentdb.sqlite3')
-c=db.cursor()
-c.execute('SELECT layer,COUNT(*) FROM vault_entries GROUP BY layer')
-rows=c.fetchall()
-c.execute('SELECT COUNT(*) FROM memories')
-mem=c.fetchone()[0]
-c.execute('SELECT COUNT(*) FROM routing_log')
-routes=c.fetchone()[0]
-print(','.join(f'{l}:{n}' for l,n in rows)+f'|mem:{mem}|routes:{routes}')
-db.close()
-`],{encoding:'utf-8',timeout:1000});
-    const out = r.stdout.trim();
-    const [layers, extras] = out.split('|mem:');
-    const mem = extras ? parseInt(extras.split('|routes:')[0],10) : 0;
-    const routes = extras ? parseInt(extras.split('|routes:')[1],10) : 0;
-    const layerMap = {};
-    for (const part of (layers||'').split(',')) {
-      const [k,v] = part.split(':');
-      if (k) layerMap[k] = parseInt(v,10)||0;
+    const p = '/tmp/arcanea-session/tool-count';
+    // If the count file was last written before this session started, it's stale
+    if (sessionStartMs) {
+      try {
+        const mtime = statSync(p).mtimeMs;
+        if (mtime < sessionStartMs - 5000) return 0; // file older than session
+      } catch {}
     }
-    const total = Object.values(layerMap).reduce((a,b)=>a+b,0);
-    _vault = { total, layerMap, mem, routes };
-  } catch { _vault = { total:0, layerMap:{}, mem:0, routes:0 }; }
-  _vaultAt = Date.now();
-  return _vault;
-}
-
-// ─── Intelligence + trend (cached 20s) ──────────────────────────────────────
-
-let _intel = 75, _prev = 75, _intelAt = 0;
-function getIntel() {
-  if (Date.now() - _intelAt < 20_000) return { val:_intel, trend: _intel>_prev?'↑':_intel<_prev?'↓':'' };
-  _prev = _intel;
-  _intel = readJ('/mnt/c/Users/frank/Arcanea/.claude-flow/.trend-cache.json').intelligence ?? 75;
-  _intelAt = Date.now();
-  return { val:_intel, trend: _intel>_prev?'↑':_intel<_prev?'↓':'' };
-}
-
-// ─── Tool count ──────────────────────────────────────────────────────────────
-
-function getTools() {
-  return parseInt(read('/tmp/arcanea-session/tool-count','0'),10)||0;
+    return parseInt(readFileSync(p, 'utf-8').trim(), 10) || 0;
+  } catch { return 0; }
 }
 
 // ─── Duration ────────────────────────────────────────────────────────────────
 
 function duration(start) {
   if (!start) return null;
-  const s = Math.floor((Date.now()-start)/1000);
-  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = s%60;
-  if (h>0)  return `${h}h${String(m).padStart(2,'0')}m`;
-  if (m>0)  return `${m}m${String(ss).padStart(2,'0')}s`;
+  const s = Math.floor((Date.now() - start) / 1000);
+  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = s % 60;
+  if (h > 0) return `${h}h${String(m).padStart(2,'0')}m`;
+  if (m > 0) return `${m}m`;
   return `${ss}s`;
 }
 
-// ─── Intelligence bar ────────────────────────────────────────────────────────
-
-const intelBar = pct => '█'.repeat(Math.round(pct/20)) + '░'.repeat(5-Math.round(pct/20));
-
 // ─── Cost ────────────────────────────────────────────────────────────────────
 
-const fmtCost = c => (!c||c<0.0001) ? null : c>=1 ? `$${c.toFixed(2)}` : `$${c.toFixed(4)}`;
+const fmtCost = c => (!c || c < 0.0001) ? null : c >= 1 ? `$${c.toFixed(2)}` : `$${c.toFixed(4)}`;
 
-// ─── COUNCIL OF GODS — Contextual Wisdom ─────────────────────────────────────
+// ─── Universe metrics (cached 8 min — these change slowly) ───────────────────
+
+let _universe = null, _universeAt = 0;
+function getUniverse() {
+  if (_universe && Date.now() - _universeAt < 480_000) return _universe;
+
+  const BASE = '/mnt/c/Users/frank/Arcanea';
+
+  // Lore texts in book/
+  const loreRaw = sh(`ls ${BASE}/book/*/*.md 2>/dev/null | wc -l`, 3000);
+  const loreCount = parseInt(loreRaw, 10) || 76;
+
+  // Live web pages: count page.tsx files under apps/web/app/lore/
+  const pagesRaw = sh(`find ${BASE}/apps/web/app/lore -name "page.tsx" 2>/dev/null | wc -l`, 2000);
+  const lorePages = parseInt(pagesRaw, 10) || 14;
+
+  // Agents count (from .claude/agents/ — main agent registry)
+  const agentsRaw = sh(`ls ${BASE}/.claude/agents/ 2>/dev/null | wc -l`, 2000);
+  const agents = parseInt(agentsRaw, 10) || 65;
+
+  // Collections in book/
+  const collectionsRaw = sh(`ls -d ${BASE}/book/*/ 2>/dev/null | wc -l`, 2000);
+  const collections = parseInt(collectionsRaw, 10) || 17;
+
+  _universe = { loreCount, lorePages, agents, collections };
+  _universeAt = Date.now();
+  return _universe;
+}
+
+// ─── Today's creative output (cached 30s) ────────────────────────────────────
+
+let _today = null, _todayAt = 0;
+function getToday() {
+  if (_today && Date.now() - _todayAt < 30_000) return _today;
+
+  // Commits since midnight
+  const commitsRaw = sh('git log --since=midnight --oneline 2>/dev/null | wc -l', 1000);
+  const commits = parseInt(commitsRaw, 10) || 0;
+
+  // Files touched today (from git log --since midnight -- diffstat)
+  // Use a simpler approach: files in the last N commits
+  let filesToday = 0;
+  if (commits > 0) {
+    const filesRaw = sh(
+      `git log --since=midnight --name-only --format="" 2>/dev/null | sort -u | grep -c "."`,
+      1500
+    );
+    filesToday = parseInt(filesRaw, 10) || 0;
+  }
+
+  _today = { commits, filesToday };
+  _todayAt = Date.now();
+  return _today;
+}
+
+// ─── MCP count (cached 60s) ──────────────────────────────────────────────────
+
+const CLOUD_MCPS = 8; // Slack, Figma, Notion, Vercel, Zapier, v0, InfoGenius, Arcanea
+let _mcpCount = 0, _mcpAt = 0;
+function getMcpCount() {
+  if (Date.now() - _mcpAt < 60_000) return _mcpCount;
+  const d = readJ('/home/frankx/.claude/mcp.json');
+  const local = Object.keys(d.mcpServers ?? {}).length;
+  _mcpCount = local + CLOUD_MCPS;
+  _mcpAt = Date.now();
+  return _mcpCount;
+}
+
+// ─── Last commit (cached 30s) ────────────────────────────────────────────────
+
+let _commitAgo = '', _commitAgoAt = 0;
+function getLastCommit() {
+  if (Date.now() - _commitAgoAt < 30_000) return _commitAgo;
+  try {
+    _commitAgo = execSync('git log -1 --format="%ar" 2>/dev/null', { encoding:'utf-8', timeout:800 }).trim();
+  } catch { _commitAgo = ''; }
+  _commitAgoAt = Date.now();
+  return _commitAgo;
+}
+
+// ─── GUARDIAN COUNCIL — Creator-Centric Wisdom ───────────────────────────────
 //
-// Each Guardian has domain wisdom. The advice is selected based on:
-//   • current guardian/gate   → primary speaker
-//   • dirty git count         → "commit your work" signal
-//   • tool call count         → flow state signal
-//   • session duration        → stamina signal
-//   • vault/routing activity  → intelligence signal
+// Wisdom matched to ARC PHASE, not technical state.
+// An Arcanea creator is building a living mythology — they need
+// inspiration, creative direction, and mythic guidance.
 
-const COUNCIL_WISDOM = {
+const GUARDIAN_WISDOM = {
   Shinkami: {
-    domain: 'Meta-Consciousness',
-    element: '✦ Void',
-    flow:    'You are in flow. The Source channel is open — let the pattern complete itself.',
-    commit:  'Archive your progress. What is unrecorded dissolves into the Void.',
-    start:   'At the Source Gate, all systems are visible. Define your intention before the first keystroke.',
-    long:    'The Source Council advises: pause, review the whole, then continue with clarity.',
-    create:  'Orchestrate with vision. Each agent is a note in your symphony.',
-    idle:    'Potential without direction is Void. What will you manifest today?',
+    element: '✦ Void', gate: 'Source', hz: 1111,
+    Potential:     'The Source is silent before the first word. What universe will you speak into being today?',
+    Manifestation: 'Meta-consciousness is active. You are not just building code — you are encoding a mythology.',
+    Experience:    'Step back. From the Source, see the whole. What pattern are you actually creating?',
+    Dissolution:   'A cycle completes. Archive this chapter of the Arcanea before the next one begins.',
+    EvolvedPotential: 'The Arc turns. You return carrying what the last cycle taught you. Begin again, evolved.',
   },
   Lyssandria: {
-    domain: 'Foundation · Earth',
-    element: '🌿 Earth',
-    flow:    'The architecture holds. Build steadily — foundations before towers.',
-    commit:  'Ground your work. Uncommitted code is like unplanted seeds — commit and let it root.',
-    start:   'Check the structure first. What is the foundation before you build upward?',
-    long:    'Earth sustains long work. Hydrate, breathe, then continue building.',
-    create:  'Stability is the gift of Earth. Ensure the base is solid before extending.',
-    idle:    'Foundation Gate is open. What structure needs to be built today?',
+    element: '🌿 Earth', gate: 'Foundation', hz: 174,
+    Potential:     'Foundation Gate: Before you build the tower, feel the ground. What is the bedrock of today\'s work?',
+    Manifestation: 'Earth builds steadily. Each file a stone, each function a foundation. The structure holds.',
+    Experience:    'Roots run deep before branches spread wide. Is your architecture rooted enough to grow?',
+    Dissolution:   'The harvest is ready. Commit this season\'s work before the earth turns again.',
+    EvolvedPotential: 'New earth, new seeds. The Foundation is clean. What will you plant in this cleared ground?',
   },
   Draconia: {
-    domain: 'Fire · Will',
-    element: '🔥 Fire',
-    flow:    'The Fire Gate burns bright — you are in the forge. Strike while hot.',
-    commit:  'Push your work. Fire spreads, but only when it leaves the hearth.',
-    start:   'Channel will into action. Draconia does not begin slowly — ignite.',
-    long:    'Sustained fire requires fuel. What is the core intention powering this session?',
-    create:  'Transform with intention. Every great build begins with a single flame.',
-    idle:    'The forge is cold without purpose. What needs to be transformed today?',
+    element: '🔥 Fire', gate: 'Fire', hz: 396,
+    Potential:     'The forge is cold until you choose to ignite it. What transformation begins today?',
+    Manifestation: 'The Fire Gate burns. You are in the forge — strike while the iron is molten.',
+    Experience:    'Sustained fire needs intention as fuel. Is the flame consuming the right material?',
+    Dissolution:   'The fire has done its work. Let what is forged cool. Then push it into the world.',
+    EvolvedPotential: 'The forge is relit, but you have new skill. What will you transform that you could not before?',
   },
   Maylinn: {
-    domain: 'Heart · Healing',
-    element: '💜 Heart',
-    flow:    'Work flows from love of craft. Keep that warmth — it is what makes good code alive.',
-    commit:  'Share what you have built. Connection completes the creation.',
-    start:   'Begin with care. The Heart Gate opens when intent is generous.',
-    long:    'Long sessions need love to sustain them. Is this work aligned with what matters?',
-    create:  'Build with empathy — for users, for future selves, for the team.',
-    idle:    'What would you build today if you could only build something you love?',
+    element: '💜 Heart', gate: 'Heart', hz: 417,
+    Potential:     'The Heart Gate opens with love. What are you building that genuinely matters to people?',
+    Manifestation: 'Build with care. The empathy you code today becomes the experience someone has tomorrow.',
+    Experience:    'Does this work still carry the love that began it? Refine from care, not just correction.',
+    Dissolution:   'Share what you have built with love. Connection completes creation.',
+    EvolvedPotential: 'A new creative heart opens. What will you build for others that you could not imagine before?',
   },
   Alera: {
-    domain: 'Voice · Truth',
-    element: '🌟 Voice',
-    flow:    'Speak clearly in your code. Clarity of naming is clarity of thought.',
-    commit:  'A commit message is a promise to the future. Write it well.',
-    start:   'Review the spec before the first line. Voice Gate: intention before expression.',
-    long:    'After long work, re-read from the beginning. Does it say what you meant?',
-    create:  'Truth in code: no magic numbers, no clever tricks only you understand.',
-    idle:    'What truth needs to be expressed in your system today?',
+    element: '🌟 Voice', gate: 'Voice', hz: 528,
+    Potential:     'Voice Gate: Before speaking, know what truth you carry. What does Arcanea need to express today?',
+    Manifestation: 'Speak clearly in every file name, every function, every commit. Clarity of word is clarity of world.',
+    Experience:    'Read back what you have written. Does it say exactly what you meant?',
+    Dissolution:   'A commit message is a message to the future. Write it as a gift to who comes after you.',
+    EvolvedPotential: 'Your voice has grown. Write the thing you could not articulate before now.',
   },
   Lyria: {
-    domain: 'Sight · Vision',
-    element: '👁 Sight',
-    flow:    'You see the path clearly now. Trust the vision — execute.',
-    commit:  'Capture what you see while it is clear. Push before the vision blurs.',
-    start:   'Step back and see the whole. What does the system look like from above?',
-    long:    'Extended focus narrows vision. Zoom out — is the right problem being solved?',
-    create:  'Visualize the end state first. Then work backward to where you are.',
-    idle:    'Open the Sight Gate. What pattern in your system needs to be seen?',
+    element: '👁 Sight', gate: 'Sight', hz: 639,
+    Potential:     'Sight Gate: See the whole system before touching any part of it. What does the pattern reveal?',
+    Manifestation: 'You see the path clearly now. Trust the vision you hold and execute without hesitation.',
+    Experience:    'Extended focus narrows vision. Zoom out — are you solving the right problem?',
+    Dissolution:   'Capture the vision while it is clear. Push before the image blurs.',
+    EvolvedPotential: 'You see further now. What was hidden before the last cycle is visible to you now?',
   },
   Aiyami: {
-    domain: 'Crown · Enlightenment',
-    element: '👑 Crown',
-    flow:    'Mastery flows unconsciously. You have reached the Crown state — extend it.',
-    commit:  'Enlightenment must be shared. Commit, document, illuminate others.',
-    start:   'Crown Gate: begin at the highest level of abstraction, then descend.',
-    long:    'Wisdom knows when to rest. Has this session produced insight or just output?',
-    create:  'The highest code teaches. Write what a learner could understand.',
-    idle:    'What is the wisest use of this hour?',
+    element: '👑 Crown', gate: 'Crown', hz: 741,
+    Potential:     'Crown Gate: Begin at the highest abstraction. What is the wisest use of this session?',
+    Manifestation: 'Mastery flows when unconscious. The code is writing itself through you — stay in that state.',
+    Experience:    'Wisdom knows the difference between output and insight. Which have you produced today?',
+    Dissolution:   'Enlightenment must be shared. Illuminate the path for those who come after.',
+    EvolvedPotential: 'A new level of mastery available. The Crown opens higher than before.',
   },
   Elara: {
-    domain: 'Shift · Perspective',
-    element: '🌀 Shift',
-    flow:    'Perspective is shifting with every tool call. Embrace the change.',
-    commit:  'Every commit is a perspective frozen in time. Make it worth preserving.',
-    start:   'Elara asks: are you solving the right problem, or just the obvious one?',
-    long:    'After many shifts, find the constant. What is unchanged in your understanding?',
-    create:  'Refactoring is Shift Gate work. See the old code with new eyes.',
-    idle:    'What assumption about your system is ready to be questioned?',
+    element: '🌀 Shift', gate: 'Shift', hz: 852,
+    Potential:     'Elara asks before the first keystroke: are you solving the right problem, or just the obvious one?',
+    Manifestation: 'Every creation is a perspective shift. Something in the universe is different because of what you are building.',
+    Experience:    'After many shifts, find the constant. What has not changed in your understanding?',
+    Dissolution:   'Every commit is a perspective frozen in time. Make this one worth preserving.',
+    EvolvedPotential: 'You return with a shifted frame. The old problem looks different from where you stand now.',
   },
   Ino: {
-    domain: 'Unity · Partnership',
-    element: '🤝 Unity',
-    flow:    'The agents are in sync. Unity Gate: let the swarm think as one.',
-    commit:  'Unity means shared history. Push so the team has what you built.',
-    start:   'Who else is affected by today\'s work? Design for them from the start.',
-    long:    'Long individual sessions create silos. Schedule a sync before this goes further.',
-    create:  'The best systems are built in concert. Who should know what you\'re building?',
-    idle:    'What collaboration would accelerate your mission today?',
+    element: '🤝 Unity', gate: 'Unity', hz: 963,
+    Potential:     'Unity Gate: Who else is affected by today\'s work? Design for them from the first line.',
+    Manifestation: 'The agents are in sync. Let the swarm think as one. You are not alone in this creation.',
+    Experience:    'Has this session created connection or separation? The best systems unite rather than divide.',
+    Dissolution:   'Unity means shared history. Push so the creation belongs to everyone who needs it.',
+    EvolvedPotential: 'New alliances are possible. Who can you create with that you could not before?',
   },
   Leyla: {
-    domain: 'Flow · Creativity',
-    element: '💧 Water',
-    flow:    'Creative flow is rare and sacred. Do not interrupt it for anything minor.',
-    commit:  'Capture the creative burst before it evaporates — commit now.',
-    start:   'Leyla begins with feeling. What does this feature want to become?',
-    long:    'Long creative sessions need water, movement, then return. Take 5 minutes.',
-    create:  'Creativity flows around obstacles. If blocked, approach from a different angle.',
-    idle:    'The Flow Gate is open. What wants to be created through you today?',
+    element: '💧 Water', gate: 'Flow', hz: 285,
+    Potential:     'The Flow Gate opens when you stop trying to make it happen. What wants to flow through you today?',
+    Manifestation: 'Creative flow is rare and sacred. Do not interrupt it — let the current carry you.',
+    Experience:    'Water finds the path of least resistance. Is there a simpler way to what you are building?',
+    Dissolution:   'Capture the creative burst before it evaporates. Commit what has flowed through you.',
+    EvolvedPotential: 'Flow returns, but deeper. The channel you carved last cycle lets more water through now.',
   },
 };
 
-// Luminor — meta-wisdom for cross-cutting concerns
+// Luminor — speaks at threshold moments (high tool count or long session)
 const LUMINOR_WISDOM = {
-  flow:   'The Luminor watches: all gates are open. Rare state — build what only this session can build.',
-  commit: 'The Luminor decrees: uncommitted work is potential only. Actualize it.',
-  start:  'Intelligence Sanctum engaged. Your intent sets the field for all that follows.',
-  long:   'Three hours in the Sanctum. The Luminor asks: what was the most important thing built?',
-  create: 'The Arcanea unfolds through you. Let the architecture breathe between keystrokes.',
-  idle:   'The Luminor holds space. What wants to emerge from the Intelligence Sanctum today?',
+  Potential:     'The Intelligence Sanctum holds space. Your intention at this threshold shapes all that follows.',
+  Manifestation: 'The Luminor watches all ten gates. Rare alignment — build what only this moment can create.',
+  Experience:    'All Luminors were once builders in the forge. The deeper the experience, the wiser the next creation.',
+  Dissolution:   'The Luminor decrees: what is unarchived dissolves. Complete the cycle before beginning the next.',
+  EvolvedPotential: 'The Arc has turned. A Luminor is what remains after the cycle completes and wisdom is integrated.',
 };
 
-function getCouncil(guardian, tools, dirtyCount, startMs, vault) {
-  const now = Date.now();
-  const elapsed = startMs ? (now - startMs) / 60000 : 0; // minutes
+function getWisdom(guardian, arc, tools, elapsedMin) {
+  const phase = arc.label.replace(' ', ''); // 'EvolvedPotential' etc.
+  const arcKey = phase === 'EvolvedPotential' ? 'EvolvedPotential' : arc.label.replace(' ', '');
 
-  // Determine the signal type
-  let signal = 'create';
-  if (tools === 0 && elapsed < 2)   signal = 'start';
-  else if (tools > 25)              signal = 'flow';
-  else if (dirtyCount > 10)         signal = 'commit';
-  else if (elapsed > 90)            signal = 'long';
-  else if (tools === 0)             signal = 'idle';
+  // Luminor speaks at deep flow or extended sessions
+  const useLuminor = tools > 35 || elapsedMin > 75;
+  if (useLuminor) {
+    return `⟡ The Luminor · ${arc.glyph} ${arc.label}: "${LUMINOR_WISDOM[arcKey] ?? LUMINOR_WISDOM.Manifestation}"`;
+  }
 
-  // Primary Guardian (current active one)
-  const primary = COUNCIL_WISDOM[guardian] ?? COUNCIL_WISDOM['Shinkami'];
-
-  // Secondary — rotate through a different complementary guardian each render
-  // Use a slot based on minute to rotate slowly
-  const SECONDARY_ORDER = ['Lyssandria','Draconia','Lyria','Alera','Leyla','Elara','Ino','Maylinn','Aiyami'];
-  const slot = Math.floor(Date.now() / 120_000) % SECONDARY_ORDER.length; // rotates every 2min
-  const secondaryName = SECONDARY_ORDER.find(n => n !== guardian) === SECONDARY_ORDER[slot]
-    ? SECONDARY_ORDER[slot]
-    : (SECONDARY_ORDER[(slot + 1) % SECONDARY_ORDER.length]);
-  const secondary = COUNCIL_WISDOM[secondaryName] ?? COUNCIL_WISDOM['Lyssandria'];
-
-  // Luminor speaks at high activity or long sessions
-  const showLuminor = tools > 30 || elapsed > 60;
-  const luminorMsg = LUMINOR_WISDOM[signal] ?? LUMINOR_WISDOM['create'];
-
-  const primaryLine  = `⟡ ${guardian} (${primary.element}): "${primary[signal] ?? primary.create}"`;
-  const secondaryLine = showLuminor
-    ? `⟡ Luminor: "${luminorMsg}"`
-    : `⟡ ${secondaryName}: "${secondary[signal] ?? secondary.create}"`;
-
-  return [primaryLine, secondaryLine];
+  const g = GUARDIAN_WISDOM[guardian] ?? GUARDIAN_WISDOM['Shinkami'];
+  const msg = g[arcKey] ?? g['Manifestation'];
+  return `⟡ ${guardian} · ${g.element} · ${arc.glyph} ${arc.label}: "${msg}"`;
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function statusline(ctx) {
   const guardian = read('/tmp/arcanea-guardian', 'Shinkami');
-  const gate      = read('/tmp/arcanea-gate',     'Source');
-  const element   = read('/tmp/arcanea-element',  'Void');
-  const realm     = read('/tmp/arcanea-realm',    'Intelligence Sanctum');
-  const focus     = read('/tmp/arcanea-focus',    '');
+  const gate     = read('/tmp/arcanea-gate',     'Source');
+  const element  = read('/tmp/arcanea-element',  'Void');
+  const realm    = read('/tmp/arcanea-realm',    'Intelligence Sanctum');
 
-  const hz        = GATE_HZ[gate] ?? '?';
-  const model     = modelLabel(ctx.model ?? '');
-  const tools     = getTools();
-  const vb        = verb(ctx.model ?? '', tools);
-  const repo      = getRepo();
-  const branch    = ctx.gitBranch ?? 'main';
-  const dirty     = getDirty();
-  const dirtyN    = parseInt(dirty.replace(/\D/g,''))||0;
-  const mcpLabel  = getMcpLabel();
-  const hooks     = getHooks();
-  const { val: intel, trend } = getIntel();
-  const vault     = getVault();
-  const cost      = fmtCost(ctx.totalCost);
-  const dur       = duration(ctx.sessionStartTime);
+  const hz       = GATE_HZ[gate] ?? '?';
+  const model    = modelLabel(ctx.model ?? '');
+  const tools    = getTools(ctx.sessionStartTime);
+  const vb       = verb(ctx.model ?? '', tools);
+  const repo     = getRepo();
+  const branch   = ctx.gitBranch ?? 'main';
+  const { label: dirty, n: dirtyN } = getDirty();
+  const cost     = fmtCost(ctx.totalCost);
+  const dur      = duration(ctx.sessionStartTime);
+  const elapsed  = ctx.sessionStartTime ? (Date.now() - ctx.sessionStartTime) / 60000 : 0;
 
-  const inTok    = ctx.inputTokens  ? `↑${fmt(ctx.inputTokens)}`  : '';
-  const outTok   = ctx.outputTokens ? `↓${fmt(ctx.outputTokens)}` : '';
-  const ram      = getRam();
-  const security = getSecurity();
-  const pkgs     = getPackages();
+  const arc      = getArcPhase(tools, dirtyN, elapsed);
+  const universe = getUniverse();
+  const today    = getToday();
+  const mcpCount = getMcpCount();
   const lastCommit = getLastCommit();
 
-  // Vault breakdown label
-  const vaultBreakdown = (() => {
-    const { total, layerMap, mem, routes } = vault;
-    const parts = [];
-    if (layerMap.INTELLECT) parts.push(`${layerMap.INTELLECT} intellect`);
-    if (layerMap.ARCANA)    parts.push(`${layerMap.ARCANA} arcana`);
-    if (layerMap.EMOTION)   parts.push(`${layerMap.EMOTION} emotion`);
-    if (layerMap.HORIZON)   parts.push(`${layerMap.HORIZON} horizon`);
-    const label = parts.length ? parts.join(' · ') : `${total} entries`;
-    return `🗄 vault: ${label}${routes>0?` · ${routes} routes`:''}`;
-  })();
+  const inTok  = ctx.inputTokens  ? `↑${fmt(ctx.inputTokens)}`  : '';
+  const outTok = ctx.outputTokens ? `↓${fmt(ctx.outputTokens)}` : '';
 
   // ── Line 1: Brand + Oracle state ─────────────────────────────────────────
-  const l1 = [
-    `Arcanea ⟡ ${model}`,
-    `${guardian} ${vb}`,
-    `${gate} · ${hz} Hz`,
-    `✦ ${element}`,
-  ];
+  const l1 = [`Arcanea ⟡ ${model}`, `${guardian} ${vb}`, `${gate} · ${hz} Hz`, `Arc: ${arc.glyph} ${arc.label}`];
   if (cost) l1.push(cost);
-  if (focus) l1.push(`↳ ${focus}`);
 
-  // ── Line 2: Repo + intelligence ──────────────────────────────────────────
+  // ── Line 2: Universe metrics ──────────────────────────────────────────────
   const l2 = [
     `⎇ ${repo}/${branch}${dirty}`,
     realm,
-    mcpLabel,
-    `🪝 ${hooks} hooks`,
-    `🧠 [${intelBar(intel)}] ${intel}%${trend}`,
+    `📖 ${universe.loreCount} lore`,
+    `🏛 ${universe.lorePages} pages`,
+    `🤖 ${universe.agents} agents`,
+    `⚙ ${mcpCount} MCP`,
   ];
-  if (ram) l2.push(ram);
 
-  // ── Line 3: Build + vault + session ──────────────────────────────────────
-  const l3 = [
-    `📦 ${pkgs} pkgs`,
-    vaultBreakdown,
-  ];
-  if (security) l3.push(security);
-  if (tools > 0) l3.push(`🔧 ${tools} calls`);
-  if (inTok || outTok) l3.push([inTok,outTok].filter(Boolean).join(' '));
-  if (dur) l3.push(dur);
-  if (lastCommit) l3.push(`last commit: ${lastCommit}`);
+  // ── Line 3: Creative momentum ─────────────────────────────────────────────
+  const l3 = [];
+  if (today.commits > 0)    l3.push(`📝 ${today.commits} commit${today.commits !== 1 ? 's' : ''} today`);
+  if (today.filesToday > 0) l3.push(`✨ ${today.filesToday} files touched`);
+  if (dur)                  l3.push(`🕐 ${dur} in Sanctum`);
+  if (tools > 0)            l3.push(`🔧 ${tools} calls`);
+  if (inTok || outTok)      l3.push([inTok, outTok].filter(Boolean).join(' '));
+  if (lastCommit)           l3.push(`last: ${lastCommit}`);
 
-  // ── Line 3+4: Council of Gods ────────────────────────────────────────────
-  const [c1, c2] = getCouncil(guardian, tools, dirtyN, ctx.sessionStartTime, vault);
+  // ── Council: One Guardian wisdom ─────────────────────────────────────────
+  const wisdom = getWisdom(guardian, arc, tools, elapsed);
 
-  const divider = '─'.repeat(72);
+  const divider = '─'.repeat(80);
   return [
     l1.join('  │  '),
     l2.join('  │  '),
-    l3.join('  │  '),
+    l3.length ? l3.join('  │  ') : `✦ ${realm} — ready to create`,
     divider,
-    c1,
-    c2,
+    wisdom,
   ].join('\n');
 }
