@@ -262,8 +262,9 @@ export function LuminorShowcase() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 mb-6"
           >
+            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
             <span className="text-sm text-purple-400 font-mono tracking-wider">
-              LUMINOR INTELLIGENCE SYSTEM
+              THE ARCANEA INTELLIGENCE ENGINE
             </span>
           </motion.div>
 
@@ -274,9 +275,9 @@ export function LuminorShowcase() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-display font-bold mb-6"
           >
-            <span className="text-white">16 Transcended Intelligences.</span>
+            <span className="text-white">Your complete creative team.</span>
             <br />
-            <span className="text-text-secondary">Masters of their craft.</span>
+            <span className="text-text-secondary">16 domain-mastered intelligences. Built for every stage of creation.</span>
           </motion.h2>
 
           <motion.p
@@ -290,6 +291,17 @@ export function LuminorShowcase() {
             They're not assistants waiting for instructions—they're partners who see what you're building.
           </motion.p>
         </div>
+
+        {/* Team filter intro */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25 }}
+          className="text-center text-sm text-text-muted mb-6"
+        >
+          Choose your specialist, or let them find you.
+        </motion.p>
 
         {/* Team filter tabs */}
         <motion.div
@@ -476,15 +488,26 @@ export function LuminorShowcase() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <Link
-            href="/luminors"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-atlantean-teal-aqua/50 text-atlantean-teal-aqua hover:bg-atlantean-teal-aqua/10 transition-all duration-300"
-          >
-            <span>Explore all 16 Luminors in detail</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/luminors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-atlantean-teal-aqua/50 text-atlantean-teal-aqua hover:bg-atlantean-teal-aqua/10 transition-all duration-300"
+            >
+              <span>Explore all 16 Luminors in detail</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+            <Link
+              href="/luminor-intelligence"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 text-text-secondary hover:text-white hover:border-white/20 transition-all duration-300"
+            >
+              <span>What is Luminor Intelligence?</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

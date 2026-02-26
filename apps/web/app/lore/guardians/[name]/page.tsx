@@ -38,6 +38,7 @@ interface GuardianData {
   luminorId: string;
   relatedGuardians: string[];
   heroImage?: string; // URL to hero image (Vercel Blob)
+  gradient: string;   // Tailwind gradient classes used as fallback when heroImage is absent
 }
 
 const GUARDIANS: Record<string, GuardianData> = {
@@ -63,6 +64,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     relatedGuardians: ["leyla", "ino"],
     heroImage:
       "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/lyssandria-lyssandria-vibrant-colorful-blonde-ameri-001.webp",
+    gradient: "from-amber-700 via-yellow-600 to-stone-400",
   },
   leyla: {
     name: "Leyla",
@@ -84,6 +86,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "Flow does not mean easy. It means aligned.",
     luminorId: "leyla",
     relatedGuardians: ["lyssandria", "maylinn"],
+    gradient: "from-blue-300 via-cyan-400 to-slate-300",
   },
   draconia: {
     name: "Draconia",
@@ -107,6 +110,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     relatedGuardians: ["alera", "aiyami"],
     heroImage:
       "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/draconia-ahra-beautiful-korean-dragon-rider-lovin-074.webp",
+    gradient: "from-red-600 via-orange-500 to-amber-400",
   },
   maylinn: {
     name: "Maylinn",
@@ -128,6 +132,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "The gentlest touch can move mountains that force cannot.",
     luminorId: "maylinn",
     relatedGuardians: ["leyla", "ino"],
+    gradient: "from-rose-300 via-pink-400 to-green-300",
   },
   alera: {
     name: "Alera",
@@ -151,6 +156,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     relatedGuardians: ["draconia", "lyria"],
     heroImage:
       "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/alera-alera-and-her-musical-spirit-animal-arca-001.webp",
+    gradient: "from-sky-400 via-blue-500 to-indigo-600",
   },
   lyria: {
     name: "Lyria",
@@ -172,6 +178,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "Close your eyes. Now you see.",
     luminorId: "lyria",
     relatedGuardians: ["alera", "aiyami"],
+    gradient: "from-violet-500 via-purple-600 to-indigo-700",
   },
   aiyami: {
     name: "Aiyami",
@@ -195,6 +202,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     relatedGuardians: ["lyria", "elara"],
     heroImage:
       "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/aiyami-devora-ultra-detailed-high-resolution-ep-001.webp",
+    gradient: "from-yellow-200 via-amber-300 to-white",
   },
   elara: {
     name: "Elara",
@@ -218,6 +226,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     relatedGuardians: ["aiyami", "ino"],
     heroImage:
       "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/elara-lelara-and-her-unicorn-spirit-animal-arc-001.webp",
+    gradient: "from-emerald-400 via-green-500 to-teal-600",
   },
   ino: {
     name: "Ino",
@@ -239,6 +248,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "Alone you are a note. Together we are a symphony.",
     luminorId: "ino",
     relatedGuardians: ["maylinn", "shinkami"],
+    gradient: "from-pink-400 via-fuchsia-500 to-teal-400",
   },
   shinkami: {
     name: "Shinkami",
@@ -260,6 +270,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "You have always been the Source. You simply forgot.",
     luminorId: "shinkami",
     relatedGuardians: ["ino", "lyssandria"],
+    gradient: "from-neutral-900 via-yellow-400 to-white",
   },
 };
 
@@ -528,9 +539,9 @@ export default async function GuardianDetailPage({
                 </span>
               </div>
 
-              {/* Hero Image */}
-              {guardian.heroImage && (
-                <div className="relative w-full max-w-2xl h-64 md:h-80 lg:h-96 mb-10 rounded-2xl overflow-hidden liquid-glass">
+              {/* Hero Image — shows image when available, gradient fallback otherwise */}
+              <div className="relative w-full max-w-2xl h-64 md:h-80 lg:h-96 mb-10 rounded-2xl overflow-hidden liquid-glass">
+                {guardian.heroImage ? (
                   <Image
                     src={guardian.heroImage}
                     alt={`${guardian.name} - ${guardian.godbeast}`}
@@ -538,15 +549,20 @@ export default async function GuardianDetailPage({
                     className="object-cover"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-cosmic-deep/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-sm text-crystal font-sans">
-                      {guardian.godbeast} —{" "}
-                      {guardian.godBeastDesc.substring(0, 100)}...
-                    </p>
-                  </div>
+                ) : (
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${guardian.gradient} opacity-40`}
+                    aria-hidden="true"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-cosmic-deep/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-sm text-crystal font-sans">
+                    {guardian.godbeast} —{" "}
+                    {guardian.godBeastDesc.substring(0, 100)}...
+                  </p>
                 </div>
-              )}
+              </div>
 
               {/* Quote */}
               <blockquote

@@ -231,13 +231,25 @@ export default function LuminorsPage() {
             <span className="text-sm text-purple-400 font-mono tracking-wider">LUMINOR INTELLIGENCE SYSTEM</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
+          <h1 className="text-4xl md:text-6xl font-display font-bold mb-4">
             Meet the <span className="bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple bg-clip-text text-transparent">Luminors</span>
           </h1>
 
+          <div className="mb-6">
+            <Link
+              href="/luminor-intelligence"
+              className="text-sm text-atlantean-teal-aqua hover:text-white transition-colors inline-flex items-center gap-1"
+            >
+              Explore the system
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+
           <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed">
             16 transcended creative intelligences. Each one has mastered their domain over a century of practice.
-            They're not assistants - they're partners who see what you're building and help you build it better.
+            They&apos;re not assistants - they&apos;re partners who see what you&apos;re building and help you build it better.
           </p>
 
           {/* Team Quick Nav */}
@@ -254,6 +266,33 @@ export default function LuminorsPage() {
                 <span className="text-xs text-text-muted">({team.agents.length})</span>
               </a>
             ))}
+          </div>
+        </section>
+
+        {/* System Intro */}
+        <section className="py-16 border-t border-white/5">
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-text-secondary leading-relaxed text-base">
+                The Luminor Intelligence System is Arcanea&apos;s core AI engine — 16 specialists across development, creative, writing, and research. Unlike generic AI, each Luminor has mastered their domain through focused practice. They&apos;re not assistants — they&apos;re the creative team you never had.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: "Luminors", value: "16" },
+                { label: "Teams", value: "4" },
+                { label: "Wisdoms", value: "7" },
+                { label: "Potential", value: "Infinite" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="p-5 rounded-2xl border border-white/10 bg-cosmic-surface/30 text-center"
+                >
+                  <p className="text-2xl font-display font-bold text-atlantean-teal-aqua mb-1">{stat.value}</p>
+                  <p className="text-xs text-text-muted uppercase tracking-wider">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -281,7 +320,7 @@ export default function LuminorsPage() {
                   <span className="text-2xl">🤝</span>
                 </div>
                 <h3 className="font-semibold mb-2">True Partnership</h3>
-                <p className="text-sm text-text-secondary">They don't wait for instructions. They see what you're creating and help you build it better.</p>
+                <p className="text-sm text-text-secondary">They don&apos;t wait for instructions. They see what you&apos;re creating and help you build it better.</p>
               </div>
             </div>
           </div>
@@ -354,7 +393,7 @@ export default function LuminorsPage() {
 
                     {/* Quote */}
                     <blockquote className="text-sm italic text-text-muted border-l-2 pl-3" style={{ borderColor: team.color }}>
-                      "{agent.quote}"
+                      &quot;{agent.quote}&quot;
                     </blockquote>
 
                     {/* Chat Link */}
@@ -364,6 +403,17 @@ export default function LuminorsPage() {
                     >
                       <span>Speak with {agent.title.split(' ')[0]}</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+
+                    {/* Deep Profile Link */}
+                    <Link
+                      href={`/luminors/${agent.id}`}
+                      className="mt-2 flex items-center gap-2 text-xs font-medium text-text-muted hover:text-white transition-colors"
+                    >
+                      <span>Deep profile</span>
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </Link>
@@ -411,7 +461,7 @@ export default function LuminorsPage() {
                 Ready to work with a Luminor?
               </h2>
               <p className="text-lg text-text-secondary mb-10 max-w-2xl mx-auto">
-                Start a conversation with any of the 16 Luminors. They'll bring their century of expertise to your creative work.
+                Start a conversation with any of the 16 Luminors. They&apos;ll bring their century of expertise to your creative work.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
