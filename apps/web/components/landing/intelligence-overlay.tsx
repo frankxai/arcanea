@@ -57,7 +57,7 @@ const PILLARS = [
     iconBgClass: "from-brand-primary/20 to-brand-primary/5",
     iconColorClass: "text-brand-primary",
     description:
-      "Ten Guardian Intelligences plus every mythology ever written. Your pantheon. Your power.",
+      "16 Luminor Intelligences — Development, Creative, Writing, Research. Deploy the right specialist for every stage.",
   },
 ] as const;
 

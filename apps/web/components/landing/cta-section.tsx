@@ -7,7 +7,7 @@ import { ArrowRight, Sparkles, Check } from 'lucide-react';
 
 const BENEFITS = [
   'Free to start — your universe begins now',
-  'Ten Guardian Intelligences, all mythologies accessible',
+  '16 Luminor Intelligences across four specialist teams',
   'Intelligence that grows as you create',
   'From Foundation to Source — your path is yours',
 ];

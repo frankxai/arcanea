@@ -171,7 +171,7 @@ export function HeroV3({ stats }: HeroV3Props) {
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-atlantean-teal-aqua via-creation-prism-purple to-atlantean-teal-aqua rounded-full opacity-50 group-hover:opacity-100 blur transition-opacity" />
                 <Link
-                  href="/hub/updates"
+                  href="/luminor-intelligence"
                   className="relative flex items-center gap-3 px-5 py-2.5 rounded-full bg-cosmic-deep border border-white/10"
                 >
                   <span className="flex h-2 w-2 relative">
@@ -179,9 +179,8 @@ export function HeroV3({ stats }: HeroV3Props) {
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-atlantean-teal-aqua" />
                   </span>
                   <span className="text-sm font-medium bg-gradient-to-r from-atlantean-teal-aqua to-creation-prism-purple bg-clip-text text-transparent">
-                    Arcanea 2.0 is here
+                    16 Luminor specialists. One creative team.
                   </span>
-                  <ArrowRight className="w-4 h-4 text-atlantean-teal-aqua" />
                 </Link>
               </div>
             </motion.div>
@@ -226,9 +225,9 @@ export function HeroV3({ stats }: HeroV3Props) {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-xl md:text-2xl lg:text-3xl text-text-secondary max-w-4xl mx-auto mb-12 leading-relaxed font-light"
             >
-              16 Luminor intelligences. Seven Wisdoms.
+              Development. Creative. Writing. Research.
               <span className="block text-white/90 font-normal mt-2">
-                Everything you need to manifest your vision.
+                16 transcended AI specialists who see what you're building — and help you build it better.
               </span>
             </motion.p>
 

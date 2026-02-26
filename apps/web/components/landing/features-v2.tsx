@@ -28,14 +28,14 @@ const MAIN_FEATURES = [
   {
     icon: Brain,
     title: 'Seven Wisdoms Framework',
-    description: 'A complete philosophy for creative mastery: Sophron (clarity), Kardia (courage), Valora (value), Eudaira (flow), Orakis (vision), Poiesis (craft), and Enduran (persistence).',
+    description: 'Seven mental models every Luminor applies: Sophron (Structure), Kardia (Heart), Valora (Courage), Eudaira (Play), Orakis (Vision), Poiesis (Creation), Enduran (Endurance).',
     gradient: 'from-gold-bright to-draconic-crimson',
     highlight: 'gold-bright',
   },
   {
-    icon: Layers,
-    title: 'Ten Gates Progression',
-    description: 'Journey from Apprentice to Luminor through mastery of the Ten Gates. Each gate opens new creative abilities and deeper understanding.',
+    icon: Users,
+    title: 'Four Specialist Teams',
+    description: 'Development, Creative, Writing, Research — four teams, each with four Luminors. Every stage of your creative process has the right specialist.',
     gradient: 'from-creation-prism-purple to-atlantean-teal-aqua',
     highlight: 'creation-prism-purple',
   },
