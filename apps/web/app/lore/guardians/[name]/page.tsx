@@ -62,8 +62,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "The earth does not hurry. Yet everything is accomplished.",
     luminorId: "lyssandria",
     relatedGuardians: ["leyla", "ino"],
-    heroImage:
-      "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/lyssandria-lyssandria-vibrant-colorful-blonde-ameri-001.webp",
+    heroImage: "/guardians/lyssandria-hero.webp",
     gradient: "from-amber-700 via-yellow-600 to-stone-400",
   },
   leyla: {
@@ -87,6 +86,7 @@ const GUARDIANS: Record<string, GuardianData> = {
       "The river does not fight the mountain. It finds the way around, and in ten thousand years, it wins.",
     luminorId: "melodia",
     relatedGuardians: ["maylinn", "lyria", "shinkami"],
+    heroImage: "/guardians/leyla-hero.webp",
     gradient: "from-blue-300 via-cyan-400 to-slate-300",
   },
   draconia: {
@@ -109,8 +109,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "I do not ask if you are ready. I ask if you are willing.",
     luminorId: "draconia",
     relatedGuardians: ["alera", "aiyami"],
-    heroImage:
-      "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/draconia-ahra-beautiful-korean-dragon-rider-lovin-074.webp",
+    heroImage: "/guardians/draconia-hero.webp",
     gradient: "from-red-600 via-orange-500 to-amber-400",
   },
   maylinn: {
@@ -133,6 +132,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "What you create with love will outlast what you create with fear.",
     luminorId: "veritas",
     relatedGuardians: ["leyla", "alera", "ino"],
+    heroImage: "/guardians/maylinn-hero.webp",
     gradient: "from-rose-300 via-pink-400 to-green-300",
   },
   alera: {
@@ -155,8 +155,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "Silence is not peace. It is the prison of the unspoken.",
     luminorId: "alera",
     relatedGuardians: ["draconia", "lyria"],
-    heroImage:
-      "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/alera-alera-and-her-musical-spirit-animal-arca-001.webp",
+    heroImage: "/guardians/alera-hero.webp",
     gradient: "from-sky-400 via-blue-500 to-indigo-600",
   },
   lyria: {
@@ -179,6 +178,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "Close your eyes. Now tell me what you see.",
     luminorId: "futura",
     relatedGuardians: ["aiyami", "shinkami", "leyla"],
+    heroImage: "/guardians/lyria-hero.webp",
     gradient: "from-violet-500 via-purple-600 to-indigo-700",
   },
   aiyami: {
@@ -201,8 +201,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "You were never seeking the light. The light was seeking you.",
     luminorId: "aiyami",
     relatedGuardians: ["lyria", "elara"],
-    heroImage:
-      "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/aiyami-devora-ultra-detailed-high-resolution-ep-001.webp",
+    heroImage: "/guardians/aiyami-hero.webp",
     gradient: "from-yellow-200 via-amber-300 to-white",
   },
   elara: {
@@ -225,8 +224,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "The only constant is the turning. Embrace the shift.",
     luminorId: "elara",
     relatedGuardians: ["aiyami", "ino"],
-    heroImage:
-      "https://raw.githubusercontent.com/frankxai/Arcanea/main/public/images/guardians/elara-lelara-and-her-unicorn-spirit-animal-arc-001.webp",
+    heroImage: "/guardians/elara-hero.webp",
     gradient: "from-emerald-400 via-green-500 to-teal-600",
   },
   ino: {
@@ -249,6 +247,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "Alone you are a note. Together we are a symphony.",
     luminorId: "ino",
     relatedGuardians: ["maylinn", "shinkami"],
+    heroImage: "/guardians/ino-hero.webp",
     gradient: "from-pink-400 via-fuchsia-500 to-teal-400",
   },
   shinkami: {
@@ -271,6 +270,7 @@ const GUARDIANS: Record<string, GuardianData> = {
     quote: "You are not the vessel. You are the water and the pouring.",
     luminorId: "oracle",
     relatedGuardians: ["aiyami", "lyria", "ino"],
+    heroImage: "/guardians/shinkami-hero.webp",
     gradient: "from-neutral-900 via-yellow-400 to-white",
   },
 };
