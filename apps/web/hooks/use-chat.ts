@@ -40,6 +40,8 @@ interface UseChatOptions {
   luminorId: string;
   userId: string;
   apiEndpoint?: string;
+  /** Luminor-specific system prompt injected on every request. */
+  systemPrompt?: string;
 }
 
 interface UseChatReturn {
@@ -63,6 +65,7 @@ export function useChat({
   luminorId,
   userId,
   apiEndpoint = '/api/ai/chat',
+  systemPrompt,
 }: UseChatOptions): UseChatReturn {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
@@ -152,6 +155,9 @@ export function useChat({
       formData.append('luminorId', luminorId);
       formData.append('userId', userId);
       formData.append('message', content);
+      if (systemPrompt) {
+        formData.append('systemPrompt', systemPrompt);
+      }
 
       if (attachments) {
         attachments.forEach((file) => {
@@ -272,7 +278,7 @@ export function useChat({
         setIsConnected(false);
       }
     },
-    [luminorId, userId, messages, apiEndpoint]
+    [luminorId, userId, messages, apiEndpoint, systemPrompt]
   );
 
   const clearError = useCallback(() => {

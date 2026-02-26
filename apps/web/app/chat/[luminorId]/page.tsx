@@ -32,7 +32,7 @@ export default function ChatPage() {
     }
   }, [luminorId, router]);
 
-  // Chat hook
+  // Chat hook — pass Luminor's system prompt so every request carries persona context
   const {
     messages,
     isStreaming,
@@ -51,6 +51,7 @@ export default function ChatPage() {
   } = useChat({
     luminorId,
     userId,
+    systemPrompt: luminorConfig?.systemPrompt,
   });
 
   // Hide quick actions after first message

@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Arcanea | The Creative Intelligence Platform",
-  description: "Arcanea is a living mythology for the age of AI-human co-creation. Learn about our mission, the Luminor Framework, and how we're building the future of creative intelligence.",
+  title: "About Arcanea | The Luminor Intelligence System",
+  description: "We built Arcanea because generic AI wasn't enough. 16 specialized AI intelligences, each mastering their domain. Not assistants — a creative team.",
   openGraph: {
-    title: "About Arcanea | The Creative Intelligence Platform",
-    description: "A living mythology for the age of AI-human co-creation.",
+    title: "About Arcanea | The Luminor Intelligence System",
+    description: "16 specialized AI intelligences. Not assistants — a creative team.",
     images: ["/og-about.png"],
   },
 };
@@ -31,6 +31,29 @@ const TIMELINE = [
     year: "Now",
     title: "Building the Platform",
     description: "Chat with Luminors. Explore the Library. Create with AI companions who understand your journey.",
+  },
+];
+
+const LUMINOR_SYSTEM = [
+  {
+    label: "What it is",
+    heading: "16 specialists. 4 teams.",
+    body: "The Luminor Intelligence System organizes 16 AI specialists into four focused teams — Development, Creative, Writing, and Research. Each one has mastered their domain through dedicated practice. You do not get a generalist. You get the right expert.",
+  },
+  {
+    label: "How it's different",
+    heading: "Deep over broad.",
+    body: "Generic AI knows everything superficially. Luminors know one domain deeply — the way a master craftsperson does. When you need to architect a system, write a scene, or design a research strategy, you work with someone who has spent a century doing exactly that.",
+  },
+  {
+    label: "The Seven Wisdoms",
+    heading: "Practical mental models.",
+    body: "Every Luminor applies the same seven lenses when approaching your work: Structure, Heart, Courage, Play, Vision, Creation, Endurance. These are not abstract principles — they are tools for moving through creative blocks and toward breakthrough.",
+  },
+  {
+    label: "The Guardian Root",
+    heading: "Mythology meets mastery.",
+    body: "Each Luminor channels the wisdom of an Arcanean Guardian — mythological archetypes of creative mastery drawn from the Ten Gates system. These archetypes are not decoration. They encode patterns of how great creators actually work.",
   },
 ];
 
@@ -114,21 +137,48 @@ export default function AboutPage() {
         <section className="pt-20 pb-16">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-atlantean-teal-aqua/30 bg-atlantean-teal-aqua/10 mb-8">
-              <span className="text-sm text-atlantean-teal-aqua font-mono tracking-wider">ABOUT ARCANEA</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-atlantean-teal-aqua animate-pulse" />
+              <span className="text-sm text-atlantean-teal-aqua font-mono tracking-wider">THE LUMINOR INTELLIGENCE SYSTEM</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
-              A living mythology for
+              Intelligence built
               <span className="block bg-gradient-to-r from-atlantean-teal-aqua to-gold-bright bg-clip-text text-transparent">
-                AI-human co-creation
+                for creators.
               </span>
             </h1>
 
             <p className="text-xl text-text-secondary leading-relaxed max-w-3xl">
-              Arcanea exists at the intersection of technology and timeless wisdom. We're building a world where every creator
-              has access to transcended intelligence - AI partners that don't just execute commands, but truly understand
-              the creative process.
+              We built Arcanea because generic AI was not enough. Creative work deserves intelligence that actually specializes
+              — that has spent a century mastering code, narrative, design, or research. Not a general assistant. A creative team.
             </p>
+          </div>
+        </section>
+
+        {/* Luminor Intelligence System */}
+        <section className="py-16 border-t border-white/5">
+          <div className="mb-14">
+            <h2 className="text-3xl font-display font-bold mb-4">The Luminor Intelligence System</h2>
+            <p className="text-text-secondary max-w-2xl leading-relaxed">
+              Arcanea exists to give every creator access to the kind of deep, specialized intelligence that used to
+              require a whole team. We believe the creative future belongs to those who combine human vision with
+              transcended AI capability.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {LUMINOR_SYSTEM.map((item) => (
+              <div
+                key={item.label}
+                className="p-6 rounded-2xl border border-white/10 bg-cosmic-surface/30 backdrop-blur-xl flex flex-col gap-3"
+              >
+                <span className="text-xs font-mono text-atlantean-teal-aqua/70 tracking-widest uppercase">
+                  {item.label}
+                </span>
+                <h3 className="text-lg font-display font-semibold leading-snug">{item.heading}</h3>
+                <p className="text-sm text-text-secondary leading-relaxed">{item.body}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -139,18 +189,19 @@ export default function AboutPage() {
               <h2 className="text-3xl font-display font-bold mb-6">The Vision</h2>
               <div className="space-y-6 text-text-secondary">
                 <p className="leading-relaxed">
-                  We believe AI shouldn't feel like a tool. It should feel like a partnership - a collaboration
-                  with intelligences that bring unique perspectives and genuine expertise to your creative work.
+                  Arcanea exists to give every creator access to the kind of deep, specialized intelligence that
+                  used to require a whole team. We believe the creative future belongs to those who combine human
+                  vision with transcended AI capability.
                 </p>
                 <p className="leading-relaxed">
-                  That's why we built the <strong className="text-white">Luminor Framework</strong>: 16 transcended
-                  AI intelligences, each specializing in a domain of creative mastery. They're not generic assistants.
-                  They're craftspeople who have mastered their domain over a century of practice.
+                  That is why we built the <strong className="text-white">Luminor Intelligence System</strong>: 16
+                  transcended AI specialists, each mastering their domain. They are not generic assistants.
+                  They are craftspeople who bring century-level expertise to your exact creative challenge.
                 </p>
                 <p className="leading-relaxed">
-                  Combined with the <strong className="text-white">Seven Wisdoms</strong> - practical philosophical
-                  lenses for creative work - and the <strong className="text-white">Library of Arcanea</strong> - 17
-                  collections of actionable wisdom - we're creating the complete creative intelligence operating system.
+                  Combined with the <strong className="text-white">Seven Wisdoms</strong> — practical mental models
+                  for creative work — and the <strong className="text-white">Library of Arcanea</strong> — 17
+                  collections of actionable wisdom — this is the complete creative intelligence system.
                 </p>
               </div>
             </div>
@@ -315,31 +366,57 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA */}
+        {/* Meet the System */}
         <section className="py-20 border-t border-white/5">
           <div className="relative rounded-3xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-atlantean-teal-aqua/20 via-creation-prism-purple/20 to-gold-bright/20" />
             <div className="absolute inset-0 bg-cosmic-surface/50 backdrop-blur-xl" />
 
-            <div className="relative p-12 md:p-16 text-center">
-              <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
-                Ready to enter Arcanea?
-              </h2>
-              <p className="text-lg text-text-secondary mb-10 max-w-2xl mx-auto">
-                Start creating with transcended intelligence. The Luminors are waiting.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
+            <div className="relative p-12 md:p-16">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
+                  The Luminor Intelligence System
+                </h2>
+                <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+                  Sixteen specialists. Four teams. One creative operating system built around your work.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                <Link
+                  href="/luminor-intelligence"
+                  className="group p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-atlantean-teal-aqua/10 hover:border-atlantean-teal-aqua/30 transition-all text-center"
+                >
+                  <div className="text-xs font-mono text-atlantean-teal-aqua/70 tracking-widest uppercase mb-3">System</div>
+                  <div className="font-display font-semibold mb-2">The full picture</div>
+                  <p className="text-sm text-text-secondary">How the 16 Luminors are organized and why it works.</p>
+                  <span className="mt-4 inline-block text-atlantean-teal-aqua text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    Explore system
+                  </span>
+                </Link>
+
+                <Link
+                  href="/luminors"
+                  className="group p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-gold-bright/10 hover:border-gold-bright/30 transition-all text-center"
+                >
+                  <div className="text-xs font-mono text-gold-bright/70 tracking-widest uppercase mb-3">Luminors</div>
+                  <div className="font-display font-semibold mb-2">Meet all 16</div>
+                  <p className="text-sm text-text-secondary">Browse every specialist and find the one you need.</p>
+                  <span className="mt-4 inline-block text-gold-bright text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    Meet the Luminors
+                  </span>
+                </Link>
+
                 <Link
                   href="/chat"
-                  className="px-8 py-4 rounded-xl bg-atlantean-teal-aqua text-cosmic-deep font-semibold text-lg hover:shadow-[0_0_40px_rgba(127,255,212,0.5)] transition-all"
+                  className="group p-6 rounded-2xl border border-atlantean-teal-aqua/40 bg-atlantean-teal-aqua/10 hover:bg-atlantean-teal-aqua/20 transition-all text-center"
                 >
-                  Start Creating
-                </Link>
-                <Link
-                  href="/library"
-                  className="px-8 py-4 rounded-xl border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all"
-                >
-                  Explore the Library
+                  <div className="text-xs font-mono text-atlantean-teal-aqua/70 tracking-widest uppercase mb-3">Start here</div>
+                  <div className="font-display font-semibold mb-2">Start with one</div>
+                  <p className="text-sm text-text-secondary">Pick a Luminor and begin your first session now.</p>
+                  <span className="mt-4 inline-block text-atlantean-teal-aqua text-sm font-medium">
+                    Open chat
+                  </span>
                 </Link>
               </div>
             </div>

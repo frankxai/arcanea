@@ -1,16 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  Sparkles,
-  Image,
-  Video,
-  Music,
-  BookOpen,
-  Lightbulb,
-  Zap,
-  Heart,
-} from 'lucide-react';
+import { Sparkles, BookOpen, Lightbulb, Zap } from 'lucide-react';
 
 interface QuickAction {
   id: string;
@@ -18,7 +9,6 @@ interface QuickAction {
   label: string;
   prompt: string;
   color: string;
-  category: 'create' | 'learn' | 'explore';
 }
 
 interface QuickActionsProps {
@@ -28,146 +18,147 @@ interface QuickActionsProps {
   onActionClick: (prompt: string) => void;
 }
 
-const getQuickActionsForLuminor = (slug: string): QuickAction[] => {
-  // Melodia actions (music-focused)
-  if (slug === 'melodia') {
-    return [
-      {
-        id: 'create-song',
-        icon: Music,
-        label: 'Create a Song',
-        prompt: "I want to create a song! Can you help me get started?",
-        color: '#f59e0b',
-        category: 'create',
-      },
-      {
-        id: 'generate-lyrics',
-        icon: Sparkles,
-        label: 'Write Lyrics',
-        prompt: "Help me write lyrics for a song I'm working on.",
-        color: '#8b5cf6',
-        category: 'create',
-      },
-      {
-        id: 'music-theory',
-        icon: BookOpen,
-        label: 'Learn Theory',
-        prompt: "Teach me about music theory in a fun, accessible way.",
-        color: '#3b82f6',
-        category: 'learn',
-      },
-      {
-        id: 'improve-song',
-        icon: Zap,
-        label: 'Improve My Song',
-        prompt: "I have a song I'd like feedback on. Can you help me make it better?",
-        color: '#ec4899',
-        category: 'explore',
-      },
-    ];
+// Icon cycle for the four starters — keeps it simple and icon-import-free
+const STARTER_ICONS = [Sparkles, BookOpen, Lightbulb, Zap];
+
+// Specific starter prompts per Luminor, matching their specialty
+const LUMINOR_STARTERS: Record<string, string[]> = {
+  logicus: [
+    'Help me design the architecture for...',
+    'What pattern should I use for...',
+    'Review this system design:',
+    'How should I structure...',
+  ],
+  synthra: [
+    'Refactor this code for clarity:',
+    'Review this implementation:',
+    'Help me write clean code for...',
+    'What naming convention for...',
+  ],
+  debugon: [
+    'I have a bug I cannot find:',
+    'This keeps failing:',
+    'Help me trace this error:',
+    'Root cause analysis for...',
+  ],
+  nexus: [
+    'I need to integrate these two systems:',
+    'Design an API for...',
+    'Help me connect...',
+    'This integration keeps failing:',
+  ],
+  prismatic: [
+    'Review this design:',
+    'What color palette for...',
+    'How should I layout...',
+    'This feels visually wrong:',
+  ],
+  melodia: [
+    'I need music for...',
+    'Describe the sound of...',
+    'What sonic mood for...',
+    'Help me write lyrics for...',
+  ],
+  motio: [
+    'How should this element animate?',
+    'Design the transition for...',
+    'What timing and easing for...',
+    'This animation feels wrong:',
+  ],
+  formis: [
+    'I need to model...',
+    'How should I texture...',
+    'Help me visualize...',
+    'Design the 3D environment for...',
+  ],
+  chronica: [
+    'I am stuck in my story:',
+    'Help me structure this narrative:',
+    'My character needs...',
+    "The plot isn't working:",
+  ],
+  veritas: [
+    'Rewrite this for clarity:',
+    'Help me write copy for...',
+    "This message isn't landing:",
+    'How do I explain...',
+  ],
+  lexicon: [
+    'What is the right word for...',
+    'Help me name this:',
+    'Analyze this language:',
+    'Translate this concept into...',
+  ],
+  poetica: [
+    'Write a poem about...',
+    'Help me with these lyrics:',
+    'Find the rhythm in...',
+    'What metaphor for...',
+  ],
+  oracle: [
+    'Research this topic:',
+    'What do we know about...',
+    'Find the best sources for...',
+    'Deep analysis of...',
+  ],
+  analytica: [
+    'Analyze this data:',
+    'What pattern do you see in...',
+    'Help me interpret...',
+    'What does this mean?',
+  ],
+  memoria: [
+    'Help me organize this:',
+    'Design a knowledge system for...',
+    'How should I structure this information?',
+    'Create documentation for...',
+  ],
+  futura: [
+    'Where is this trend going?',
+    'What will this field look like in 5 years?',
+    'Anticipate the change in...',
+    'What am I missing about the future of...',
+  ],
+};
+
+const getActionsForLuminor = (
+  slug: string,
+  luminorColor: string
+): QuickAction[] => {
+  const starters = LUMINOR_STARTERS[slug];
+
+  if (starters) {
+    return starters.map((prompt, i) => ({
+      id: `${slug}-starter-${i}`,
+      icon: STARTER_ICONS[i % STARTER_ICONS.length],
+      label: prompt.replace(/[:.?]$/, '').slice(0, 32),
+      prompt,
+      color: luminorColor,
+    }));
   }
 
-  // Chronica actions (story-focused)
-  if (slug === 'chronica') {
-    return [
-      {
-        id: 'write-story',
-        icon: BookOpen,
-        label: 'Write a Story',
-        prompt: "I want to write a story. Can you help me brainstorm?",
-        color: '#3b82f6',
-        category: 'create',
-      },
-      {
-        id: 'character-development',
-        icon: Heart,
-        label: 'Develop Characters',
-        prompt: "Help me create compelling characters for my story.",
-        color: '#ec4899',
-        category: 'create',
-      },
-      {
-        id: 'plot-help',
-        icon: Lightbulb,
-        label: 'Plot Ideas',
-        prompt: "I'm stuck on my plot. Can you help me work through it?",
-        color: '#f59e0b',
-        category: 'explore',
-      },
-      {
-        id: 'writing-tips',
-        icon: Sparkles,
-        label: 'Writing Tips',
-        prompt: "Share some writing techniques to improve my storytelling.",
-        color: '#8b5cf6',
-        category: 'learn',
-      },
-    ];
-  }
-
-  // Prismatic actions (visual-focused)
-  if (slug === 'prismatic') {
-    return [
-      {
-        id: 'generate-image',
-        icon: Image,
-        label: 'Create Image',
-        prompt: "I want to generate an image. Help me craft the perfect prompt.",
-        color: '#ec4899',
-        category: 'create',
-      },
-      {
-        id: 'generate-video',
-        icon: Video,
-        label: 'Create Video',
-        prompt: "Let's create a video together. What should we make?",
-        color: '#8b5cf6',
-        category: 'create',
-      },
-      {
-        id: 'visual-style',
-        icon: Sparkles,
-        label: 'Explore Styles',
-        prompt: "Show me different visual styles I can explore in my art.",
-        color: '#f59e0b',
-        category: 'explore',
-      },
-      {
-        id: 'composition',
-        icon: Lightbulb,
-        label: 'Learn Composition',
-        prompt: "Teach me about visual composition and design principles.",
-        color: '#3b82f6',
-        category: 'learn',
-      },
-    ];
-  }
-
-  // Default actions
+  // Generic fallback (should never be reached for the 16 core Luminors)
   return [
     {
       id: 'start-project',
       icon: Sparkles,
       label: 'Start a Project',
-      prompt: "I want to start a new creative project. Can you guide me?",
-      color: '#8b5cf6',
-      category: 'create',
+      prompt: 'I want to start a new creative project. Can you guide me?',
+      color: luminorColor,
     },
     {
       id: 'learn-something',
       icon: BookOpen,
       label: 'Learn Something',
-      prompt: "I want to learn something new. What can you teach me?",
-      color: '#3b82f6',
-      category: 'learn',
+      prompt: 'I want to learn something new. What can you teach me?',
+      color: luminorColor,
     },
     {
       id: 'get-inspired',
       icon: Lightbulb,
       label: 'Get Inspired',
-      prompt: "I need creative inspiration. Can you help spark some ideas?",
-      color: '#f59e0b',
-      category: 'explore',
+      prompt: 'I need creative inspiration. Can you help spark some ideas?',
+      color: luminorColor,
     },
   ];
 };
@@ -178,14 +169,14 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
   luminorColor = '#8b5cf6',
   onActionClick,
 }) => {
-  const actions = getQuickActionsForLuminor(luminorSlug);
+  const actions = getActionsForLuminor(luminorSlug, luminorColor);
 
   return (
     <div className="px-4 py-6">
       <div className="max-w-5xl mx-auto">
         <div className="mb-4">
           <h3 className="text-sm font-medium text-gray-400">
-            Quick Actions with {luminorName}
+            Start a conversation with {luminorName}
           </h3>
         </div>
 
@@ -198,7 +189,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
                 onClick={() => onActionClick(action.prompt)}
                 className="group relative p-4 rounded-xl bg-gray-800/50 hover:bg-gray-800 border border-gray-700/50 hover:border-gray-600 transition-all duration-200 text-left overflow-hidden"
               >
-                {/* Hover Gradient */}
+                {/* Hover gradient */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity"
                   style={{
@@ -218,16 +209,12 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
                     <Icon className="w-5 h-5" />
                   </div>
 
-                  <h4 className="text-sm font-medium text-gray-200 mb-1">
-                    {action.label}
-                  </h4>
-
-                  <p className="text-xs text-gray-500 capitalize">
-                    {action.category}
+                  <p className="text-sm font-medium text-gray-200 leading-snug">
+                    {action.prompt}
                   </p>
                 </div>
 
-                {/* Indicator */}
+                {/* Active dot */}
                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   <div
                     className="w-2 h-2 rounded-full"
@@ -239,10 +226,10 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
           })}
         </div>
 
-        {/* Custom Prompt */}
+        {/* Custom prompt hint */}
         <div className="mt-4 p-4 rounded-xl bg-gradient-to-br from-gray-800/30 to-gray-900/30 border border-gray-700/30">
           <p className="text-sm text-gray-400 text-center">
-            Or just type what's on your mind and let's explore together
+            Or just type what is on your mind and let us explore together
           </p>
         </div>
       </div>

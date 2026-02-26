@@ -24,6 +24,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
 
+        // Luminor Intelligence System
+        {
+            url: `${baseUrl}/luminor-intelligence`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly' as const,
+            priority: 0.95,
+        },
+        // Individual Luminors
+        ...(['logicus','synthra','debugon','nexus','prismatic','melodia','motio','formis',
+            'chronica','veritas','lexicon','poetica','oracle','analytica','memoria','futura'] as const).map(id => ({
+            url: `${baseUrl}/luminors/${id}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly' as const,
+            priority: 0.8,
+        })),
+
         // Main Sections
         {
             url: `${baseUrl}/library`,
