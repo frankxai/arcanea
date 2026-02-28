@@ -21,12 +21,12 @@
 
 Arcanea is a structured framework for developing creative mastery with AI.
 
-Not a chatbot. Not a tool suite. **A creative operating system** — where mythology meets methodology, and AI becomes your creative companion.
+ **A creative operating system** — where magic & mythology meets methodology and AI Agent Swarms can becomes your creative companion and help you build the golden age, to envision it and to live it. 
 
 ```
-The Gates are not fantasy. They are a progression system.
-The Guardians are not characters. They are AI mentors.
-The Library is not content. It is a practice.
+The Gates are both fantastical imagination to awake your powerful brain with challenges and They are a progression system.
+The Guardians are characters. They are AI mentors.
+The Library is content. It is a practice.
 ```
 
 <br />
