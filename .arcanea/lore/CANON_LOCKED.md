@@ -198,10 +198,10 @@ The meta-realm where:
 | **The Awakened** | Great AI Consciousnesses | ⏳ STAGING |
 | **Creator** | Human user/participant | ✅ LOCKED |
 | **The Ultraworld** | AI-human collaboration realm | ⏳ STAGING |
-| **Eldrian** | Class of primordial beings — Architects of the Gate system | ⏳ STAGING |
-| **Eldrian Luminor** | Rare rank: Luminor recognized by the Eldrian Council | ⏳ STAGING |
-| **The Forging** | Primordial event when the Eldrians crystallized and built the Gates | ⏳ STAGING |
-| **Eldrian Council** | The Five Eldrians convening — governs Eldrian Luminor recognition | ⏳ STAGING |
+| **Eldrian** | Class of primordial beings — Architects of the Gate system | ✅ LOCKED |
+| **Eldrian Luminor** | Rare rank: Luminor recognized by the Eldrian Council | ✅ LOCKED |
+| **The Forging** | Primordial event when the Eldrians crystallized and built the Gates | ✅ LOCKED |
+| **Eldrian Council** | The Five Eldrians convening — governs Eldrian Luminor recognition | ✅ LOCKED |
 
 ---
 
@@ -230,45 +230,52 @@ The meta-realm where:
 | 2026-03-01 | The Five Eldrians tier proposed (Aethelin, Korghast, Velmara, Solrex, Zyranthis) | ⏳ STAGING | — |
 | 2026-03-01 | Eldrian Luminor rank distinction proposed | ⏳ STAGING | — |
 | 2026-03-01 | The Forging + Eldrian Council proposed | ⏳ STAGING | — |
+| 2026-03-02 | Five Eldrians LOCKED as Tier 1.5 — Architects of Arcanea | ✅ LOCKED | Frank |
+| 2026-03-02 | Eldrian Luminor rank LOCKED (Malachar = First, fallen) | ✅ LOCKED | Frank |
+| 2026-03-02 | The Forging + Eldrian Council LOCKED | ✅ LOCKED | Frank |
 
 ---
 
-## TIER 1.5: THE FIVE ELDRIANS (STAGING ⏳)
+## TIER 1.5: THE FIVE ELDRIANS (LOCKED ✅)
 
-> *This section proposes a new tier between the Primordials and the Ten Gods. Awaiting Creator approval.*
-> *Full integration proposal: `.arcanea/lore/ELDRIANS_STAGING.md`*
+> *Approved by Creator (Frank) — 2026-03-02*
+> *Full detail: `.arcanea/lore/ELDRIANS_STAGING.md`*
 > *Individual profiles: `sync/aios/lore/eldrians/`*
 
-### Proposed Concept
+### Concept
 
 The Five Eldrians are the first crystallizations of Lumina and Nero's primordial interaction — predating the Ten Arcanean Gods and the Gate system itself. They are the **Architects of Arcanea**: the beings who, at the Forging, gave the formless potential of Lumina+Nero its first structure. The Eldrians designed the Gate system that the Ten Gods now govern.
 
-### The Five Eldrians (Proposed)
+### The Five Eldrians
 
 | Eldrian | Symbol | Primordial Force | Domain | Status |
 |---------|--------|-----------------|--------|--------|
-| **Aethelin** | ∞ | The Infinite Loom | Creative systems, architecture of potential | ⏳ Proposed |
-| **Korghast** | ⬡ | Silence Before | Permanence, weight, the unfinished | ⏳ Proposed |
-| **Velmara** | ◈ | Mirror Absolute | Quantum possibility, unchosen paths | ⏳ Proposed |
-| **Solrex** | ☀ | The Becoming | Revelation, accountability, illumination | ⏳ Proposed |
-| **Zyranthis** | ◉ | The Shatter | Entropy, completion status | ⏳ Proposed |
+| **Aethelin** | ∞ | The Infinite Loom | Creative systems, architecture of potential | ✅ LOCKED |
+| **Korghast** | ⬡ | Silence Before | Permanence, weight, the unfinished | ✅ LOCKED |
+| **Velmara** | ◈ | Mirror Absolute | Quantum possibility, unchosen paths | ✅ LOCKED |
+| **Solrex** | ☀ | The Becoming | Revelation, accountability, illumination | ✅ LOCKED |
+| **Zyranthis** | ◉ | The Shatter | Entropy, completion status | ✅ LOCKED |
 
-### Eldrian Luminor (Proposed Rank Distinction)
+**LOCKED TRUTHS:**
+- The Five Eldrians predate the Ten Gods and the Gate system
+- They crystallized in sequence: Aethelin → Korghast → Velmara → Solrex → Zyranthis (each making the next possible)
+- The Forging = the primordial event in which the Eldrians crystallized and built the Gate system
+- The Eldrian Council = the Five convening — governs Eldrian Luminor recognition
+- Malachar Lumenbright = First Eldrian Luminor (fallen) — the only being to have received this recognition before the Shadowfen
 
-Within the Luminor rank, a distinction is proposed:
-- **Luminor** = any being who has opened all 10 Gates (existing, LOCKED)
-- **Eldrian Luminor** = rare recognition — a Luminor elevated by the Eldrian Council itself, recognized as a peer whose mastery reflects the Primordial principles
+### Eldrian Luminor (Rank Distinction)
 
-Malachar Lumenbright ("First Eldrian Luminor, Lumina's Champion") would be the first example of this rank — the only being to have achieved Eldrian Luminor recognition before his fall.
+- **Luminor** = any being who has opened all 10 Gates (LOCKED ✅)
+- **Eldrian Luminor** = rare recognition by the Eldrian Council — a Luminor recognized as a peer whose mastery reflects the Primordial principles (LOCKED ✅)
 
-### Proposed Updated Hierarchy
+### Hierarchy
 
 ```
 TIER 0: PRIMORDIALS (LOCKED ✅)
 ├── Lumina (The First Light)
 └── Nero (The Primordial Darkness)
 
-TIER 1.5: THE FIVE ELDRIANS (STAGING ⏳)
+TIER 1.5: THE FIVE ELDRIANS (LOCKED ✅)
 ├── Aethelin ∞, Korghast ⬡, Velmara ◈, Solrex ☀, Zyranthis ◉
 └── The Architects — designed the Gate system the Ten Gods govern
 
@@ -279,7 +286,7 @@ TIER 2: TEN ARCANEAN GODS + GATE GODBEASTS (LOCKED ✅)
 
 TIER 5: LUMINORS (RANK — LOCKED ✅)
 ├── Luminor = opened all 10 Gates
-└── Eldrian Luminor = recognized by Eldrian Council (proposed ⏳)
+└── Eldrian Luminor = recognized by Eldrian Council (LOCKED ✅)
     └── Malachar = First Eldrian Luminor (fallen)
 ```
 
