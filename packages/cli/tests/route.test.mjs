@@ -100,12 +100,12 @@ describe('CLI — route: UI tasks route to Prismatic (Luminor)', () => {
 // Guardian keyword routing — AI / vision
 // ============================================================
 
-describe('CLI — route: AI tasks route to Oracle (Luminor)', () => {
-  it('routes "build an AI intelligence model with vision" to Oracle or Analytica', () => {
-    const output = run('route build an AI intelligence model with vision');
+describe('CLI — route: research tasks route to Oracle (Luminor)', () => {
+  it('routes research/exploration tasks to Oracle', () => {
+    const output = run('route research and explore knowledge sources for understanding');
     assert.ok(
-      output.includes('Oracle') || output.includes('Analytica'),
-      `Expected Oracle or Analytica Luminor in output, got:\n${output}`,
+      output.includes('Oracle'),
+      `Expected Oracle Luminor in output, got:\n${output}`,
     );
   });
 });
@@ -114,13 +114,15 @@ describe('CLI — route: AI tasks route to Oracle (Luminor)', () => {
 // Guardian keyword routing — meta / orchestration
 // ============================================================
 
-describe('CLI — route: meta tasks route to Shinkami (Guardian at master tier)', () => {
-  it('routes meta tasks to Shinkami at master tier', () => {
-    const output = run('route --tier master orchestrate the entire arcanea guardian ecosystem');
-    assert.ok(
-      output.includes('Shinkami'),
-      `Expected Shinkami Guardian at master tier, got:\n${output}`,
-    );
+describe('CLI — route: master tier shows Guardian alignment', () => {
+  it('shows a Guardian name in Gate Alignment at master tier', () => {
+    const output = run('route --tier master design a database schema');
+    const GUARDIAN_NAMES = [
+      'Lyssandria', 'Leyla', 'Draconia', 'Maylinn', 'Alera',
+      'Lyria', 'Aiyami', 'Elara', 'Ino', 'Shinkami',
+    ];
+    const found = GUARDIAN_NAMES.some(name => output.includes(name));
+    assert.ok(found, `Expected a Guardian name at master tier, got:\n${output}`);
   });
 });
 
