@@ -9,3 +9,5 @@ export type {
   ToolExecutor,
   CronJobConfig,
 } from './types';
+// Re-export tool types from model-runtime for convenience
+export type { ToolDefinition, ToolCall } from '@arcanea/model-runtime';

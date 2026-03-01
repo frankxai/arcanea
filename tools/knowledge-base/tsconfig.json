@@ -5,11 +5,14 @@
     "moduleResolution": "bundler",
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "@arcanea/agent-runtime": ["../../packages/agent-runtime/src/index.ts"],
+      "@arcanea/model-runtime": ["../../packages/model-runtime/src/index.ts"]
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]

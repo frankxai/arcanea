@@ -10,4 +10,6 @@ export type {
   ModelCapabilities,
   ProviderType,
   TokenUsage,
+  ToolDefinition,
+  ToolCall,
 } from './types';
