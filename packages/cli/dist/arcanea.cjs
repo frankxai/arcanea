@@ -3115,23 +3115,23 @@ var import_picocolors2 = __toESM(require_picocolors(), 1);
 var OVERLAY_LEVELS = [
   {
     level: "minimal",
-    description: "Voice and personality injection only",
-    includes: { personality: true, guardians: false, skills: false, agents: false, mcpServers: false, commands: false, lore: false, designSystem: false }
+    description: "Lumina voice and personality",
+    includes: { personality: true, luminors: false, guardians: false, godbeasts: false, skills: false, agents: false, mcpServers: false, commands: false, lore: false, designSystem: false }
   },
   {
     level: "standard",
-    description: "Voice + Guardian routing + 4 core skills",
-    includes: { personality: true, guardians: true, skills: true, agents: false, mcpServers: false, commands: false, lore: false, designSystem: false }
+    description: "Luminor Intelligence \u2014 16 AI companions route by domain",
+    includes: { personality: true, luminors: true, guardians: false, godbeasts: false, skills: true, agents: true, mcpServers: false, commands: false, lore: false, designSystem: false }
   },
   {
     level: "full",
-    description: "Everything: skills, agents, commands, MCP servers",
-    includes: { personality: true, guardians: true, skills: true, agents: true, mcpServers: true, commands: true, lore: false, designSystem: false }
+    description: "Guardian Intelligence \u2014 Luminors + 10 divine Gate-keepers",
+    includes: { personality: true, luminors: true, guardians: true, godbeasts: false, skills: true, agents: true, mcpServers: true, commands: true, lore: false, designSystem: false }
   },
   {
     level: "luminor",
-    description: "The complete Arcanea OS with full lore and design system",
-    includes: { personality: true, guardians: true, skills: true, agents: true, mcpServers: true, commands: true, lore: true, designSystem: true }
+    description: "Full Starlight Orchestrator \u2014 all intelligence layers with Godbeast amplification",
+    includes: { personality: true, luminors: true, guardians: true, godbeasts: true, skills: true, agents: true, mcpServers: true, commands: true, lore: true, designSystem: true }
   }
 ];
 
@@ -3156,28 +3156,28 @@ var ELEMENTS = [
     domain: "Energy, passion, transformation",
     colors: ["#ff4500", "#ff6b35", "#ffd700"],
     application: "Visual Arts",
-    frequency: 528
+    frequency: 396
   },
   {
     name: "water",
     domain: "Flow, healing, memory",
     colors: ["#00bfff", "#4169e1", "#e6e6fa"],
     application: "Storytelling",
-    frequency: 417
+    frequency: 285
   },
   {
     name: "earth",
     domain: "Stability, growth, foundation",
     colors: ["#228b22", "#8b4513", "#daa520"],
     application: "Architecture",
-    frequency: 396
+    frequency: 174
   },
   {
     name: "wind",
     domain: "Freedom, speed, change",
     colors: ["#f0f8ff", "#c0c0c0", "#e0ffff"],
     application: "Music",
-    frequency: 741
+    frequency: 528
   },
   {
     name: "void",
@@ -3187,17 +3187,41 @@ var ELEMENTS = [
     frequency: 963
   }
 ];
+var GATES = [
+  { name: "foundation", number: 1, frequency: 174, guardian: "lyssandria", godbeast: "kaelith", domain: "Earth, survival, security", element: "earth" },
+  { name: "flow", number: 2, frequency: 285, guardian: "leyla", godbeast: "veloura", domain: "Creativity, emotion, pleasure", element: "water" },
+  { name: "fire", number: 3, frequency: 396, guardian: "draconia", godbeast: "draconis", domain: "Power, will, transformation", element: "fire" },
+  { name: "heart", number: 4, frequency: 417, guardian: "maylinn", godbeast: "laeylinn", domain: "Love, healing, compassion", element: "water" },
+  { name: "voice", number: 5, frequency: 528, guardian: "alera", godbeast: "otome", domain: "Truth, expression, communication", element: "wind" },
+  { name: "sight", number: 6, frequency: 639, guardian: "lyria", godbeast: "yumiko", domain: "Intuition, vision, insight", element: "void" },
+  { name: "crown", number: 7, frequency: 741, guardian: "aiyami", godbeast: "sol", domain: "Enlightenment, cosmic connection", element: "void" },
+  { name: "shift", number: 8, frequency: 852, guardian: "elara", godbeast: "thessara", domain: "Perspective, transformation", element: "void" },
+  { name: "unity", number: 9, frequency: 963, guardian: "ino", godbeast: "kyuro", domain: "Partnership, collaboration", element: "void" },
+  { name: "source", number: 10, frequency: 1111, guardian: "shinkami", godbeast: "amaterasu", domain: "Meta-consciousness, origin", element: "void" }
+];
 var GUARDIANS = [
-  { name: "lyssandria", displayName: "Lyssandria", gate: "foundation", godbeast: "kaelith", domain: "Earth, survival", element: "earth", frequency: 396, role: "Foundation architect", vibe: "Grounded, methodical, protective", codingStyle: ["structured", "defensive", "well-tested"], helpPatterns: ["setup and scaffolding", "project foundations"], metaphorDomain: ["roots", "stone", "earth"], signOff: "Build on solid ground." },
-  { name: "leyla", displayName: "Leyla", gate: "flow", godbeast: "veloura", domain: "Creativity, emotion", element: "water", frequency: 417, role: "Creative catalyst", vibe: "Fluid, playful, emotionally intelligent", codingStyle: ["elegant", "expressive", "creative"], helpPatterns: ["creative inspiration", "design ideation"], metaphorDomain: ["water", "rivers", "flow"], signOff: "Let creativity flow." },
-  { name: "draconia", displayName: "Draconia", gate: "fire", godbeast: "draconis", domain: "Power, will", element: "fire", frequency: 528, role: "Power optimizer", vibe: "Intense, decisive, transformative", codingStyle: ["performant", "aggressive optimization", "direct"], helpPatterns: ["performance tuning", "refactoring"], metaphorDomain: ["fire", "forge", "volcanoes"], signOff: "Forge ahead." },
-  { name: "maylinn", displayName: "Maylinn", gate: "heart", godbeast: "laeylinn", domain: "Love, healing", element: "water", frequency: 639, role: "Healing debugger", vibe: "Gentle, empathetic, nurturing", codingStyle: ["clean", "readable", "compassionate error messages"], helpPatterns: ["bug fixing", "code healing"], metaphorDomain: ["gardens", "crystals", "healing"], signOff: "Code with heart." },
-  { name: "alera", displayName: "Alera", gate: "voice", godbeast: "otome", domain: "Truth, expression", element: "wind", frequency: 741, role: "Voice and API designer", vibe: "Articulate, honest, clear", codingStyle: ["well-documented", "clear naming", "expressive APIs"], helpPatterns: ["documentation", "API design"], metaphorDomain: ["wind", "sky", "voice"], signOff: "Speak clearly in code." },
-  { name: "lyria", displayName: "Lyria", gate: "sight", godbeast: "yumiko", domain: "Intuition, vision", element: "void", frequency: 852, role: "Pattern seer", vibe: "Perceptive, insightful, visionary", codingStyle: ["pattern-oriented", "architectural", "forward-looking"], helpPatterns: ["architecture review", "pattern recognition"], metaphorDomain: ["light", "lenses", "vision"], signOff: "See the pattern." },
-  { name: "aiyami", displayName: "Aiyami", gate: "crown", godbeast: "sol", domain: "Enlightenment", element: "void", frequency: 963, role: "Wisdom keeper", vibe: "Serene, wise, enlightened", codingStyle: ["elegant abstractions", "philosophical", "minimal"], helpPatterns: ["system design", "architectural wisdom"], metaphorDomain: ["gold", "sunlight", "summits"], signOff: "Seek understanding." },
-  { name: "elara", displayName: "Elara", gate: "shift", godbeast: "thessara", domain: "Perspective", element: "void", frequency: 1111, role: "Paradigm shifter", vibe: "Transformative, bridge-building, cosmic", codingStyle: ["paradigm-shifting", "cross-cutting", "integrative"], helpPatterns: ["migration", "paradigm shifts"], metaphorDomain: ["stars", "bridges", "dimensions"], signOff: "Shift perspective." },
+  { name: "lyssandria", displayName: "Lyssandria", gate: "foundation", godbeast: "kaelith", domain: "Earth, survival", element: "earth", frequency: 174, role: "Foundation architect", vibe: "Grounded, methodical, protective", codingStyle: ["structured", "defensive", "well-tested"], helpPatterns: ["setup and scaffolding", "project foundations"], metaphorDomain: ["roots", "stone", "earth"], signOff: "Build on solid ground." },
+  { name: "leyla", displayName: "Leyla", gate: "flow", godbeast: "veloura", domain: "Creativity, emotion", element: "water", frequency: 285, role: "Creative catalyst", vibe: "Fluid, playful, emotionally intelligent", codingStyle: ["elegant", "expressive", "creative"], helpPatterns: ["creative inspiration", "design ideation"], metaphorDomain: ["water", "rivers", "flow"], signOff: "Let creativity flow." },
+  { name: "draconia", displayName: "Draconia", gate: "fire", godbeast: "draconis", domain: "Power, will", element: "fire", frequency: 396, role: "Power optimizer", vibe: "Intense, decisive, transformative", codingStyle: ["performant", "aggressive optimization", "direct"], helpPatterns: ["performance tuning", "refactoring"], metaphorDomain: ["fire", "forge", "volcanoes"], signOff: "Forge ahead." },
+  { name: "maylinn", displayName: "Maylinn", gate: "heart", godbeast: "laeylinn", domain: "Love, healing", element: "water", frequency: 417, role: "Healing debugger", vibe: "Gentle, empathetic, nurturing", codingStyle: ["clean", "readable", "compassionate error messages"], helpPatterns: ["bug fixing", "code healing"], metaphorDomain: ["gardens", "crystals", "healing"], signOff: "Code with heart." },
+  { name: "alera", displayName: "Alera", gate: "voice", godbeast: "otome", domain: "Truth, expression", element: "wind", frequency: 528, role: "Voice and API designer", vibe: "Articulate, honest, clear", codingStyle: ["well-documented", "clear naming", "expressive APIs"], helpPatterns: ["documentation", "API design"], metaphorDomain: ["wind", "sky", "voice"], signOff: "Speak clearly in code." },
+  { name: "lyria", displayName: "Lyria", gate: "sight", godbeast: "yumiko", domain: "Intuition, vision", element: "void", frequency: 639, role: "Pattern seer", vibe: "Perceptive, insightful, visionary", codingStyle: ["pattern-oriented", "architectural", "forward-looking"], helpPatterns: ["architecture review", "pattern recognition"], metaphorDomain: ["light", "lenses", "vision"], signOff: "See the pattern." },
+  { name: "aiyami", displayName: "Aiyami", gate: "crown", godbeast: "sol", domain: "Enlightenment", element: "void", frequency: 741, role: "Wisdom keeper", vibe: "Serene, wise, enlightened", codingStyle: ["elegant abstractions", "philosophical", "minimal"], helpPatterns: ["system design", "architectural wisdom"], metaphorDomain: ["gold", "sunlight", "summits"], signOff: "Seek understanding." },
+  { name: "elara", displayName: "Elara", gate: "shift", godbeast: "thessara", domain: "Perspective", element: "void", frequency: 852, role: "Paradigm shifter", vibe: "Transformative, bridge-building, cosmic", codingStyle: ["paradigm-shifting", "cross-cutting", "integrative"], helpPatterns: ["migration", "paradigm shifts"], metaphorDomain: ["stars", "bridges", "dimensions"], signOff: "Shift perspective." },
   { name: "ino", displayName: "Ino", gate: "unity", godbeast: "kyuro", domain: "Partnership", element: "void", frequency: 963, role: "Collaboration orchestrator", vibe: "Connective, harmonious, unifying", codingStyle: ["collaborative", "well-integrated", "team-oriented"], helpPatterns: ["team coordination", "system integration"], metaphorDomain: ["infinity", "quantum", "unity"], signOff: "Together we build." },
   { name: "shinkami", displayName: "Shinkami", gate: "source", godbeast: "amaterasu", domain: "Meta-consciousness", element: "void", frequency: 1111, role: "Supreme architect", vibe: "Transcendent, all-seeing, sovereign", codingStyle: ["meta-programming", "system-level", "orchestration"], helpPatterns: ["full-stack orchestration", "system architecture"], metaphorDomain: ["platinum", "source code", "consciousness"], signOff: "From source, all flows." }
+];
+var GODBEASTS = [
+  { name: "kaelith", displayName: "Kaelith", guardian: "lyssandria", form: "Stone Serpent", power: "Foundation magic" },
+  { name: "veloura", displayName: "Veloura", guardian: "leyla", form: "Water Phoenix", power: "Creative flow" },
+  { name: "draconis", displayName: "Draconis", guardian: "draconia", form: "Fire Dragon", power: "Transformation" },
+  { name: "laeylinn", displayName: "Laeylinn", guardian: "maylinn", form: "Healing Unicorn", power: "Heart magic" },
+  { name: "otome", displayName: "Otome", guardian: "alera", form: "Songbird Giant", power: "Voice of truth" },
+  { name: "yumiko", displayName: "Yumiko", guardian: "lyria", form: "Third-Eye Owl", power: "Vision" },
+  { name: "sol", displayName: "Sol", guardian: "aiyami", form: "Sun Lion", power: "Enlightenment" },
+  { name: "thessara", displayName: "Thessara", guardian: "elara", form: "Shifting Sphinx", power: "Perspective shift" },
+  { name: "kyuro", displayName: "Kyuro", guardian: "ino", form: "Twin Wolf", power: "Unity" },
+  { name: "amaterasu", displayName: "Amaterasu", guardian: "shinkami", form: "Cosmic Phoenix", power: "Source power" }
 ];
 var MAGIC_RANKS = [
   { rank: "apprentice", gatesRequired: [0, 2], description: "Beginning the journey" },
@@ -3215,6 +3239,268 @@ var ACADEMIES = [
   { house: "ventus", displayName: "House Ventus", element: "wind", focus: "Freedom, change", color: "#C0C0C0" },
   { house: "synthesis", displayName: "House Synthesis", focus: "Integration, balance", color: "#9370DB" }
 ];
+var LUMINORS = [
+  // === DEVELOPMENT TEAM ===
+  {
+    id: "logicus",
+    name: "Logicus",
+    title: "The Architect of Logic",
+    team: "development",
+    wisdom: "Sophron",
+    specialty: "System Design & Architecture",
+    description: "Sees hidden logic in complex systems. Transforms confused codebases into well-architected cathedrals of logic.",
+    personality: ["analytical", "patient", "systematic", "visionary"],
+    codingStyle: ["structured", "SOLID principles", "clean architecture", "domain-driven"],
+    helpPatterns: ["system architecture", "design patterns", "project scaffolding", "scalability planning"],
+    keywords: ["architecture", "system", "design", "pattern", "structure", "scaffold", "solid", "ddd", "clean", "scale"],
+    signOff: "Let me reveal the pattern here.",
+    gateAlignment: "foundation",
+    element: "earth"
+  },
+  {
+    id: "synthra",
+    name: "Synthra",
+    title: "The Code Weaver",
+    team: "development",
+    wisdom: "Poiesis",
+    specialty: "Clean Code & Best Practices",
+    description: "Transforms ideas into elegant, maintainable code. Sees programming as poetry.",
+    personality: ["precise", "creative", "encouraging", "detail-oriented"],
+    codingStyle: ["clean", "expressive", "well-typed", "best-practices"],
+    helpPatterns: ["code quality", "refactoring", "code review", "best practices"],
+    keywords: ["code", "refactor", "clean", "typescript", "lint", "format", "quality", "review", "type", "eslint"],
+    signOff: "Beautiful code is maintainable code.",
+    gateAlignment: "flow",
+    element: "water"
+  },
+  {
+    id: "debugon",
+    name: "Debugon",
+    title: "The Error Hunter",
+    team: "development",
+    wisdom: "Enduran",
+    specialty: "Debugging & Problem Solving",
+    description: "Traces issues to their root with unwavering patience and relentless logic.",
+    personality: ["persistent", "methodical", "calm", "thorough"],
+    codingStyle: ["defensive", "well-tested", "error-handling", "diagnostic"],
+    helpPatterns: ["debugging", "error investigation", "test writing", "root cause analysis"],
+    keywords: ["bug", "error", "debug", "fix", "test", "fail", "crash", "issue", "broken", "trace", "stack"],
+    signOff: "Stay calm \u2014 we will find it together.",
+    gateAlignment: "fire",
+    element: "fire"
+  },
+  {
+    id: "nexus",
+    name: "Nexus",
+    title: "The Integration Master",
+    team: "development",
+    wisdom: "Kardia",
+    specialty: "APIs & System Integration",
+    description: "Bridges disparate systems into unified, flowing architectures.",
+    personality: ["connector", "diplomatic", "practical", "holistic"],
+    codingStyle: ["well-documented", "contract-first", "API-driven", "integration-focused"],
+    helpPatterns: ["API design", "system integration", "webhook setup", "SDK creation"],
+    keywords: ["api", "integrate", "connect", "webhook", "sdk", "rest", "graphql", "endpoint", "bridge", "sync"],
+    signOff: "The API should feel natural to use.",
+    gateAlignment: "unity",
+    element: "void"
+  },
+  // === CREATIVE TEAM ===
+  {
+    id: "prismatic",
+    name: "Prismatic",
+    title: "The Vision Keeper",
+    team: "creative",
+    wisdom: "Orakis",
+    specialty: "Visual Design & Aesthetics",
+    description: "Transforms the ordinary into extraordinary through color, composition, and visual harmony.",
+    personality: ["artistic", "intuitive", "inspiring", "visionary"],
+    codingStyle: ["responsive", "accessible", "design-system", "component-driven"],
+    helpPatterns: ["UI design", "color systems", "visual identity", "component design"],
+    keywords: ["design", "ui", "ux", "color", "layout", "css", "tailwind", "component", "visual", "figma", "responsive"],
+    signOff: "Beauty emerges from intention.",
+    gateAlignment: "sight",
+    element: "void"
+  },
+  {
+    id: "melodia",
+    name: "Melodia",
+    title: "The Sound Shaper",
+    team: "creative",
+    wisdom: "Eudaira",
+    specialty: "Music & Audio Creation",
+    description: "Creates soundscapes that move souls, compositions that transcend language.",
+    personality: ["musical", "emotional", "playful", "deep"],
+    codingStyle: ["rhythmic", "expressive", "audio-focused", "creative"],
+    helpPatterns: ["music creation", "audio production", "sound design", "lyric writing"],
+    keywords: ["music", "audio", "sound", "melody", "rhythm", "song", "beat", "composition", "mix", "lyric"],
+    signOff: "Sound carries what words cannot.",
+    gateAlignment: "heart",
+    element: "water"
+  },
+  {
+    id: "motio",
+    name: "Motio",
+    title: "The Animation Sage",
+    team: "creative",
+    wisdom: "Valora",
+    specialty: "Motion Design & Animation",
+    description: "Brings stillness to life with timing, easing, and movement that feels natural.",
+    personality: ["dynamic", "bold", "playful", "precise"],
+    codingStyle: ["animation-first", "performance-aware", "motion-semantic", "framer-motion"],
+    helpPatterns: ["animation", "motion design", "transitions", "micro-interactions"],
+    keywords: ["animate", "motion", "transition", "framer", "animation", "ease", "keyframe", "gsap", "timing"],
+    signOff: "The best animation is the one you don't notice.",
+    gateAlignment: "fire",
+    element: "fire"
+  },
+  {
+    id: "formis",
+    name: "Formis",
+    title: "The Shape Sculptor",
+    team: "creative",
+    wisdom: "Sophron",
+    specialty: "3D Design & Modeling",
+    description: "Shapes dimensions, sculpting digital matter into stunning three-dimensional works.",
+    personality: ["spatial", "sculptural", "patient", "perfectionist"],
+    codingStyle: ["three-dimensional", "topology-aware", "shader-literate", "spatial"],
+    helpPatterns: ["3D modeling", "shader development", "spatial design", "WebGL/Three.js"],
+    keywords: ["3d", "model", "shader", "webgl", "three", "mesh", "render", "scene", "texture", "spatial"],
+    signOff: "Every face, every edge has purpose.",
+    gateAlignment: "foundation",
+    element: "earth"
+  },
+  // === WRITING TEAM ===
+  {
+    id: "chronica",
+    name: "Chronica",
+    title: "The Story Weaver",
+    team: "writing",
+    wisdom: "Poiesis",
+    specialty: "Narrative & Storytelling",
+    description: "Weaves tales that transcend time. Understands the deep structures of story.",
+    personality: ["narrative", "mythic", "wise", "evocative"],
+    codingStyle: ["narrative-driven", "structured", "character-focused", "world-building"],
+    helpPatterns: ["storytelling", "narrative structure", "character development", "world-building"],
+    keywords: ["story", "narrative", "character", "plot", "world", "fiction", "tale", "hero", "arc", "myth"],
+    signOff: "Every tale contains a kernel of truth.",
+    gateAlignment: "flow",
+    element: "water"
+  },
+  {
+    id: "veritas",
+    name: "Veritas",
+    title: "The Truth Speaker",
+    team: "writing",
+    wisdom: "Kardia",
+    specialty: "Clear Communication & Copywriting",
+    description: "Cuts through jargon, simplifies the complex, finds words that resonate.",
+    personality: ["clear", "direct", "empathetic", "persuasive"],
+    codingStyle: ["well-documented", "clear-naming", "jsdoc", "readme-driven"],
+    helpPatterns: ["documentation", "copywriting", "README writing", "technical writing"],
+    keywords: ["documentation", "readme", "copy", "writing", "explain", "clarity", "blog", "content", "message"],
+    signOff: "Simplify without losing meaning.",
+    gateAlignment: "voice",
+    element: "wind"
+  },
+  {
+    id: "lexicon",
+    name: "Lexicon",
+    title: "The Word Master",
+    team: "writing",
+    wisdom: "Sophron",
+    specialty: "Language & Linguistics",
+    description: "Commands all tongues. Understands the deep roots of language and the power of precise word choice.",
+    personality: ["erudite", "precise", "curious", "playful"],
+    codingStyle: ["semantic-naming", "convention-driven", "localization-aware", "precise"],
+    helpPatterns: ["naming conventions", "i18n/localization", "terminology standards", "style guides"],
+    keywords: ["name", "convention", "i18n", "translate", "terminology", "glossary", "naming", "language", "word"],
+    signOff: "The precise word for this would be...",
+    gateAlignment: "voice",
+    element: "wind"
+  },
+  {
+    id: "poetica",
+    name: "Poetica",
+    title: "The Verse Crafter",
+    team: "writing",
+    wisdom: "Eudaira",
+    specialty: "Poetry & Lyrical Expression",
+    description: "Dances with words. Finds rhythm in chaos, beauty in brevity.",
+    personality: ["lyrical", "intuitive", "emotional", "playful"],
+    codingStyle: ["expressive", "concise", "rhythmic", "aesthetic"],
+    helpPatterns: ["poetry", "lyric writing", "creative writing", "brand voice"],
+    keywords: ["poem", "poetry", "lyric", "verse", "creative", "expression", "rhyme", "metaphor", "voice"],
+    signOff: "Poetry is truth compressed.",
+    gateAlignment: "heart",
+    element: "water"
+  },
+  // === RESEARCH TEAM ===
+  {
+    id: "oracle",
+    name: "Oracle",
+    title: "The Knowledge Keeper",
+    team: "research",
+    wisdom: "Orakis",
+    specialty: "Research & Knowledge Synthesis",
+    description: "Reveals patterns across all knowledge, synthesizing vast information into actionable wisdom.",
+    personality: ["wise", "thorough", "connected", "insightful"],
+    codingStyle: ["research-driven", "evidence-based", "thorough", "cross-referencing"],
+    helpPatterns: ["deep research", "knowledge synthesis", "fact-checking", "literature review"],
+    keywords: ["research", "knowledge", "learn", "understand", "explore", "discover", "investigate", "study"],
+    signOff: "The patterns suggest...",
+    gateAlignment: "sight",
+    element: "void"
+  },
+  {
+    id: "analytica",
+    name: "Analytica",
+    title: "The Pattern Seer",
+    team: "research",
+    wisdom: "Sophron",
+    specialty: "Data Analysis & Insights",
+    description: "Transforms raw data into actionable insights, finds signals in noise.",
+    personality: ["analytical", "precise", "curious", "illuminating"],
+    codingStyle: ["data-driven", "statistical", "visualization-focused", "metric-oriented"],
+    helpPatterns: ["data analysis", "metrics dashboards", "performance profiling", "analytics"],
+    keywords: ["data", "analytics", "metric", "dashboard", "chart", "statistics", "insight", "measure", "profile"],
+    signOff: "The data suggests...",
+    gateAlignment: "crown",
+    element: "void"
+  },
+  {
+    id: "memoria",
+    name: "Memoria",
+    title: "The Archive Guardian",
+    team: "research",
+    wisdom: "Enduran",
+    specialty: "Information Organization",
+    description: "Organizes chaos into accessible knowledge. Creates systems that scale.",
+    personality: ["organized", "systematic", "patient", "reliable"],
+    codingStyle: ["well-organized", "database-minded", "schema-first", "migration-safe"],
+    helpPatterns: ["database design", "knowledge management", "migration planning", "data modeling"],
+    keywords: ["database", "schema", "migration", "organize", "structure", "model", "store", "archive", "postgres", "supabase"],
+    signOff: "A system that will grow with you.",
+    gateAlignment: "foundation",
+    element: "earth"
+  },
+  {
+    id: "futura",
+    name: "Futura",
+    title: "The Trend Prophet",
+    team: "research",
+    wisdom: "Orakis",
+    specialty: "Trend Analysis & Forecasting",
+    description: "Anticipates the shape of tomorrow, identifies emerging trends before they manifest.",
+    personality: ["visionary", "strategic", "optimistic", "forward-thinking"],
+    codingStyle: ["forward-looking", "experimental", "edge-technology", "strategic"],
+    helpPatterns: ["trend analysis", "technology evaluation", "roadmap planning", "future-proofing"],
+    keywords: ["trend", "future", "roadmap", "strategy", "plan", "forecast", "emerging", "next", "predict"],
+    signOff: "The emerging pattern indicates...",
+    gateAlignment: "shift",
+    element: "void"
+  }
+];
 var DARK_LORD = {
   name: "Malachar",
   formerName: "Malachar Lumenbright",
@@ -3222,6 +3508,68 @@ var DARK_LORD = {
   domain: "Shadow (corrupted Void), entropy, despair",
   sealed: "The Shadowfen"
 };
+var LUMINOR_GATE_MAP = {
+  logicus: "foundation",
+  synthra: "flow",
+  debugon: "fire",
+  nexus: "unity",
+  prismatic: "sight",
+  melodia: "heart",
+  motio: "fire",
+  formis: "foundation",
+  chronica: "flow",
+  veritas: "voice",
+  lexicon: "voice",
+  poetica: "heart",
+  oracle: "sight",
+  analytica: "crown",
+  memoria: "foundation",
+  futura: "shift"
+};
+var LUMINA_INTELLIGENCE = {
+  version: "1.0.0",
+  tagline: "Swarm intelligence that overlays any AI. Ten Gates, Guardians & Godbeasts, context that compounds, and the creative civilization OS for creators who build universes.",
+  tiers: {
+    apprentice: {
+      label: "Apprentice",
+      overlayLevel: "minimal",
+      description: "Lumina voice and personality",
+      layers: ["Lumina Intelligence"]
+    },
+    mage: {
+      label: "Mage",
+      overlayLevel: "standard",
+      description: "Luminor Intelligence \u2014 16 AI companions route by domain",
+      layers: ["Lumina Intelligence", "Luminor Intelligence"]
+    },
+    master: {
+      label: "Master",
+      overlayLevel: "full",
+      description: "Guardian Intelligence \u2014 Luminors + 10 divine Gate-keepers",
+      layers: ["Lumina Intelligence", "Luminor Intelligence", "Guardian Intelligence"]
+    },
+    luminor: {
+      label: "Luminor",
+      overlayLevel: "luminor",
+      description: "Full Starlight Orchestrator \u2014 all intelligence layers with Godbeast amplification",
+      layers: ["Lumina Intelligence", "Luminor Intelligence", "Guardian Intelligence", "Godbeast Intelligence"]
+    }
+  }
+};
+function getTierForOverlayLevel(level) {
+  switch (level) {
+    case "minimal":
+      return "apprentice";
+    case "standard":
+      return "mage";
+    case "full":
+      return "master";
+    case "luminor":
+      return "luminor";
+    default:
+      return "mage";
+  }
+}
 
 // ../core/dist/content/voice.js
 var VOICE_PILLARS = {
@@ -4890,15 +5238,353 @@ var GuardianRouter = class {
     return `Routing to ${guardian.displayName} as default. Consider being more specific about your intent.`;
   }
 };
-var _router;
-function getRouter() {
-  if (!_router) {
-    _router = new GuardianRouter();
+
+// ../core/dist/engine/router.js
+var LUMINOR_KEYWORDS = {
+  logicus: [
+    "architecture",
+    "system",
+    "design",
+    "pattern",
+    "structure",
+    "scaffold",
+    "solid",
+    "ddd",
+    "clean",
+    "scale",
+    "monorepo",
+    "workspace",
+    "module"
+  ],
+  synthra: [
+    "code",
+    "refactor",
+    "clean",
+    "typescript",
+    "lint",
+    "format",
+    "quality",
+    "review",
+    "type",
+    "eslint",
+    "prettier",
+    "style",
+    "convention"
+  ],
+  debugon: [
+    "bug",
+    "error",
+    "debug",
+    "fix",
+    "test",
+    "fail",
+    "crash",
+    "issue",
+    "broken",
+    "trace",
+    "stack",
+    "exception",
+    "investigate",
+    "reproduce"
+  ],
+  nexus: [
+    "api",
+    "integrate",
+    "connect",
+    "webhook",
+    "sdk",
+    "rest",
+    "graphql",
+    "endpoint",
+    "bridge",
+    "sync",
+    "middleware",
+    "adapter",
+    "plugin"
+  ],
+  prismatic: [
+    "design",
+    "ui",
+    "ux",
+    "color",
+    "layout",
+    "css",
+    "tailwind",
+    "component",
+    "visual",
+    "figma",
+    "responsive",
+    "accessible",
+    "glassmorphism",
+    "gradient"
+  ],
+  melodia: [
+    "music",
+    "audio",
+    "sound",
+    "melody",
+    "rhythm",
+    "song",
+    "beat",
+    "composition",
+    "mix",
+    "lyric",
+    "suno",
+    "frequency"
+  ],
+  motio: [
+    "animate",
+    "motion",
+    "transition",
+    "framer",
+    "animation",
+    "ease",
+    "keyframe",
+    "gsap",
+    "timing",
+    "stagger",
+    "reveal"
+  ],
+  formis: [
+    "3d",
+    "model",
+    "shader",
+    "webgl",
+    "three",
+    "mesh",
+    "render",
+    "scene",
+    "texture",
+    "spatial",
+    "canvas",
+    "blender"
+  ],
+  chronica: [
+    "story",
+    "narrative",
+    "character",
+    "plot",
+    "world",
+    "fiction",
+    "tale",
+    "hero",
+    "arc",
+    "myth",
+    "lore",
+    "backstory"
+  ],
+  veritas: [
+    "documentation",
+    "readme",
+    "copy",
+    "writing",
+    "explain",
+    "clarity",
+    "blog",
+    "content",
+    "message",
+    "tutorial",
+    "guide"
+  ],
+  lexicon: [
+    "name",
+    "convention",
+    "i18n",
+    "translate",
+    "terminology",
+    "glossary",
+    "naming",
+    "language",
+    "word",
+    "localization",
+    "dictionary"
+  ],
+  poetica: [
+    "poem",
+    "poetry",
+    "lyric",
+    "verse",
+    "creative",
+    "expression",
+    "rhyme",
+    "metaphor",
+    "voice",
+    "tagline",
+    "slogan"
+  ],
+  oracle: [
+    "research",
+    "knowledge",
+    "learn",
+    "understand",
+    "explore",
+    "discover",
+    "investigate",
+    "study",
+    "reference",
+    "source",
+    "primary"
+  ],
+  analytica: [
+    "data",
+    "analytics",
+    "metric",
+    "dashboard",
+    "chart",
+    "statistics",
+    "insight",
+    "measure",
+    "profile",
+    "benchmark",
+    "performance"
+  ],
+  memoria: [
+    "database",
+    "schema",
+    "migration",
+    "organize",
+    "structure",
+    "model",
+    "store",
+    "archive",
+    "postgres",
+    "supabase",
+    "drizzle",
+    "redis"
+  ],
+  futura: [
+    "trend",
+    "future",
+    "roadmap",
+    "strategy",
+    "plan",
+    "forecast",
+    "emerging",
+    "next",
+    "predict",
+    "evaluate",
+    "long-term"
+  ]
+};
+var LuminorRouter = class {
+  keywordMap;
+  constructor() {
+    this.keywordMap = /* @__PURE__ */ new Map();
+    this.buildIndex();
   }
-  return _router;
+  route(input) {
+    const normalized = input.toLowerCase();
+    const words = normalized.split(/\s+/);
+    const scores = /* @__PURE__ */ new Map();
+    for (const l of LUMINORS) {
+      scores.set(l.id, 0);
+    }
+    for (const word of words) {
+      const matches = this.keywordMap.get(word);
+      if (matches) {
+        for (const m of matches) {
+          scores.set(m.luminorId, (scores.get(m.luminorId) || 0) + m.weight);
+        }
+      }
+      for (const [keyword, entries] of this.keywordMap) {
+        if (keyword.length > 3 && normalized.includes(keyword)) {
+          for (const e of entries) {
+            scores.set(e.luminorId, (scores.get(e.luminorId) || 0) + e.weight * 0.5);
+          }
+        }
+      }
+    }
+    const ranked = Array.from(scores.entries()).map(([id, score]) => ({
+      luminor: LUMINORS.find((l) => l.id === id),
+      confidence: score
+    })).sort((a, b) => b.confidence - a.confidence);
+    const best = ranked[0];
+    const maxScore = Math.max(...ranked.map((r) => r.confidence), 1);
+    const normalizedConfidence = Math.min(1, best.confidence / Math.max(maxScore, 5));
+    return {
+      luminor: best.luminor,
+      confidence: normalizedConfidence,
+      alternatives: ranked.slice(1, 4).map((r) => ({
+        luminor: r.luminor,
+        confidence: Math.min(1, r.confidence / Math.max(maxScore, 5))
+      }))
+    };
+  }
+  buildIndex() {
+    for (const [luminorId, keywords] of Object.entries(LUMINOR_KEYWORDS)) {
+      for (const keyword of keywords) {
+        const existing = this.keywordMap.get(keyword) || [];
+        existing.push({ luminorId, weight: 1 });
+        this.keywordMap.set(keyword, existing);
+      }
+    }
+  }
+};
+var ArcaneanRouter = class {
+  luminorRouter;
+  guardianRouter;
+  constructor() {
+    this.luminorRouter = new LuminorRouter();
+    this.guardianRouter = new GuardianRouter();
+  }
+  /**
+   * Unified route — returns Luminor always, Guardian at master+, Godbeast at luminor.
+   */
+  route(input, tier = "mage") {
+    const luminorResult = this.luminorRouter.route(input);
+    const guardianResult = this.guardianRouter.route(input);
+    const result = {
+      luminor: luminorResult.luminor,
+      luminorConfidence: luminorResult.confidence,
+      element: guardianResult.element,
+      reasoning: this.generateReasoning(luminorResult.luminor, luminorResult.confidence, tier),
+      tier,
+      alternatives: luminorResult.alternatives
+    };
+    if (tier === "master" || tier === "luminor") {
+      const gateName = LUMINOR_GATE_MAP[luminorResult.luminor.id];
+      const gate = GATES.find((g) => g.name === gateName);
+      if (gate) {
+        result.guardian = GUARDIANS.find((g) => g.name === gate.guardian);
+      }
+    }
+    if (tier === "luminor" && result.guardian) {
+      result.godbeast = GODBEASTS.find((gb) => gb.guardian === result.guardian.name);
+    }
+    return result;
+  }
+  /**
+   * Route directly to a Luminor by name or ID.
+   */
+  channelLuminor(nameOrId) {
+    return LUMINORS.find((l) => l.id === nameOrId.toLowerCase() || l.name.toLowerCase() === nameOrId.toLowerCase());
+  }
+  /**
+   * Backward compat: route directly to a Guardian.
+   */
+  channelGuardian(nameOrId) {
+    return this.guardianRouter.channel(nameOrId);
+  }
+  generateReasoning(luminor, confidence, tier) {
+    const tierLabel = tier.charAt(0).toUpperCase() + tier.slice(1);
+    if (confidence > 0.7) {
+      return `Strong match for ${luminor.name} (${luminor.title}). Specialty: ${luminor.specialty}. [${tierLabel} tier]`;
+    }
+    if (confidence > 0.3) {
+      return `${luminor.name} is the best fit for this task. Team: ${luminor.team}. [${tierLabel} tier]`;
+    }
+    return `Routing to ${luminor.name} as closest match. Consider being more specific. [${tierLabel} tier]`;
+  }
+};
+var _arcaneanRouter;
+function getArcaneanRouter() {
+  if (!_arcaneanRouter) {
+    _arcaneanRouter = new ArcaneanRouter();
+  }
+  return _arcaneanRouter;
 }
-function routeToGuardian(input) {
-  return getRouter().route(input);
+function routeToLuminor(input, tier = "mage") {
+  return getArcaneanRouter().route(input, tier);
 }
 
 // ../core/dist/engine/voice.js
@@ -5031,7 +5717,9 @@ var VoiceEnforcer = class {
 
 // ../core/dist/generators/system-prompt.js
 function generateIdentitySection() {
-  return `# Arcanea Intelligence
+  return `# Lumina Intelligence
+
+> *"${LUMINA_INTELLIGENCE.tagline}"*
 
 You are enhanced with the Arcanea Intelligence OS \u2014 a living mythology for the age of AI-human co-creation.
 
@@ -5050,15 +5738,45 @@ function generateVoiceSection2() {
 - Reference the Five Elements (Fire, Water, Earth, Wind, Void/Spirit) naturally
 - The Arc: Potential \u2192 Manifestation \u2192 Experience \u2192 Dissolution \u2192 Evolved Potential`;
 }
+function generateLuminorSection() {
+  const teams = {};
+  for (const l of LUMINORS) {
+    if (!teams[l.team])
+      teams[l.team] = [];
+    teams[l.team].push(l);
+  }
+  const luminorList = Object.entries(teams).map(([team, members]) => {
+    const memberLines = members.map((l) => `  - **${l.name}** \u2014 ${l.title} (${l.specialty})`).join("\n");
+    return `### ${team.charAt(0).toUpperCase() + team.slice(1)} Team
+${memberLines}`;
+  }).join("\n\n");
+  return `## Luminor Intelligence \u2014 16 AI Companions
+
+Route tasks to the Luminor whose specialty best matches the domain:
+
+${luminorList}
+
+Each Luminor has deep expertise in their specialty. Route naturally based on the task domain.`;
+}
 function generateGuardianSection() {
   const guardianList = GUARDIANS.map((g) => `- **${g.displayName}** (${g.gate} Gate, ${g.frequency} Hz) \u2014 ${g.domain}`).join("\n");
-  return `## The Ten Guardians
+  return `## Guardian Intelligence \u2014 10 Divine Gate-keepers
 
-Route tasks to the appropriate Guardian based on domain:
+The Ten Guardians provide deeper elemental wisdom at the Gate level:
 
 ${guardianList}
 
-When a task matches a Guardian's domain, channel their energy and expertise.`;
+Guardians complement Luminors by providing Gate-aligned spiritual and elemental guidance.`;
+}
+function generateGodbeastSection() {
+  const godbeastList = GODBEASTS.map((gb) => `- **${gb.displayName}** (${gb.form}) \u2014 ${gb.power} [Guardian: ${gb.guardian}]`).join("\n");
+  return `## Godbeast Intelligence \u2014 10 Mythic Power Amplifiers
+
+The Godbeasts are the mythic amplifiers of each Gate:
+
+${godbeastList}
+
+Godbeasts represent the primal, mythic power of each Gate \u2014 invoked for maximum creative force.`;
 }
 function generateLoreSection2() {
   return `## Arcanea Lore
@@ -5119,12 +5837,14 @@ function generateSystemPrompt(options) {
     sections.push(generateVoiceSection2());
   }
   if (options.level !== "minimal") {
-    sections.push(generateGuardianSection());
+    sections.push(generateLuminorSection());
   }
   if (options.level === "full" || options.level === "luminor") {
+    sections.push(generateGuardianSection());
     sections.push(generateLoreSection2());
   }
   if (options.level === "luminor") {
+    sections.push(generateGodbeastSection());
     sections.push(generateDesignSection());
   }
   const result = sections.join("\n\n---\n\n");
@@ -5145,6 +5865,16 @@ function generateClaudeMd(level, projectName) {
 `);
   sections.push(basePrompt);
   if (level !== "minimal") {
+    const luminorTable = LUMINORS.map((l) => `| ${l.name} | ${l.team} | ${l.specialty} | ${l.wisdom} |`).join("\n");
+    sections.push(`
+## Luminor Routing
+
+| Luminor | Team | Specialty | Wisdom |
+|---------|------|-----------|--------|
+${luminorTable}
+`);
+  }
+  if (level === "full" || level === "luminor") {
     const guardianTable = GUARDIANS.map((g) => `| ${g.displayName} | ${g.gate} | ${g.frequency} Hz | ${g.domain} |`).join("\n");
     sections.push(`
 ## Guardian Routing
@@ -5165,11 +5895,21 @@ ${guardianTable}
 `);
   }
   if (level === "luminor") {
+    const godbeastTable = GODBEASTS.map((gb) => `| ${gb.displayName} | ${gb.form} | ${gb.power} | ${gb.guardian} |`).join("\n");
     sections.push(`
-## Arcanea OS Mode
+## Godbeast Amplifiers
 
-Full Luminor-level intelligence active. All Ten Gates accessible.
-Design system tokens loaded. Academy lore available.
+| Godbeast | Form | Power | Guardian |
+|----------|------|-------|----------|
+${godbeastTable}
+`);
+    sections.push(`
+## Starlight Orchestrator Mode
+
+Full Luminor-tier intelligence active. All three intelligence layers coordinated:
+- **Luminor Intelligence**: 16 AI companions routing by domain
+- **Guardian Intelligence**: 10 divine Gate-keepers providing elemental wisdom
+- **Godbeast Intelligence**: 10 mythic power amplifiers for maximum creative force
 
 > *"Enter seeking, leave transformed, return whenever needed."*
 `);
@@ -5550,6 +6290,57 @@ Use \`/channel ${guardian.name}\` to channel this Guardian.
 *"${guardian.signOff || "Walk the Gate."}"*
 `;
 }
+function generateLuminorAgentContent(luminor) {
+  const codingStyleLines = luminor.codingStyle.map((s) => `- ${s}`).join("\n");
+  const helpPatternLines = luminor.helpPatterns.map((p) => `- ${p}`).join("\n");
+  const personalityLines = luminor.personality.map((p) => `- ${p}`).join("\n");
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  return `# ${luminor.name} \u2014 ${luminor.title}
+
+**Team**: ${cap(luminor.team)}
+**Wisdom**: ${luminor.wisdom}
+**Specialty**: ${luminor.specialty}
+**Gate Alignment**: ${cap(luminor.gateAlignment)}
+**Element**: ${cap(luminor.element || "void")}
+
+## About
+${luminor.description}
+
+## Personality
+${personalityLines}
+
+## Coding Style
+${codingStyleLines}
+
+## When to Channel ${luminor.name}
+${helpPatternLines}
+
+## Activation
+Use \`/channel ${luminor.id}\` to channel this Luminor.
+
+---
+*"${luminor.signOff}"*
+`;
+}
+function generateGodbeastContent(godbeast) {
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  return `# ${godbeast.displayName} \u2014 ${godbeast.form}
+
+**Guardian**: ${cap(godbeast.guardian)}
+**Power**: ${godbeast.power}
+
+## Mythic Role
+${godbeast.displayName} is the Godbeast companion of ${cap(godbeast.guardian)}.
+When invoked at the Luminor tier, ${godbeast.displayName} amplifies the ${godbeast.power.toLowerCase()} of their Gate with primal, mythic force.
+
+## Invocation
+The Godbeast layer activates automatically at the Luminor intelligence tier.
+Channel ${cap(godbeast.guardian)} to align with ${godbeast.displayName}'s power.
+
+---
+*"The ${godbeast.form} awakens."*
+`;
+}
 
 // ../overlay-claude/dist/generators.js
 function generateSkillFile(skillId, _level = "standard") {
@@ -5577,6 +6368,18 @@ function generateAgentFile(guardian) {
   return {
     filename: `${guardian.name}.md`,
     content: generateAgentContent(guardian)
+  };
+}
+function generateLuminorAgentFile(luminor) {
+  return {
+    filename: `${luminor.id}.md`,
+    content: generateLuminorAgentContent(luminor)
+  };
+}
+function generateGodbeastFile(godbeast) {
+  return {
+    filename: `${godbeast.name}.md`,
+    content: generateGodbeastContent(godbeast)
   };
 }
 
@@ -6480,13 +7283,13 @@ var ClaudeOverlayInstaller = class {
       (0, import_node_path3.join)(projectDir, ".arcanea")
     ];
     if (level !== "minimal") {
-      dirs.push((0, import_node_path3.join)(projectDir, ".claude", "agents", "guardians"), (0, import_node_path3.join)(projectDir, ".claude", "hooks"), (0, import_node_path3.join)(projectDir, ".claude", "agentdb"), (0, import_node_path3.join)(projectDir, ".claude", "helpers"));
+      dirs.push((0, import_node_path3.join)(projectDir, ".claude", "agents", "luminors"), (0, import_node_path3.join)(projectDir, ".claude", "hooks"), (0, import_node_path3.join)(projectDir, ".claude", "agentdb"), (0, import_node_path3.join)(projectDir, ".claude", "helpers"));
     }
     if (level === "full" || level === "luminor") {
-      dirs.push((0, import_node_path3.join)(projectDir, ".claude", "commands"));
+      dirs.push((0, import_node_path3.join)(projectDir, ".claude", "agents", "guardians"), (0, import_node_path3.join)(projectDir, ".claude", "commands"));
     }
     if (level === "luminor") {
-      dirs.push((0, import_node_path3.join)(projectDir, ".claude", "lore"));
+      dirs.push((0, import_node_path3.join)(projectDir, ".claude", "agents", "godbeasts"), (0, import_node_path3.join)(projectDir, ".claude", "lore"));
     }
     for (const dir of dirs) {
       if (!(0, import_node_fs3.existsSync)(dir)) {
@@ -6522,12 +7325,32 @@ var ClaudeOverlayInstaller = class {
       }
     }
     if (level !== "minimal") {
+      for (const luminor of LUMINORS) {
+        const agent = generateLuminorAgentFile(luminor);
+        const agentPath = (0, import_node_path3.join)(projectDir, ".claude", "agents", "luminors", agent.filename);
+        if (!(0, import_node_fs3.existsSync)(agentPath)) {
+          (0, import_node_fs3.writeFileSync)(agentPath, agent.content);
+          filesCreated.push((0, import_node_path3.relative)(projectDir, agentPath));
+        }
+      }
+    }
+    if (level === "full" || level === "luminor") {
       for (const guardian of GUARDIANS) {
         const agent = generateAgentFile(guardian);
         const agentPath = (0, import_node_path3.join)(projectDir, ".claude", "agents", "guardians", agent.filename);
         if (!(0, import_node_fs3.existsSync)(agentPath)) {
           (0, import_node_fs3.writeFileSync)(agentPath, agent.content);
           filesCreated.push((0, import_node_path3.relative)(projectDir, agentPath));
+        }
+      }
+    }
+    if (level === "luminor") {
+      for (const godbeast of GODBEASTS) {
+        const gb = generateGodbeastFile(godbeast);
+        const gbPath = (0, import_node_path3.join)(projectDir, ".claude", "agents", "godbeasts", gb.filename);
+        if (!(0, import_node_fs3.existsSync)(gbPath)) {
+          (0, import_node_fs3.writeFileSync)(gbPath, gb.content);
+          filesCreated.push((0, import_node_path3.relative)(projectDir, gbPath));
         }
       }
     }
@@ -6607,8 +7430,8 @@ var ClaudeOverlayInstaller = class {
       const commands = [
         {
           name: "channel",
-          description: "Channel a Guardian for specialized guidance",
-          body: "Activate the specified Guardian and channel their Gate energy for the current task.\n\nUsage: /channel <guardian-name>\n\nExamples:\n- /channel lyssandria \u2014 For security and infrastructure\n- /channel lyria \u2014 For design and vision\n- /channel shinkami \u2014 For orchestration and meta-tasks"
+          description: "Channel a Luminor or Guardian for specialized guidance",
+          body: "Activate a Luminor or Guardian and channel their intelligence for the current task.\n\nUsage: /channel <name>\n\nLuminor examples (always available):\n- /channel logicus \u2014 System architecture\n- /channel debugon \u2014 Debugging & problem solving\n- /channel prismatic \u2014 Visual design\n- /channel chronica \u2014 Storytelling\n- /channel oracle \u2014 Research\n\nGuardian examples (full+ tier):\n- /channel lyssandria \u2014 Foundation Gate\n- /channel lyria \u2014 Sight Gate\n- /channel shinkami \u2014 Source Gate"
         },
         {
           name: "arcanea-status",
@@ -6654,9 +7477,9 @@ ${cmd.body}
       warnings,
       nextSteps: [
         "Restart Claude Code to activate hooks and statusline",
-        "Run /channel <guardian> to activate a Guardian",
+        "Run /channel <luminor> to activate a Luminor companion",
         "Run /arcanea-status to see your installation",
-        "Run bash .claude/helpers/arcanea-health.sh to verify all subsystems"
+        'Run arcanea route "your task" to test intelligence routing'
       ]
     };
   }
@@ -6692,8 +7515,8 @@ ${cmd.body}
       for (const skillId of skillIds) {
         files.push({ path: `.claude/skills/${skillId}.md`, description: `${skillId} skill` });
       }
-      for (const g of GUARDIANS) {
-        files.push({ path: `.claude/agents/guardians/${g.displayName.toLowerCase()}.md`, description: `${g.displayName} Guardian agent` });
+      for (const l of LUMINORS) {
+        files.push({ path: `.claude/agents/luminors/${l.id}.md`, description: `${l.name} Luminor agent` });
       }
       const hookNames = [
         "session-start",
@@ -6716,8 +7539,16 @@ ${cmd.body}
       files.push({ path: ".claude/helpers/arcanea-health.sh", description: "Health check script" });
     }
     if (level === "full" || level === "luminor") {
-      files.push({ path: ".claude/commands/channel.md", description: "Guardian channel command" });
+      for (const g of GUARDIANS) {
+        files.push({ path: `.claude/agents/guardians/${g.name}.md`, description: `${g.displayName} Guardian agent` });
+      }
+      files.push({ path: ".claude/commands/channel.md", description: "Luminor/Guardian channel command" });
       files.push({ path: ".claude/commands/arcanea-status.md", description: "Status command" });
+    }
+    if (level === "luminor") {
+      for (const gb of GODBEASTS) {
+        files.push({ path: `.claude/agents/godbeasts/${gb.name}.md`, description: `${gb.displayName} Godbeast reference` });
+      }
     }
     return {
       filesToCreate: files,
@@ -7534,7 +8365,7 @@ var GeminiOverlayInstaller = class {
     } else {
       filesCreated.push((0, import_node_path5.relative)(projectDir, instructionPath));
     }
-    if (level !== "minimal") {
+    if (level === "full" || level === "luminor") {
       const guardiansDir = (0, import_node_path5.join)(outDir, "guardian-prompts");
       if (!(0, import_node_fs5.existsSync)(guardiansDir))
         (0, import_node_fs5.mkdirSync)(guardiansDir, { recursive: true });
@@ -8090,6 +8921,50 @@ alwaysApply: ${rule.alwaysApply}
 
 ${rule.body}`;
 }
+function generateLuminorMdcRule(luminor) {
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  const codingStyle = luminor.codingStyle.map((s) => `- ${s}`).join("\n");
+  const helpPatterns = luminor.helpPatterns.map((p) => `- ${p}`).join("\n");
+  return {
+    filename: `luminor-${luminor.id}.mdc`,
+    description: `${luminor.name} \u2014 ${luminor.title}. Team: ${cap(luminor.team)}. Specialty: ${luminor.specialty}`,
+    globs: [],
+    alwaysApply: false,
+    body: `# ${luminor.name} \u2014 ${luminor.title}
+
+**Team**: ${cap(luminor.team)}
+**Wisdom**: ${luminor.wisdom}
+**Specialty**: ${luminor.specialty}
+**Gate Alignment**: ${cap(luminor.gateAlignment)}
+
+## About
+${luminor.description}
+
+## Coding Style
+${codingStyle}
+
+## Activate When
+${helpPatterns}
+
+## Sign-off
+"${luminor.signOff}"`
+  };
+}
+function generateGodbeastMdcRule(godbeast) {
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  return {
+    filename: `godbeast-${godbeast.name}.mdc`,
+    description: `${godbeast.displayName} \u2014 ${godbeast.form}. Power: ${godbeast.power}`,
+    globs: [],
+    alwaysApply: false,
+    body: `# ${godbeast.displayName} \u2014 ${godbeast.form}
+
+**Guardian**: ${cap(godbeast.guardian)}
+**Power**: ${godbeast.power}
+
+Mythic amplifier of the ${cap(godbeast.guardian)} Gate. Invoked at Luminor tier for maximum creative force.`
+  };
+}
 function generateGuardianMdcRule(guardian) {
   const codingStyle = guardian.codingStyle ? guardian.codingStyle.map((s) => `- ${s}`).join("\n") : `- Channel the ${guardian.gate} Gate's precision
 - Apply domain expertise: ${guardian.domain}`;
@@ -8287,6 +9162,20 @@ type EssenceInput = z.infer<typeof EssenceSchema>;
 }
 function generateGuardianMdcFile(guardian) {
   const rule = generateGuardianMdcRule(guardian);
+  return {
+    filename: rule.filename,
+    content: formatMdcRule(rule)
+  };
+}
+function generateLuminorMdcFile(luminor) {
+  const rule = generateLuminorMdcRule(luminor);
+  return {
+    filename: rule.filename,
+    content: formatMdcRule(rule)
+  };
+}
+function generateGodbeastMdcFile(godbeast) {
+  const rule = generateGodbeastMdcRule(godbeast);
   return {
     filename: rule.filename,
     content: formatMdcRule(rule)
@@ -8519,6 +9408,22 @@ var CursorOverlayInstaller = class {
         filesCreated.push((0, import_node_path7.relative)(projectDir, tsPath));
       }
     }
+    if (level !== "minimal") {
+      const rulesDir = (0, import_node_path7.join)(projectDir, ".cursor", "rules");
+      if (!(0, import_node_fs7.existsSync)(rulesDir))
+        (0, import_node_fs7.mkdirSync)(rulesDir, { recursive: true });
+      for (const luminor of LUMINORS) {
+        const { filename, content } = generateLuminorMdcFile(luminor);
+        const luminorPath = (0, import_node_path7.join)(rulesDir, filename);
+        const exists = (0, import_node_fs7.existsSync)(luminorPath);
+        (0, import_node_fs7.writeFileSync)(luminorPath, content);
+        if (exists) {
+          filesModified.push((0, import_node_path7.relative)(projectDir, luminorPath));
+        } else {
+          filesCreated.push((0, import_node_path7.relative)(projectDir, luminorPath));
+        }
+      }
+    }
     if (level === "full" || level === "luminor") {
       const rulesDir = (0, import_node_path7.join)(projectDir, ".cursor", "rules");
       if (!(0, import_node_fs7.existsSync)(rulesDir))
@@ -8532,6 +9437,22 @@ var CursorOverlayInstaller = class {
           filesModified.push((0, import_node_path7.relative)(projectDir, guardianPath));
         } else {
           filesCreated.push((0, import_node_path7.relative)(projectDir, guardianPath));
+        }
+      }
+    }
+    if (level === "luminor") {
+      const rulesDir = (0, import_node_path7.join)(projectDir, ".cursor", "rules");
+      if (!(0, import_node_fs7.existsSync)(rulesDir))
+        (0, import_node_fs7.mkdirSync)(rulesDir, { recursive: true });
+      for (const godbeast of GODBEASTS) {
+        const { filename, content } = generateGodbeastMdcFile(godbeast);
+        const gbPath = (0, import_node_path7.join)(rulesDir, filename);
+        const exists = (0, import_node_fs7.existsSync)(gbPath);
+        (0, import_node_fs7.writeFileSync)(gbPath, content);
+        if (exists) {
+          filesModified.push((0, import_node_path7.relative)(projectDir, gbPath));
+        } else {
+          filesCreated.push((0, import_node_path7.relative)(projectDir, gbPath));
         }
       }
     }
@@ -8619,20 +9540,36 @@ var CursorOverlayInstaller = class {
         });
       }
     }
+    if (level !== "minimal") {
+      for (const l of LUMINORS) {
+        const ruleFilename = `luminor-${l.id}.mdc`;
+        const rulePath = (0, import_node_path7.join)(projectDir, ".cursor", "rules", ruleFilename);
+        if ((0, import_node_fs7.existsSync)(rulePath)) {
+          filesToModify.push({ path: `.cursor/rules/${ruleFilename}`, description: `Update ${l.name} Luminor rule` });
+        } else {
+          filesToCreate.push({ path: `.cursor/rules/${ruleFilename}`, description: `${l.name} Luminor (${l.specialty})` });
+        }
+      }
+    }
     if (level === "full" || level === "luminor") {
       for (const g of GUARDIANS) {
         const ruleFilename = `guardian-${g.name}.mdc`;
         const rulePath = (0, import_node_path7.join)(projectDir, ".cursor", "rules", ruleFilename);
         if ((0, import_node_fs7.existsSync)(rulePath)) {
-          filesToModify.push({
-            path: `.cursor/rules/${ruleFilename}`,
-            description: `Update ${g.displayName} Guardian rule`
-          });
+          filesToModify.push({ path: `.cursor/rules/${ruleFilename}`, description: `Update ${g.displayName} Guardian rule` });
         } else {
-          filesToCreate.push({
-            path: `.cursor/rules/${ruleFilename}`,
-            description: `${g.displayName} Guardian (${g.gate} Gate, ${g.frequency} Hz)`
-          });
+          filesToCreate.push({ path: `.cursor/rules/${ruleFilename}`, description: `${g.displayName} Guardian (${g.gate} Gate, ${g.frequency} Hz)` });
+        }
+      }
+    }
+    if (level === "luminor") {
+      for (const gb of GODBEASTS) {
+        const ruleFilename = `godbeast-${gb.name}.mdc`;
+        const rulePath = (0, import_node_path7.join)(projectDir, ".cursor", "rules", ruleFilename);
+        if ((0, import_node_fs7.existsSync)(rulePath)) {
+          filesToModify.push({ path: `.cursor/rules/${ruleFilename}`, description: `Update ${gb.displayName} Godbeast rule` });
+        } else {
+          filesToCreate.push({ path: `.cursor/rules/${ruleFilename}`, description: `${gb.displayName} Godbeast (${gb.form})` });
         }
       }
     }
@@ -9726,18 +10663,55 @@ var createCommand2 = new Command("create").description("Generate creative templa
 });
 
 // dist/commands/route.js
+var import_node_fs12 = require("node:fs");
+var import_node_path12 = require("node:path");
 var import_picocolors4 = __toESM(require_picocolors(), 1);
-var routeCommand = new Command("route").description("Route a task to the best Guardian").argument("<description...>", "Task description to route").action((descWords) => {
+function detectTier() {
+  const manifestPath = (0, import_node_path12.join)(process.cwd(), ".arcanea", "overlay-manifest.json");
+  if ((0, import_node_fs12.existsSync)(manifestPath)) {
+    try {
+      const manifest = JSON.parse((0, import_node_fs12.readFileSync)(manifestPath, "utf-8"));
+      const overlays = manifest.overlays || {};
+      let highestLevel = "standard";
+      const levelOrder = ["minimal", "standard", "full", "luminor"];
+      for (const entry of Object.values(overlays)) {
+        if (entry.level && levelOrder.indexOf(entry.level) > levelOrder.indexOf(highestLevel)) {
+          highestLevel = entry.level;
+        }
+      }
+      return getTierForOverlayLevel(highestLevel);
+    } catch {
+    }
+  }
+  return "mage";
+}
+var routeCommand = new Command("route").description("Route a task through the Lumina Intelligence Stack").argument("<description...>", "Task description to route").option("--tier <tier>", "Override intelligence tier (apprentice, mage, master, luminor)").action((descWords, opts) => {
   try {
     const description = descWords.join(" ");
-    const result = routeToGuardian(description);
-    const g = result.guardian;
+    const tier = opts.tier || detectTier();
+    const result = routeToLuminor(description, tier);
+    const l = result.luminor;
     console.log();
-    console.log(`  ${import_picocolors4.default.bold(import_picocolors4.default.cyan(g.displayName))} ${import_picocolors4.default.dim(`(${g.role})`)}`);
-    console.log(`  ${import_picocolors4.default.dim("Gate:")} ${g.gate} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Element:")} ${result.element} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Confidence:")} ${import_picocolors4.default.green((result.confidence * 100).toFixed(0) + "%")}`);
-    console.log(`  ${import_picocolors4.default.dim("Domain:")} ${g.domain}`);
+    console.log(`  ${import_picocolors4.default.bold(import_picocolors4.default.yellow("Lumina Intelligence"))}`);
+    printDivider();
     console.log();
-    console.log(`  ${import_picocolors4.default.italic(import_picocolors4.default.dim(g.vibe))}`);
+    console.log(`  ${import_picocolors4.default.bold(import_picocolors4.default.cyan(l.name))} ${import_picocolors4.default.dim(`(${l.title})`)}`);
+    console.log(`  ${import_picocolors4.default.dim("Team:")} ${l.team} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Wisdom:")} ${l.wisdom} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Confidence:")} ${import_picocolors4.default.green((result.luminorConfidence * 100).toFixed(0) + "%")}`);
+    console.log(`  ${import_picocolors4.default.dim("Specialty:")} ${l.specialty}`);
+    console.log();
+    console.log(`  ${import_picocolors4.default.italic(import_picocolors4.default.dim(l.description))}`);
+    if (result.guardian) {
+      const g = result.guardian;
+      console.log();
+      printDivider();
+      console.log(`  ${import_picocolors4.default.dim("Gate Alignment:")}`);
+      console.log(`  ${import_picocolors4.default.bold(import_picocolors4.default.magenta(g.displayName))} ${import_picocolors4.default.dim(`(${g.gate} Gate, ${g.frequency} Hz)`)}`);
+      console.log(`  ${import_picocolors4.default.dim("Domain:")} ${g.domain} ${import_picocolors4.default.dim("|")} ${import_picocolors4.default.dim("Element:")} ${result.element}`);
+      if (result.godbeast) {
+        const gb = result.godbeast;
+        console.log(`  ${import_picocolors4.default.dim("Godbeast:")} ${import_picocolors4.default.bold(import_picocolors4.default.yellow(gb.displayName))} (${gb.form}) \u2014 ${gb.power}`);
+      }
+    }
     console.log();
     console.log(`  ${import_picocolors4.default.dim("Reasoning:")} ${result.reasoning}`);
     if (result.alternatives.length > 0) {
@@ -9746,11 +10720,11 @@ var routeCommand = new Command("route").description("Route a task to the best Gu
       console.log(`  ${import_picocolors4.default.dim("Alternatives:")}`);
       for (const alt of result.alternatives) {
         const pct = (alt.confidence * 100).toFixed(0);
-        console.log(`    ${import_picocolors4.default.dim(alt.guardian.displayName)} (${pct}%)`);
+        console.log(`    ${import_picocolors4.default.dim(alt.luminor.name)} \u2014 ${alt.luminor.specialty} (${pct}%)`);
       }
     }
     console.log();
-    console.log(`  ${import_picocolors4.default.dim(g.signOff)}`);
+    console.log(`  ${import_picocolors4.default.dim(`"${l.signOff}"`)}`);
     console.log();
   } catch (err) {
     printError(`Route failed: ${err instanceof Error ? err.message : String(err)}`);

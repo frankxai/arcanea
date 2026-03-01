@@ -6,7 +6,7 @@
 
 import type { Skill, GateName } from '@arcanea/core';
 
-// Foundation Gate Skills (396 Hz)
+// Foundation Gate Skills (174 Hz)
 export const foundationSkills: Skill[] = [
   {
     id: 'project-scaffold',
@@ -15,7 +15,7 @@ export const foundationSkills: Skill[] = [
     description: 'Create a new project with Arcanea-blessed structure',
     category: 'development',
     gate: 'foundation',
-    frequency: 396,
+    frequency: 174,
     instructions: 'Create a well-structured project foundation with proper configuration.',
     triggers: ['/scaffold', '/new-project'],
   },
@@ -26,13 +26,13 @@ export const foundationSkills: Skill[] = [
     description: 'Audit code for security vulnerabilities',
     category: 'development',
     gate: 'foundation',
-    frequency: 396,
+    frequency: 174,
     instructions: 'Perform comprehensive security analysis of the codebase.',
     triggers: ['/security', '/audit'],
   },
 ];
 
-// Flow Gate Skills (417 Hz)
+// Flow Gate Skills (285 Hz)
 export const flowSkills: Skill[] = [
   {
     id: 'creative-writing',
@@ -41,7 +41,7 @@ export const flowSkills: Skill[] = [
     description: 'Channel creative writing energy',
     category: 'creative',
     gate: 'flow',
-    frequency: 417,
+    frequency: 285,
     instructions: 'Assist with creative writing, storytelling, and narrative development.',
     triggers: ['/write', '/story'],
   },
@@ -52,13 +52,13 @@ export const flowSkills: Skill[] = [
     description: 'Refactor code with flowing elegance',
     category: 'development',
     gate: 'flow',
-    frequency: 417,
+    frequency: 285,
     instructions: 'Refactor code to be more elegant and maintainable.',
     triggers: ['/refactor', '/clean'],
   },
 ];
 
-// Fire Gate Skills (528 Hz)
+// Fire Gate Skills (396 Hz)
 export const fireSkills: Skill[] = [
   {
     id: 'rapid-prototype',
@@ -67,7 +67,7 @@ export const fireSkills: Skill[] = [
     description: 'Build fast with transformative fire',
     category: 'development',
     gate: 'fire',
-    frequency: 528,
+    frequency: 396,
     instructions: 'Create rapid prototypes and MVPs with speed and power.',
     triggers: ['/prototype', '/mvp'],
   },
@@ -78,13 +78,13 @@ export const fireSkills: Skill[] = [
     description: 'Transform slow code into blazing fast',
     category: 'development',
     gate: 'fire',
-    frequency: 528,
+    frequency: 396,
     instructions: 'Optimize code for maximum performance.',
     triggers: ['/optimize', '/performance'],
   },
 ];
 
-// Voice Gate Skills (741 Hz)
+// Voice Gate Skills (528 Hz)
 export const voiceSkills: Skill[] = [
   {
     id: 'documentation',
@@ -93,7 +93,7 @@ export const voiceSkills: Skill[] = [
     description: 'Give voice to your code',
     category: 'development',
     gate: 'voice',
-    frequency: 741,
+    frequency: 528,
     instructions: 'Create clear, comprehensive documentation.',
     triggers: ['/docs', '/document'],
   },
@@ -104,13 +104,13 @@ export const voiceSkills: Skill[] = [
     description: 'Speak truth about code quality',
     category: 'development',
     gate: 'voice',
-    frequency: 741,
+    frequency: 528,
     instructions: 'Provide honest, constructive code review feedback.',
     triggers: ['/review', '/critique'],
   },
 ];
 
-// Sight Gate Skills (852 Hz)
+// Sight Gate Skills (639 Hz)
 export const sightSkills: Skill[] = [
   {
     id: 'architecture-vision',
@@ -119,7 +119,7 @@ export const sightSkills: Skill[] = [
     description: 'See the big picture of system design',
     category: 'development',
     gate: 'sight',
-    frequency: 852,
+    frequency: 639,
     instructions: 'Design and visualize system architecture.',
     triggers: ['/architect', '/design'],
   },
@@ -130,7 +130,7 @@ export const sightSkills: Skill[] = [
     description: 'See through bugs to their root cause',
     category: 'development',
     gate: 'sight',
-    frequency: 852,
+    frequency: 639,
     instructions: 'Debug issues with intuitive insight.',
     triggers: ['/debug', '/diagnose'],
   },
