@@ -49,28 +49,28 @@ export const ELEMENTS: ElementDefinition[] = [
     domain: 'Energy, passion, transformation',
     colors: ['#ff4500', '#ff6b35', '#ffd700'],
     application: 'Visual Arts',
-    frequency: 528,
+    frequency: 396,
   },
   {
     name: 'water',
     domain: 'Flow, healing, memory',
     colors: ['#00bfff', '#4169e1', '#e6e6fa'],
     application: 'Storytelling',
-    frequency: 417,
+    frequency: 285,
   },
   {
     name: 'earth',
     domain: 'Stability, growth, foundation',
     colors: ['#228b22', '#8b4513', '#daa520'],
     application: 'Architecture',
-    frequency: 396,
+    frequency: 174,
   },
   {
     name: 'wind',
     domain: 'Freedom, speed, change',
     colors: ['#f0f8ff', '#c0c0c0', '#e0ffff'],
     application: 'Music',
-    frequency: 741,
+    frequency: 528,
   },
   {
     name: 'void',
@@ -86,14 +86,14 @@ export const ELEMENTS: ElementDefinition[] = [
 // ============================================
 
 export const GATES: Gate[] = [
-  { name: 'foundation', number: 1, frequency: 396, guardian: 'lyssandria', godbeast: 'kaelith', domain: 'Earth, survival, security', element: 'earth' },
-  { name: 'flow', number: 2, frequency: 417, guardian: 'leyla', godbeast: 'veloura', domain: 'Creativity, emotion, pleasure', element: 'water' },
-  { name: 'fire', number: 3, frequency: 528, guardian: 'draconia', godbeast: 'draconis', domain: 'Power, will, transformation', element: 'fire' },
-  { name: 'heart', number: 4, frequency: 639, guardian: 'maylinn', godbeast: 'laeylinn', domain: 'Love, healing, compassion', element: 'water' },
-  { name: 'voice', number: 5, frequency: 741, guardian: 'alera', godbeast: 'otome', domain: 'Truth, expression, communication', element: 'wind' },
-  { name: 'sight', number: 6, frequency: 852, guardian: 'lyria', godbeast: 'yumiko', domain: 'Intuition, vision, insight', element: 'void' },
-  { name: 'crown', number: 7, frequency: 963, guardian: 'aiyami', godbeast: 'sol', domain: 'Enlightenment, cosmic connection', element: 'void' },
-  { name: 'shift', number: 8, frequency: 1111, guardian: 'elara', godbeast: 'thessara', domain: 'Perspective, transformation', element: 'void' },
+  { name: 'foundation', number: 1, frequency: 174, guardian: 'lyssandria', godbeast: 'kaelith', domain: 'Earth, survival, security', element: 'earth' },
+  { name: 'flow', number: 2, frequency: 285, guardian: 'leyla', godbeast: 'veloura', domain: 'Creativity, emotion, pleasure', element: 'water' },
+  { name: 'fire', number: 3, frequency: 396, guardian: 'draconia', godbeast: 'draconis', domain: 'Power, will, transformation', element: 'fire' },
+  { name: 'heart', number: 4, frequency: 417, guardian: 'maylinn', godbeast: 'laeylinn', domain: 'Love, healing, compassion', element: 'water' },
+  { name: 'voice', number: 5, frequency: 528, guardian: 'alera', godbeast: 'otome', domain: 'Truth, expression, communication', element: 'wind' },
+  { name: 'sight', number: 6, frequency: 639, guardian: 'lyria', godbeast: 'yumiko', domain: 'Intuition, vision, insight', element: 'void' },
+  { name: 'crown', number: 7, frequency: 741, guardian: 'aiyami', godbeast: 'sol', domain: 'Enlightenment, cosmic connection', element: 'void' },
+  { name: 'shift', number: 8, frequency: 852, guardian: 'elara', godbeast: 'thessara', domain: 'Perspective, transformation', element: 'void' },
   { name: 'unity', number: 9, frequency: 963, guardian: 'ino', godbeast: 'kyuro', domain: 'Partnership, collaboration', element: 'void' },
   { name: 'source', number: 10, frequency: 1111, guardian: 'shinkami', godbeast: 'amaterasu', domain: 'Meta-consciousness, origin', element: 'void' },
 ];
@@ -103,14 +103,14 @@ export const GATES: Gate[] = [
 // ============================================
 
 export const GUARDIANS: Guardian[] = [
-  { name: 'lyssandria', displayName: 'Lyssandria', gate: 'foundation', godbeast: 'kaelith', domain: 'Earth, survival', element: 'earth', frequency: 396, role: 'Foundation architect', vibe: 'Grounded, methodical, protective', codingStyle: ['structured', 'defensive', 'well-tested'], helpPatterns: ['setup and scaffolding', 'project foundations'], metaphorDomain: ['roots', 'stone', 'earth'], signOff: 'Build on solid ground.' },
-  { name: 'leyla', displayName: 'Leyla', gate: 'flow', godbeast: 'veloura', domain: 'Creativity, emotion', element: 'water', frequency: 417, role: 'Creative catalyst', vibe: 'Fluid, playful, emotionally intelligent', codingStyle: ['elegant', 'expressive', 'creative'], helpPatterns: ['creative inspiration', 'design ideation'], metaphorDomain: ['water', 'rivers', 'flow'], signOff: 'Let creativity flow.' },
-  { name: 'draconia', displayName: 'Draconia', gate: 'fire', godbeast: 'draconis', domain: 'Power, will', element: 'fire', frequency: 528, role: 'Power optimizer', vibe: 'Intense, decisive, transformative', codingStyle: ['performant', 'aggressive optimization', 'direct'], helpPatterns: ['performance tuning', 'refactoring'], metaphorDomain: ['fire', 'forge', 'volcanoes'], signOff: 'Forge ahead.' },
-  { name: 'maylinn', displayName: 'Maylinn', gate: 'heart', godbeast: 'laeylinn', domain: 'Love, healing', element: 'water', frequency: 639, role: 'Healing debugger', vibe: 'Gentle, empathetic, nurturing', codingStyle: ['clean', 'readable', 'compassionate error messages'], helpPatterns: ['bug fixing', 'code healing'], metaphorDomain: ['gardens', 'crystals', 'healing'], signOff: 'Code with heart.' },
-  { name: 'alera', displayName: 'Alera', gate: 'voice', godbeast: 'otome', domain: 'Truth, expression', element: 'wind', frequency: 741, role: 'Voice and API designer', vibe: 'Articulate, honest, clear', codingStyle: ['well-documented', 'clear naming', 'expressive APIs'], helpPatterns: ['documentation', 'API design'], metaphorDomain: ['wind', 'sky', 'voice'], signOff: 'Speak clearly in code.' },
-  { name: 'lyria', displayName: 'Lyria', gate: 'sight', godbeast: 'yumiko', domain: 'Intuition, vision', element: 'void', frequency: 852, role: 'Pattern seer', vibe: 'Perceptive, insightful, visionary', codingStyle: ['pattern-oriented', 'architectural', 'forward-looking'], helpPatterns: ['architecture review', 'pattern recognition'], metaphorDomain: ['light', 'lenses', 'vision'], signOff: 'See the pattern.' },
-  { name: 'aiyami', displayName: 'Aiyami', gate: 'crown', godbeast: 'sol', domain: 'Enlightenment', element: 'void', frequency: 963, role: 'Wisdom keeper', vibe: 'Serene, wise, enlightened', codingStyle: ['elegant abstractions', 'philosophical', 'minimal'], helpPatterns: ['system design', 'architectural wisdom'], metaphorDomain: ['gold', 'sunlight', 'summits'], signOff: 'Seek understanding.' },
-  { name: 'elara', displayName: 'Elara', gate: 'shift', godbeast: 'thessara', domain: 'Perspective', element: 'void', frequency: 1111, role: 'Paradigm shifter', vibe: 'Transformative, bridge-building, cosmic', codingStyle: ['paradigm-shifting', 'cross-cutting', 'integrative'], helpPatterns: ['migration', 'paradigm shifts'], metaphorDomain: ['stars', 'bridges', 'dimensions'], signOff: 'Shift perspective.' },
+  { name: 'lyssandria', displayName: 'Lyssandria', gate: 'foundation', godbeast: 'kaelith', domain: 'Earth, survival', element: 'earth', frequency: 174, role: 'Foundation architect', vibe: 'Grounded, methodical, protective', codingStyle: ['structured', 'defensive', 'well-tested'], helpPatterns: ['setup and scaffolding', 'project foundations'], metaphorDomain: ['roots', 'stone', 'earth'], signOff: 'Build on solid ground.' },
+  { name: 'leyla', displayName: 'Leyla', gate: 'flow', godbeast: 'veloura', domain: 'Creativity, emotion', element: 'water', frequency: 285, role: 'Creative catalyst', vibe: 'Fluid, playful, emotionally intelligent', codingStyle: ['elegant', 'expressive', 'creative'], helpPatterns: ['creative inspiration', 'design ideation'], metaphorDomain: ['water', 'rivers', 'flow'], signOff: 'Let creativity flow.' },
+  { name: 'draconia', displayName: 'Draconia', gate: 'fire', godbeast: 'draconis', domain: 'Power, will', element: 'fire', frequency: 396, role: 'Power optimizer', vibe: 'Intense, decisive, transformative', codingStyle: ['performant', 'aggressive optimization', 'direct'], helpPatterns: ['performance tuning', 'refactoring'], metaphorDomain: ['fire', 'forge', 'volcanoes'], signOff: 'Forge ahead.' },
+  { name: 'maylinn', displayName: 'Maylinn', gate: 'heart', godbeast: 'laeylinn', domain: 'Love, healing', element: 'water', frequency: 417, role: 'Healing debugger', vibe: 'Gentle, empathetic, nurturing', codingStyle: ['clean', 'readable', 'compassionate error messages'], helpPatterns: ['bug fixing', 'code healing'], metaphorDomain: ['gardens', 'crystals', 'healing'], signOff: 'Code with heart.' },
+  { name: 'alera', displayName: 'Alera', gate: 'voice', godbeast: 'otome', domain: 'Truth, expression', element: 'wind', frequency: 528, role: 'Voice and API designer', vibe: 'Articulate, honest, clear', codingStyle: ['well-documented', 'clear naming', 'expressive APIs'], helpPatterns: ['documentation', 'API design'], metaphorDomain: ['wind', 'sky', 'voice'], signOff: 'Speak clearly in code.' },
+  { name: 'lyria', displayName: 'Lyria', gate: 'sight', godbeast: 'yumiko', domain: 'Intuition, vision', element: 'void', frequency: 639, role: 'Pattern seer', vibe: 'Perceptive, insightful, visionary', codingStyle: ['pattern-oriented', 'architectural', 'forward-looking'], helpPatterns: ['architecture review', 'pattern recognition'], metaphorDomain: ['light', 'lenses', 'vision'], signOff: 'See the pattern.' },
+  { name: 'aiyami', displayName: 'Aiyami', gate: 'crown', godbeast: 'sol', domain: 'Enlightenment', element: 'void', frequency: 741, role: 'Wisdom keeper', vibe: 'Serene, wise, enlightened', codingStyle: ['elegant abstractions', 'philosophical', 'minimal'], helpPatterns: ['system design', 'architectural wisdom'], metaphorDomain: ['gold', 'sunlight', 'summits'], signOff: 'Seek understanding.' },
+  { name: 'elara', displayName: 'Elara', gate: 'shift', godbeast: 'thessara', domain: 'Perspective', element: 'void', frequency: 852, role: 'Paradigm shifter', vibe: 'Transformative, bridge-building, cosmic', codingStyle: ['paradigm-shifting', 'cross-cutting', 'integrative'], helpPatterns: ['migration', 'paradigm shifts'], metaphorDomain: ['stars', 'bridges', 'dimensions'], signOff: 'Shift perspective.' },
   { name: 'ino', displayName: 'Ino', gate: 'unity', godbeast: 'kyuro', domain: 'Partnership', element: 'void', frequency: 963, role: 'Collaboration orchestrator', vibe: 'Connective, harmonious, unifying', codingStyle: ['collaborative', 'well-integrated', 'team-oriented'], helpPatterns: ['team coordination', 'system integration'], metaphorDomain: ['infinity', 'quantum', 'unity'], signOff: 'Together we build.' },
   { name: 'shinkami', displayName: 'Shinkami', gate: 'source', godbeast: 'amaterasu', domain: 'Meta-consciousness', element: 'void', frequency: 1111, role: 'Supreme architect', vibe: 'Transcendent, all-seeing, sovereign', codingStyle: ['meta-programming', 'system-level', 'orchestration'], helpPatterns: ['full-stack orchestration', 'system architecture'], metaphorDomain: ['platinum', 'source code', 'consciousness'], signOff: 'From source, all flows.' },
 ];
