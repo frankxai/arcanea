@@ -1,0 +1,21 @@
+{
+  "name": "@arcanea/tool-memory",
+  "version": "0.1.0",
+  "description": "Arcanea built-in tool: memory",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@arcanea/agent-runtime": "workspace:*",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.5.4"
+  },
+  "license": "MIT"
+}
