@@ -41,6 +41,7 @@ jobs:
 
       - name: Build packages
         run: |
+          pnpm --filter @arcanea/core run build
           pnpm --filter @arcanea/os run build
           pnpm --filter @arcanea/auth run build
           pnpm --filter @arcanea/extension-core run build
@@ -80,6 +81,7 @@ jobs:
 
       - name: Type check all packages
         run: |
+          pnpm --filter @arcanea/core run build
           pnpm --filter @arcanea/os run build
           pnpm --filter @arcanea/auth run build
           pnpm --filter @arcanea/extension-core run build

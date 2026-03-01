@@ -40,7 +40,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build core package
-        run: pnpm --filter @arcanea/os build
+        run: pnpm --filter @arcanea/core build
 
       - name: Build MCP server
         run: pnpm --filter @arcanea/mcp-server build
