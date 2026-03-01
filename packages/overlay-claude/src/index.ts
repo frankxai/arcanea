@@ -1,5 +1,5 @@
 export { ClaudeOverlayInstaller } from './installer.js';
-export { generateSkillFile, getSkillIdsForLevel, generateAgentFile, generateCommandFile } from './generators.js';
+export { generateSkillFile, getSkillIdsForLevel, generateAgentFile, generateLuminorAgentFile, generateGodbeastFile, generateCommandFile } from './generators.js';
 export {
   generateSessionStartHook,
   generatePromptSubmitHook,

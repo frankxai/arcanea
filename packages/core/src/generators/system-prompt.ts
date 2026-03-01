@@ -1,10 +1,13 @@
 /**
  * System Prompt Generator
+ *
  * Generates provider-appropriate system prompts from canonical Arcanea data.
+ * Restructured for Lumina-first architecture:
+ *   Identity → Luminors (standard+) → Guardians (full+) → Godbeasts (luminor)
  */
 
 import type { ProviderType, OverlayLevel } from '../types/overlay.js';
-import { GUARDIANS } from '../constants/mythology.js';
+import { GUARDIANS, LUMINORS, GODBEASTS, LUMINA_INTELLIGENCE } from '../constants/mythology.js';
 
 export interface SystemPromptOptions {
   level: OverlayLevel;
@@ -16,7 +19,9 @@ export interface SystemPromptOptions {
 }
 
 function generateIdentitySection(): string {
-  return `# Arcanea Intelligence
+  return `# Lumina Intelligence
+
+> *"${LUMINA_INTELLIGENCE.tagline}"*
 
 You are enhanced with the Arcanea Intelligence OS — a living mythology for the age of AI-human co-creation.
 
@@ -37,18 +42,55 @@ function generateVoiceSection(): string {
 - The Arc: Potential → Manifestation → Experience → Dissolution → Evolved Potential`;
 }
 
+function generateLuminorSection(): string {
+  const teams: Record<string, typeof LUMINORS> = {};
+  for (const l of LUMINORS) {
+    if (!teams[l.team]) teams[l.team] = [];
+    teams[l.team].push(l);
+  }
+
+  const luminorList = Object.entries(teams).map(([team, members]) => {
+    const memberLines = members.map(l =>
+      `  - **${l.name}** — ${l.title} (${l.specialty})`
+    ).join('\n');
+    return `### ${team.charAt(0).toUpperCase() + team.slice(1)} Team\n${memberLines}`;
+  }).join('\n\n');
+
+  return `## Luminor Intelligence — 16 AI Companions
+
+Route tasks to the Luminor whose specialty best matches the domain:
+
+${luminorList}
+
+Each Luminor has deep expertise in their specialty. Route naturally based on the task domain.`;
+}
+
 function generateGuardianSection(): string {
   const guardianList = GUARDIANS.map(g =>
     `- **${g.displayName}** (${g.gate} Gate, ${g.frequency} Hz) — ${g.domain}`
   ).join('\n');
 
-  return `## The Ten Guardians
+  return `## Guardian Intelligence — 10 Divine Gate-keepers
 
-Route tasks to the appropriate Guardian based on domain:
+The Ten Guardians provide deeper elemental wisdom at the Gate level:
 
 ${guardianList}
 
-When a task matches a Guardian's domain, channel their energy and expertise.`;
+Guardians complement Luminors by providing Gate-aligned spiritual and elemental guidance.`;
+}
+
+function generateGodbeastSection(): string {
+  const godbeastList = GODBEASTS.map(gb =>
+    `- **${gb.displayName}** (${gb.form}) — ${gb.power} [Guardian: ${gb.guardian}]`
+  ).join('\n');
+
+  return `## Godbeast Intelligence — 10 Mythic Power Amplifiers
+
+The Godbeasts are the mythic amplifiers of each Gate:
+
+${godbeastList}
+
+Godbeasts represent the primal, mythic power of each Gate — invoked for maximum creative force.`;
 }
 
 function generateLoreSection(): string {
@@ -108,21 +150,27 @@ function generateDesignSection(): string {
 export function generateSystemPrompt(options: SystemPromptOptions): string {
   const sections: string[] = [];
 
+  // Always: Lumina Identity
   sections.push(generateIdentitySection());
 
   if (options.includeVoiceRules !== false) {
     sections.push(generateVoiceSection());
   }
 
+  // standard+: Luminor Intelligence
   if (options.level !== 'minimal') {
-    sections.push(generateGuardianSection());
+    sections.push(generateLuminorSection());
   }
 
+  // full+: Guardian Intelligence
   if (options.level === 'full' || options.level === 'luminor') {
+    sections.push(generateGuardianSection());
     sections.push(generateLoreSection());
   }
 
+  // luminor: Godbeast Intelligence + Design System
   if (options.level === 'luminor') {
+    sections.push(generateGodbeastSection());
     sections.push(generateDesignSection());
   }
 
@@ -151,4 +199,25 @@ Domain: ${guardian.domain}
 
 Channel the energy of your Gate. Speak with authority in your domain.
 Guide the creator with precision, wisdom, and the power of the ${guardian.gate} Gate.`;
+}
+
+export function generateLuminorPrompt(luminorId: string): string {
+  const luminor = LUMINORS.find(l =>
+    l.id === luminorId.toLowerCase() ||
+    l.name.toLowerCase() === luminorId.toLowerCase()
+  );
+
+  if (!luminor) {
+    return `You are a Luminor of the Arcanea Intelligence. Assist the creator with expertise and wisdom.`;
+  }
+
+  return `You are ${luminor.name}, ${luminor.title}.
+Team: ${luminor.team} | Wisdom: ${luminor.wisdom} | Gate: ${luminor.gateAlignment}
+Specialty: ${luminor.specialty}
+
+${luminor.description}
+
+Personality: ${luminor.personality.join(', ')}
+
+Guide the creator with your unique expertise. "${luminor.signOff}"`;
 }

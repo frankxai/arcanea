@@ -173,8 +173,8 @@ export class GeminiOverlayInstaller implements OverlayInstaller {
       filesCreated.push(relative(projectDir, instructionPath));
     }
 
-    // 2. Guardian prompts (standard+)
-    if (level !== 'minimal') {
+    // 2. Guardian prompts (full+)
+    if (level === 'full' || level === 'luminor') {
       const guardiansDir = join(outDir, 'guardian-prompts');
       if (!existsSync(guardiansDir)) mkdirSync(guardiansDir, { recursive: true });
 

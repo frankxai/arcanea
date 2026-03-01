@@ -24,7 +24,11 @@ export type {
   AcademyHouse,
   Academy,
   LuminorId,
+  LuminorTeam,
+  WisdomName,
   Luminor,
+  IntelligenceTier,
+  LuminaIntelligence,
   DarkLord,
   ArcaneaWorld,
 } from './mythology.js';

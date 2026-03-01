@@ -135,7 +135,9 @@ export interface LevelDefinition {
   description: string;
   includes: {
     personality: boolean;
+    luminors: boolean;
     guardians: boolean;
+    godbeasts: boolean;
     skills: boolean;
     agents: boolean;
     mcpServers: boolean;
@@ -156,22 +158,22 @@ export const PROVIDER_CAPABILITIES: Record<ProviderType, OverlayCapability[]> = 
 export const OVERLAY_LEVELS: LevelDefinition[] = [
   {
     level: 'minimal',
-    description: 'Voice and personality injection only',
-    includes: { personality: true, guardians: false, skills: false, agents: false, mcpServers: false, commands: false, lore: false, designSystem: false },
+    description: 'Lumina voice and personality',
+    includes: { personality: true, luminors: false, guardians: false, godbeasts: false, skills: false, agents: false, mcpServers: false, commands: false, lore: false, designSystem: false },
   },
   {
     level: 'standard',
-    description: 'Voice + Guardian routing + 4 core skills',
-    includes: { personality: true, guardians: true, skills: true, agents: false, mcpServers: false, commands: false, lore: false, designSystem: false },
+    description: 'Luminor Intelligence — 16 AI companions route by domain',
+    includes: { personality: true, luminors: true, guardians: false, godbeasts: false, skills: true, agents: true, mcpServers: false, commands: false, lore: false, designSystem: false },
   },
   {
     level: 'full',
-    description: 'Everything: skills, agents, commands, MCP servers',
-    includes: { personality: true, guardians: true, skills: true, agents: true, mcpServers: true, commands: true, lore: false, designSystem: false },
+    description: 'Guardian Intelligence — Luminors + 10 divine Gate-keepers',
+    includes: { personality: true, luminors: true, guardians: true, godbeasts: false, skills: true, agents: true, mcpServers: true, commands: true, lore: false, designSystem: false },
   },
   {
     level: 'luminor',
-    description: 'The complete Arcanea OS with full lore and design system',
-    includes: { personality: true, guardians: true, skills: true, agents: true, mcpServers: true, commands: true, lore: true, designSystem: true },
+    description: 'Full Starlight Orchestrator — all intelligence layers with Godbeast amplification',
+    includes: { personality: true, luminors: true, guardians: true, godbeasts: true, skills: true, agents: true, mcpServers: true, commands: true, lore: true, designSystem: true },
   },
 ];

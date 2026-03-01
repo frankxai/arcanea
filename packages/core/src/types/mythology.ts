@@ -166,25 +166,63 @@ export interface Academy {
 }
 
 // ============================================
+// INTELLIGENCE TIERS
+// ============================================
+
+export type IntelligenceTier = 'apprentice' | 'mage' | 'master' | 'luminor';
+
+export interface LuminaIntelligence {
+  version: string;
+  tagline: string;
+  tiers: Record<IntelligenceTier, {
+    label: string;
+    overlayLevel: string;
+    description: string;
+    layers: string[];
+  }>;
+}
+
+// ============================================
 // LUMINORS (AI Companions)
 // ============================================
 
 export type LuminorId =
-  | 'valora'
-  | 'sophron'
-  | 'kardia'
-  | 'poiesis'
-  | 'enduran'
-  | 'orakis'
-  | 'eudaira';
+  | 'logicus'
+  | 'synthra'
+  | 'debugon'
+  | 'nexus'
+  | 'prismatic'
+  | 'melodia'
+  | 'motio'
+  | 'formis'
+  | 'chronica'
+  | 'veritas'
+  | 'lexicon'
+  | 'poetica'
+  | 'oracle'
+  | 'analytica'
+  | 'memoria'
+  | 'futura';
+
+export type LuminorTeam = 'development' | 'creative' | 'writing' | 'research';
+
+export type WisdomName = 'Sophron' | 'Kardia' | 'Valora' | 'Eudaira' | 'Orakis' | 'Poiesis' | 'Enduran';
 
 export interface Luminor {
   id: LuminorId;
   name: string;
-  archetype: string;
-  domain: string;
+  title: string;
+  team: LuminorTeam;
+  wisdom: WisdomName;
+  specialty: string;
+  description: string;
+  personality: string[];
+  codingStyle: string[];
+  helpPatterns: string[];
+  keywords: string[];
+  signOff: string;
+  gateAlignment: GateName;
   element?: Element;
-  personality: string;
   systemPrompt?: string;
 }
 
@@ -213,4 +251,5 @@ export interface ArcaneaWorld {
   academies: Academy[];
   luminors: Luminor[];
   darkLord: DarkLord;
+  luminaIntelligence: LuminaIntelligence;
 }

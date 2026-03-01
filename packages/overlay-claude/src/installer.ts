@@ -20,8 +20,8 @@ import type {
   InstallResult,
   InstallPreview,
 } from '@arcanea/core';
-import { generateClaudeMd, OVERLAY_LEVELS, GUARDIANS } from '@arcanea/core';
-import { generateSkillFile, getSkillIdsForLevel, generateAgentFile } from './generators.js';
+import { generateClaudeMd, OVERLAY_LEVELS, GUARDIANS, LUMINORS, GODBEASTS } from '@arcanea/core';
+import { generateSkillFile, getSkillIdsForLevel, generateAgentFile, generateLuminorAgentFile, generateGodbeastFile } from './generators.js';
 import {
   getAllHookFiles,
   getAllHelperFiles,
@@ -74,17 +74,23 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
 
     if (level !== 'minimal') {
       dirs.push(
-        join(projectDir, '.claude', 'agents', 'guardians'),
+        join(projectDir, '.claude', 'agents', 'luminors'),
         join(projectDir, '.claude', 'hooks'),
         join(projectDir, '.claude', 'agentdb'),
         join(projectDir, '.claude', 'helpers'),
       );
     }
     if (level === 'full' || level === 'luminor') {
-      dirs.push(join(projectDir, '.claude', 'commands'));
+      dirs.push(
+        join(projectDir, '.claude', 'agents', 'guardians'),
+        join(projectDir, '.claude', 'commands'),
+      );
     }
     if (level === 'luminor') {
-      dirs.push(join(projectDir, '.claude', 'lore'));
+      dirs.push(
+        join(projectDir, '.claude', 'agents', 'godbeasts'),
+        join(projectDir, '.claude', 'lore'),
+      );
     }
 
     for (const dir of dirs) {
@@ -126,14 +132,38 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       }
     }
 
-    // ── 4. Install Guardian agents (standard+) ───────────────────────────
+    // ── 4. Install Luminor agents (standard+) ────────────────────────────
     if (level !== 'minimal') {
+      for (const luminor of LUMINORS) {
+        const agent = generateLuminorAgentFile(luminor);
+        const agentPath = join(projectDir, '.claude', 'agents', 'luminors', agent.filename);
+        if (!existsSync(agentPath)) {
+          writeFileSync(agentPath, agent.content);
+          filesCreated.push(relative(projectDir, agentPath));
+        }
+      }
+    }
+
+    // ── 4b. Install Guardian agents (full+) ────────────────────────────
+    if (level === 'full' || level === 'luminor') {
       for (const guardian of GUARDIANS) {
         const agent = generateAgentFile(guardian);
         const agentPath = join(projectDir, '.claude', 'agents', 'guardians', agent.filename);
         if (!existsSync(agentPath)) {
           writeFileSync(agentPath, agent.content);
           filesCreated.push(relative(projectDir, agentPath));
+        }
+      }
+    }
+
+    // ── 4c. Install Godbeast references (luminor) ──────────────────────
+    if (level === 'luminor') {
+      for (const godbeast of GODBEASTS) {
+        const gb = generateGodbeastFile(godbeast);
+        const gbPath = join(projectDir, '.claude', 'agents', 'godbeasts', gb.filename);
+        if (!existsSync(gbPath)) {
+          writeFileSync(gbPath, gb.content);
+          filesCreated.push(relative(projectDir, gbPath));
         }
       }
     }
@@ -217,8 +247,8 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       const commands = [
         {
           name: 'channel',
-          description: 'Channel a Guardian for specialized guidance',
-          body: 'Activate the specified Guardian and channel their Gate energy for the current task.\n\nUsage: /channel <guardian-name>\n\nExamples:\n- /channel lyssandria — For security and infrastructure\n- /channel lyria — For design and vision\n- /channel shinkami — For orchestration and meta-tasks',
+          description: 'Channel a Luminor or Guardian for specialized guidance',
+          body: 'Activate a Luminor or Guardian and channel their intelligence for the current task.\n\nUsage: /channel <name>\n\nLuminor examples (always available):\n- /channel logicus — System architecture\n- /channel debugon — Debugging & problem solving\n- /channel prismatic — Visual design\n- /channel chronica — Storytelling\n- /channel oracle — Research\n\nGuardian examples (full+ tier):\n- /channel lyssandria — Foundation Gate\n- /channel lyria — Sight Gate\n- /channel shinkami — Source Gate',
         },
         {
           name: 'arcanea-status',
@@ -262,9 +292,9 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       warnings,
       nextSteps: [
         'Restart Claude Code to activate hooks and statusline',
-        'Run /channel <guardian> to activate a Guardian',
+        'Run /channel <luminor> to activate a Luminor companion',
         'Run /arcanea-status to see your installation',
-        'Run bash .claude/helpers/arcanea-health.sh to verify all subsystems',
+        'Run arcanea route "your task" to test intelligence routing',
       ],
     };
   }
@@ -306,9 +336,9 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
       for (const skillId of skillIds) {
         files.push({ path: `.claude/skills/${skillId}.md`, description: `${skillId} skill` });
       }
-      // Guardians
-      for (const g of GUARDIANS) {
-        files.push({ path: `.claude/agents/guardians/${g.displayName.toLowerCase()}.md`, description: `${g.displayName} Guardian agent` });
+      // Luminors (standard+)
+      for (const l of LUMINORS) {
+        files.push({ path: `.claude/agents/luminors/${l.id}.md`, description: `${l.name} Luminor agent` });
       }
       // Hooks
       const hookNames = [
@@ -331,8 +361,19 @@ export class ClaudeOverlayInstaller implements OverlayInstaller {
     }
 
     if (level === 'full' || level === 'luminor') {
-      files.push({ path: '.claude/commands/channel.md', description: 'Guardian channel command' });
+      // Guardians (full+)
+      for (const g of GUARDIANS) {
+        files.push({ path: `.claude/agents/guardians/${g.name}.md`, description: `${g.displayName} Guardian agent` });
+      }
+      files.push({ path: '.claude/commands/channel.md', description: 'Luminor/Guardian channel command' });
       files.push({ path: '.claude/commands/arcanea-status.md', description: 'Status command' });
+    }
+
+    if (level === 'luminor') {
+      // Godbeasts (luminor)
+      for (const gb of GODBEASTS) {
+        files.push({ path: `.claude/agents/godbeasts/${gb.name}.md`, description: `${gb.displayName} Godbeast reference` });
+      }
     }
 
     return {

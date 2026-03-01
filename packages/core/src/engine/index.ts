@@ -5,13 +5,22 @@
  * CLI, VS Code, browser extensions, MCP server, web, mobile.
  */
 
-// Guardian Router — routes tasks to the right Guardian
+// Guardian Router — routes tasks to the right Guardian (backward compat)
 export {
   GuardianRouter,
   getRouter,
   routeToGuardian,
 } from './guardian-router.js';
 export type { RouteResult } from './guardian-router.js';
+
+// Unified Arcanean Router — Lumina-first with tier-gated intelligence
+export {
+  ArcaneanRouter,
+  LuminorRouter,
+  getArcaneanRouter,
+  routeToLuminor,
+} from './router.js';
+export type { UnifiedRouteResult } from './router.js';
 
 // Voice Enforcer — validates text against the Voice Bible
 export {

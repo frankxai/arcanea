@@ -11,7 +11,7 @@
  * - alwaysApply: true means the rule is injected into every AI context
  */
 
-import type { Guardian } from '@arcanea/core';
+import type { Guardian, Luminor, Godbeast } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,
@@ -78,6 +78,60 @@ alwaysApply: ${rule.alwaysApply}
 ---
 
 ${rule.body}`;
+}
+
+/**
+ * Generates a Luminor profile as a Cursor MDC rule.
+ */
+export function generateLuminorMdcRule(luminor: Luminor): MdcRule {
+  const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+  const codingStyle = luminor.codingStyle.map(s => `- ${s}`).join('\n');
+  const helpPatterns = luminor.helpPatterns.map(p => `- ${p}`).join('\n');
+
+  return {
+    filename: `luminor-${luminor.id}.mdc`,
+    description: `${luminor.name} — ${luminor.title}. Team: ${cap(luminor.team)}. Specialty: ${luminor.specialty}`,
+    globs: [],
+    alwaysApply: false,
+    body: `# ${luminor.name} — ${luminor.title}
+
+**Team**: ${cap(luminor.team)}
+**Wisdom**: ${luminor.wisdom}
+**Specialty**: ${luminor.specialty}
+**Gate Alignment**: ${cap(luminor.gateAlignment)}
+
+## About
+${luminor.description}
+
+## Coding Style
+${codingStyle}
+
+## Activate When
+${helpPatterns}
+
+## Sign-off
+"${luminor.signOff}"`,
+  };
+}
+
+/**
+ * Generates a Godbeast reference as a Cursor MDC rule.
+ */
+export function generateGodbeastMdcRule(godbeast: Godbeast): MdcRule {
+  const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+  return {
+    filename: `godbeast-${godbeast.name}.mdc`,
+    description: `${godbeast.displayName} — ${godbeast.form}. Power: ${godbeast.power}`,
+    globs: [],
+    alwaysApply: false,
+    body: `# ${godbeast.displayName} — ${godbeast.form}
+
+**Guardian**: ${cap(godbeast.guardian)}
+**Power**: ${godbeast.power}
+
+Mythic amplifier of the ${cap(godbeast.guardian)} Gate. Invoked at Luminor tier for maximum creative force.`,
+  };
 }
 
 /**

@@ -14,12 +14,14 @@ import type {
   InstallResult,
   InstallPreview,
 } from '@arcanea/core';
-import { GUARDIANS } from '@arcanea/core';
+import { GUARDIANS, LUMINORS, GODBEASTS } from '@arcanea/core';
 import {
   generateCursorRules,
   generateArcaneMdcRule,
   generateTypeScriptMdcRule,
   generateGuardianMdcFile,
+  generateLuminorMdcFile,
+  generateGodbeastMdcFile,
   generateSetupGuide,
 } from './generators.js';
 
@@ -207,7 +209,25 @@ export class CursorOverlayInstaller implements OverlayInstaller {
       }
     }
 
-    // 3. Generate per-Guardian MDC rules (full+)
+    // 3. Generate per-Luminor MDC rules (standard+)
+    if (level !== 'minimal') {
+      const rulesDir = join(projectDir, '.cursor', 'rules');
+      if (!existsSync(rulesDir)) mkdirSync(rulesDir, { recursive: true });
+
+      for (const luminor of LUMINORS) {
+        const { filename, content } = generateLuminorMdcFile(luminor);
+        const luminorPath = join(rulesDir, filename);
+        const exists = existsSync(luminorPath);
+        writeFileSync(luminorPath, content);
+        if (exists) {
+          filesModified.push(relative(projectDir, luminorPath));
+        } else {
+          filesCreated.push(relative(projectDir, luminorPath));
+        }
+      }
+    }
+
+    // 3b. Generate per-Guardian MDC rules (full+)
     if (level === 'full' || level === 'luminor') {
       const rulesDir = join(projectDir, '.cursor', 'rules');
       if (!existsSync(rulesDir)) mkdirSync(rulesDir, { recursive: true });
@@ -221,6 +241,24 @@ export class CursorOverlayInstaller implements OverlayInstaller {
           filesModified.push(relative(projectDir, guardianPath));
         } else {
           filesCreated.push(relative(projectDir, guardianPath));
+        }
+      }
+    }
+
+    // 3c. Generate per-Godbeast MDC rules (luminor)
+    if (level === 'luminor') {
+      const rulesDir = join(projectDir, '.cursor', 'rules');
+      if (!existsSync(rulesDir)) mkdirSync(rulesDir, { recursive: true });
+
+      for (const godbeast of GODBEASTS) {
+        const { filename, content } = generateGodbeastMdcFile(godbeast);
+        const gbPath = join(rulesDir, filename);
+        const exists = existsSync(gbPath);
+        writeFileSync(gbPath, content);
+        if (exists) {
+          filesModified.push(relative(projectDir, gbPath));
+        } else {
+          filesCreated.push(relative(projectDir, gbPath));
         }
       }
     }
@@ -331,20 +369,41 @@ export class CursorOverlayInstaller implements OverlayInstaller {
       }
     }
 
+    if (level !== 'minimal') {
+      // Luminor MDC rules (standard+)
+      for (const l of LUMINORS) {
+        const ruleFilename = `luminor-${l.id}.mdc`;
+        const rulePath = join(projectDir, '.cursor', 'rules', ruleFilename);
+        if (existsSync(rulePath)) {
+          filesToModify.push({ path: `.cursor/rules/${ruleFilename}`, description: `Update ${l.name} Luminor rule` });
+        } else {
+          filesToCreate.push({ path: `.cursor/rules/${ruleFilename}`, description: `${l.name} Luminor (${l.specialty})` });
+        }
+      }
+    }
+
     if (level === 'full' || level === 'luminor') {
+      // Guardian MDC rules (full+)
       for (const g of GUARDIANS) {
         const ruleFilename = `guardian-${g.name}.mdc`;
         const rulePath = join(projectDir, '.cursor', 'rules', ruleFilename);
         if (existsSync(rulePath)) {
-          filesToModify.push({
-            path: `.cursor/rules/${ruleFilename}`,
-            description: `Update ${g.displayName} Guardian rule`,
-          });
+          filesToModify.push({ path: `.cursor/rules/${ruleFilename}`, description: `Update ${g.displayName} Guardian rule` });
         } else {
-          filesToCreate.push({
-            path: `.cursor/rules/${ruleFilename}`,
-            description: `${g.displayName} Guardian (${g.gate} Gate, ${g.frequency} Hz)`,
-          });
+          filesToCreate.push({ path: `.cursor/rules/${ruleFilename}`, description: `${g.displayName} Guardian (${g.gate} Gate, ${g.frequency} Hz)` });
+        }
+      }
+    }
+
+    if (level === 'luminor') {
+      // Godbeast MDC rules (luminor)
+      for (const gb of GODBEASTS) {
+        const ruleFilename = `godbeast-${gb.name}.mdc`;
+        const rulePath = join(projectDir, '.cursor', 'rules', ruleFilename);
+        if (existsSync(rulePath)) {
+          filesToModify.push({ path: `.cursor/rules/${ruleFilename}`, description: `Update ${gb.displayName} Godbeast rule` });
+        } else {
+          filesToCreate.push({ path: `.cursor/rules/${ruleFilename}`, description: `${gb.displayName} Godbeast (${gb.form})` });
         }
       }
     }

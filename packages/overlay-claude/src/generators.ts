@@ -6,13 +6,13 @@
  * are installed at higher overlay levels.
  */
 
-import type { OverlayLevel, Guardian } from '@arcanea/core';
+import type { OverlayLevel, Guardian, Luminor, Godbeast } from '@arcanea/core';
 import {
   SKILL_DEFINITIONS,
   getSkillsForLevel,
   generateSkillContent,
 } from '@arcanea/core';
-import { generateAgentContent, COMMAND_TEMPLATE } from './templates.js';
+import { generateAgentContent, generateLuminorAgentContent, generateGodbeastContent, COMMAND_TEMPLATE } from './templates.js';
 
 export function generateSkillFile(
   skillId: string,
@@ -48,6 +48,20 @@ export function generateAgentFile(guardian: Guardian): { filename: string; conte
   return {
     filename: `${guardian.name}.md`,
     content: generateAgentContent(guardian),
+  };
+}
+
+export function generateLuminorAgentFile(luminor: Luminor): { filename: string; content: string } {
+  return {
+    filename: `${luminor.id}.md`,
+    content: generateLuminorAgentContent(luminor),
+  };
+}
+
+export function generateGodbeastFile(godbeast: Godbeast): { filename: string; content: string } {
+  return {
+    filename: `${godbeast.name}.md`,
+    content: generateGodbeastContent(godbeast),
   };
 }
 

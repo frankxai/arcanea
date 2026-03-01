@@ -3,7 +3,7 @@
  * Produces .cursorrules and .cursor/rules/*.mdc files.
  */
 
-import type { OverlayLevel, Guardian } from '@arcanea/core';
+import type { OverlayLevel, Guardian, Luminor, Godbeast } from '@arcanea/core';
 import {
   VOICE_PILLARS,
   ANTIDOTE_PRINCIPLE,
@@ -13,6 +13,8 @@ import {
   LORE_REFERENCE,
   formatMdcRule,
   generateGuardianMdcRule,
+  generateLuminorMdcRule,
+  generateGodbeastMdcRule,
   type MdcRule,
 } from './templates.js';
 
@@ -208,6 +210,22 @@ type EssenceInput = z.infer<typeof EssenceSchema>;
 
 export function generateGuardianMdcFile(guardian: Guardian): { filename: string; content: string } {
   const rule = generateGuardianMdcRule(guardian);
+  return {
+    filename: rule.filename,
+    content: formatMdcRule(rule),
+  };
+}
+
+export function generateLuminorMdcFile(luminor: Luminor): { filename: string; content: string } {
+  const rule = generateLuminorMdcRule(luminor);
+  return {
+    filename: rule.filename,
+    content: formatMdcRule(rule),
+  };
+}
+
+export function generateGodbeastMdcFile(godbeast: Godbeast): { filename: string; content: string } {
+  const rule = generateGodbeastMdcRule(godbeast);
   return {
     filename: rule.filename,
     content: formatMdcRule(rule),
