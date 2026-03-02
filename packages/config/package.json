@@ -1,0 +1,36 @@
+{
+  "name": "@arcanea/config",
+  "version": "0.1.0",
+  "description": "Shared configuration for Arcanea Platform — TypeScript, ESLint, Tailwind presets",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./eslint": "./eslint.js",
+    "./typescript": "./tsconfig.base.json",
+    "./tailwind": "./tailwind.preset.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "tsup": "^8.3.5",
+    "typescript": "^5.5.4"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frankxai/arcanea-platform",
+    "directory": "packages/config"
+  }
+}
