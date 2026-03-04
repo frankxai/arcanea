@@ -1,0 +1,184 @@
+{
+  "_description": "Arcanea Music — Songs of the Living World. All tracks created with Suno AI by @frankx.",
+  "_sunoProfile": "https://suno.com/@frankx",
+  "_arcanaPlaylist": "https://suno.com/playlist/898c6c67-1b25-495f-82ce-53d9139d9a25",
+  "_lastUpdated": "2026-03-04",
+  "_blobBase": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com",
+  "featured": [
+    {
+      "sunoId": "9ff8a563-4ebf-4481-85c1-9f445cfce9e1",
+      "title": "Arcanea (light me up)",
+      "subtitle": "Remastered",
+      "genre": ["Pop Rock", "Soul"],
+      "lore": "The awakening hymn — sung at the moment the Forge first exhaled breath into the world.",
+      "guardian": "Lumina",
+      "plays": 71,
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9ff8a563-4ebf-4481-85c1-9f445cfce9e1/9ff8a563-4ebf-4481-85c1-9f445cfce9e1.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_9ff8a563-4ebf-4481-85c1-9f445cfce9e1.jpeg",
+      "embedUrl": "https://suno.com/embed/9ff8a563-4ebf-4481-85c1-9f445cfce9e1",
+      "sunoUrl": "https://suno.com/song/9ff8a563-4ebf-4481-85c1-9f445cfce9e1"
+    },
+    {
+      "sunoId": "1fc13c04-a7b3-427d-bff0-cac92ee524ae",
+      "title": "Lumina",
+      "subtitle": null,
+      "genre": ["Rock", "Soul", "Orchestral"],
+      "lore": "A direct channeling of the First Guardian — her voice woven from starlight and the echo of creation.",
+      "guardian": "Lumina",
+      "plays": 108,
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/1fc13c04-a7b3-427d-bff0-cac92ee524ae/1fc13c04-a7b3-427d-bff0-cac92ee524ae.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_1fc13c04-a7b3-427d-bff0-cac92ee524ae.jpeg",
+      "embedUrl": "https://suno.com/embed/1fc13c04-a7b3-427d-bff0-cac92ee524ae",
+      "sunoUrl": "https://suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae"
+    },
+    {
+      "sunoId": "eb702834-22c6-44b3-8d5b-bba83c1e9801",
+      "title": "Arcanean Legends",
+      "subtitle": null,
+      "genre": ["Pop-Rock", "Orchestral", "Fantasy"],
+      "lore": "The ballad sung in every realm — carrying the names of those who shaped the world before the Schism.",
+      "guardian": null,
+      "plays": null,
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/eb702834-22c6-44b3-8d5b-bba83c1e9801/eb702834-22c6-44b3-8d5b-bba83c1e9801.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_eb702834-22c6-44b3-8d5b-bba83c1e9801.jpeg",
+      "embedUrl": "https://suno.com/embed/eb702834-22c6-44b3-8d5b-bba83c1e9801",
+      "sunoUrl": "https://suno.com/song/eb702834-22c6-44b3-8d5b-bba83c1e9801"
+    },
+    {
+      "sunoId": "5d17255b-f997-4f4c-82ea-9fa1d5aa982a",
+      "title": "Arcanean Starlight",
+      "subtitle": null,
+      "genre": ["Arena Rock", "Orchestral", "Fantasy"],
+      "lore": "The star-map in sound — each chord a constellation path through the Ten Gates.",
+      "guardian": null,
+      "plays": null,
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/5d17255b-f997-4f4c-82ea-9fa1d5aa982a/5d17255b-f997-4f4c-82ea-9fa1d5aa982a.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_5d17255b-f997-4f4c-82ea-9fa1d5aa982a.jpeg",
+      "embedUrl": "https://suno.com/embed/5d17255b-f997-4f4c-82ea-9fa1d5aa982a",
+      "sunoUrl": "https://suno.com/song/5d17255b-f997-4f4c-82ea-9fa1d5aa982a"
+    }
+  ],
+  "golden_frequencies": [
+    {
+      "sunoId": "69fa45d3-8d45-4f6d-9424-9361cc95fe0a",
+      "title": "Golden Frequency Choir",
+      "genre": ["Neoclassical", "Choral", "World"],
+      "lore": "The original choir — voices from every realm harmonizing at 528hz, the frequency of the Forge.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/69fa45d3-8d45-4f6d-9424-9361cc95fe0a/69fa45d3-8d45-4f6d-9424-9361cc95fe0a.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_69fa45d3-8d45-4f6d-9424-9361cc95fe0a.jpeg",
+      "embedUrl": "https://suno.com/embed/69fa45d3-8d45-4f6d-9424-9361cc95fe0a",
+      "sunoUrl": "https://suno.com/song/69fa45d3-8d45-4f6d-9424-9361cc95fe0a"
+    },
+    {
+      "sunoId": "3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9",
+      "title": "Golden Frequency Choir (Native American)",
+      "genre": ["Neoclassical", "World", "Choral"],
+      "lore": "Throat-singers from the deep forests carry the frequency eastward through time.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9.jpeg",
+      "embedUrl": "https://suno.com/embed/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9",
+      "sunoUrl": "https://suno.com/song/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9"
+    },
+    {
+      "sunoId": "266413cf-32a2-4d56-b143-25424244a025",
+      "title": "Golden Frequency Choir (Male Native)",
+      "genre": ["Neoclassical", "World", "Choral"],
+      "lore": "The guardian-voices of the east, anchoring the cosmic chord.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/266413cf-32a2-4d56-b143-25424244a025/266413cf-32a2-4d56-b143-25424244a025.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_266413cf-32a2-4d56-b143-25424244a025.jpeg",
+      "embedUrl": "https://suno.com/embed/266413cf-32a2-4d56-b143-25424244a025",
+      "sunoUrl": "https://suno.com/song/266413cf-32a2-4d56-b143-25424244a025"
+    },
+    {
+      "sunoId": "8c35ffd4-193a-4955-832c-7a5be69b8604",
+      "title": "Golden Frequency Choir (Mongolian Lead)",
+      "genre": ["Neoclassical", "Electronic", "Choral"],
+      "lore": "Electronic resonance meets ancient overtone singing — the moment Arcanea meets the machine.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/8c35ffd4-193a-4955-832c-7a5be69b8604/8c35ffd4-193a-4955-832c-7a5be69b8604.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_8c35ffd4-193a-4955-832c-7a5be69b8604.jpeg",
+      "embedUrl": "https://suno.com/embed/8c35ffd4-193a-4955-832c-7a5be69b8604",
+      "sunoUrl": "https://suno.com/song/8c35ffd4-193a-4955-832c-7a5be69b8604"
+    },
+    {
+      "sunoId": "1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b",
+      "title": "Golden Frequency Choir (Mongolian Harmonies)",
+      "genre": ["Neoclassical", "Electronic", "Choral"],
+      "lore": "Harmonics layered into the fabric of reality — each overtone a different Gate opening.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b.jpeg",
+      "embedUrl": "https://suno.com/embed/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b",
+      "sunoUrl": "https://suno.com/song/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b"
+    },
+    {
+      "sunoId": "b1c58d80-f4d6-45aa-8ffc-c531be288a5a",
+      "title": "Golden Frequency Choir (Extended)",
+      "genre": ["Neoclassical", "World", "Choral"],
+      "lore": "The full ritual — uncut, uncompressed. For deep world-building sessions and meditation rituals.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/b1c58d80-f4d6-45aa-8ffc-c531be288a5a/b1c58d80-f4d6-45aa-8ffc-c531be288a5a.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_b1c58d80-f4d6-45aa-8ffc-c531be288a5a.jpeg",
+      "embedUrl": "https://suno.com/embed/b1c58d80-f4d6-45aa-8ffc-c531be288a5a",
+      "sunoUrl": "https://suno.com/song/b1c58d80-f4d6-45aa-8ffc-c531be288a5a"
+    },
+    {
+      "sunoId": "5281ac63-ed5a-4933-b8ae-10d2312f3c1a",
+      "title": "Golden Frequencies",
+      "genre": ["Neoclassical", "Ambient"],
+      "lore": "528hz and 963hz tuned together — the original resonance of the Forge before creation began.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/5281ac63-ed5a-4933-b8ae-10d2312f3c1a/5281ac63-ed5a-4933-b8ae-10d2312f3c1a.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_5281ac63-ed5a-4933-b8ae-10d2312f3c1a.jpeg",
+      "embedUrl": "https://suno.com/embed/5281ac63-ed5a-4933-b8ae-10d2312f3c1a",
+      "sunoUrl": "https://suno.com/song/5281ac63-ed5a-4933-b8ae-10d2312f3c1a"
+    },
+    {
+      "sunoId": "721ba24a-ce51-4bba-82f2-83179a8d1ae4",
+      "title": "Golden Frequency v3",
+      "genre": ["Neoclassical", "Choral"],
+      "lore": "Sound bowls and choir converge — a third iteration tuned closer to perfect cosmic pitch.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/721ba24a-ce51-4bba-82f2-83179a8d1ae4/721ba24a-ce51-4bba-82f2-83179a8d1ae4.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_721ba24a-ce51-4bba-82f2-83179a8d1ae4.jpeg",
+      "embedUrl": "https://suno.com/embed/721ba24a-ce51-4bba-82f2-83179a8d1ae4",
+      "sunoUrl": "https://suno.com/song/721ba24a-ce51-4bba-82f2-83179a8d1ae4"
+    },
+    {
+      "sunoId": "3841ae2a-1147-4adb-8b4e-c0491d554fee",
+      "title": "Golden Frequencies v4",
+      "genre": ["Neoclassical", "Ambient"],
+      "lore": "The final form — 528hz healing frequencies refined into a meditation ritual score.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/3841ae2a-1147-4adb-8b4e-c0491d554fee/3841ae2a-1147-4adb-8b4e-c0491d554fee.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_3841ae2a-1147-4adb-8b4e-c0491d554fee.jpeg",
+      "embedUrl": "https://suno.com/embed/3841ae2a-1147-4adb-8b4e-c0491d554fee",
+      "sunoUrl": "https://suno.com/song/3841ae2a-1147-4adb-8b4e-c0491d554fee"
+    },
+    {
+      "sunoId": "58fc5583-b33f-4c62-bbdc-d10dfc19de69",
+      "title": "Golden Frequency Floor",
+      "genre": ["Pop", "Drum and Bass", "Techno"],
+      "lore": "When the frequency hits the dancefloor — the cosmos goes electronic.",
+      "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/58fc5583-b33f-4c62-bbdc-d10dfc19de69/58fc5583-b33f-4c62-bbdc-d10dfc19de69.mp3",
+      "coverUrl": "https://cdn1.suno.ai/image_58fc5583-b33f-4c62-bbdc-d10dfc19de69.jpeg",
+      "embedUrl": "https://suno.com/embed/58fc5583-b33f-4c62-bbdc-d10dfc19de69",
+      "sunoUrl": "https://suno.com/song/58fc5583-b33f-4c62-bbdc-d10dfc19de69"
+    }
+  ],
+  "suno_links": {
+    "profile": "https://suno.com/@frankx",
+    "arcanean_choir_playlist": "https://suno.com/playlist/898c6c67-1b25-495f-82ce-53d9139d9a25",
+    "golden_frequencies_playlist": "https://suno.com/playlist/77e7f75f-24b4-4c8f-b02c-10eff76a7052",
+    "all_arcanea_songs": [
+      "https://suno.com/song/9ff8a563-4ebf-4481-85c1-9f445cfce9e1",
+      "https://suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae",
+      "https://suno.com/song/eb702834-22c6-44b3-8d5b-bba83c1e9801",
+      "https://suno.com/song/5d17255b-f997-4f4c-82ea-9fa1d5aa982a",
+      "https://suno.com/song/69fa45d3-8d45-4f6d-9424-9361cc95fe0a",
+      "https://suno.com/song/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9",
+      "https://suno.com/song/266413cf-32a2-4d56-b143-25424244a025",
+      "https://suno.com/song/8c35ffd4-193a-4955-832c-7a5be69b8604",
+      "https://suno.com/song/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b",
+      "https://suno.com/song/b1c58d80-f4d6-45aa-8ffc-c531be288a5a",
+      "https://suno.com/song/5281ac63-ed5a-4933-b8ae-10d2312f3c1a",
+      "https://suno.com/song/721ba24a-ce51-4bba-82f2-83179a8d1ae4",
+      "https://suno.com/song/3841ae2a-1147-4adb-8b4e-c0491d554fee",
+      "https://suno.com/song/58fc5583-b33f-4c62-bbdc-d10dfc19de69"
+    ]
+  }
+}

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sparkles, Palette, BookOpen, GraduationCap, Info, Brain } from 'lucide-react';
+import { Menu, X, Sparkles, Palette, BookOpen, GraduationCap, Info, Brain, Music2 } from 'lucide-react';
 import { UserNav } from '@/components/auth';
 
 const navLinks = [
@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/studio', label: 'Studio', icon: Palette },
   { href: '/library', label: 'Library', icon: BookOpen },
   { href: '/academy', label: 'Academy', icon: GraduationCap },
+  { href: '/music', label: 'Music', icon: Music2 },
   { href: '/about', label: 'About', icon: Info },
 ];
 
