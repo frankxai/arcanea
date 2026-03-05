@@ -360,14 +360,16 @@ jobs:
           echo "Visit: https://vercel.com/arcanea/deployments"
           echo "Or use: vercel rollback"
 
-      - name: Create incident issue
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: '🚨 Production Deployment Failed - Health Check',
-              body: `## Deployment Failure\n\n**Commit:** ${context.sha}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runId}\n\n**Action Required:**\n1. Check Vercel deployment logs\n2. Review error messages above\n3. Consider rolling back to previous version\n\n**Rollback Command:**\n\`\`\`bash\nvercel rollback\n\`\`\``,
-              labels: ['incident', 'production', 'deployment']
-            });
+      - name: Log deployment failure
+        run: |
+          echo "::error::Production deployment failed health check for commit ${GITHUB_SHA}"
+          echo "## Deployment Failure" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Workflow:** ${{ github.workflow }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Run:** ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Action Required:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Check Vercel deployment logs" >> $GITHUB_STEP_SUMMARY
+          echo "2. Review error messages above" >> $GITHUB_STEP_SUMMARY
+          echo "3. Consider rolling back: \`vercel rollback\`" >> $GITHUB_STEP_SUMMARY
