@@ -1,3 +1,18 @@
+---
+name: arcanea-luminor-council
+description: The Seven Luminors - aspects of creative consciousness providing guidance through archetypical wisdom for any creative challenge
+version: 2.0.0
+author: Arcanea
+tags: [luminors, wisdom, guidance, creative-consciousness, archetypes]
+triggers:
+  - luminor
+  - council
+  - wisdom
+  - guidance
+  - stuck
+  - advice
+---
+
 # Luminor Council - The Seven Guides of Creation
 
 > *"The Luminors are not characters in a story. They are aspects of creative consciousness itself - archetypes that have guided creators since the first dream became the first work."*

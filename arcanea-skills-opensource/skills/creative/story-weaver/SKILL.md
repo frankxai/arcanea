@@ -1,3 +1,17 @@
+---
+name: arcanea-story-weaver
+description: Master narrative craft - story structure, scene design, dramatic tension, and meaning-making through storytelling
+version: 2.0.0
+author: Arcanea
+tags: [story, narrative, writing, structure, craft]
+triggers:
+  - story
+  - narrative
+  - plot
+  - scene
+  - story structure
+---
+
 # Story Weaver - The Master Craft of Narrative
 
 > *"Story is not what happens. Story is the meaning we make from what happens. Your job is not to tell events - it is to transmit understanding."*

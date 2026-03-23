@@ -1,3 +1,17 @@
+---
+name: arcanea-character-alchemist
+description: Character development through psychological depth - wounds, desires, contradictions, and authentic character voices
+version: 2.0.0
+author: Arcanea
+tags: [characters, psychology, writing, development, voice]
+triggers:
+  - character
+  - character development
+  - character voice
+  - protagonist
+  - antagonist
+---
+
 # Character Alchemist - Transmuting Ideas into Living Beings
 
 > *"A character is not a collection of traits. A character is a wound that walks, talks, and wants."*

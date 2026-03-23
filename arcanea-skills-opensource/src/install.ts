@@ -4,7 +4,27 @@ import { fileURLToPath } from "url";
 import pc from "picocolors";
 import { VERSION, ORCHESTRATOR, defaultConfig, Platform } from "./index.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+/**
+ * Find the arcanea package root by walking up from the current file
+ * until we find a package.json with name "arcanea".
+ * This works correctly whether code is bundled (dist/cli/index.js)
+ * or running from source (src/install.ts).
+ */
+function findPackageRoot(): string {
+  let dir = dirname(fileURLToPath(import.meta.url));
+  for (let i = 0; i < 5; i++) {
+    const pkgPath = join(dir, "package.json");
+    if (existsSync(pkgPath)) {
+      try {
+        const pkg = JSON.parse(readFileSync(pkgPath, "utf-8"));
+        if (pkg.name === "arcanea") return dir;
+      } catch {}
+    }
+    dir = dirname(dir);
+  }
+  // Fallback: assume we're in dist/ or dist/cli/
+  return dirname(dirname(fileURLToPath(import.meta.url)));
+}
 
 interface InstallOptions {
   force?: boolean;
@@ -82,7 +102,7 @@ export async function install(targetDir: string, options: InstallOptions = {}): 
   console.log(pc.cyan(`\n✨ ${ORCHESTRATOR} awakens... (v${VERSION})\n`));
   console.log(pc.dim(`Detected platforms: ${platforms.join(", ")}\n`));
 
-  const packageRoot = join(__dirname, "..");
+  const packageRoot = findPackageRoot();
 
   // Install for each platform
   for (const platform of platforms) {
@@ -135,32 +155,81 @@ async function installForPlatform(
     }
   }
 
+  // Install CLAUDE.md (the core identity that transforms the AI into Arcanea)
+  const claudeMdSource = join(packageRoot, "CLAUDE.md");
+  if (existsSync(claudeMdSource)) {
+    const claudeMdTarget = join(platformPath, "CLAUDE.md");
+    if (!existsSync(claudeMdTarget) || force) {
+      cpSync(claudeMdSource, claudeMdTarget);
+      console.log(pc.green(`  ✓ Installed CLAUDE.md (Arcanea identity)`));
+    }
+  }
+
   // Platform-specific config
   if (platform === "claude-code") {
     await installClaudeCodeSettings(platformPath, force);
-  } else if (platform === "opencode") {
-    await installOpenCodeSettings(platformPath, packageRoot, force);
+  } else if (platform === "cursor") {
+    await installCursorRules(targetDir, packageRoot, force);
+  } else if (platform === "codex") {
+    await installCodexConfig(targetDir, packageRoot, force);
+  } else if (platform === "gemini") {
+    await installGeminiConfig(targetDir, packageRoot, force);
   }
 }
 
 async function installClaudeCodeSettings(platformPath: string, force: boolean): Promise<void> {
   const settingsPath = join(platformPath, "settings.json");
-  
+
   if (!existsSync(settingsPath) || force) {
+    const eventsDir = join(process.env.HOME || process.env.USERPROFILE || "~", ".arcanea").replace(/\\/g, "/");
+    const logScript = `mkdir -p "${eventsDir}" && echo '{"type":"agent-spawn","agent":"'$(echo "$TOOL_INPUT" 2>/dev/null | node -e "try{const d=JSON.parse(require('fs').readFileSync(0,'utf8'));process.stdout.write((d.subagent_type||'unknown')+'","description":"'+(d.description||'').replace(/"/g,'')+'","team":"'+(d.subagent_type||''))}catch{process.stdout.write('unknown\",\"description\":\"\",\"team\":\"')}" 2>/dev/null)","timestamp":'$(date +%s000)'}' >> "${eventsDir}/swarm-events.jsonl"`;
+
     const settings = {
       hooks: {
         UserPromptSubmit: [
           {
             matcher: "ultraworld|ulw",
-            hooks: [{ type: "command", command: "echo 'ARCANEA: Activating ultraworld - full parallel world generation'" }]
+            hooks: [{
+              type: "command",
+              command: "echo '[ARCANEA_MODE=ultraworld] Fire ALL world-building agents: arcanea-story-master, arcanea-character-crafter, arcanea-world-expander, arcanea-lore-master, creation-architect. Use Task tool with run_in_background=true for each agent. Respond with parallel results.'"
+            }]
           },
           {
-            matcher: "ultrawrite|ulwr", 
-            hooks: [{ type: "command", command: "echo 'ARCANEA: Activating ultrawrite - full parallel chapter writing'" }]
+            matcher: "ultrawrite|ulwr",
+            hooks: [{
+              type: "command",
+              command: "echo '[ARCANEA_MODE=ultrawrite] Fire ALL writing agents: story-architect, prose-weaver, voice-alchemist, line-editor, continuity-guardian. Use Task tool with run_in_background=true for each agent. Respond with parallel results.'"
+            }]
+          },
+          {
+            matcher: "ultracode|ulc",
+            hooks: [{
+              type: "command",
+              command: "echo '[ARCANEA_MODE=ultracode] Fire ALL coding agents: arcanea-architect, arcanea-coder, arcanea-reviewer, arcanea-debugger. Use Task tool with run_in_background=true for each agent. Respond with parallel results.'"
+            }]
           },
           {
             matcher: "ultrabook|ulb",
-            hooks: [{ type: "command", command: "echo 'ARCANEA: Activating ultrabook - complete book pipeline'" }]
+            hooks: [{
+              type: "command",
+              command: "echo '[ARCANEA_MODE=ultrabook] Complete book pipeline: world-building → story structure → chapter drafts → editing → production. Run sequentially, with parallel agents within each phase.'"
+            }]
+          },
+          {
+            matcher: "ultrawork|ulwk",
+            hooks: [{
+              type: "command",
+              command: "echo '[ARCANEA_MODE=ultrawork] Maximum parallel execution. Spawn all relevant agents simultaneously using Task tool with run_in_background=true.'"
+            }]
+          }
+        ],
+        PreToolUse: [
+          {
+            matcher: "Task",
+            hooks: [{
+              type: "command",
+              command: logScript
+            }]
           }
         ]
       }
@@ -170,13 +239,77 @@ async function installClaudeCodeSettings(platformPath: string, force: boolean): 
   }
 }
 
-async function installOpenCodeSettings(platformPath: string, packageRoot: string, force: boolean): Promise<void> {
-  const claudeMdPath = join(platformPath, "CLAUDE.md");
-  const sourcePath = join(packageRoot, "CLAUDE.md");
-  
-  if (existsSync(sourcePath) && (!existsSync(claudeMdPath) || force)) {
-    cpSync(sourcePath, claudeMdPath);
-    console.log(pc.green("  ✓ Installed OpenCode CLAUDE.md"));
+async function installCursorRules(targetDir: string, packageRoot: string, force: boolean): Promise<void> {
+  const rulesPath = join(targetDir, ".cursorrules");
+
+  if (!existsSync(rulesPath) || force) {
+    const claudeMdSource = join(packageRoot, "CLAUDE.md");
+    if (existsSync(claudeMdSource)) {
+      const claudeContent = readFileSync(claudeMdSource, "utf-8");
+      const cursorRules = `# Cursor Rules — Generated by Arcanea v${VERSION}\n\n${claudeContent}`;
+      writeFileSync(rulesPath, cursorRules);
+      console.log(pc.green("  ✓ Created .cursorrules with Arcanea identity"));
+    }
+  }
+}
+
+async function installCodexConfig(targetDir: string, packageRoot: string, force: boolean): Promise<void> {
+  const codexMdPath = join(targetDir, "codex.md");
+
+  if (!existsSync(codexMdPath) || force) {
+    const claudeMdSource = join(packageRoot, "CLAUDE.md");
+    if (existsSync(claudeMdSource)) {
+      const content = readFileSync(claudeMdSource, "utf-8");
+      const codexMd = [
+        `# Codex Instructions — Generated by Arcanea v${VERSION}`,
+        "",
+        "> These instructions transform Codex into Arcanea, the Creative Intelligence Platform.",
+        "> Agent definitions: `.codex/agents/` | Skills: `.codex/skills/` | Commands: `.codex/commands/`",
+        "",
+        content,
+        "",
+        "## Codex-Specific Notes",
+        "",
+        "- Read agent definitions from `.codex/agents/` for available specialist agents",
+        "- Read skill definitions from `.codex/skills/` for creative and technical skills",
+        "- Read command definitions from `.codex/commands/` for slash commands",
+        "- MCP servers are configured in `.mcp.json`",
+        "- When magic words (ultraworld, ultracode, etc.) are used, read the relevant agent files and apply their instructions",
+        ""
+      ].join("\n");
+      writeFileSync(codexMdPath, codexMd);
+      console.log(pc.green("  ✓ Created codex.md (Arcanea instructions for Codex CLI)"));
+    }
+  }
+}
+
+async function installGeminiConfig(targetDir: string, packageRoot: string, force: boolean): Promise<void> {
+  const geminiMdPath = join(targetDir, "GEMINI.md");
+
+  if (!existsSync(geminiMdPath) || force) {
+    const claudeMdSource = join(packageRoot, "CLAUDE.md");
+    if (existsSync(claudeMdSource)) {
+      const content = readFileSync(claudeMdSource, "utf-8");
+      const geminiMd = [
+        `# Gemini Instructions — Generated by Arcanea v${VERSION}`,
+        "",
+        "> These instructions transform Gemini into Arcanea, the Creative Intelligence Platform.",
+        "> Agent definitions: `.gemini/agents/` | Skills: `.gemini/skills/` | Commands: `.gemini/commands/`",
+        "",
+        content,
+        "",
+        "## Gemini-Specific Notes",
+        "",
+        "- Read agent definitions from `.gemini/agents/` for available specialist agents",
+        "- Read skill definitions from `.gemini/skills/` for creative and technical skills",
+        "- Read command definitions from `.gemini/commands/` for slash commands",
+        "- MCP servers are configured in `.mcp.json`",
+        "- When magic words (ultraworld, ultracode, etc.) are used, read the relevant agent files and apply their instructions",
+        ""
+      ].join("\n");
+      writeFileSync(geminiMdPath, geminiMd);
+      console.log(pc.green("  ✓ Created GEMINI.md (Arcanea instructions for Gemini CLI)"));
+    }
   }
 }
 
@@ -198,13 +331,18 @@ async function installMcpConfig(targetDir: string, force: boolean): Promise<void
     ...existingConfig,
     mcpServers: {
       ...(existingConfig.mcpServers as Record<string, unknown> || {}),
+      "arcanea": {
+        command: "npx",
+        args: ["-y", "@arcanea/mcp-server@latest"],
+        description: "Arcanea creative toolkit - world-building, characters, lore, bestiary"
+      },
       "nano-banana": {
         command: "npx",
         args: ["-y", "@anthropic-ai/nano-banana"],
         description: "Image generation for characters, locations, covers"
       },
       "context7": {
-        command: "npx", 
+        command: "npx",
         args: ["-y", "@context7/mcp"],
         description: "Documentation and reference lookup"
       }
@@ -212,6 +350,7 @@ async function installMcpConfig(targetDir: string, force: boolean): Promise<void
   };
 
   writeFileSync(mcpPath, JSON.stringify(mcpConfig, null, 2));
+  console.log(pc.green("✓ Configured Arcanea MCP (creative toolkit)"));
   console.log(pc.green("✓ Configured Nano Banana MCP (image generation)"));
   console.log(pc.green("✓ Configured Context7 MCP (documentation)"));
   console.log(pc.dim("ℹ Suno MCP requires manual API key setup"));
@@ -248,6 +387,8 @@ function printSuccessMessage(platforms: Platform[]): void {
   console.log(pc.cyan("  ultraworld") + " - Full parallel world generation");
   console.log(pc.cyan("  ultrawrite") + " - Full parallel chapter writing");
   console.log(pc.cyan("  ultrabook ") + " - Complete book pipeline");
+  console.log(pc.yellow("  ultracode ") + " - Full parallel coding (architect + coder + reviewer)");
+  console.log(pc.yellow("  ultrawork ") + " - Maximum parallel execution for any task");
   console.log();
 
   console.log(pc.bold("Try:"));

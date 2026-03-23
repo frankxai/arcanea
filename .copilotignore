@@ -1,0 +1,47 @@
+# .copilotignore — Arcanea Enhanced
+# Prevent Copilot from indexing sensitive or irrelevant files
+
+# Credentials and secrets
+.env
+.env.*
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+serviceAccountKey.json
+
+# Build artifacts
+dist/
+build/
+.next/
+out/
+.turbo/
+.vercel/
+
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Large binary assets
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.mp3
+*.wav
+
+# Arcanea internal manifests
+.arcanea/overlay-manifest.json
+
+# Test coverage reports
+coverage/
+.nyc_output/

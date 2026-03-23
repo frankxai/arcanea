@@ -9,6 +9,16 @@
       "Bash(node:*)"
     ]
   },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "context7",
+    "next-devtools",
+    "github",
+    "figma-remote-mcp",
+    "notion",
+    "linear-server",
+    "playwright"
+  ],
   "hooks": {
     "SessionStart": [
       {
@@ -84,14 +94,5 @@
         ]
       }
     ]
-  },
-  "enabledMcpjsonServers": [
-    "next-devtools",
-    "github",
-    "figma-remote-mcp",
-    "notion",
-    "linear-server",
-    "playwright"
-  ],
-  "enableAllProjectMcpServers": true
+  }
 }

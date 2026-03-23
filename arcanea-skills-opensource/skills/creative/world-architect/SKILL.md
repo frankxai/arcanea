@@ -1,3 +1,17 @@
+---
+name: arcanea-world-architect
+description: Universe creation and world-building - geography, history, belief systems, cultures, and living ecologies of meaning
+version: 2.0.0
+author: Arcanea
+tags: [world-building, fantasy, sci-fi, universe, creation]
+triggers:
+  - world
+  - world-building
+  - universe
+  - setting
+  - geography
+---
+
 # World Architect - The Art of Universe Creation
 
 > *"A world is not built. It is grown. You plant seeds - a geography, a history, a belief - and you tend them until they become a living ecology of meaning."*

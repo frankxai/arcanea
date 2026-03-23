@@ -3,16 +3,15 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sparkles, Palette, BookOpen, GraduationCap, Info, Brain } from 'lucide-react';
+import { Menu, X, Sparkles, Palette, BookOpen, GraduationCap, Map } from 'lucide-react';
 import { UserNav } from '@/components/auth';
 
 const navLinks = [
-  { href: '/luminors', label: 'Luminors', icon: Sparkles, primary: true },
-  { href: '/luminor-intelligence', label: 'Luminor Intelligence', icon: Brain, primary: true },
+  { href: '/luminors', label: 'Luminors', icon: Sparkles },
   { href: '/studio', label: 'Studio', icon: Palette },
   { href: '/library', label: 'Library', icon: BookOpen },
   { href: '/academy', label: 'Academy', icon: GraduationCap },
-  { href: '/about', label: 'About', icon: Info },
+  { href: '/roadmap', label: 'Roadmap', icon: Map },
 ];
 
 export function Navbar() {
@@ -37,11 +36,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm transition-colors ${
-                    link.primary
-                      ? 'text-atlantean-teal-aqua hover:text-atlantean-teal-aqua/80 font-medium'
-                      : 'text-text-secondary hover:text-atlantean-teal-aqua'
-                  }`}
+                  className="text-sm text-text-secondary hover:text-atlantean-teal-aqua transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -83,11 +78,7 @@ export function Navbar() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors hover:bg-white/5 ${
-                        link.primary
-                          ? 'text-atlantean-teal-aqua hover:text-atlantean-teal-aqua/80 font-medium'
-                          : 'text-text-secondary hover:text-white'
-                      }`}
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:text-white hover:bg-white/5 transition-colors"
                     >
                       <Icon className="w-5 h-5" />
                       {link.label}

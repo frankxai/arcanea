@@ -1,3 +1,11 @@
+---
+name: arcanea-anti-trope
+description: Anti-trope and naming protocol - banned AI cliches, forbidden words, and better alternatives for authentic Arcanean prose
+version: 2.0.0
+author: Arcanea
+tags: [writing, style, voice, anti-cliche, prose-quality]
+---
+
 # Arcanea Anti-Trope & Naming Protocol
 
 > *"We do not 'unleash' potential; we cultivate it. We do not weave 'tapestries' of fate; we forge chains of consequence. Speak clearly, or do not speak at all."*

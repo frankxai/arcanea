@@ -35,6 +35,7 @@ const footerLinks = {
     label: 'Community',
     links: [
       { href: '/community', label: 'Community Hub', icon: Users },
+      { href: '/ecosystem', label: 'Ecosystem' },
       { href: 'https://discord.gg/arcanea', label: 'Discord', icon: MessageCircle, external: true },
       { href: 'https://github.com/frankxai/arcanea', label: 'GitHub', icon: Github, external: true },
     ],
@@ -42,9 +43,9 @@ const footerLinks = {
   more: {
     label: 'More',
     links: [
+      { href: '/plan', label: 'Our Vision' },
+      { href: '/roadmap', label: 'Roadmap' },
       { href: '/about', label: 'About Arcanea' },
-      { href: '/linktree', label: 'All Links' },
-      { href: 'https://open.spotify.com/artist/arcanea', label: 'Music', icon: Music, external: true },
       { href: 'https://frankx.ai', label: 'FrankX.ai', icon: Globe, external: true },
     ],
   },

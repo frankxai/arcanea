@@ -1,0 +1,14 @@
+{
+  "enableLuminors": true,
+  "enableBestiary": true,
+  "enableUltraworld": true,
+  "enableUltrawrite": true,
+  "enableUltrabook": true,
+  "enableMcp": true,
+  "platforms": [
+    "claude-code",
+    "opencode",
+    "codex",
+    "gemini"
+  ]
+}

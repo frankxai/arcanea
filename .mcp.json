@@ -2,13 +2,19 @@
   "mcpServers": {
     "next-devtools": {
       "command": "npx",
-      "args": ["-y", "next-devtools-mcp@latest"],
+      "args": [
+        "-y",
+        "next-devtools-mcp@latest"
+      ],
       "env": {},
       "description": "Next.js development tools - runtime errors, logs, and page metadata"
     },
     "github": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "env": {},
       "description": "GitHub integration for Arcanea repository management, PRs, and issues"
     },
@@ -26,9 +32,28 @@
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@executeautomation/playwright-mcp-server"],
+      "args": [
+        "-y",
+        "@executeautomation/playwright-mcp-server"
+      ],
       "env": {},
       "description": "Browser automation for E2E testing and UI verification"
+    },
+    "nano-banana": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic-ai/nano-banana"
+      ],
+      "description": "Image generation for characters, locations, covers"
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@context7/mcp"
+      ],
+      "description": "Documentation and reference lookup"
     }
   }
 }

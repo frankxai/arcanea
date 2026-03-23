@@ -126,7 +126,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "node /mnt/c/Users/frank/Arcanea/.claude/statusline.mjs",
+    "command": "bash -c 'source ~/.nvm/nvm.sh && nvm use 20 --silent && node /mnt/c/Users/frank/Arcanea/.claude/statusline.mjs'",
     "refreshMs": 5000,
     "enabled": true
   },

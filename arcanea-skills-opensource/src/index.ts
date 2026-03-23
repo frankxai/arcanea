@@ -1,4 +1,4 @@
-export const VERSION = "3.0.2";
+export const VERSION = "3.4.0";
 export const NAME = "arcanea";
 export const ORCHESTRATOR = "Arcanea";
 

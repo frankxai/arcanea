@@ -1,3 +1,17 @@
+---
+name: arcanea-creative-bestiary
+description: Navigate creative blocks using the taxonomy of psychological obstacles - naming rituals and protocols for each creature type
+version: 2.0.0
+author: Arcanea
+tags: [creative-blocks, psychology, productivity, obstacles, mindset]
+triggers:
+  - stuck
+  - blocked
+  - procrastinating
+  - afraid
+  - burned out
+---
+
 # Creative Bestiary - Navigating the Creatures of the Mind
 
 > *"The creative life is inhabited by creatures—not physical beings, but psychological presences that every creator encounters. Know them by name, and you can negotiate with them. Ignore them, and they will ambush you."*

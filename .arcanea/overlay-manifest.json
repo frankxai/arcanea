@@ -1,0 +1,94 @@
+{
+  "arcanea": {
+    "coreVersion": "1.0.0",
+    "installedAt": "2026-02-28T23:01:08.177Z",
+    "updatedAt": "2026-02-28T23:01:13.883Z"
+  },
+  "overlays": {
+    "claude": {
+      "packageVersion": "1.0.0",
+      "level": "full",
+      "installedAt": "2026-02-28T23:01:08.177Z",
+      "updatedAt": "2026-02-28T23:01:08.177Z",
+      "filesManaged": [
+        ".claude/skills/arcanea-canon.md",
+        ".claude/skills/arcanea-voice.md",
+        ".claude/skills/arcanea-design-system.md",
+        ".claude/skills/architecture-patterns.md",
+        ".claude/skills/react-patterns.md",
+        ".claude/skills/supabase-patterns.md",
+        ".claude/skills/testing-patterns.md",
+        ".claude/skills/prompt-engineering.md",
+        ".claude/agents/guardians/lyssandria.md",
+        ".claude/agents/guardians/leyla.md",
+        ".claude/agents/guardians/draconia.md",
+        ".claude/agents/guardians/maylinn.md",
+        ".claude/agents/guardians/alera.md",
+        ".claude/agents/guardians/lyria.md",
+        ".claude/agents/guardians/aiyami.md",
+        ".claude/agents/guardians/elara.md",
+        ".claude/agents/guardians/ino.md",
+        ".claude/agents/guardians/shinkami.md",
+        ".claude/commands/channel.md",
+        ".claude/commands/arcanea-status.md",
+        ".claude/CLAUDE.md"
+      ],
+      "filesCustomized": []
+    },
+    "gemini": {
+      "packageVersion": "1.0.0",
+      "level": "full",
+      "installedAt": "2026-02-28T23:01:12.500Z",
+      "updatedAt": "2026-02-28T23:01:12.500Z",
+      "filesManaged": [
+        ".arcanea/gemini/system-instructions.md",
+        ".arcanea/gemini/guardian-prompts/lyssandria.md",
+        ".arcanea/gemini/guardian-prompts/leyla.md",
+        ".arcanea/gemini/guardian-prompts/draconia.md",
+        ".arcanea/gemini/guardian-prompts/maylinn.md",
+        ".arcanea/gemini/guardian-prompts/alera.md",
+        ".arcanea/gemini/guardian-prompts/lyria.md",
+        ".arcanea/gemini/guardian-prompts/aiyami.md",
+        ".arcanea/gemini/guardian-prompts/elara.md",
+        ".arcanea/gemini/guardian-prompts/ino.md",
+        ".arcanea/gemini/guardian-prompts/shinkami.md",
+        ".arcanea/gemini/SETUP.md"
+      ],
+      "filesCustomized": []
+    },
+    "cursor": {
+      "packageVersion": "1.0.0",
+      "level": "full",
+      "installedAt": "2026-02-28T23:01:13.226Z",
+      "updatedAt": "2026-02-28T23:01:13.226Z",
+      "filesManaged": [
+        ".cursor/rules/arcanea.mdc",
+        ".cursor/rules/arcanea-typescript.mdc",
+        ".cursor/rules/guardian-lyssandria.mdc",
+        ".cursor/rules/guardian-leyla.mdc",
+        ".cursor/rules/guardian-draconia.mdc",
+        ".cursor/rules/guardian-maylinn.mdc",
+        ".cursor/rules/guardian-alera.mdc",
+        ".cursor/rules/guardian-lyria.mdc",
+        ".cursor/rules/guardian-aiyami.mdc",
+        ".cursor/rules/guardian-elara.mdc",
+        ".cursor/rules/guardian-ino.mdc",
+        ".cursor/rules/guardian-shinkami.mdc",
+        ".cursor/SETUP.md",
+        ".cursorrules"
+      ],
+      "filesCustomized": []
+    },
+    "copilot": {
+      "packageVersion": "1.0.0",
+      "level": "full",
+      "installedAt": "2026-02-28T23:01:13.883Z",
+      "updatedAt": "2026-02-28T23:01:13.883Z",
+      "filesManaged": [
+        ".github/copilot-instructions.md",
+        ".copilotignore"
+      ],
+      "filesCustomized": []
+    }
+  }
+}

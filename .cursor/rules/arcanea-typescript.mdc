@@ -1,0 +1,65 @@
+---
+description: Arcanea TypeScript strict standards
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: false
+---
+
+# TypeScript Standards — Arcanea
+
+## Strict Mode Requirements
+```typescript
+// strict: true in tsconfig
+// No any — use generics or unknown
+// All function parameters and returns typed
+
+// Good: Clear interface, strict types
+interface EssenceCreateParams {
+  realmId: string;
+  type: 'text' | 'image' | 'audio' | 'video';
+  content: EssenceContent;
+  metadata?: EssenceMetadata;
+}
+
+// Good: Generic with constraint
+async function fetchEssence<T extends BaseEssence>(id: string): Promise<T> { ... }
+```
+
+## React Server vs Client Components
+```typescript
+// Server Component (default — no directive needed)
+async function EssenceList({ realmId }: { realmId: string }) {
+  const essences = await getEssences(realmId); // Direct DB access
+  return <ul>{essences.map(e => <EssenceCard key={e.id} essence={e} />)}</ul>;
+}
+
+// Client Component (only when interactivity required)
+'use client';
+function EssenceEditor({ initialContent }: { initialContent: string }) {
+  const [content, setContent] = useState(initialContent);
+  // Interactive state here
+}
+```
+
+## Supabase Query Patterns
+```typescript
+// Type-safe, optimized — no N+1
+const { data, error } = await supabase
+  .from('essences')
+  .select('id, type, content, realm:realms(id, name)')
+  .eq('realm_id', realmId)
+  .order('created_at', { ascending: false })
+  .limit(20);
+
+if (error) throw new Error(`Essence fetch failed: ${error.message}`);
+```
+
+## Zod Validation
+```typescript
+const EssenceSchema = z.object({
+  realmId: z.string().uuid(),
+  type: z.enum(['text', 'image', 'audio', 'video']),
+  content: z.record(z.unknown()),
+});
+
+type EssenceInput = z.infer<typeof EssenceSchema>;
+```

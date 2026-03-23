@@ -1,3 +1,16 @@
+---
+name: arcanea-ai-symbiosis
+description: Frameworks for productive human-AI co-creation - the orchestra model, creative partnerships, and symbiotic workflows
+version: 2.0.0
+author: Arcanea
+tags: [ai, collaboration, co-creation, symbiosis, creativity]
+triggers:
+  - ai collaboration
+  - human ai
+  - co-creation
+  - ai partner
+---
+
 # AI Symbiosis - The Art of Human-AI Co-Creation
 
 > *"The AI is not replacing the creator. The AI is expanding what creation can be. The question is not 'human or machine?' but 'what can we become together?'"*
