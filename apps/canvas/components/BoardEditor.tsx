@@ -5,23 +5,39 @@ import {
   BoardProvider,
   InfiniteCanvas,
   useBoard,
+  useCanvasViewport,
+  useUndoManager,
+  useDropHandler,
   NodeRegistry,
   StickyNoteNode,
   CardNode,
   FrameNode,
+  MarkdownDocNode,
+  CodeBlockNode,
+  MediaEmbedNode,
+  URLCardNode,
+  LivePreviewNode,
   createEmptyBoard,
   type Board,
+  type CanvasNodeType,
   type StickyColor,
 } from '@arcanea/canvas-core';
 import { Toolbar } from './Toolbar';
 import { Sidebar } from './Sidebar';
 
-// Create and memoize the node registry
+// Create and memoize the full node registry
 function createRegistry(): NodeRegistry {
   return new NodeRegistry()
+    // Phase 1
     .register('sticky-note', StickyNoteNode)
     .register('card', CardNode)
-    .register('frame', FrameNode);
+    .register('frame', FrameNode)
+    // Phase 2
+    .register('markdown-doc', MarkdownDocNode)
+    .register('code-block', CodeBlockNode)
+    .register('media-embed', MediaEmbedNode)
+    .register('url-card', URLCardNode)
+    .register('live-preview', LivePreviewNode);
 }
 
 interface BoardEditorInnerProps {
@@ -29,11 +45,16 @@ interface BoardEditorInnerProps {
 }
 
 function BoardEditorInner({ boardId }: BoardEditorInnerProps) {
-  const { board, loadBoard } = useBoard();
+  const { board, loadBoard, addNode, removeNode, selectedNodeIds } = useBoard();
+  const { viewport } = useCanvasViewport();
   const [activeStickyColor, setActiveStickyColor] = useState<StickyColor>('yellow');
   const registry = useMemo(createRegistry, []);
-  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isLoadedRef = useRef(false);
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
+
+  // Undo/Redo
+  const { pushState, initState, undo, redo, canUndo, canRedo } = useUndoManager();
 
   // Load board from localStorage on mount
   useEffect(() => {
@@ -45,11 +66,12 @@ function BoardEditorInner({ boardId }: BoardEditorInnerProps) {
       if (stored) {
         const parsed = JSON.parse(stored) as Board;
         loadBoard(parsed);
+        initState(parsed);
       }
     } catch {
       // Start with empty board
     }
-  }, [boardId, loadBoard]);
+  }, [boardId, loadBoard, initState]);
 
   // Auto-save to localStorage on changes (debounced)
   useEffect(() => {
@@ -81,36 +103,113 @@ function BoardEditorInner({ boardId }: BoardEditorInnerProps) {
       } catch {
         // Index update failed silently
       }
+
+      // Push to undo stack
+      pushState(board);
     }, 500);
 
     return () => {
       if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
     };
-  }, [board, boardId]);
+  }, [board, boardId, pushState]);
 
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      const isEditing = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT' || target.isContentEditable;
+
+      if (isEditing) return;
+
+      // Delete selected nodes
       if (e.key === 'Delete' || e.key === 'Backspace') {
-        // Delete is handled at node level to avoid conflicts with text editing
+        e.preventDefault();
+        for (const id of selectedNodeIds) {
+          removeNode(id);
+        }
+        return;
+      }
+
+      // Undo: Ctrl/Cmd + Z
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        const state = undo();
+        if (state) {
+          loadBoard({ ...board, nodes: state.nodes, connections: state.connections });
+        }
+        return;
+      }
+
+      // Redo: Ctrl/Cmd + Shift + Z or Ctrl + Y
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'Z' || e.key === 'y')) {
+        e.preventDefault();
+        const state = redo();
+        if (state) {
+          loadBoard({ ...board, nodes: state.nodes, connections: state.connections });
+        }
+        return;
+      }
+
+      // Quick add shortcuts
+      if (e.key === 'n' && !e.ctrlKey && !e.metaKey) {
+        const cx = (-viewport.x + window.innerWidth / 2) / viewport.zoom;
+        const cy = (-viewport.y + window.innerHeight / 2) / viewport.zoom;
+        addNode('sticky-note', { x: cx, y: cy }, { metadata: { color: activeStickyColor } });
+        return;
+      }
+
+      if (e.key === 'c' && !e.ctrlKey && !e.metaKey) {
+        const cx = (-viewport.x + window.innerWidth / 2) / viewport.zoom;
+        const cy = (-viewport.y + window.innerHeight / 2) / viewport.zoom;
+        addNode('card', { x: cx, y: cy });
+        return;
       }
     };
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [selectedNodeIds, removeNode, undo, redo, loadBoard, board, addNode, viewport, activeStickyColor]);
+
+  // Drop handler for URLs and files
+  const { dropHandlers } = useDropHandler(
+    canvasContainerRef,
+    viewport,
+    useCallback(
+      (result) => {
+        addNode(result.type, result.position, {
+          sourceUrl: result.data.sourceUrl,
+          title: result.data.title || '',
+          content: result.data.content,
+          metadata: result.data.metadata || {},
+        });
+      },
+      [addNode]
+    )
+  );
 
   return (
-    <div className="relative w-screen h-screen bg-cosmic-void overflow-hidden">
+    <div
+      ref={canvasContainerRef}
+      className="relative w-screen h-screen bg-cosmic-void overflow-hidden"
+      {...dropHandlers}
+    >
       {/* Canvas */}
-      <InfiniteCanvas
-        className="w-full h-full"
-        registry={registry}
-      />
+      <InfiniteCanvas className="w-full h-full" registry={registry} />
 
       {/* Toolbar */}
       <Toolbar
         activeStickyColor={activeStickyColor}
         onStickyColorChange={setActiveStickyColor}
+        canUndo={canUndo}
+        canRedo={canRedo}
+        onUndo={() => {
+          const state = undo();
+          if (state) loadBoard({ ...board, nodes: state.nodes, connections: state.connections });
+        }}
+        onRedo={() => {
+          const state = redo();
+          if (state) loadBoard({ ...board, nodes: state.nodes, connections: state.connections });
+        }}
       />
 
       {/* Sidebar */}
@@ -118,6 +217,43 @@ function BoardEditorInner({ boardId }: BoardEditorInnerProps) {
 
       {/* Board title */}
       <BoardTitleBar boardId={boardId} />
+
+      {/* Drop zone indicator */}
+      <DropZoneOverlay />
+    </div>
+  );
+}
+
+function DropZoneOverlay() {
+  const [isDragOver, setIsDragOver] = useState(false);
+
+  useEffect(() => {
+    const handleDragEnter = () => setIsDragOver(true);
+    const handleDragLeave = (e: DragEvent) => {
+      if (e.relatedTarget === null) setIsDragOver(false);
+    };
+    const handleDrop = () => setIsDragOver(false);
+
+    window.addEventListener('dragenter', handleDragEnter);
+    window.addEventListener('dragleave', handleDragLeave);
+    window.addEventListener('drop', handleDrop);
+    return () => {
+      window.removeEventListener('dragenter', handleDragEnter);
+      window.removeEventListener('dragleave', handleDragLeave);
+      window.removeEventListener('drop', handleDrop);
+    };
+  }, []);
+
+  if (!isDragOver) return null;
+
+  return (
+    <div className="absolute inset-0 z-[100] pointer-events-none">
+      <div className="absolute inset-4 border-2 border-dashed border-brand-accent/40 rounded-2xl bg-brand-accent/5 flex items-center justify-center">
+        <div className="bg-cosmic-surface/90 backdrop-blur-sm rounded-xl px-6 py-4 border border-brand-accent/30">
+          <p className="text-sm text-brand-accent font-medium">Drop URL, file, or text here</p>
+          <p className="text-[10px] text-text-muted mt-1">YouTube, images, code, articles, and more</p>
+        </div>
+      </div>
     </div>
   );
 }
