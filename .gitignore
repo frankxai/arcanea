@@ -108,6 +108,7 @@ arcanea-opencode-fork/
 # Runtime agent state — changes every session, never commit
 .claude-flow/.trend-cache.json
 .claude-flow/metrics/
+.claude-flow/daemon.pid
 
 # Windows path junk that leaks into WSL
 "C:\\Users\\*"
