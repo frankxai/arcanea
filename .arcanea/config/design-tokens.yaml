@@ -1,178 +1,330 @@
-# Arcanea Design System Tokens v2.0
-# Portable design system - usable by any tool or framework
-# Source of truth: .arcanea/design/DESIGN_BIBLE.md
+# Arcanea Design Tokens -- Portable across tools
+# Extracted from: tailwind.config.ts, globals.css, layout.tsx
+# Design Bible v2.0: Apple Liquid Glass + Cosmic Mythology + Premium SaaS
+# Last updated: 2026-03-30
+
+# All HSL values use space-separated format: "H S% L%"
+# Convert to CSS: hsl(H, S%, L%) or hsl(H S% L%)
 
 colors:
+  # === COSMIC PALETTE (6 depth levels -- near-black foundation) ===
   cosmic:
-    void: "#0b0e14"
-    deep: "#121826"
-    surface: "#1a2332"
-    raised: "#242f42"
-    elevated: "#2d3a52"
-    overlay: "#364562"
+    void: "240 6% 4%"           # Deepest background
+    deep: "240 5% 6%"           # Default background
+    surface: "240 5% 10%"       # Card surfaces
+    raised: "240 5% 14%"        # Elevated surfaces
+    elevated: "240 4% 12%"      # Floating elements
+    overlay: "240 4% 20%"       # Overlays, modals
+    border: "240 5% 14%"        # Default borders
+    border_bright: "240 5% 20%" # Emphasized borders
 
-  brand:
-    primary: "#8b5cf6"     # Violet - primary actions
-    accent: "#7fffd4"      # Crystal - brand signature, highlights
-    gold: "#ffd700"        # Achievement, premium
-    secondary: "#78a6ff"   # Cosmic Blue - secondary actions
-
-  primary-scale:
-    50: "#f5f3ff"
-    100: "#ede9fe"
-    200: "#ddd6fe"
-    300: "#c4b5fd"
-    400: "#a78bfa"
-    500: "#8b5cf6"
-    600: "#7c3aed"
-    700: "#6d28d9"
-    800: "#5b21b6"
-    900: "#4c1d95"
-
-  elements:
-    crystal:
-      standard: "#7fffd4"
-      bright: "#99ffe0"
-      deep: "#5ce6b8"
-      glow: "rgba(127, 255, 212, 0.3)"
-    fire:
-      standard: "#ff6b35"
-      bright: "#ff8c5a"
-      deep: "#d94e1f"
-      glow: "rgba(255, 107, 53, 0.3)"
-    water:
-      standard: "#78a6ff"
-      bright: "#9dbfff"
-      deep: "#5a8ce6"
-      glow: "rgba(120, 166, 255, 0.3)"
-    void:
-      standard: "#9966ff"
-      bright: "#b38cff"
-      deep: "#7a4dcc"
-      glow: "rgba(153, 102, 255, 0.3)"
-    gold:
-      standard: "#ffd700"
-      bright: "#ffe44d"
-      deep: "#ccac00"
-      glow: "rgba(255, 215, 0, 0.3)"
-    wind:
-      standard: "#00ff88"
-      bright: "#33ffaa"
-      deep: "#00cc6d"
-      glow: "rgba(0, 255, 136, 0.3)"
-    earth:
-      standard: "#8b7355"
-      bright: "#a89070"
-      deep: "#6e5940"
-      glow: "rgba(139, 115, 85, 0.3)"
-
+  # === TEXT HIERARCHY (WCAG verified -- neutral, no blue tint) ===
   text:
-    primary: "#e6eefc"     # 14.2:1 contrast on void (AAA)
-    secondary: "#9bb1d0"   # 7.5:1 contrast on void (AAA)
-    muted: "#708094"       # 4.8:1 contrast on void (AA)
-    disabled: "#515b6b"    # 3.1:1 (disabled only)
+    primary: "0 0% 93%"         # Main text
+    secondary: "0 0% 64%"       # Supporting text
+    muted: "0 0% 45%"           # Subtle text
+    disabled: "0 0% 32%"        # Disabled state
 
+  # === ARCANEAN GOLD ===
+  gold:
+    light: "48 100% 88%"
+    medium: "48 95% 70%"
+    bright: "48 100% 60%"       # Primary gold
+    deep: "45 90% 50%"
+    dark: "42 85% 40%"
+
+  # === ATLANTEAN ACADEMY (Water element) ===
+  atlantean:
+    deepest: "212 80% 15%"
+    deep: "212 75% 25%"
+    primary: "212 70% 40%"
+    medium: "212 65% 55%"
+    light: "212 60% 70%"
+    teal_deep: "180 65% 35%"
+    teal: "180 70% 50%"         # Primary Atlantean brand
+    teal_light: "180 75% 65%"
+    aqua: "175 80% 70%"
+    glow: "180 100% 60%"
+    shimmer: "185 85% 75%"
+
+  # === DRACONIC ACADEMY (Fire/Sky element) ===
+  draconic:
+    crimson_deep: "355 75% 25%"
+    crimson: "355 80% 45%"
+    crimson_bright: "355 85% 60%"
+    crimson_light: "355 80% 75%"
+    gold_deep: "40 90% 45%"
+    gold: "42 95% 55%"
+    gold_bright: "45 100% 65%"
+    gold_light: "48 100% 80%"
+    sky_deep: "200 75% 40%"
+    sky: "200 80% 55%"
+    sky_bright: "200 85% 70%"
+    sky_light: "200 90% 85%"
+    storm: "210 15% 45%"
+    cloud: "210 20% 70%"
+
+  # === CREATION & LIGHT ACADEMY ===
+  creation:
+    pure: "0 0% 100%"
+    bright: "0 0% 98%"
+    soft: "0 0% 95%"
+    warm: "40 50% 95%"
+    gold_pure: "45 100% 75%"
+    gold: "42 100% 60%"
+    gold_deep: "40 95% 50%"
+    prism_red: "0 85% 65%"
+    prism_orange: "25 95% 60%"
+    prism_yellow: "50 100% 60%"
+    prism_green: "145 75% 50%"
+    prism_cyan: "185 85% 55%"
+    prism_blue: "220 85% 60%"
+    prism_purple: "270 75% 60%"
+    wave_light: "190 60% 75%"
+    wave_medium: "190 70% 60%"
+    wave_deep: "190 75% 45%"
+
+  # === PEACOCK JEWEL PALETTE (Iridescent brand identity) ===
+  peacock:
+    blue_deep: "200 85% 18%"
+    blue: "195 80% 38%"
+    blue_bright: "192 75% 55%"
+    green_deep: "170 70% 20%"
+    green: "168 65% 36%"
+    green_bright: "165 60% 50%"
+    purple_deep: "270 65% 22%"
+    purple: "265 55% 42%"
+    purple_bright: "262 60% 62%"
+
+  aquamarine:
+    default: "160 100% 75%"     # Brand primary
+    soft: "162 60% 65%"
+    deep: "165 80% 42%"
+
+  # === SHADCN/UI SEMANTIC MAPPING ===
+  shadcn:
+    primary: "262 83% 66%"      # Violet
+    primary_foreground: "0 0% 100%"
+    accent: "160 100% 75%"      # Aquamarine
+    ring: "262 83% 66%"
+    radius: "0.5rem"
+
+  # === SEMANTIC COLORS ===
   semantic:
-    success: "#20cc73"
-    warning: "#ffa500"
-    error: "#f52952"
-    info: "#26b8e6"
+    success: "145 75% 50%"
+    success_light: "145 70% 75%"
+    success_dark: "145 80% 35%"
+    warning: "40 100% 55%"
+    warning_light: "40 100% 75%"
+    warning_dark: "35 90% 45%"
+    error: "355 85% 55%"
+    error_light: "355 85% 75%"
+    error_dark: "355 80% 40%"
+    info: "195 85% 55%"
+    info_light: "195 80% 75%"
+    info_dark: "195 80% 40%"
+
+  # === LIGHT MODE OVERRIDES ===
+  light_mode:
+    cosmic_void: "0 0% 98%"
+    cosmic_deep: "0 0% 96%"
+    cosmic_surface: "0 0% 92%"
+    cosmic_raised: "0 0% 88%"
+    text_primary: "0 0% 9%"
+    text_secondary: "0 0% 30%"
+    text_muted: "0 0% 45%"
+
+  # === GLOW & SHIMMER ===
+  glow:
+    soft: "217 50% 70%"
+    medium: "180 80% 60%"
+    strong: "45 100% 60%"
 
 typography:
-  display: "Cinzel, serif"
-  body: "Crimson Pro, serif"
-  sans: "Inter, system-ui, sans-serif"
-  mono: "JetBrains Mono, monospace"
-  fluid-scale:
-    xs: "clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem)"
-    sm: "clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem)"
-    base: "clamp(0.9rem, 0.85rem + 0.25vw, 1rem)"
-    lg: "clamp(1.1rem, 1rem + 0.5vw, 1.25rem)"
-    xl: "clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)"
-    2xl: "clamp(1.5rem, 1.25rem + 1.25vw, 2rem)"
-    3xl: "clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem)"
-    4xl: "clamp(2.25rem, 1.75rem + 2.5vw, 3rem)"
-    5xl: "clamp(3rem, 2rem + 5vw, 4.5rem)"
-    hero: "clamp(3rem, 1.5rem + 7.5vw, 7rem)"
+  display:
+    family: "Space Grotesk"
+    weights: [300, 400, 500, 600, 700]
+    css_variable: "--font-display"
+    fallback: "system-ui, sans-serif"
+    use: "Bold headings, hero text, page titles"
+
+  body:
+    family: "Inter"
+    weights: ["variable"]
+    css_variable: "--font-inter"
+    fallback: "system-ui, sans-serif"
+    use: "All body text, narrative, UI labels, navigation"
+
+  serif:
+    family: "Newsreader"
+    weights: [400, 500, 600, 700]
+    styles: ["normal", "italic"]
+    css_variable: "--font-serif"
+    fallback: "Georgia, ui-serif, serif"
+    use: "Long-form reading (Library, books, articles)"
+
+  mono:
+    family: "JetBrains Mono"
+    weights: ["variable"]
+    css_variable: "--font-jetbrains-mono"
+    fallback: "Consolas, monospace"
+    use: "Code blocks, technical data, terminal output"
+
+  # Note: Cinzel and Crimson Pro from original design system
+  # were replaced with Space Grotesk and Inter for a more
+  # modern, tech-forward aesthetic. Newsreader covers the
+  # editorial serif role.
+
+  scale:
+    xs: ["0.75rem", "1rem"]       # 12px / 16px
+    sm: ["0.875rem", "1.25rem"]   # 14px / 20px
+    base: ["1rem", "1.5rem"]      # 16px / 24px
+    lg: ["1.125rem", "1.75rem"]   # 18px / 28px
+    xl: ["1.25rem", "1.75rem"]    # 20px / 28px
+    2xl: ["1.5rem", "2rem"]       # 24px / 32px
+    3xl: ["1.875rem", "2.25rem"]  # 30px / 36px
+    4xl: ["2.25rem", "2.5rem"]    # 36px / 40px
+    5xl: ["3rem", "1"]            # 48px / tight
+    6xl: ["3.75rem", "1"]         # 60px / tight
 
 effects:
+  # === GLASS EFFECTS -- 7 Tiers (Design Bible v2.0) ===
   glass:
-    subtle:
-      background: "rgba(18, 24, 38, 0.4)"
-      blur: "blur(8px)"
-      border: "1px solid rgba(127, 255, 212, 0.06)"
-    standard:
-      background: "rgba(18, 24, 38, 0.65)"
-      blur: "blur(16px)"
-      border: "1px solid rgba(127, 255, 212, 0.12)"
-    strong:
-      background: "rgba(18, 24, 38, 0.85)"
-      blur: "blur(24px)"
-      border: "1px solid rgba(127, 255, 212, 0.18)"
-  liquid-glass:
-    blur: "blur(40px) saturate(1.8) brightness(1.1)"
-    border: "1px solid rgba(255, 255, 255, 0.1)"
-  iridescent:
-    blur: "blur(24px) saturate(1.5)"
-    animation: "iridescent-shift 8s ease-in-out infinite"
+    tier1_subtle:
+      background: "rgba(9, 9, 11, 0.4)"
+      backdrop_filter: "blur(8px)"
+      border: "1px solid rgba(0, 188, 212, 0.06)"
+      use: "hover overlays, secondary panels"
 
-  glow:
-    sm: "0 0 10px rgba(127, 255, 212, 0.15)"
-    md: "0 0 20px rgba(127, 255, 212, 0.25)"
-    lg: "0 0 40px rgba(127, 255, 212, 0.35)"
-    xl: "0 0 60px rgba(127, 255, 212, 0.45)"
-    brand: "0 0 20px rgba(139, 92, 246, 0.3)"
+    tier2_standard:
+      background: "rgba(9, 9, 11, 0.65)"
+      backdrop_filter: "blur(16px)"
+      border: "1px solid rgba(0, 188, 212, 0.12)"
+      use: "cards, panels"
 
+    tier3_strong:
+      background: "rgba(9, 9, 11, 0.85)"
+      backdrop_filter: "blur(24px)"
+      border: "1px solid rgba(0, 188, 212, 0.18)"
+      use: "navigation, modals"
+
+    tier4_liquid:
+      background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.05) 100%)"
+      backdrop_filter: "blur(40px) saturate(1.8) brightness(1.1)"
+      border: "1px solid rgba(255, 255, 255, 0.1)"
+      use: "Apple-inspired premium surfaces"
+
+    tier5_liquid_elevated:
+      background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 40%, rgba(13,71,161,0.05) 100%)"
+      backdrop_filter: "blur(60px) saturate(2.0) brightness(1.15)"
+      border: "1px solid rgba(255, 255, 255, 0.15)"
+      use: "hero cards, featured content"
+
+    tier6_iridescent:
+      background: "linear-gradient(135deg, rgba(26,35,147,0.08) 0%, rgba(0,137,123,0.06) 25%, rgba(13,71,161,0.08) 50%, rgba(0,191,165,0.04) 75%, rgba(26,35,147,0.06) 100%)"
+      backdrop_filter: "blur(32px) saturate(1.6)"
+      border: "1px solid rgba(0, 137, 123, 0.18)"
+      use: "prismatic, premium/featured"
+
+    tier7_bubble:
+      background: "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.12) 0%, rgba(0,137,123,0.06) 30%, rgba(26,35,147,0.04) 60%, transparent 80%)"
+      border: "1px solid rgba(255, 255, 255, 0.10)"
+      use: "spherical elements, orbs, badges"
+
+  # === GRADIENTS ===
   gradients:
-    cosmic-mesh: "radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.03), transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(153, 102, 255, 0.03), transparent 50%)"
-    aurora: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(127, 255, 212, 0.06), rgba(255, 215, 0, 0.04))"
-    brand: "linear-gradient(135deg, #8b5cf6, #7fffd4)"
+    cosmic: "conic-gradient(from 180deg at 50% 50%, rgba(0,137,123,0.2), rgba(0,188,212,0.2), rgba(13,71,161,0.2))"
+    atlantean: "linear-gradient(135deg, atlantean-deep 0%, atlantean-primary 50%, atlantean-teal 100%)"
+    draconic: "linear-gradient(135deg, draconic-crimson 0%, draconic-gold 50%, draconic-sky 100%)"
+    creation: "linear-gradient(135deg, creation-gold 0%, creation-prism-blue 50%, creation-prism-purple 100%)"
+    prism: "linear-gradient(90deg, prism-red, prism-orange, prism-yellow, prism-green, prism-cyan, prism-blue, prism-purple)"
+    peacock: "linear-gradient(135deg, peacock-blue 0%, aquamarine 33%, peacock-green 66%, peacock-purple 100%)"
+    iridescent: "linear-gradient(135deg, peacock-blue-bright 0%, aquamarine 25%, peacock-green-bright 50%, peacock-purple-bright 75%, peacock-blue-bright 100%)"
+
+  # === BOX SHADOWS ===
+  shadows:
+    glow_sm: "0 0 10px rgba(0, 188, 212, 0.15)"
+    glow_md: "0 0 20px rgba(0, 188, 212, 0.25)"
+    glow_lg: "0 0 40px rgba(0, 188, 212, 0.35)"
+    glow_xl: "0 0 60px rgba(0, 188, 212, 0.45)"
+    glow_brand: "0 0 20px rgba(0, 137, 123, 0.3)"
+    atlantean: "0 0 25px rgba(38, 204, 204, 0.5)"
+    draconic: "0 0 25px rgba(255, 198, 26, 0.5)"
+    creation: "0 0 25px rgba(255, 230, 128, 0.5)"
+    elevation_1: "0 2px 8px rgba(0,0,0,0.2), 0 0 1px rgba(255,255,255,0.05)"
+    elevation_2: "0 4px 16px rgba(0,0,0,0.3), 0 0 1px rgba(255,255,255,0.06)"
+    elevation_3: "0 8px 32px rgba(0,0,0,0.4), 0 0 1px rgba(255,255,255,0.08)"
+    elevation_4: "0 16px 64px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1)"
 
 spacing:
-  unit: "4px"
-  section-padding: "py-24 lg:py-32"
-  container-max: "max-w-7xl"
-  card-padding: "p-6 lg:p-8"
-
-borders:
-  radius:
-    sm: "0.375rem"
-    md: "0.5rem"
-    lg: "0.75rem"
-    xl: "1rem"
-    2xl: "1.5rem"
-    full: "9999px"
+  radius: "0.5rem"
+  container_max: "1400px"
+  container_padding: "2rem"
+  custom:
+    "18": "4.5rem"
+    "88": "22rem"
+    "128": "32rem"
 
 breakpoints:
+  # Only 2xl is custom; rest are Tailwind defaults
   sm: "640px"
   md: "768px"
   lg: "1024px"
   xl: "1280px"
-  2xl: "1536px"
+  2xl: "1400px"   # Custom (default is 1536px)
 
 animation:
-  duration:
+  # === TIMING (2026 industry standard) ===
+  timing:
     instant: "100ms"
-    fast: "150ms"
+    fast: "160ms"
     normal: "250ms"
-    smooth: "400ms"
-    flowing: "600ms"
-    cosmic: "1000ms"
+    emphasis: "400ms"
+    dramatic: "600ms"
+
   easing:
     default: "cubic-bezier(0.4, 0, 0.2, 1)"
-    spring: "cubic-bezier(0.34, 1.56, 0.64, 1)"
-    cosmic: "cubic-bezier(0.22, 1, 0.36, 1)"
-    snappy: "cubic-bezier(0.2, 0, 0, 1)"
+    in: "cubic-bezier(0.4, 0, 1, 1)"
+    out: "cubic-bezier(0, 0, 0.2, 1)"
+    spring: "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
 
-icons:
-  library: "lucide-react"
-  sizes:
-    inline: "16px (w-4 h-4)"
-    nav: "20px (w-5 h-5)"
-    card: "24px (w-6 h-6)"
-    feature: "32px (w-8 h-8)"
-    hero: "48px (w-12 h-12)"
-  rules:
-    - "NEVER use emoji as icons"
-    - "Icons inherit text color by default"
-    - "Stroke width 1.5px for UI, 2px for emphasis"
+  ambient:
+    slow: "20s"
+    medium: "12s"
+    fast: "6s"
+
+  # === NAMED ANIMATIONS ===
+  cosmic:
+    pulse_glow: "2s ease-in-out infinite"
+    shimmer: "3s linear infinite"
+    float: "3s ease-in-out infinite"
+    float_slow: "6s ease-in-out infinite"
+    rotate_slow: "20s linear infinite"
+
+  atlantean:
+    water_flow: "6s ease-in-out infinite"
+    wave: "4s ease-in-out infinite"
+    ripple: "1.5s ease-out"
+    flow: "5s ease-in-out infinite"
+
+  draconic:
+    fire_flicker: "2s ease-in-out infinite"
+    flame: "1.5s ease-in-out infinite"
+    soar: "3s ease-out"
+    ember: "2s ease-out infinite"
+
+  creation:
+    prism_rotate: "10s ease infinite"
+    radial_pulse: "2s ease-in-out infinite"
+    frequency: "1s ease-in-out infinite"
+
+  glass:
+    iridescent_shift: "8s ease-in-out infinite"
+
+blur:
+  xs: "4px"
+  sm: "8px"
+  md: "16px"
+  lg: "24px"
+  xl: "40px"
+  2xl: "60px"
