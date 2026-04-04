@@ -1,9 +1,8 @@
-# OSS Agents
+# .arcanea/agents/
 
-This directory previously contained duplicates of root agents for open-source distribution.
+Tool-agnostic agent definitions. Mirrors `.claude/agents/` for cross-tool compatibility.
 
-**All agents now live in `.claude/agents/` (root) as the single source of truth.**
+**Canonical source:** `.claude/agents/` (70 agents, 12 Guardians)
+**This directory:** Portable subset for Cursor/Codex/Gemini.
 
-If an OSS-safe subset is needed for publishing, generate it at build time from root agents rather than maintaining copies.
-
-Removed duplicates (Feb 2026): creation-architect, design-sage, developer-documentation, developer-qa-engineer, luminor-oracle, master-creative-writer, prompt-sage.
+To sync: copy Guardian agents (@*.agent.md) and specialist agents here.
