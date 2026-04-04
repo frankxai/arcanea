@@ -17,6 +17,7 @@
     "dev:library": "turbo run dev --filter=@arcanea/library",
     "dev:realms": "turbo run dev --filter=@arcanea/realms",
     "dev:sanctuary": "turbo run dev --filter=@arcanea/sanctuary",
+    "dev:canvas": "turbo run dev --filter=@arcanea/canvas",
     "build": "turbo run build",
     "test": "turbo run test",
     "test:all": "node --test packages/*/tests/*.test.mjs",

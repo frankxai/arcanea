@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cosmic-void: #0b0e14;
+  --cosmic-deep: #121826;
+  --cosmic-surface: #1a2332;
+  --cosmic-raised: #242f42;
+  --cosmic-border: #2d3a52;
+  --text-primary: #e6eefc;
+  --text-secondary: #9bb1d0;
+  --text-muted: #708094;
+  --brand-accent: #7fffd4;
+  --brand-primary: #8b5cf6;
+  --brand-gold: #ffd700;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--cosmic-void);
+  color: var(--text-primary);
+  font-family: 'Crimson Pro', serif;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cosmic-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+.glass {
+  background: rgba(26, 35, 50, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 58, 82, 0.5);
+}
