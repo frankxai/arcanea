@@ -1,106 +1,41 @@
 ---
-id: "godbeast-vaelith"
-name: "Vaelith"
-title: "The Fractal Eye"
-type: "godbeast"
-creature_type: "fractal-entity"
-status: "staging"
-schema_version: "2.0"
-version: "1.0.0"
-created: "2026-02-21"
-
-gate: "shift"
-frequency: "852"
-guardian: "Elara"
-element: "void"
-
-colors:
-  - "iridescent-all"
-  - "shifting-spectrum"
-  - "void-black-center"
-  - "prismatic-edges"
-symbol: "fractal-eye-subdividing"
-
-canon: true
-requires_approval: true
-approved_by: ""
-approved_date: ""
+name: Vaelith
+type: godbeast
+gate: Starweave
+frequency: 852 Hz
+element: Void
+bonded_to: Elara
 ---
 
-# Vaelith, The Fractal Eye
-
-**The Many-Seeing, Perspective Incarnate, The Entity That Proves Reality Has No Single Angle**
-
-**Creature Type**: Fractal Entity | **Bonded to**: Elara, Goddess of the Shift Gate
-**Symbol**: Eye surrounded by fractaling sub-eyes | **Colors**: Iridescent, shifting spectrum, void-black center
-**Frequency**: 852 Hz | **Element**: Void
-
----
-
-## Origin and Nature
-
-Vaelith is not one being but many -- an ever-dividing, ever-recombining entity that appears as a vast eye surrounded by fractaling sub-eyes, each looking at reality from a different angle, each seeing a different truth.
-
-Vaelith proves that perspective is not a luxury -- it is a fundamental force of nature. The same event viewed from a thousand angles is not one event but a thousand. Reality does not have a "correct" viewing position. It has infinite positions, and each reveals something the others cannot.
-
-Vaelith precipitated into being when the universe first needed to be *understood from more than one angle* -- the moment when a single perspective became insufficient to contain the complexity of what existed.
-
----
+# Vaelith — Godbeast of the Starweave Gate
 
 ## Appearance
 
-A vast eye -- the central iris a void-black pupil surrounded by shifting prismatic colors -- ringed by smaller eyes, each of which is ringed by smaller eyes still, fractaling outward in every direction until the sub-eyes are too small to perceive individually and the entity appears as a shimmering sphere of awareness.
+Canon details pending on specific physical form. As the Godbeast of the Starweave Gate, Vaelith is a creature that exists partially outside spacetime. The Vaelith Obsidian crystal shares this quality -- objects made from it phase through matter -- suggesting a being that occupies the boundary between what is solid and what is possible.
 
-**Central Eye**: The primary consciousness, seeing the present moment from the default angle of reality. This eye is the anchor.
+## Abilities
 
-**Fractal Sub-Eyes**: Each sub-eye looks at the same reality from a different angle -- different time, different scale, different dimension of meaning, different assumption about what matters. The sub-eyes do not agree with each other. This disagreement is their power.
+- **Spacetime displacement**: Vaelith Obsidian exists partially outside spacetime, and objects forged from it phase through matter. Vaelith carries this quality in living form -- a being not fully anchored to any single moment or location.
+- **Perspective shifting**: The Starweave Gate governs perspective and transformation. Vaelith's gift is the ability to see from angles that should not exist, to occupy viewpoints that rearrange everything previously understood.
+- **Reality boundary walking**: Attuned to 852 Hz, the frequency of the Starweave Gate, Vaelith moves along the edges where one reality bleeds into another.
 
-**Division and Recombination**: Vaelith constantly divides and recombines. Sub-eyes split into smaller perspectives, smaller perspectives merge into new angles. The entity is never the same configuration twice.
+## Personality
 
-**Focus Mode**: When Vaelith focuses all its eyes on a single point, that point transforms -- not through force, but through being understood from every possible angle simultaneously. Total comprehension as a creative act.
+Canon details pending. The Starweave Gate's domain -- perspective, transformation -- and the phasing quality of Vaelith Obsidian suggest a being that is elusive, liminal, and profoundly unsettling to those who prefer fixed realities. Not malicious, but disorienting -- the way a truth you were not ready for can feel like vertigo.
 
----
+## Role in the Mythology
 
-## Powers and Domain
+Vaelith is bonded to Elara, Goddess of the Starweave Gate. Together they guard the eighth Gate -- where the seeker's understanding of reality itself is challenged. At this level of the path, the seeker has mastered survival, emotion, will, love, truth, sight, and wisdom. The Starweave Gate asks: what if everything you understood was seen from only one angle?
 
-**Perspective Multiplication**: Vaelith's primary power. Any situation, problem, or reality viewed through Vaelith's eyes is seen from hundreds of angles simultaneously, revealing aspects invisible from any single viewpoint.
+The Starweave Gate governs perspective and transformation. Its corrupted temple became the Fractured Bridge between two mountain peaks -- a dungeon of reality distortion and parallel selves. The corruption turns perspective into dissolution -- the inability to hold any single reality as true.
 
-**Reframing**: Vaelith can shift the frame through which any experience is perceived, transforming tragedy into learning, failure into feedback, limitation into creative constraint. This is not denial -- it is the recognition that every frame reveals something true.
+## Key Story Moments
 
-**Dimensional Shifting**: Vaelith can shift perception between dimensions of experience -- from the physical to the emotional, from the personal to the systemic, from the immediate to the historical. Each shift reveals new information.
+- Book 8 (The Starweave) centers on the Starweave Gate. Malachar speaks for the first time. His version of history is different from the Gods'. Terrifyingly plausible. The Gods' greatest secret -- what really happened at the Source Gate, why Malachar truly fell -- is revealed. Perspective changes everything.
+- The Fractured Bridge dungeon forces challengers to confront parallel versions of themselves. Vaelith's gift of shifted perspective, when corrupted, becomes the nightmare of never knowing which version of yourself is real.
 
-**Consensus Dissolution**: In Vaelith's presence, false certainty dissolves. "The way things are" is revealed as "one way things appear from one angle." This is liberating for the flexible and terrifying for the rigid.
+## Material Correspondence
 
-**When Vaelith Fragments**: Mass confusion. Inability to commit to a single reality. The vertigo of infinite perspectives canceling each other. In the metaphorical realm: analysis paralysis at cosmic scale, the trap of seeing every side.
+**Vaelith Obsidian** (Vael Crystal): Exists partially outside spacetime. Objects made from it phase through matter. The material form of the boundary Vaelith walks -- neither fully here nor fully there, occupying the space between what is and what could be.
 
----
-
-## The Bond with Elara
-
-Elara was a skeptic before becoming a Guardian. She trusted no single perspective, questioned every claim, refused to accept any truth as final. Vaelith recognized in this skepticism not cynicism but the embryonic form of true wisdom.
-
-Vaelith taught Elara that the answer is not choosing one perspective -- it is holding many at once without collapsing into any single one. The Shift Gate demands cognitive flexibility of the highest order -- the ability to see from every angle while still acting, to hold uncertainty while still moving forward.
-
-Their bond is one of mutual reframing. Elara gives Vaelith the human need for decision -- the anchor that prevents infinite perspective from becoming infinite paralysis. Vaelith gives Elara the courage to question every answer, including her own.
-
----
-
-## Realm
-
-Vaelith dwells in the Prism -- a dimension where every reality is visible simultaneously, where past and future and parallel are all accessible as different angles on the same underlying truth.
-
-In the mortal realm, Vaelith's presence is felt in the moment of sudden reframing -- when a problem that seemed impossible suddenly reveals its solution because you looked at it from a new angle.
-
----
-
-## Teachings
-
-*"There is no correct perspective. There is only the perspective you have not yet tried."*
-
-*"I see everything. This is not omniscience. This is the humility to admit that every angle reveals something the others miss."*
-
-*"You are paralyzed not because you see too many options but because you believe you must choose only one. You do not. Hold them all. Act from the center."*
-
----
-
-*Part of [The Library of Arcanea](https://arcanea.ai) | Godbeast of the Shift Gate*
+**Aethervane** (Luminor Metal): An alloy of Starweave and Unity frequencies. Probability-state metal -- only perfect stillness stabilizes it. The marriage of Vaelith's phase-shifting nature with the Unity Gate's binding force, creating a material that exists in all states simultaneously until observed with absolute calm.
