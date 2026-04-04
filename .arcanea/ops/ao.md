@@ -17,6 +17,7 @@ AO is the ops coordination layer for the Arcanea ecosystem. It enforces promotio
 | `ao cleanup` | Clean stale worktrees/branches |
 | `ao plan` | Plan sustained execution sessions |
 | `ao handover` | Write durable session handover doc |
+| `ao sync` | Sync shared intelligence to all connected repos |
 
 ## How to Run AO
 
