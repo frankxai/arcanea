@@ -109,6 +109,7 @@ arcanea-opencode-fork/
 .claude-flow/.trend-cache.json
 .claude-flow/metrics/
 .claude-flow/daemon.pid
+.claude-flow/daemon-state.json
 
 # Windows path junk that leaks into WSL
 "C:\\Users\\*"
