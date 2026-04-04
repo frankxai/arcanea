@@ -59,3 +59,17 @@ All shared Arcanea knowledge lives in `.arcanea/`:
 | Antigravity | `.antigravity/` | (TBD) | (planned) |
 
 All configs should be thin shims pointing to `.arcanea/ops/AGENT_BOOTSTRAP.md`.
+
+## Repo Split Rule (All Agents Must Follow)
+
+| What to push | Where | Why |
+|-------------|-------|-----|
+| Shared intelligence (ops, lore, config, skills, prompts) | `frankxai/arcanea` (OSS) | Canonical framework source |
+| Product code (webapp, DB, planning state, handovers) | `frankxai/arcanea-ai-app` | Product-specific |
+| Claude commands and skills | `frankxai/claude-arcanea` | Agent-specific overlay |
+| OpenCode agents and commands | `frankxai/oh-my-arcanea` | Agent-specific overlay |
+| Standalone CLI | `frankxai/arcanea-orchestrator` | Future product |
+| Multi-agent routing | `frankxai/arcanea-flow` | Coordination layer |
+
+After changing shared `.arcanea/` files, run `bash .arcanea/scripts/ao-sync.sh` to push to all connected repos.
+Never sync product-specific files (`planning-with-files/`, `docs/ops/` handovers) to the OSS repo.
