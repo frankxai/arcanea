@@ -1,0 +1,25 @@
+{
+  "id": "task-identifier",
+  "title": "Short task title",
+  "scope": "What this task is responsible for delivering.",
+  "ownerRuntime": "codex",
+  "ownerAgent": "planner",
+  "files": [
+    "path/to/file"
+  ],
+  "nonGoals": [
+    "What this task must not try to solve."
+  ],
+  "acceptanceCriteria": [
+    "Observable condition that defines done."
+  ],
+  "verification": [
+    "command to run"
+  ],
+  "rollback": [
+    "how to undo if it breaks"
+  ],
+  "priority": "high",
+  "verificationMode": "standard",
+  "memoryReadBeforeWrite": true
+}
