@@ -1,0 +1,24 @@
+{
+  "contractId": "task-identifier",
+  "fromRuntime": "codex",
+  "toRuntime": "opencode",
+  "summary": "One-paragraph summary of what landed and what still matters.",
+  "changedFiles": [
+    "path/to/file"
+  ],
+  "decisions": [
+    "Decision and why it was taken."
+  ],
+  "blockers": [],
+  "verificationRun": [
+    "command that was run"
+  ],
+  "nextAction": "Exact next action for the receiving runtime or agent.",
+  "memoryWrites": [
+    {
+      "vault": "technical",
+      "entryType": "project_learning",
+      "summary": "Durable learning worth storing in SIS."
+    }
+  ]
+}
