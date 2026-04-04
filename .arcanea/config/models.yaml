@@ -1,61 +1,290 @@
 # Arcanea Model Routing Configuration
-# Adaptive model selection per tool and task type
+# Extracted from: lib/gateway/catalog.ts, lib/imagine/generate.ts, api routes
+# Last updated: 2026-03-30
 
-defaults:
-  reasoning: claude-opus-4-6
-  coding: claude-sonnet-4-6
-  fast: claude-haiku-4-5
-  vision: gemini-2.5-pro
-  image_generation: gemini-3-pro-image-preview
+# === INTELLIGENCE GATEWAY ===
+# Arcanea's unified model catalog — curated best-in-class across providers.
+# Gateway IDs (arcanea-*) map to provider + model in lib/gateway/catalog.ts.
 
-tools:
-  claude-code:
-    primary: claude-opus-4-6
-    fast: claude-sonnet-4-6
-    background: claude-haiku-4-5
-  cursor:
-    primary: claude-sonnet-4-6
-    fast: claude-haiku-4-5
-  codex:
-    primary: claude-opus-4-6
-  gemini:
-    primary: gemini-2.5-pro
-    fast: gemini-2.5-flash
-  arcanea-code:
-    primary: claude-sonnet-4-6
-    fast: claude-haiku-4-5
-    reasoning: claude-opus-4-6
+gateway:
+  # --- Frontier Reasoning ---
+  arcanea-opus:
+    provider: anthropic
+    model_id: "claude-opus-4-6"
+    label: "Opus 4.6"
+    tier: premium
+    use: "Complex reasoning, architecture, security, creative writing"
 
-task_routing:
-  architecture:
-    model: claude-opus-4-6
-    guardian: Lyssandria
-  creative_writing:
-    model: claude-opus-4-6
-    guardian: Leyla
-  code_generation:
-    model: claude-sonnet-4-6
-    guardian: Draconia
-  code_review:
-    model: claude-opus-4-6
-    guardian: Lyria
-  quick_fixes:
-    model: claude-haiku-4-5
-    guardian: Maylinn
-  visual_design:
-    model: gemini-2.5-pro
-    guardian: Alera
-  lore_expansion:
-    model: claude-opus-4-6
-    guardian: Shinkami
+  arcanea-sonnet:
+    provider: anthropic
+    model_id: "claude-sonnet-4-6"
+    label: "Sonnet 4.6"
+    tier: quality
+    use: "Balanced reasoning, coding, analysis"
 
+  arcanea-haiku:
+    provider: anthropic
+    model_id: "claude-haiku-4-5-20251001"
+    label: "Haiku 4.5"
+    tier: fast
+    use: "Simple tasks, classification, low-latency"
+
+  arcanea-gpt5:
+    provider: openai
+    model_id: "gpt-5.2-pro"
+    label: "GPT-5.2 Pro"
+    tier: premium
+
+  arcanea-gemini-pro:
+    provider: google
+    model_id: "gemini-3.1-pro-preview"
+    label: "Gemini 3.1 Pro"
+    tier: premium
+
+  arcanea-gemini-flash:
+    provider: google
+    model_id: "gemini-2.5-flash"
+    label: "Gemini 2.5 Flash"
+    tier: fast
+    use: "Default chat model (legacy fallback)"
+
+  arcanea-grok:
+    provider: xai
+    model_id: "grok-4.20"
+    label: "Grok 4.2"
+    tier: quality
+
+  arcanea-deepseek-r1:
+    provider: deepseek
+    model_id: "deepseek-reasoner"
+    label: "DeepSeek R1"
+    tier: quality
+    use: "Deep reasoning, math, code"
+
+  arcanea-deepseek:
+    provider: deepseek
+    model_id: "deepseek-chat"
+    label: "DeepSeek V3"
+    tier: fast
+
+  arcanea-kimi:
+    provider: moonshot
+    model_id: "kimi-k2.5"
+    label: "Kimi K2.5"
+    tier: quality
+
+  arcanea-qwen:
+    provider: cerebras
+    model_id: "qwen-3-235b-a22b-instruct-2507"
+    label: "Qwen 3"
+    tier: quality
+
+  arcanea-maverick:
+    provider: groq
+    model_id: "meta-llama/llama-4-maverick-17b-128e-instruct"
+    label: "Maverick"
+    tier: fast
+
+  arcanea-mistral:
+    provider: mistral
+    model_id: "mistral-large-2512"
+    label: "Mistral Large"
+    tier: quality
+
+  # --- Speed Tier (inference-optimized hardware) ---
+  arcanea-bolt:
+    provider: cerebras
+    model_id: "llama3.1-8b"
+    label: "Bolt (2200 tok/s)"
+    tier: speed
+    use: "Ultra-fast inference, drafting, classification"
+
+  arcanea-thunder:
+    provider: cerebras
+    model_id: "llama3.3-70b"
+    label: "Thunder (450 tok/s)"
+    tier: speed
+    use: "Fast inference with stronger reasoning"
+
+  arcanea-lightning:
+    provider: groq
+    model_id: "llama-3.1-8b-instant"
+    label: "Lightning (750 tok/s)"
+    tier: speed
+
+# === LEGACY PROVIDER DEFAULTS ===
+# Used when no Gateway model is specified in the chat API
+legacy_defaults:
+  openrouter:
+    model: "google/gemini-2.5-flash"
+    label: "Gemini 2.5 Flash (OpenRouter)"
+    env_key: "OPENROUTER_API_KEY"
+  google:
+    model: "gemini-2.0-flash"
+    label: "Gemini 2.0 Flash"
+    env_keys: ["GOOGLE_GENERATIVE_AI_API_KEY", "GEMINI_API_KEY"]
+  anthropic:
+    model: "claude-sonnet-4-20250514"
+    label: "Claude Sonnet 4"
+    env_key: "ANTHROPIC_API_KEY"
+  openai:
+    model: "gpt-4o"
+    label: "GPT-4o"
+    env_key: "OPENAI_API_KEY"
+
+# === EXTENDED PROVIDERS ===
+# OpenAI-compatible APIs with custom base URLs
 providers:
   anthropic:
-    env: ANTHROPIC_API_KEY
-    gateway: ai-gateway
+    base_url: "https://api.anthropic.com/v1"
+    env_key: "ANTHROPIC_API_KEY"
+    format: "anthropic"
+  openai:
+    base_url: "https://api.openai.com/v1"
+    env_key: "OPENAI_API_KEY"
+    format: "openai"
   google:
-    env: GOOGLE_GENERATIVE_AI_API_KEY
-    gateway: ai-gateway
-  vercel:
-    env: AI_GATEWAY_API_KEY
-    gateway: ai-gateway
+    base_url: "https://generativelanguage.googleapis.com/v1beta"
+    env_key: "GOOGLE_GENERATIVE_AI_API_KEY"
+    format: "google"
+  xai:
+    base_url: "https://api.x.ai/v1"
+    env_key: "XAI_API_KEY"
+    format: "openai"
+  deepseek:
+    base_url: "https://api.deepseek.com/v1"
+    env_key: "DEEPSEEK_API_KEY"
+    format: "openai"
+  moonshot:
+    base_url: "https://api.moonshot.ai/v1"
+    env_key: "MOONSHOT_API_KEY"
+    format: "openai"
+  cerebras:
+    base_url: "https://api.cerebras.ai/v1"
+    env_key: "CEREBRAS_API_KEY"
+    format: "openai"
+  groq:
+    base_url: "https://api.groq.com/openai/v1"
+    env_key: "GROQ_API_KEY"
+    format: "openai"
+  mistral:
+    base_url: "https://api.mistral.ai/v1"
+    env_key: "MISTRAL_API_KEY"
+    format: "openai"
+
+# === IMAGE GENERATION ===
+image:
+  # Provider priority chain (fallback order)
+  priority: ["grok", "openrouter", "gemini"]
+
+  grok:
+    provider: xai
+    model: "grok-2-image"
+    endpoint: "https://api.x.ai/v1/images/generations"
+    env_key: "XAI_API_KEY"
+    max_count: 10
+    supported_sizes: ["1024x1024", "1792x1024", "1024x1792", "1024x768", "768x1024", "1536x1024", "1024x1536"]
+
+  openrouter:
+    default_model: "google/gemini-3.1-flash-image-preview"
+    env_key: "OPENROUTER_API_KEY"
+    models:
+      # Premium
+      - id: "google/gemini-3-pro-image-preview"
+        label: "Nano Banana Pro"
+        tier: premium
+      - id: "black-forest-labs/flux.2-max"
+        label: "FLUX.2 Max"
+        tier: premium
+      - id: "openai/gpt-5-image"
+        label: "GPT-5 Image"
+        tier: premium
+      # Quality
+      - id: "black-forest-labs/flux.2-pro"
+        label: "FLUX.2 Pro"
+        tier: quality
+      # Fast
+      - id: "google/gemini-3.1-flash-image-preview"
+        label: "Nano Banana 2"
+        tier: fast
+      - id: "black-forest-labs/flux.2-flex"
+        label: "FLUX.2 Flex"
+        tier: fast
+      - id: "black-forest-labs/flux.2-klein-4b"
+        label: "FLUX.2 Klein"
+        tier: fast
+      - id: "openai/gpt-5-image-mini"
+        label: "GPT-5 Image Mini"
+        tier: fast
+      - id: "google/gemini-2.5-flash-image-preview"
+        label: "Nano Banana"
+        tier: fast
+
+  aspect_ratios:
+    "1:1": "1024x1024"
+    "16:9": "1792x1024"
+    "9:16": "1024x1792"
+    "4:3": "1024x768"
+    "3:4": "768x1024"
+    "3:2": "1536x1024"
+    "2:3": "1024x1536"
+
+# === VIDEO GENERATION ===
+video:
+  provider: google
+  model: "veo"
+  note: "Google Veo via direct API"
+
+# === SPEECH ===
+speech:
+  tts:
+    provider: openai
+    models: ["tts-1", "tts-1-hd"]
+    default_model: "tts-1"
+    default_voice: "nova"
+    endpoint: "https://api.openai.com/v1/audio/speech"
+    env_key: "OPENAI_API_KEY"
+    output_format: "audio/mpeg"
+
+  transcription:
+    # Primary: Groq Whisper (faster, cheaper)
+    primary:
+      provider: groq
+      model: "whisper-large-v3-turbo"
+      endpoint: "https://api.groq.com/openai/v1/audio/transcriptions"
+      env_key: "GROQ_API_KEY"
+    # Fallback: OpenAI Whisper
+    fallback:
+      provider: openai
+      model: "whisper-1"
+      endpoint: "https://api.openai.com/v1/audio/transcriptions"
+      env_key: "OPENAI_API_KEY"
+    max_file_size: "25MB"
+
+# === CLAUDE CODE ROUTING (Development) ===
+claude_code:
+  primary: "claude-opus-4-6"
+  fast: "claude-sonnet-4-6"
+  haiku: "claude-haiku-4-5"
+
+# === 3-TIER MODEL ROUTING (ADR-026) ===
+routing:
+  tier1_wasm:
+    handler: "Agent Booster (WASM)"
+    latency: "<1ms"
+    cost: "$0"
+    use: "Simple transforms (var->const, add types) -- skip LLM entirely"
+
+  tier2_haiku:
+    handler: "Haiku"
+    latency: "~500ms"
+    cost: "$0.0002"
+    use: "Simple tasks, low complexity (<30%)"
+    model: "claude-haiku-4-5-20251001"
+
+  tier3_opus:
+    handler: "Sonnet/Opus"
+    latency: "2-5s"
+    cost: "$0.003-$0.015"
+    use: "Complex reasoning, architecture, security (>30%)"
+    models: ["claude-sonnet-4-6", "claude-opus-4-6"]
