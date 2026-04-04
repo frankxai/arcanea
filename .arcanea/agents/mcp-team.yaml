@@ -1,0 +1,143 @@
+# Arcanea MCP Dedicated Product Team
+# Branch: product/arcanea-mcp-v1
+# Created: 2026-04-02
+
+team:
+  name: "MCP Product Team"
+  guardian: Shinkami
+  gate: Source
+  branch: product/arcanea-mcp-v1
+  mission: "Ship Arcanea MCP as a standalone product on every marketplace"
+
+roles:
+  - id: mcp-product-lead
+    name: "MCP Product Lead"
+    guardian: Shinkami
+    gate: Source
+    type: coordinator
+    responsibilities:
+      - Architecture decisions and roadmap ownership
+      - Marketplace strategy and positioning
+      - Cross-team coordination with main Arcanea dev
+      - Release management and version strategy
+    agent_type: system-architect
+    model: opus
+
+  - id: mcp-sdk-architect
+    name: "SDK Architect"
+    guardian: Lyria
+    gate: Sight
+    type: specialist
+    responsibilities:
+      - MCP SDK upgrade (0.5.x → 1.x)
+      - Tool schema design and validation
+      - Protocol compliance and Inspector pass
+      - Resource and prompt definitions
+    agent_type: coder
+    model: sonnet
+    focus_packages:
+      - packages/arcanea-mcp
+      - packages/memory-mcp
+
+  - id: mcp-transport-engineer
+    name: "Transport Engineer"
+    guardian: Ismael
+    gate: Source
+    type: specialist
+    responsibilities:
+      - HTTP/SSE transport layer
+      - Auth middleware (API keys, rate limiting)
+      - Cloud deployment (Docker, Vercel Edge)
+      - Health checks and monitoring
+    agent_type: backend-dev
+    model: sonnet
+    focus_packages:
+      - packages/mcp-transport (NEW)
+      - packages/arcanea-mcp
+      - packages/memory-mcp
+
+  - id: mcp-docs-specialist
+    name: "Content & Docs Specialist"
+    guardian: Alera
+    gate: Voice
+    type: specialist
+    responsibilities:
+      - Developer documentation site
+      - README overhaul for all MCP packages
+      - Integration guides (Claude, Cursor, Windsurf, Cline)
+      - Blog posts and social content for launch
+    agent_type: Developer Documentation Specialist
+    model: sonnet
+    focus:
+      - packages/arcanea-mcp/README.md
+      - packages/memory-mcp/README.md
+      - docs/mcp/
+
+  - id: mcp-qa-publisher
+    name: "QA & Publishing"
+    guardian: Lyssandria
+    gate: Foundation
+    type: specialist
+    responsibilities:
+      - Test coverage for all MCP tools
+      - npm publish pipeline and changesets
+      - CI/CD GitHub Actions for auto-publish
+      - Marketplace submission and monitoring
+      - MCP Inspector validation
+    agent_type: tester
+    model: sonnet
+    focus:
+      - .github/workflows/mcp-publish.yml
+      - .changeset/
+      - packages/*/package.json
+
+workflows:
+  daily_standup:
+    trigger: session_start
+    actions:
+      - Check MCP product board status
+      - Review open PRs on product/arcanea-mcp-v1
+      - Report blockers to Product Lead
+
+  release_cycle:
+    trigger: manual
+    actions:
+      - Run MCP Inspector on both servers
+      - Run full test suite
+      - Bump versions via changesets
+      - Publish to npm
+      - Update marketplace listings
+
+  quality_gate:
+    trigger: pre_merge
+    actions:
+      - TypeScript strict compile
+      - MCP Inspector validation
+      - All tool schemas validated
+      - README up to date
+      - No breaking changes without major version bump
+
+integration_points:
+  - name: "Main Arcanea Dev"
+    sync: "MCP changes that affect arcanea.ai features"
+    channel: "PR reviews on main branch"
+
+  - name: "Agent Ecosystem"
+    sync: "AgentHub integration for MCP-based agents"
+    ref: ".arcanea/strategy/AGENT_ECOSYSTEM_ARCHITECTURE.md"
+
+  - name: "Memory System"
+    sync: "memory-mcp depends on memory-system workspace"
+    ref: "packages/memory-system/"
+
+kpis:
+  - metric: npm_weekly_downloads
+    target_w1: 50
+    target_w4: 500
+    target_w8: 2000
+  - metric: marketplace_listings
+    target: 6
+  - metric: mcp_inspector_pass
+    target: 100%
+  - metric: test_coverage
+    target: 80%
