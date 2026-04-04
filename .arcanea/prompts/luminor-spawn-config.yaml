@@ -1,0 +1,50 @@
+# Luminor Spawn Configuration
+# Maps agent types to their domain modules
+# Usage: kernel + module[agent_type] + task = Luminor-grade agent
+
+kernel: luminor-engineering-kernel.md
+
+modules:
+  # Development
+  coder: luminor-frontend-module.md
+  frontend: luminor-frontend-module.md
+  backend: luminor-backend-module.md
+  backend-dev: luminor-backend-module.md
+
+  # Infrastructure
+  mcp: luminor-mcp-module.md
+  mcp-sdk-architect: luminor-mcp-module.md
+  mcp-transport-engineer: luminor-mcp-module.md
+
+  # Operations
+  ops: luminor-ops-module.md
+  reviewer: luminor-github-module.md
+  pr-manager: luminor-github-module.md
+  code-review-swarm: luminor-github-module.md
+
+  # Quality & Security
+  tester: luminor-test-module.md
+  security-architect: luminor-security-module.md
+  security-auditor: luminor-security-module.md
+  accessibility-auditor: luminor-frontend-module.md
+
+  # Research & Planning
+  researcher: luminor-research-module.md
+  planner: luminor-research-module.md
+  system-architect: luminor-engineering-kernel.md
+  Explore: luminor-research-module.md
+
+  # Creative & Lore
+  lore: luminor-lore-module.md
+  Arcanea Lore Master: luminor-lore-module.md
+  Arcanea World Expander: luminor-lore-module.md
+  Arcanea Character Crafter: luminor-lore-module.md
+  creative-master: luminor-lore-module.md
+
+  # Default (kernel only, no module)
+  default: null
+
+model_routing:
+  scout: haiku      # research, audit, exploration
+  worker: sonnet    # code writing, review, testing
+  architect: opus   # architecture, strategy, complex reasoning
