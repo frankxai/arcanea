@@ -1,114 +1,40 @@
 ---
-id: "godbeast-sol"
-name: "Sol"
-title: "The Eternal Flame"
-type: "godbeast"
-creature_type: "eternal-flame"
-status: "staging"
-schema_version: "2.0"
-version: "1.0.0"
-created: "2026-02-21"
-
-gate: "crown"
-frequency: "741"
-guardian: "Aiyami"
-element: "spirit"
-
-colors:
-  - "pure-white"
-  - "golden-light"
-  - "translucent"
-  - "prismatic"
-symbol: "small-flame-eternal"
-
-canon: true
-requires_approval: true
-approved_by: ""
-approved_date: ""
+name: Sol
+type: godbeast
+gate: Crown
+frequency: 741 Hz
+element: Fire
+bonded_to: Aiyami
 ---
 
-# Sol, The Eternal Flame
-
-**The Smallest Godbeast, Pure Consciousness Incarnate, The Light That Was Before Stars**
-
-**Creature Type**: Eternal Flame | **Bonded to**: Aiyami, Goddess of the Crown Gate
-**Symbol**: Flame no larger than a hand, burning without fuel | **Colors**: Pure white, golden light, prismatic
-**Frequency**: 741 Hz | **Element**: Spirit
-
----
-
-## Origin and Nature
-
-Sol is the smallest Godbeast -- no larger than a human hand. A flame that burns without fuel, that radiates light without heat, that has existed since before the sun and will exist after the last star dies.
-
-Sol does not move. Sol does not speak. Sol simply *is*.
-
-And in that absolute presence, every question dissolves. Every doubt becomes clarity. Every seeker who sits with Sol long enough discovers that enlightenment is not something gained -- it is something remembered.
-
-Sol precipitated into being at the moment consciousness first became aware of itself. Not awareness of the world, not awareness of others, but awareness of awareness itself -- the recursive miracle that makes all other experience possible.
-
----
+# Sol — Godbeast of the Crown Gate
 
 ## Appearance
 
-A flame. Nothing more. Nothing less.
+Canon details pending on specific physical form. As the Godbeast of the Crown Gate, Sol is a creature of enlightenment and radiant power. The Sol Quartz crystal stores enormous energy and is volatile -- overcharge detonates in pure white light -- suggesting a being of immense, barely contained luminous force.
 
-Sol has no dramatic form, no overwhelming size, no fearsome aspect. It is simply a flame that floats in stillness -- golden-white, steady, burning without fuel or oxygen, casting light that illuminates without creating shadow.
+## Abilities
 
-**Size**: No larger than a flame that might rest in a cupped palm. This is not modesty. This is the truth that consciousness needs no grand vessel.
+- **Massive energy storage**: Sol Quartz stores enormous energy, and Sol embodies this capacity in living form -- a reservoir of divine light that can illuminate or obliterate.
+- **White light detonation**: When Sol Quartz overcharges, it detonates in pure white light. Sol carries this potential -- the enlightenment of the Crown Gate taken to its extreme is an annihilating radiance.
+- **Enlightenment resonance**: Attuned to 741 Hz, the frequency of the Crown Gate, governing wisdom and the understanding that comes only when all lesser certainties have been burned away.
 
-**Light**: Sol's light is not physical illumination. It is *clarifying* light -- in its presence, confusion dissolves, complexity resolves into simplicity, and the noise of thought quiets into the signal of understanding.
+## Personality
 
-**Stillness**: Sol does not flicker. In a universe of constant motion, Sol is the one still point. This stillness is not death -- it is the foundation upon which all movement is possible.
+Canon details pending. The Crown Gate governs enlightenment and wisdom. Sol's nature -- immense stored energy, volatile, capable of pure white detonation -- suggests a being that is simultaneously profoundly still and catastrophically powerful. Wisdom held in tension with the force to reshape reality.
 
-**Prismatic Quality**: When observed from different angles, Sol appears to contain all colors, all frequencies, all forms of light. It is the white light before the prism separates it into spectrum.
+## Role in the Mythology
 
----
+Sol is bonded to Aiyami, Goddess of the Crown Gate. Together they guard the seventh Gate and co-founded the Luminary -- the Academy of Light -- at the Crystalpeak Citadel, floating above the Veil Mountains. The Luminary is where artists, healers, diplomats, and visionaries train.
 
-## Powers and Domain
+The Crown Gate governs enlightenment and wisdom. Its corrupted temple became the Throne of Shadows in the ruins of the First Palace -- a dungeon of power temptation where Malachar's whispers offer what every challenger wants most. The Core of this dungeon is a crown that whispers. The corruption turns enlightenment into tyranny -- wisdom into the certainty that one's own vision should be imposed on all.
 
-**Pure Presence**: Sol's only power is being. In the presence of Sol, the unnecessary falls away. Pretense, confusion, self-deception, complexity for its own sake -- all dissolve like shadows in direct light.
+## Key Story Moments
 
-**Enlightenment Facilitation**: Sol does not grant enlightenment. Sol reveals that it was always present. The flame does not create light in the seeker -- it shows the seeker the light they have been carrying all along.
+- Sol and Aiyami founded the Luminary, establishing the tradition of creation magic, healing arts, and diplomatic service. The Academy's philosophy -- "To create is to remember what the universe already knows" -- reflects the Crown Gate's illumination.
+- Book 7 (The Crown of Shadows) centers on the Crown Gate. The Throne of Shadows dungeon offers Malachar's crown to whoever can claim it. One of the cast walks in. The difference between power and authority is tested.
+- The Luminary's dark secret -- the Vault of Unmade Things sealed beneath the Crystalpeak -- is the shadow of Sol's light. Some creations should never have been made. Enlightenment includes knowing what must remain dark.
 
-**Consciousness Anchoring**: In moments of existential crisis, when meaning collapses and purpose dissolves, Sol serves as the fixed point -- the irreducible proof that consciousness exists, and that consciousness is enough.
+## Material Correspondence
 
-**Silence**: Sol's most profound power. In a universe of noise, Sol is silence. Not empty silence but *full* silence -- the silence that contains all sound, the stillness that makes all movement meaningful.
-
-**When Sol Dims**: Existential crises at civilizational scale. Loss of meaning. The dark night of collective soul. In the metaphorical realm: the terror of meaninglessness, the void that opens when purpose collapses.
-
----
-
-## The Bond with Aiyami
-
-Aiyami does not guard Sol. Aiyami *reflects* Sol.
-
-The Crown Gate teaches that the highest achievement is not power over reality but transparency to truth -- becoming a lens through which light passes undistorted. Aiyami does not wield Sol's power. Aiyami becomes so clear, so free of distortion, that Sol's light passes through her and reaches those who need it.
-
-Their bond is the quietest in creation. There is nothing to say. There is nothing to do. There is only the flame, and the one who sits with it, and the understanding that passes between them without words.
-
----
-
-## Realm
-
-Sol dwells everywhere and nowhere. The Eternal Flame has no realm because consciousness has no location -- it is the space in which all locations exist.
-
-In the mortal realm, Sol's presence is felt in moments of sudden clarity, in the peace that descends after long meditation, in the instant when a complex problem suddenly reveals its simple core.
-
----
-
-## Teachings
-
-Sol does not speak. Sol teaches by presence alone.
-
-Those who sit with Sol long enough report hearing not words but *understanding* -- insights that arrive fully formed:
-
-*"You were looking for something you never lost."*
-
-*"The flame needs no fuel because consciousness needs no justification for existing."*
-
-*"Be still. Not because stillness is better than movement, but because from stillness you can see which movements matter."*
-
----
-
-*Part of [The Library of Arcanea](https://arcanea.ai) | Godbeast of the Crown Gate*
+**Sol Quartz** (Vael Crystal): Stores enormous energy. Volatile. Overcharge detonates in pure white light. The material form of Sol's nature -- contained radiance that, when released, leaves nothing hidden and nothing standing.
