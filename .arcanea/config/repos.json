@@ -1,0 +1,88 @@
+{
+  "$schema": "Arcanea cross-repo registry — source of truth for multi-repo automation",
+  "lastUpdated": "2026-03-30",
+  "repos": [
+    {
+      "name": "arcanea-ai-app",
+      "description": "Main platform — arcanea.ai production",
+      "github": "frankxai/arcanea-ai-app",
+      "role": "production",
+      "stack": ["next.js", "react", "typescript", "supabase"],
+      "vercel": "arcanea-ai-appx",
+      "branch": "main",
+      "dependencies": ["@arcanea/core", "@arcanea/aios"],
+      "active": true
+    },
+    {
+      "name": "arcanea",
+      "description": "OSS framework — the open-source engine",
+      "github": "frankxai/arcanea",
+      "role": "oss",
+      "stack": ["typescript", "node"],
+      "branch": "main",
+      "publishes": ["@arcanea/core", "@arcanea/aios", "@arcanea/sdk"],
+      "active": true
+    },
+    {
+      "name": "oh-my-arcanea",
+      "description": "Canonical Claude Code harness — agents, skills, hooks",
+      "github": "frankxai/oh-my-arcanea",
+      "role": "harness",
+      "stack": ["yaml", "markdown", "shell"],
+      "branch": "main",
+      "active": true
+    },
+    {
+      "name": "arcanea-records",
+      "description": "Music studio — Suno integration, soundscapes",
+      "github": "frankxai/arcanea-records",
+      "role": "product",
+      "stack": ["next.js", "typescript"],
+      "branch": "main",
+      "active": true
+    },
+    {
+      "name": "arcanea-mcp",
+      "description": "MCP server — Arcanea tools for Claude Code",
+      "github": "frankxai/arcanea-mcp",
+      "role": "infrastructure",
+      "stack": ["typescript", "node"],
+      "publishes": ["@arcanea/mcp"],
+      "branch": "main",
+      "active": true
+    },
+    {
+      "name": "arcanea-memory",
+      "description": "Memory MCP server — vault, horizon, sync",
+      "github": "frankxai/arcanea-memory",
+      "role": "infrastructure",
+      "stack": ["typescript", "node"],
+      "publishes": ["@arcanea/memory-mcp"],
+      "branch": "main",
+      "active": true
+    },
+    {
+      "name": "claude-flow",
+      "description": "Multi-agent orchestration framework",
+      "github": "ruvnet/claude-flow",
+      "role": "infrastructure",
+      "stack": ["typescript", "node"],
+      "publishes": ["@claude-flow/cli"],
+      "branch": "main",
+      "active": true
+    }
+  ],
+  "syncRules": {
+    "sharedTypes": {
+      "source": "arcanea",
+      "targets": ["arcanea-ai-app", "arcanea-mcp", "arcanea-memory"],
+      "trigger": "tag"
+    },
+    "harness": {
+      "source": "oh-my-arcanea",
+      "targets": ["arcanea-ai-app"],
+      "trigger": "manual",
+      "syncPaths": [".claude/agents/", ".claude/skills/", ".arcanea/"]
+    }
+  }
+}
