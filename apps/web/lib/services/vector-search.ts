@@ -10,6 +10,8 @@
  */
 
 import { getSupabaseAdmin, supabaseServer } from '@/lib/supabase';
+import type { PostgrestError } from '@supabase/supabase-js';
+import type { Database } from '@/lib/database/types/supabase';
 import { getEmbeddingService, TaskType } from './embeddings';
 
 // ============================================
@@ -65,6 +67,31 @@ export interface SearchResult<T> {
   item: T;
   similarity: number;
 }
+
+type MatchLoreArgs = Database['public']['Functions']['match_lore']['Args'];
+type MatchLoreResult = Database['public']['Functions']['match_lore']['Returns'];
+type MatchLoreRpc = (
+  fn: 'match_lore',
+  args: MatchLoreArgs
+) => Promise<{ data: MatchLoreResult | null; error: PostgrestError | null }>;
+export type VectorSearchTable = 'lore_fragments' | 'creations';
+type VectorSearchRow = Database['public']['Tables'][VectorSearchTable]['Row'];
+type LoreFragmentUpsert = Omit<
+  Database['public']['Tables']['lore_fragments']['Insert'],
+  'embedding'
+> & {
+  embedding?: number[] | string | null;
+  id?: string;
+  created_at?: string;
+  updated_at?: string;
+};
+type LoreFragmentUpsertTable = {
+  upsert: (payload: LoreFragmentUpsert) => {
+    select: () => {
+      single: () => Promise<{ data: LoreFragment | null; error: PostgrestError | null }>;
+    };
+  };
+};
 
 /**
  * Search options
@@ -134,7 +161,8 @@ export class VectorSearchService {
 
     // First try the match_lore function
     try {
-      const { data: matchedData, error: rpcError } = await supabase.rpc('match_lore', {
+      const matchLore = supabase.rpc.bind(supabase) as unknown as MatchLoreRpc;
+      const { data: matchedData, error: rpcError } = await matchLore('match_lore', {
         query_embedding: `[${queryEmbedding.embedding.join(',')}]`,
         match_threshold: threshold,
         match_count: limit,
@@ -301,7 +329,7 @@ export class VectorSearchService {
    */
   async findSimilar<T extends Record<string, unknown>>(
     embedding: number[],
-    table: string,
+    table: VectorSearchTable,
     options: SearchOptions = {}
   ): Promise<SearchResult<T>[]> {
     const { limit = DEFAULT_LIMIT, threshold = DEFAULT_THRESHOLD } = options;
@@ -371,13 +399,17 @@ export class VectorSearchService {
       embedding = result.embedding;
     }
 
-    const { data, error } = await supabase
-      .from('lore_fragments')
-      .upsert({
-        ...fragment,
-        embedding: embedding ? `[${embedding.join(',')}]` : undefined,
-        updated_at: new Date().toISOString(),
-      })
+    const upsertPayload: LoreFragmentUpsert = {
+      ...fragment,
+      embedding: embedding ? `[${embedding.join(',')}]` : fragment.embedding ?? null,
+      tags: fragment.tags ?? [],
+      source_file: fragment.source_file ?? null,
+      updated_at: new Date().toISOString(),
+    };
+
+    const loreFragments = supabase.from('lore_fragments') as unknown as LoreFragmentUpsertTable;
+    const { data, error } = await loreFragments
+      .upsert(upsertPayload)
       .select()
       .single();
 
@@ -467,7 +499,7 @@ export class VectorSearchService {
    * Manual vector search fallback when RPC is not available.
    */
   private async manualVectorSearch<T extends Record<string, unknown>>(
-    table: string,
+    table: VectorSearchTable,
     queryEmbedding: number[],
     options: SearchOptions
   ): Promise<SearchResult<T>[]> {
@@ -498,7 +530,7 @@ export class VectorSearchService {
     // Calculate similarity for each item
     const results: SearchResult<T>[] = [];
 
-    for (const item of data || []) {
+    for (const item of (data || []) as VectorSearchRow[]) {
       if (item.embedding) {
         // Parse embedding if it's a string
         const itemEmbedding = typeof item.embedding === 'string'
@@ -509,7 +541,7 @@ export class VectorSearchService {
 
         if (similarity >= threshold) {
           results.push({
-            item: item as T,
+            item: item as unknown as T,
             similarity,
           });
         }
@@ -599,7 +631,7 @@ export async function searchCreations(
  */
 export async function findSimilar<T extends Record<string, unknown>>(
   embedding: number[],
-  table: string,
+  table: VectorSearchTable,
   limit: number = 10
 ): Promise<T[]> {
   const service = getVectorSearchService();

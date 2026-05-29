@@ -32,6 +32,7 @@
     "dev": "tsc --watch",
     "start": "node dist/cli.js",
     "clean": "rm -rf dist",
+    "test": "node --test tests/*.test.mjs",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

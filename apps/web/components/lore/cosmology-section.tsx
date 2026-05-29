@@ -2,9 +2,12 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import type { ComponentType, SVGProps } from "react";
 
 // ─── Inline SVG Icons ───────────────────────────────────────────────────────────
-const Icons = {
+type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+
+const Icons: Record<string, IconComponent> = {
   Sun: () => (
     <svg
       className="w-8 h-8"

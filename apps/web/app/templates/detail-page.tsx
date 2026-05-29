@@ -659,6 +659,3 @@ export function DetailPage({
   );
 }
 
-// ─── Exports ─────────────────────────────────────────────────────────────────
-
-export type { DetailPageProps };

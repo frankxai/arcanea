@@ -27,7 +27,6 @@ export async function POST(req: NextRequest) {
         prompt: prompt || 'Cinematic camera movement, slow dolly in, atmospheric lighting',
         image_url: imageUrl,
         duration: '5',
-        aspect_ratio: '1:1',
       },
       logs: true,
     });

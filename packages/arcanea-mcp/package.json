@@ -12,7 +12,8 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/cli.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "node -e \"require('fs').mkdirSync(require('path').join(require('os').homedir(), '.arcanea'), { recursive: true })\" && node --test tests/*.test.mjs"
   },
   "keywords": ["mcp", "arcanea", "worldbuilding", "creative", "ai", "fantasy"],
   "author": "FrankX",

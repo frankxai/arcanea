@@ -68,6 +68,7 @@ export interface ListingPageProps {
     };
     href: string;
   }>;
+
   /** View mode */
   viewMode?: "grid" | "list";
   /** Pagination */
@@ -87,6 +88,8 @@ export interface ListingPageProps {
   /** Custom className */
   className?: string;
 }
+
+type ListingItem = NonNullable<ListingPageProps["items"]>[number];
 
 // ─── Skeleton Components ──────────────────────────────────────────────────────
 
@@ -295,7 +298,7 @@ function ItemCard({
   item,
   viewMode,
 }: {
-  item: ListingPageProps["items"] extends Array<infer U> ? U : never;
+  item: ListingItem;
   viewMode?: "grid" | "list";
 }) {
   const isList = viewMode === "list";
@@ -585,6 +588,3 @@ export function ListingPage({
   );
 }
 
-// ─── Exports ─────────────────────────────────────────────────────────────────
-
-export type { ListingPageProps };

@@ -549,6 +549,3 @@ export function LandingPage({
   );
 }
 
-// ─── Exports ─────────────────────────────────────────────────────────────────
-
-export type { LandingPageProps };

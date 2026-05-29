@@ -584,6 +584,3 @@ export function DashboardPage({
   );
 }
 
-// ─── Exports ─────────────────────────────────────────────────────────────────
-
-export type { DashboardProps };

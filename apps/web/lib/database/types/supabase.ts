@@ -30,6 +30,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['profiles']['Row'], 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Database['public']['Tables']['profiles']['Insert']>
+        Relationships: []
       }
       creations: {
         Row: {
@@ -53,6 +54,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['creations']['Row'], 'id' | 'created_at' | 'updated_at' | 'likes_count' | 'comments_count' | 'views_count'>
         Update: Partial<Database['public']['Tables']['creations']['Insert']>
+        Relationships: []
       }
       luminor_bonds: {
         Row: {
@@ -67,6 +69,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['luminor_bonds']['Row'], 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Database['public']['Tables']['luminor_bonds']['Insert']>
+        Relationships: []
       }
       lore_fragments: {
         Row: {
@@ -82,6 +85,7 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['lore_fragments']['Row'], 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Database['public']['Tables']['lore_fragments']['Insert']>
+        Relationships: []
       }
     }
     Views: Record<string, never>
@@ -102,5 +106,6 @@ export interface Database {
     Enums: {
       lore_category: LoreCategory
     }
+    CompositeTypes: Record<string, never>
   }
 }
