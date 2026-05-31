@@ -97,6 +97,9 @@ agents/daily-ideas/*/
 # Archive content (preserved but not synced)
 archive/
 
+# Claude Code sub-agent worktrees (session-local, never commit)
+.claude/worktrees/
+
 # Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
 experiments/
