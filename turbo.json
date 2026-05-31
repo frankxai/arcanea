@@ -48,7 +48,7 @@
       ]
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["build", "^build"],
       "inputs": [
         "$TURBO_DEFAULT$",
         "jest.config.js",

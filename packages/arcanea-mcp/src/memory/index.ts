@@ -1,9 +1,13 @@
 // Arcanea Memory Layer
 // Inspired by mem0 and Qdrant patterns
 
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { dirname, join } from "node:path";
+
 export interface CreativeSession {
   id: string;
-  startedAt: Date;
+  startedAt: string;
   gatesExplored: number[];
   luminorsConsulted: string[];
   creaturesEncountered: string[];
@@ -44,20 +48,83 @@ export interface Milestone {
 }
 
 // In-memory session store (for MVP)
-// TODO: Add SQLite persistence for production
 const sessions = new Map<string, CreativeSession>();
+const memoryFilePath = join(homedir(), ".arcanea", "memories.json");
+
+interface MemoryFile {
+  version: 1;
+  updatedAt: string;
+  sessions: Record<string, CreativeSession>;
+}
+
+function ensureMemoryDirectory(): void {
+  mkdirSync(dirname(memoryFilePath), { recursive: true });
+}
+
+function loadSessions(): void {
+  ensureMemoryDirectory();
+
+  if (!existsSync(memoryFilePath)) {
+    return;
+  }
+
+  try {
+    const data = JSON.parse(readFileSync(memoryFilePath, "utf-8")) as Partial<MemoryFile>;
+    for (const [id, session] of Object.entries(data.sessions ?? {})) {
+      sessions.set(id, {
+        ...session,
+        startedAt:
+          typeof session.startedAt === "string"
+            ? session.startedAt
+            : new Date(session.startedAt).toISOString(),
+      });
+    }
+  } catch {
+    // Corrupt local memory should not prevent the MCP server from starting.
+  }
+}
+
+function saveSessions(): void {
+  ensureMemoryDirectory();
+  const data: MemoryFile = {
+    version: 1,
+    updatedAt: new Date().toISOString(),
+    sessions: Object.fromEntries(sessions),
+  };
+  writeFileSync(memoryFilePath, JSON.stringify(data, null, 2), "utf-8");
+}
+
+loadSessions();
+
+export function getMemoryFilePath(): string {
+  ensureMemoryDirectory();
+  return memoryFilePath;
+}
+
+export function listSessions(): string[] {
+  return [...sessions.keys()];
+}
+
+export function deleteSession(sessionId: string): boolean {
+  const deleted = sessions.delete(sessionId);
+  if (deleted) {
+    saveSessions();
+  }
+  return deleted;
+}
 
 export function getOrCreateSession(sessionId: string): CreativeSession {
   if (!sessions.has(sessionId)) {
     sessions.set(sessionId, {
       id: sessionId,
-      startedAt: new Date(),
+      startedAt: new Date().toISOString(),
       gatesExplored: [],
       luminorsConsulted: [],
       creaturesEncountered: [],
       creations: [],
       preferences: {},
     });
+    saveSessions();
   }
   return sessions.get(sessionId)!;
 }
@@ -65,12 +132,14 @@ export function getOrCreateSession(sessionId: string): CreativeSession {
 export function updateSession(sessionId: string, updates: Partial<CreativeSession>): void {
   const session = getOrCreateSession(sessionId);
   Object.assign(session, updates);
+  saveSessions();
 }
 
 export function recordGateExplored(sessionId: string, gate: number): void {
   const session = getOrCreateSession(sessionId);
   if (!session.gatesExplored.includes(gate)) {
     session.gatesExplored.push(gate);
+    saveSessions();
   }
 }
 
@@ -78,6 +147,7 @@ export function recordLuminorConsulted(sessionId: string, luminor: string): void
   const session = getOrCreateSession(sessionId);
   if (!session.luminorsConsulted.includes(luminor)) {
     session.luminorsConsulted.push(luminor);
+    saveSessions();
   }
 }
 
@@ -85,12 +155,14 @@ export function recordCreatureEncountered(sessionId: string, creature: string): 
   const session = getOrCreateSession(sessionId);
   if (!session.creaturesEncountered.includes(creature)) {
     session.creaturesEncountered.push(creature);
+    saveSessions();
   }
 }
 
 export function recordCreation(sessionId: string, creation: CreationRef): void {
   const session = getOrCreateSession(sessionId);
   session.creations.push(creation);
+  saveSessions();
 }
 
 export function getSessionSummary(sessionId: string): {
@@ -106,7 +178,7 @@ export function getSessionSummary(sessionId: string): {
     luminorsConsulted: session.luminorsConsulted.length,
     creaturesDefeated: session.creaturesEncountered.length,
     creationsGenerated: session.creations.length,
-    duration: Date.now() - session.startedAt.getTime(),
+    duration: Date.now() - new Date(session.startedAt).getTime(),
   };
 }
 

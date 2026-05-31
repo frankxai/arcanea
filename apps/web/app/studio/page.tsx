@@ -7,6 +7,7 @@
 
 import { Metadata } from "next";
 import Link from "next/link";
+import type { ComponentType, SVGProps } from "react";
 
 export const metadata: Metadata = {
   title: "Creation Studio | Arcanea",
@@ -19,7 +20,9 @@ export const metadata: Metadata = {
 };
 
 // ─── Inline SVG Icons ───────────────────────────────────────────────────────────
-const Icons = {
+type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+
+const Icons: Record<string, IconComponent> = {
   Sparkles: () => (
     <svg
       className="w-5 h-5"

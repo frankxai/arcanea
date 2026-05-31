@@ -2,9 +2,12 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import type { ComponentType, SVGProps } from "react";
 
 // ─── Inline SVG Icons ───────────────────────────────────────────────────────────
-const Icons = {
+type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+
+const Icons: Record<string, IconComponent> = {
   Sparkles: () => (
     <svg
       className="w-4 h-4"
