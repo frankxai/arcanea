@@ -11,6 +11,10 @@ on:
       - 'apps/**'
   workflow_dispatch:
 
+concurrency:
+  group: deploy-apps-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   changes:
     name: Detect Changes
