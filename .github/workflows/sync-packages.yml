@@ -10,6 +10,10 @@ on:
       - '.claude/lore/**'
   workflow_dispatch:
 
+concurrency:
+  group: sync-packages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   sync-to-satellites:
     runs-on: ubuntu-latest
