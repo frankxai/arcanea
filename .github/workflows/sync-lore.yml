@@ -8,6 +8,10 @@ on:
       - 'packages/core/src/constants/mythology.ts'
   workflow_dispatch:
 
+concurrency:
+  group: sync-lore-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate-canon:
     runs-on: ubuntu-latest
