@@ -32,6 +32,10 @@ env:
   NODE_VERSION: '18'
   PNPM_VERSION: '8'
 
+concurrency:
+  group: mvp-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   # ============================================
   # DEPENDENCY & SECURITY CHECKS
