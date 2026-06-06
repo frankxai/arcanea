@@ -34,7 +34,7 @@ env:
 
 concurrency:
   group: mvp-deploy-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   # ============================================
