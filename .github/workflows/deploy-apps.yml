@@ -25,7 +25,7 @@ jobs:
       library: ${{ steps.changes.outputs.library }}
       web: ${{ steps.changes.outputs.web }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: dorny/paths-filter@v2
       id: changes
       with:
@@ -47,10 +47,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
       with:
         node-version: '18'
         cache: 'pnpm'
@@ -91,7 +91,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
@@ -110,7 +110,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
@@ -129,7 +129,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
@@ -148,7 +148,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
