@@ -24,12 +24,12 @@ jobs:
 
     steps:
     - name: Checkout main repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Checkout APL repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: frankxai/arcanea-prompt-language
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -73,12 +73,12 @@ jobs:
 
     steps:
     - name: Checkout main repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Checkout Library repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: frankxai/arcanean-library
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
