@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Validate Canonical Consistency
         run: |
@@ -49,10 +49,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout arcanea
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Sync lore to intelligence-os
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: frankxai/arcanea-intelligence-os
           path: sync/aios
