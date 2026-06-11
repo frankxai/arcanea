@@ -19,12 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout arcanea monorepo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
 
@@ -43,7 +43,7 @@ jobs:
           pnpm --filter arcanea-intelligence-os build
 
       - name: Sync to claude-arcanea repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: frankxai/claude-arcanea
           path: sync/claude-arcanea
@@ -69,7 +69,7 @@ jobs:
         continue-on-error: true
 
       - name: Sync to arcanea-intelligence-os repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: frankxai/arcanea-intelligence-os
           path: sync/aios
