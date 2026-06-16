@@ -1,0 +1,3 @@
+# Phase 1 Living Core - 12 Issues Created
+1. #72 Luminor Full Integration...
+... (12 detailed tasks with assignees to Copilot/frankxai)
