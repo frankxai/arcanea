@@ -34,7 +34,7 @@ env:
 
 concurrency:
   group: mvp-deploy-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   # ============================================
@@ -255,6 +255,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, database]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    outputs:
+      production-url: ${{ steps.deploy.outputs.production-url }}
     environment:
       name: production
       url: https://arcanea.ai
@@ -291,10 +293,19 @@ jobs:
           vercel deploy \
             --prod \
             --prebuilt \
+            --yes \
             --token=${{ secrets.VERCEL_TOKEN }} \
             > deployment-url.txt
 
-          echo "production-url=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
+          PRODUCTION_URL="$(tail -n 1 deployment-url.txt | tr -d '\r' | xargs)"
+          if [ -z "$PRODUCTION_URL" ] || ! echo "$PRODUCTION_URL" | grep -Eq '^https?://'; then
+            echo "❌ Could not parse deployment URL from Vercel output"
+            cat deployment-url.txt
+            exit 1
+          fi
+
+          echo "production-url=$PRODUCTION_URL" >> $GITHUB_OUTPUT
+          echo "✅ Deployment URL: $PRODUCTION_URL"
 
       - name: Create deployment summary
         run: |
@@ -324,28 +335,54 @@ jobs:
     name: Post-Deployment Health Check
     runs-on: ubuntu-latest
     needs: [deploy-production]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && needs.deploy-production.result == 'success'
+    env:
+      TARGET_URL: ${{ needs.deploy-production.outputs.production-url }}
     steps:
-      - name: Wait for deployment propagation
-        run: sleep 30
-
       - name: Check site health
         run: |
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://arcanea.ai)
-          if [ $HTTP_CODE -eq 200 ]; then
-            echo "✅ Site is healthy (HTTP $HTTP_CODE)"
-          else
-            echo "⚠️ Site returned HTTP $HTTP_CODE"
-            exit 1
-          fi
+          TARGET="${TARGET_URL:-https://arcanea.ai}"
+          echo "Checking deployment health at: $TARGET"
+          for attempt in 1 2 3 4 5 6; do
+            HTTP_CODE=$(curl -sS -L --connect-timeout 10 --max-time 20 -o /dev/null -w "%{http_code}" "$TARGET")
+            if [ "$HTTP_CODE" -eq 200 ]; then
+              echo "✅ Site is healthy (HTTP $HTTP_CODE) on attempt $attempt"
+              exit 0
+            fi
+
+            echo "⚠️ Attempt $attempt/6 returned HTTP $HTTP_CODE"
+            sleep 15
+          done
+
+          echo "❌ Site health check failed after 6 attempts"
+          exit 1
 
       - name: Check API health
         run: |
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://arcanea.ai/api/health)
-          if [ $HTTP_CODE -eq 200 ]; then
-            echo "✅ API is healthy (HTTP $HTTP_CODE)"
+          TARGET="${TARGET_URL:-https://arcanea.ai}"
+          API_URL="${TARGET%/}/api/health"
+          echo "Checking API health at: $API_URL"
+          for attempt in 1 2 3 4 5 6; do
+            HTTP_CODE=$(curl -sS -L --connect-timeout 10 --max-time 20 -o /dev/null -w "%{http_code}" "$API_URL")
+            if [ "$HTTP_CODE" -eq 200 ]; then
+              echo "✅ API is healthy (HTTP $HTTP_CODE) on attempt $attempt"
+              exit 0
+            fi
+
+            echo "⚠️ Attempt $attempt/6 returned HTTP $HTTP_CODE"
+            sleep 15
+          done
+
+          echo "❌ API health check failed after 6 attempts"
+          exit 1
+
+      - name: Validate canonical domain health
+        run: |
+          HTTP_CODE=$(curl -sS -L --connect-timeout 10 --max-time 20 -o /dev/null -w "%{http_code}" https://arcanea.ai)
+          if [ "$HTTP_CODE" -ne 200 ]; then
+            echo "⚠️ arcanea.ai returned HTTP $HTTP_CODE (deployment URL may still be healthy)"
           else
-            echo "⚠️ API returned HTTP $HTTP_CODE"
+            echo "✅ arcanea.ai is healthy (HTTP $HTTP_CODE)"
           fi
         continue-on-error: true
 
@@ -355,23 +392,64 @@ jobs:
   rollback:
     name: Rollback on Failure
     runs-on: ubuntu-latest
-    needs: [health-check]
-    if: failure() && github.ref == 'refs/heads/main'
+    needs: [deploy-production, health-check]
+    if: always() && github.ref == 'refs/heads/main' && github.event_name == 'push' && (needs.deploy-production.result == 'failure' || needs.health-check.result == 'failure')
     steps:
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Vercel CLI
+        run: pnpm install -g vercel@latest
+
       - name: Trigger rollback
         run: |
-          echo "🚨 Health check failed! Manual rollback required."
+          DEPLOY_RESULT="${{ needs.deploy-production.result }}"
+          HEALTH_RESULT="${{ needs.health-check.result }}"
+          PRODUCTION_URL="${{ needs.deploy-production.outputs.production-url }}"
+
+          echo "🚨 Deployment instability detected"
+          echo "deploy-production: $DEPLOY_RESULT"
+          echo "health-check: $HEALTH_RESULT"
+
+          if [ -n "$PRODUCTION_URL" ]; then
+            echo "Attempting Vercel rollback for deployment: $PRODUCTION_URL"
+            vercel rollback "$PRODUCTION_URL" --yes --token=${{ secrets.VERCEL_TOKEN }} || {
+              echo "⚠️ Automatic rollback failed. Manual rollback may be required."
+            }
+          else
+            echo "⚠️ No production URL captured; skipping automatic rollback command."
+          fi
+
           echo "Visit: https://vercel.com/arcanea/deployments"
-          echo "Or use: vercel rollback"
+          echo "Manual fallback: vercel rollback"
 
       - name: Create incident issue
         uses: actions/github-script@v7
         with:
           script: |
+            const deployResult = '${{ needs.deploy-production.result }}';
+            const healthResult = '${{ needs.health-check.result }}';
+            const failedStage = deployResult === 'failure' ? 'Deploy to Vercel (Production)' : 'Post-Deployment Health Check';
+            const productionUrl = '${{ needs.deploy-production.outputs.production-url }}' || 'N/A';
+
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '🚨 Production Deployment Failed - Health Check',
-              body: `## Deployment Failure\n\n**Commit:** ${context.sha}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runId}\n\n**Action Required:**\n1. Check Vercel deployment logs\n2. Review error messages above\n3. Consider rolling back to previous version\n\n**Rollback Command:**\n\`\`\`bash\nvercel rollback\n\`\`\``,
+              title: `🚨 Production Deployment Failed - ${failedStage}`,
+              body: `## Deployment Failure\n\n**Commit:** ${context.sha}\n**Workflow:** ${context.workflow}\n**Run:** ${context.runId}\n**Failed stage:** ${failedStage}\n**Deployment URL:** ${productionUrl}\n**deploy-production result:** ${deployResult}\n**health-check result:** ${healthResult}\n\n**Action Required:**\n1. Check Vercel deployment logs\n2. Review error messages above\n3. Confirm rollback status\n\n**Rollback Command:**\n\`\`\`bash\nvercel rollback ${productionUrl !== 'N/A' ? productionUrl : ''}\n\`\`\``,
               labels: ['incident', 'production', 'deployment']
             });
+
+      - name: Create rollback summary
+        run: |
+          echo "## 🚨 Rollback executed" >> $GITHUB_STEP_SUMMARY
+          echo "- deploy-production: ${{ needs.deploy-production.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- health-check: ${{ needs.health-check.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- deployment-url: ${{ needs.deploy-production.outputs.production-url || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
