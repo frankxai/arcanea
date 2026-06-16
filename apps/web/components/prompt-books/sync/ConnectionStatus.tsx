@@ -1,17 +1,17 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import { Wifi, WifiOff, RefreshCw, Cloud, CloudOff } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { WifiOff, RefreshCw, Cloud, CloudOff } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePromptBooksStore } from '@/lib/prompt-books/store'
 
 export function ConnectionStatus() {
   const { syncStatus, lastSyncAt, setSyncStatus } = usePromptBooksStore()
-  const [online, setOnline] = useState(true)
+  const [online, setOnline] = useState(
+    typeof navigator === 'undefined' ? true : navigator.onLine,
+  )
 
   useEffect(() => {
-    setOnline(navigator.onLine)
-
     const handleOnline = () => {
       setOnline(true)
       setSyncStatus('syncing')
