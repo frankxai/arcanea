@@ -6,6 +6,7 @@
 
 import { describe, it, before } from 'node:test';
 import { strict as assert } from 'node:assert';
+import { existsSync } from 'node:fs';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -685,7 +686,8 @@ describe('Validate — validateCanon', () => {
 
 describe('Creation Graph — CRUD and relationships', () => {
   let addCreationToGraph, linkCreations, getRelatedCreations,
-      suggestConnections, getGraphSummary, exportGraph, findPath;
+      suggestConnections, getGraphSummary, exportGraph, findPath,
+      runGuardianSafetyCheck, buildWorldGraphEmbedding, getSisWorldGraphFilePath;
 
   // Use a unique session prefix per test run to avoid cross-test pollution
   const SESSION = `test-session-${Date.now()}`;
@@ -694,6 +696,7 @@ describe('Creation Graph — CRUD and relationships', () => {
     ({
       addCreationToGraph, linkCreations, getRelatedCreations,
       suggestConnections, getGraphSummary, exportGraph, findPath,
+      runGuardianSafetyCheck, buildWorldGraphEmbedding, getSisWorldGraphFilePath,
     } = await import('../dist/tools/creation-graph.js'));
   });
 
@@ -820,6 +823,25 @@ describe('Creation Graph — CRUD and relationships', () => {
     // BFS finds target immediately after dequeue, so path is []
     const path = findPath(SESSION, 'char-1', 'char-1');
     assert.deepEqual(path, []);
+  });
+
+  it('buildWorldGraphEmbedding returns deterministic 64-d vectors', () => {
+    const a = buildWorldGraphEmbedding('Ember Citadel');
+    const b = buildWorldGraphEmbedding('Ember Citadel');
+    assert.equal(a.length, 64);
+    assert.deepEqual(a, b);
+  });
+
+  it('runGuardianSafetyCheck reports safe status for valid graph state', () => {
+    const safety = runGuardianSafetyCheck(SESSION);
+    assert.equal(safety.status, 'safe');
+    assert.equal(safety.issues.length, 0);
+  });
+
+  it('world graph writes SIS sync file under ~/.arcanea', () => {
+    const filePath = getSisWorldGraphFilePath();
+    assert.ok(filePath.includes('.arcanea'));
+    assert.ok(existsSync(filePath), 'SIS world graph file should exist after graph mutations');
   });
 });
 
