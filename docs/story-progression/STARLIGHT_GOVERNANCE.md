@@ -81,6 +81,10 @@ some lore" and "a franchise shipped a season."
 **The Queen's verdicts:** `SHIP` · `REVISE (lens, reason)` · `REJECT (canon breach)`.
 She never rubber-stamps. A clean pass is earned, never assumed (Karpathy hygiene: treat your own confidence as suspect).
 
+**Calibration against optimistic self-scoring.** The Operator scores its own work, and self-scores skew high. So at each gate the
+Queen **re-scores at least one artifact from scratch, ignoring its self-score** — if her independent score diverges from the Operator's
+by ≥1 on any lens, every artifact in that gate is re-reviewed, not just spot-checked. The self-score is a claim, not evidence.
+
 ---
 
 ## 3. The Board of Five (the excellence rubric)

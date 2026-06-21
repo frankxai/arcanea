@@ -106,6 +106,8 @@ Seeds **D4** — the Ascendants will weaponize exactly this discovery.
 
 - **Names are exact.** Kaelindra Voss, Ryn, Velindris, Solenne Ashmark, Taura Skein + Vaerith, Caelum, Mireth.
   Selvyn Ashvale (Herald of Fracture). Seravyn Duskmere (Crew Solara Archon). Archon Cassiel (dissenter).
+- **Vaerith ≠ Vaelith.** Vaerith is Taura Skein's bonded storm-drake (`FLAGSHIP_TEAM_V2.md` / `STORY_ENGINE.md`).
+  Vaelith is the Godbeast of Elara (Starweave Gate, 852 Hz, `CANON_LOCKED.md`). They are different entities — never conflate them.
 - **Frequencies are exact** (CANON_LOCKED Ten Gates table). Never invent a Gate or reassign a frequency.
 - **Nero ≠ evil.** Shadow = corrupted Void. Never collapse the duality.
 - **Solenne's chosen name** is a continuity device, not a typo — track it deliberately across E04/E08.

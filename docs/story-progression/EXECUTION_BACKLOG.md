@@ -17,6 +17,8 @@
 - **Commit message format:** `story(season-one): <task-id> <short desc>` — one task per commit where practical.
 - **Concurrency:** before starting a task, mark it `[IN PROGRESS — <executor>]` in place of `[ ]`; on completion flip it to `[x]`.
   A second CLI agent skips any task already `[IN PROGRESS]`. Prevents double-execution when multiple executors share the backlog.
+  *Caveat:* this is a soft signal, not an atomic lock — two agents can read the same `[ ]` before either marks it, and the
+  git file is last-writer-wins. For true parallel execution, gate task claims through a separate lock/execution-log file (or one branch per executor).
 
 ---
 
