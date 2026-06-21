@@ -25,9 +25,10 @@
 - [ ] **T-00** Create staging dirs (`.arcanea/lore/staging/season-one/`, `docs/story-progression/visual-specs/`,
       `public/story-progression/season-one/`) and `.arcanea/lore/staging/WORLDSTATE_LEDGER.md` with the D1–D6 table from
       `WORLD_PROGRESSION_EPOCH.md` marked `Status: STAGING`. Ledger columns: `# | Delta | Cause (episode) | Source | Status`.
-      Then run a **read-only canon sanity check**: confirm the Gate frequencies, character names, and D1–D6 episode hooks in
-      `WORLD_PROGRESSION_EPOCH.md` match `.arcanea/lore/CANON_LOCKED.md` before any writing begins (catches drift early, at T-00 not T-09).
-      Also **pre-flight the toolchain**: confirm the source lore files exist (`FLAGSHIP_TEAM_V2.md`, `STARLIGHT_CORPS_CODEX.md`,
+      Then run a **read-only canon sanity check**: compare the 10 Gate frequencies (174 Hz → 1111 Hz) and the Guardian/Godbeast
+      names exactly as they appear in `.arcanea/lore/CANON_LOCKED.md` against their use in the staged episodes + `WORLD_PROGRESSION_EPOCH.md`,
+      **emitting a diff (not just pass/fail)** so any drift is visible. Run before any writing begins (catches drift at T-00, not T-09).
+      Also **pre-flight the toolchain**: confirm the source lore files exist (`STORY_ENGINE.md`, `FLAGSHIP_TEAM_V2.md`, `STARLIGHT_CORPS_CODEX.md`,
       `VOID_ASCENDANTS.md`, `GATE_TOUCHED_UNDERGROUND.md`, `VISUAL_DOCTRINE.md`), and that `generate-arcanea-img.mjs` + `GEMINI_API_KEY`
       are present before Phase 2 (so T-10/T-11 don't fail silently). Also note whether the optional
       `mcp__Higgsfield__generate_image` tool is available — its absence is non-blocking (native Gemini fallback).

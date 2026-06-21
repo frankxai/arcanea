@@ -62,6 +62,8 @@ CLI tooling, stages every output, self-scores against the Board, and only then a
 ```
 <!-- BOARD: Jobs 5 · Musk 4 · Buddha 5 · RockStar 4 · KPop 5 · VERDICT: SHIP -->
 ```
+The score-line keys are the canonical machine tokens — exactly `Jobs`, `Musk`, `Buddha`, `RockStar`, `KPop` (one word each, no emoji).
+The emoji display names in §3 (🎸 Rock Star, 💎 K-Pop) are for humans; tooling parses the tokens above.
 
 ---
 

@@ -19,7 +19,7 @@ its own output against an explicit quality bar before anything is proposed for c
 
 ## The four supporting documents
 
-> Plus this README itself, which serves as Mission Control. (5 files total in this PR; the table below lists the 4 it links to.)
+> Plus this README itself, which serves as Mission Control — it links to the supporting documents below.
 
 | File | Purpose | Who reads it |
 |---|---|---|
