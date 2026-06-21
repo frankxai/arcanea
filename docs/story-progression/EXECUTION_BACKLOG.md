@@ -29,13 +29,14 @@
       `WORLD_PROGRESSION_EPOCH.md` match `.arcanea/lore/CANON_LOCKED.md` before any writing begins (catches drift early, at T-00 not T-09).
       Also **pre-flight the toolchain**: confirm the source lore files exist (`FLAGSHIP_TEAM_V2.md`, `STARLIGHT_CORPS_CODEX.md`,
       `VOID_ASCENDANTS.md`, `GATE_TOUCHED_UNDERGROUND.md`, `VISUAL_DOCTRINE.md`), and that `generate-arcanea-img.mjs` + `GEMINI_API_KEY`
-      are present before Phase 2 (so T-10/T-11 don't fail silently).
+      are present before Phase 2 (so T-10/T-11 don't fail silently). Also note whether the optional
+      `mcp__Higgsfield__generate_image` tool is available — its absence is non-blocking (native Gemini fallback).
       **Accept:** dirs exist; ledger lists D1–D6 with the column schema above; canon check reports zero mismatches; pre-flight passes (or missing items are listed for the operator).
 
 ## Phase 1 — Story (the eight episodes)
 
-> Each episode: target ~2,500 words (never exceed 3,000 unless a scene demands it), prose, cites its canon hooks,
-> ends with the score line. Must move world-state.
+> Each episode: target ~2,500 words (never exceed 3,000 unless a scene demands it — verify with `wc -w`), prose,
+> cites its canon hooks, ends with the score line. Must move world-state.
 
 - [ ] **T-01** Write **E01 "Wrong Place, Wrong Hour"** → `.arcanea/lore/staging/season-one/E01.md`.
       **Accept:** all seven established in-class; canon names/frequencies exact; the score line is present as an HTML comment
