@@ -2,8 +2,8 @@
 
 > **Status**: STAGING
 > **Locked to**: `.arcanea/lore/VISUAL_DOCTRINE.md` (the aesthetic is law — do not reinterpret it).
-> **Pipeline**: native gen first (`generate-arcanea-img.mjs` / `nb-generate.mjs` style, `GEMINI_API_KEY`), Higgsfield MCP
-> for hero/video, Replicate for fine-tuned models. Never invent a new look; render the doctrine.
+> **Pipeline**: native gen first — the repo's `generate-arcanea-img.mjs` at root (`GEMINI_API_KEY`); Higgsfield MCP
+> for hero/video *if connected in the executor's session*; Replicate for fine-tuned models. Never invent a new look; render the doctrine.
 > **Output dir**: `public/story-progression/season-one/` · specs in `docs/story-progression/visual-specs/`.
 
 ---
@@ -75,8 +75,9 @@ Aspect: 2:3 poster. Ultra-detailed. Each silhouette distinct at 50px.
 node generate-arcanea-img.mjs --spec docs/story-progression/visual-specs/V1.json \
   --out public/story-progression/season-one/V1.png
 
-# 2. Hero / motion key art → Higgsfield MCP (generate_image / generate_video)
-#    Route through mcp__Higgsfield__generate_image with the V1 prompt; upscale_image to 4K for the poster.
+# 2. Hero / motion key art → Higgsfield MCP, ONLY if it is connected in the executor's session.
+#    If available: route through mcp__Higgsfield__generate_image with the V1 prompt; upscale_image to 4K for the poster.
+#    If NOT available: stay on the native generate-arcanea-img.mjs (Gemini) pathway above — do not block on Higgsfield.
 
 # 3. Consistency lock: generate V1 first, extract its palette + particle language,
 #    pin them into V2–V10 specs before generating the rest. One season, one body.

@@ -17,7 +17,9 @@ written episodes, canonical world-state deltas, and a franchise-grade visual key
 It is written so a **headless CLI agent** (Codex or Grok) can pick up the backlog, do the work, and gate
 its own output against an explicit quality bar before anything is proposed for canon.
 
-## The four documents
+## The four supporting documents
+
+> Plus this README itself, which serves as Mission Control. (5 files total in this PR; the table below lists the 4 it links to.)
 
 | File | Purpose | Who reads it |
 |---|---|---|

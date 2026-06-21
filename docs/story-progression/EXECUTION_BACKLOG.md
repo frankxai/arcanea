@@ -21,16 +21,19 @@
 ## Phase 0 — Setup
 
 - [ ] **T-00** Create staging dirs (`.arcanea/lore/staging/season-one/`, `docs/story-progression/visual-specs/`,
-      `public/story-progression/season-one/`) and an empty `WORLDSTATE_LEDGER.md` with the D1–D6 table from
-      `WORLD_PROGRESSION_EPOCH.md` marked `Status: STAGING`.
-      **Accept:** dirs exist; ledger lists D1–D6 with cause + source columns.
+      `public/story-progression/season-one/`) and `.arcanea/lore/staging/WORLDSTATE_LEDGER.md` with the D1–D6 table from
+      `WORLD_PROGRESSION_EPOCH.md` marked `Status: STAGING`. Ledger columns: `# | Delta | Cause (episode) | Source | Status`.
+      Then run a **read-only canon sanity check**: confirm the Gate frequencies, character names, and D1–D6 episode hooks in
+      `WORLD_PROGRESSION_EPOCH.md` match `.arcanea/lore/CANON_LOCKED.md` before any writing begins (catches drift early, at T-00 not T-09).
+      **Accept:** dirs exist; ledger lists D1–D6 with the column schema above; canon check reports zero mismatches.
 
 ## Phase 1 — Story (the eight episodes)
 
 > Each episode: ≈2,000–3,500 words, prose, cites its canon hooks, ends with the score line. Must move world-state.
 
-- [ ] **T-01** Write **E01 "Wrong Place, Wrong Hour"** → `staging/season-one/E01.md`.
-      **Accept:** all seven established in-class; canon names/frequencies exact; self-score ≥4 all lenses.
+- [ ] **T-01** Write **E01 "Wrong Place, Wrong Hour"** → `.arcanea/lore/staging/season-one/E01.md`.
+      **Accept:** all seven established in-class; canon names/frequencies exact; the score line is present as an HTML comment
+      on the **last line of the file** (`<!-- BOARD: ... -->`); self-score ≥4 all lenses. *(This is the canonical pattern for E02–E08.)*
 - [ ] **T-02** Write **E02 "The Cascade"**. **Accept:** strike lands, seven collide; cascade mechanics canon-true.
 - [ ] **T-03** Write **E03 "The Architect's Reason"** (Selvyn). **Accept:** enemy is *persuasive, partly right* (D6 seeded), not a cartoon.
 - [ ] **T-04** Write **E04 "Seven Disagreements"**. **Accept:** conflict is character-true; Solenne chosen-name device present.
@@ -48,9 +51,9 @@
 
 > Locked to `VISUAL_PLAN.md` + `VISUAL_DOCTRINE.md`. Generate V1 first; pin its palette/particle language into V2–V10.
 
-- [ ] **T-10** Author the 10 JSON specs in `visual-specs/V1.json`…`V10.json` (prompt, aspect, negative, seed, doctrine-anchor).
+- [ ] **T-10** Author the 10 JSON specs in `docs/story-progression/visual-specs/V1.json`…`V10.json` (prompt, aspect, negative, seed, doctrine-anchor).
       **Accept:** every spec uses the prompt scaffold; negatives include the banned-look list.
-- [ ] **T-11** Generate **V1 season key art**; extract palette + particle language into a shared `visual-specs/_lock.json`.
+- [ ] **T-11** Generate **V1 season key art**; extract palette + particle language into a shared `docs/story-progression/visual-specs/_lock.json`.
       **Accept:** V1 self-scores ≥4 all lenses; `_lock.json` written.
 - [ ] **T-12** Generate **V2–V7** (character plates), pinned to `_lock.json`.
       **Accept:** each plate on-model; silhouettes distinct at 50px; consistent with V1.
@@ -66,7 +69,7 @@
 
 - [ ] **T-15** Update `docs/story-progression/README.md` index with links to all staged episodes + the rendered set.
       **Accept:** every deliverable is one click from Mission Control.
-- [ ] **T-16** Write `staging/season-one/PROMOTION_REQUEST.md` — a one-page Creator brief: what's staged, the D1–D6
+- [ ] **T-16** Write `.arcanea/lore/staging/season-one/PROMOTION_REQUEST.md` — a one-page Creator brief: what's staged, the D1–D6
       deltas proposed for canon, the Board verdicts, and the explicit ask: *promote to canon?*
       **Accept:** Creator can approve/reject from this one page. **No self-promotion to canon — Frank decides.**
 

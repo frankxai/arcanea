@@ -2,7 +2,8 @@
 
 > **Status**: STAGING — proposed progression. Promote to canon only by Creator approval.
 > **Source canon**: `.arcanea/lore/CANON_LOCKED.md` (LOCKED), `.arcanea/lore/STORY_ENGINE.md` Arc 1 (STAGING),
-> `FLAGSHIP_TEAM.md`, `STARLIGHT_CORPS_CODEX.md`, `VOID_ASCENDANTS.md`, `GATE_TOUCHED_UNDERGROUND.md`, `VISUAL_DOCTRINE.md`.
+> `FLAGSHIP_TEAM_V2.md` (authoritative team file — supersedes `FLAGSHIP_TEAM.md`), `STARLIGHT_CORPS_CODEX.md`,
+> `VOID_ASCENDANTS.md`, `GATE_TOUCHED_UNDERGROUND.md`, `VISUAL_DOCTRINE.md`.
 > **Thesis**: A system that generates infinite stories is worthless until someone writes the first one.
 > This is the first one — built, not just outlined.
 
@@ -57,7 +58,7 @@ The Operator writes each as a prose episode (≈2,000–3,500 words) in `.arcane
 ### E01 — "Wrong Place, Wrong Hour"
 **Logline.** Seven people are pulled toward the same ruined street in the Solar Sector by seven unrelated reasons.
 **Moves.** Establishes each protagonist in their origin class, alone, competent, unaware of the others.
-**Question.** Who are you before you're a team? · **Hooks.** FLAGSHIP_TEAM.md (all seven); Solar Sector geography.
+**Question.** Who are you before you're a team? · **Hooks.** FLAGSHIP_TEAM_V2.md (all seven); Solar Sector geography.
 
 ### E02 — "The Cascade"
 **Logline.** Ryn goes mid-cascade against three Ascendant operatives; the night's fight detonates.
@@ -73,7 +74,7 @@ The Operator writes each as a prose episode (≈2,000–3,500 words) in `.arcane
 **Logline.** The seven survive the first hour by fighting *each other* almost as much as the Ascendants.
 **Moves.** Ryn distrusts Kaelindra's instinct to contain; Taura finds Caelum's passivity infuriating; Solenne's
 chosen name is used wrong, twice, and corrected. No trust yet — only proximity.
-**Question.** Can people who disagree about everything still choose each other? · **Hooks.** FLAGSHIP_TEAM dynamics.
+**Question.** Can people who disagree about everything still choose each other? · **Hooks.** FLAGSHIP_TEAM_V2 dynamics.
 
 ### E05 — "What Mireth Knew"
 **Logline.** Mireth was inside the situation before it began, on a timeline that predates the crisis.
