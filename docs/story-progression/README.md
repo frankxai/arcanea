@@ -1,7 +1,7 @@
 # Arcanea Story Progression — Mission Control
 
 > **Status**: STAGING — build plan for autonomous CLI execution. Nothing here modifies `CANON_LOCKED.md`.
-> **Branch**: `claude/arcanea-story-progression-15x460`
+> **Tracking**: the active story-progression branch / PR (see the PR that introduced this directory)
 > **Operator**: Starlight Intelligence Operator (see [`STARLIGHT_GOVERNANCE.md`](./STARLIGHT_GOVERNANCE.md))
 > **Enforcer**: The Starlight Queen + her Board of Five
 > **Executors**: Codex CLI / Grok CLI (build agents)

@@ -27,7 +27,10 @@
       `WORLD_PROGRESSION_EPOCH.md` marked `Status: STAGING`. Ledger columns: `# | Delta | Cause (episode) | Source | Status`.
       Then run a **read-only canon sanity check**: confirm the Gate frequencies, character names, and D1–D6 episode hooks in
       `WORLD_PROGRESSION_EPOCH.md` match `.arcanea/lore/CANON_LOCKED.md` before any writing begins (catches drift early, at T-00 not T-09).
-      **Accept:** dirs exist; ledger lists D1–D6 with the column schema above; canon check reports zero mismatches.
+      Also **pre-flight the toolchain**: confirm the source lore files exist (`FLAGSHIP_TEAM_V2.md`, `STARLIGHT_CORPS_CODEX.md`,
+      `VOID_ASCENDANTS.md`, `GATE_TOUCHED_UNDERGROUND.md`, `VISUAL_DOCTRINE.md`), and that `generate-arcanea-img.mjs` + `GEMINI_API_KEY`
+      are present before Phase 2 (so T-10/T-11 don't fail silently).
+      **Accept:** dirs exist; ledger lists D1–D6 with the column schema above; canon check reports zero mismatches; pre-flight passes (or missing items are listed for the operator).
 
 ## Phase 1 — Story (the eight episodes)
 
