@@ -96,7 +96,8 @@ Seeds **D4** — the Ascendants will weaponize exactly this discovery.
 ### E08 — "Amended" *(season finale)*
 **Logline.** Seravyn Duskmere authorizes the team *after the fact*; the Charter is amended; the Reaches object.
 **Moves.** Stages **D1, D2, D3**. The institution is permanently changed. The cost — Cassiel's dissent — is real.
-**Question.** When the system finally opens, who decides it was allowed to? · **Hooks.** Crew Solara; Archon dissent.
+**Question.** When the system finally opens, who decides it was allowed to?
+**Hooks.** STARBOUND_CREWS.md (Seravyn Duskmere — Archon, Crew Solara); Archon Cassiel dissent.
 
 ---
 

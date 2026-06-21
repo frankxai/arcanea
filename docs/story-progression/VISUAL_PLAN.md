@@ -75,9 +75,10 @@ Aspect: 2:3 poster. Ultra-detailed. Each silhouette distinct at 50px.
 node generate-arcanea-img.mjs --spec docs/story-progression/visual-specs/V1.json \
   --out public/story-progression/season-one/V1.png
 
-# 2. Hero / motion key art → Higgsfield MCP, ONLY if it is connected in the executor's session.
-#    If available: route through mcp__Higgsfield__generate_image with the V1 prompt; upscale_image to 4K for the poster.
-#    If NOT available: stay on the native generate-arcanea-img.mjs (Gemini) pathway above — do not block on Higgsfield.
+# 2. Hero / motion key art → Higgsfield MCP (optional path).
+#    Check whether the `mcp__Higgsfield__generate_image` tool is present in your toolset.
+#    If present: route the V1 prompt through it; upscale_image to 4K for the poster.
+#    If absent: stay on the native generate-arcanea-img.mjs (Gemini) pathway above — do not block on Higgsfield.
 
 # 3. Consistency lock: generate V1 first, extract its palette + particle language,
 #    pin them into V2–V10 specs before generating the rest. One season, one body.

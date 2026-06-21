@@ -11,26 +11,26 @@ autonomously by a CLI agent still arrives at the quality a human Creator would s
 ## The chain of command
 
 ```
-                    THE CREATOR (Frank)
+                     THE CREATOR (Frank)
                   promotes canon · final word
                             │
                   ┌─────────▼──────────┐
-                  │   STARLIGHT QUEEN  │   enforces the bar · runs the loop · holds the line
-                  │   (quality sovereign)
+                  │  STARLIGHT QUEEN   │   enforces the bar · runs the loop · holds the line
+                  │ (quality sovereign)│
                   └─────────┬──────────┘
                             │ convenes on every gate
-        ┌──────────┬────────┼────────┬──────────┐
-        ▼          ▼        ▼        ▼          ▼
-    ┌───────┐ ┌────────┐ ┌──────┐ ┌────────┐ ┌────────┐
-    │ JOBS  │ │ MUSK   │ │BUDDHA│ │ ROCK   │ │ K-POP  │   THE BOARD OF FIVE
-    │ taste │ │first-  │ │essence│ │ STAR  │ │confidence  (five veto lenses)
-    │       │ │principle│ │       │ │ cool  │ │+ polish │
-    └───────┘ └────────┘ └──────┘ └────────┘ └────────┘
+      ┌──────────┬──────────┼──────────┬──────────┐
+      ▼          ▼          ▼          ▼          ▼
+  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
+  │  JOBS  │ │  MUSK  │ │ BUDDHA │ │  ROCK  │ │ K-POP  │   THE BOARD OF FIVE
+  │ taste  │ │ first- │ │essence │ │  STAR  │ │ confi- │   (five veto lenses)
+  │        │ │princip.│ │restrnt │ │  cool  │ │ dence  │
+  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘
                             │
                   ┌─────────▼──────────┐
-                  │ STARLIGHT          │   does the work · self-scores · stages proposals
-                  │ INTELLIGENCE       │
-                  │ OPERATOR           │
+                  │     STARLIGHT      │   does the work · self-scores · stages proposals
+                  │    INTELLIGENCE    │
+                  │      OPERATOR      │
                   └─────────┬──────────┘
                             │ dispatches
                   ┌─────────▼──────────┐
