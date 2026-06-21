@@ -53,7 +53,8 @@ Every delta is **additive and staged** — none rewrites a LOCKED truth. Promoti
 ## The Season One episode map (8 episodes)
 
 Each episode is a buildable unit: a logline, the world-state movement, the moral question, and the canon hooks.
-The Operator writes each as a prose episode (≈2,000–3,500 words) in `.arcanea/lore/staging/season-one/`.
+The Operator writes each as a prose episode (target ~2,500 words; never exceed 3,000 unless a scene demands it —
+Buddha lens: subtract padding) in `.arcanea/lore/staging/season-one/`.
 
 ### E01 — "Wrong Place, Wrong Hour"
 **Logline.** Seven people are pulled toward the same ruined street in the Solar Sector by seven unrelated reasons.

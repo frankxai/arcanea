@@ -15,6 +15,8 @@
 - **Every artifact ends with the score line:**
   `<!-- BOARD: Jobs N · Musk N · Buddha N · RockStar N · KPop N · VERDICT: SHIP|REVISE -->`
 - **Commit message format:** `story(season-one): <task-id> <short desc>` — one task per commit where practical.
+- **Concurrency:** before starting a task, mark it `[IN PROGRESS — <executor>]` in place of `[ ]`; on completion flip it to `[x]`.
+  A second CLI agent skips any task already `[IN PROGRESS]`. Prevents double-execution when multiple executors share the backlog.
 
 ---
 
@@ -29,7 +31,8 @@
 
 ## Phase 1 — Story (the eight episodes)
 
-> Each episode: ≈2,000–3,500 words, prose, cites its canon hooks, ends with the score line. Must move world-state.
+> Each episode: target ~2,500 words (never exceed 3,000 unless a scene demands it), prose, cites its canon hooks,
+> ends with the score line. Must move world-state.
 
 - [ ] **T-01** Write **E01 "Wrong Place, Wrong Hour"** → `.arcanea/lore/staging/season-one/E01.md`.
       **Accept:** all seven established in-class; canon names/frequencies exact; the score line is present as an HTML comment
