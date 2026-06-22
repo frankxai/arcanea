@@ -328,6 +328,28 @@ Grounded in real meteoritics: Widmanstatten crystal patterns (million-year cooli
 
 ---
 
+## THE LEVIATHAN TIER — WILD GODBEASTS (STAGING ⏳)
+
+> *"Not every great beast knelt to a Gate. Some were already old when the Gates were young."*
+
+The Ten Gate Godbeasts (Tier 2) are **bonded** — each sworn beside an Arcanean God. But beasts of **Nero's Unformed** existed before the bonding, titan-scale and sovereign to no Gate. These are the **Leviathans**, or **Wild Godbeasts**: unbonded, region-roaming, keeping their own sub-Gate frequencies. They are the wilderness to the Gates' civilization.
+
+This tier is the apex of the **Monster System** (`.arcanea/lore/creatures/MONSTER_SYSTEM.md`), which orders all Arcanean creatures: **T0 Motes → T1 Beasts → T2 Shades → T3 Leviathans → T4 Gate Godbeasts**, with a Shadow corruption track at every tier.
+
+| Leviathan | Element | Resonance | Domain | Material | Status |
+|-----------|---------|-----------|--------|----------|--------|
+| **Nethyssa, the Abyss That Dreams** | Water + Void | Abyssal Hum (sub-Gate) | The Drowned Deep / the Sunless Fathom | Nethyss Pearl | ⏳ STAGING |
+
+**STAGING TRUTHS:**
+- Leviathans are **unbonded** — no God, no Guardian, no Gate. The locked Ten are **untouched** by this tier.
+- They are **Nero's Unformed** — unshaped, not corrupt: power that was never given a name to obey. Each has a Shadow-corruption counterpart (Nethyssa's is **the Drowned Shadow**, an extinction-tier threat parallel to the corrupted Gate dungeons).
+- The tier is **OPEN** for future Leviathans, but each requires Creator approval — the same rule as Origin Classes.
+- **Nethyssa** is the first and flagship. She is kept *dreaming*, not slain, via the canon ritual **the Tidesong** (the faithful of Leyla/Veloura). Full profile: `.arcanea/lore/leviathans/nethyssa.md`.
+
+**Full reference**: `.arcanea/lore/leviathans/` (profiles + `nethyssa-game-design.md`), `.arcanea/lore/creatures/MONSTER_SYSTEM.md`.
+
+---
+
 ## EXTENSIBILITY PRINCIPLES (LOCKED ✅)
 
 1. **New entities must have Arcanean-quality names** (Lyssandria-tier)
@@ -362,6 +384,9 @@ Grounded in real meteoritics: Widmanstatten crystal patterns (million-year cooli
 | 2026-03-30 | Material mutations system (Harmonic, Dissonant, Gray Threshold, Resonance Bloom) | ⏳ STAGING | — |
 | 2026-03-30 | Arcanean Meteors (Vael Rain, Ember Falls, Nero Strikes, Luminarch Events) | ⏳ STAGING | — |
 | 2026-03-30 | Material-Agent architecture mapping (Shael→transparent, Veloryn→adaptive, etc.) | ⏳ STAGING | — |
+| 2026-06-22 | Monster System taxonomy (T0 Motes → T4 Gate Godbeasts + Shadow corruption track) | ⏳ STAGING | — |
+| 2026-06-22 | Leviathan tier: Wild Godbeasts (unbonded, outside the Ten Gates) | ⏳ STAGING | — |
+| 2026-06-22 | Nethyssa, the Abyss That Dreams (flagship Leviathan; Nethyss Pearl; the Drowned Shadow; the Tidesong) | ⏳ STAGING | — |
 
 ---
 
