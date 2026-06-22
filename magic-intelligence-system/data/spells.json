@@ -105,7 +105,7 @@
     {
       "id": "throne-shatter",
       "name": "Throne-Shatter",
-      "incantation": "Terra Regna Frange!",
+      "incantation": "Per Portas Octo — Terra Regna Frange!",
       "element": "earth",
       "discipline": "attack",
       "tier": "royal",
@@ -279,7 +279,7 @@
     {
       "id": "bulwark-royal",
       "name": "Bulwark Royal",
-      "incantation": "Murus Regius",
+      "incantation": "Per Portas Octo — Murus Regius",
       "element": "earth",
       "discipline": "defense",
       "tier": "royal",
@@ -455,7 +455,7 @@
     {
       "id": "stone-colossus",
       "name": "Summon Stone Colossus",
-      "incantation": "Voco Colossus Terrae",
+      "incantation": "Per Portas Octo — Voco Colossus Terrae",
       "element": "earth",
       "discipline": "summoning",
       "tier": "royal",

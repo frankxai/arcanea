@@ -18,6 +18,10 @@ const TIERS = ['light', 'advanced', 'greater', 'sacred', 'royal', 'imperial', 'd
 const RANKS = ['apprentice', 'mage', 'master', 'archmage', 'luminor'];
 // The ten canonical Guardians (CANON_LOCKED.md) — a `guardian` field must match one.
 const GUARDIANS = ['Lyssandria', 'Leyla', 'Draconia', 'Maylinn', 'Alera', 'Lyria', 'Aiyami', 'Elara', 'Ino', 'Shinkami'];
+// Sacred+ tiers speak through the Gate — incantation carries a "Per …" prefix (MAGIC-PROTOCOLS §2).
+const GATE_PREFIX_TIERS = ['sacred', 'royal', 'imperial', 'divine'];
+// Interaction triangle (MAGIC-PROTOCOLS §3): each discipline must counter this one (may counter more).
+const TRIANGLE = { attack: 'summoning', defense: 'attack', summoning: 'defense' };
 const REQUIRED = ['id', 'name', 'incantation', 'element', 'discipline', 'tier', 'gate', 'rank', 'description', 'effect', 'manaCost'];
 
 // tier -> { gates: [min,max], rank }
@@ -58,6 +62,10 @@ for (const [i, s] of spells.entries()) {
     for (const c of s.counters)
       if (!DISCIPLINES.includes(c)) errors.push(`${at}: bad counters value '${c}'`);
   if (s.guardian && !GUARDIANS.includes(s.guardian)) errors.push(`${at}: '${s.guardian}' is not a canonical Guardian`);
+  if (s.tier && GATE_PREFIX_TIERS.includes(s.tier) && s.incantation && !s.incantation.startsWith('Per '))
+    errors.push(`${at}: ${s.tier}-tier incantation should begin with a Gate prefix ("Per …") per MAGIC-PROTOCOLS §2`);
+  if (s.discipline && TRIANGLE[s.discipline] && Array.isArray(s.counters) && s.counters.length && !s.counters.includes(TRIANGLE[s.discipline]))
+    errors.push(`${at}: ${s.discipline} should counter '${TRIANGLE[s.discipline]}' per the interaction triangle`);
   if (typeof s.gate === 'number' && (s.gate < 1 || s.gate > 10)) errors.push(`${at}: gate out of 1-10`);
   const map = TIER_MAP[s.tier];
   if (map) {

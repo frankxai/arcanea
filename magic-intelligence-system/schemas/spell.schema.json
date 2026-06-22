@@ -50,7 +50,7 @@
       "description": "Optional patron Guardian (canon name), witness only — never the caster"
     },
     "icon": { "type": "string", "description": "Phosphor icon name for the encyclopedia" },
-    "color": { "type": "string", "description": "Hex or design-token color for the element accent" },
+    "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{3,8}$", "description": "Hex color for the element accent" },
     "assets": {
       "type": "object",
       "additionalProperties": false,

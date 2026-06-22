@@ -66,8 +66,17 @@ Incantations are Latinate-Arcanean, two to three words, no real-world languages 
 - **Defense** — protective noun + binding: *"Aegis Aquaria"*, *"Mura Terrae"*, *"Sana Lumen"* (restoration)
 - **Summoning** — name-binding + call: *"Voco Draconis"*, *"Venite Umbrae Vael"*
 
-Higher tiers add a Gate invocation prefix (Sacred+): *"Per Portam Septimam — …"* ("through the
-Seventh Gate"). Divine spells may name a Guardian as witness, never as the caster.
+Sacred tier and above add a Gate-invocation prefix — the caster speaks through the Gates they hold:
+
+| Tier | Gate | Prefix form |
+|---|---|---|
+| Sacred | 7 | *"Per Portam Septimam — …"* (through the Seventh Gate) |
+| Royal | 8 | *"Per Portas Octo — …"* (through Eight Gates) |
+| Imperial | 9 | *"Per Portas Novem — …"* (through Nine Gates) |
+| Divine | 10 | *"Per Decem Portas — …"* (through Ten Gates) |
+
+Divine spells may name a Guardian as witness, never as the caster. (Light/Advanced/Greater tiers
+carry no prefix.) `validate.mjs` enforces that every Sacred+ incantation begins with `Per `.
 
 ---
 
