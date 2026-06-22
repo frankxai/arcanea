@@ -11,8 +11,8 @@
 // auto-land. See `.arcanea/lore/creatures/MONSTER_SYSTEM.md` (T4 LOCKED, T3 OPEN
 // but Creator-approval-gated) and `CANON_LOCKED.md`.
 //
-// Standalone + typed — no external imports (`.arcanea/` is a tool-agnostic
-// config dir, not part of a tsconfig build).
+// Standalone + typed — no external package imports (only intra-dir `import
+// type`; `.arcanea/` is a tool-agnostic config dir, not part of a tsconfig build).
 
 import type { CanonTier } from './capture-types'
 

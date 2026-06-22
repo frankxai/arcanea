@@ -283,6 +283,7 @@ export async function generateLeviathan(options: {
           tier: 3,
           class: "Leviathan / Wild Godbeast",
           bonded: false,
+          requestedElement: element,
           elements: n.elements,
           resonance: "Abyssal Hum",
           domain: n.domain,

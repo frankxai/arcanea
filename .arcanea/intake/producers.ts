@@ -4,7 +4,8 @@
 // canon-spectrum) and fans one classified capture into per-surface output. This
 // mirrors the FrankX L4-producer shipping pattern: add a producer in ~1 day, the
 // registry drives every downstream surface. Standalone + typed — no external
-// imports (`.arcanea/` is a tool-agnostic config dir, not part of a build).
+// package imports (only intra-dir `import type`; `.arcanea/` is a tool-agnostic
+// config dir, not part of a build).
 
 import type { CaptureType } from './capture-types'
 

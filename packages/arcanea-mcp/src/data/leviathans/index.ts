@@ -3,7 +3,7 @@
 // Leviathans are unbonded, titan-scale beasts of Nero's Unformed that roam
 // OUTSIDE the Ten Gates. The locked Ten Gate Godbeasts are untouched by this
 // tier. Canon: `.arcanea/lore/leviathans/`, `.arcanea/lore/CANON_LOCKED.md`
-// (Tier 9 STAGING). Nethyssa is the flagship.
+// (the Leviathan tier, STAGING). Nethyssa is the flagship.
 
 import type { BestiaryCreature } from "../bestiary/index.js";
 
