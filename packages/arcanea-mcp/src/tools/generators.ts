@@ -28,6 +28,20 @@ const godbeasts = [
   { name: "Kyuro", gate: 9, form: "Twin-Headed Unity Beast" },
 ];
 
+// Tier 3 Wild Godbeasts — unbonded titans outside the Ten Gates.
+// Canon: .arcanea/lore/leviathans/. Nethyssa is the named flagship.
+const leviathans = [
+  { name: "Nethyssa", title: "the Abyss That Dreams", elements: ["Water", "Void"], domain: "The Drowned Deep", material: "Nethyss Pearl", corruption: "The Drowned Shadow" },
+];
+
+const leviathanRoots: Record<string, string[]> = {
+  water: ["Neth", "Mar", "Thal", "Abyss", "Vor", "Drown"],
+  void: ["Nyx", "Umbra", "Vael", "Obsa", "Ten", "Mael"],
+  fire: ["Pyr", "Mag", "Cind", "Ash", "Ember"],
+  earth: ["Geo", "Tect", "Lith", "Mont", "Crag"],
+  wind: ["Aer", "Strat", "Gale", "Cael", "Cyclo"],
+};
+
 const nameRoots: Record<string, string[]> = {
   fire: ["Pyr", "Ign", "Flam", "Ard", "Cal"],
   water: ["Aqu", "Mar", "Und", "Flu", "Nix"],
@@ -241,6 +255,73 @@ export async function generateCreature(options: {
         description: `A ${size} ${element}-attuned creature.`,
         abilities: [`Control ${element.toLowerCase()} energy`, `Enhanced ${size === "massive" ? "devastating" : size === "large" ? "powerful" : "precise"} attacks`],
         habitat: `Found near ${element} sources`,
+      }, null, 2),
+    }],
+  };
+}
+
+export async function generateLeviathan(options: {
+  element?: string;
+  temperament?: "dreaming" | "stirring" | "waking" | "corrupted";
+  named?: boolean;
+}): Promise<ToolResult> {
+  // Tier 3 Wild Godbeast — unbonded titan outside the Ten Gates.
+  const element = options.element ?? pick(["Water", "Void", "Fire", "Earth", "Wind"]);
+  const temperament = options.temperament ?? pick(["dreaming", "stirring", "waking", "corrupted"] as const);
+
+  // Return the canonical flagship when asked for a named, Water/Void leviathan.
+  if (options.named && (element === "Water" || element === "Void")) {
+    const n = leviathans[0];
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify({
+          name: n.name,
+          title: n.title,
+          tier: 3,
+          class: "Leviathan / Wild Godbeast",
+          bonded: false,
+          elements: n.elements,
+          resonance: "Abyssal Hum",
+          domain: n.domain,
+          material: n.material,
+          corruption: n.corruption,
+          temperament,
+          canon: "STAGING — see .arcanea/lore/leviathans/nethyssa.md",
+        }, null, 2),
+      }],
+    };
+  }
+
+  const elementKey = element.toLowerCase();
+  const root = pick(leviathanRoots[elementKey] || leviathanRoots.void);
+  const suffix = pick(["yssa", " thor", "alth", "umbra", "oraxis", "ystra", "akar"]);
+  const name = (root + suffix).replace(/\s+/g, "");
+
+  const titles: Record<string, string[]> = {
+    dreaming: ["the Sleeping Tide", "the Dreaming Deep", "the Long Slumber"],
+    stirring: ["the Rising Dark", "the Stirring Below", "the Waking Want"],
+    waking: ["the Drowned Crown", "the Open Eye", "the World-Sinker"],
+    corrupted: ["the Unmade Tide", "the Shadow Below", "the Hungry Deep"],
+  };
+
+  return {
+    content: [{
+      type: "text",
+      text: JSON.stringify({
+        name,
+        title: pick(titles[temperament]),
+        tier: 3,
+        class: "Leviathan / Wild Godbeast",
+        bonded: false,
+        elements: [element],
+        resonance: "Abyssal Hum",
+        temperament,
+        domain: `A wild domain of ${element}, sovereign to no Gate`,
+        description: `An unbonded titan of Nero's Unformed, ${temperament}. Power that was never given a name to obey.`,
+        material: `${name}'s ${element === "Water" ? "Pearl" : element === "Fire" ? "Cinder" : element === "Void" ? "Obsidian" : "Shard"}`,
+        weaknesses: temperament === "corrupted" ? ["Spirit", "the Tidesong"] : ["Fire", "Spirit"],
+        canon: "STAGING — Wild Godbeast generator. Lock via /lock-decision before treating as canon.",
       }, null, 2),
     }],
   };
