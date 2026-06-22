@@ -271,9 +271,12 @@ export async function generateLeviathan(options: {
   const element = rawElement.charAt(0).toUpperCase() + rawElement.slice(1).toLowerCase();
   const temperament = options.temperament ?? pick(["dreaming", "stirring", "waking", "corrupted"] as const);
 
-  // Return the canonical flagship when asked for a named, Water/Void leviathan.
-  if (options.named && (element === "Water" || element === "Void")) {
-    const n = leviathans[0];
+  // Return a canonical flagship when a named Leviathan matches the requested
+  // element. Looks up by element (not a hardcoded index), so adding a second
+  // Leviathan to the array Just Works. Falls through to procedural if none.
+  if (options.named) {
+    const n = leviathans.find((l) => l.elements.includes(element));
+    if (n) {
     return {
       content: [{
         type: "text",
@@ -294,6 +297,7 @@ export async function generateLeviathan(options: {
         }, null, 2),
       }],
     };
+    }
   }
 
   const elementKey = element.toLowerCase();
