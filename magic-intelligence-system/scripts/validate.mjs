@@ -63,6 +63,8 @@ for (const [i, s] of spells.entries()) {
     for (const c of s.counters)
       if (!DISCIPLINES.includes(c)) errors.push(`${at}: bad counters value '${c}'`);
   if (s.guardian && !GUARDIANS.includes(s.guardian)) errors.push(`${at}: '${s.guardian}' is not a canonical Guardian`);
+  if (s.guardian && s.tier && !GATE_PREFIX_TIERS.includes(s.tier))
+    errors.push(`${at}: a Guardian witness is only permitted on Sacred+ tiers (MAGIC-PROTOCOLS §2)`);
   if (s.tier && GATE_PREFIX_TIERS.includes(s.tier) && s.incantation && !s.incantation.startsWith('Per '))
     errors.push(`${at}: ${s.tier}-tier incantation should begin with a Gate prefix ("Per …") per MAGIC-PROTOCOLS §2`);
   if (s.discipline && TRIANGLE[s.discipline] && Array.isArray(s.counters) && s.counters.length && !s.counters.includes(TRIANGLE[s.discipline]))

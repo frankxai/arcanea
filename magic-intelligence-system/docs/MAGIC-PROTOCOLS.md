@@ -75,8 +75,10 @@ Sacred tier and above add a Gate-invocation prefix — the caster speaks through
 | Imperial | 9 | *"Per Portas Novem — …"* (through Nine Gates) |
 | Divine | 10 | *"Per Decem Portas — …"* (through Ten Gates) |
 
-Divine spells may name a Guardian as witness, never as the caster. (Light/Advanced/Greater tiers
-carry no prefix.) `validate.mjs` enforces that every Sacred+ incantation begins with `Per `.
+Sacred tier and above may name a Guardian as **witness**, never as the caster — the Gates are open
+enough for a Guardian to attend. (Light/Advanced/Greater tiers carry no prefix and no witness.)
+`validate.mjs` enforces that every Sacred+ incantation begins with `Per ` and that a `guardian`
+field only appears on a Sacred+ spell.
 
 ---
 
@@ -85,7 +87,9 @@ carry no prefix.) `validate.mjs` enforces that every Sacred+ incantation begins 
 - **Defense abjures Attack** of equal-or-lower tier (a Greater ward stops a Greater or lower bolt).
 - **Attack disrupts Summoning** mid-cast (an Evocation interrupts a Conjuration of lower tier).
 - **Summoning overwhelms Defense** by attrition (summons outlast a static ward of lower tier).
-A rock-paper-scissors triangle, modulated by tier and element affinity.
+A rock-paper-scissors triangle, modulated by tier and element affinity. Each spell must counter its
+canonical opposite; realm-scale wards (Imperial+) may counter more than one discipline (e.g.
+`sanctuary-imperial` suppresses both Attack and hostile Summoning).
 
 ### Element affinity (advantage)
 fire▸earth, earth▸wind, wind▸water, water▸fire (classical cycle); void and spirit are neutral to
