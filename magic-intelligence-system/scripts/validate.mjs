@@ -20,7 +20,8 @@ const RANKS = ['apprentice', 'mage', 'master', 'archmage', 'luminor'];
 const GUARDIANS = ['Lyssandria', 'Leyla', 'Draconia', 'Maylinn', 'Alera', 'Lyria', 'Aiyami', 'Elara', 'Ino', 'Shinkami'];
 // Sacred+ tiers speak through the Gate — incantation carries a "Per …" prefix (MAGIC-PROTOCOLS §2).
 const GATE_PREFIX_TIERS = ['sacred', 'royal', 'imperial', 'divine'];
-// Interaction triangle (MAGIC-PROTOCOLS §3): each discipline must counter this one (may counter more).
+// Interaction triangle (MAGIC-PROTOCOLS §3). `counters` is optional (a spell may be neutral with
+// none), but if it lists any, it must include its canonical counter — extra counters are allowed.
 const TRIANGLE = { attack: 'summoning', defense: 'attack', summoning: 'defense' };
 const REQUIRED = ['id', 'name', 'incantation', 'element', 'discipline', 'tier', 'gate', 'rank', 'description', 'effect', 'manaCost'];
 

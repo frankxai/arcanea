@@ -5,6 +5,7 @@ on:
     paths:
       - 'magic-intelligence-system/**'
   push:
+    branches: [main]
     paths:
       - 'magic-intelligence-system/**'
 
