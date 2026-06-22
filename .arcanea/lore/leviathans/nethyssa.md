@@ -50,7 +50,7 @@ Nethyssa is not a hunter and not a tyrant. She is **asleep**, and has been for a
 
 ## Role in the Mythology
 
-Nethyssa is the proof that the world is older and larger than the Ten Gates that order it. The Gates are Arcanea's civilization; the Leviathans are its wilderness. She belongs to no God, answers no Guardian, and predates the bonding. Theology files her under **Nero's Unformed** — not evil (Nero is never evil), but *unshaped*: power that was never given a name to obey.
+Nethyssa is the proof that the world is older and larger than the Ten Gates that order it. The Gates are Arcanea's civilization; the Leviathans are its wilderness. She belongs to no God, answers no Guardian, and predates the bonding. Theology files her under **Nero's Unformed** — not a corruption (Nero is the Fertile Unknown, never the Shadow), but *unshaped*: power that was never given a name to obey.
 
 Her keeping is a shared duty. The faithful of **Leyla** and **Veloura** maintain the **Tidesong** — the Lullaby of the Deep, sung at tide-shrines along the world-coast — to keep Nethyssa dreaming peacefully. The Tidesong is canon ritual: when it falters, the sea grows strange.
 

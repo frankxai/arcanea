@@ -51,7 +51,7 @@ The existing **psychological bestiary** — the creative-block creatures of `boo
 
 ### T3 — Leviathans / Wild Godbeasts — NEW
 
-A **Wild Godbeast** is a beast of Nero's Unformed that was never bonded to a God. Where the Ten were drawn from the same primordial stock and fused to a divine partner at a Gate, the Wild Godbeasts were left in the deep places of the world — titanic, unbonded, ungated. They are not corrupt. Nero is not evil; he is the fertile unknown, and his Unformed birthed wonders the Gates never claimed. A Wild Godbeast roams a **region**, not a Gate. It carries **two elements**, and it resonates **below the audible Gate scale** — a sub-frequency hum that the Solfeggio ladder never reaches.
+A **Wild Godbeast** is a beast of Nero's Unformed that was never bonded to a God. Where the Ten were drawn from the same primordial stock and fused to a divine partner at a Gate, the Wild Godbeasts were left in the deep places of the world — titanic, unbonded, ungated. They are not corrupt. Nero is the fertile unknown, not the Shadow, and his Unformed birthed wonders the Gates never claimed. A Wild Godbeast roams a **region**, not a Gate. It carries **two elements**, and it resonates **below the audible Gate scale** — a sub-frequency hum that the Solfeggio ladder never reaches.
 
 The flagship and first of this tier is **Nethyssa, the Abyss That Dreams** — the planet-scale abyssal kraken of the Drowned Deep, dual-element Water and Void, kin-adjacent to the Flow Godbeast Veloura. Where Veloura flows, Nethyssa drowns and dreams.
 

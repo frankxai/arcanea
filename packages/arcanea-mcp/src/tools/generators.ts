@@ -40,6 +40,7 @@ const leviathanRoots: Record<string, string[]> = {
   fire: ["Pyr", "Mag", "Cind", "Ash", "Ember"],
   earth: ["Geo", "Tect", "Lith", "Mont", "Crag"],
   wind: ["Aer", "Strat", "Gale", "Cael", "Cyclo"],
+  spirit: ["Lum", "Aeth", "Anim", "Sol", "Vit"],
 };
 
 const nameRoots: Record<string, string[]> = {
@@ -266,7 +267,8 @@ export async function generateLeviathan(options: {
   named?: boolean;
 }): Promise<ToolResult> {
   // Tier 3 Wild Godbeast — unbonded titan outside the Ten Gates.
-  const element = options.element ?? pick(["Water", "Void", "Fire", "Earth", "Wind"]);
+  const rawElement = options.element ?? pick(["Water", "Void", "Fire", "Earth", "Wind"]);
+  const element = rawElement.charAt(0).toUpperCase() + rawElement.slice(1).toLowerCase();
   const temperament = options.temperament ?? pick(["dreaming", "stirring", "waking", "corrupted"] as const);
 
   // Return the canonical flagship when asked for a named, Water/Void leviathan.
@@ -295,7 +297,7 @@ export async function generateLeviathan(options: {
 
   const elementKey = element.toLowerCase();
   const root = pick(leviathanRoots[elementKey] || leviathanRoots.void);
-  const suffix = pick(["yssa", " thor", "alth", "umbra", "oraxis", "ystra", "akar"]);
+  const suffix = pick(["yssa", "thor", "alth", "umbra", "oraxis", "ystra", "akar"]);
   const name = (root + suffix).replace(/\s+/g, "");
 
   const titles: Record<string, string[]> = {
@@ -320,7 +322,8 @@ export async function generateLeviathan(options: {
         domain: `A wild domain of ${element}, sovereign to no Gate`,
         description: `An unbonded titan of Nero's Unformed, ${temperament}. Power that was never given a name to obey.`,
         material: `${name}'s ${element === "Water" ? "Pearl" : element === "Fire" ? "Cinder" : element === "Void" ? "Obsidian" : "Shard"}`,
-        weaknesses: temperament === "corrupted" ? ["Spirit", "the Tidesong"] : ["Fire", "Spirit"],
+        elementalWeaknesses: temperament === "corrupted" ? ["Spirit", "the Tidesong"] : ["Fire", "Spirit"],
+        note: options.named ? "named=true requested, but no canonical Leviathan exists for this element yet — returned a procedural Wild Godbeast." : undefined,
         canon: "STAGING — Wild Godbeast generator. Lock via /lock-decision before treating as canon.",
       }, null, 2),
     }],

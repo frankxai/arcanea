@@ -29,7 +29,7 @@ This was **Nethyssa**, the Abyss That Dreams. A leviathan of Water and Void. A k
 
 Understand this clearly, child of Light and Darkness, for the Forgetting will tempt you to read it wrong:
 
-**She is not the Dark Lord. She is not evil.**
+**She is not the Dark Lord. She is not a corruption.**
 
 Nero is the Father of Potential, and Nethyssa is his unshaped dream — wild, yes, and terrible in her scale, but no more wicked than a tide is wicked, no more cruel than winter. The corruption that consumes is Malachar's perversion, a void that has forgotten how to dream. Nethyssa has not forgotten. Nethyssa does almost nothing *but* dream. And that, the elders would learn, is both the mercy and the danger of her.
 

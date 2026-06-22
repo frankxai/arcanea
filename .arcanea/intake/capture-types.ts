@@ -114,7 +114,8 @@ export function getCaptureType(id: CaptureType): CaptureTypeMeta {
  */
 export function inferCaptureType(mimeType: string, extension: string): CaptureTypeMeta | undefined {
   const lowerExt = extension.toLowerCase()
-  const byExt = CAPTURE_TYPE_LIST.find((c) => c.extensions.includes(lowerExt))
+  const normalizedExt = lowerExt.startsWith('.') ? lowerExt : `.${lowerExt}`
+  const byExt = CAPTURE_TYPE_LIST.find((c) => c.extensions.includes(normalizedExt))
   if (byExt) return byExt
   return CAPTURE_TYPE_LIST.find((c) => c.mimeTypes.includes(mimeType))
 }

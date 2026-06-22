@@ -10,7 +10,7 @@ type: index
 
 **Tier 3** of the [Monster System](../creatures/MONSTER_SYSTEM.md). A **Wild Godbeast** is a beast of Nero's Unformed that was never bonded to a God — titanic, unbonded, and roaming **outside the Ten Gates**. Where the Ten Gate Godbeasts carry a single Gate frequency and a divine partner, a Leviathan carries **two elements** and resonates **below the audible Gate scale**, in sub-frequencies the Solfeggio ladder never reaches.
 
-Nero is not evil; he is the fertile unknown. The Leviathans are not corruption — they are wonder the Gates left unclaimed. Corruption is a separate matter: a Shadow-touched Leviathan (the **Corruption Track**) is Malachar's perversion, not the creature's nature.
+Nero is the fertile unknown, not the Shadow. The Leviathans are not corruption — they are wonder the Gates left unclaimed. Corruption is a separate matter: a Shadow-touched Leviathan (the **Corruption Track**) is Malachar's perversion, not the creature's nature.
 
 ## The Roster
 
