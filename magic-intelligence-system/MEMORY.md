@@ -25,7 +25,9 @@ Durable state for the Magic Intelligence System.
 - 7-tier scale (light→divine) **replaces** the legacy 5-tier `SpellTier` everywhere.
 - Imperial (gate 9) + Divine (gate 10) are both Luminor rank per the locked Rank table.
 - A standalone `magic-intelligence-system` repo was out of session scope, so the IS lives inside
-  `arcanea`. May graduate to its own repo later (`list_repos`/`add_repo`).
+  `arcanea`. **Placement is intentional at the repo root** (not `/src`): it is a self-contained
+  SIP-composing subsystem, a peer to the sibling `*-intelligence-system` repos, not app source.
+  Confirmed by Frank (2026-06-22). May graduate to its own repo later (`list_repos`/`add_repo`).
 
 ## Open forks
 

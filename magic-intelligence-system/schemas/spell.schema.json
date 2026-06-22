@@ -46,6 +46,7 @@
     },
     "guardian": {
       "type": "string",
+      "enum": ["Lyssandria", "Leyla", "Draconia", "Maylinn", "Alera", "Lyria", "Aiyami", "Elara", "Ino", "Shinkami"],
       "description": "Optional patron Guardian (canon name), witness only — never the caster"
     },
     "icon": { "type": "string", "description": "Phosphor icon name for the encyclopedia" },

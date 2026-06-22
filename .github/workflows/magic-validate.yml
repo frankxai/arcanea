@@ -15,6 +15,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22.x'
       - name: Validate the spell corpus against the schema rules
         run: node magic-intelligence-system/scripts/validate.mjs
