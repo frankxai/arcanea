@@ -3,7 +3,6 @@
   "attestation": "Built on SIP",
   "spells": [
     {
-      "schemaVersion": "0.1.0",
       "id": "ember-lance",
       "name": "Ember Lance",
       "incantation": "Ignis Iace!",
@@ -18,13 +17,16 @@
       "castTime": "1 action",
       "range": "20m",
       "cooldownRounds": 0,
-      "tags": ["bolt"],
-      "counters": ["summoning"],
+      "tags": [
+        "bolt"
+      ],
+      "counters": [
+        "summoning"
+      ],
       "icon": "Fire",
       "color": "#ff6b35"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "frostpierce",
       "name": "Frostpierce",
       "incantation": "Glacio Perfora!",
@@ -39,13 +41,17 @@
       "castTime": "1 action",
       "range": "30m",
       "cooldownRounds": 1,
-      "tags": ["bolt", "slow"],
-      "counters": ["summoning"],
+      "tags": [
+        "bolt",
+        "slow"
+      ],
+      "counters": [
+        "summoning"
+      ],
       "icon": "Drop",
       "color": "#3aa0ff"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "tempest-rend",
       "name": "Tempest Rend",
       "incantation": "Ventus Lacera!",
@@ -60,13 +66,17 @@
       "castTime": "1 action",
       "range": "line 25m",
       "cooldownRounds": 2,
-      "tags": ["area", "disarm"],
-      "counters": ["summoning"],
+      "tags": [
+        "area",
+        "disarm"
+      ],
+      "counters": [
+        "summoning"
+      ],
       "icon": "Wind",
       "color": "#cbd5e1"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "radiant-verdict",
       "name": "Radiant Verdict",
       "incantation": "Per Portam Septimam — Lumen Damna!",
@@ -81,14 +91,18 @@
       "castTime": "1 round",
       "range": "line of sight",
       "cooldownRounds": 3,
-      "tags": ["holy", "anti-shadow"],
-      "counters": ["summoning"],
+      "tags": [
+        "holy",
+        "anti-shadow"
+      ],
+      "counters": [
+        "summoning"
+      ],
       "guardian": "Aiyami",
       "icon": "Sparkle",
       "color": "#ffd700"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "throne-shatter",
       "name": "Throne-Shatter",
       "incantation": "Terra Regna Frange!",
@@ -103,13 +117,17 @@
       "castTime": "2 rounds",
       "range": "60m radius",
       "cooldownRounds": 4,
-      "tags": ["area", "siege"],
-      "counters": ["summoning"],
+      "tags": [
+        "area",
+        "siege"
+      ],
+      "counters": [
+        "summoning"
+      ],
       "icon": "Mountains",
       "color": "#7cae54"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "cataclysm-crown",
       "name": "Cataclysm Crown",
       "incantation": "Per Portas Novem — Ignis Imperat!",
@@ -124,13 +142,17 @@
       "castTime": "2 rounds",
       "range": "realm",
       "cooldownRounds": 6,
-      "tags": ["area", "persistent"],
-      "counters": ["summoning"],
+      "tags": [
+        "area",
+        "persistent"
+      ],
+      "counters": [
+        "summoning"
+      ],
       "icon": "Fire",
       "color": "#ff6b35"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "unmaking",
       "name": "The Unmaking",
       "incantation": "Per Decem Portas — Vael Nihil!",
@@ -145,14 +167,17 @@
       "castTime": "ritual: 3 rounds",
       "range": "line of sight",
       "cooldownRounds": 10,
-      "tags": ["dispel", "genesis"],
-      "counters": ["summoning"],
+      "tags": [
+        "dispel",
+        "genesis"
+      ],
+      "counters": [
+        "summoning"
+      ],
       "icon": "CircleDashed",
       "color": "#2d2d44"
     },
-
     {
-      "schemaVersion": "0.1.0",
       "id": "stoneskin-veil",
       "name": "Stoneskin Veil",
       "incantation": "Mura Terrae",
@@ -167,13 +192,16 @@
       "castTime": "1 action",
       "range": "self",
       "cooldownRounds": 0,
-      "tags": ["ward"],
-      "counters": ["attack"],
+      "tags": [
+        "ward"
+      ],
+      "counters": [
+        "attack"
+      ],
       "icon": "Mountains",
       "color": "#7cae54"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "tideheal",
       "name": "Tideheal",
       "incantation": "Sana Aquaria",
@@ -188,13 +216,16 @@
       "castTime": "1 action",
       "range": "touch",
       "cooldownRounds": 1,
-      "tags": ["restoration"],
-      "counters": ["attack"],
+      "tags": [
+        "restoration"
+      ],
+      "counters": [
+        "attack"
+      ],
       "icon": "Drop",
       "color": "#3aa0ff"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "aegis-of-light",
       "name": "Aegis of Light",
       "incantation": "Aegis Lumen",
@@ -209,13 +240,17 @@
       "castTime": "1 action",
       "range": "10m radius",
       "cooldownRounds": 2,
-      "tags": ["ward", "area"],
-      "counters": ["attack"],
+      "tags": [
+        "ward",
+        "area"
+      ],
+      "counters": [
+        "attack"
+      ],
       "icon": "Sparkle",
       "color": "#ffd700"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "sacred-restoration",
       "name": "Sacred Restoration",
       "incantation": "Per Portam Septimam — Sana Plene",
@@ -230,14 +265,18 @@
       "castTime": "1 round",
       "range": "touch",
       "cooldownRounds": 3,
-      "tags": ["restoration", "holy"],
-      "counters": ["attack"],
+      "tags": [
+        "restoration",
+        "holy"
+      ],
+      "counters": [
+        "attack"
+      ],
       "guardian": "Maylinn",
       "icon": "Drop",
       "color": "#3aa0ff"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "bulwark-royal",
       "name": "Bulwark Royal",
       "incantation": "Murus Regius",
@@ -252,13 +291,17 @@
       "castTime": "2 rounds",
       "range": "80m line",
       "cooldownRounds": 5,
-      "tags": ["ward", "siege"],
-      "counters": ["attack"],
+      "tags": [
+        "ward",
+        "siege"
+      ],
+      "counters": [
+        "attack"
+      ],
       "icon": "Mountains",
       "color": "#7cae54"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "sanctuary-imperial",
       "name": "Sanctuary Imperial",
       "incantation": "Per Portas Novem — Asylum!",
@@ -273,13 +316,18 @@
       "castTime": "3 rounds",
       "range": "realm",
       "cooldownRounds": 8,
-      "tags": ["ward", "sanctuary"],
-      "counters": ["attack", "summoning"],
+      "tags": [
+        "ward",
+        "sanctuary"
+      ],
+      "counters": [
+        "attack",
+        "summoning"
+      ],
       "icon": "Wind",
       "color": "#cbd5e1"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "covenant-of-dawn",
       "name": "Covenant of Dawn",
       "incantation": "Per Decem Portas — Lumen Aeternum",
@@ -294,14 +342,18 @@
       "castTime": "ritual: 1 hour",
       "range": "consecrated site",
       "cooldownRounds": 0,
-      "tags": ["ward", "permanent", "holy"],
-      "counters": ["attack"],
+      "tags": [
+        "ward",
+        "permanent",
+        "holy"
+      ],
+      "counters": [
+        "attack"
+      ],
       "icon": "Sparkle",
       "color": "#ffd700"
     },
-
     {
-      "schemaVersion": "0.1.0",
       "id": "call-wisp",
       "name": "Call Wisp",
       "incantation": "Voco Flatus",
@@ -316,13 +368,17 @@
       "castTime": "1 action",
       "range": "10m",
       "cooldownRounds": 0,
-      "tags": ["familiar", "mobility"],
-      "counters": ["defense"],
+      "tags": [
+        "familiar",
+        "mobility"
+      ],
+      "counters": [
+        "defense"
+      ],
       "icon": "Wind",
       "color": "#cbd5e1"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "ember-hound",
       "name": "Summon Ember Hound",
       "incantation": "Voco Canis Ignis",
@@ -337,13 +393,16 @@
       "castTime": "1 action",
       "range": "15m",
       "cooldownRounds": 2,
-      "tags": ["beast"],
-      "counters": ["defense"],
+      "tags": [
+        "beast"
+      ],
+      "counters": [
+        "defense"
+      ],
       "icon": "Fire",
       "color": "#ff6b35"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "tide-serpent",
       "name": "Conjure Tide Serpent",
       "incantation": "Voco Serpens Maris",
@@ -358,13 +417,17 @@
       "castTime": "1 round",
       "range": "30m",
       "cooldownRounds": 3,
-      "tags": ["construct", "control"],
-      "counters": ["defense"],
+      "tags": [
+        "construct",
+        "control"
+      ],
+      "counters": [
+        "defense"
+      ],
       "icon": "Drop",
       "color": "#3aa0ff"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "vael-shade",
       "name": "Bind Vael Shade",
       "incantation": "Per Portam Septimam — Voco Umbra Vael",
@@ -379,13 +442,17 @@
       "castTime": "1 round",
       "range": "line of sight",
       "cooldownRounds": 4,
-      "tags": ["construct", "phase"],
-      "counters": ["defense"],
+      "tags": [
+        "construct",
+        "phase"
+      ],
+      "counters": [
+        "defense"
+      ],
       "icon": "CircleDashed",
       "color": "#2d2d44"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "stone-colossus",
       "name": "Summon Stone Colossus",
       "incantation": "Voco Colossus Terrae",
@@ -400,13 +467,17 @@
       "castTime": "2 rounds",
       "range": "40m",
       "cooldownRounds": 5,
-      "tags": ["construct", "siege"],
-      "counters": ["defense"],
+      "tags": [
+        "construct",
+        "siege"
+      ],
+      "counters": [
+        "defense"
+      ],
       "icon": "Mountains",
       "color": "#7cae54"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "godbeast-echo",
       "name": "Call the Godbeast's Echo",
       "incantation": "Per Portas Novem — Voco Echo Draconis",
@@ -421,14 +492,18 @@
       "castTime": "3 rounds",
       "range": "realm",
       "cooldownRounds": 9,
-      "tags": ["echo", "apex"],
-      "counters": ["defense"],
+      "tags": [
+        "echo",
+        "apex"
+      ],
+      "counters": [
+        "defense"
+      ],
       "guardian": "Draconia",
       "icon": "Fire",
       "color": "#ff6b35"
     },
     {
-      "schemaVersion": "0.1.0",
       "id": "invoke-tenth-gate",
       "name": "Invoke the Tenth Gate",
       "incantation": "Per Decem Portas — Venite Omnia",
@@ -443,8 +518,14 @@
       "castTime": "ritual: 1 hour",
       "range": "consecrated site",
       "cooldownRounds": 0,
-      "tags": ["host", "genesis", "holy"],
-      "counters": ["defense"],
+      "tags": [
+        "host",
+        "genesis",
+        "holy"
+      ],
+      "counters": [
+        "defense"
+      ],
       "guardian": "Shinkami",
       "icon": "Sparkle",
       "color": "#ffd700"

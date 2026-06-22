@@ -18,7 +18,8 @@ description: Classify, author, and validate Arcanean spells on the four canon ax
 2. **Check the mapping** — tier ↔ gate ↔ rank must match `docs/MAGIC-PROTOCOLS.md` §1. Run
    `node scripts/validate.mjs` after any edit to `data/spells.json`.
 3. **Gate the name** — Arcanean-quality name + incantation per the naming gate (§5). Reject filler.
-4. **Place it** — add to `data/spells.json`; the web layer mirrors it into `lib/magic-system.ts`.
+4. **Place it** — add to `data/spells.json`; the web layer (in the `arcanea-ai-app` repo)
+   mirrors it into `apps/web/lib/magic/spells.json` + `apps/web/lib/magic-system.ts`.
 
 ## When to refuse (fail-closed)
 
