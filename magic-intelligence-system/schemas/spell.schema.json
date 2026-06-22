@@ -7,7 +7,6 @@
   "required": ["id", "name", "incantation", "element", "discipline", "tier", "gate", "rank", "description", "effect", "manaCost"],
   "additionalProperties": false,
   "properties": {
-    "schemaVersion": { "type": "string", "const": "0.1.0" },
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",

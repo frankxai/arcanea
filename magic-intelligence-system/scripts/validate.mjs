@@ -45,6 +45,9 @@ for (const [i, s] of spells.entries()) {
   if (s.discipline && !DISCIPLINES.includes(s.discipline)) errors.push(`${at}: bad discipline '${s.discipline}'`);
   if (s.tier && !TIERS.includes(s.tier)) errors.push(`${at}: bad tier '${s.tier}'`);
   if (s.rank && !RANKS.includes(s.rank)) errors.push(`${at}: bad rank '${s.rank}'`);
+  if (Array.isArray(s.counters))
+    for (const c of s.counters)
+      if (!DISCIPLINES.includes(c)) errors.push(`${at}: bad counters value '${c}'`);
   if (typeof s.gate === 'number' && (s.gate < 1 || s.gate > 10)) errors.push(`${at}: gate out of 1-10`);
   const map = TIER_MAP[s.tier];
   if (map) {
