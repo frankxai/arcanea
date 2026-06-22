@@ -21,15 +21,14 @@ tier↔gate↔rank mapping is fixed in [`../docs/MAGIC-PROTOCOLS.md`](../docs/MA
 
 ```json
 {
-  "schemaVersion": "0.1.0",
   "id": "ignis-frange",
   "name": "Sundering Flame",
   "incantation": "Ignis Frange!",
   "element": "fire",
   "discipline": "attack",
   "tier": "light",
-  "gate": 3,
-  "rank": "mage",
+  "gate": 2,
+  "rank": "apprentice",
   "description": "A focused lance of fire that cracks what it strikes.",
   "effect": "Single-target fire damage; ignores light cover.",
   "manaCost": 8,

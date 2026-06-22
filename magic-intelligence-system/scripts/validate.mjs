@@ -11,10 +11,13 @@ import { dirname, join } from 'node:path';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 
+// Enums mirror schemas/spell.schema.json — keep the two in sync.
 const ELEMENTS = ['fire', 'water', 'earth', 'wind', 'void', 'spirit'];
 const DISCIPLINES = ['attack', 'defense', 'summoning'];
 const TIERS = ['light', 'advanced', 'greater', 'sacred', 'royal', 'imperial', 'divine'];
 const RANKS = ['apprentice', 'mage', 'master', 'archmage', 'luminor'];
+// The ten canonical Guardians (CANON_LOCKED.md) — a `guardian` field must match one.
+const GUARDIANS = ['Lyssandria', 'Leyla', 'Draconia', 'Maylinn', 'Alera', 'Lyria', 'Aiyami', 'Elara', 'Ino', 'Shinkami'];
 const REQUIRED = ['id', 'name', 'incantation', 'element', 'discipline', 'tier', 'gate', 'rank', 'description', 'effect', 'manaCost'];
 
 // tier -> { gates: [min,max], rank }
@@ -28,7 +31,13 @@ const TIER_MAP = {
   divine: { gates: [10, 10], rank: 'luminor' },
 };
 
-const data = JSON.parse(readFileSync(join(root, 'data', 'spells.json'), 'utf8'));
+let data;
+try {
+  data = JSON.parse(readFileSync(join(root, 'data', 'spells.json'), 'utf8'));
+} catch (e) {
+  console.error('✗ data/spells.json is not valid JSON:', e.message);
+  process.exit(1);
+}
 const spells = data.spells ?? [];
 const errors = [];
 const ids = new Set();
@@ -48,6 +57,7 @@ for (const [i, s] of spells.entries()) {
   if (Array.isArray(s.counters))
     for (const c of s.counters)
       if (!DISCIPLINES.includes(c)) errors.push(`${at}: bad counters value '${c}'`);
+  if (s.guardian && !GUARDIANS.includes(s.guardian)) errors.push(`${at}: '${s.guardian}' is not a canonical Guardian`);
   if (typeof s.gate === 'number' && (s.gate < 1 || s.gate > 10)) errors.push(`${at}: gate out of 1-10`);
   const map = TIER_MAP[s.tier];
   if (map) {

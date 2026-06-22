@@ -1,0 +1,20 @@
+name: Magic System Validate
+
+on:
+  pull_request:
+    paths:
+      - 'magic-intelligence-system/**'
+  push:
+    paths:
+      - 'magic-intelligence-system/**'
+
+jobs:
+  validate-spells:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate the spell corpus against the schema rules
+        run: node magic-intelligence-system/scripts/validate.mjs
