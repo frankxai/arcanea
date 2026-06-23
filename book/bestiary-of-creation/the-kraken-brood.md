@@ -79,7 +79,7 @@ And yet the old Keepers kept them in this Bestiary anyway, beside the Blank Terr
 
 **How to Handle:**
 - Do not meet their eyes seeking comfort. The comfort is real, and that is the trap. The peace they offer is the peace of stopping forever.
-- Stopper your ears to the Deep Call with a song of your own. The faithful sing the Tidesong precisely so the Call cannot find the gap.
+- Stop your ears to the Deep Call with a song of your own. The faithful sing the Tidesong precisely so the Call cannot find the gap.
 - Remember the Herald was a person who forgot why they began. Pity them. Do not follow them.
 
 **The Creative Parallel — The Pull of Forgetting Why You Began:** The Drowned Heralds are the *seductive case for giving up* — and they are most dangerous because they speak in a voice you trust, your own voice when it is tired. They do not scream that you are a failure, as the Failure Wraith does. They murmur something gentler and far more dangerous: *it would be so restful to stop. No one would even mind. Put the work down and come where it is quiet.* They are everyone you have watched abandon their making and call it peace. The defense is not force; you cannot bully your way past exhaustion. The defense is memory. Hold the reason you began — the spark, the ache, the thing you wanted to make real — and sing it back to yourself, loud enough that the gentle invitation to forget cannot find the gap.

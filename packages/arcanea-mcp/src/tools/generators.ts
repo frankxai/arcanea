@@ -1,5 +1,7 @@
 // Worldbuilding Generator Tools
 
+import { LEVIATHANS } from "../data/leviathans/index.js";
+
 const elements = ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] as const;
 const houses = ["Lumina", "Nero", "Pyros", "Aqualis", "Terra", "Ventus", "Synthesis"] as const;
 
@@ -28,11 +30,8 @@ const godbeasts = [
   { name: "Kyuro", gate: 9, form: "Twin-Headed Unity Beast" },
 ];
 
-// Tier 3 Wild Godbeasts — unbonded titans outside the Ten Gates.
-// Canon: .arcanea/lore/leviathans/. Nethyssa is the named flagship.
-const leviathans = [
-  { name: "Nethyssa", title: "the Abyss That Dreams", elements: ["Water", "Void"], domain: "The Drowned Deep", subGateResonance: "Abyssal Hum", material: "Nethyss Pearl", corruption: "The Drowned Shadow" },
-];
+// Leviathan data is sourced from ../data/leviathans/index.ts (LEVIATHANS array).
+// Do not duplicate Nethyssa inline here — use the canonical data file.
 
 const leviathanRoots: Record<string, string[]> = {
   // "Neth" excluded — reserved for Nethyssa (canonical Water Leviathan).
@@ -268,15 +267,19 @@ export async function generateLeviathan(options: {
   named?: boolean;
 }): Promise<ToolResult> {
   // Tier 3 Wild Godbeast — unbonded titan outside the Ten Gates.
-  const rawElement = options.element ?? pick(["Water", "Void", "Fire", "Earth", "Wind"]);
-  const element = rawElement.charAt(0).toUpperCase() + rawElement.slice(1).toLowerCase();
   const temperament = options.temperament ?? pick(["dreaming", "stirring", "waking", "corrupted"] as const);
 
-  // Return a canonical flagship when a named Leviathan matches the requested
-  // element. Looks up by element (not a hardcoded index), so adding a second
-  // Leviathan to the array Just Works. Falls through to procedural if none.
   if (options.named) {
-    const n = leviathans.find((l) => l.elements.includes(element));
+    // Named path: look up canonical Leviathan from the single-source data file.
+    // With element → match by element (so adding a second Leviathan Just Works).
+    // Without element → return the first canonical entry directly; avoids random
+    // element selection that may produce a procedural result or exclude Spirit.
+    const norm = options.element
+      ? options.element.charAt(0).toUpperCase() + options.element.slice(1).toLowerCase()
+      : null;
+    const n = norm
+      ? LEVIATHANS.find((l) => l.elements.includes(norm))
+      : LEVIATHANS[0];
     if (n) {
       return {
         content: [{
@@ -287,7 +290,7 @@ export async function generateLeviathan(options: {
             tier: 3,
             class: "Leviathan / Wild Godbeast",
             bonded: false,
-            requestedElement: element,
+            ...(norm ? { requestedElement: norm } : {}),
             elements: n.elements,
             resonance: n.subGateResonance ?? "Abyssal Hum",
             domain: n.domain,
@@ -301,6 +304,9 @@ export async function generateLeviathan(options: {
     }
   }
 
+  // Procedural path — Spirit now included in the random pool (schema-complete).
+  const rawElement = options.element ?? pick(["Water", "Void", "Fire", "Earth", "Wind", "Spirit"]);
+  const element = rawElement.charAt(0).toUpperCase() + rawElement.slice(1).toLowerCase();
   const elementKey = element.toLowerCase();
   const root = pick(leviathanRoots[elementKey] || leviathanRoots.void);
   const suffix = pick(["yssa", "thor", "alth", "umbra", "oraxis", "ystra", "akar"]);

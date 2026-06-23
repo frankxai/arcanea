@@ -332,7 +332,7 @@ Grounded in real meteoritics: Widmanstatten crystal patterns (million-year cooli
 
 > *"Not every great beast knelt to a Gate. Some were already old when the Gates were young."*
 
-The Ten Gate Godbeasts (Tier 2) are **bonded** — each sworn beside an Arcanean God. But beasts of **Nero's Unformed** existed before the bonding, titan-scale and sovereign to no Gate. These are the **Leviathans**, or **Wild Godbeasts**: unbonded, region-roaming, keeping their own sub-Gate frequencies. They are the wilderness to the Gates' civilization.
+The Ten Gate Godbeasts (T4 in the Monster System) are **bonded** — each sworn beside an Arcanean God. But beasts of **Nero's Unformed** existed before the bonding, titan-scale and sovereign to no Gate. These are the **Leviathans**, or **Wild Godbeasts**: unbonded, region-roaming, keeping their own sub-Gate frequencies. They are the wilderness to the Gates' civilization.
 
 This tier is the apex of the **Monster System** (`.arcanea/lore/creatures/MONSTER_SYSTEM.md`), which orders all Arcanean creatures: **T0 Motes → T1 Beasts → T2 Shades → T3 Leviathans → T4 Gate Godbeasts**, with a Shadow corruption track at every tier.
 

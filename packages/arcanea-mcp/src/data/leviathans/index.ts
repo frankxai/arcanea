@@ -165,5 +165,8 @@ export const leviathans: Record<string, Leviathan> = {
   nethyssa,
 };
 
+/** Ordered array of all canonical Leviathans — used by generators.ts for lookup. */
+export const LEVIATHANS = Object.values(leviathans);
+
 /** Resonance name for Leviathans that sound beneath the Ten-Gate scale. */
 export const SUB_GATE_RESONANCE = "Abyssal Hum";
