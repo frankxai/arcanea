@@ -256,6 +256,9 @@ export function checkDeployReady(input: unknown): ValidationResult {
   m.royalty.recipients.forEach((r, i) => {
     if (r.address === PLACEHOLDER) errors.push(`royalty.recipients[${i}].address: still a placeholder`);
   });
+  m.agents.forEach((a, i) => {
+    if (a.specUri && a.specUri.includes('<')) errors.push(`agents[${i}].specUri: still a placeholder`);
+  });
   m.chains.forEach((c, i) => {
     if (!c.metadataUri || c.metadataUri.includes('<')) errors.push(`chains[${i}].metadataUri: not pinned`);
     for (const k of ['registry', 'license', 'royaltyRouter'] as const) {

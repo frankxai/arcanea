@@ -212,6 +212,28 @@ test('reference manifests are valid but NOT deploy-ready (placeholders present)'
   }
 });
 
+test('checkDeployReady passes once all placeholders are replaced', () => {
+  const m = loadManifest('creative-author-council');
+  // Fill every placeholder a human would set before a (gated) deploy.
+  m.royalty.recipients.forEach((r) => { r.address = '0x1111111111111111111111111111111111111111'; });
+  m.agents.forEach((a) => { if (a.specUri) a.specUri = 'ipfs://bafyrealcidplaceholderxxxxxxxxxxxxxxxxxxxx'; });
+  m.chains.forEach((c) => {
+    c.registry = '0x2222222222222222222222222222222222222222';
+    c.license = '0x3333333333333333333333333333333333333333';
+    c.royaltyRouter = '0x4444444444444444444444444444444444444444';
+    c.metadataUri = 'ipfs://bafyrealmanifestcidxxxxxxxxxxxxxxxxxxxxxxxx';
+  });
+  const res = checkDeployReady(m);
+  assert.equal(res.valid, true, res.errors.join('; '));
+});
+
+test('checkDeployReady rejects a placeholder specUri', () => {
+  const m = loadManifest('creative-author-council'); // ships ipfs://<...> specUris
+  const res = checkDeployReady(m);
+  assert.equal(res.valid, false);
+  assert.ok(res.errors.some((e) => e.includes('specUri: still a placeholder')));
+});
+
 test('CLI: exits 0 on a valid slug, 1 on an invalid manifest', () => {
   const out = execFileSync(process.execPath, [CLI, 'validate', 'creative-author-council'], { encoding: 'utf8' });
   assert.match(out, /^OK creative-author-council/);
