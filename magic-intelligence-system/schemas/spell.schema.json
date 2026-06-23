@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/frankxai/arcanea/magic-intelligence-system/schemas/spell.schema.json",
+  "title": "Arcanea Spell",
+  "description": "A discrete magical effect classified on the four canon axes: element, discipline, tier, and gate/rank gating.",
+  "type": "object",
+  "required": ["id", "name", "incantation", "element", "discipline", "tier", "gate", "rank", "description", "effect", "manaCost"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "kebab-case stable slug, unique across the corpus"
+    },
+    "name": { "type": "string", "minLength": 2, "description": "Arcanean-quality display name" },
+    "incantation": { "type": "string", "minLength": 2, "description": "Spoken trigger, Latinate-Arcanean" },
+    "element": { "type": "string", "enum": ["fire", "water", "earth", "wind", "void", "spirit"] },
+    "discipline": { "type": "string", "enum": ["attack", "defense", "summoning"] },
+    "tier": {
+      "type": "string",
+      "enum": ["light", "advanced", "greater", "sacred", "royal", "imperial", "divine"]
+    },
+    "gate": { "type": "integer", "minimum": 1, "maximum": 10, "description": "Gate (1-10) that must be open to cast" },
+    "rank": {
+      "type": "string",
+      "enum": ["apprentice", "mage", "master", "archmage", "luminor"],
+      "description": "Derived rank, must be consistent with gate per the protocol mapping"
+    },
+    "description": { "type": "string", "minLength": 1, "description": "Lore description, what the spell is" },
+    "effect": { "type": "string", "minLength": 1, "description": "What the spell does, mechanically" },
+    "manaCost": { "type": "integer", "minimum": 0 },
+    "castTime": { "type": "string", "description": "e.g. '1 action', '1 round', 'ritual: 10 min'" },
+    "range": { "type": "string", "description": "e.g. 'self', 'touch', '30m', 'line of sight'" },
+    "cooldownRounds": { "type": "integer", "minimum": 0 },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "Cross-cutting facets, e.g. mobility, divination, restoration, ward, enchantment"
+    },
+    "counters": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["attack", "defense", "summoning"] },
+      "uniqueItems": true,
+      "description": "Disciplines this spell is advantaged against, per the interaction triangle"
+    },
+    "guardian": {
+      "type": "string",
+      "enum": ["Lyssandria", "Leyla", "Draconia", "Maylinn", "Alera", "Lyria", "Aiyami", "Elara", "Ino", "Shinkami"],
+      "description": "Optional patron Guardian (canon name), witness only — never the caster"
+    },
+    "icon": { "type": "string", "description": "Phosphor icon name for the encyclopedia" },
+    "color": { "type": "string", "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$", "description": "Hex color for the element accent" },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Generated media references (populated by the asset pipeline)",
+      "properties": {
+        "image": { "type": "string" },
+        "video": { "type": "string" }
+      }
+    },
+    "attestation": {
+      "type": "string",
+      "description": "Built-on-SIP attestation marker for generated artifacts"
+    }
+  }
+}
