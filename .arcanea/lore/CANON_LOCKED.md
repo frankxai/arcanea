@@ -362,7 +362,7 @@ Grounded in real meteoritics: Widmanstatten crystal patterns (million-year cooli
 | 2026-03-30 | Material mutations system (Harmonic, Dissonant, Gray Threshold, Resonance Bloom) | ⏳ STAGING | — |
 | 2026-03-30 | Arcanean Meteors (Vael Rain, Ember Falls, Nero Strikes, Luminarch Events) | ⏳ STAGING | — |
 | 2026-03-30 | Material-Agent architecture mapping (Shael→transparent, Veloryn→adaptive, etc.) | ⏳ STAGING | — |
-| 2026-06-22 | Magic System — spell taxonomy (3 disciplines: Attack/Defense/Summoning; 7 tiers: Light→Divine; gate/rank gating). Reuses locked Elements/Gates/Ranks. See `MAGIC_SYSTEM.md` + `magic-intelligence-system/` | ⏳ STAGING | — |
+| 2026-06-22 | Magic System — spell taxonomy (3 disciplines: Attack/Defense/Summoning; 7 tiers: Light→Divine; gate/rank gating). Reuses locked Elements/Gates/Ranks. See `MAGIC_SYSTEM.md` + `magic-intelligence-system/` | ✅ LOCKED | 2026-06-23 |
 
 ---
 

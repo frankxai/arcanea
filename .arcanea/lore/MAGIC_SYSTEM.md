@@ -1,9 +1,9 @@
 # ARCANEA MAGIC SYSTEM — The Spell Taxonomy
 
-> **Status: STAGING ⏳** — Proposed canon, awaiting Creator (Frank) approval.
-> Does NOT modify any LOCKED truth. Reuses the locked Elements, Gates, Guardians, and Ranks.
+> **Status: LOCKED ✅** — Canonical magic grammar. Approved by Frank (Creator) 2026-06-23.
+> Modifies NO upstream LOCKED truth. Reuses the locked Elements, Gates, Guardians, and Ranks.
 >
-> *Proposed: 2026-06-22*
+> *Proposed: 2026-06-22 · Locked: 2026-06-23*
 
 ---
 
@@ -31,7 +31,7 @@ the proposed additions.
 `Fire · Water · Earth · Wind · Void/Spirit` — exactly as locked. Void is Nero's aspect; Spirit is
 Lumina's. Light is Fire's creation aspect; Shadow is corrupted Void.
 
-### 2. Discipline (STAGING ⏳ — three branches)
+### 2. Discipline (LOCKED ✅ — three branches)
 
 | Discipline | German | School | Folds in |
 |---|---|---|---|
@@ -42,7 +42,7 @@ Lumina's. Light is Fire's creation aspect; Shadow is corrupted Void.
 *Utility* is **not** a discipline — it is a cross-cutting facet (mobility, divination, enchantment)
 tagged on a spell whose primary intent is still one of the three.
 
-### 3. Tier (STAGING ⏳ — the seven-tier power/sanctity scale)
+### 3. Tier (LOCKED ✅ — the seven-tier power/sanctity scale)
 
 | Tier | German | Gates open | Rank (LOCKED) | Character |
 |---|---|---|---|---|
@@ -65,7 +65,7 @@ wield a spell whose gate they have not opened.
 
 ---
 
-## INCANTATION GRAMMAR (STAGING ⏳)
+## INCANTATION GRAMMAR (LOCKED ✅)
 
 Latinate-Arcanean, two to three words, no real-world languages or deities.
 
@@ -78,7 +78,7 @@ Gate"). Divine workings may name a Guardian as **witness**, never as the caster.
 
 ---
 
-## DISCIPLINE INTERACTIONS (STAGING ⏳)
+## DISCIPLINE INTERACTIONS (LOCKED ✅)
 
 A tier-modulated triangle:
 
@@ -101,17 +101,17 @@ are neutral to the four and opposed to each other (Nero's aspect vs Lumina's).
 | Lumina / Nero duality | Spirit (Lumina) vs Void (Nero) element opposition; Shadow stays a corruption, not an element. |
 | Malachar / Shadow | Spirit-discipline Attack spells (e.g. anti-Shadow) reference, never rehabilitate, the corruption. |
 
-**No LOCKED truth is altered.** If approved, this becomes the canonical magic grammar and the
-legacy informal tiers are retired.
+**No LOCKED truth is altered.** This is now the canonical magic grammar; the legacy informal tiers
+are retired.
 
 ---
 
-## APPROVAL CHECKLIST (for Frank)
+## APPROVAL LOG (Frank, 2026-06-23)
 
-- [ ] Three disciplines (Attack / Defense / Summoning), with healing under Defense.
-- [ ] Seven-tier scale (Light → Divine), replacing the informal five.
-- [ ] Imperial + Divine both Luminor-rank (Gates 9 / 10).
-- [ ] Incantation grammar + Guardian-as-witness rule.
-- [ ] On approval: move to LOCKED, add the APPROVAL LOG row in `CANON_LOCKED.md`.
+- [x] Three disciplines (Attack / Defense / Summoning), with healing under Defense.
+- [x] Seven-tier scale (Light → Divine), replacing the informal five.
+- [x] Imperial + Divine both Luminor-rank (Gates 9 / 10).
+- [x] Incantation grammar + Guardian-as-witness rule.
+- [x] Moved to LOCKED; APPROVAL LOG row recorded in `CANON_LOCKED.md`.
 
 *"The cosmology is locked. The spells, at last, have a grammar."*
