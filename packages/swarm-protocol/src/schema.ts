@@ -29,6 +29,8 @@ const LICENSE_MODELS = ['nft-license', 'per-call', 'hybrid'];
 const CURRENCIES = ['USDC', 'NATIVE'];
 const STANDARDS = ['ERC-721', 'ERC-1155', 'metaplex-nft'];
 const TOPOLOGY_PATTERNS = ['queen-led', 'mesh', 'hierarchical'];
+const SPEC_URI_SCHEMES = ['ipfs://', 'ar://', 'https://'];
+const PLACEHOLDER = '<placeholder>';
 
 function isString(v: unknown): v is string {
   return typeof v === 'string';
@@ -50,6 +52,7 @@ function validateAgent(a: unknown, i: number, errors: string[]): a is AgentPacka
     return false;
   }
   const o = a as Record<string, unknown>;
+  const before = errors.length;
   if (!isNonEmptyString(o.id)) errors.push(`${p}.id: required non-empty string`);
   if (!isNonEmptyString(o.name)) errors.push(`${p}.name: required non-empty string`);
   if (!isNonEmptyString(o.title)) errors.push(`${p}.title: required non-empty string`);
@@ -60,10 +63,13 @@ function validateAgent(a: unknown, i: number, errors: string[]): a is AgentPacka
   if (!isStringArray(o.capabilities)) errors.push(`${p}.capabilities: required string[]`);
   if (o.systemPrompt !== undefined && !isString(o.systemPrompt)) errors.push(`${p}.systemPrompt: must be string`);
   if (o.specUri !== undefined && !isString(o.specUri)) errors.push(`${p}.specUri: must be string`);
+  if (typeof o.specUri === 'string' && !SPEC_URI_SCHEMES.some((s) => (o.specUri as string).startsWith(s))) {
+    errors.push(`${p}.specUri: must start with ipfs://, ar://, or https://`);
+  }
   if (o.systemPrompt === undefined && o.specUri === undefined) {
     errors.push(`${p}: must carry either systemPrompt or specUri (the licensed IP must be locatable)`);
   }
-  return true;
+  return errors.length === before;
 }
 
 /**
@@ -118,8 +124,8 @@ export function validateSwarmManifest(input: unknown): ValidationResult {
       errors.push('topology.queen: required agent id');
     } else if (agentIds.size && !agentIds.has(topo.queen)) {
       errors.push(`topology.queen: '${topo.queen}' is not in agents`);
-    } else {
-      const q = (agents as AgentPackage[]).find((a) => a.id === topo.queen);
+    } else if (Array.isArray(agents)) {
+      const q = (agents as Array<Partial<AgentPackage> | null | undefined>).find((a) => a?.id === topo.queen);
       if (q && q.role !== 'queen') errors.push(`topology.queen: agent '${topo.queen}' must have role 'queen'`);
     }
     if (!isStringArray(topo.workers) || (topo.workers as string[]).length === 0) {
@@ -155,6 +161,10 @@ export function validateSwarmManifest(input: unknown): ValidationResult {
     } else {
       let sum = 0;
       recips.forEach((r, i) => {
+        if (typeof r !== 'object' || r === null) {
+          errors.push(`royalty.recipients[${i}]: must be an object`);
+          return;
+        }
         const ro = r as Record<string, unknown>;
         if (!isNonEmptyString(ro.label)) errors.push(`royalty.recipients[${i}].label: required`);
         if (!isNonEmptyString(ro.address)) errors.push(`royalty.recipients[${i}].address: required (use '<placeholder>')`);
@@ -194,6 +204,10 @@ export function validateSwarmManifest(input: unknown): ValidationResult {
     errors.push('chains: required non-empty array');
   } else {
     chains.forEach((c, i) => {
+      if (typeof c !== 'object' || c === null) {
+        errors.push(`chains[${i}]: must be an object`);
+        return;
+      }
       const co = c as Record<string, unknown>;
       if (!CHAINS.includes(co.chain as Chain)) errors.push(`chains[${i}].chain: base | polygon | solana`);
       if (!STANDARDS.includes(co.standard as string)) errors.push(`chains[${i}].standard: invalid token standard`);
@@ -212,4 +226,30 @@ export function assertValidSwarmManifest(input: unknown): SwarmManifest {
     throw new Error(`Invalid SwarmManifest:\n  - ${res.errors.join('\n  - ')}`);
   }
   return res.value;
+}
+
+/**
+ * Stricter gate for deploy-time: a manifest is "deploy ready" only if it is
+ * structurally valid AND carries no unset placeholders — real royalty addresses
+ * and a pinned metadata URI on every chain. Reference manifests intentionally
+ * fail this until a human sets the real values before a (human-gated) deploy.
+ */
+export function checkDeployReady(input: unknown): ValidationResult {
+  const base = validateSwarmManifest(input);
+  if (!base.valid || !base.value) return base;
+
+  const m = base.value;
+  const errors: string[] = [];
+  m.royalty.recipients.forEach((r, i) => {
+    if (r.address === PLACEHOLDER) errors.push(`royalty.recipients[${i}].address: still a placeholder`);
+  });
+  m.chains.forEach((c, i) => {
+    if (!c.metadataUri || c.metadataUri.includes('<')) errors.push(`chains[${i}].metadataUri: not pinned`);
+    for (const k of ['registry', 'license', 'royaltyRouter'] as const) {
+      if (!c[k] || c[k] === PLACEHOLDER) errors.push(`chains[${i}].${k}: not deployed`);
+    }
+  });
+
+  if (errors.length > 0) return { valid: false, errors };
+  return { valid: true, errors: [], value: m };
 }

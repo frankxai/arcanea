@@ -2,10 +2,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 import {
   validateSwarmManifest,
   assertValidSwarmManifest,
+  checkDeployReady,
   buildManifest,
   canonicalize,
   manifestFingerprint,
@@ -18,6 +20,8 @@ import {
   type SwarmManifest,
   type ManifestInput,
 } from '../src/index';
+
+const CLI = join(__dirname, '..', '..', 'dist', 'cli.js');
 
 const MANIFEST_DIR = join(__dirname, '..', '..', 'manifests');
 
@@ -147,4 +151,79 @@ test('rejects an unknown chain', () => {
 
 test('assertValidSwarmManifest throws with a readable message', () => {
   assert.throws(() => assertValidSwarmManifest({ id: 'broken' }), /Invalid SwarmManifest/);
+});
+
+test('rejects a worker id that is not in agents', () => {
+  const m = loadManifest('creative-author-council');
+  m.topology.workers.push('phantom-worker');
+  const res = validateSwarmManifest(m);
+  assert.equal(res.valid, false);
+  assert.ok(res.errors.some((e) => e.includes("'phantom-worker' is not in agents")));
+});
+
+test('rejects a manifestVersion mismatch', () => {
+  const m = loadManifest('creative-author-council');
+  (m as unknown as Record<string, unknown>).manifestVersion = '0.9.0';
+  const res = validateSwarmManifest(m);
+  assert.equal(res.valid, false);
+  assert.ok(res.errors.some((e) => e.includes('manifestVersion')));
+});
+
+test('rejects an empty agents array', () => {
+  const m = loadManifest('creative-author-council');
+  m.agents = [];
+  const res = validateSwarmManifest(m);
+  assert.equal(res.valid, false);
+  assert.ok(res.errors.some((e) => e.includes('agents: required non-empty array')));
+});
+
+test('rejects duplicate agent ids', () => {
+  const m = loadManifest('creative-author-council');
+  m.agents.push({ ...m.agents[1] });
+  const res = validateSwarmManifest(m);
+  assert.equal(res.valid, false);
+  assert.ok(res.errors.some((e) => e.includes('duplicate id')));
+});
+
+test('rejects a specUri with a disallowed scheme', () => {
+  const m = loadManifest('creative-author-council');
+  (m.agents[1] as unknown as Record<string, unknown>).specUri = 'file:///etc/passwd';
+  const res = validateSwarmManifest(m);
+  assert.equal(res.valid, false);
+  assert.ok(res.errors.some((e) => e.includes('ipfs://, ar://, or https://')));
+});
+
+test('does not crash on null elements in recipients / chains / agents', () => {
+  const m = loadManifest('creative-author-council') as unknown as Record<string, unknown>;
+  (m.royalty as { recipients: unknown[] }).recipients = [null];
+  (m as { chains: unknown[] }).chains = [null];
+  (m as { agents: unknown[] }).agents = [null];
+  const res = validateSwarmManifest(m); // must return, not throw
+  assert.equal(res.valid, false);
+});
+
+test('reference manifests are valid but NOT deploy-ready (placeholders present)', () => {
+  for (const slug of allSlugs()) {
+    const m = loadManifest(slug);
+    assert.equal(validateSwarmManifest(m).valid, true, `${slug} should be valid`);
+    const ready = checkDeployReady(m);
+    assert.equal(ready.valid, false, `${slug} must not be deploy-ready with placeholders`);
+    assert.ok(ready.errors.some((e) => e.includes('placeholder') || e.includes('not deployed') || e.includes('not pinned')));
+  }
+});
+
+test('CLI: exits 0 on a valid slug, 1 on an invalid manifest', () => {
+  const out = execFileSync(process.execPath, [CLI, 'validate', 'creative-author-council'], { encoding: 'utf8' });
+  assert.match(out, /^OK creative-author-council/);
+
+  assert.throws(() => {
+    execFileSync(process.execPath, [CLI, 'validate', join(__dirname, 'fixtures', 'does-not-exist.json')], { stdio: 'pipe' });
+  });
+});
+
+test('CLI: list prints the three bundled manifests', () => {
+  const out = execFileSync(process.execPath, [CLI, 'list'], { encoding: 'utf8' });
+  for (const slug of ['catalog-kits', 'creative-author-council', 'guardian-orchestration']) {
+    assert.ok(out.includes(slug), `list should include ${slug}`);
+  }
 });

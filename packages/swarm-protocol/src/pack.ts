@@ -28,11 +28,11 @@ export type ManifestInput = Omit<
  */
 export function buildManifest(input: ManifestInput, now: string = new Date().toISOString()): SwarmManifest {
   const manifest: SwarmManifest = {
+    ...stripUndefined(input),
     manifestVersion: SWARM_MANIFEST_VERSION,
     attestation: input.attestation ?? arcaneaAttestation(),
     createdAt: input.createdAt ?? now,
     updatedAt: input.updatedAt ?? now,
-    ...stripUndefined(input),
   } as SwarmManifest;
   return assertValidSwarmManifest(manifest);
 }
@@ -71,10 +71,10 @@ function sortDeep(value: unknown): unknown {
  * cache keys. Real pinning uses the IPFS CID of `canonicalize(manifest)`.
  */
 export function manifestFingerprint(manifest: SwarmManifest): string {
-  const text = canonicalize(manifest);
+  const bytes = new TextEncoder().encode(canonicalize(manifest));
   let hash = 0x811c9dc5;
-  for (let i = 0; i < text.length; i++) {
-    hash ^= text.charCodeAt(i);
+  for (let i = 0; i < bytes.length; i++) {
+    hash ^= bytes[i];
     hash = Math.imul(hash, 0x01000193);
   }
   return (hash >>> 0).toString(16).padStart(8, '0');

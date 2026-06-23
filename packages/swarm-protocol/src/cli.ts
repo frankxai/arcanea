@@ -35,7 +35,7 @@ function listManifests(): string[] {
     .map((f) => f.replace(/\.json$/, ''));
 }
 
-function main(argv: string[]): number {
+export function main(argv: string[]): number {
   const [cmd, arg] = argv;
 
   if (cmd === 'list') {
@@ -87,4 +87,6 @@ function main(argv: string[]): number {
   return 0;
 }
 
-process.exit(main(process.argv.slice(2)));
+if (require.main === module) {
+  process.exit(main(process.argv.slice(2)));
+}
