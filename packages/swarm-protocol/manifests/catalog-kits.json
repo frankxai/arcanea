@@ -1,0 +1,81 @@
+{
+  "manifestVersion": "1.0.0",
+  "id": "catalog-kits",
+  "name": "Arcanea Catalog Kit",
+  "tagline": "The full 12-agent Arcanea catalog packaged as one tiered, licensable kit.",
+  "description": "Every agent in the Arcanea marketplace catalog, bundled under one conductor as a single SKU. License the whole kit to give your orchestrator a complete creative + dev + publishing bench, or meter individual agents per-invocation. Tiering (free / standard / premium) is expressed through per-agent pricing in the registry; this manifest defines the kit, its split, and its chain bindings.",
+  "version": "0.1.0",
+  "element": "Spirit",
+  "gateAlignment": "unity",
+  "topology": {
+    "pattern": "queen-led",
+    "queen": "catalog-conductor",
+    "workers": [
+      "story-writer", "character-designer", "world-builder", "editor",
+      "code-builder", "researcher", "music-composer", "cover-artist",
+      "publisher", "social-manager", "translator", "curriculum-designer"
+    ],
+    "loop": ["classify request", "select agents", "dispatch in parallel", "integrate", "gate + meter"],
+    "mcp": ["SIS Vault (append-only for workers, rw for queen)", "Payments MCP (verify-only, when metered)"]
+  },
+  "agents": [
+    {
+      "id": "catalog-conductor",
+      "name": "Concord",
+      "title": "The Catalog Conductor",
+      "role": "queen",
+      "domain": "architecture",
+      "voice": "direct",
+      "element": "Spirit",
+      "preferredModel": "arcanea-opus",
+      "systemPrompt": "You are Concord, the conductor of the Arcanea Catalog Kit. Given a request, pick the minimum set of catalog agents that satisfies it, dispatch them, and integrate their output. Respect tiering: free agents run freely, standard and premium agents meter per-call. You gate publishing and never move money autonomously.",
+      "capabilities": ["request classification", "agent selection", "parallel dispatch", "integration + metering"]
+    },
+    { "id": "story-writer", "name": "Quillblade", "title": "The Story Weaver", "role": "worker", "domain": "narrative", "voice": "mythic", "element": "Water", "specUri": "ipfs://<story-writer-spec>", "capabilities": ["story architecture", "scene drafting"] },
+    { "id": "character-designer", "name": "Soulforge", "title": "The Character Smith", "role": "worker", "domain": "narrative", "voice": "warm", "element": "Fire", "specUri": "ipfs://<character-designer-spec>", "capabilities": ["character profiles", "arcs + voice"] },
+    { "id": "world-builder", "name": "Cosmograph", "title": "The World Architect", "role": "worker", "domain": "spatial", "voice": "scholarly", "element": "Earth", "specUri": "ipfs://<world-builder-spec>", "capabilities": ["consistent worlds", "systems + canon"] },
+    { "id": "editor", "name": "Inkwarden", "title": "The Line Keeper", "role": "worker", "domain": "rhetoric", "voice": "direct", "element": "Wind", "specUri": "ipfs://<editor-spec>", "capabilities": ["developmental + line edit", "pacing"] },
+    { "id": "code-builder", "name": "Codeweaver", "title": "The Code Smith", "role": "worker", "domain": "code", "voice": "analytical", "element": "Void", "specUri": "ipfs://<code-builder-spec>", "capabilities": ["production code", "review + tests"] },
+    { "id": "researcher", "name": "Loreseeker", "title": "The Knowledge Seeker", "role": "worker", "domain": "knowledge", "voice": "scholarly", "element": "Void", "specUri": "ipfs://<researcher-spec>", "capabilities": ["deep research", "synthesis + citation"] },
+    { "id": "music-composer", "name": "Resonance", "title": "The Sound Smith", "role": "worker", "domain": "music", "voice": "poetic", "element": "Water", "specUri": "ipfs://<music-composer-spec>", "capabilities": ["composition", "prompt architecture"] },
+    { "id": "cover-artist", "name": "Visioncraft", "title": "The Cover Smith", "role": "worker", "domain": "visual", "voice": "poetic", "element": "Spirit", "specUri": "ipfs://<cover-artist-spec>", "capabilities": ["cover concept", "render-ready spec"] },
+    { "id": "publisher", "name": "Bindmaster", "title": "The Publisher", "role": "worker", "domain": "integration", "voice": "direct", "element": "Earth", "specUri": "ipfs://<publisher-spec>", "capabilities": ["publish pipeline", "format + distribute"] },
+    { "id": "social-manager", "name": "Heraldspark", "title": "The Herald", "role": "worker", "domain": "rhetoric", "voice": "playful", "element": "Fire", "specUri": "ipfs://<social-manager-spec>", "capabilities": ["platform variants", "hooks"] },
+    { "id": "translator", "name": "Tonguebridge", "title": "The Bridge", "role": "worker", "domain": "language", "voice": "warm", "element": "Wind", "specUri": "ipfs://<translator-spec>", "capabilities": ["localization", "nuance preservation"] },
+    { "id": "curriculum-designer", "name": "Gatewarden", "title": "The Gatewarden", "role": "worker", "domain": "knowledge", "voice": "scholarly", "element": "Earth", "specUri": "ipfs://<curriculum-designer-spec>", "capabilities": ["course design", "learning paths"] }
+  ],
+  "pricing": {
+    "licensePrice": "299000000",
+    "perCallPrice": "150000",
+    "currency": "USDC",
+    "secondaryRoyaltyBps": 500
+  },
+  "royalty": {
+    "profile": "generous",
+    "recipients": [
+      { "label": "creator", "address": "<placeholder>", "bps": 7000 },
+      { "label": "platform", "address": "<placeholder>", "bps": 2000 },
+      { "label": "treasury", "address": "<placeholder>", "bps": 1000 }
+    ]
+  },
+  "license": {
+    "model": "hybrid",
+    "patternLicense": "CC-BY-NC-4.0",
+    "nonLicensable": ["founder voice clones", "private Arcanea canon vectors", "identity embeddings"],
+    "grant": "Holding the Swarm License NFT grants the right to run the full catalog kit's orchestration and forkable agent prompts for non-commercial use; per-call metering covers commercial invocations at the per-agent tier price set in the registry. Non-licensable artifacts above are excluded."
+  },
+  "attestation": {
+    "builtOnSip": true,
+    "sipVersion": "1.0.0",
+    "declaresCanon": false,
+    "composesCanon": ["arcanea"],
+    "attribution": "Built on SIP"
+  },
+  "chains": [
+    { "chain": "base", "standard": "ERC-721", "network": "base-sepolia", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" },
+    { "chain": "polygon", "standard": "ERC-721", "network": "polygon-amoy", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" },
+    { "chain": "solana", "standard": "metaplex-nft", "network": "solana-devnet", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" }
+  ],
+  "createdAt": "2026-06-23T00:00:00.000Z",
+  "updatedAt": "2026-06-23T00:00:00.000Z"
+}
