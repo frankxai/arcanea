@@ -11,6 +11,9 @@
 // Standalone-typed: NO external imports (this file lives outside the app graph).
 //
 // Arcanea design tokens: Atlantean Teal #00bcd4 · Cosmic Blue #0d47a1 · Gold #ffd700 · ground #09090b.
+// Note on teal: #00bcd4 is the live app design-system primary (@arcanea/design-system v0.2.0+);
+// #7fffd4 is the traditional OSS/mythic palette reference in older design docs. Both are intentional
+// for their respective contexts — gen lanes use the app token so generated assets match the live UI.
 
 export type LaneId =
   | 'leviathan-abyssal'
@@ -183,5 +186,5 @@ export function getLane(id: LaneId): AestheticLane | undefined {
   return LANES[id]
 }
 
-/** The default lane when none is specified — abyssal leviathans are the flagship. */
+/** Default lane — Nethyssa's abyssal lane is the flagship asset type for Arcanea. */
 export const DEFAULT_LANE: LaneId = 'leviathan-abyssal'

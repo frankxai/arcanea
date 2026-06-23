@@ -31,11 +31,12 @@ const godbeasts = [
 // Tier 3 Wild Godbeasts — unbonded titans outside the Ten Gates.
 // Canon: .arcanea/lore/leviathans/. Nethyssa is the named flagship.
 const leviathans = [
-  { name: "Nethyssa", title: "the Abyss That Dreams", elements: ["Water", "Void"], domain: "The Drowned Deep", material: "Nethyss Pearl", corruption: "The Drowned Shadow" },
+  { name: "Nethyssa", title: "the Abyss That Dreams", elements: ["Water", "Void"], domain: "The Drowned Deep", subGateResonance: "Abyssal Hum", material: "Nethyss Pearl", corruption: "The Drowned Shadow" },
 ];
 
 const leviathanRoots: Record<string, string[]> = {
-  water: ["Neth", "Mar", "Thal", "Abyss", "Vor", "Drown"],
+  // "Neth" excluded — reserved for Nethyssa (canonical Water Leviathan).
+  water: ["Mar", "Thal", "Abyss", "Vor", "Drown", "Pelag"],
   void: ["Nyx", "Umbra", "Vael", "Obsa", "Ten", "Mael"],
   fire: ["Pyr", "Mag", "Cind", "Ash", "Ember"],
   earth: ["Geo", "Tect", "Lith", "Mont", "Crag"],
@@ -277,26 +278,26 @@ export async function generateLeviathan(options: {
   if (options.named) {
     const n = leviathans.find((l) => l.elements.includes(element));
     if (n) {
-    return {
-      content: [{
-        type: "text",
-        text: JSON.stringify({
-          name: n.name,
-          title: n.title,
-          tier: 3,
-          class: "Leviathan / Wild Godbeast",
-          bonded: false,
-          requestedElement: element,
-          elements: n.elements,
-          resonance: "Abyssal Hum",
-          domain: n.domain,
-          material: n.material,
-          corruption: n.corruption,
-          temperament,
-          canon: "STAGING — see .arcanea/lore/leviathans/nethyssa.md",
-        }, null, 2),
-      }],
-    };
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            name: n.name,
+            title: n.title,
+            tier: 3,
+            class: "Leviathan / Wild Godbeast",
+            bonded: false,
+            requestedElement: element,
+            elements: n.elements,
+            resonance: n.subGateResonance ?? "Abyssal Hum",
+            domain: n.domain,
+            material: n.material,
+            corruption: n.corruption,
+            temperament,
+            canon: "STAGING — see .arcanea/lore/leviathans/nethyssa.md",
+          }, null, 2),
+        }],
+      };
     }
   }
 
@@ -326,7 +327,7 @@ export async function generateLeviathan(options: {
         temperament,
         domain: `A wild domain of ${element}, sovereign to no Gate`,
         description: `An unbonded titan of Nero's Unformed, ${temperament}. Power that was never given a name to obey.`,
-        material: `${name}'s ${element === "Water" ? "Pearl" : element === "Fire" ? "Cinder" : element === "Void" ? "Obsidian" : "Shard"}`,
+        material: `${name}'s ${element === "Water" ? "Pearl" : element === "Fire" ? "Cinder" : element === "Void" ? "Obsidian" : element === "Earth" ? "Hearthstone" : element === "Wind" ? "Tempest Shard" : "Aether Shard"}`,
         elementalWeaknesses: temperament === "corrupted" ? ["Spirit", "the Tidesong"] : ["Fire", "Spirit"],
         note: options.named ? "named=true requested, but no canonical Leviathan exists for this element yet — returned a procedural Wild Godbeast." : undefined,
         canon: "STAGING — Wild Godbeast generator. Lock via /lock-decision before treating as canon.",

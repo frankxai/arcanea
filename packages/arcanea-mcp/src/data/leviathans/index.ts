@@ -41,6 +41,10 @@ export interface GameMonster extends Partial<Pick<BestiaryCreature, "symptoms" |
   habitat: string;
   /** Sub-Gate or Gate frequency, if it resonates on a named one. */
   resonanceHz?: number | null;
+  /** Named sub-Gate resonance (for creatures that resonate below the Ten-Gate Hz scale). */
+  subGateResonance?: string;
+  /** Named territory / realm (distinct from ecological habitat). */
+  domain?: string;
   /** Origin class (Tier 8 Kindreds), where applicable. */
   originClass?: string;
   /** Gate the creature is bonded to — null for Wild Godbeasts. */
@@ -150,6 +154,9 @@ export const nethyssa: Leviathan = {
   elementalWeaknesses: ["Fire", "Spirit"],
   elementalResistances: ["Water", "Void"],
   habitat: "The Drowned Deep — the Sunless Fathom",
+  domain: "The Drowned Deep",
+  // Resonates on the named sub-Gate frequency below the Ten-Gate scale.
+  subGateResonance: "Abyssal Hum",
   material: "Nethyss Pearl",
   corruption: "The Drowned Shadow",
 };
