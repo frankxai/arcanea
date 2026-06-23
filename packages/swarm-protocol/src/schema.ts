@@ -30,7 +30,7 @@ const CURRENCIES = ['USDC', 'NATIVE'];
 const STANDARDS = ['ERC-721', 'ERC-1155', 'metaplex-nft'];
 const TOPOLOGY_PATTERNS = ['queen-led', 'mesh', 'hierarchical'];
 const SPEC_URI_SCHEMES = ['ipfs://', 'ar://', 'https://'];
-const PLACEHOLDER = '<placeholder>';
+export const PLACEHOLDER = '<placeholder>';
 
 function isString(v: unknown): v is string {
   return typeof v === 'string';
@@ -132,7 +132,12 @@ export function validateSwarmManifest(input: unknown): ValidationResult {
       errors.push('topology.workers: required non-empty string[]');
     } else {
       (topo.workers as string[]).forEach((w) => {
-        if (agentIds.size && !agentIds.has(w)) errors.push(`topology.workers: '${w}' is not in agents`);
+        if (agentIds.size && !agentIds.has(w)) {
+          errors.push(`topology.workers: '${w}' is not in agents`);
+        } else if (Array.isArray(agents)) {
+          const wa = (agents as Array<Partial<AgentPackage> | null | undefined>).find((a) => a?.id === w);
+          if (wa && wa.role !== 'worker') errors.push(`topology.workers: agent '${w}' must have role 'worker'`);
+        }
       });
     }
   }

@@ -221,6 +221,15 @@ test('CLI: exits 0 on a valid slug, 1 on an invalid manifest', () => {
   });
 });
 
+test('rejects a topology worker that has role queen', () => {
+  const m = loadManifest('creative-author-council');
+  const worker = m.agents.find((a) => a.role === 'worker')!;
+  (worker as unknown as Record<string, unknown>).role = 'queen';
+  const res = validateSwarmManifest(m);
+  assert.equal(res.valid, false);
+  assert.ok(res.errors.some((e) => e.includes("must have role 'worker'")));
+});
+
 test('CLI: list prints the three bundled manifests', () => {
   const out = execFileSync(process.execPath, [CLI, 'list'], { encoding: 'utf8' });
   for (const slug of ['catalog-kits', 'creative-author-council', 'guardian-orchestration']) {
