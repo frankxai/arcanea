@@ -31,6 +31,11 @@ const STANDARDS = ['ERC-721', 'ERC-1155', 'metaplex-nft'];
 const TOPOLOGY_PATTERNS = ['queen-led', 'mesh', 'hierarchical'];
 const SPEC_URI_SCHEMES = ['ipfs://', 'ar://', 'https://'];
 export const PLACEHOLDER = '<placeholder>';
+/** Canonical Guardian Gates (per Arcanea canon). `gateAlignment` is optional. */
+const GATE_ALIGNMENTS = [
+  'foundation', 'flow', 'fire', 'heart', 'voice',
+  'sight', 'crown', 'shift', 'unity', 'source',
+];
 
 function isString(v: unknown): v is string {
   return typeof v === 'string';
@@ -95,6 +100,9 @@ export function validateSwarmManifest(input: unknown): ValidationResult {
   if (!ELEMENTS.includes(m.element as ElementAffinity)) errors.push('element: invalid element');
   if (!isNonEmptyString(m.createdAt)) errors.push('createdAt: required ISO string');
   if (!isNonEmptyString(m.updatedAt)) errors.push('updatedAt: required ISO string');
+  if (m.gateAlignment !== undefined && !GATE_ALIGNMENTS.includes(m.gateAlignment as string)) {
+    errors.push(`gateAlignment: must be one of ${GATE_ALIGNMENTS.join(', ')}`);
+  }
 
   // agents
   const agents = m.agents;

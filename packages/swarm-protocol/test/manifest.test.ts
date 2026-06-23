@@ -221,6 +221,22 @@ test('CLI: exits 0 on a valid slug, 1 on an invalid manifest', () => {
   });
 });
 
+test('rejects an invalid gateAlignment but accepts a canonical one', () => {
+  const m = loadManifest('creative-author-council');
+  (m as unknown as Record<string, unknown>).gateAlignment = 'nonexistent-gate';
+  assert.equal(validateSwarmManifest(m).valid, false);
+  (m as unknown as Record<string, unknown>).gateAlignment = 'source';
+  assert.equal(validateSwarmManifest(m).valid, true);
+});
+
+test('rejects secondaryRoyaltyBps over 10000', () => {
+  const m = loadManifest('creative-author-council');
+  m.pricing.secondaryRoyaltyBps = 10001;
+  const res = validateSwarmManifest(m);
+  assert.equal(res.valid, false);
+  assert.ok(res.errors.some((e) => e.includes('secondaryRoyaltyBps')));
+});
+
 test('rejects a topology worker that has role queen', () => {
   const m = loadManifest('creative-author-council');
   const worker = m.agents.find((a) => a.role === 'worker')!;
