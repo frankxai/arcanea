@@ -72,7 +72,7 @@ def validate(entry_dir: Path, author: str | None) -> list[str]:
     if not skill_path.is_file():
         errors.append("SKILL.md is missing")
     else:
-        text = skill_path.read_text(encoding="utf-8", errors="replace")
+        text = skill_path.read_text(encoding="utf-8-sig", errors="replace")
         meta, body = parse_frontmatter(text)
         name = meta.get("name", "")
         if not NAME_RE.match(name):
@@ -94,15 +94,21 @@ def validate(entry_dir: Path, author: str | None) -> list[str]:
         errors.append("entry.json is missing")
     else:
         try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8-sig"))
         except json.JSONDecodeError as exc:
             errors.append(f"entry.json is not valid JSON: {exc}")
     if isinstance(manifest, dict):
         if manifest.get("schema") != "arena-entry-v1":
             errors.append("entry.json schema must be 'arena-entry-v1'")
-        if manifest.get("entrant", {}).get("github", "").lower() != handle.lower():
+        entrant = manifest.get("entrant")
+        if not isinstance(entrant, dict):
+            errors.append("entry.json entrant must be an object")
+        elif str(entrant.get("github", "")).lower() != handle.lower():
             errors.append("entry.json entrant.github must match the directory handle")
-        if manifest.get("skill", {}).get("name") != skill_from_dir:
+        skill = manifest.get("skill")
+        if not isinstance(skill, dict):
+            errors.append("entry.json skill must be an object")
+        elif skill.get("name") != skill_from_dir:
             errors.append("entry.json skill.name must match the directory suffix")
         if not manifest.get("seed_used"):
             errors.append("entry.json seed_used is required (a public seed id)")
@@ -122,13 +128,13 @@ def validate(entry_dir: Path, author: str | None) -> list[str]:
             fpath = world_dir / fname
             if not fpath.is_file():
                 errors.append(f"world/{fname} is missing")
-            elif len(fpath.read_text(encoding="utf-8", errors="replace").strip()) < 40:
+            elif len(fpath.read_text(encoding="utf-8-sig", errors="replace").strip()) < 40:
                 errors.append(f"world/{fname} is empty or placeholder-thin")
 
     # --- injection lint ---
     for path in sorted(entry_dir.rglob("*")):
         if path.is_file() and path.suffix in {".md", ".json", ".txt"}:
-            for i, line in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
+            for i, line in enumerate(path.read_text(encoding="utf-8-sig", errors="replace").splitlines(), 1):
                 if INJECTION_RE.search(line):
                     errors.append(
                         f"injection lint: suspicious instruction in {path.relative_to(entry_dir)}:{i} "
