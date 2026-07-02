@@ -24,7 +24,9 @@ from pathlib import Path
 WORLD_FILES = ["cosmology.md", "systems.md", "geography.md", "factions.md", "timeline.md"]
 LICENSE_ID = "SUBMISSIONS-LICENSE-v1"
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
-DIR_RE = re.compile(r"^(?P<handle>[A-Za-z0-9-]+)--(?P<skill>[a-z0-9]+(?:-[a-z0-9]+)*)$")
+# handle follows GitHub username rules (no leading/trailing/consecutive hyphens),
+# so the -- separator is unambiguous
+DIR_RE = re.compile(r"^(?P<handle>[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*)--(?P<skill>[a-z0-9]+(?:-[a-z0-9]+)*)$")
 
 # Judge-manipulation patterns. Case-insensitive. A hit fails validation and is
 # flagged for maintainer review (false positives can be waived by label).
@@ -43,7 +45,11 @@ INJECTION_RE = re.compile("|".join(f"(?:{p})" for p in INJECTION_PATTERNS), re.I
 
 
 def parse_frontmatter(text: str) -> tuple[dict, str]:
-    """Minimal YAML-ish frontmatter parser: top-level `key: value` lines only."""
+    """Minimal YAML-ish frontmatter parser: top-level `key: value` lines only.
+
+    NOT a general YAML parser — no nesting, lists, or multiline values. Sufficient
+    for the entry-template's known keys; do not reuse elsewhere.
+    """
     if not text.startswith("---"):
         return {}, text
     parts = text.split("---", 2)
