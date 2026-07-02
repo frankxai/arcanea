@@ -1,10 +1,8 @@
 # Arcanea
 
-Arcanea is the public code mirror for [arcanea.ai](https://arcanea.ai), the creative intelligence universe for chat, lore, academy, and worldbuilding.
+Arcanea is the public code mirror for [arcanea.ai](https://arcanea.ai) — the creative intelligence universe for chat, lore, academy, and worldbuilding.
 
 ![Arcanea GitHub Hero](.github/assets/arcanea-github-main-hero.jpg)
-
-> Premium visual identity per .github/ARCANEA_VISUAL_ECOSYSTEM.md (Lumina & Nero dance + Ten Gates; God of War meets Destiny ethereal 8K; Atlantean Teal #7fffd4 / Arcanean Gold #ffd700 / Cosmic Blue on Deep Void). Full alignment to DESIGN.md (tokens, Geist/Instrument/Mono, glass, no raw hex/emojis/Inter), TASTE.md 7 gates (AI-lab premium restraint, no slop), .arcanea/lore/VISUAL_DOCTRINE.md (luxury cosmic myth-tech, franchise eq, faction grammars).
 
 ## What this repo is
 
@@ -35,15 +33,17 @@ pnpm test:quick
 
 Arcanea.ai is the live product. This repository is its public mirror. Product operations, private datasets, and some internal workflows may evolve outside this mirror, but this repo remains the canonical public code reference for the living universe.
 
+## Community
+
+- [Discussions](https://github.com/frankxai/arcanea/discussions) — questions, ideas, showcase
+- [arcanea.ai/community](https://arcanea.ai/community) — how to contribute lore, agents, skills, code, art, and music
+
 ## Ecosystem
 
 - [arcanea-code](https://github.com/frankxai/arcanea-code): Guardian-routed coding CLI for the Arcanea ecosystem
+- [arcanea-orchestrator](https://github.com/frankxai/arcanea-orchestrator): multi-agent orchestration for Arcanea swarm workflows
+- [arcanea-claw](https://github.com/frankxai/arcanea-claw): 24/7 media-processing engine for creative world-builders
 - [oh-my-arcanea](https://github.com/frankxai/oh-my-arcanea): Arcanea overlay for oh-my-opencode
-- [arcanea-orchestrator](https://github.com/frankxai/arcanea-orchestrator): multi-agent orchestration fork used for Arcanea swarm workflows
-
-## Visual Ecosystem
-
-See [.github/ARCANEA_VISUAL_ECOSYSTEM.md](.github/ARCANEA_VISUAL_ECOSYSTEM.md) for 7-repo hero prompts, badge standards (flat-square teal/gold/void), README template, and checklist. All assets generated god-mode with full doctrine (TASTE 7 + DESIGN tokens + VISUAL_DOCTRINE franchise/faction + PFP DNA where applicable). 20 Vanguard Forged PFPs + site heroes + Stellaris + factions + diagrams in production.
 
 ## License
 
