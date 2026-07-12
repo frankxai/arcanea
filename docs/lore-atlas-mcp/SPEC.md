@@ -80,7 +80,7 @@ packages/lore-atlas-mcp/
 └── tests/                   # Node built-in runner (repo pattern: zero-dep)
 ```
 
-Zero runtime dependencies (repo precedent: `@arcanea/swarm-protocol`). TypeScript strict. Registry ships with ~12 vetted worlds at launch; community PRs add more (license field required, CI-validated).
+Zero runtime dependencies (repo precedent: `@arcanea/swarm-coordinator`). TypeScript strict. Registry ships with ~12 vetted worlds at launch; community PRs add more (license field required, CI-validated).
 
 ## 6. How Arcanea's swarm uses it
 
