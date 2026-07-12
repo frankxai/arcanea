@@ -4,7 +4,7 @@
 
 This directory is both **Arcanea's own operating system** for lore work and a **reusable method** any world-builder can adopt (it powers the Season 0 Worldsmith Trials entry pattern and the OSS worlds framework).
 
-## The five documents
+## The six documents
 
 | File | What it governs | Read when |
 |---|---|---|
