@@ -97,7 +97,7 @@
 
 The rank ladder (Apprentice → Mage → Master → Luminor) does double duty: pricing tier *and* progression mechanic. Nobody else's pricing page is also a magic system.
 
-*Naming note: this is a deliberately compressed version of the canonical five-rank ladder (Archmage, ranks 7–8, is skipped to keep four tiers), and "Luminor" intentionally overlaps with its canon meanings (top magic rank; the AI companion entities). If support/marketing copy shows confusion between "a Luminor" (companion) and "Luminor tier" (SKU), the fallback is renaming the top tier "Archmage" — decide in beta, before public pricing ships.*
+*Naming note: this is a deliberately compressed version of the canonical five-rank ladder in `.arcanea/lore/CANON_LOCKED.md` (Archmage, ranks 7–8, is skipped to keep four tiers — intentional, not canon drift), and "Luminor" intentionally overlaps with its canon meanings (top magic rank; the AI companion entities). If support/marketing copy shows confusion between "a Luminor" (companion) and "Luminor tier" (SKU), the fallback is renaming the top tier "Archmage" — decide in beta, before public pricing ships.*
 
 ---
 
@@ -167,9 +167,9 @@ Weekly cadence: engineering ships daily via guardians; a Monday board (`/starlig
 
 ## 8. 30 / 60 / 90
 
-**Days 0–30:** Polar products + webhook + pricing page (keep Stripe dormant); C2PA + disclosure shipping before **Aug 2**; **counsel review booked and completed on the Art. 50 read (tracked item, not just prose — owner: O2)**; MCP v1 hardening + docs; flagship world #1; first Records release under the new loop.
-**Days 31–60:** Credit metering through Polar; MCP subscriptions (license keys); AI influencer #1 live with disclosure; flagship world #2; Court shortlist + estate-style onboarding playbook.
-**Days 61–90:** First 5 Court invites; publishing rev-share terms + first deal; template gallery seed; Q4 board review against OKRs; decide Phase 3 timing on the gates, not the calendar.
+**Days 0–30 (Jul 13 – Aug 12):** Polar products + webhook + pricing page (keep Stripe dormant); C2PA + disclosure shipping before **Aug 2**; **counsel review booked and completed on the Art. 50 read (tracked item, not just prose — owner: O2)**; MCP v1 hardening + docs; flagship world #1; first Records release under the new loop.
+**Days 31–60 (Aug 13 – Sep 11):** Credit metering through Polar; MCP subscriptions (license keys); AI influencer #1 live with disclosure; flagship world #2; Court shortlist + estate-style onboarding playbook.
+**Days 61–90 (Sep 12 – Oct 11):** First 5 Court invites; publishing rev-share terms + first deal; template gallery seed; re-verify the cross-repo claims in this doc (arcanea-ai-app paths) before the Q4 board review treats the OKRs as committed; Q4 board review against OKRs; decide Phase 3 timing on the gates, not the calendar.
 
 **What NOT to do now:** build compute infra; open self-serve before the Court proves economics; lead with web3/auctions; run undisclosed AI personas; migrate off the existing Stripe code (it's the future marketplace rail); add a fifth pricing axis (keep tiers + credits only).
 
