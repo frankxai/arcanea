@@ -53,7 +53,7 @@
 2. **GDPR (ongoing).** Supabase EU residency for user data, a real privacy policy, DPAs with processors (Vercel, Supabase, model providers), and a data-deletion path. Standard SaaS hygiene; mostly configuration and documents, not engineering.
 3. **DSA (when UGC opens).** The moment Phase 2/3 lets others publish content on Arcanea surfaces, you need notice-and-action (report/takedown), a content policy, and a designated contact. Small-platform obligations are light; bake the report button into the world-viewer component from the start rather than retrofitting.
 
-**Also:** marketplace terms must settle AI-content ownership (creator owns their world; Arcanea gets a license to host/display; generated-asset ownership passes to the creator subject to model-provider terms). MiCA mostly exempts true NFTs, but fractionalized or large fungible-like series can fall in scope — one more reason web3 sequences last. And per `payment-intelligence-system` doctrine: **no autonomous money movement, ever** — agents draft and verify; Frank approves capital.
+**Also:** marketplace terms must settle AI-content ownership (creator owns their world; Arcanea gets a license to host/display; generated-asset ownership passes to the creator subject to model-provider terms). MiCA mostly exempts true NFTs, but fractionalized or large fungible-like series can fall in scope — one more reason to sequence web3 last. And per `payment-intelligence-system` doctrine: **no autonomous money movement, ever** — agents draft and verify; Frank approves capital.
 
 ---
 
@@ -121,7 +121,7 @@ This answers "just me or accessible for all": **both, in order.** Sovereignty fi
 
 ## 6. The agent organization (who runs what)
 
-Structure the swarms as a cabinet with human-gated irreversibles (posting, sending, spending stay with Frank per protection-layer doctrine):
+Structure the swarms as a cabinet with human-gated irreversible actions (posting, sending, spending stay with Frank per protection-layer doctrine):
 
 | Portfolio | Lead swarm (existing) | Charter |
 |---|---|---|
@@ -133,7 +133,7 @@ Structure the swarms as a cabinet with human-gated irreversibles (posting, sendi
 | Support & Community | Concierge/Envoy pattern from SIS + community-fabric-orchestrator | Court onboarding, docs, arcanea.community |
 | Governance & Safety | integrity-guard, meta-safety-guard, Sentinel, `/starlight-board` | Brand/claims gates, AI-Act compliance checklist, payments fail-closed |
 
-Weekly cadence: engineering ships daily via guardians; a Monday board (`/starlight-board`-style) reviews metrics vs. OKRs and re-aims the swarms; Frank steers vision and approves irreversibles. This *is* the Supercomputer, operationally.
+Weekly cadence: engineering ships daily via guardians; a Monday board (`/starlight-board`-style) reviews metrics vs. OKRs and re-aims the swarms; Frank steers vision and approves irreversible actions. This *is* the Supercomputer, operationally.
 
 ---
 
