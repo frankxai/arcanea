@@ -1,6 +1,8 @@
 # Arcanea Platform & Business Strategy — July 2026
 
-*Decision document. Grounded in the actual state of the repos (arcanea, arcanea-ai-app, Starlight-Intelligence-System, ACOS) as of 2026-07-13. Supersedes the monetization sections of `ARCANEA_PLATFORM_STRATEGY.md` (Feb 2026); the two-domain architecture from that doc stands.*
+*Decision document. Grounded in the actual state of the repos (arcanea, arcanea-ai-app, Starlight-Intelligence-System, ACOS) as of 2026-07-13. Cross-repo claims (Stripe routes, `CREDIT_PACKS`, sibling packages) were verified in arcanea-ai-app at drafting time. Supersedes the monetization sections of `ARCANEA_PLATFORM_STRATEGY.md` (Feb 2026); the two-domain architecture from that doc stands.*
+
+*Last verified against repo state: 2026-07-13. Re-check before acting on file-level claims.*
 
 ---
 
@@ -52,6 +54,8 @@
    - **AI influencers: this is the sharp edge.** Deepfake-adjacent and synthetic-persona content must be disclosed. Every Arcanea AI influencer profile must state it is an AI persona in the bio and in platform-native disclosure tools. This is also simply good brand strategy — "openly synthetic, proudly Arcanean" beats being unmasked later.
 2. **GDPR (ongoing).** Supabase EU residency for user data, a real privacy policy, DPAs with processors (Vercel, Supabase, model providers), and a data-deletion path. Standard SaaS hygiene; mostly configuration and documents, not engineering.
 3. **DSA (when UGC opens).** The moment Phase 2/3 lets others publish content on Arcanea surfaces, you need notice-and-action (report/takedown), a content policy, and a designated contact. Small-platform obligations are light; bake the report button into the world-viewer component from the start rather than retrofitting.
+
+*Provenance: the Aug 2, 2026 Article 50 date and the "no high-risk category" conclusion are an internal read of the AI Act timeline, not external legal advice. Owner of OKR O2 should get a one-hour counsel review to confirm both before the deadline.*
 
 **Also:** marketplace terms must settle AI-content ownership (creator owns their world; Arcanea gets a license to host/display; generated-asset ownership passes to the creator subject to model-provider terms). MiCA mostly exempts true NFTs, but fractionalized or large fungible-like series can fall in scope — one more reason to sequence web3 last. And per `payment-intelligence-system` doctrine: **no autonomous money movement, ever** — agents draft and verify; Frank approves capital.
 
@@ -106,7 +110,7 @@ This answers "just me or accessible for all": **both, in order.** Sovereignty fi
 
 | Surface | Powered by (existing assets) | Phase |
 |---|---|---|
-| arcanea.ai platform (worlds, studio, library) | `arcanea-ai-app/apps/web`, `world-engine`, `design-system`, `book/` (17 collections) | 1 |
+| arcanea.ai platform (worlds, studio, library) | `arcanea-ai-app/apps/web`, `world-engine`, `design-system`, `book/` (20 collections) | 1 |
 | Arcanea MCP (agents build worlds/characters/lore via tools) | `packages/arcanea-mcp`, `arcanea-registry-mcp`, canon in `.arcanea/lore` | 1 |
 | Arcanea Publishing / Records pipeline | `publishing-house`, `publishing-house-mcp`, ACOS `/author-team`, `/create-music`, Suno mastery skills, music-release-manager agents | 1–2 |
 | AI influencer network (disclosed synthetic personas) | Higgsfield character consistency, VIS strategy, `postiz-distributor`, ACOS social agents | 1–2 |
