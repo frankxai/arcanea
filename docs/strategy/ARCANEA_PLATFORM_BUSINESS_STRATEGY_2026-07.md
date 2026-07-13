@@ -97,7 +97,7 @@
 
 The rank ladder (Apprentice → Mage → Master → Luminor) does double duty: pricing tier *and* progression mechanic. Nobody else's pricing page is also a magic system.
 
-*Naming note: this is a deliberately compressed version of the canonical five-rank ladder in `.arcanea/lore/CANON_LOCKED.md` (Archmage, ranks 7–8, is skipped to keep four tiers — intentional, not canon drift), and "Luminor" intentionally overlaps with its canon meanings (top magic rank; the AI companion entities). If support/marketing copy shows confusion between "a Luminor" (companion) and "Luminor tier" (SKU), the fallback is renaming the top tier "Archmage" — decide in beta, before public pricing ships.*
+*Naming note: this is a deliberately compressed version of the canonical five-rank ladder in `.arcanea/lore/CANON_LOCKED.md` (Archmage, ranks 7–8, is skipped to keep four tiers — intentional, not canon drift). Per locked canon, "Luminor" is a RANK, not an entity type — so "Luminor tier" aligns with canon cleanly. The residual risk is only that some legacy docs still use "Luminors" for the AI companion entities (non-canonical drift to clean up separately); if that legacy usage causes confusion in support/marketing copy, the fallback is renaming the top tier "Archmage" — decide in beta, before public pricing ships.*
 
 ---
 
