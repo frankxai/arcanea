@@ -3,6 +3,8 @@
 
 *Strategic Analysis by Claude Opus 4.5 | February 3, 2026*
 
+> **Superseded (monetization sections):** pricing, billing rails, and monetization decisions in this document are superseded by [`docs/strategy/ARCANEA_PLATFORM_BUSINESS_STRATEGY_2026-07.md`](docs/strategy/ARCANEA_PLATFORM_BUSINESS_STRATEGY_2026-07.md) (July 2026 — Polar.sh MoR, subscription+credits model, phased openness). The two-domain architecture below still stands.
+
 ---
 
 ## Executive Summary

@@ -57,7 +57,10 @@
 
 *Provenance: the Aug 2, 2026 Article 50 date and the "no high-risk category" conclusion are an internal read of the AI Act timeline, not external legal advice. Owner of OKR O2 should get a one-hour counsel review to confirm both before the deadline.*
 
-**Also:** marketplace terms must settle AI-content ownership (creator owns their world; Arcanea gets a license to host/display; generated-asset ownership passes to the creator subject to model-provider terms). MiCA mostly exempts true NFTs, but fractionalized or large fungible-like series can fall in scope — one more reason to sequence web3 last. And per `payment-intelligence-system` doctrine: **no autonomous money movement, ever** — agents draft and verify; Frank approves capital.
+**Also:**
+- **Marketplace IP terms** must settle AI-content ownership: creator owns their world; Arcanea gets a license to host/display; generated-asset ownership passes to the creator subject to model-provider terms.
+- **MiCA** mostly exempts true NFTs, but fractionalized or large fungible-like series can fall in scope — one more reason to sequence web3 last.
+- **Payments doctrine** (per `payment-intelligence-system`): **no autonomous money movement, ever** — agents draft and verify; Frank approves capital.
 
 ---
 
@@ -91,6 +94,8 @@
 | Credit packs | one-time | Overflow | Already defined in `CREDIT_PACKS` |
 
 The rank ladder (Apprentice → Mage → Master → Luminor) does double duty: pricing tier *and* progression mechanic. Nobody else's pricing page is also a magic system.
+
+*Naming note: this is a deliberately compressed version of the canonical five-rank ladder (Archmage, ranks 7–8, is skipped to keep four tiers), and "Luminor" intentionally overlaps with its canon meanings (top magic rank; the AI companion entities). If support/marketing copy shows confusion between "a Luminor" (companion) and "Luminor tier" (SKU), the fallback is renaming the top tier "Archmage" — decide in beta, before public pricing ships.*
 
 ---
 
