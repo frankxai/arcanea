@@ -13,7 +13,7 @@
 | Polar.sh? | **Yes — adopt as merchant of record for all first-party digital revenue.** Keep the existing Stripe code as the future marketplace rail. | You are an EU (NL BV) founder selling digital subscriptions worldwide. MoR eliminates VAT OSS filings, US sales-tax nexus tracking, and invoice compliance. Worth the ~4% + 40¢ fee at this stage. |
 | Business model | **Hybrid: subscription tiers + usage credits** (Higgsfield-informed), with an OSS funnel (Vercel-informed). Marketplace rev-share is Phase 3, not now. | Matches what's already coded (Stripe tiers + credit packs), matches AI-native cost structure (generation costs are variable), and matches the audience. |
 | Open platform vs. solo worlds | **Phased. Not either/or.** Phase 1: Frank builds sovereign worlds in public. Phase 2: invited creators (advanced authors). Phase 3: self-serve. | Opening self-serve before the loop is proven on yourself burns support, legal, and infra budget with no reference customers. |
-| Arcanea MCP | **Productize it as the second SKU.** Coding agents (Claude Code, Codex, Grok, Gemini) subscribing to Arcanea via MCP is a differentiated wedge nobody else in world-building owns. | The MCP packages already exist (`packages/arcanea-mcp`, `arcanea-registry-mcp`, `publishing-house-mcp`). Distribution = every agent harness. |
+| Arcanea MCP | **Productize it as the second SKU.** Coding agents (Claude Code, Codex, Grok, Gemini) subscribing to Arcanea via MCP is a differentiated wedge nobody else in world-building owns. | The MCP packages already exist (`packages/arcanea-mcp` here; `arcanea-registry-mcp`, `publishing-house-mcp` in arcanea-ai-app). Distribution = every agent harness. |
 | "Arcanea Supercomputer" | **Defer as infrastructure; ship as brand.** Do not build compute. The "Supercomputer" is the orchestration layer (swarms + MCP + world engine) on rented infra (Vercel, Supabase, model APIs). | Capital and ops discipline. The name has power as product marketing for the orchestration tier, not as a datacenter. |
 | EU AI Act | **Act now — Article 50 transparency obligations apply from Aug 2, 2026 (3 weeks).** Label AI-generated/synthetic content, disclose AI interaction, mark AI influencers. No high-risk category applies to Arcanea today. | Arcanea is a deployer/integrator of GPAI, not a model provider. Obligations are transparency-class: real but light if done deliberately. |
 | Web3 / auctions / assets | **Sequence it last.** Digital collectibles only after the publishing pipeline earns fiat revenue. NFTs largely sit outside MiCA, but marketing them to EU consumers still needs care. | Revenue focus; regulatory ambiguity; brand risk if led with speculation instead of story. |
@@ -36,6 +36,8 @@
 - Platform dependency: keep product/price definitions in your own config (as `CREDIT_PACKS` already is) so a rail swap is a config change, not a rewrite.
 
 ### Integration plan (small, surgical)
+
+*All paths in this plan are in the **arcanea-ai-app** repo (`apps/web/...`, `CREDIT_PACKS`, Stripe routes) — not in this repo.*
 
 1. Add `@polar-sh/nextjs` checkout + customer-portal + webhook routes alongside the Stripe routes in `apps/web/app/api/polar/*`.
 2. Point the pricing page CTAs at Polar checkout; leave Stripe routes dormant (they already 503 gracefully without keys).
@@ -91,7 +93,7 @@
 | Mage | €19/mo | Solo world-builders | Full Luminor council, ~1k credits, publishing basics, MCP (personal) |
 | Master | €49/mo | Advanced authors/creators | ~3k credits, character-consistency pipeline, Records/Publishing intake, MCP (pro), API beta |
 | Luminor | €149/mo | Empire builders / studios | ~10k credits, seats, priority swarms, white-label worlds, publishing rev-share access |
-| Credit packs | one-time | Overflow | Already defined in `CREDIT_PACKS` |
+| Credit packs | one-time | Overflow | Already defined in `CREDIT_PACKS` (arcanea-ai-app) |
 
 The rank ladder (Apprentice → Mage → Master → Luminor) does double duty: pricing tier *and* progression mechanic. Nobody else's pricing page is also a magic system.
 
@@ -116,8 +118,8 @@ This answers "just me or accessible for all": **both, in order.** Sovereignty fi
 | Surface | Powered by (existing assets) | Phase |
 |---|---|---|
 | arcanea.ai platform (worlds, studio, library) | `arcanea-ai-app/apps/web`, `world-engine`, `design-system`, `book/` (20 collections) | 1 |
-| Arcanea MCP (agents build worlds/characters/lore via tools) | `packages/arcanea-mcp`, `arcanea-registry-mcp`, canon in `.arcanea/lore` | 1 |
-| Arcanea Publishing / Records pipeline | `publishing-house`, `publishing-house-mcp`, ACOS `/author-team`, `/create-music`, Suno mastery skills, music-release-manager agents | 1–2 |
+| Arcanea MCP (agents build worlds/characters/lore via tools) | `packages/arcanea-mcp` (here), `arcanea-registry-mcp` (arcanea-ai-app), canon in `.arcanea/lore` | 1 |
+| Arcanea Publishing / Records pipeline | `publishing-house` + `publishing-house-mcp` (arcanea-ai-app), ACOS `/author-team`, `/create-music`, Suno mastery skills, music-release-manager agents | 1–2 |
 | AI influencer network (disclosed synthetic personas) | Higgsfield character consistency, VIS strategy, `postiz-distributor`, ACOS social agents | 1–2 |
 | Skills & SDK distribution (OSS funnel) | `arcanea-skills-opensource`, `starlight-agent-skills`, `claude-skills-library`, `world-sdk` | 1 |
 | Orchestration cloud ("Arcanea Supercomputer" tier) | `starlight-swarm`, `swarm-coordinator`, `agent-bus`, SIS ORCHESTRATION_ENGINE | 2 |
@@ -165,7 +167,7 @@ Weekly cadence: engineering ships daily via guardians; a Monday board (`/starlig
 
 ## 8. 30 / 60 / 90
 
-**Days 0–30:** Polar products + webhook + pricing page (keep Stripe dormant); C2PA + disclosure shipping before **Aug 2**; MCP v1 hardening + docs; flagship world #1; first Records release under the new loop.
+**Days 0–30:** Polar products + webhook + pricing page (keep Stripe dormant); C2PA + disclosure shipping before **Aug 2**; **counsel review booked and completed on the Art. 50 read (tracked item, not just prose — owner: O2)**; MCP v1 hardening + docs; flagship world #1; first Records release under the new loop.
 **Days 31–60:** Credit metering through Polar; MCP subscriptions (license keys); AI influencer #1 live with disclosure; flagship world #2; Court shortlist + estate-style onboarding playbook.
 **Days 61–90:** First 5 Court invites; publishing rev-share terms + first deal; template gallery seed; Q4 board review against OKRs; decide Phase 3 timing on the gates, not the calendar.
 
