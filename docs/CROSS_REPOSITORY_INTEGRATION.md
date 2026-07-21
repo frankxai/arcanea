@@ -2,7 +2,7 @@
 
 ## 🔄 **Integration Architecture**
 
-The Arcanea ecosystem uses a **hub-and-spoke model** where the main repository serves as the central hub, and standalone repositories are automatically synchronized for independent deployment and development.
+The Arcanea ecosystem uses a **hub-and-spoke model** where the main repository serves as the central hub, and standalone repositories are *meant to be* automatically synchronized for independent deployment and development — see the current-state note below, since that sync has not actually succeeded in months.
 
 ### Repository Structure
 
@@ -14,6 +14,8 @@ arcanea (main hub)
 ```
 
 ## 🤖 **Automated Synchronization**
+
+> **Current state (verified via GitHub Actions run history, 2026-07-21):** the workflow below still fires on its daily schedule, but every scheduled run has failed since 2026-02-24 — no content has actually synced to `arcanea-prompt-language` or `arcanean-library` in that window. Treat this repo and its spokes as independently maintained until the workflow is fixed and a successful run is confirmed.
 
 ### Cross-Repository Sync Workflow
 **File**: `.github/workflows/cross-repo-sync.yml`
