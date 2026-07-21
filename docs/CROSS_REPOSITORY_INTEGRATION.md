@@ -2,7 +2,7 @@
 
 ## 🔄 **Integration Architecture**
 
-The Arcanea ecosystem uses a **hub-and-spoke model** where the main repository serves as the central hub, and standalone repositories are *meant to be* automatically synchronized for independent deployment and development — see the current-state note below, since that sync has not actually succeeded in months.
+The Arcanea ecosystem uses a **hub-and-spoke model** where the main repository serves as the central hub, and standalone repositories are *meant to be* automatically synchronized for independent deployment and development (see current-state note below).
 
 ### Repository Structure
 
