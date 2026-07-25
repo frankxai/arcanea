@@ -1,0 +1,50 @@
+name: Validate Arena Entries
+
+on:
+  pull_request:
+    paths:
+      - 'challenges/season-0/entries/**'
+      - 'challenges/season-0/scripts/**'
+      - '.github/workflows/validate-entries.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validator self-test
+        run: python3 challenges/season-0/scripts/test_validate_entry.py
+
+      - name: Find changed entry directories
+        id: entries
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          # checkout gives the depth-1 merge ref only; fetch BOTH endpoints or the diff
+          # hits a missing object (and without pipefail that failure would be silent)
+          git fetch --no-tags --depth=1 origin "$BASE_SHA" "$HEAD_SHA"
+          dirs=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- 'challenges/season-0/entries/' \
+            | awk -F/ 'NF>3 {print $1"/"$2"/"$3"/"$4}' | sort -u)
+          echo "dirs<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$dirs" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Validate each entry
+        env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          DIRS: ${{ steps.entries.outputs.dirs }}
+        run: |
+          set -euo pipefail
+          status=0
+          while IFS= read -r dir; do
+            [ -z "$dir" ] && continue
+            [ -d "$dir" ] || continue   # skips deleted entries and non-dir paths (e.g. entries/.gitkeep)
+            python3 challenges/season-0/scripts/validate_entry.py "$dir" --author "$PR_AUTHOR" || status=1
+          done <<< "$DIRS"
+          exit $status

@@ -1,0 +1,11 @@
+{
+  "schema": "arena-entry-v1",
+  "entrant": { "github": "your-github-handle" },
+  "skill": { "name": "entry-template", "version": "0.1.0" },
+  "seed_used": "seed-id-from-season-readme",
+  "models_declared": ["claude-sonnet"],
+  "runtime": "claude-code",
+  "output_sample": "world/",
+  "license_accepted": "SUBMISSIONS-LICENSE-v1",
+  "notes": ""
+}
