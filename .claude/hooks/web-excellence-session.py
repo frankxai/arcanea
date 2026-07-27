@@ -8,6 +8,8 @@ and names the repo's own design contracts so they outrank the pack.
 
 Cheap and silent: no network, no repo scan beyond a few stat() calls.
 """
+from __future__ import annotations
+
 import json
 import os
 import sys

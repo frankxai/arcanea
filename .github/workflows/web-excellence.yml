@@ -40,6 +40,5 @@ jobs:
           node-version: '22'
 
       - name: Lint changed UI files
-        run: |
-          git fetch --no-tags --depth=50 origin "${{ github.base_ref }}"
-          node .claude/ci/web-guidelines-lint.mjs --changed --base "origin/${{ github.base_ref }}"
+        # checkout above used fetch-depth: 0, so the base ref is already local.
+        run: node .claude/ci/web-guidelines-lint.mjs --changed --base "origin/${{ github.base_ref }}"
