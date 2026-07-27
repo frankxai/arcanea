@@ -115,3 +115,9 @@ arcanea-opencode-fork/
 # Windows path junk that leaks into WSL
 "C:\\Users\\*"
 starlight-intelligence-system/.starlight/
+
+# web-excellence pack — local evidence, not repo artifacts
+.visual-proof/
+.lighthouse.json
+.extract-design-system/
+.claude/skills/.replaced/
