@@ -39,7 +39,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/web-excellence-gate.py"
+            "command": "python3 .claude/hooks/web-excellence-gate.py",
+            "timeout": 10
           }
         ]
       }
@@ -113,7 +114,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/web-excellence-session.py"
+            "command": "python3 .claude/hooks/web-excellence-session.py",
+            "timeout": 10
           }
         ]
       }
@@ -132,7 +134,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/web-excellence-stop.py"
+            "command": "python3 .claude/hooks/web-excellence-stop.py",
+            "timeout": 15
           }
         ]
       }
