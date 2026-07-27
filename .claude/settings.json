@@ -33,6 +33,15 @@
             "continueOnError": true
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/web-excellence-gate.py"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -98,6 +107,15 @@
             "continueOnError": true
           }
         ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/web-excellence-session.py"
+          }
+        ]
       }
     ],
     "Stop": [
@@ -107,6 +125,14 @@
             "type": "command",
             "command": "echo '{\"ok\": true}'",
             "timeout": 1000
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/web-excellence-stop.py"
           }
         ]
       }
@@ -140,7 +166,7 @@
   },
   "attribution": {
     "commit": "Co-Authored-By: claude-flow <ruv@ruv.net>",
-    "pr": "🤖 Generated with [claude-flow](https://github.com/ruvnet/claude-flow)"
+    "pr": "\ud83e\udd16 Generated with [claude-flow](https://github.com/ruvnet/claude-flow)"
   },
   "claudeFlow": {
     "version": "3.0.0",
