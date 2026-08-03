@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/frankxai/arcanea/magic-intelligence-system/schemas/domain.schema.json",
+  "title": "Arcanea Resonance Domain",
+  "description": "A locked Element reference or a derived, transcendent, or corrupted magical expression.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "status",
+    "class",
+    "components",
+    "minimumGate",
+    "disciplines",
+    "character",
+    "constraints"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "name": { "type": "string", "minLength": 2 },
+    "commonName": { "type": "string", "minLength": 2 },
+    "status": {
+      "type": "string",
+      "enum": ["locked-reference", "staging", "experimental", "restricted", "deprecated"]
+    },
+    "class": {
+      "type": "string",
+      "enum": ["primary", "derived", "transcendent", "corrupted"]
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["fire", "water", "earth", "wind", "void", "spirit"]
+      }
+    },
+    "minimumGate": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "disciplines": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "enum": ["attack", "defense", "summoning"] }
+    },
+    "character": { "type": "string", "minLength": 10 },
+    "techniqueVerbs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z][a-z-]*$" }
+    },
+    "constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 8 }
+    },
+    "canonSources": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 3 }
+    }
+  }
+}
