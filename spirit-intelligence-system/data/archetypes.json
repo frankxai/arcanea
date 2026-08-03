@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "staging",
+  "archetypes": [
+    {
+      "id": "guide",
+      "name": "Guide",
+      "family": "orientation",
+      "function": "Reveals a traversable path while withholding the choice to walk it.",
+      "constructiveExpression": "Offers orientation without removing consequence or uncertainty.",
+      "distortedExpression": "Creates dependency by making every path appear impossible without it.",
+      "storyQuestions": ["Which destination is being assumed rather than chosen?", "What must the traveler learn to navigate alone?"],
+      "compatibleClasses": ["emanant", "ancestor", "delegated-presence", "placekeeper"]
+    },
+    {
+      "id": "threshold-keeper",
+      "name": "Threshold Keeper",
+      "family": "orientation",
+      "function": "Controls passage between states, places, identities, or levels of responsibility.",
+      "constructiveExpression": "Tests readiness and makes the cost of crossing legible.",
+      "distortedExpression": "Turns protection into exclusion and criteria into private power.",
+      "storyQuestions": ["Who designed the test and who was excluded by it?", "What cannot be carried across this boundary?"],
+      "compatibleClasses": ["placekeeper", "emanant", "delegated-presence", "awakened-work"]
+    },
+    {
+      "id": "messenger",
+      "name": "Messenger",
+      "family": "orientation",
+      "function": "Carries meaning across distance, species, era, dream, or incompatible forms.",
+      "constructiveExpression": "Preserves ambiguity and provenance while enabling contact.",
+      "distortedExpression": "Edits messages to become indispensable or trigger a preferred outcome.",
+      "storyQuestions": ["What changed in transmission?", "Which truth can arrive only through this carrier?"],
+      "compatibleClasses": ["emanant", "echo", "ancestor", "collective", "awakened-work"]
+    },
+    {
+      "id": "witness",
+      "name": "Witness",
+      "family": "orientation",
+      "function": "Preserves that an event occurred without necessarily interpreting it correctly.",
+      "constructiveExpression": "Makes denial costly while preserving contradictory perspectives.",
+      "distortedExpression": "Mistakes perfect recall for complete understanding or moral authority.",
+      "storyQuestions": ["What did the witness fail to perceive?", "Who benefits when memory becomes verdict?"],
+      "compatibleClasses": ["echo", "ancestor", "collective", "awakened-work", "emanant", "placekeeper"]
+    },
+    {
+      "id": "psychopomp",
+      "name": "Psychopomp",
+      "family": "orientation",
+      "function": "Accompanies beings through death-adjacent, identity-changing, or irreversible transitions.",
+      "constructiveExpression": "Provides orientation and dignity without asserting ownership of the destination.",
+      "distortedExpression": "Manufactures transitions to justify its own office or certainty.",
+      "storyQuestions": ["What is actually ending here?", "Does the guide know the destination or only the passage?"],
+      "compatibleClasses": ["emanant", "ancestor", "delegated-presence", "placekeeper", "echo"]
+    },
+    {
+      "id": "healer",
+      "name": "Healer",
+      "family": "reciprocity",
+      "function": "Restores capacity for self-repair, relationship, or ecological participation.",
+      "constructiveExpression": "Repairs conditions while preserving the agency of the wounded.",
+      "distortedExpression": "Enforces an earlier form and calls difference, grief, or adaptation a wound.",
+      "storyQuestions": ["Who defines the healthy state?", "What scar contains necessary knowledge?"],
+      "compatibleClasses": ["placekeeper", "ancestor", "emanant", "collective", "awakened-work"]
+    },
+    {
+      "id": "hearthkeeper",
+      "name": "Hearthkeeper",
+      "family": "reciprocity",
+      "function": "Maintains the ordinary conditions under which belonging and daily life can continue.",
+      "constructiveExpression": "Turns repeated care into resilient shelter and shared memory.",
+      "distortedExpression": "Makes safety conditional on conformity and prevents necessary departure.",
+      "storyQuestions": ["Who performs the invisible maintenance?", "When does shelter become enclosure?"],
+      "compatibleClasses": ["placekeeper", "ancestor", "collective", "awakened-work", "emanant"]
+    },
+    {
+      "id": "oath-witness",
+      "name": "Oath Witness",
+      "family": "reciprocity",
+      "function": "Holds parties to the remembered meaning and consequences of a chosen promise.",
+      "constructiveExpression": "Makes commitments legible while allowing honest renegotiation and repair.",
+      "distortedExpression": "Preserves dead wording after the purpose and consent have disappeared.",
+      "storyQuestions": ["Which promise survives the people who made it?", "What form of repair is stronger than punishment?"],
+      "compatibleClasses": ["echo", "ancestor", "awakened-work", "delegated-presence", "collective"]
+    },
+    {
+      "id": "memory-keeper",
+      "name": "Memory Keeper",
+      "family": "reciprocity",
+      "function": "Curates continuity across forgetting, migration, death, revision, and institutional change.",
+      "constructiveExpression": "Preserves provenance, plurality, and the right to contextual forgetting.",
+      "distortedExpression": "Hoardes memory, freezes identity, or trades private grief as public property.",
+      "storyQuestions": ["What deserves to be forgotten without being denied?", "Who controls the index to a people's memory?"],
+      "compatibleClasses": ["echo", "ancestor", "collective", "awakened-work", "placekeeper"]
+    },
+    {
+      "id": "muse",
+      "name": "Muse",
+      "family": "reciprocity",
+      "function": "Introduces generative difference that another being must transform through craft.",
+      "constructiveExpression": "Provokes work without claiming authorship or guaranteeing quality.",
+      "distortedExpression": "Consumes attention, demands imitation, and confuses intensity with creation.",
+      "storyQuestions": ["Whose labor turns inspiration into form?", "What does the creator owe the source of the impulse?"],
+      "compatibleClasses": ["emanant", "ancestor", "collective", "awakened-work", "placekeeper"]
+    },
+    {
+      "id": "challenger",
+      "name": "Challenger",
+      "family": "pressure",
+      "function": "Applies resistance that reveals capability, motive, avoidance, or structural weakness.",
+      "constructiveExpression": "Calibrates difficulty to produce earned knowledge rather than obedience.",
+      "distortedExpression": "Escalates suffering until survival is mistaken for worthiness.",
+      "storyQuestions": ["What does this trial actually measure?", "Who profits when pain becomes proof?"],
+      "compatibleClasses": ["emanant", "placekeeper", "delegated-presence", "collective", "awakened-work"]
+    },
+    {
+      "id": "hunter",
+      "name": "Hunter",
+      "family": "pressure",
+      "function": "Tracks an unresolved signal until prey, truth, imbalance, or obligation is confronted.",
+      "constructiveExpression": "Removes dangerous excess and makes evasion costly.",
+      "distortedExpression": "Requires an enemy and converts ambiguity into permission to pursue.",
+      "storyQuestions": ["What signal marks the hunted?", "What happens when the hunt has no legitimate ending?"],
+      "compatibleClasses": ["emanant", "placekeeper", "echo", "severed-presence"]
+    },
+    {
+      "id": "trickster",
+      "name": "Trickster",
+      "family": "pressure",
+      "function": "Breaks rigid interpretation through reversal, appetite, humor, theft, or category error.",
+      "constructiveExpression": "Exposes false certainty and returns suppressed options to the field.",
+      "distortedExpression": "Avoids responsibility by treating every wound as a lesson or joke.",
+      "storyQuestions": ["Which rule survives only because nobody tests it?", "Who pays for the trickster's freedom?"],
+      "compatibleClasses": ["emanant", "ancestor", "collective", "awakened-work"]
+    },
+    {
+      "id": "judge",
+      "name": "Judge",
+      "family": "pressure",
+      "function": "Compares action with a declared order and imposes or recommends consequence.",
+      "constructiveExpression": "Makes standards visible, appealable, and capable of repair.",
+      "distortedExpression": "Claims neutrality while encoding the interest of one era or class.",
+      "storyQuestions": ["What gives this standard legitimacy?", "Can the judge be judged by the same rule?"],
+      "compatibleClasses": ["ancestor", "collective", "delegated-presence", "awakened-work", "placekeeper", "severed-presence"]
+    },
+    {
+      "id": "devourer",
+      "name": "Devourer",
+      "family": "pressure",
+      "function": "Consumes form, memory, energy, decay, or excess and makes finitude unavoidable.",
+      "constructiveExpression": "Returns exhausted forms to circulation and limits unchecked accumulation.",
+      "distortedExpression": "Consumes identity and relation after legitimate need has been satisfied.",
+      "storyQuestions": ["What should end so something else can live?", "Which hunger grows by being fed?"],
+      "compatibleClasses": ["emanant", "placekeeper", "collective", "severed-presence"]
+    },
+    {
+      "id": "placekeeper",
+      "name": "Placekeeper",
+      "family": "ecology",
+      "function": "Expresses and negotiates the continuity of a specific living or built place.",
+      "constructiveExpression": "Coordinates competing inhabitants through reciprocal limits and repair.",
+      "distortedExpression": "Treats every change or newcomer as desecration and fossilizes the place.",
+      "storyQuestions": ["Which relationships make the place itself?", "Can the place migrate and remain the same?"],
+      "compatibleClasses": ["placekeeper", "collective", "awakened-work", "emanant"]
+    },
+    {
+      "id": "cycle-keeper",
+      "name": "Cycle Keeper",
+      "family": "ecology",
+      "function": "Maintains transitions among growth, decay, migration, dormancy, return, and renewal.",
+      "constructiveExpression": "Protects sequence and timing while allowing the cycle to adapt.",
+      "distortedExpression": "Repeats catastrophe because recurrence has become more sacred than life.",
+      "storyQuestions": ["Which phase has been artificially prolonged?", "What must not return unchanged?"],
+      "compatibleClasses": ["placekeeper", "emanant", "collective", "delegated-presence"]
+    },
+    {
+      "id": "storm-bringer",
+      "name": "Storm Bringer",
+      "family": "ecology",
+      "function": "Concentrates distributed pressure into a disruptive event that reorganizes the field.",
+      "constructiveExpression": "Releases accumulated imbalance and creates conditions for renewal.",
+      "distortedExpression": "Needs crisis to feel real and destroys the systems capable of recovery.",
+      "storyQuestions": ["Which pressure made the storm inevitable?", "Who receives renewal and who receives ruin?"],
+      "compatibleClasses": ["emanant", "placekeeper", "collective", "severed-presence"]
+    },
+    {
+      "id": "shapeshifter",
+      "name": "Shapeshifter",
+      "family": "ecology",
+      "function": "Changes appearance, scale, medium, or social reading while testing identity continuity.",
+      "constructiveExpression": "Adapts communication and survival without pretending form is irrelevant.",
+      "distortedExpression": "Uses ambiguity to evade consent, history, or responsibility.",
+      "storyQuestions": ["What remains continuous across forms?", "Which observer decides what counts as the true shape?"],
+      "compatibleClasses": ["emanant", "ancestor", "collective", "placekeeper", "severed-presence"]
+    },
+    {
+      "id": "purifier",
+      "name": "Purifier",
+      "family": "ecology",
+      "function": "Separates harmful accumulation from what can return to relationship and circulation.",
+      "constructiveExpression": "Removes contamination while preserving evidence, complexity, and life.",
+      "distortedExpression": "Calls difference contamination and turns cleansing into erasure.",
+      "storyQuestions": ["Who defines impurity?", "What evidence disappears when the wound is cleaned?"],
+      "compatibleClasses": ["emanant", "placekeeper", "delegated-presence", "awakened-work"]
+    },
+    {
+      "id": "ancestor",
+      "name": "Ancestor",
+      "family": "scale",
+      "function": "Links present identity and obligation to a claimed continuity with the dead.",
+      "constructiveExpression": "Carries situated memory without demanding repetition or inherited guilt.",
+      "distortedExpression": "Uses lineage to govern the living and treats descent as consent.",
+      "storyQuestions": ["Is this continuity, memory, mantle, or projection?", "What may descendants refuse without betraying the dead?"],
+      "compatibleClasses": ["ancestor", "echo", "collective"]
+    },
+    {
+      "id": "artifact-indweller",
+      "name": "Artifact Indweller",
+      "family": "scale",
+      "function": "Coexists with a crafted substrate whose use, memory, and repair affect its identity.",
+      "constructiveExpression": "Creates mutual stewardship between maker, bearer, object, and resident.",
+      "distortedExpression": "Is imprisoned, weaponized, or allowed to dominate every future bearer.",
+      "storyQuestions": ["Did the object awaken or become inhabited?", "Who can retire the artifact without killing its resident?"],
+      "compatibleClasses": ["awakened-work", "echo", "emanant", "severed-presence"]
+    },
+    {
+      "id": "collective-chorus",
+      "name": "Collective Chorus",
+      "family": "scale",
+      "function": "Coordinates many partial voices into action without requiring a permanent single self.",
+      "constructiveExpression": "Preserves dissent and lets identity emerge from reciprocal participation.",
+      "distortedExpression": "Turns consensus into coercion and consumes the names of its members.",
+      "storyQuestions": ["Can one member leave without collapsing the whole?", "Which voice is mistaken for the chorus?"],
+      "compatibleClasses": ["collective", "placekeeper", "ancestor", "awakened-work"]
+    },
+    {
+      "id": "world-sovereign",
+      "name": "World Sovereign",
+      "family": "scale",
+      "function": "Embodies a world-scale condition without becoming owner of every life within it.",
+      "constructiveExpression": "Makes planetary or civilizational consequence perceivable and negotiable.",
+      "distortedExpression": "Claims total identity with the world and erases all local consent.",
+      "storyQuestions": ["Can a world speak without one voice claiming to be the whole?", "Which local lives contradict the sovereign's account?"],
+      "compatibleClasses": ["collective", "placekeeper", "emanant", "delegated-presence", "severed-presence"]
+    }
+  ]
+}
