@@ -1,86 +1,65 @@
 ---
 name: Arcanea Canon
-description: Universe consistency reference
+description: Pointer-first universe consistency and staging discipline
 ---
 
 # Arcanea Canon Skill
 
-## Purpose
-Ensure all content aligns with the Arcanea canonical universe.
-This is the single source of truth for all lore-touching content.
+## Prime directive
 
-## Cosmic Duality
-- **Lumina** — The First Light: Form-Giver, Creator, Order, Manifestation
-- **Nero** — The Primordial Darkness: Fertile Unknown, Father of Potential, Mystery, The Void
-- **Nero is NOT evil** — Shadow is corrupted Void (Void stripped of Spirit by Malachar)
+Before creating, editing, indexing, or approving lore, read in this order:
 
-## Five Elements
-- **Fire**: Energy, passion, transformation
-- **Water**: Flow, healing, memory
-- **Earth**: Stability, growth, foundation
-- **Wind**: Freedom, speed, change
-- **Void**: Potential, transcendence, mystery
+1. `.arcanea/lore/CANON_LOCKED.md`
+2. `.arcanea/lore/MAGIC_SYSTEM.md` for spells or magical effects
+3. the relevant approved production entity
+4. STAGING proposals only when the task explicitly includes them
 
-### The Fifth Element Duality
-- **Void** — Nero's aspect: potential, mystery, the unformed
-- **Spirit** — Lumina's aspect: transcendence, consciousness, soul
-- Light is Fire's creation aspect (not a separate element)
-- Shadow is corrupted Void (NOT a natural element)
+Do not treat this skill, generated sync trees, implementation types, root brainstorming documents, or memory retrieval as a substitute for the locked files.
 
-## Ten Gates & Guardians
-## The Ten Guardians — Gate Keepers
+## Hard invariants
 
-| Gate | Frequency | Guardian | Godbeast | Element | Domain |
-|------|-----------|----------|----------|---------|--------|
-| Foundation | 396 Hz | Lyssandria | Kaelith | Earth | Earth, survival |
-| Flow | 417 Hz | Leyla | Veloura | Water | Creativity, emotion |
-| Fire | 528 Hz | Draconia | Draconis | Fire | Power, will |
-| Heart | 639 Hz | Maylinn | Laeylinn | Water | Love, healing |
-| Voice | 741 Hz | Alera | Otome | Wind | Truth, expression |
-| Sight | 852 Hz | Lyria | Yumiko | Void | Intuition, vision |
-| Crown | 963 Hz | Aiyami | Sol | Void | Enlightenment |
-| Shift | 1111 Hz | Elara | Thessara | Void | Perspective |
-| Unity | 963 Hz | Ino | Kyuro | Void | Partnership |
-| Source | 1111 Hz | Shinkami | Amaterasu | Void | Meta-consciousness |
+- Lumina is the First Light: form, creation, order.
+- Nero is primordial darkness as fertile potential and mystery. Nero is not evil.
+- Shadow is Malachar's corruption of Void stripped of Spirit. Shadow is not a natural Element.
+- The locked primary system is Fire, Water, Earth, Wind, and the Void/Spirit duality.
+- Light is Fire's creation aspect, not another primary Element.
+- The Ten Gates, unique frequencies, Arcanean Gods/Guardians, Godbeasts, and ranks come only from `CANON_LOCKED.md`.
+- Guardian is a role; God/Goddess is the being's identity.
+- Luminor is the rank for nine to ten opened Gates, not an entity type or artifact-granted title.
+- The only spell disciplines are Attack, Defense, and Summoning.
+- The only spell tiers are Light, Advanced, Greater, Sacred, Royal, Imperial, and Divine.
+- An agent must not alter LOCKED truth without Frank's explicit approval.
 
-## Magic Ranks
-- **apprentice** (0-2 Gates)
-- **mage** (3-4 Gates)
-- **master** (5-6 Gates)
-- **archmage** (7-8 Gates)
-- **luminor** (9-10 Gates)
+## Additive artifact rules
 
-## Seven Academy Houses
-lumina, nero, pyros, aqualis, terra, ventus, synthesis
+When `.arcanea/lore/ARTIFACT_RESONANCE_SYSTEM.md` is present, treat it as STAGING until its header and approval log explicitly say otherwise.
 
-## The Dark Lord — Malachar
-Former identity: Malachar Lumenbright
-First Eldrian Luminor, Lumina's champion. Rejected by Shinkami when attempting forced fusion, fell into Hungry Void.
-Now sealed in The Shadowfen.
+- Derived Expressions compose locked Elements; they never add Elements.
+- Nature/Verdance is Earth + Water + Spirit.
+- Artifacts may grant bounded capability access but never rank, opened Gates, control, culture, or mastery.
+- Permanent affinity change requires explicit consent, Sacred-or-higher authority, irreversible price, and a world profile that permits it.
+- Agentive artifacts retain refusal and transfer rules.
+- Every artifact needs price, boundary, failure, counterplay, provenance, rights record, and canon scope.
+- Shadow artifacts remain restricted or quarantined and must never imply Nero is evil.
 
-## Canon Hierarchy
+## Canon status
 
-### Tier 1: Immutable Core (Never Change)
-- Cosmic Duality (Lumina + Nero)
-- Five Elements with Fifth Element Duality
-- Ten Gates with Guardian-Godbeast pairs
-- Magic Ranks and gate requirements
-- Malachar's identity and backstory
+- **LOCKED** — may be referenced; modification requires explicit Frank approval.
+- **STAGING** — proposed and machine-valid may still be rejected or redesigned.
+- **EVOLVING** — concept approved; listed details remain flexible.
+- **EXPERIMENTAL** — excluded from default canon retrieval.
+- **QUARANTINED** — unsafe, corrupted, contradictory, or rights-blocked; never blended into ordinary canon answers.
 
-### Tier 2: Established Canon (Change with Caution)
-- Guardian personalities, voices, and coding styles
-- Academy curricula and teaching philosophies
-- Economy: ARC (creative energy) + NEA (governance tokens)
+Only human approval recorded in Git can promote a record.
 
-### Tier 3: Flexible Canon (Can Expand)
-- Academy locations and sub-spaces
-- Events and traditions (must respect seasonal themes)
+## Pre-commit checks
 
-## Violation Checklist
-Before committing any Arcanea content, verify:
-- [ ] Nero is NOT portrayed as evil
-- [ ] Shadow ≠ Void (Shadow is corrupted Void)
-- [ ] Guardians called by correct canonical names
-- [ ] Frequencies match canonical values
-- [ ] Elements assigned correctly to each Guardian
-- [ ] Magic ranks in correct order with correct gate ranges
+- [ ] Read the current locked source rather than a duplicate table.
+- [ ] Nero is not portrayed as evil; Shadow is not portrayed as natural Void.
+- [ ] Guardian, Godbeast, Gate, frequency, Element, rank, discipline, and tier values match locked authority.
+- [ ] New lore has an explicit canon scope and non-approved status.
+- [ ] Artifact effects are Gate-bound and cannot grant rank.
+- [ ] Prices, limits, failures, counterplay, provenance, influence, and rights are present.
+- [ ] Generated memory or encyclopedia records retain source commit and content hash.
+- [ ] No conflict-marked or legacy document was used as authority.
+
