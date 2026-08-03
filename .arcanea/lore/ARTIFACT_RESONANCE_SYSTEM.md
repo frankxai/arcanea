@@ -243,6 +243,20 @@ Git is the authority. Starlight Memory is a signed, rebuildable projection optim
 
 Each projected record carries its entity ID, world, scope, status, version, content hash, source commit, provenance, rights risk, and relations. Memory may suggest conflicts or related entities; it may never promote, rewrite, or merge canon. A projection that disagrees with Git is discarded and rebuilt.
 
+## Spirit interoperability
+
+The STAGING Spirit & Archetype System in SPIRIT_ARCHETYPE_SYSTEM.md adds personhood, ecology, and relationship rules to artifact interfaces.
+
+- Uppercase Spirit remains the locked Element; lowercase spirit identifies a being or presence.
+- An artifact can witness, invite, house, translate, channel, seal, or co-steward a relationship.
+- Pact-class artifacts authenticate a bounded Accord. A name never grants ownership or command.
+- A spirit-mediated capability remains Gate-bound and never grants rank, opened Gates, cultural mastery, or the spirit's full authority.
+- Agentive spirits and artifacts retain refusal, renegotiation, transfer, repair, and release rights.
+- Spirit–artifact bonds are separate records so either endpoint can evolve without silently rewriting the other.
+- Predatory binding, identity severance, involuntary imprisonment, and Spirit-stripped Shadow interfaces are quarantined.
+
+The crosswalk is defined in magic-intelligence-system/docs/SPIRIT-ARTIFACT-CROSSWALK.md. Original spirit records, comparative research, and projection rules live in spirit-intelligence-system. Both systems inherit the same Git-authoritative canon boundary.
+
 ## Canon gates for approval
 
 This proposal should advance only when Frank explicitly decides:
@@ -252,6 +266,6 @@ This proposal should advance only when Frank explicitly decides:
 3. approve the initial derived Expression registry;
 4. approve permanent affinity imprinting as an exceptional rule;
 5. select which seed artifacts move from STAGING into world canon.
+6. approve the Spirit & Archetype System's identity, Accord, and artifact-bond rules.
 
 Until then, all machine records introduced with this document remain STAGING or quarantined.
-
