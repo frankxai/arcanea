@@ -42,6 +42,21 @@ When `.arcanea/lore/ARTIFACT_RESONANCE_SYSTEM.md` is present, treat it as STAGIN
 - Every artifact needs price, boundary, failure, counterplay, provenance, rights record, and canon scope.
 - Shadow artifacts remain restricted or quarantined and must never imply Nero is evil.
 
+## Additive spirit rules
+
+When .arcanea/lore/SPIRIT_ARCHETYPE_SYSTEM.md is present, treat it as STAGING until its header and approval log explicitly say otherwise.
+
+- Uppercase Spirit is the locked Element. Lowercase spirit means a being, ecology, memory presence, ancestor, collective, or agentive work.
+- A spirit is not automatically a god, Guardian, Godbeast, summon, monster, dead human, or spell.
+- Guardian and Godbeast remain locked unique authorities; no generated spirit may inherit those offices.
+- Archetypes are mutable narrative functions, never species, alignment, power tier, or destiny.
+- Names authenticate bounded relationship. They never grant ownership or unconditional command.
+- Every Accord requires consent, scope, duration, price, boundary, breach, repair, and release.
+- Human afterlife remains unresolved unless a locked source explicitly decides it.
+- Spirit-mediated abilities remain Gate-bound and never grant rank, opened Gates, or a spirit's domain authority.
+- Predatory binding, involuntary imprisonment, identity severance, and Spirit-stripped Shadow entities are quarantined.
+- Reference-corpus entities and living sacred beings are research-only and must never be projected as Arcanean canon.
+
 ## Canon status
 
 - **LOCKED** — may be referenced; modification requires explicit Frank approval.
@@ -60,6 +75,9 @@ Only human approval recorded in Git can promote a record.
 - [ ] New lore has an explicit canon scope and non-approved status.
 - [ ] Artifact effects are Gate-bound and cannot grant rank.
 - [ ] Prices, limits, failures, counterplay, provenance, influence, and rights are present.
+- [ ] Spirit is not confused with spirit-being, Guardian, Godbeast, summon, or human afterlife.
+- [ ] Spirit records include need, refusal, boundary, price, release, identity, and persistence.
+- [ ] Accords and spirit–artifact bonds preserve consent, repair, and exit.
+- [ ] Reference proper nouns and living sacred beings remain outside projection.
 - [ ] Generated memory or encyclopedia records retain source commit and content hash.
 - [ ] No conflict-marked or legacy document was used as authority.
-
