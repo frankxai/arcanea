@@ -2,7 +2,7 @@
 
 [![Built on SIP](https://img.shields.io/badge/Built%20on-SIP-blue.svg)](https://github.com/frankxai/Starlight-Intelligence-System)
 
-> The validated spell, resonance-domain, artifact, and world-magic layer for Arcanea.
+> The validated spell, resonance-domain, artifact, world-magic, and spirit-interoperability layer for Arcanea.
 
 Arcanea's cosmology is locked in [`../.arcanea/lore/CANON_LOCKED.md`](../.arcanea/lore/CANON_LOCKED.md). Its spell grammar is locked in [`../.arcanea/lore/MAGIC_SYSTEM.md`](../.arcanea/lore/MAGIC_SYSTEM.md). This subsystem makes those truths machine-readable for the encyclopedia without inventing a parallel canon.
 
@@ -30,6 +30,12 @@ The additive proposal in [`../.arcanea/lore/ARTIFACT_RESONANCE_SYSTEM.md`](../.a
 
 All new records remain STAGING or quarantined until Frank explicitly approves them.
 
+## Spirit interoperability — STAGING
+
+The sibling spirit-intelligence-system defines original spirits, mutable archetypes, comparative research boundaries, world institutions, and typed spirit–artifact bonds. This subsystem keeps capability mechanics; the sibling system keeps identity, consent, ecology, and relationship state.
+
+The crosswalk in docs/SPIRIT-ARTIFACT-CROSSWALK.md permits witness, invitation, habitat, co-stewardship, translation, channel, and seal relationships. Predation is modeled only so validators and stories can identify and quarantine it.
+
 ## Layout
 
 | Path | Purpose |
@@ -39,6 +45,7 @@ All new records remain STAGING or quarantined until Frank explicitly approves th
 | `SKILL.md` | author/refusal contract |
 | `docs/MAGIC-PROTOCOLS.md` | locked spell grammar |
 | `docs/ARTIFACT-PROTOCOLS.md` | STAGING artifact, assembly, Gate Debt, and world rules |
+| `docs/SPIRIT-ARTIFACT-CROSSWALK.md` | typed bond modes, capability boundaries, consent, repair, and release |
 | `docs/INFLUENCE-AND-RIGHTS-LEDGER.md` | transferable principles and prohibited parallels |
 | `docs/STARLIGHT-MEMORY-PROJECTION.md` | Git-authoritative memory and encyclopedia contract |
 | `docs/CANON-DRIFT-AUDIT-2026-08-03.md` | known conflicting legacy surfaces and migration gates |
@@ -59,6 +66,7 @@ All new records remain STAGING or quarantined until Frank explicitly approves th
 ```bash
 node magic-intelligence-system/scripts/validate.mjs
 node magic-intelligence-system/scripts/validate-artifacts.mjs
+node spirit-intelligence-system/scripts/validate-spirits.mjs
 ```
 
 Generate rebuildable Starlight Memory events after validation:
@@ -69,12 +77,20 @@ GITHUB_SHA="$(git rev-parse HEAD)" \
   --emit-memory /tmp/arcanea-artifact-memory.jsonl
 ```
 
+Generate the spirit and bond projection:
+
+```bash
+GITHUB_SHA="$(git rev-parse HEAD)" \
+  node spirit-intelligence-system/scripts/validate-spirits.mjs \
+  --emit-memory /tmp/arcanea-spirit-memory.jsonl
+```
+
 ## Status
 
 - Spell taxonomy and incantation grammar: **LOCKED**, approved 2026-06-23.
 - Artifact and Resonance System: **STAGING**, proposed 2026-08-03.
+- Spirit & Archetype System: **STAGING**, proposed 2026-08-04.
 - Darkenia world profile: **STAGING working title**.
 - Selka Hollow-Mask: **QUARANTINED / redesign required**.
 
 Built on SIP. Git remains canon; memory remains projection.
-
