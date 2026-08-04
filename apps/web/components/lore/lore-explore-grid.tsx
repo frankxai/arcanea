@@ -16,6 +16,15 @@ import { cn } from '@/lib/utils';
 
 const EXPLORATIONS = [
   {
+    href: '/story/the-living-arc',
+    title: 'The Living Arc',
+    description: 'Choose at the Unwritten Gate and enter Arcanea’s flagship saga',
+    icon: Compass,
+    gradient: 'from-atlantean-teal/20 to-brand-gold/10',
+    accentColor: 'text-atlantean-teal-aqua',
+    borderColor: 'border-atlantean-teal-aqua/20 hover:border-atlantean-teal-aqua/40',
+  },
+  {
     href: '/lore/guardians',
     title: 'The Ten Guardians',
     description: 'Gods and Goddesses who guard the Gates of creation',

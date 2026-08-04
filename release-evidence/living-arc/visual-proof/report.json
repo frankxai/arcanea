@@ -1,0 +1,125 @@
+{
+  "generatedAt": "2026-08-04T02:19:16.360Z",
+  "baseUrl": "http://127.0.0.1:3001",
+  "story": [
+    {
+      "viewport": {
+        "label": "375",
+        "width": 375,
+        "height": 844
+      },
+      "inspection": {
+        "title": "The Living Arc — He Can Save Everyone | Arcanea",
+        "h1Count": 1,
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "horizontalOverflow": false,
+        "brokenVisibleImages": [],
+        "unlabeledImages": []
+      },
+      "violations": []
+    },
+    {
+      "viewport": {
+        "label": "768",
+        "width": 768,
+        "height": 1024
+      },
+      "inspection": {
+        "title": "The Living Arc — He Can Save Everyone | Arcanea",
+        "h1Count": 1,
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "horizontalOverflow": false,
+        "brokenVisibleImages": [],
+        "unlabeledImages": []
+      },
+      "violations": []
+    },
+    {
+      "viewport": {
+        "label": "1440",
+        "width": 1440,
+        "height": 1000
+      },
+      "inspection": {
+        "title": "The Living Arc — He Can Save Everyone | Arcanea",
+        "h1Count": 1,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "horizontalOverflow": false,
+        "brokenVisibleImages": [],
+        "unlabeledImages": []
+      },
+      "violations": []
+    }
+  ],
+  "webtoon": [
+    {
+      "viewport": {
+        "label": "375",
+        "width": 375,
+        "height": 844
+      },
+      "inspection": {
+        "title": "Episode 00: The Hand He Released — The Living Arc | Arcanea",
+        "h1Count": 1,
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "horizontalOverflow": false,
+        "brokenVisibleImages": [],
+        "unlabeledImages": []
+      },
+      "violations": []
+    },
+    {
+      "viewport": {
+        "label": "768",
+        "width": 768,
+        "height": 1024
+      },
+      "inspection": {
+        "title": "Episode 00: The Hand He Released — The Living Arc | Arcanea",
+        "h1Count": 1,
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "horizontalOverflow": false,
+        "brokenVisibleImages": [],
+        "unlabeledImages": []
+      },
+      "violations": []
+    },
+    {
+      "viewport": {
+        "label": "1440",
+        "width": 1440,
+        "height": 1000
+      },
+      "inspection": {
+        "title": "Episode 00: The Hand He Released — The Living Arc | Arcanea",
+        "h1Count": 1,
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "horizontalOverflow": false,
+        "brokenVisibleImages": [],
+        "unlabeledImages": []
+      },
+      "violations": []
+    }
+  ],
+  "interactions": {
+    "choice": {
+      "pressed": "true",
+      "stored": "{\"version\":1,\"choice\":\"keep\"}",
+      "result": "You keep the wound."
+    },
+    "element": {
+      "selected": "Water",
+      "panel": "02Water ConcordRememberCapabilityMove through stored memory, restore continuity, and let a wounded form change without losing itself.CostTreat a memory as property and the current takes one of his own."
+    },
+    "format": {
+      "selected": "Scroll",
+      "episodeHref": "/story/the-living-arc/webtoon/episode-0"
+    }
+  }
+}
