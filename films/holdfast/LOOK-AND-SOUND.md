@@ -113,10 +113,12 @@ sound:
   # 1, 7, and 13 the 174 Hz bed runs underneath; on beat 14 it stops. That
   # difference is the film, which is why the two fields must not be collapsed.
   speech_free:
-    budget_seconds: 50
-    beats: [1, 7, 13, 14]        # 14 is also total_silence — deliberate overlap
-    bed_running_on: [1, 7, 13]
+    budget_seconds: 50           # floor (20% of 254s picture)
+    actual_seconds: 86           # 33.9% — beats 1+2+7+13+14
+    beats: [1, 2, 7, 13, 14]     # 14 is also total_silence — deliberate overlap
+    bed_running_on: [1, 2, 7, 13]
     bed_stopped_on: [14]
+    first_spoken_word_at: "0:40" # beats 1-2 carry the film alone for 40 seconds
   total_silence:
     at: "3:58"
     duration: 12

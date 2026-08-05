@@ -36,7 +36,7 @@
 | 9 | 2:31–2:47 | **The switch.** He puts the pen down. Active voice: *"Show me your hand."* She doesn't. He waits. She gives him the left one — the two fingers that won't straighten. He turns it over. Stone dust. Callus in a pattern that isn't from masonry. | Close, both hands in frame, low | Bed. Everything else drops out. |
 | 10 | **2:47** | **THE TURN.** He looks past her at the wall she has been building — and sees it is not a wall. It is buttressing. Reveal: set into the ground behind it, low, half-covered, a door of black Kaelith Stone. Around its seam, amber-white light. The first saturated color in the film. He looks at her hand, at the door, at her hand. *He understands before we do.* Then we do. | The reveal is a slow rack-focus past her shoulder — camera does not move | Bed **thickens** for the first time. Nothing else. |
 | 11 | 2:47–3:12 | He asks how long. She says *since I was six.* First direct answer in the film — and the audience realizes every earlier answer was also direct, about the room, because the room was the only safe subject. He asks why she never said. She says nobody asked about the wall. | Static two-shot, low, door in frame between them | Bed. |
-| 12 | 3:12–3:40 | He puts his hand on the door. Instantly his arms shake — the tremor we saw in her at beat 7, arriving in a fit adult in under four seconds. He takes it off, breathing hard. Wipes his eye with his wrist. Looks at her. Eleven terms. *"Sit down,"* he says. She says she can't. He says he knows. He sits down instead, on the ground, beside the door, and puts his hand back. | Both at ground level now — the camera has been descending all film and this is its floor | Bed. His breathing. Her breathing. |
+| 12 | 3:12–3:40 | He puts his hand on the door. Instantly his arms shake — the tremor we saw in her at beat 7, arriving in a fit adult in under four seconds. He takes it off, breathing hard. Wipes his eye with his wrist. Looks at her. Eleven terms. *"Sit down,"* he says. She says she can't — **and this is where her "hold" lands** (see `CHARACTERS.md` § Word Ledger conflicts: his institutional *"Hold still"* at beat 4, hers literal here). The exact line is set at stage 4, but the collision is load-bearing and must survive drafting. He says he knows. He sits down instead, on the ground, beside the door, and puts his hand back. | Both at ground level — the lowest the camera goes. It has worked below eye-height all film without descending steadily; this is its floor, not the end of a slope | Bed. His breathing. Her breathing. |
 | 13 | 3:40–3:58 | **Speech-free beat 2 (18s).** Two people holding a door. The seam-light on both faces. At 3:44, in the light: a shape behind the seam, too large to resolve, eleven frames. Neither reacts. It is not a jump scare; it is scale. Kess's shoulders drop a fraction — the first time in the film her body has changed. | Static, low, holding | Bed only. Then, at 3:56, the bed begins to *thin*. |
 | 14 | 3:58–4:10 | **The break.** The 174 Hz stops. Total silence — the first the film has ever had, and the audience feels the absence of something they never knew was there. And the camera rises. Past the wall. Past the yard. Higher than it has been allowed to go all film, and it keeps going: doors set into the ground across the entire valley, hundreds of them, seams glowing. Some of them are dark. Some of them are **open**. | **The rule breaks.** The only vertical move in the film. | **Silence.** Nothing. Not one sound cue. |
 | — | 4:10 | Title card: **HOLDFAST**. Four seconds. Black. No music, no sting. | — | Silence. |
@@ -45,8 +45,16 @@
 
 ## Structural notes
 
-**Speech-free budget:** beats 1 (22s partial), 7 (16s), 13 (18s), 14 (12s) plus the
-card = comfortably over 20%. Measured at stage 8, not estimated.
+**Speech-free budget:** beats **1** (22s), **2** (18s), **7** (16s), **13** (18s),
+**14** (12s) = **86s of 254s — 33.9%**, against a 20% floor. Measured at stage 8,
+not estimated; the card's four seconds are excluded from the numerator here.
+
+Beat 2 counts. It has no speech — the distant bell is sound, not dialogue — and
+so does beat 1, which means **the film's first spoken word arrives at 0:40**.
+Forty seconds of a woman building a wall before anyone says anything is the
+opening argument: she is competent, she is alone, and the film is in no hurry.
+An earlier draft of this note called beat 1 "22s partial" and omitted beat 2
+entirely, which under-counted the budget and made the opening look accidental.
 
 **Why the turn is a rack focus, not a camera move.** The film's grammar has been
 static and low for 167 seconds. A dolly or crane on the biggest moment would
