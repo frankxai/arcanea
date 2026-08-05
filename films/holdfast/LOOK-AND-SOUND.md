@@ -14,7 +14,8 @@
 ```yaml
 film:
   title: HOLDFAST
-  runtime_target: "04:10"
+  runtime_target: "04:14"        # 4:10 picture (beats 1-14) + 0:04 end card
+  runtime_picture: "04:10"
   aspect: 1.85:1
   frame_rate: 24
   track: series-episode

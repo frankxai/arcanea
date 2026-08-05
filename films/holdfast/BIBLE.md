@@ -1,6 +1,7 @@
 # HOLDFAST — story bible
 
-> Arcanea · series-episode · target runtime 4:10 · aspect 1.85:1 · 24fps
+> Arcanea · series-episode · **runtime 4:14 total** (4:10 picture + 0:04 end card)
+> · aspect 1.85:1 · 24fps
 > Canon: `.arcanea/lore/CANON_LOCKED.md` · Craft: `film-excellence` pack
 > Status: **draft 1 — not locked.** Names, ranks, and the Kaelith beat need
 > canon-keeper sign-off before generation.

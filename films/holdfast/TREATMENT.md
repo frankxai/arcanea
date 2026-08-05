@@ -1,6 +1,12 @@
 # HOLDFAST — beat sheet
 
-> Target 4:10. Fourteen beats. Turn at 2:47. **Speech-free budget ≥ 50s (20%).**
+> **Runtime 4:14 total** — 4:10 of picture (beats 1–14) plus a 0:04 end card.
+> Fourteen beats. Turn at 2:47. **Speech-free budget ≥ 50s (20%).**
+>
+> The card is counted, not excluded. Beat 14 is not shortened to absorb it: the
+> final rise is the film's release and it needs its twelve seconds. Both figures
+> sit well inside the festival's 3:00 floor and ≤5:00 recommendation, so the
+> honest number costs nothing. Measured at stage 8, not estimated.
 > Camera law: never above standing eye-height until beat 14.
 > Dialogue is **indicative only** — lines are written at stage 4 against the
 > Spoken Law:
