@@ -136,9 +136,13 @@ abstract (*threshold, variance, file*); hers is physical and trade-specific
 which is the argument of the film rendered in word choice.
 
 The one moment they use the same word is **"hold"** — his in the institutional
-sense at 0:58 (*"hold still"*), hers in the literal sense at 3:12. Same word,
-and only one of them knows what it costs. That collision is the script's
-strongest line and neither character comments on it.
+sense at **beat 4** (*"Hold still,"* over the instrument), hers in the literal
+sense at **beat 12**. Same word, and only one of them knows what it costs. That
+collision is the script's strongest line and neither character comments on it.
+
+*Referenced by beat, not timecode, deliberately: dialogue is not locked until
+stage 4, so any timecode quoted here would go stale the moment a line moves.
+Beats are stable; the seconds inside them are not.*
 
 ---
 

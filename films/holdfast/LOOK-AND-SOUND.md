@@ -106,11 +106,17 @@ sound:
     in_point: null
     out_point: null
     instrumentation: "none"
-  # Speech-free (nobody talking, bed continues) is the 20% budget — beats 1, 7,
-  # 13, 14. Total silence (no signal at all) happens once, and it is the climax.
+  # Speech-free = nobody is talking. That is the 20% budget, and it says nothing
+  # about what the bed is doing. Total silence = no signal at all. The second is
+  # a SUBSET of the first, not a sibling of it: beat 14 is speech-free AND
+  # signal-free, so it is counted once here and described once below. On beats
+  # 1, 7, and 13 the 174 Hz bed runs underneath; on beat 14 it stops. That
+  # difference is the film, which is why the two fields must not be collapsed.
   speech_free:
     budget_seconds: 50
-    beats: [1, 7, 13, 14]
+    beats: [1, 7, 13, 14]        # 14 is also total_silence — deliberate overlap
+    bed_running_on: [1, 7, 13]
+    bed_stopped_on: [14]
   total_silence:
     at: "3:58"
     duration: 12
