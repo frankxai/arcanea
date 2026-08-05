@@ -1,9 +1,19 @@
 # HOLDFAST — beat sheet
 
-> Target 4:10. Fourteen beats. Turn at 2:47. Silence budget ≥ 50s (20%).
+> Target 4:10. Fourteen beats. Turn at 2:47. **Speech-free budget ≥ 50s (20%).**
 > Camera law: never above standing eye-height until beat 14.
-> Dialogue is **indicative only** — lines are written against `LANGUAGE.md` at
-> stage 4 and are not locked here.
+> Dialogue is **indicative only** — lines are written at stage 4 against the
+> Spoken Law:
+> [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library)
+> `packs/film-excellence/LANGUAGE.md`. That pack also carries `film-design.md`,
+> `film-taste.md`, and the `film-release-gate` skill; craft lives there, canon
+> lives here.
+>
+> **Two different things are called silence in this film and they must not be
+> confused.** *Speech-free* means nobody is talking — the 174 Hz bed, wind, and
+> stone continue underneath, and this is the 20% budget. *Total silence* means
+> no signal at all, and it happens exactly once, at beat 14, where it is the
+> climax. Everywhere else, a signal-free track would read as a dropout.
 
 ---
 
@@ -15,13 +25,13 @@
 | 4 | 1:02–1:22 | **The measuring.** He sets the brass instrument on the wall she built. Crystal, needle. *"Hold still."* The needle reads nothing. He notes it. Eleventh time on the sheet. Her face for the first time — flat, waiting, the shadows under the eyes. | Instrument in close-up at wall height | Instrument clicks. Bed. |
 | 5 | 1:22–1:38 | **First wrongness.** Dust on the sill beside the instrument falls *upward* — two frames, unmissable, uncommented. Neither character sees it. Her hand, out of frame, has tightened. | Static, sill in foreground | Bed. One frame of the sub thickening, then normal. |
 | 6 | 1:38–2:00 | He runs the number. Rank 0, eleven terms. He explains the file closes at end of term, in the passive voice. She asks what happens to the wall. He doesn't understand the question. Neither does the audience. | Two-shot, both at standing height, wide space between them | Bed. Wind up. |
-| 7 | 2:00–2:16 | **Silence beat 1 (16s).** She goes back to work. He watches, writing. She sets one stone. Her arms are shaking and she seats it anyway. He notices the shake and writes something different. | Slow, low push on the shaking hands — the film's only push | Bed and stone only. No dialogue. |
+| 7 | 2:00–2:16 | **Speech-free beat 1 (16s).** She goes back to work. He watches, writing. She sets one stone. Her arms are shaking and she seats it anyway. He notices the shake and writes something different. | Slow, low push on the shaking hands — the film's only push | Bed and stone only. No dialogue. |
 | 8 | 2:16–2:31 | He asks, offhand, when she last slept. She says the stairs are long. He starts to write it as evasion — stops. Looks at the yard properly for the first time. Something about where she has chosen to build. | His eyeline, then his POV across the yard | Bed. Writing stops. |
 | 9 | 2:31–2:47 | **The switch.** He puts the pen down. Active voice: *"Show me your hand."* She doesn't. He waits. She gives him the left one — the two fingers that won't straighten. He turns it over. Stone dust. Callus in a pattern that isn't from masonry. | Close, both hands in frame, low | Bed. Everything else drops out. |
 | 10 | **2:47** | **THE TURN.** He looks past her at the wall she has been building — and sees it is not a wall. It is buttressing. Reveal: set into the ground behind it, low, half-covered, a door of black Kaelith Stone. Around its seam, amber-white light. The first saturated color in the film. He looks at her hand, at the door, at her hand. *He understands before we do.* Then we do. | The reveal is a slow rack-focus past her shoulder — camera does not move | Bed **thickens** for the first time. Nothing else. |
 | 11 | 2:47–3:12 | He asks how long. She says *since I was six.* First direct answer in the film — and the audience realizes every earlier answer was also direct, about the room, because the room was the only safe subject. He asks why she never said. She says nobody asked about the wall. | Static two-shot, low, door in frame between them | Bed. |
 | 12 | 3:12–3:40 | He puts his hand on the door. Instantly his arms shake — the tremor we saw in her at beat 7, arriving in a fit adult in under four seconds. He takes it off, breathing hard. Wipes his eye with his wrist. Looks at her. Eleven terms. *"Sit down,"* he says. She says she can't. He says he knows. He sits down instead, on the ground, beside the door, and puts his hand back. | Both at ground level now — the camera has been descending all film and this is its floor | Bed. His breathing. Her breathing. |
-| 13 | 3:40–3:58 | **Silence beat 2 (18s).** Two people holding a door. The seam-light on both faces. At 3:44, in the light: a shape behind the seam, too large to resolve, eleven frames. Neither reacts. It is not a jump scare; it is scale. Kess's shoulders drop a fraction — the first time in the film her body has changed. | Static, low, holding | Bed only. Then, at 3:56, the bed begins to *thin*. |
+| 13 | 3:40–3:58 | **Speech-free beat 2 (18s).** Two people holding a door. The seam-light on both faces. At 3:44, in the light: a shape behind the seam, too large to resolve, eleven frames. Neither reacts. It is not a jump scare; it is scale. Kess's shoulders drop a fraction — the first time in the film her body has changed. | Static, low, holding | Bed only. Then, at 3:56, the bed begins to *thin*. |
 | 14 | 3:58–4:10 | **The break.** The 174 Hz stops. Total silence — the first the film has ever had, and the audience feels the absence of something they never knew was there. And the camera rises. Past the wall. Past the yard. Higher than it has been allowed to go all film, and it keeps going: doors set into the ground across the entire valley, hundreds of them, seams glowing. Some of them are dark. Some of them are **open**. | **The rule breaks.** The only vertical move in the film. | **Silence.** Nothing. Not one sound cue. |
 | — | 4:10 | Title card: **HOLDFAST**. Four seconds. Black. No music, no sting. | — | Silence. |
 
@@ -29,7 +39,7 @@
 
 ## Structural notes
 
-**Silence budget:** beats 1 (22s partial), 7 (16s), 13 (18s), 14 (12s) plus the
+**Speech-free budget:** beats 1 (22s partial), 7 (16s), 13 (18s), 14 (12s) plus the
 card = comfortably over 20%. Measured at stage 8, not estimated.
 
 **Why the turn is a rack focus, not a camera move.** The film's grammar has been

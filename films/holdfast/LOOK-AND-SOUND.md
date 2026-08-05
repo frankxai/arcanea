@@ -1,7 +1,13 @@
 # HOLDFAST — look & sound
 
-> Filled from the `film-design.md` template. This file and `film-taste.md`
-> outrank every skill in the `film-excellence` pack for this production.
+> Filled from the `film-design.md` template in the `film-excellence` pack —
+> [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library)
+> `packs/film-excellence/film-design.md`. The pack also carries `film-taste.md`
+> (refusals), `LANGUAGE.md` (the Spoken Law), and the `film-release-gate` skill.
+> Craft lives there so it is reusable across productions; canon lives here.
+>
+> This file and the local refusals below outrank every skill in the pack for
+> this production.
 
 ---
 
@@ -99,7 +105,12 @@ sound:
     in_point: null
     out_point: null
     instrumentation: "none"
-  silence:
+  # Speech-free (nobody talking, bed continues) is the 20% budget — beats 1, 7,
+  # 13, 14. Total silence (no signal at all) happens once, and it is the climax.
+  speech_free:
+    budget_seconds: 50
+    beats: [1, 7, 13, 14]
+  total_silence:
     at: "3:58"
     duration: 12
     function: >

@@ -222,8 +222,12 @@ the web gate is: the person who made the thing is the worst available judge of i
 - [ ] Confirm the two unpublished judging criteria (30% of the score)
 - [ ] Confirm the Higgsfield subscription is active and covers the entry
 - [ ] Canon-keeper ruling: can a mortal hold a Gate closed? (`holdfast/BIBLE.md`)
-- [ ] Canon fix: `arcanea/.claude/CLAUDE.md` lists Foundation at 396 Hz;
-      `CANON_LOCKED.md` L55 says 174 Hz and is authoritative. Flagged, not fixed here.
+- [ ] Canon fix (own PR, not this one): `.claude/CLAUDE.md` **contradicts
+      itself** on the Foundation Gate — its Ten Gates table says 174 Hz, while
+      the Guardian Routing table near the end of the same file says 396 Hz for
+      the same Guardian. `CANON_LOCKED.md` L55 says 174 Hz and is authoritative
+      (396 Hz belongs to Fire). Both films use 174 Hz. Worth an issue so it does
+      not live indefinitely as a checkbox inside a films doc.
 - [ ] Names `Kess Andal` / `Orin Vesk` need Arcanean-quality sign-off per
       `CANON_LOCKED.md` § naming rules
 - [ ] Decide whether the synopsis track is worth a third entry (default: no)
