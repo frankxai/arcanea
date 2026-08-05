@@ -32,6 +32,25 @@ or generating a frame.
 extend it — any extension needs a canon-keeper ruling recorded in the film's
 `BIBLE.md` before the script locks.
 
+## Why this sits at the repo root
+
+The root `CLAUDE.md` says markdown belongs under `/docs`. `films/` deliberately
+does not, for the same reason `book/` does not: this is **creative source
+material**, not documentation about the project.
+
+- `docs/` describes how the system works. A story bible is the work itself.
+- `book/` holds the Library's seventeen text collections — a different creative
+  form, already at the root on the same logic.
+- `lore/`, `design/`, and `games/` follow the same pattern.
+
+A film bible read as documentation gets treated as reference and drifts. Read as
+source, it gets versioned, reviewed, and locked — which is what the eight-stage
+pipeline assumes.
+
+Raised in review as a convention question; recorded here so the next person
+doesn't have to re-derive it. If a maintainer prefers `book/films/`, the move is
+one `git mv` and a link fix — nothing in the pipeline depends on the path.
+
 ---
 
 Built on SIP.
