@@ -130,6 +130,17 @@ frankxai/Starlight-Intelligence-System
     ├── BIBLE.md  CHARACTERS.md  TREATMENT.md  SCRIPT.md  LOOK-AND-SOUND.md
 ```
 
+⚠️ **None of these three are merged.** All sit on the same branch,
+`claude/arcanea-starlight-films-roeohz`, on open draft PRs —
+[claude-skills-library#23](https://github.com/frankxai/claude-skills-library/pull/23),
+[arcanea#91](https://github.com/frankxai/arcanea/pull/91),
+[Starlight-Intelligence-System#69](https://github.com/frankxai/Starlight-Intelligence-System/pull/69).
+The tree above is the intended layout, not the state of anyone's `main`. In
+particular, every reference to `packs/film-excellence/*` in the film documents
+404s until #23 lands, and the pack is not installed into either film repo's
+`.claude/skills/`, so no `/film-*` command runs anywhere today. The documents
+were produced by hand against the doctrine and stand on their own.
+
 **Why not one new `starlight-films` repo?** Because it would have to hold
 Arcanea canon, and SIP § Sovereignty says the substrate does not absorb vertical
 canon. Splitting craft from canon is the same boundary the protocol already
