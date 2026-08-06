@@ -110,11 +110,11 @@ frankxai/claude-skills-library
 
 frankxai/arcanea
 └── films/holdfast/                  ← canon-bound, CC-BY-NC Arcanea canon
-    ├── BIBLE.md  CHARACTERS.md  TREATMENT.md  LOOK-AND-SOUND.md
+    ├── BIBLE.md  CHARACTERS.md  TREATMENT.md  SCRIPT.md  LOOK-AND-SOUND.md
 
 frankxai/Starlight-Intelligence-System
 └── films/what-he-left-running/      ← canon-free, substrate register
-    ├── BIBLE.md  CHARACTERS.md  TREATMENT.md  LOOK-AND-SOUND.md
+    ├── BIBLE.md  CHARACTERS.md  TREATMENT.md  SCRIPT.md  LOOK-AND-SOUND.md
 ```
 
 **Why not one new `starlight-films` repo?** Because it would have to hold
