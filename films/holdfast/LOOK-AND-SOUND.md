@@ -116,12 +116,17 @@ sound:
     # Measured against PICTURE (250s), not total (254s). The card is excluded
     # from numerator and denominator alike — excluding it from one and not the
     # other is what produced the earlier 33.9% figure.
-    budget_seconds: 50           # floor: 20% of 250s picture
-    actual_seconds: 86           # 34.4% of picture — beats 1+2+7+13+14
-    beats: [1, 2, 7, 13, 14]     # 14 is also total_silence — deliberate overlap
-    bed_running_on: [1, 2, 7, 13]
-    bed_stopped_on: [14]
-    first_spoken_word_at: "0:40" # beats 1-2 carry the film alone for 40 seconds
+    budget_seconds: 50            # floor: 20% of 250s picture
+    actual_seconds: 102           # 40.8% of picture
+    # The exact complement of the seven beats that carry dialogue
+    # (3, 4, 6, 8, 9, 11, 12). Derive this list from the beat table, never by
+    # hand — an earlier version omitted beat 5 and undercounted by 16s.
+    beats: [1, 2, 5, 7, 10, 13, 14]
+    beat_seconds: { 1: 22, 2: 18, 5: 16, 7: 16, 10: 0, 13: 18, 14: 12 }
+    zero_duration: [10]           # the turn is an instant, not a span
+    bed_running_on: [1, 2, 5, 7, 10, 13]
+    bed_stopped_on: [14]          # also total_silence — deliberate overlap
+    first_spoken_word_at: "0:40"  # beats 1-2 carry the film alone for 40 seconds
   total_silence:
     at: "3:58"
     duration: 12

@@ -45,9 +45,15 @@
 
 ## Structural notes
 
-**Speech-free budget:** beats **1** (22s), **2** (18s), **7** (16s), **13** (18s),
-**14** (12s) = **86s of 250s picture — 34.4%**, against a 20% floor. Measured at
-stage 8, not estimated.
+**Speech-free budget:** beats **1** (22s), **2** (18s), **5** (16s), **7** (16s),
+**10** (0s), **13** (18s), **14** (12s) = **102s of 250s picture — 40.8%**,
+against a 20% floor. Measured at stage 8, not estimated.
+
+Seven beats, and they are exactly the complement of the seven that carry
+dialogue (3, 4, 6, 8, 9, 11, 12). **Beat 10 is the turn — an instant, not a
+span**, so it contributes 0s while still belonging to the set. Beat 5, the
+upward dust, was omitted from an earlier count for no reason other than that
+nobody re-derived the list from the beat table.
 
 The denominator is **picture (250s), not total (254s)**. The four-second card is
 excluded from numerator and denominator alike. An earlier draft excluded it from

@@ -6,8 +6,11 @@
 > **Draft 1 — not locked.** Blocked from lock by the canon ruling and name
 > approval in `BIBLE.md`, neither of which changes a line below.
 >
-> **Total spoken: 34 lines.** Seven of fourteen beats have no dialogue at all.
-> First word at 0:40, last word at 3:31.
+> **Total spoken: 27 lines** — beat 3: 4 · 4: 5 · 6: 5 · 8: 3 · 9: 2 · 11: 4 ·
+> 12: 4. The other **seven of fourteen beats (1, 2, 5, 7, 10, 13, 14) have no
+> dialogue at all.** First word at 0:40, last word at 3:31.
+>
+> *(An earlier version of this line said 34. It was asserted, not counted.)*
 
 ---
 
