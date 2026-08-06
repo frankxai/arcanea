@@ -115,12 +115,12 @@ sound:
   speech_free:
     # Measured against PICTURE (250s), not total (254s). The card is excluded
     # from numerator and denominator alike — excluding it from one and not the
-    # other is what produced the earlier 33.9% figure.
+    # other silently inflates or deflates the percentage.
     budget_seconds: 50            # floor: 20% of 250s picture
     actual_seconds: 102           # 40.8% of picture
     # The exact complement of the seven beats that carry dialogue
     # (3, 4, 6, 8, 9, 11, 12). Derive this list from the beat table, never by
-    # hand — an earlier version omitted beat 5 and undercounted by 16s.
+    # hand: a hand-maintained copy drifts from the table it summarises.
     beats: [1, 2, 5, 7, 10, 13, 14]
     beat_seconds: { 1: 22, 2: 18, 5: 16, 7: 16, 10: 0, 13: 18, 14: 12 }
     zero_duration: [10]           # the turn is an instant, not a span

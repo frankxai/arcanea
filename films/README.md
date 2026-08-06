@@ -50,9 +50,8 @@ produced by hand against the doctrine.
 **Stage 6, the shot list, is the next artifact and does not exist yet.** It is
 the last thing needed before generation can start.
 
-*(An earlier version of this paragraph said "the first six stages." That was
-wrong twice over: the script had not been written when it was claimed, and the
-shot list still has not been.)*
+*When a stage lands, update the range above in the same commit — this line is
+the only place the pipeline's true progress is stated in prose.*
 
 ## Canon
 

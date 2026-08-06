@@ -50,23 +50,19 @@
 against a 20% floor. Measured at stage 8, not estimated.
 
 Seven beats, and they are exactly the complement of the seven that carry
-dialogue (3, 4, 6, 8, 9, 11, 12). **Beat 10 is the turn — an instant, not a
-span**, so it contributes 0s while still belonging to the set. Beat 5, the
-upward dust, was omitted from an earlier count for no reason other than that
-nobody re-derived the list from the beat table.
+dialogue (3, 4, 6, 8, 9, 11, 12) — **derive the set that way, never by hand.**
+**Beat 10 is the turn: an instant, not a span**, so it contributes 0s while
+still belonging to the set.
 
-The denominator is **picture (250s), not total (254s)**. The four-second card is
-excluded from numerator and denominator alike. An earlier draft excluded it from
-the numerator but left it in the denominator, which is the same picture/total
-conflation this document warns about two sections down — worth naming, since it
-survived one round of review by looking approximately right.
+The denominator is **picture (250s), not total (254s)**, and the four-second
+card is excluded from numerator and denominator alike. Excluding it from one
+and not the other is the picture/total conflation this document warns about two
+sections down.
 
-Beat 2 counts. It has no speech — the distant bell is sound, not dialogue — and
-so does beat 1, which means **the film's first spoken word arrives at 0:40**.
-Forty seconds of a woman building a wall before anyone says anything is the
-opening argument: she is competent, she is alone, and the film is in no hurry.
-An earlier draft of this note called beat 1 "22s partial" and omitted beat 2
-entirely, which under-counted the budget and made the opening look accidental.
+Beat 2 counts — the distant bell is sound, not dialogue — and so does beat 1,
+which means **the film's first spoken word arrives at 0:40**. Forty seconds of a
+woman building a wall before anyone says anything is the opening argument: she
+is competent, she is alone, and the film is in no hurry.
 
 **Why the turn is a rack focus, not a camera move.** The film's grammar has been
 static and low for 167 seconds. A dolly or crane on the biggest moment would

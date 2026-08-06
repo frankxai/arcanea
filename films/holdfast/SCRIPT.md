@@ -10,7 +10,7 @@
 > 12: 4. The other **seven of fourteen beats (1, 2, 5, 7, 10, 13, 14) have no
 > dialogue at all.** First word at 0:40, last word at 3:31.
 >
-> *(An earlier version of this line said 34. It was asserted, not counted.)*
+> *Count the total from the per-beat figures; do not restate it from memory.*
 
 ---
 
