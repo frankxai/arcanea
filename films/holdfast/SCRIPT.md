@@ -194,8 +194,9 @@ Move over.
 
 ## Word Ledger audit
 
-**Kess** — uses *bed*, *course*, *spall*, *green*, *hold*. Never says *tired*,
-*help*, *please*, *scared*, *mine*.
+**Kess** — exclusive: *bed*, *course*, *spall*, *green*, *plumb*. Never says
+*tired*, *help*, *please*, *scared*, *mine*. She also says *hold*, which is
+**shared with Vesk by design** and therefore sits in neither exclusive list.
 
 She is asked twice about her own exhaustion and routes around it both times
 using the building. She never asks for help; at the moment she most needs it she

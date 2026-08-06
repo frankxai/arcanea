@@ -37,9 +37,12 @@ where she doesn't.
 ### Word Ledger
 
 **Only she says:** *bed* (as a mason's term — the face a stone sits on) ·
-*course* · *spall* · *green* (freshly quarried stone, still wet) · *hold*
+*course* · *spall* · *green* (freshly quarried stone, still wet) · *plumb*
 
 **She cannot say:** *tired* · *help* · *please* · *scared* · *mine*
+
+**Shared, by design:** *hold* — the film's one deliberate collision, and
+therefore **not** in the exclusive list above. See § Word Ledger conflicts.
 
 **Grammatical tic:** She answers questions with a physical fact about the room.
 *"Are you sleeping?" — "The east wall sweats after rain."* Never evasive in tone,
@@ -130,15 +133,24 @@ show their monster. We show the dust it moves.
 
 ## Word Ledger conflicts — checked
 
-No lexical overlap between Kess and Vesk. His register is institutional and
-abstract (*threshold, variance, file*); hers is physical and trade-specific
-(*bed, course, spall*). Their two vocabularies cannot describe the same object,
-which is the argument of the film rendered in word choice.
+**Exactly one shared word, and it is deliberate.** Everything else is disjoint:
+his register is institutional and abstract (*threshold, variance, file*), hers
+physical and trade-specific (*bed, course, spall, plumb*). Their two
+vocabularies cannot describe the same object, which is the argument of the film
+rendered in word choice.
 
-The one moment they use the same word is **"hold"** — his in the institutional
-sense at **beat 4** (*"Hold still,"* over the instrument), hers in the literal
-sense at **beat 12**. Same word, and only one of them knows what it costs. That
-collision is the script's strongest line and neither character comments on it.
+The shared word is **"hold"** — his in the institutional sense at **beat 4**
+(*"Hold still,"* over the instrument), hers in the literal sense at **beat 12**.
+Same word, and only one of them knows what it costs. That collision is the
+script's strongest line and neither character comments on it.
+
+Because it is shared, `hold` is **excluded from either exclusive list** —
+listing it under "only she says" would make these two sections contradict each
+other, and the exclusive lists are what a drafting pass at stage 4 reads first.
+Kess's fifth exclusive word is *plumb*.
+
+*(Free, unplanned, and worth keeping: Vesk's institutional word **thres-hold**
+literally contains hers. Nobody points at it.)*
 
 *Referenced by beat, not timecode, deliberately: dialogue is not locked until
 stage 4, so any timecode quoted here would go stale the moment a line moves.
