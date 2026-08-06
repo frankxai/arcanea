@@ -12,7 +12,7 @@
 > **Draft 1 — not locked.** Blocked from lock by the canon ruling and name
 > approval in `BIBLE.md`, neither of which changes a line below.
 >
-> **Total spoken: 27 lines** — beat 3: 4 · 4: 5 · 6: 5 · 8: 3 · 9: 2 · 11: 4 ·
+> **Total spoken: 28 lines** — beat 3: 4 · 4: 6 · 6: 5 · 8: 3 · 9: 2 · 11: 4 ·
 > 12: 4. The other **seven of fourteen beats (1, 2, 5, 7, 10, 13, 14) have no
 > dialogue at all.** First word at 0:40, last word at 3:31.
 >
@@ -39,7 +39,7 @@ East wall sweats after rain.
 *He waits for the rest of it. There is no rest of it.*
 
 **KESS**
-Has done since spring.
+Has done since spring. It's green yet.
 
 ---
 
@@ -51,6 +51,11 @@ Has done since spring.
 Hold still.
 
 *The instrument catches, clicks. The needle does not move. He writes.*
+
+**KESS**
+That wall's plumb.
+
+*He does not look up.*
 
 **VESK**
 Eleventh.
@@ -64,7 +69,7 @@ Twelfth.
 The file has eleven.
 
 **KESS**
-The file missed one.
+It missed one.
 
 ---
 
@@ -188,7 +193,7 @@ Move over.
 |---|---|---|
 | 1 | Nobody names the theme | **Pass.** No line survives as a logline. The closest is "Nobody asked about the wall," which is a fact about the Academy, not a summary of the film. |
 | 2 | No abstract nouns | **Pass.** Zero instances of the banned list. The most abstract word spoken is *variance*, which is Vesk's trade jargon. |
-| 3 | Answer the wrong question | **Pass.** Twice she is asked about herself and answers with the building — beat 3 (*"You know why I'm here"* → *"East wall sweats after rain"*) and beat 8 (*"When did you last sleep through"* → *"Stairs up from the yard are long"*). Beat 6 **inverts** it: she asks, and he is the one who cannot answer. Beat 11 breaks it — *"Nobody asked about the wall"* is the pattern named out loud, and it is a direct answer. |
+| 3 | Answer the wrong question | **Pass.** She is asked about herself twice and answers with the building both times — beat 3 (*"You know why I'm here"* → *"East wall sweats after rain"*) and beat 8 (*"When did you last sleep through"* → *"Stairs up from the yard are long"*). Beat 4 is the same tic **unprompted** — nobody asked, and she offers *"That wall's plumb"* while he records her eleventh failure — so it is a third instance of the tic but not a third deflection. Beat 6 **inverts** it: she asks, and he cannot answer. Beat 11 breaks it — *"Nobody asked about the wall"* names the pattern aloud and is a direct answer. |
 | 4 | Break the meter | **Pass.** Vesk's beat-6 line runs 27 words; Kess answers in 5, then 3. Longest to shortest inside four lines. |
 | 5 | Physical want per scene | **Pass.** Hers: to keep her hand where it is. His: to finish the sheet before the weather turns. Both are blocked, not spoken. |
 | 6 | The world is old to them | **Pass.** *Rank zero*, *term*, *variance*, *placements* used flat and unglossed. No character explains a Gate. The word "Gate" is never spoken in this film. |
@@ -200,9 +205,47 @@ Move over.
 
 ## Word Ledger audit
 
-**Kess** — exclusive: *bed*, *course*, *spall*, *green*, *plumb*. Never says
-*tired*, *help*, *please*, *scared*, *mine*. She also says *hold*, which is
-**shared with Vesk by design** and therefore sits in neither exclusive list.
+**Audited mechanically, not by eye.** Every line was extracted by speaker and
+grepped against both ledgers. Doing it by reading is what produced the two
+defects below, which a reviewer caught and a five-line script would have caught
+sooner.
+
+**Kess** — exclusive: *bed*, *course*, *spall*, ***green***, ***plumb***. Two of
+the five are spoken: *green* at beat 3 (*"It's green yet"* — freshly quarried
+stone, still wet, and unglossed) and *plumb* at beat 4. Never says *tired*,
+*help*, *please*, *scared*, *mine* — confirmed by grep, zero hits. She also says
+*hold*, which is **shared with Vesk by design** and therefore sits in neither
+exclusive list.
+
+> **Two defects found in review and fixed here.**
+>
+> **1. She was saying one of his words.** Beat 4 read *"The file missed one."*
+> — and *file* is Vesk-exclusive. Rule 11 was marked Pass over the top of it.
+> The fix makes the constraint productive rather than merely satisfied: she now
+> says ***"It missed one."***, pronouning around a word she does not own. A
+> woman who will not dignify the record with its name is a sharper character
+> than one who repeats his vocabulary back to him, and the line is shorter.
+> This is the second time on this film that a ledger rule has produced a better
+> line than an unconstrained pass would have — see *"Move over"* below.
+>
+> **2. None of her five exclusive words were spoken at all.** Zero of five, in
+> a draft whose craft argument rests on the ledger being real. They appeared
+> only in *action* lines — "thumbs the spall away", "the course she has just
+> laid" — which are the writer's words, not hers, and do not count. A ledger
+> exercised entirely in stage directions is decoration.
+>
+> *Green* and *plumb* now sit in her mouth. **Beat 4's *"That wall's plumb"* is
+> the better of the two by a distance**: he is measuring her for magic, she
+> volunteers the one true thing about herself she can prove, and he does not
+> look up before recording her eleventh failure. The constraint found that
+> beat; no unconstrained draft would have gone looking for it.
+>
+> ***bed*, *course*, and *spall* remain unspoken, deliberately.** This is the
+> series-episode track, and a ledger is a forward constraint as much as a
+> present one — those three are reserved for a character who has more than four
+> minutes. That is a real reason, but it is only a reason for *three of five*.
+> Zero of five was a defect, and the line between the two is whether the ledger
+> ever binds anything in the film you actually submit.
 
 She is asked about herself twice and routes around both with the building —
 beat 3 and beat 8. Only **beat 8** is about exhaustion (*"When did you last

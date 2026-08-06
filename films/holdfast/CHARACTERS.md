@@ -155,6 +155,13 @@ physical and trade-specific (*bed, course, spall, plumb*). Their two
 vocabularies cannot describe the same object, which is the argument of the film
 rendered in word choice.
 
+*This is now **mechanically verified** against `SCRIPT.md` — every line
+extracted by speaker and grepped against both lists — rather than asserted. It
+had to be. Until review, the claim was false: Kess said "**The file missed
+one**" at beat 4, and *file* is his. The audit that was supposed to catch that
+was a paragraph of prose written by the same person who wrote the line. Grep
+the script; do not re-read it.*
+
 The shared word is **"hold"** — his in the institutional sense at **beat 4**
 (*"Hold still,"* over the instrument), hers in the literal sense at **beat 12**.
 Same word, and only one of them knows what it costs. That collision is the
