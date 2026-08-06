@@ -1,6 +1,7 @@
 # Campaign — Higgsfield Global Film Festival 2026
 
-> Two films, three repos, twenty-six days. This is the operating plan.
+> Two films, three repos, a **25-day submission window** (7–31 Aug inclusive).
+> This is the operating plan.
 > **Verify every rule below against the live contest page before committing** —
 > the rules were assembled from search results because
 > `higgsfield.ai/contests/higgsfield-global-film-festival` returns 403 from this
@@ -131,7 +132,9 @@ loose files.
 
 ## 5. Schedule — and the honest version of it
 
-Two films at "iconic, not slop" in 26 days is aggressive. It is achievable only
+Two films at "iconic, not slop" inside a 25-day window is aggressive — and the
+working window is shorter than the submission window, because the cut has to be
+finished and uploaded before the close, not on it. It is achievable only
 if **all writing finishes in week 1** and generation runs in parallel afterward.
 The failure mode is starting generation on day 3 because the tools are fun, and
 arriving at day 24 with a bin of clips and no film.
