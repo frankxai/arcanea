@@ -103,11 +103,23 @@ minutes and answered in none of them.
 | House Terra — living stone, rooted, light from below | `VISUAL_DOCTRINE.md` | Her house. Governs wardrobe and the yard's light law. |
 | Academy Houses, Starlight Corps | canon | Background texture only. Corps insignia glimpsed once, unremarked. |
 
-**Canon flag for the keeper:** `arcanea/.claude/CLAUDE.md` lists Foundation at
-396 Hz; `CANON_LOCKED.md` L55 and the 2026-02-21 locked entry list it at 174 Hz
-with Fire at 396 Hz. `CANON_LOCKED.md` is authoritative and this film uses
-**174 Hz**. The stale table in `.claude/CLAUDE.md` should be corrected
-separately — flagged, not fixed here.
+**Canon flag for the keeper:** `arcanea/.claude/CLAUDE.md` **contradicts
+itself** on Foundation's frequency. Its canonical Ten Gates table (L45) has
+Foundation at 174 Hz, correctly. Two derived surfaces — the Guardian prose list
+(L261) and the Guardian Routing table (L313) — have it at 396 Hz, which is
+Fire's.
+
+That is not an isolated typo. The routing table's whole frequency column is
+**offset by two rows**: every guardian from Lyssandria to Elara carries the
+frequency of the gate two positions later, and Ino and Shinkami are right only
+because the offset ran off the end and the last two values got repeated. Eight
+of ten are wrong. The prose list at L261 carries the identical offset, so both
+derived surfaces almost certainly came from one bad paste that dropped 174 and
+285 off the top of the column.
+
+`CANON_LOCKED.md` L55 and the 2026-02-21 locked entry are authoritative and this
+film uses **174 Hz**. Tracked in issue #92 — flagged, not fixed here, because
+correcting a canon file is the keeper's call and not a film's.
 
 **Canon question for the keeper:** does a mortal holding a Gate closed
 contradict anything locked about how Gates open? The film's position is that

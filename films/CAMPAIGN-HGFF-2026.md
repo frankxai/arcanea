@@ -17,13 +17,26 @@
 | Submissions close | **31 Aug 2026, 23:59 PT** | high |
 | Prize pool | $1,000,000 across 14 winners (1st $500k · 2nd $200k · 3rd $100k · Audience Choice $100k · 10 × $10k) | high |
 | Tracks | series-episode · synopsis-based · freeform | high |
-| Entries | up to 4, **max 1 per track** | medium — one source said 10; plan for 1 per track |
+| Entries | **max 1 per track** → cap of 3, given three tracks | medium — see note |
 | Runtime | **min 3:00**, recommended ≤5:00 | medium — one source said 15s–5:00; both films target 3:40–4:10, which satisfies either |
 | Team size | up to 4 | medium |
 | Eligibility | 18+, active Higgsfield subscription | high |
 | Winners announced | late Sept / early Oct | high |
 | Judging | internal jury, five published weighted criteria. Confirmed: **Cinematic Quality 25% · Storytelling & Creativity 25% · Technical Execution 20%.** Remaining 30% across two criteria — **unconfirmed** | medium |
 | Jury | includes **Ed Catmull** (Pixar co-founder, 5× Oscar, ex-President Disney Animation), plus production veterans, VFX studios, AI-native creators | high |
+
+**The entry cap was stated inconsistently and is now stated as one number.** It
+previously read "up to 4, max 1 per track", which cannot both be true: three
+tracks at one entry each caps you at **3**. The two halves came from different
+sources — one search result said 4, another said 10, and "1 per track" was the
+strictest reading available. Only the strict reading is kept, because the whole
+row is medium-confidence and the stricter number is the safe one to plan
+against.
+
+**It does not bind us either way.** Section 3 submits two films, one
+series-episode and one freeform, which clears a cap of 3 and a cap of 4
+identically. This row needs verifying for accuracy, not because the plan depends
+on it.
 
 **All dates below are absolute.** This document does not anchor to "today" —
 a hard-coded present tense rots within a day and then quietly misdates the whole
