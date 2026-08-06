@@ -31,8 +31,21 @@ them to something physical.
 
 ### Physical asymmetry
 The last two fingers of her left hand don't fully straighten — held in the same
-position too long, too young. She hides the hand in every scene until 3:12,
-where she doesn't.
+position too long, too young. She never offers the hand, and never lets Vesk
+take it, until **beat 9**, where she does.
+
+*(This read "until 3:12" until review caught it. 3:12 is the start of beat 12,
+which is Vesk's hand on the door — not hers. Stale ordering from an earlier
+draft, and a violation of this file's own rule at the foot of the page: **refer
+to beats, not timecodes.** The rule was written after fixing one instance of
+exactly this and did not catch the second one in the same file.)*
+
+**Open for stage 6:** "she hides the hand" is not quite what the documents
+describe. Beat 1 is a close, low shot of her hands setting a stone, so the curl
+is plausibly on screen in the film's first frames — unremarked, unreadable, and
+only meaningful in retrospect at beat 9. That is the stronger version and it is
+not the same as hiding. The shot list decides whether the curl is visible in
+beat 1; whatever it decides, this section follows it rather than the reverse.
 
 ### Word Ledger
 
@@ -99,8 +112,9 @@ terminal reading) · *file*
 
 **Grammatical tic:** He speaks in the passive when he is delivering bad news and
 in the active when he is curious. The switch is the tell that he has stopped
-assessing and started looking, and it happens once, at 2:31, one line before the
-turn. *"The file is closed at the end of term"* → *"Show me your hand."*
+assessing and started looking, and it happens once, opening **beat 9** — one
+beat before the turn. *"The file is closed at the end of term"* → *"Show me your
+hand."*
 
 ### Locked visual string
 > A man in his fifties, Starlight Corps sentinel, five-point star insignia at
@@ -112,7 +126,8 @@ turn. *"The file is closed at the end of term"* → *"Show me your hand."*
 
 ### Function
 He is the audience. He arrives believing what they believe, sees it before they
-do, and his face at 2:47 is where the film's emotion actually lands. She has
+do, and his face at **beat 10** — the turn — is where the film's emotion
+actually lands. She has
 known this her whole life. He is the one who finds out.
 
 ---
@@ -122,8 +137,9 @@ known this her whole life. He is the one who finds out.
 Never seen whole. Never named aloud.
 
 Present only as: pressure in the sub-bass · dust that falls upward for two
-frames at 1:22 · the weight in the door · and at 3:44, in the seam-light, one
-shape too large to resolve, held for eleven frames and never repeated.
+frames in **beat 5** · the weight in the door · and in **beat 13**, in the
+seam-light, one shape too large to resolve, held for eleven frames and never
+repeated.
 
 **Rule: no wide shot of Kaelith exists in this film.** The single most valuable
 thing a pilot can do with a canon's biggest asset is withhold it. Everyone will
