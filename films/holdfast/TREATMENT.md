@@ -46,8 +46,14 @@
 ## Structural notes
 
 **Speech-free budget:** beats **1** (22s), **2** (18s), **7** (16s), **13** (18s),
-**14** (12s) = **86s of 254s — 33.9%**, against a 20% floor. Measured at stage 8,
-not estimated; the card's four seconds are excluded from the numerator here.
+**14** (12s) = **86s of 250s picture — 34.4%**, against a 20% floor. Measured at
+stage 8, not estimated.
+
+The denominator is **picture (250s), not total (254s)**. The four-second card is
+excluded from numerator and denominator alike. An earlier draft excluded it from
+the numerator but left it in the denominator, which is the same picture/total
+conflation this document warns about two sections down — worth naming, since it
+survived one round of review by looking approximately right.
 
 Beat 2 counts. It has no speech — the distant bell is sound, not dialogue — and
 so does beat 1, which means **the film's first spoken word arrives at 0:40**.

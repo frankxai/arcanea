@@ -113,8 +113,11 @@ sound:
   # 1, 7, and 13 the 174 Hz bed runs underneath; on beat 14 it stops. That
   # difference is the film, which is why the two fields must not be collapsed.
   speech_free:
-    budget_seconds: 50           # floor (20% of 254s picture)
-    actual_seconds: 86           # 33.9% — beats 1+2+7+13+14
+    # Measured against PICTURE (250s), not total (254s). The card is excluded
+    # from numerator and denominator alike — excluding it from one and not the
+    # other is what produced the earlier 33.9% figure.
+    budget_seconds: 50           # floor: 20% of 250s picture
+    actual_seconds: 86           # 34.4% of picture — beats 1+2+7+13+14
     beats: [1, 2, 7, 13, 14]     # 14 is also total_silence — deliberate overlap
     bed_running_on: [1, 2, 7, 13]
     bed_stopped_on: [14]

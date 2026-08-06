@@ -24,7 +24,10 @@
 | Judging | internal jury, five published weighted criteria. Confirmed: **Cinematic Quality 25% · Storytelling & Creativity 25% · Technical Execution 20%.** Remaining 30% across two criteria — **unconfirmed** | medium |
 | Jury | includes **Ed Catmull** (Pixar co-founder, 5× Oscar, ex-President Disney Animation), plus production veterans, VFX studios, AI-native creators | high |
 
-**Today is 5 Aug.** Two days before entry opens, twenty-six before it closes.
+**All dates below are absolute.** This document does not anchor to "today" —
+a hard-coded present tense rots within a day and then quietly misdates the whole
+schedule. The two fixed points are **entry opens 7 Aug** and **entry closes
+31 Aug, 23:59 PT**; everything else is measured from those.
 
 **Action before anything else:** open the live rules page, confirm the seven
 medium-confidence rows, confirm the subscription is active, and confirm the two
@@ -135,7 +138,7 @@ arriving at day 24 with a bin of clips and no film.
 
 | Dates | Phase | Gate |
 |---|---|---|
-| **5–7 Aug** | Verify rules + subscription. Fable 5 bake-off (`CREW.md`). Canon-keeper ruling on the Kaelith question. Lock names. | Rules confirmed in writing |
+| **through 7 Aug** | Verify rules + subscription. Fable 5 bake-off (`CREW.md`). Canon-keeper ruling on the Kaelith question. Lock names. **Slipping this phase does not move the 31 Aug deadline — it eats the buffer.** | Rules confirmed in writing |
 | **7–12 Aug** | **Writing week.** Both scripts to lock: beats → script → subtract-three → language checklist. Sound maps written. Shot lists built. | **12 Aug: SCRIPTS LOCKED.** Hard gate. |
 | **12–15 Aug** | Character references generated, character IDs captured, look tests on 6 shots per film. | Faces hold across 6 shots |
 | **15–24 Aug** | **Generation.** Pipelined per shot, batches of 12, every batch screened. Sound built in parallel from day one of this phase. | Taste Gate per shot |
