@@ -182,7 +182,7 @@ Move over.
 |---|---|---|
 | 1 | Nobody names the theme | **Pass.** No line survives as a logline. The closest is "Nobody asked about the wall," which is a fact about the Academy, not a summary of the film. |
 | 2 | No abstract nouns | **Pass.** Zero instances of the banned list. The most abstract word spoken is *variance*, which is Vesk's trade jargon. |
-| 3 | Answer the wrong question | **Pass.** Beats 3, 6, 8 — she answers with the building three times. Beat 6 inverts it: *he* fails to answer *her*. |
+| 3 | Answer the wrong question | **Pass.** Twice she is asked about herself and answers with the building — beat 3 (*"You know why I'm here"* → *"East wall sweats after rain"*) and beat 8 (*"When did you last sleep through"* → *"Stairs up from the yard are long"*). Beat 6 **inverts** it: she asks, and he is the one who cannot answer. Beat 11 breaks it — *"Nobody asked about the wall"* is the pattern named out loud, and it is a direct answer. |
 | 4 | Break the meter | **Pass.** Vesk's beat-6 line runs 27 words; Kess answers in 5, then 3. Longest to shortest inside four lines. |
 | 5 | Physical want per scene | **Pass.** Hers: to keep her hand where it is. His: to finish the sheet before the weather turns. Both are blocked, not spoken. |
 | 6 | The world is old to them | **Pass.** *Rank zero*, *term*, *variance*, *placements* used flat and unglossed. No character explains a Gate. The word "Gate" is never spoken in this film. |
@@ -198,9 +198,11 @@ Move over.
 *tired*, *help*, *please*, *scared*, *mine*. She also says *hold*, which is
 **shared with Vesk by design** and therefore sits in neither exclusive list.
 
-She is asked twice about her own exhaustion and routes around it both times
-using the building. She never asks for help; at the moment she most needs it she
-states a condition instead — *"I have to hold."*
+She is asked about herself twice and routes around both with the building —
+beat 3 and beat 8. Only **beat 8** is about exhaustion (*"When did you last
+sleep through"*), and it is the one she deflects hardest, with a fact about
+stairs. She never asks for help; at the moment she most needs it she states a
+condition instead — *"I have to hold."*
 
 **Vesk** — uses *threshold*, *variance*, *log*, *terminal*, *file*. Never says
 *sorry*, *wrong*, *stay*, *girl*, *enough*.

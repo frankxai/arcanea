@@ -94,14 +94,33 @@ minutes and answered in none of them.
 
 ## Canon binding
 
-| Element | Canon source | Use in film |
-|---|---|---|
-| Foundation Gate — 174 Hz, Earth/survival | `CANON_LOCKED.md` L55 | The gate she holds. The film's sound bed **is** its frequency. |
-| Lyssandria / Kaelith | `CANON_LOCKED.md` L55, L264 | Never named aloud. Kaelith is felt as pressure and dust; never fully seen. |
-| **Kaelith Stone** — gravity-dense, near-indestructible, *absorbs kinetic force* | `CANON_LOCKED.md` L264 | The door is Kaelith Stone. This is the canon's own explanation for why the door holds and why it costs a body to help it. Load-bearing, and it was already in the canon. |
-| Magic ranks — 0–2 Apprentice … 9–10 Luminor | Arcanea canon | The measuring scene. Her rank is 0. |
-| House Terra — living stone, rooted, light from below | `VISUAL_DOCTRINE.md` | Her house. Governs wardrobe and the yard's light law. |
-| Academy Houses, Starlight Corps | canon | Background texture only. Corps insignia glimpsed once, unremarked. |
+| Element | Canon source | Status | Use in film |
+|---|---|---|---|
+| Foundation Gate — 174 Hz, Earth/survival | `CANON_LOCKED.md` L55 (Tier 2) | **LOCKED ✅** | The gate she holds. The film's sound bed **is** its frequency. |
+| Lyssandria / Kaelith *the Godbeast* | `CANON_LOCKED.md` L55 (Tier 2) | **LOCKED ✅** | Never named aloud. Felt as pressure and dust; never fully seen. |
+| **Kaelith Stone** — gravity-dense, near-indestructible, *absorbs kinetic force* | `CANON_LOCKED.md` L264 (Tier 7, Arcanean Materials) | **STAGING ⏳** | The door is Kaelith Stone. The canon's own explanation for why the door holds and why it costs a body to help it. See the warning below. |
+| Magic ranks — 0–2 Apprentice … 9–10 Luminor | `CANON_LOCKED.md` L72–80 (Tier 2) | **LOCKED ✅** | The measuring scene. Her rank is 0. |
+| House Terra — living stone, rooted, light from below | `VISUAL_DOCTRINE.md` | not tiered | Her house. Governs wardrobe and the yard's light law. |
+| Academy Houses | `CANON_LOCKED.md` Tier 5 | **LOCKED ✅** | Background texture only. |
+| Starlight Corps | `CANON_LOCKED.md` L201 (Terminology) | **STAGING ⏳** | Vesk's institution. Insignia glimpsed once, unremarked. No Corps lore is asserted. |
+
+**Two of the seven are staging-tier, and one of them is the film's central
+mechanic.** An earlier draft of this table said "already in the canon,
+load-bearing," which reads more settled than the source file's own marker. It is
+in the canon; it is not *locked*, and `CANON_LOCKED.md` L336 says staging content
+"can be refined before locking" — so it can move under us.
+
+**If Tier 7 changes and Kaelith Stone stops absorbing kinetic force**, the film
+does not break, but one sentence of its logic has to move. The cost of holding
+the door would come from the Gate's pressure rather than from the material, and
+the door becomes dense black stone with no named property. Nothing in the
+treatment, script, or shot list changes — no character ever explains the
+mechanic aloud, which is what makes it cheap to re-source. Fold this into the
+#93 ruling rather than treating it as settled.
+
+**Starlight Corps** is the safer of the two: the film asserts nothing about it
+beyond a five-point insignia at a collar. If the term is renamed or dropped, the
+insignia stays and the word never appears on screen.
 
 **Canon flag for the keeper:** `arcanea/.claude/CLAUDE.md` **contradicts
 itself** on Foundation's frequency. Its canonical Ten Gates table (L45) has
