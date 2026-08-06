@@ -17,26 +17,38 @@
 | Submissions close | **31 Aug 2026, 23:59 PT** | high |
 | Prize pool | $1,000,000 across 14 winners (1st $500k · 2nd $200k · 3rd $100k · Audience Choice $100k · 10 × $10k) | high |
 | Tracks | series-episode · synopsis-based · freeform | high |
-| Entries | **max 1 per track** → cap of 3, given three tracks | medium — see note |
+| Entries | **unresolved** — possibly up to 10; the "4, max 1 per track" figure may belong to a different Higgsfield contest | low — see note |
 | Runtime | **min 3:00**, recommended ≤5:00 | medium — one source said 15s–5:00; both films target 3:40–4:10, which satisfies either |
 | Team size | up to 4 | medium |
 | Eligibility | 18+, active Higgsfield subscription | high |
 | Winners announced | late Sept / early Oct | high |
-| Judging | internal jury, five published weighted criteria. Confirmed: **Cinematic Quality 25% · Storytelling & Creativity 25% · Technical Execution 20%.** Remaining 30% across two criteria — **unconfirmed** | medium |
+| Judging | five weighted criteria: **Cinematic Quality 25% · Storytelling & Creativity 25% · Technical Execution 20% · Platform Engagement 15% · Social Media Engagement 15%** | medium-high — see §2a |
 | Jury | includes **Ed Catmull** (Pixar co-founder, 5× Oscar, ex-President Disney Animation), plus production veterans, VFX studios, AI-native creators | high |
 
-**The entry cap was stated inconsistently and is now stated as one number.** It
-previously read "up to 4, max 1 per track", which cannot both be true: three
-tracks at one entry each caps you at **3**. The two halves came from different
-sources — one search result said 4, another said 10, and "1 per track" was the
-strictest reading available. Only the strict reading is kept, because the whole
-row is medium-confidence and the stricter number is the safe one to plan
-against.
+**The entry cap has now been wrong twice, in opposite directions, and is being
+left open rather than guessed a third time.**
 
-**It does not bind us either way.** Section 3 submits two films, one
-series-episode and one freeform, which clears a cap of 3 and a cap of 4
-identically. This row needs verifying for accuracy, not because the plan depends
-on it.
+It first read "up to 4, max 1 per track" — impossible against three tracks. A
+review caught the arithmetic and it was tightened to "1 per track → cap of 3."
+A later search suggests that tightening imported the wrong contest's rule
+entirely: the "4 entries, max 1 per track" wording appears to belong to the
+**Higgsfield Seedance 2.0 Contest**, a different competition, while the Global
+Film Festival may allow up to **ten**. That also explains the stray "10" the
+first pass saw and discarded as noise — it may have been the only correct number
+in the room.
+
+Both corrections were reasonable on the evidence available and both may be
+wrong. The row now says *unresolved*, because a confidently stated wrong number
+is worse than an admitted gap, and two rounds of confident correction is the
+point at which to stop correcting and go read the page.
+
+**It still does not bind us.** Section 3 submits two films, one series-episode
+and one freeform — under a per-track limit that is one each, and under any
+aggregate cap of two or more. Every candidate reading of this row clears it, so
+the row needs verifying for accuracy rather than because the plan turns on it.
+If the cap is in fact ten, that is an *opportunity* question (is a third entry
+worth making?) and not a constraint one — and the answer is still no, for the
+reasons in §3.
 
 **All dates below are absolute.** This document does not anchor to "today" —
 a hard-coded present tense rots within a day and then quietly misdates the whole
@@ -68,7 +80,56 @@ What this jury is scored to reward, and what that means for us:
 | Storytelling & Creativity 25% | A turn, a want, a reason to care | One reversal per film, located at a timecode, written before any generation |
 | Cinematic Quality 25% | Composition, light, restraint, coherence | A declared formal rule per film that a viewer feels without naming |
 | Technical Execution 20% | Consistency, control, competence | Character-ID reuse, a full generation ledger, deliberate hand shots |
-| ~30% unconfirmed | likely sound, originality, or emotional impact | Designed sound in both films — the field's largest quality gap — and two premises nobody else can make |
+| Platform Engagement 15% | views, watch-through, and reactions **on Higgsfield itself** | **No answer yet.** See §2a — this is the plan's largest gap. |
+| Social Media Engagement 15% | reach and response **off-platform** | **No answer yet.** See §2a. |
+
+### 2a. The two criteria we guessed wrong — and what it costs
+
+**30% of the score is distribution, not craft.** The earlier version of this plan
+recorded the unpublished 30% as "likely sound, originality, or emotional impact"
+and answered it with *designed sound in both films*. That guess was wrong in the
+worst available direction: the two criteria are **Platform Engagement** and
+**Social Media Engagement**, 15% each. They do not measure the film. They
+measure how many people watch it and react to it, on Higgsfield and off.
+
+**Confidence: medium-high, and deliberately not "high."** Two independent
+searches return the same five-criteria breakdown, but `higgsfield.ai` still 403s
+from this environment, so the primary source is unverified. Treat it as strong
+enough to plan against and not strong enough to bet the schedule on. **Confirm
+it on a browser that can reach the page** — this is now the single highest-value
+item in §8, ahead of the entry cap.
+
+**Why this matters more than the percentage suggests.** The whole plan is built
+on out-crafting a field of four thousand for a jury that includes Ed Catmull.
+That reasoning is still sound for the 70% that is craft. But both films are
+deliberately quiet — no score, no swell, a climax that is a sound *stopping* —
+and quiet is the hardest thing to make travel on a feed. We optimised hard for
+the half of the room that watches carefully and not at all for the half that
+scrolls.
+
+**What this does not mean.** It does not mean adding a braaam. Engagement bought
+by looking like everything else forfeits the 50% that Cinematic Quality and
+Storytelling carry, which is a bad trade at any engagement level. The refusals
+in both films stay.
+
+**What it does mean — an open question for Frank, not a decision I should make.**
+The campaign currently has no distribution arm at all. Options, cheapest first:
+
+1. **A cut-down** — 15–20s of the strongest images, built for a muted autoplay
+   feed, pointing at the full film. Costs nothing the films don't already have.
+   *Holdfast*'s beat 14 rise and *What He Left Running*'s kettle are both
+   legible with no sound and no context.
+2. **The making-of as the social artifact.** The festival open-sourced its own
+   prompts; the audience is builders. A thread on the Word Ledger or on
+   "no interface in a film about a computer" is more shareable than either film
+   and costs one afternoon.
+3. **Publish early, not on the 31st.** Platform engagement needs time to
+   accumulate. A film submitted on the deadline has days; one submitted on the
+   12th has three weeks. **This interacts with the 12 Aug decision gate** —
+   which is now also a publish-date decision, not only a scope one.
+
+I have not built any of this. It is a real change in what the campaign is, and
+that is a call for you.
 
 **The competitive read.** Four thousand entries, most of them made in the last
 three weeks by people with identical model access. The centre of that
@@ -254,8 +315,18 @@ the web gate is: the person who made the thing is the worst available judge of i
 
 ## 8. Open items
 
-- [ ] Confirm the seven medium-confidence rules on the live page
-- [ ] Confirm the two unpublished judging criteria (30% of the score)
+- [ ] **Highest value item on this list:** confirm the five judging criteria on
+      a browser that can reach `higgsfield.ai`. Two searches say **Platform
+      Engagement 15% + Social Media Engagement 15%** — 30% of the score is
+      distribution, not craft, which this plan had guessed as craft. See §2a.
+      If true, the campaign needs a distribution arm it does not have.
+- [ ] **Entry cap — do not guess a third time.** Corrected twice, in opposite
+      directions; the "4, max 1 per track" wording may belong to the Seedance
+      2.0 contest rather than this one. Read the page.
+- [ ] Confirm the remaining medium-confidence rules on the live page
+- [ ] **Decide the publish date.** Platform Engagement accrues over time, so
+      submitting on the 31st forfeits weeks of it. This makes the 12 Aug gate a
+      publish-date decision as well as a scope one.
 - [ ] Confirm the Higgsfield subscription is active and covers the entry
 - [ ] Canon-keeper ruling: can a mortal hold a Gate closed? (`holdfast/BIBLE.md`)
 - [ ] Canon fix (own PR, not this one): `.claude/CLAUDE.md` **contradicts
