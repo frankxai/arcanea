@@ -26,6 +26,26 @@ contract shape:
 Start any film work with the `film-release-gate` skill, before writing a script
 or generating a frame.
 
+### The pack is not vendored here yet
+
+**The eight-stage pipeline and its `/film-*` commands are not runnable from this
+repo today.** Unlike `web-excellence`, `film-excellence` has not been installed
+into `.claude/skills/` — it currently lives only in
+[`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library)
+on an open PR (#23). Invoking `/film-bible` or `/film-script` here will find
+nothing.
+
+That is deliberate for now: vendoring from an unmerged branch would create a
+copy that drifts from its source before the source is settled. Once #23 merges:
+
+```bash
+packs/film-excellence/install.sh /path/to/arcanea
+```
+
+Until then the pack is a **reference** for how this bible was built, not tooling
+you can run. The documents in `holdfast/` stand on their own — they are the
+output of the first six stages, produced by hand against the doctrine.
+
 ## Canon
 
 `.arcanea/lore/CANON_LOCKED.md` is authoritative. Films bind to canon and do not

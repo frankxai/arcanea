@@ -85,6 +85,12 @@ trained to recognise as authorship.
 | **Freeform** | **WHAT HE LEFT RUNNING** (Starlight) | No brief to hide behind; wins on being unreproducible. Drawn from a real system with real invariants. |
 | Synopsis-based | — | Only enter if the provided synopsis genuinely fits. Do not manufacture a third film to fill a slot; a weak third entry costs attention and adds nothing. |
 
+**This allocation rests on an unverified rule.** "Up to 4 entries, max 1 per
+track" is medium-confidence (one source said 10 entries). If the real rule is
+one entry *total*, this section collapses to a single choice — and it should be
+*Holdfast*, for the reasons in §5's decision gate. Verify before building the
+schedule on it.
+
 ---
 
 ## 4. Repo structure and why it is split this way
