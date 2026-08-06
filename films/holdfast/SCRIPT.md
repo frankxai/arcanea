@@ -187,7 +187,7 @@ Move over.
 | 5 | Physical want per scene | **Pass.** Hers: to keep her hand where it is. His: to finish the sheet before the weather turns. Both are blocked, not spoken. |
 | 6 | The world is old to them | **Pass.** *Rank zero*, *term*, *variance*, *placements* used flat and unglossed. No character explains a Gate. The word "Gate" is never spoken in this film. |
 | 7 | Interruption budget | **Pass.** Beat 8 ("That's not an—") and beat 11 ("you never—"), both written as fragments. |
-| 8 | Speech-free ≥ 20% | **Pass.** 86s of 250s = 34.4%. Seven of fourteen beats silent. |
+| 8 | Speech-free ≥ 20% | **Pass.** 102s of 250s = 40.8%. Beats 1, 2, 5, 7, 10, 13, 14 — seven of fourteen, the exact complement of the seven that carry dialogue. |
 | 9 | Names cost something | **Pass.** Her name is spoken once, in the first line, as an official summons. Never again by anyone. |
 | 10 | Last line is mundane | **Pass.** *"Move over."* Two words, practical, apparently about space on the ground. |
 | 11 | Word Ledgers respected | **Pass.** See below. |
