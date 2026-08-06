@@ -44,7 +44,15 @@ packs/film-excellence/install.sh /path/to/arcanea
 
 Until then the pack is a **reference** for how this bible was built, not tooling
 you can run. The documents in `holdfast/` stand on their own — they are the
-output of the first six stages, produced by hand against the doctrine.
+output of **stages 1–5** (bible · cast · beats · script · look & sound),
+produced by hand against the doctrine.
+
+**Stage 6, the shot list, is the next artifact and does not exist yet.** It is
+the last thing needed before generation can start.
+
+*(An earlier version of this paragraph said "the first six stages." That was
+wrong twice over: the script had not been written when it was claimed, and the
+shot list still has not been.)*
 
 ## Canon
 
