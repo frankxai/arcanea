@@ -142,26 +142,26 @@ colors:
 
 typography:
   display:
-    family: "Space Grotesk"
-    weights: [300, 400, 500, 600, 700]
+    family: "Geist"
+    weights: ["variable"]
     css_variable: "--font-display"
     fallback: "system-ui, sans-serif"
     use: "Bold headings, hero text, page titles"
 
   body:
-    family: "Inter"
+    family: "Geist"
     weights: ["variable"]
-    css_variable: "--font-inter"
+    css_variable: "--font-body"
     fallback: "system-ui, sans-serif"
     use: "All body text, narrative, UI labels, navigation"
 
   serif:
-    family: "Newsreader"
-    weights: [400, 500, 600, 700]
+    family: "Instrument Serif"
+    weights: [400]
     styles: ["normal", "italic"]
     css_variable: "--font-serif"
     fallback: "Georgia, ui-serif, serif"
-    use: "Long-form reading (Library, books, articles)"
+    use: "Editorial accent, long-form reading (Library, books, articles)"
 
   mono:
     family: "JetBrains Mono"
@@ -170,10 +170,10 @@ typography:
     fallback: "Consolas, monospace"
     use: "Code blocks, technical data, terminal output"
 
-  # Note: Cinzel and Crimson Pro from original design system
-  # were replaced with Space Grotesk and Inter for a more
-  # modern, tech-forward aesthetic. Newsreader covers the
-  # editorial serif role.
+  # Canonical: @arcanea/design-system v0.2.0 (production repo arcanea-ai-app,
+  # decided 2026-04-18). Geist covers display + body, Instrument Serif the
+  # editorial serif role, JetBrains Mono code. Cinzel, Space Grotesk, and
+  # Inter are banned.
 
   scale:
     xs: ["0.75rem", "1rem"]       # 12px / 16px

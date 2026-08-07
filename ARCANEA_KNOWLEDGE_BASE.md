@@ -90,7 +90,7 @@
 - **89 Color Tokens**: Academy-specific palettes (Atlantean, Draconic, Creation)
 - **30+ Animations**: Water flow, fire flicker, shimmer, glow effects
 - **6 Custom UI Components**: CosmicCard, Button, AcademyBadge, BondIndicator, CosmicGradient, GlowEffect
-- **Typography**: Custom font configuration (recently added Cinzel + Crimson Pro)
+- **Typography**: Custom font configuration (legacy Cinzel + Crimson Pro; canonical is Geist per `@arcanea/design-system` v0.2.0)
 
 ### ⚠️ In Progress / Partially Complete
 
@@ -306,8 +306,8 @@ interface ConversationContext {
   - Creation: Shimmer, radial-pulse (prismatic, pulsing)
 
 ### Typography (Recently Updated)
-- **Display**: Cinzel (elegant serif for headings, Luminor names)
-- **Body**: Crimson Pro (refined serif for descriptions, content)
+- **Display**: Geist (display + body, per `@arcanea/design-system` v0.2.0)
+- **Body**: Geist, with Instrument Serif as editorial accent (Cinzel, Space Grotesk, and Inter are banned)
 - **Monospace**: Geist Mono (for code, technical content)
 - **Avoid**: Inter, Roboto, system fonts (too generic)
 

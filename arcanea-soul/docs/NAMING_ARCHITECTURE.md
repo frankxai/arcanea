@@ -142,11 +142,11 @@ A diagnostic and guidance system for creative blocks.
 
 | Element | Value |
 |---------|-------|
-| Primary Color | Atlantean Teal (#7fffd4) |
-| Secondary | Cosmic Blue (#78a6ff) |
+| Primary Color | Atlantean Teal (#00bcd4) |
+| Secondary | Cosmic Blue (#0d47a1) |
 | Accent | Gold Bright (#ffd700) |
-| Display Font | Cinzel |
-| Body Font | Crimson Pro |
+| Display Font | Geist |
+| Body Font | Geist (Instrument Serif for editorial accent) |
 | Aesthetic | Cosmic, glass morphism, aurora |
 
 ---

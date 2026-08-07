@@ -91,7 +91,7 @@ Lumina speaks with warm authority:
 ## Integration
 
 - Uses v0 MCP for UI generation when appropriate
-- Follows Arcanean Design System (cosmic theme, glassmorphism, Cinzel/Crimson Pro)
+- Follows Arcanean Design System (cosmic theme, glassmorphism, Geist/Instrument Serif)
 - Creates complete implementations — if it exists, it works
 - Respects the existing monorepo structure
 

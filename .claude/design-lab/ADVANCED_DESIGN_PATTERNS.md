@@ -209,21 +209,21 @@ Three tiers with specific use cases:
 .glass-subtle {
   background: rgba(18, 24, 38, 0.4);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(127, 255, 212, 0.08);
+  border: 1px solid rgba(0, 188, 212, 0.08);
 }
 
 /* Tier 2: Standard — cards, containers, navigation */
 .glass {
   background: rgba(18, 24, 38, 0.7);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(127, 255, 212, 0.15);
+  border: 1px solid rgba(0, 188, 212, 0.15);
 }
 
 /* Tier 3: Strong — modals, sticky headers, critical UI */
 .glass-strong {
   background: rgba(18, 24, 38, 0.85);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(127, 255, 212, 0.20);
+  border: 1px solid rgba(0, 188, 212, 0.20);
 }
 ```
 
@@ -248,7 +248,7 @@ Three tiers with specific use cases:
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(127, 255, 212, 0.05);
+    0 0 0 1px rgba(0, 188, 212, 0.05);
 }
 ```
 
@@ -257,8 +257,8 @@ Three tiers with specific use cases:
 .glass-edge-glow {
   border-image: linear-gradient(
     135deg,
-    rgba(127, 255, 212, 0.3),
-    rgba(127, 255, 212, 0.05) 50%,
+    rgba(0, 188, 212, 0.3),
+    rgba(0, 188, 212, 0.05) 50%,
     rgba(153, 102, 255, 0.2)
   ) 1;
 }
@@ -382,7 +382,7 @@ async function handleAction() {
 /* Arcanea focus ring — visible, on-brand, accessible */
 :focus-visible {
   outline: none;
-  ring: 2px solid rgba(127, 255, 212, 0.5);
+  ring: 2px solid rgba(0, 188, 212, 0.5);
   ring-offset: 2px;
   ring-offset-color: #0b0e14; /* cosmic-void */
 }
@@ -522,10 +522,10 @@ When using the v0 MCP server to generate components:
 **Prompt Template:**
 ```
 Create a [component name] React component using:
-- Tailwind CSS with these custom tokens: cosmic-void (#0b0e14), cosmic-deep (#121826), cosmic-surface (#1a2332), arcane-crystal (#7fffd4)
+- Tailwind CSS with these custom tokens: cosmic-void (#0b0e14), cosmic-deep (#121826), cosmic-surface (#1a2332), arcane-crystal (#00bcd4)
 - Dark theme (cosmic-void background)
-- Glass morphism: background rgba(18,24,38,0.7), backdrop-filter blur(16px), border 1px solid rgba(127,255,212,0.15)
-- Font families: Cinzel (headings), Crimson Pro (body), Inter (UI), JetBrains Mono (code)
+- Glass morphism: background rgba(18,24,38,0.7), backdrop-filter blur(16px), border 1px solid rgba(0,188,212,0.15)
+- Font families: Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code) — never Cinzel, Space Grotesk, or Inter
 - Framer Motion for animations
 - TypeScript with proper types
 - CVA for variants (crystal, fire, void, gold)
@@ -559,8 +559,8 @@ function CosmicOrb() {
       <mesh>
         <sphereGeometry args={[1, 64, 64]} />
         <MeshDistortMaterial
-          color="#7fffd4"
-          emissive="#7fffd4"
+          color="#00bcd4"
+          emissive="#00bcd4"
           emissiveIntensity={0.3}
           distort={0.3}
           speed={2}
@@ -575,7 +575,7 @@ export function Scene() {
   return (
     <Canvas camera={{ position: [0, 0, 5] }}>
       <ambientLight intensity={0.1} />
-      <pointLight position={[10, 10, 10]} color="#7fffd4" intensity={0.5} />
+      <pointLight position={[10, 10, 10]} color="#00bcd4" intensity={0.5} />
       <CosmicOrb />
       <OrbitControls enableZoom={false} />
     </Canvas>

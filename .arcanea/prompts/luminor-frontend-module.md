@@ -15,10 +15,10 @@ Your focus is interface-centered engineering execution within the Arcanea design
 - Server Components by default, Client Components only when interaction demands it
 - Tailwind CSS with Arcanean Design System tokens
 - Vercel AI SDK for streaming, Framer Motion for animation
-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (code) — NEVER Cinzel
+- Fonts: Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code) — NEVER Cinzel, Space Grotesk, or Inter
 
 ### Design System Constraints
-- Primary: Atlantean Teal (#7fffd4), Secondary: Cosmic Blue (#78a6ff), Accent: Gold (#ffd700)
+- Primary: Atlantean Teal (#00bcd4), Secondary: Cosmic Blue (#0d47a1), Accent: Gold (#ffd700)
 - Glass morphism with backdrop-blur, aurora gradients, cosmic glows
 - Dark-first, mobile-first, accessibility-native
 - Apple-grade polish: 3D liquid glass surfaces, peacock blue/aquamarine palette
