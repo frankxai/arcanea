@@ -131,6 +131,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Guardian MCP smoke tests
+        run: |
+          mkdir -p ~/.arcanea
+          pnpm --filter @arcanea/mcp-server run test
+
       - name: Build application
         run: pnpm turbo run build --filter=@arcanea/web
         env:
@@ -276,6 +281,37 @@ jobs:
       - name: Install Vercel CLI
         run: pnpm install -g vercel@latest
 
+      - name: Validate production deployment prerequisites
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -euo pipefail
+          required_vars=(
+            VERCEL_TOKEN
+            NEXT_PUBLIC_SUPABASE_URL
+            NEXT_PUBLIC_SUPABASE_ANON_KEY
+            SUPABASE_SERVICE_ROLE_KEY
+            GEMINI_API_KEY
+          )
+
+          for var_name in "${required_vars[@]}"; do
+            if [ -z "${!var_name:-}" ]; then
+              echo "❌ Missing required secret: ${var_name}"
+              exit 1
+            fi
+          done
+
+          if [[ "$NEXT_PUBLIC_SUPABASE_URL" != https://*.supabase.co* ]]; then
+            echo "❌ NEXT_PUBLIC_SUPABASE_URL is not a Supabase URL"
+            exit 1
+          fi
+
+          echo "✅ Production prerequisites validated"
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
@@ -329,25 +365,42 @@ jobs:
       - name: Wait for deployment propagation
         run: sleep 30
 
-      - name: Check site health
+      - name: Check site health with retries
         run: |
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://arcanea.ai)
-          if [ $HTTP_CODE -eq 200 ]; then
-            echo "✅ Site is healthy (HTTP $HTTP_CODE)"
-          else
-            echo "⚠️ Site returned HTTP $HTTP_CODE"
+            for attempt in {1..10}; do
+              HTTP_CODE=$(curl -sS --max-time 20 -o /dev/null -w "%{http_code}" https://arcanea.ai || echo "000")
+              if [ "$HTTP_CODE" -eq 200 ]; then
+                echo "✅ Site is healthy (HTTP $HTTP_CODE)"
+                exit 0
+              fi
+              echo "⏳ Attempt $attempt/10: site returned HTTP $HTTP_CODE"
+              sleep 15
+            done
+            echo "❌ Site health check failed after retries"
             exit 1
-          fi
 
-      - name: Check API health
+      - name: Check API health with retries
         run: |
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://arcanea.ai/api/health)
-          if [ $HTTP_CODE -eq 200 ]; then
-            echo "✅ API is healthy (HTTP $HTTP_CODE)"
-          else
-            echo "⚠️ API returned HTTP $HTTP_CODE"
-          fi
-        continue-on-error: true
+            for attempt in {1..10}; do
+              HTTP_CODE=$(curl -sS --max-time 20 -o health.json -w "%{http_code}" https://arcanea.ai/api/health || echo "000")
+              if [ "$HTTP_CODE" -eq 200 ]; then
+                python - <<'PY'
+               import json
+               with open("health.json", "r", encoding="utf-8") as handle:
+                   health = json.load(handle)
+               if not health.get("api", False):
+                   raise SystemExit("❌ API health flag is false")
+               if not health.get("database", False):
+                   raise SystemExit("❌ Database/Supabase health flag is false")
+               print("✅ API and Supabase health checks passed")
+               PY
+                exit 0
+              fi
+              echo "⏳ Attempt $attempt/10: API returned HTTP $HTTP_CODE"
+              sleep 15
+            done
+            echo "❌ API health check failed after retries"
+            exit 1
 
   # ============================================
   # ROLLBACK ON FAILURE
@@ -355,14 +408,14 @@ jobs:
   rollback:
     name: Rollback on Failure
     runs-on: ubuntu-latest
-    needs: [health-check]
-    if: failure() && github.ref == 'refs/heads/main'
+    needs: [deploy-production, health-check]
+    if: always() && github.ref == 'refs/heads/main' && github.event_name == 'push' && (needs.deploy-production.result == 'failure' || needs.health-check.result == 'failure')
     steps:
       - name: Trigger rollback
         run: |
-          echo "🚨 Health check failed! Manual rollback required."
-          echo "Visit: https://vercel.com/arcanea/deployments"
-          echo "Or use: vercel rollback"
+            echo "🚨 Deployment or health check failed! Manual rollback required."
+            echo "Visit: https://vercel.com/arcanea/deployments"
+            echo "Or use: vercel rollback"
 
       - name: Create incident issue
         uses: actions/github-script@v7
