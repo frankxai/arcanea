@@ -359,9 +359,9 @@ text-primary/secondary/muted/disabled               (4 text levels)
 
 ### Fonts
 ```
-font-display  → Cinzel       (headings, titles)
-font-body     → Crimson Pro  (prose, descriptions)
-font-sans     → Inter        (UI, badges, buttons)
+font-display  → Geist        (headings, titles)
+font-body     → Geist        (prose, descriptions)
+font-sans     → Geist        (UI, badges, buttons)
 font-mono     → JetBrains Mono (code, stats)
 ```
 

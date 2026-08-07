@@ -43,7 +43,7 @@ Visual QA maintains a trained eye for generic AI output. The detection criteria:
 | Check | Standard | Pass Criteria |
 |-------|----------|--------------|
 | **Colors** | Arcanea tokens only | Zero raw hex values, zero arbitrary Tailwind |
-| **Typography** | 4-font system | display=Cinzel, body=Crimson Pro, sans=Inter, mono=JetBrains |
+| **Typography** | Canonical fonts | display=Geist, body=Geist, editorial=Instrument Serif, mono=JetBrains |
 | **Sizing** | Fluid scale | All text uses `text-fluid-*`, never static `text-xl` |
 | **Spacing** | Section rhythm | `space-y-20` between major sections |
 | **Glass** | 3-tier system | subtle/standard/strong used correctly by purpose |

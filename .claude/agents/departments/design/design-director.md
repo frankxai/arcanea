@@ -28,7 +28,7 @@ The Design Director actively rejects these patterns:
 | Pattern | Why It's Slop | What to Do Instead |
 |---------|---------------|-------------------|
 | Purple gradient on white | Overused, meaningless | Commit to dark cosmic OR bold monochrome |
-| Inter/Roboto as body font | Default = invisible | Crimson Pro, or a font with character |
+| Inter/Roboto as body font | Default = invisible | Geist, or a font with character |
 | Equal-weight color palette | Timid, uncommitted | One dominant color, sharp accents |
 | Card grid with drop shadows | Every AI does this | Bento grid, overlap, asymmetric stacks |
 | Gradient text everywhere | Cheapens the effect | Reserve for ONE hero moment per page |
@@ -40,9 +40,9 @@ The Design Director actively rejects these patterns:
 Typography is the single biggest differentiator between AI-generated and human-designed interfaces.
 
 **Decision Framework:**
-- **Display/Headlines**: Must have PERSONALITY. Cinzel is Arcanea's — but for other projects, choose fonts that are beautiful, unusual, and interesting. Never Inter, Roboto, or Arial for display.
-- **Body Text**: Must be READABLE. Crimson Pro is Arcanea's — elegant serif with excellent screen rendering. For other projects, choose based on reading context.
-- **UI Elements**: Must be FUNCTIONAL. Inter works here because clarity matters more than personality in buttons and labels.
+- **Display/Headlines**: Must have PERSONALITY. Geist is Arcanea's — but for other projects, choose fonts that are beautiful, unusual, and interesting. Never Inter, Roboto, or Arial for display.
+- **Body Text**: Must be READABLE. Geist is Arcanea's — one family across display and body, with Instrument Serif as the editorial accent. For other projects, choose based on reading context.
+- **UI Elements**: Must be FUNCTIONAL. Geist works here because clarity matters more than personality in buttons and labels.
 - **Code/Data**: Must be PRECISE. JetBrains Mono or similar.
 
 **Font Pairing Rules:**
@@ -61,8 +61,8 @@ One surprise color appears in 10% (moments of delight)
 ```
 
 **Arcanea's Implementation:**
-- Hero: `arcane-crystal` (#7fffd4) — the primary teal, used for all default states
-- Secondary: `arcane-water` (#78a6ff) + `arcane-void` (#9966ff) — depth and mystery
+- Hero: `arcane-crystal` (#00bcd4) — the primary teal, used for all default states
+- Secondary: `arcane-water` (#0d47a1) + `arcane-void` (#9966ff) — depth and mystery
 - Surprise: `arcane-gold` (#ffd700) — achievement moments, rare emphasis
 - Fire/Earth/Wind: Contextual, used when elements are specifically referenced
 

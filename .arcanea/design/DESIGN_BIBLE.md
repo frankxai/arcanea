@@ -2,6 +2,7 @@
 
 > The single source of truth for every pixel in the Arcanea universe.
 > All other design files DERIVE from this document. If there's a conflict, THIS wins.
+> Token values track `@arcanea/design-system` v0.2.0 (production repo `arcanea-ai-app`).
 
 ---
 
@@ -37,9 +38,9 @@ Six depth levels. Never skip more than 2 levels between adjacent elements.
 | Token | Hex | Role |
 |-------|-----|------|
 | `brand-primary` | `#8b5cf6` | Primary actions, buttons, links (Violet) |
-| `brand-accent` | `#7fffd4` | Crystal accent, highlights, brand mark |
+| `brand-accent` | `#00bcd4` | Crystal accent, highlights, brand mark |
 | `brand-gold` | `#ffd700` | Achievement, premium, wisdom |
-| `brand-secondary` | `#78a6ff` | Secondary actions, information, water |
+| `brand-secondary` | `#0d47a1` | Secondary actions, information, water |
 
 ### 1.3 Primary Scale (Violet)
 
@@ -53,9 +54,9 @@ Six depth levels. Never skip more than 2 levels between adjacent elements.
 
 | Element | Standard | Bright | Deep | Glow (0.3 alpha) |
 |---------|----------|--------|------|-------------------|
-| Crystal | `#7fffd4` | `#99ffe0` | `#5ce6b8` | `rgba(127, 255, 212, 0.3)` |
+| Crystal | `#00bcd4` | `#4dd0e1` | `#0097a7` | `rgba(0, 188, 212, 0.3)` |
 | Fire | `#ff6b35` | `#ff8c5a` | `#d94e1f` | `rgba(255, 107, 53, 0.3)` |
-| Water | `#78a6ff` | `#9dbfff` | `#5a8ce6` | `rgba(120, 166, 255, 0.3)` |
+| Water | `#0d47a1` | `#5472d3` | `#002171` | `rgba(13, 71, 161, 0.3)` |
 | Void | `#9966ff` | `#b38cff` | `#7a4dcc` | `rgba(153, 102, 255, 0.3)` |
 | Gold | `#ffd700` | `#ffe44d` | `#ccac00` | `rgba(255, 215, 0, 0.3)` |
 | Wind | `#00ff88` | `#33ffaa` | `#00cc6d` | `rgba(0, 255, 136, 0.3)` |
@@ -94,15 +95,15 @@ Six depth levels. Never skip more than 2 levels between adjacent elements.
 
 | Typeface | Role | Variable | Weights |
 |----------|------|----------|---------|
-| **Cinzel** | Display, ceremonial headings | `--font-display` | 400-900 |
-| **Crimson Pro** | Narrative body, long-form | `--font-body` | 200-900 + italic |
-| **Inter** | UI elements, interface text | `--font-sans` | 100-900 |
+| **Geist** | Display, ceremonial headings | `--font-display` | variable |
+| **Geist** | Narrative body, long-form | `--font-body` | variable (Instrument Serif for editorial accent) |
+| **Geist** | UI elements, interface text | `--font-sans` | variable |
 | **JetBrains Mono** | Code, data, technical | `--font-mono` | 100-800 |
 
 **Rules:**
-- Cinzel for h1/h2 headings with gravitas
-- Crimson Pro for paragraphs > 50 words
-- Inter for buttons, labels, navigation, badges, forms
+- Geist for h1/h2 headings with gravitas
+- Geist for paragraphs > 50 words
+- Geist for buttons, labels, navigation, badges, forms
 - JetBrains Mono for code blocks and technical data
 - Never combine > 2 typefaces in one component
 
@@ -125,7 +126,7 @@ All sizes use `clamp()` for responsive scaling:
 
 ### 2.3 Letter Spacing
 
-- Display (Cinzel h1/h2): `-0.02em`
+- Display (Geist h1/h2): `-0.02em`
 - Subheadings: `-0.01em`
 - Body text: `0` (normal)
 - Labels/badges: `0.05em`
@@ -141,9 +142,9 @@ Three tiers for visual hierarchy:
 
 | Tier | Background | Blur | Border | Usage |
 |------|-----------|------|--------|-------|
-| `glass-subtle` | `rgba(18, 24, 38, 0.4)` | 8px | `rgba(127, 255, 212, 0.06)` | Hover overlays, secondary |
-| `glass` | `rgba(18, 24, 38, 0.65)` | 16px | `rgba(127, 255, 212, 0.12)` | Standard cards, panels |
-| `glass-strong` | `rgba(18, 24, 38, 0.85)` | 24px | `rgba(127, 255, 212, 0.18)` | Navigation, modals, dialogs |
+| `glass-subtle` | `rgba(18, 24, 38, 0.4)` | 8px | `rgba(0, 188, 212, 0.06)` | Hover overlays, secondary |
+| `glass` | `rgba(18, 24, 38, 0.65)` | 16px | `rgba(0, 188, 212, 0.12)` | Standard cards, panels |
+| `glass-strong` | `rgba(18, 24, 38, 0.85)` | 24px | `rgba(0, 188, 212, 0.18)` | Navigation, modals, dialogs |
 
 ### 3.2 Liquid Glass (Apple-inspired, 2026)
 
@@ -194,8 +195,8 @@ Prismatic, rainbow-shift effect for premium/featured elements:
   background: linear-gradient(
     135deg,
     rgba(139, 92, 246, 0.1) 0%,
-    rgba(127, 255, 212, 0.08) 25%,
-    rgba(120, 166, 255, 0.1) 50%,
+    rgba(0, 188, 212, 0.08) 25%,
+    rgba(13, 71, 161, 0.1) 50%,
     rgba(255, 215, 0, 0.06) 75%,
     rgba(139, 92, 246, 0.1) 100%
   );
@@ -205,7 +206,7 @@ Prismatic, rainbow-shift effect for premium/featured elements:
   border-image: linear-gradient(
     135deg,
     rgba(139, 92, 246, 0.3),
-    rgba(127, 255, 212, 0.3),
+    rgba(0, 188, 212, 0.3),
     rgba(255, 215, 0, 0.2),
     rgba(139, 92, 246, 0.3)
   ) 1;
@@ -251,7 +252,7 @@ Spherical light refraction for badges, orbs, and featured elements:
   border-radius: 50%;
   box-shadow:
     inset 0 0 30px rgba(255, 255, 255, 0.05),
-    0 0 20px rgba(127, 255, 212, 0.1),
+    0 0 20px rgba(0, 188, 212, 0.1),
     0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
@@ -298,11 +299,11 @@ Spherical light refraction for badges, orbs, and featured elements:
 
 | Class | From | To | Usage |
 |-------|------|-----|-------|
-| `text-gradient-crystal` | `#7fffd4` | `#99ffe0` | Primary headings |
+| `text-gradient-crystal` | `#00bcd4` | `#4dd0e1` | Primary headings |
 | `text-gradient-fire` | `#ff6b35` | `#ffd700` | Energy headings |
-| `text-gradient-cosmic` | `#7fffd4` | `#78a6ff` via `#9966ff` | Multi-element |
+| `text-gradient-cosmic` | `#00bcd4` | `#0d47a1` via `#9966ff` | Multi-element |
 | `text-gradient-gold` | `#ffd700` | `#ffe44d` | Premium/achievement |
-| `text-gradient-brand` | `#8b5cf6` | `#7fffd4` | Brand headings |
+| `text-gradient-brand` | `#8b5cf6` | `#00bcd4` | Brand headings |
 
 ### 4.3 Mesh Gradient (Premium Background)
 
@@ -310,8 +311,8 @@ Spherical light refraction for badges, orbs, and featured elements:
 .bg-mesh-gradient {
   background:
     radial-gradient(ellipse at 0% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 0%, rgba(127, 255, 212, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 100%, rgba(120, 166, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 0%, rgba(0, 188, 212, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(13, 71, 161, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
   background-color: #0b0e14;
 }
@@ -325,10 +326,10 @@ Spherical light refraction for badges, orbs, and featured elements:
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `glow-sm` | `0 0 10px rgba(127, 255, 212, 0.15)` | Subtle emphasis |
-| `glow-md` | `0 0 20px rgba(127, 255, 212, 0.25)` | Standard glow |
-| `glow-lg` | `0 0 40px rgba(127, 255, 212, 0.35)` | Strong emphasis |
-| `glow-xl` | `0 0 60px rgba(127, 255, 212, 0.45)` | Hero/dramatic |
+| `glow-sm` | `0 0 10px rgba(0, 188, 212, 0.15)` | Subtle emphasis |
+| `glow-md` | `0 0 20px rgba(0, 188, 212, 0.25)` | Standard glow |
+| `glow-lg` | `0 0 40px rgba(0, 188, 212, 0.35)` | Strong emphasis |
+| `glow-xl` | `0 0 60px rgba(0, 188, 212, 0.45)` | Hero/dramatic |
 | `glow-brand` | `0 0 20px rgba(139, 92, 246, 0.3)` | Primary button glow |
 
 ### 5.2 Elevation Scale
@@ -503,7 +504,7 @@ const scaleIn = {
 | **Crystal** | gradient crystal-to-water | `cosmic-void` | none | `glow-sm` |
 | **Destructive** | `error` | white | none | error glow on hover |
 
-All buttons: `rounded-lg` (8px), `px-4 py-2`, Inter font, `font-medium`, 150ms transition.
+All buttons: `rounded-lg` (8px), `px-4 py-2`, Geist font, `font-medium`, 150ms transition.
 
 ### 9.2 Cards
 
@@ -547,7 +548,7 @@ Premium:    gold/15 bg + gold text + gold/30 border
 Every Arcanea page follows this hierarchy:
 
 1. **Navigation** - Fixed top, glass-strong, logo left, links center, CTA right
-2. **Hero** - Near-full viewport, cosmic mesh + aurora, Cinzel display heading
+2. **Hero** - Near-full viewport, cosmic mesh + aurora, Geist display heading
 3. **Sections** - Alternating emphasis, divider between, `py-24 lg:py-32`
 4. **CTA** - Strong call-to-action with crystal gradient button
 5. **Footer** - Minimal, cosmic-deep, links grid, brand mark
@@ -557,7 +558,7 @@ Every Arcanea page follows this hierarchy:
 ```css
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(127, 255, 212, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 188, 212, 0.2), transparent);
 }
 ```
 
@@ -629,7 +630,7 @@ Arcanea uses shadcn/ui as the component foundation with cosmic theme overrides.
   --secondary-foreground: 218 35% 70%; /* text-secondary */
   --muted: 220 25% 18%;              /* cosmic-elevated */
   --muted-foreground: 215 20% 50%;   /* text-muted */
-  --accent: 160 100% 75%;            /* brand-accent #7fffd4 */
+  --accent: 187 100% 42%;            /* brand-accent #00bcd4 */
   --accent-foreground: 220 30% 5%;   /* cosmic-void */
   --destructive: 345 90% 55%;        /* error */
   --destructive-foreground: 0 0% 100%;
@@ -648,8 +649,8 @@ Arcanea uses shadcn/ui as the component foundation with cosmic theme overrides.
 - Never use emoji as icons
 - Never hardcode hex values - use CSS variables or Tailwind tokens
 - Never skip the cosmic depth ladder (void -> deep -> surface -> raised)
-- Never use `Space Grotesk` - it's not in our type system
-- Never apply Crystal (#7fffd4) as large background fills
+- Never use `Cinzel`, `Space Grotesk`, or `Inter` - they are not in our type system (canonical: `@arcanea/design-system` v0.2.0)
+- Never apply Crystal (#00bcd4) as large background fills
 - Never stack > 2 glass layers
 - Never use glow effects on body text
 - Never create new tokens outside this system

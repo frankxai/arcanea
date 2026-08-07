@@ -42,7 +42,7 @@ STYLE:
 - NOT cartoonish - elegant, mythological, timeless
 
 COLOR PALETTE:
-- Primary: Deep cosmic black (#0a0a0f), Celestial gold (#ffd700), Atlantean teal (#7fffd4)
+- Primary: Deep cosmic black (#0a0a0f), Celestial gold (#ffd700), Atlantean teal (#00bcd4)
 - Secondary: Cosmic purple (#9370db), Pure white (#ffffff), Silver (#c0c0c0)
 - Accents: Each Gate's signature color as glowing points
 

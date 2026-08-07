@@ -28,9 +28,9 @@ cosmic-overlay:  #364562   -- Highest elevation, overlays
 
 ### Elemental Colors
 ```
-arcane-crystal:    #7fffd4   -- Primary accent (Water/Teal)
+arcane-crystal:    #00bcd4   -- Primary accent (Water/Teal)
 arcane-fire:       #ff6b35   -- Fire element
-arcane-water:      #78a6ff   -- Water secondary (Blue)
+arcane-water:      #0d47a1   -- Water secondary (Blue)
 arcane-void:       #9966ff   -- Void/Spirit element (Purple)
 arcane-gold:       #ffd700   -- Gold accent, achievements
 arcane-wind:       #00ff88   -- Wind element (Green)
@@ -49,8 +49,8 @@ text-disabled:   #515b6b   -- Disabled states
 
 ### Glow Intensities (CSS Custom Properties)
 ```
---glow-crystal:      rgba(127, 255, 212, 0.5)
---glow-crystal-soft: rgba(127, 255, 212, 0.2)
+--glow-crystal:      rgba(0, 188, 212, 0.5)
+--glow-crystal-soft: rgba(0, 188, 212, 0.2)
 --glow-fire:         rgba(255, 107, 53, 0.5)
 --glow-void:         rgba(153, 102, 255, 0.5)
 ```
@@ -88,9 +88,9 @@ text-disabled:   #515b6b   -- Disabled states
 ### Font Families
 | Class | Font | Use |
 |-------|------|-----|
-| `font-display` | Cinzel | Headings, titles, hero text |
-| `font-body` | Crimson Pro | Body text, descriptions, narratives |
-| `font-sans` | Inter | UI labels, badges, buttons, navigation |
+| `font-display` | Geist | Headings, titles, hero text |
+| `font-body` | Geist | Body text, descriptions, narratives |
+| `font-sans` | Geist | UI labels, badges, buttons, navigation |
 | `font-mono` | JetBrains Mono | Code, version numbers, stats |
 
 ### Component Variants (CVA)
@@ -178,9 +178,9 @@ import { Palette, ArrowRight, ArrowLeft } from 'lucide-react'
 ```
 
 ### Typography Rules
-- **Headings:** Always use `font-display` (Cinzel)
-- **Body text:** Always use `font-body` (Crimson Pro)
-- **UI elements:** Always use `font-sans` (Inter) — badges, buttons, labels, navigation, stats
+- **Headings:** Always use `font-display` (Geist)
+- **Body text:** Always use `font-body` (Geist)
+- **UI elements:** Always use `font-sans` (Geist) — badges, buttons, labels, navigation, stats
 - **Code/versions:** Always use `font-mono` (JetBrains Mono)
 - **Responsive sizes:** Always use `text-fluid-*` instead of static `text-xl`, `text-2xl`, etc.
 
@@ -188,7 +188,7 @@ import { Palette, ArrowRight, ArrowLeft } from 'lucide-react'
 - Use Tailwind tokens exclusively: `text-arcane-crystal`, `bg-cosmic-deep`, `border-arcane-void/20`
 - Use opacity modifiers: `bg-arcane-crystal/10`, `border-white/10`
 - For gradient text, use the utility classes: `.text-gradient-crystal`, `.text-gradient-cosmic`
-- Never write raw colors like `text-[#7fffd4]` or `bg-[rgba(18,24,38,0.7)]`
+- Never write raw colors like `text-[#00bcd4]` or `bg-[rgba(18,24,38,0.7)]`
 
 ### Component Usage
 - **Badge standard variant:** `variant="crystal"` with `className="font-sans text-xs tracking-wider px-3 py-1"`
@@ -286,7 +286,7 @@ import { Palette, ArrowRight, ArrowLeft } from 'lucide-react'
     <div className="w-10 h-10 rounded-lg bg-arcane-crystal" />
     <div>
       <div className="font-sans text-sm text-white">arcane-crystal</div>
-      <div className="font-mono text-xs text-text-muted">#7fffd4</div>
+      <div className="font-mono text-xs text-text-muted">#00bcd4</div>
     </div>
   </div>
   <div className="flex gap-2">
@@ -374,7 +374,7 @@ const [activeVariant, setActiveVariant] = useState<string>('crystal')
 
 ### DON'T
 - Use raw hex colors — always use Tailwind token classes
-- Use arbitrary Tailwind values like `text-[#7fffd4]` or `bg-[rgba(18,24,38,0.7)]`
+- Use arbitrary Tailwind values like `text-[#00bcd4]` or `bg-[rgba(18,24,38,0.7)]`
 - Use static type sizes (`text-xl`) — use fluid sizes (`text-fluid-xl`)
 - Create one-off animations — add them to `lib/animations.ts` and `tailwind.config.ts`
 - Skip `prefers-reduced-motion` considerations

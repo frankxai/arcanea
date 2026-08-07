@@ -231,7 +231,7 @@ export default async function OGImage({ params }: { params: Promise<{ element: s
   const { element } = await params
   return new ImageResponse(
     <div style={{ background: 'linear-gradient(135deg, #1a0a2e, #0d1b40)', width: '100%', height: '100%' }}>
-      <h1 style={{ color: '#7fffd4', fontSize: 72 }}>{element}</h1>
+      <h1 style={{ color: '#00bcd4', fontSize: 72 }}>{element}</h1>
     </div>
   )
 }
@@ -278,12 +278,12 @@ const config: NextConfig = {
 ### next/font — Always, never link tags
 ```typescript
 // app/layout.tsx — Arcanea font setup
-// MEMORY.md override: Inter everywhere, no Cinzel in new code
-import { Inter, JetBrains_Mono } from 'next/font/google'
+// MEMORY.md override: Geist everywhere, no Cinzel, Space Grotesk, or Inter in new code
+import { Geist, JetBrains_Mono } from 'next/font/google'
 
-const inter = Inter({
+const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-geist',
   display: 'swap',
 })
 
@@ -295,7 +295,7 @@ const jetbrains = JetBrains_Mono({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={`${geist.variable} ${jetbrains.variable}`}>
       <body>{children}</body>
     </html>
   )
@@ -370,6 +370,6 @@ Before any Next.js 16 page/route in Arcanea:
 - [ ] No async Client Components
 - [ ] `generateMetadata` returns proper OG data
 - [ ] Images use `next/image` with sizes and priority where above fold
-- [ ] Fonts use `next/font` — Inter + JetBrains Mono only
+- [ ] Fonts use `next/font` — Geist + JetBrains Mono only
 - [ ] Route handlers in `/api/` separate from page routes
 - [ ] error.tsx has `'use client'` directive

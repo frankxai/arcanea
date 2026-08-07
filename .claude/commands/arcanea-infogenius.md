@@ -188,7 +188,7 @@ QUALITY:
 
 ```
 ✓ Deep blacks (#0a0a0f) with luminous accents
-✓ Atlantean teal (#7fffd4) as primary accent
+✓ Atlantean teal (#00bcd4) as primary accent
 ✓ Celestial gold (#ffd700) for sacred elements
 ✓ Human element (creators are heroes)
 ✓ Sense of depth and mystery

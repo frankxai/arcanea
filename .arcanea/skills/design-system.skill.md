@@ -25,9 +25,9 @@ Use this system for ALL UI generation. Apple Liquid Glass + Cosmic Mythology + P
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `brand-primary` | `#8b5cf6` | Primary actions (Violet) |
-| `brand-accent` / `crystal` | `#7fffd4` | Crystal highlights |
+| `brand-accent` / `crystal` | `#00bcd4` | Crystal highlights |
 | `brand-gold` / `gold` | `#ffd700` | Achievement, premium |
-| `brand-secondary` / `water` | `#78a6ff` | Secondary actions |
+| `brand-secondary` / `water` | `#0d47a1` | Secondary actions |
 
 ### Text
 | Token | Hex | Contrast on void |
@@ -40,9 +40,9 @@ Use this system for ALL UI generation. Apple Liquid Glass + Cosmic Mythology + P
 
 | Font | Tailwind | Usage |
 |------|----------|-------|
-| **Cinzel** | `font-display` | h1, h2, hero headings |
-| **Crimson Pro** | `font-body` | Narrative text (> 50 words) |
-| **Inter** | `font-sans` | UI: buttons, labels, nav, forms |
+| **Geist** | `font-display` | h1, h2, hero headings |
+| **Geist** | `font-body` | Narrative text (> 50 words) |
+| **Geist** | `font-sans` | UI: buttons, labels, nav, forms |
 | **JetBrains Mono** | `font-mono` | Code blocks, data |
 
 Fluid scale: `text-fluid-xs` through `text-fluid-hero`

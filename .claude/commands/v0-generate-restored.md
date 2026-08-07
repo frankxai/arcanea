@@ -61,13 +61,13 @@ to [DESIRED OUTCOME].
 DESIGN SYSTEM:
 Theme: Dark cosmic (Arcanea)
 Backgrounds: #0b0e14 (void), #121826 (deep), #1a2332 (surface)
-Primary: #7fffd4 (arcane-crystal / teal)
-Secondary: #78a6ff (water / blue), #9966ff (void / purple)
+Primary: #00bcd4 (arcane-crystal / teal)
+Secondary: #0d47a1 (water / blue), #9966ff (void / purple)
 Accents: #ff6b35 (fire), #ffd700 (gold), #00ff88 (wind), #8b7355 (earth)
 Text: #e6eefc (primary), #9bb1d0 (secondary), #708094 (muted)
 
-Glass: bg rgba(18,24,38,0.7), backdrop-filter blur(16px), border rgba(127,255,212,0.15)
-Fonts: Cinzel (display/headings), Crimson Pro (body), Inter (UI), JetBrains Mono (code)
+Glass: bg rgba(18,24,38,0.7), backdrop-filter blur(16px), border rgba(0,188,212,0.15)
+Fonts: Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code) — never Cinzel, Space Grotesk, or Inter
 
 TECHNICAL REQUIREMENTS:
 - React 19 + TypeScript strict (no any types)
@@ -116,7 +116,7 @@ After v0 generates the component, apply these MANDATORY transformations:
 
 ### 4a. Anti-Slop Audit
 - Does the output look generic? If yes, regenerate with stronger constraints
-- Does it use Inter/Roboto/system-ui for display text? Replace with Cinzel
+- Does it use Inter/Roboto/system-ui for display text? Replace with Geist
 - Is the color scheme timid or evenly distributed? Strengthen dominant accent
 - Is the layout predictable? Add asymmetry or overlap
 
