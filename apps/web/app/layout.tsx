@@ -5,6 +5,9 @@ import { ReactNode } from "react";
 import { Cinzel, Crimson_Pro, JetBrains_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { AuthProvider } from "@/lib/auth/context";
+import { pingSisMemoryOnStartup } from "@/lib/sis-memory-ping";
+
+pingSisMemoryOnStartup();
 
 const cinzel = Cinzel({
   subsets: ["latin"],
