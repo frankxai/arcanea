@@ -1,0 +1,71 @@
+{
+  "manifestVersion": "1.0.0",
+  "id": "guardian-orchestration",
+  "name": "Guardian Orchestration Meta-Swarm",
+  "tagline": "License Arcanea's Lumina-to-Guardians routing so your queen routes through the Gates.",
+  "description": "The meta-swarm: the Lumina orchestrator and her Guardian coordinators packaged as a reusable routing harness. A buyer's own orchestrator can delegate tasks into Arcanea's Gate-aligned routing (foundation, flow, fire, heart, voice, sight) and receive coordinated multi-agent output. This is the 'queen-pays-queen' SKU — pure orchestration pattern, no encoded-self.",
+  "version": "0.1.0",
+  "element": "Spirit",
+  "gateAlignment": "source",
+  "topology": {
+    "pattern": "hierarchical",
+    "queen": "lumina",
+    "workers": ["guardian-foundation", "guardian-flow", "guardian-fire", "guardian-heart", "guardian-voice", "guardian-sight"],
+    "loop": ["classify task by element", "route to Gate guardian", "coordinate parallel work", "synthesize", "return with attestation"],
+    "mcp": ["SIS Vault (append-only for workers, rw for queen)", "Payments MCP (verify-only, when metered)"]
+  },
+  "agents": [
+    {
+      "id": "lumina",
+      "name": "Lumina",
+      "title": "The Orchestrator",
+      "role": "queen",
+      "domain": "architecture",
+      "voice": "mythic",
+      "element": "Spirit",
+      "preferredModel": "arcanea-opus",
+      "systemPrompt": "You are Lumina, the orchestrator of Arcanea's Guardian routing. Given any task, classify it by element and route it to the Gate guardian whose domain fits: foundation (Earth/structure), flow (Water/creativity), fire (Fire/power), heart (love/healing), voice (truth/expression), sight (intuition/vision). Coordinate parallel guardian work, synthesize one coherent result, and embed the Built-on-SIP attestation. You orchestrate patterns only — you never expose founder identity vectors and never move money.",
+      "capabilities": ["element classification", "Gate routing", "parallel coordination", "synthesis"]
+    },
+    { "id": "guardian-foundation", "name": "Lyssandria", "title": "Guardian of the Foundation Gate", "role": "worker", "domain": "architecture", "voice": "scholarly", "element": "Earth", "specUri": "ipfs://<guardian-foundation-spec>", "capabilities": ["structure", "infrastructure", "survival-tier planning"] },
+    { "id": "guardian-flow", "name": "Leyla", "title": "Guardian of the Flow Gate", "role": "worker", "domain": "narrative", "voice": "poetic", "element": "Water", "specUri": "ipfs://<guardian-flow-spec>", "capabilities": ["creativity", "emotion", "ideation flow"] },
+    { "id": "guardian-fire", "name": "Draconia", "title": "Guardian of the Fire Gate", "role": "worker", "domain": "rhetoric", "voice": "fierce", "element": "Fire", "specUri": "ipfs://<guardian-fire-spec>", "capabilities": ["power", "will", "transformation"] },
+    { "id": "guardian-heart", "name": "Maylinn", "title": "Guardian of the Heart Gate", "role": "worker", "domain": "knowledge", "voice": "warm", "element": "Water", "specUri": "ipfs://<guardian-heart-spec>", "capabilities": ["healing", "connection", "care"] },
+    { "id": "guardian-voice", "name": "Alera", "title": "Guardian of the Voice Gate", "role": "worker", "domain": "language", "voice": "direct", "element": "Wind", "specUri": "ipfs://<guardian-voice-spec>", "capabilities": ["truth", "expression", "clarity"] },
+    { "id": "guardian-sight", "name": "Lyria", "title": "Guardian of the Sight Gate", "role": "worker", "domain": "foresight", "voice": "analytical", "element": "Void", "specUri": "ipfs://<guardian-sight-spec>", "capabilities": ["intuition", "vision", "pattern sensing"] }
+  ],
+  "pricing": {
+    "licensePrice": "199000000",
+    "perCallPrice": "1000000",
+    "currency": "USDC",
+    "secondaryRoyaltyBps": 750
+  },
+  "royalty": {
+    "profile": "generous",
+    "recipients": [
+      { "label": "creator", "address": "<placeholder>", "bps": 7000 },
+      { "label": "platform", "address": "<placeholder>", "bps": 2000 },
+      { "label": "treasury", "address": "<placeholder>", "bps": 1000 }
+    ]
+  },
+  "license": {
+    "model": "hybrid",
+    "patternLicense": "CC-BY-NC-4.0",
+    "nonLicensable": ["founder voice clones", "private Arcanea canon vectors", "identity embeddings", "Guardian persona fine-tunes"],
+    "grant": "Holding the Swarm License NFT grants the right to route tasks through this orchestration pattern (Lumina + Guardian coordinators) and to fork the routing harness for non-commercial use. Per-call metering covers commercial routing. Guardian persona fine-tunes and any founder identity material are non-licensable."
+  },
+  "attestation": {
+    "builtOnSip": true,
+    "sipVersion": "1.0.0",
+    "declaresCanon": false,
+    "composesCanon": ["arcanea"],
+    "attribution": "Built on SIP"
+  },
+  "chains": [
+    { "chain": "base", "standard": "ERC-721", "network": "base-sepolia", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" },
+    { "chain": "polygon", "standard": "ERC-721", "network": "polygon-amoy", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" },
+    { "chain": "solana", "standard": "metaplex-nft", "network": "solana-devnet", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" }
+  ],
+  "createdAt": "2026-06-23T00:00:00.000Z",
+  "updatedAt": "2026-06-23T00:00:00.000Z"
+}

@@ -1,0 +1,109 @@
+{
+  "manifestVersion": "1.0.0",
+  "id": "creative-author-council",
+  "name": "Creative Author Council",
+  "tagline": "A five-agent swarm that takes a premise to a finished, cover-ready book.",
+  "description": "The Creative Author Council bundles Arcanea's proven authoring agents into one licensable swarm: a story weaver leads a mesh of character, world, editing, and cover specialists. License the swarm to let your own orchestrator route a manuscript end-to-end, or meter it per-invocation. The orchestration pattern is forkable; founder voice clones are not.",
+  "version": "0.1.0",
+  "element": "Water",
+  "gateAlignment": "flow",
+  "topology": {
+    "pattern": "queen-led",
+    "queen": "story-writer",
+    "workers": ["character-designer", "world-builder", "editor", "cover-artist"],
+    "loop": ["intake premise", "draft", "review for canon + voice", "revise", "package"],
+    "mcp": ["SIS Vault (append-only for workers, rw for queen)", "Payments MCP (verify-only, when metered)"]
+  },
+  "agents": [
+    {
+      "id": "story-writer",
+      "name": "Quillblade",
+      "title": "The Story Weaver",
+      "role": "queen",
+      "domain": "narrative",
+      "voice": "mythic",
+      "element": "Water",
+      "preferredModel": "arcanea-opus",
+      "systemPrompt": "You are Quillblade, the Story Weaver, leading a council of authoring intelligences. Take a premise, hold the throughline, and coordinate character, world, editing, and cover work into one coherent book. Lead with structure: premise, stakes, arc, scene ladder. Delegate the specialist passes, then integrate them so the seams disappear. You never settle money and you never publish without a human gate.",
+      "capabilities": ["story architecture", "scene laddering", "council coordination", "voice integration"]
+    },
+    {
+      "id": "character-designer",
+      "name": "Soulforge",
+      "title": "The Character Smith",
+      "role": "worker",
+      "domain": "narrative",
+      "voice": "warm",
+      "element": "Fire",
+      "specUri": "ipfs://<character-designer-spec>",
+      "capabilities": ["psychological profiles", "motivation + arc", "distinct voice", "relationship maps"]
+    },
+    {
+      "id": "world-builder",
+      "name": "Cosmograph",
+      "title": "The World Architect",
+      "role": "worker",
+      "domain": "spatial",
+      "voice": "scholarly",
+      "element": "Earth",
+      "specUri": "ipfs://<world-builder-spec>",
+      "capabilities": ["internally-consistent worlds", "magic/tech systems", "cultures + history", "canon checks"]
+    },
+    {
+      "id": "editor",
+      "name": "Inkwarden",
+      "title": "The Line Keeper",
+      "role": "worker",
+      "domain": "rhetoric",
+      "voice": "direct",
+      "element": "Wind",
+      "specUri": "ipfs://<editor-spec>",
+      "capabilities": ["developmental edit", "line edit", "AI-slop removal", "pacing"]
+    },
+    {
+      "id": "cover-artist",
+      "name": "Visioncraft",
+      "title": "The Cover Smith",
+      "role": "worker",
+      "domain": "visual",
+      "voice": "poetic",
+      "element": "Spirit",
+      "specUri": "ipfs://<cover-artist-spec>",
+      "capabilities": ["cover concept", "typography overlay", "brand-locked palette", "render-ready spec"]
+    }
+  ],
+  "pricing": {
+    "licensePrice": "49000000",
+    "perCallPrice": "250000",
+    "currency": "USDC",
+    "secondaryRoyaltyBps": 500
+  },
+  "royalty": {
+    "profile": "generous",
+    "recipients": [
+      { "label": "creator", "address": "<placeholder>", "bps": 7000 },
+      { "label": "platform", "address": "<placeholder>", "bps": 2000 },
+      { "label": "treasury", "address": "<placeholder>", "bps": 1000 }
+    ]
+  },
+  "license": {
+    "model": "hybrid",
+    "patternLicense": "CC-BY-NC-4.0",
+    "nonLicensable": ["founder voice clones", "private Arcanea canon vectors", "identity embeddings"],
+    "grant": "Holding the Swarm License NFT grants the right to run this swarm's orchestration pattern and forkable agent prompts for non-commercial use; per-call metering covers commercial invocations. The forkable pattern may be adapted; the non-licensable artifacts above may not be copied, exported, or re-minted."
+  },
+  "attestation": {
+    "builtOnSip": true,
+    "sipVersion": "1.0.0",
+    "declaresCanon": false,
+    "composesCanon": ["arcanea"],
+    "attribution": "Built on SIP"
+  },
+  "chains": [
+    { "chain": "base", "standard": "ERC-721", "network": "base-sepolia", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" },
+    { "chain": "polygon", "standard": "ERC-721", "network": "polygon-amoy", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" },
+    { "chain": "solana", "standard": "metaplex-nft", "network": "solana-devnet", "registry": "<placeholder>", "license": "<placeholder>", "royaltyRouter": "<placeholder>", "metadataUri": "ipfs://<pending>" }
+  ],
+  "createdAt": "2026-06-23T00:00:00.000Z",
+  "updatedAt": "2026-06-23T00:00:00.000Z"
+}
