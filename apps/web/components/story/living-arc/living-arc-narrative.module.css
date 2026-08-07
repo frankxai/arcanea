@@ -1,0 +1,389 @@
+.villainSection {
+  position: relative;
+  display: flex;
+  min-height: max(760px, 94svh);
+  align-items: center;
+  overflow: hidden;
+  background: var(--null);
+}
+
+.villainCopy {
+  position: relative;
+  z-index: 2;
+  width: min(42rem, 48vw);
+  margin-left: clamp(1.5rem, 6vw, 6.5rem);
+  padding: 3rem 2.5rem 3rem 0;
+}
+
+.villainCopy h2 {
+  max-width: 39rem;
+  color: var(--moonbone);
+  font-size: clamp(2.7rem, 5vw, 5.7rem);
+  line-height: 0.98;
+}
+
+.villainCopy > p:not(:first-child) {
+  max-width: 35rem;
+  margin: 1.5rem 0 0;
+  color: rgba(241, 233, 215, 0.74);
+  font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+  line-height: 1.62;
+}
+
+.villainCopy blockquote {
+  max-width: 35rem;
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: clamp(1.25rem, 2vw, 1.85rem);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.textLink {
+  display: inline-block;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(214, 180, 104, 0.72);
+  color: var(--moonbone);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.graspSection,
+.elementsSection,
+.collectionSection {
+  width: min(78rem, 89vw);
+  margin: 0 auto;
+  padding: clamp(6rem, 11vw, 10rem) 0;
+}
+
+.sectionIntro {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.95fr) minmax(18rem, 1.05fr);
+  column-gap: clamp(3rem, 9vw, 9rem);
+}
+
+.sectionIntro > p:first-child {
+  grid-column: 1 / -1;
+}
+
+.sectionIntro h2 {
+  color: var(--moonbone);
+  font-size: clamp(2.6rem, 5vw, 5.4rem);
+  line-height: 1;
+}
+
+.sectionIntro > p:not(:first-child) {
+  align-self: end;
+  margin: 0;
+  color: rgba(241, 233, 215, 0.68);
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  line-height: 1.62;
+}
+
+.graspMovements {
+  display: grid;
+  margin-top: 5rem;
+  border-block: 1px solid rgba(214, 180, 104, 0.24);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.graspMovements article {
+  min-height: 22rem;
+  padding: 2.25rem;
+}
+
+.graspMovements article + article {
+  border-left: 1px solid rgba(214, 180, 104, 0.24);
+}
+
+.graspMovements span,
+.honorSection li > span {
+  color: var(--gold);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.graspMovements h3 {
+  margin: 5rem 0 1rem;
+  color: var(--moonbone);
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.graspMovements p {
+  margin: 0;
+  color: rgba(241, 233, 215, 0.65);
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+.graspCost {
+  display: grid;
+  margin-top: 3.5rem;
+  grid-template-columns: minmax(12rem, 0.5fr) minmax(18rem, 1.5fr);
+  gap: 3rem;
+}
+
+.graspCost > p:last-child {
+  margin: 0;
+  color: var(--moonbone);
+  font-size: clamp(1.4rem, 2.3vw, 2.2rem);
+  line-height: 1.35;
+}
+
+.honorSection {
+  display: grid;
+  padding: clamp(5rem, 9vw, 8.5rem) max(5.5vw, calc((100vw - 78rem) / 2));
+  background: var(--moonbone);
+  color: var(--null);
+  grid-template-columns: minmax(18rem, 0.8fr) minmax(22rem, 1.2fr);
+  gap: clamp(4rem, 10vw, 11rem);
+}
+
+.honorSection > div > p:first-child {
+  color: var(--teal-ink);
+}
+
+.honorSection li > span {
+  color: var(--gold-ink);
+}
+
+.honorSection h2 {
+  font-size: clamp(3rem, 5.3vw, 5.7rem);
+  line-height: 0.98;
+}
+
+.honorSection > div > p:last-child {
+  max-width: 29rem;
+  margin-top: 1.5rem;
+  color: rgba(5, 7, 13, 0.68);
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+
+.honorSection ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.honorSection li {
+  display: grid;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(5, 7, 13, 0.2);
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
+}
+
+.honorSection li:first-child {
+  border-top: 1px solid rgba(5, 7, 13, 0.2);
+}
+
+.honorSection li p {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.65vw, 1.42rem);
+  line-height: 1.4;
+}
+
+.confrontation {
+  position: relative;
+  min-height: max(700px, 92svh);
+  overflow: hidden;
+  background: var(--null);
+}
+
+.confrontation > img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.confrontationCopy {
+  position: absolute;
+  z-index: 2;
+  bottom: clamp(2.5rem, 6vw, 6rem);
+  left: clamp(1.5rem, 5.5vw, 6rem);
+  width: min(39rem, 45vw);
+  padding: 2rem;
+  background: rgba(5, 7, 13, 0.82);
+  box-shadow: 0 0 45px 30px rgba(5, 7, 13, 0.72);
+}
+
+.confrontationCopy h2 {
+  color: var(--moonbone);
+  font-size: clamp(2.5rem, 4.5vw, 5rem);
+  line-height: 1;
+}
+
+.confrontationCopy > p:last-child {
+  margin: 1.4rem 0 0;
+  color: rgba(241, 233, 215, 0.7);
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+
+.characters {
+  display: grid;
+  background: var(--null);
+  grid-template-columns: 1fr 1fr;
+}
+
+.characterPanel {
+  position: relative;
+  min-height: 880px;
+  overflow: hidden;
+}
+
+.characterPanel + .characterPanel {
+  border-left: 1px solid rgba(214, 180, 104, 0.24);
+}
+
+.characterPanel > img {
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.characterCopy {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 19rem;
+  padding: 3rem clamp(1.5rem, 4vw, 4rem);
+  background: rgba(5, 7, 13, 0.9);
+  backdrop-filter: blur(16px);
+}
+
+.characterCopy h2 {
+  color: var(--moonbone);
+  font-size: clamp(2rem, 3.2vw, 3.6rem);
+  line-height: 1.02;
+}
+
+.characterCopy > p:last-child {
+  max-width: 34rem;
+  margin: 1.2rem 0 0;
+  color: rgba(241, 233, 215, 0.68);
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+
+@media (max-width: 1000px) {
+  .villainCopy {
+    width: min(37rem, 55vw);
+  }
+
+  .confrontationCopy {
+    width: min(38rem, 57vw);
+  }
+}
+
+@media (max-width: 760px) {
+  .sectionIntro,
+  .graspCost,
+  .honorSection {
+    grid-template-columns: 1fr;
+  }
+
+  .villainSection {
+    display: block;
+    min-height: 65rem;
+  }
+
+  .villainCopy {
+    position: absolute;
+    top: 53%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 3rem 1.35rem;
+    background: var(--null);
+  }
+
+  .villainCopy h2 {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .graspSection,
+  .elementsSection,
+  .collectionSection {
+    width: min(91vw, 43rem);
+  }
+
+  .sectionIntro {
+    row-gap: 1.5rem;
+  }
+
+  .graspMovements {
+    grid-template-columns: 1fr;
+  }
+
+  .graspMovements article {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .graspMovements article + article {
+    border-top: 1px solid rgba(214, 180, 104, 0.24);
+    border-left: 0;
+  }
+
+  .graspMovements h3 {
+    margin-top: 2.5rem;
+  }
+
+  .graspCost {
+    gap: 0.75rem;
+  }
+
+  .honorSection {
+    padding-inline: 1.35rem;
+    gap: 3.5rem;
+  }
+
+  .confrontation {
+    min-height: 55rem;
+  }
+
+  .confrontation > img {
+    object-position: 67% center;
+  }
+
+  .confrontationCopy {
+    right: 1rem;
+    bottom: 1.5rem;
+    left: 1rem;
+    width: auto;
+    padding: 1.5rem;
+    background: rgba(5, 7, 13, 0.9);
+    box-shadow: none;
+  }
+
+  .characters {
+    grid-template-columns: 1fr;
+  }
+
+  .characterPanel {
+    min-height: 48rem;
+  }
+
+  .characterPanel + .characterPanel {
+    border-top: 1px solid rgba(214, 180, 104, 0.24);
+    border-left: 0;
+  }
+
+  .characterCopy {
+    min-height: 18rem;
+    padding: 2rem 1.35rem;
+  }
+}

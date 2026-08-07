@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://arcanea.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://www.arcanea.ai"),
   title: {
     default: "Arcanea — Where Imagination Becomes Reality",
     template: "%s | Arcanea"
