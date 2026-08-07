@@ -121,7 +121,7 @@ export const TEN_GATES = {
   CROWN: {
     number: 7,
     name: "Crown",
-    frequency: 714,
+    frequency: 741,
     guardian: "Aiyami",
     godbeast: "Sol",
     color: "#8B5CF6", // Violet-500
