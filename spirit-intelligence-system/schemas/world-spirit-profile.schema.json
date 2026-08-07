@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arcanea.ai/schemas/world-spirit-profile.schema.json",
+  "title": "World Spirit Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "status", "visibility", "maximumManifestation", "institutions", "laws", "bannedPractices", "disputeProtocol", "memoryPolicy"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]+$" },
+    "name": { "type": "string", "minLength": 2 },
+    "status": { "enum": ["experimental", "staging", "approved", "deprecated"] },
+    "visibility": { "enum": ["hidden", "liminal", "public", "ubiquitous", "variable"] },
+    "maximumManifestation": { "type": "integer", "minimum": 0, "maximum": 6 },
+    "institutions": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 5 } },
+    "laws": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 10 } },
+    "bannedPractices": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 5 } },
+    "disputeProtocol": { "type": "string", "minLength": 25 },
+    "memoryPolicy": { "type": "string", "minLength": 25 },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}
