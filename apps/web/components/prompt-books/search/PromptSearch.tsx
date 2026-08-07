@@ -100,17 +100,10 @@ export function PromptSearch({ isOpen, onClose, onSelectPrompt }: PromptSearchPr
 
   const [query, setQuery] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const [mounted, setMounted] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  // ── Portal mount guard ──────────────────────────────────────────────
-  useEffect(() => {
-    setMounted(true)
-    return () => setMounted(false)
-  }, [])
 
   // ── Focus input on open ─────────────────────────────────────────────
   useEffect(() => {
@@ -118,10 +111,6 @@ export function PromptSearch({ isOpen, onClose, onSelectPrompt }: PromptSearchPr
       // Small delay to let framer-motion render
       const t = setTimeout(() => inputRef.current?.focus(), 50)
       return () => clearTimeout(t)
-    } else {
-      setQuery('')
-      setSelectedIndex(0)
-      clearSearch()
     }
   }, [isOpen, clearSearch])
 
@@ -141,13 +130,11 @@ export function PromptSearch({ isOpen, onClose, onSelectPrompt }: PromptSearchPr
 
     if (!query.trim()) {
       clearSearch()
-      setSelectedIndex(0)
       return
     }
 
     debounceRef.current = setTimeout(() => {
       search(query.trim())
-      setSelectedIndex(0)
     }, 300)
 
     return () => {
@@ -205,6 +192,13 @@ export function PromptSearch({ isOpen, onClose, onSelectPrompt }: PromptSearchPr
   }, [selectedIndex])
 
   // ── Keyboard navigation ─────────────────────────────────────────────
+  const closeAndReset = useCallback(() => {
+    setQuery('')
+    setSelectedIndex(0)
+    clearSearch()
+    onClose()
+  }, [clearSearch, onClose])
+
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       switch (e.key) {
@@ -224,25 +218,25 @@ export function PromptSearch({ isOpen, onClose, onSelectPrompt }: PromptSearchPr
           e.preventDefault()
           if (flatResults[selectedIndex]) {
             onSelectPrompt(flatResults[selectedIndex].id)
-            onClose()
+            closeAndReset()
           }
           break
         case 'Escape':
           e.preventDefault()
-          onClose()
+          closeAndReset()
           break
       }
     },
-    [flatResults, selectedIndex, onSelectPrompt, onClose],
+    [flatResults, selectedIndex, onSelectPrompt, closeAndReset],
   )
 
   // ── Select handler ──────────────────────────────────────────────────
   const handleSelect = useCallback(
     (promptId: string) => {
       onSelectPrompt(promptId)
-      onClose()
+      closeAndReset()
     },
-    [onSelectPrompt, onClose],
+    [onSelectPrompt, closeAndReset],
   )
 
   // ── Compute flat index for a prompt in grouped list ─────────────────
@@ -253,7 +247,7 @@ export function PromptSearch({ isOpen, onClose, onSelectPrompt }: PromptSearchPr
     [flatResults],
   )
 
-  if (!mounted) return null
+  if (typeof document === 'undefined') return null
 
   return createPortal(
     <AnimatePresence>
@@ -271,7 +265,7 @@ export function PromptSearch({ isOpen, onClose, onSelectPrompt }: PromptSearchPr
             animate="visible"
             exit="exit"
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-            onClick={onClose}
+            onClick={closeAndReset}
             aria-hidden
           />
 
@@ -300,7 +294,10 @@ export function PromptSearch({ isOpen, onClose, onSelectPrompt }: PromptSearchPr
                 ref={inputRef}
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value)
+                  setSelectedIndex(0)
+                }}
                 placeholder="Search prompts..."
                 className={cn(
                   'flex-1 bg-transparent text-base font-sans text-text-primary',
