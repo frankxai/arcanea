@@ -15,8 +15,8 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { mkdtempSync, writeFileSync, rmSync, readFileSync, mkdirSync } from 'node:fs';
+import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
@@ -178,42 +178,85 @@ test('the shifted ladder is flagged on every row', () => {
 
 // --- file selection ----------------------------------------------------------
 
-test('--changed selects the paths that actually carry canon', () => {
-  // Regression: docs/worldbuilding/** and .claude/CLAUDE.md were both invisible
-  // to isLoreFile(), so 13 of this PR's own 20 changed files — every pattern
-  // library and research file it adds — were never selected in the mode CI runs.
-  // .claude/CLAUDE.md was the worse half: 17 errors, and it is what every agent
-  // reads at session start.
-  const mustSelect = [
+test('--changed reaches canon-bearing files at every path shape', () => {
+  // This replaces an earlier version that re-declared LORE_EXT/LORE_PATH/
+  // LORE_HINT/LORE_NAMED as local copies and asserted against those. It could
+  // not fail: editing the real regexes left the copies — and the test — green.
+  // A guard against "the selector went blind and nobody noticed" that cannot
+  // notice the selector going blind is worse than none, because it reads as
+  // coverage. This drives the real CLI through --changed instead.
+  //
+  // Only must-reach is asserted. With the content probe, a file carrying no
+  // canon token produces no findings whether it was read or skipped, so
+  // "must-skip" is unobservable from the outside — path patterns are now a
+  // speed optimisation, not a correctness boundary.
+  const paths = [
     'docs/worldbuilding/patterns/ARTIFACTS.md',
-    'docs/worldbuilding/research/SYNTHESIS.md',
     '.claude/CLAUDE.md',
-    'CLAUDE.md',
-    'AGENTS.md',
-    '.arcanea/lore/CANON_LOCKED.md',
-    'book/legends-of-arcanea/x.md',
-  ];
-  const mustSkip = [
-    'src/components/Button.tsx',
-    'package.json',
-    'README.md',
-    '.github/workflows/deploy-apps.yml',
+    'packages/chrome-extension/tests/chrome-extension.test.mjs',
+    'book/legends-of-arcanea/codex.md',
+    '.arcanea/lore/entity.md',
   ];
 
+  const result = inTempRepo(({ dir, run }) => {
+    for (const p of paths) {
+      mkdirSync(join(dir, dirname(p)), { recursive: true });
+      writeFileSync(join(dir, p), '# Fixture (STAGING)\n\nNothing yet.\n', 'utf8');
+    }
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    for (const p of paths) {
+      writeFileSync(
+        join(dir, p),
+        '# Fixture (STAGING)\n\nNothing yet.\n\n**Godbeast**: Thessara\n',
+        'utf8'
+      );
+    }
+    run(['add', '-A']);
+    run(['commit', '-qm', 'drift']);
+
+    try {
+      return { code: 0, out: execFileSync('node', [LINT, '--changed', '--base', base], { cwd: dir, encoding: 'utf8' }) };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+
+  assert.equal(result.code, 1, result.out);
+  for (const p of paths) {
+    assert.ok(result.out.includes(p), `selector never reached ${p}:\n${result.out}`);
+  }
+});
+
+test('a --changed run that cannot diff fails loudly instead of passing', () => {
+  // Regression: this exited 0 with zero files checked — a green CI check that
+  // inspected nothing, which is the failure mode this whole gate exists to
+  // prevent, one layer up.
+  const result = inTempRepo(({ dir, run }) => {
+    writeFileSync(join(dir, 'lore-notes.md'), '# N (STAGING)\n\ntext\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    try {
+      return { code: 0, out: execFileSync('node', [LINT, '--changed', '--base', 'origin/nope'], { cwd: dir, encoding: 'utf8' }) };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+
+  assert.equal(result.code, 1, `must not report success when nothing was checked:\n${result.out}`);
+  assert.ok(/FATAL|NOTHING was checked/i.test(result.out), result.out);
+});
+
+test('the selection patterns are still present in the source', () => {
+  // Narrow on purpose: catches a rename/removal of the selection patterns.
+  // Behaviour is covered by the real-CLI test above, not by copying regexes.
   const lintSrc = readFileSync(fileURLToPath(new URL('./lore-lint.mjs', import.meta.url)), 'utf8');
-  // Re-declare from source so the test fails if the patterns are renamed away.
-  for (const name of ['LORE_EXT', 'LORE_PATH', 'LORE_HINT', 'LORE_NAMED']) {
+  for (const name of ['LORE_EXT', 'LORE_PATH', 'LORE_HINT', 'LORE_NAMED', 'CANON_TOKENS']) {
     assert.ok(lintSrc.includes(`const ${name}`), `${name} missing from lore-lint.mjs`);
   }
-
-  const ext = /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/;
-  const path = /(^|\/)(\.arcanea\/lore|arcanea-lore|book|lore|sync\/aios\/lore|docs\/worldbuilding)\//;
-  const hint = /(canon|lore|guardian|godbeast|mythology|gates?)/i;
-  const named = /(^|\/)(CLAUDE|AGENTS|GEMINI)\.md$/;
-  const selects = (p) => ext.test(p) && (path.test(p) || hint.test(p) || named.test(p));
-
-  for (const p of mustSelect) assert.ok(selects(p), `must be selected but was not: ${p}`);
-  for (const p of mustSkip) assert.ok(!selects(p), `must be skipped but was selected: ${p}`);
+  assert.ok(lintSrc.includes('function looksLoreBearing'), 'content probe missing');
 });
 
 test('a lore-bearing file with no lore in its path is selected by content', () => {

@@ -470,8 +470,17 @@ function main() {
     try {
       raw = git(['diff', '--name-only', '--diff-filter=ACMR', `${base}...HEAD`]);
     } catch {
-      console.error(`lore-lint: cannot diff against ${base}; nothing checked.`);
-      process.exit(0);
+      // Exit 1, not 0. A green check that inspected zero files is the exact
+      // failure this linter exists to prevent, one layer up: "nothing was
+      // wrong" and "nothing was looked at" must never render identically.
+      // The per-file catch below can afford to warn and continue because the
+      // rest of the run still happens; a failure here means no run at all.
+      console.error(
+        `lore-lint: FATAL could not diff against ${base}, so NOTHING was checked. ` +
+          `This is a failure, not a pass — fix the base ref (CI needs fetch-depth: 0) ` +
+          `or pass files explicitly for a full audit.`
+      );
+      process.exit(1);
     }
     files = raw.split('\n').filter(Boolean).filter(isLoreFile);
   } else {
