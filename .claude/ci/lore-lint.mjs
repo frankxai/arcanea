@@ -387,9 +387,16 @@ function addedLinesFor(files, base) {
       continue;
     }
     const lines = new Set();
+    // 0 means "no hunk seen yet". Everything before the first @@ is file header
+    // noise (`diff --git`, `index`, `--- a/`, `+++ b/`) and must not advance the
+    // cursor. It happens to be harmless today because every @@ resets the cursor
+    // absolutely, but that is an accident of ordering rather than an invariant —
+    // so skip headers explicitly instead of relying on it surviving a future
+    // edit to the hunk regex.
     let cursor = 0;
     for (const line of diff.split('\n')) {
       const hunk = line.match(/^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@/);
+      if (!hunk && cursor === 0) continue;
       if (hunk) {
         cursor = Number(hunk[1]);
         continue;

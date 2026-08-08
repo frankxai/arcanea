@@ -15,7 +15,7 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -160,6 +160,57 @@ test('the shifted ladder is flagged on every row', () => {
   );
   assert.equal(code, 1);
   assert.equal(out.match(/gate-frequency/g)?.length, 3, out);
+});
+
+// --- alias resolution --------------------------------------------------------
+
+test('an alias appearing twice, once as an ordinary word, resolves safely', () => {
+  // checkGateFrequency replaces the alias globally across the line after a
+  // single namesGate() hit, so a line using "shift" as both the Gate and the
+  // English verb rewrites both. Verifying that is harmless rather than assuming
+  // it: the frequency check re-tests for Gate context afterwards, so a bare
+  // rewritten verb cannot masquerade as a Gate reference.
+  const { code, out } = lint(
+    '# Notes (STAGING)\n\nA shift in tone, though the Shift Gate holds at 852 Hz.\n'
+  );
+  assert.equal(code, 0, `correct frequency must not error:\n${out}`);
+  assert.ok(out.includes('gate-name'), `the Gate use must still warn:\n${out}`);
+  assert.equal(out.match(/gate-name/g).length, 1, `one warning, not one per occurrence:\n${out}`);
+});
+
+test('an alias named as a Gate with the wrong frequency still errors', () => {
+  const { code, out } = lint('# Notes (STAGING)\n\nThe Shift Gate holds at 963 Hz.\n');
+  assert.equal(code, 1, out);
+  assert.ok(out.includes('gate-frequency'), out);
+});
+
+// --- workflow / linter coupling ----------------------------------------------
+
+test('the workflow trigger covers every extension LORE_EXT checks', () => {
+  // The paths: list in lore-canon.yml is a hand-maintained superset of LORE_EXT.
+  // A type the linter checks but the trigger omits is drift nothing ever looks
+  // at — silence indistinguishable from cleanliness. Comments asked the next
+  // editor to keep these in sync; this makes it mechanical.
+  const lintSrc = readFileSync(fileURLToPath(new URL('./lore-lint.mjs', import.meta.url)), 'utf8');
+  const workflow = readFileSync(
+    fileURLToPath(new URL('../../.github/workflows/lore-canon.yml', import.meta.url)),
+    'utf8'
+  );
+
+  const extMatch = lintSrc.match(/LORE_EXT\s*=\s*\/\\\.\(([^)]+)\)/);
+  assert.ok(extMatch, 'could not parse LORE_EXT from lore-lint.mjs');
+  const checked = extMatch[1].split('|');
+
+  const triggered = new Set(
+    [...workflow.matchAll(/'\*\*\/\*\.([A-Za-z]+)'/g)].map((m) => m[1])
+  );
+
+  const missing = checked.filter((e) => !triggered.has(e));
+  assert.deepEqual(
+    missing,
+    [],
+    `lore-canon.yml paths: must trigger on every LORE_EXT type; missing: ${missing.join(', ')}`
+  );
 });
 
 // --- the --changed ratchet ---------------------------------------------------
