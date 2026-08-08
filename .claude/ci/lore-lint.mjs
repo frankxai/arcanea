@@ -320,18 +320,25 @@ function checkGateFrequency(path, lineNo, line) {
   for (const [gate, canonical] of Object.entries(GATE_FREQUENCIES)) {
     if (!namesGate(lower, gate)) continue;
     if (value === canonical) return;
-    // A line naming several gates is a table header, a summary, or prose
-    // comparing two of them; skip rather than guess which gate the number
-    // belongs to. Counted on BARE names, not Gate-context ones: a real false
-    // positive read `.arcanea/lore/CONTINUITY_AUDIT.md:329` — which discusses
-    // Kael's "Foundation Gate" while quoting Voice's "528 Hz" — and reported
-    // Foundation as misnumbered. Only "Foundation" was in Gate-context form, so
-    // counting those alone saw one gate and attributed a frequency belonging to
-    // the other. Ambiguity is the signal; bail on it.
-    const gatesNamed = Object.keys(GATE_FREQUENCIES).filter((g) =>
-      new RegExp(`\\b${g}\\b`).test(lower)
+    // Whose frequency is this? Both blunt answers are wrong, and each was tried:
+    //
+    //   count Gate-context names  -> false positive. CONTINUITY_AUDIT.md:329
+    //     discusses Kael's "Foundation Gate" while quoting Voice's "528 Hz";
+    //     only Foundation was in Gate-context form, so it saw one gate and
+    //     blamed it for the other's number.
+    //   count bare names          -> false negative. "The Crown Gate resonates
+    //     at 963 Hz, though the source remains unclear" bails on the stray word
+    //     "source" and misses a real Crown error.
+    //
+    // The actual signal is proximity. A frequency belongs to whichever gate is
+    // quoted next to it — "Voice (528 Hz" — not to one mentioned elsewhere in
+    // the sentence. So bail only when a DIFFERENT gate name sits in the short
+    // window immediately before the number.
+    const before = lower.slice(Math.max(0, hz.index - 25), hz.index);
+    const hijacker = Object.keys(GATE_FREQUENCIES).find(
+      (g) => g !== gate && new RegExp(`\\b${g}\\b`).test(before)
     );
-    if (gatesNamed.length > 1) return;
+    if (hijacker) return;
 
     report(
       'ERROR',
@@ -411,7 +418,11 @@ function checkTierBanner(path, contents) {
 // /lock-decision that granted it.
 function checkLockClaim(path, lineNo, line) {
   if (path === '.arcanea/lore/CANON_LOCKED.md') return;
-  if (/\bLOCKED\s*(✅|:)/.test(line) && /this (document|file|section) is/i.test(line)) {
+  // Adjacency, not two independent facts on one line. The looser form matched
+  // "Status: LOCKED ✅ — this document is superseded by the vault", which
+  // asserts the opposite of a lock claim. The gap excludes sentence breaks so
+  // the phrase has to actually be "this document is … LOCKED".
+  if (/this (document|file|section) is[^.;—]{0,15}LOCKED\s*(✅|:)/i.test(line)) {
     report(
       'WARN',
       path,

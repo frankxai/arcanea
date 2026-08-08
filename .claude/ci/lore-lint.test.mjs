@@ -467,3 +467,26 @@ test('a line comparing two Gates does not attribute one frequency to the other',
   );
   assert.equal(code, 0, `ambiguous two-gate line must not be flagged:\n${out}`);
 });
+
+test('a stray Gate word elsewhere in the sentence does not suppress a real error', () => {
+  // Regression from the round-12 fix: counting BARE gate names for the
+  // ambiguity bail-out meant the ordinary word "source" here suppressed a real
+  // Crown error. Attribution is by proximity now — a frequency belongs to the
+  // gate quoted next to it, not to one mentioned later in the sentence.
+  const { code, out } = lint(
+    '# Notes (STAGING)\n\nThe Crown Gate resonates at 963 Hz, though the source remains unclear.\n'
+  );
+  assert.equal(code, 1, `real Crown error must not be suppressed:\n${out}`);
+  assert.ok(out.includes('gate-frequency'), out);
+});
+
+test('a banner recording supersession is not read as a lock claim', () => {
+  // The earlier form matched `LOCKED ✅` and `this document is` independently on
+  // one line, so a banner saying the document is *superseded* warned that it
+  // was claiming to be locked — the opposite of what it says.
+  const { code, out } = lint(
+    '# Mirror (SUPERSEDED)\n\nStatus: LOCKED ✅ — this document is superseded by the vault.\n'
+  );
+  assert.equal(code, 0, out);
+  assert.ok(!out.includes('lock-claim'), out);
+});
