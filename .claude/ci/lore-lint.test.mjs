@@ -118,6 +118,20 @@ test('a Gate name used as an ordinary English word is not flagged', () => {
   }
 });
 
+test('a labelled Gate list with wrong frequencies is flagged', () => {
+  // Regression: tightening namesGate() for the "House voice" false positive
+  // silently took guardians.md from 10 findings to clean, because it writes the
+  // ladder as "Gate 1: Foundation → ... → 396Hz" — a Gate context none of the
+  // original three patterns matched. An FP fix that quietly creates an FN is
+  // the worst outcome for a linter, and no fixture caught it.
+  const { code, out } = lint(
+    '# Guardians (STAGING)\n\nGate 1: Foundation → Lyssandria (Earth) → 396Hz\n' +
+      'Gate 3: Fire → Draconia (Fire) → 528Hz\n'
+  );
+  assert.equal(code, 1, out);
+  assert.equal(out.match(/gate-frequency/g)?.length, 2, out);
+});
+
 test('a Gate named in Gate context is still flagged', () => {
   for (const text of ['The Voice Gate sings at 1111 Hz.', 'The Gate of Crown rings at 963 Hz.']) {
     const { code, out } = lint(`# Notes (STAGING)\n\n${text}\n`);

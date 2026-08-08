@@ -231,6 +231,12 @@ const HZ = /(\d{3,4})\s*Hz\b/i;
 function namesGate(lower, gate) {
   if (new RegExp(`\\b${gate}\\s+gate\\b`).test(lower)) return true;
   if (new RegExp(`\\bgate\\s+of\\s+(the\\s+)?${gate}\\b`).test(lower)) return true;
+  // "Gate 1: Foundation", "Gate: Crown" — a labelled list, which is how
+  // guardians.md writes the whole ladder. Omitting this form cost real
+  // detection: tightening for the "House voice" false positive silently took
+  // guardians.md from 10 errors to clean. The literal word "gate" immediately
+  // before the name keeps it specific.
+  if (new RegExp(`\\bgate\\s*\\d*\\s*[:\\-–—]\\s*${gate}\\b`).test(lower)) return true;
   if (lower.includes('|')) {
     return lower
       .split('|')
