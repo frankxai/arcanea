@@ -275,6 +275,11 @@ function namesGate(lower, gate) {
   // guardians.md from 10 errors to clean. The literal word "gate" immediately
   // before the name keeps it specific.
   if (new RegExp(`\\bgate\\s*\\d*\\s*[:\\-–—]\\s*${gate}\\b`).test(lower)) return true;
+  // Reversed order: "the Gate Starweave", "Gate Crown rings at ...". Safe to add
+  // because the literal word "gate" must sit immediately before the name, which
+  // is what keeps the ordinary-English cases ("House voice", "the source of")
+  // silent. Both examples above were real undetected frequency errors.
+  if (new RegExp(`\\bgate\\s+${gate}\\b`).test(lower)) return true;
   if (lower.includes('|')) {
     return lower
       .split('|')
@@ -315,9 +320,17 @@ function checkGateFrequency(path, lineNo, line) {
   for (const [gate, canonical] of Object.entries(GATE_FREQUENCIES)) {
     if (!namesGate(lower, gate)) continue;
     if (value === canonical) return;
-    // A line naming several gates is a table header or a summary; skip it
-    // rather than guess which gate the number belongs to.
-    const gatesNamed = Object.keys(GATE_FREQUENCIES).filter((g) => namesGate(lower, g));
+    // A line naming several gates is a table header, a summary, or prose
+    // comparing two of them; skip rather than guess which gate the number
+    // belongs to. Counted on BARE names, not Gate-context ones: a real false
+    // positive read `.arcanea/lore/CONTINUITY_AUDIT.md:329` — which discusses
+    // Kael's "Foundation Gate" while quoting Voice's "528 Hz" — and reported
+    // Foundation as misnumbered. Only "Foundation" was in Gate-context form, so
+    // counting those alone saw one gate and attributed a frequency belonging to
+    // the other. Ambiguity is the signal; bail on it.
+    const gatesNamed = Object.keys(GATE_FREQUENCIES).filter((g) =>
+      new RegExp(`\\b${g}\\b`).test(lower)
+    );
     if (gatesNamed.length > 1) return;
 
     report(

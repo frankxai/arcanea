@@ -133,7 +133,14 @@ test('a labelled Gate list with wrong frequencies is flagged', () => {
 });
 
 test('a Gate named in Gate context is still flagged', () => {
-  for (const text of ['The Voice Gate sings at 1111 Hz.', 'The Gate of Crown rings at 963 Hz.']) {
+  for (const text of [
+    'The Voice Gate sings at 1111 Hz.',
+    'The Gate of Crown rings at 963 Hz.',
+    // Reversed order — both of these were real undetected frequency errors
+    // until the `gate <name>` form was added.
+    'The Gate Starweave holds at 963 Hz.',
+    'Gate Crown rings at 852 Hz.',
+  ]) {
     const { code, out } = lint(`# Notes (STAGING)\n\n${text}\n`);
     assert.equal(code, 1, `expected an error for "${text}", got:\n${out}`);
     assert.ok(out.includes('gate-frequency'), out);
@@ -447,4 +454,16 @@ test('the vault itself is exempt from lock-claim', () => {
 test('a lore file with no canon tier warns but exits 0', () => {
   const { code, out } = lint('# Something\n\nNo tier declared.\n', 'lore-untiered.md');
   assert.equal(code, 0, out);
+});
+
+test('a line comparing two Gates does not attribute one frequency to the other', () => {
+  // Real false positive from .arcanea/lore/CONTINUITY_AUDIT.md:329, which
+  // discusses a character's "Foundation Gate" while quoting Voice's "528 Hz".
+  // Only Foundation appeared in Gate-context form, so counting Gate-context
+  // names alone saw one gate and blamed it for the other's frequency.
+  const { code, out } = lint(
+    '# Audit (STAGING)\n\nHis gate_primary is listed as Voice (528 Hz), though the ' +
+      'bible describes him at the Foundation Gate.\n'
+  );
+  assert.equal(code, 0, `ambiguous two-gate line must not be flagged:\n${out}`);
 });
