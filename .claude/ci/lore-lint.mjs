@@ -466,7 +466,10 @@ function checkLockClaim(path, lineNo, line) {
   // straight through and warns that the file claims to be locked — the opposite
   // of what it says. Match the apostrophe form explicitly.
   const claim = line.match(/this (document|file|section) is([^.;—]{0,15})LOCKED\b/i);
-  const negated = (gap) => /\b(not|never|no longer)\b/i.test(gap) || /^n[''`]?t\b/i.test(gap.trim());
+  // The apostrophe class must carry U+2019 as well as ASCII 0x27: word
+  // processors and autocorrect emit the curly form, and prose written
+  // elsewhere and pasted in is exactly where "isn't LOCKED" shows up.
+  const negated = (gap) => /\b(not|never|no longer)\b/i.test(gap) || /^n['’`]?t\b/i.test(gap.trim());
   if (claim && !negated(claim[2])) {
     report(
       'WARN',

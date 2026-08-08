@@ -580,6 +580,17 @@ test('a contracted negation is not read as a lock claim', () => {
   assert.ok(!out.includes('lock-claim'), `contracted negation must not fire:\n${out}`);
 });
 
+test('a curly-apostrophe contraction is not read as a lock claim', () => {
+  // Same sentence, U+2019 instead of ASCII 0x27 — what a word processor or
+  // autocorrect emits, and prose drafted elsewhere and pasted in is exactly
+  // where a hand-typed "isn't LOCKED" comes from.
+  const { code, out } = lint(
+    '# T (STAGING)\n\nThis document isn’t LOCKED, still evolving.\n'
+  );
+  assert.equal(code, 0, out);
+  assert.ok(!out.includes('lock-claim'), `curly contraction must not fire:\n${out}`);
+});
+
 test('every GATE_ALIAS is a non-canonical name mapping to a canonical one', () => {
   // An alias exists to resolve a name the vault does NOT use onto one it does.
   // If /lock-decision ever settles Starweave vs Shift the other way, "shift"
