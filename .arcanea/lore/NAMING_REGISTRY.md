@@ -48,7 +48,7 @@ Rule: roots derive from the Five Elements' Arcanean lexicon, never from real-wor
 - **No cross-register borrowing**: a mortal may not carry a God-register name; an institution may not use invented words.
 - **Sound-alike budget**: at most one prominent name per sound-family per era (Nethyssa — proposed in open PR #76, unmerged — and Thessara would coexist only because one is a Leviathan of the deep sea and one is a drowned Academy; the echo is *deliberate*, see `THESSARA.md` §2.5).
 - **The G-test**: read any new name aloud in a sentence with three Locked names. If it doesn't sound like the same universe, it fails.
-- Validation hook: `packages/os/src/canon-validator.ts` is the natural home for these rules as lint checks.
+- Validation hook (**proposed, not yet implemented**): `packages/os/src/canon-validator.ts` is the natural home for these rules as lint checks — none of them are wired up there today; until they are, enforcement is manual review against this section.
 
 ## 5. Earnable Name Elements
 
@@ -69,7 +69,7 @@ Godbeasts: Kaelith, Veloura, Draconis, Laeylinn, Otome, Yumiko, Sol, Vaelith, Ky
 Primordials: Lumina, Nero. Antagonist: Malachar (Lumenbright). Houses: Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis.
 Superseded (never reuse for new entities): **Amaterasu** (→ Source, 2026-03-30), **Thessara** (→ Vaelith as godbeast; name reserved for redeployment per `THESSARA.md`).
 
-⚠️ **Cleanup status**: these supersessions are recorded in the vault, but stray references to both old names persist across the repo (mirrors under `arcanea-lore/` and `sync/aios/`, agent prompts, `packages/`, book texts — e.g. Amaterasu in `book/legends-of-arcanea/VII_THE_GODBEAST_CODEX.md`, Thessara-as-godbeast in `guardians.md` and `.claude/agents/guardians/elara.md`). A repo-wide superseded-name sweep is a tracked follow-up and a precondition for promoting the Thessara redeployment (`THESSARA.md` §1).
+⚠️ **Cleanup status**: these supersessions are recorded in the vault, but stray references to both old names persist across the repo (mirrors under `arcanea-lore/` and `sync/aios/`, agent prompts, `packages/`, book texts — e.g. Amaterasu in `book/legends-of-arcanea/VII_THE_GODBEAST_CODEX.md`, Thessara-as-godbeast in `guardians.md` and `.claude/agents/guardians/elara.md`). A repo-wide superseded-name sweep is tracked as **issue #98** and is a precondition for promoting the Thessara redeployment (`THESSARA.md` §1).
 
 ## 7. Coining Procedure (for agents and contributors)
 
