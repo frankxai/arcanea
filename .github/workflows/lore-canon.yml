@@ -12,10 +12,18 @@ name: Lore canon
 # text. Nobody introduced that in one bad commit — it accumulated because
 # nothing checked. Issue #98.
 
-# Filter broadly: a godbeast name hardcoded in a TypeScript constant is exactly
-# as wrong as one in a markdown table, and lore lives in .md, .ts, .json and
-# .yaml across this repo. The linter's own isLoreFile() decides what actually
-# counts and short-circuits cheaply when nothing is in scope.
+# Filter broadly: a godbeast name hardcoded in a constant is exactly as wrong as
+# one in a markdown table. This list must stay a superset of LORE_EXT in
+# lore-lint.mjs — a type the linter checks but the trigger omits is drift that
+# never even gets looked at, which is worse than a rule that fires wrongly
+# because nothing signals its absence.
+#
+# .js/.mjs are here because the repo really does carry lore in them:
+# packages/chrome-extension/tests/chrome-extension.test.mjs asserts both
+# superseded godbeast names and a shifted frequency ladder as expected values.
+#
+# The linter's own isLoreFile() decides what actually counts and short-circuits
+# cheaply when nothing is in scope.
 on:
   pull_request:
     paths:
@@ -26,6 +34,8 @@ on:
       - '**/*.json'
       - '**/*.ts'
       - '**/*.tsx'
+      - '**/*.js'
+      - '**/*.mjs'
       - '.github/workflows/lore-canon.yml'
       - '.claude/ci/lore-lint.mjs'
 

@@ -162,6 +162,91 @@ test('the shifted ladder is flagged on every row', () => {
   assert.equal(out.match(/gate-frequency/g)?.length, 3, out);
 });
 
+// --- the --changed ratchet ---------------------------------------------------
+//
+// addedLinesFor() tracks a cursor by hand through `@@ -x,y +a,b @@` hunks, which
+// makes it the most bug-prone code here and — until now — the least covered.
+// The property that matters: pre-existing drift is NOT reported, newly added
+// drift IS. Get that backwards and the linter either fails every PR on
+// inherited debt (and gets switched off) or silently passes new drift.
+
+function inTempRepo(steps) {
+  const dir = mkdtempSync(join(tmpdir(), 'fixture-git-'));
+  const run = (args) => execFileSync('git', args, { cwd: dir, encoding: 'utf8' });
+  run(['init', '-q', '-b', 'base']);
+  run(['config', 'user.email', 'test@example.com']);
+  run(['config', 'user.name', 'Test']);
+  try {
+    return steps({ dir, run });
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+test('--changed reports added drift and ignores pre-existing drift', () => {
+  const result = inTempRepo(({ dir, run }) => {
+    const file = join(dir, 'lore-notes.md');
+
+    // Pre-existing drift, already on the base commit.
+    writeFileSync(file, '# Notes (STAGING)\n\n**Godbeast**: Thessara\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    // A new line adding fresh drift, plus untouched pre-existing drift above it.
+    writeFileSync(
+      file,
+      '# Notes (STAGING)\n\n**Godbeast**: Thessara\n\nThe Crown Gate rings at 963 Hz.\n',
+      'utf8'
+    );
+    run(['add', '-A']);
+    run(['commit', '-qm', 'change']);
+
+    try {
+      const out = execFileSync('node', [LINT, '--changed', '--base', base], {
+        cwd: dir,
+        encoding: 'utf8',
+      });
+      return { code: 0, out };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+
+  assert.equal(result.code, 1, result.out);
+  assert.ok(result.out.includes('gate-frequency'), `new drift must be caught:\n${result.out}`);
+  assert.ok(
+    !result.out.includes('superseded-name'),
+    `pre-existing drift must NOT be reported — the ratchet is the whole point:\n${result.out}`
+  );
+});
+
+test('--changed is clean when the added lines carry no drift', () => {
+  const result = inTempRepo(({ dir, run }) => {
+    const file = join(dir, 'lore-notes.md');
+    writeFileSync(file, '# Notes (STAGING)\n\n**Godbeast**: Thessara\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    writeFileSync(
+      file,
+      '# Notes (STAGING)\n\n**Godbeast**: Thessara\n\nThe Crown Gate rings at 741 Hz.\n',
+      'utf8'
+    );
+    run(['add', '-A']);
+    run(['commit', '-qm', 'change']);
+
+    try {
+      return { code: 0, out: execFileSync('node', [LINT, '--changed', '--base', base], { cwd: dir, encoding: 'utf8' }) };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+
+  assert.equal(result.code, 0, result.out);
+});
+
 // --- lock-claim (WARN-only, so it needs tests more than the others, not less)-
 
 test('prose asserting a file is locked warns', () => {

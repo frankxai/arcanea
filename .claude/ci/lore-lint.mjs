@@ -248,6 +248,13 @@ function checkGateFrequency(path, lineNo, line) {
 
   // Resolve unrecorded name divergences before matching, and warn on the name.
   // Gated on the same Gate-context test, so the ordinary verb "shift" is silent.
+  //
+  // Reach is deliberately narrow: this whole function returns early without a Hz
+  // value, so a bare "the Shift Gate" with no frequency nearby is not reported.
+  // Catching every unrecorded name divergence would mean matching "shift" in
+  // Gate context anywhere, and "shift" is a common enough word near lore prose
+  // that the noise would outweigh a WARN nobody can act on until /lock-decision
+  // settles the name. Revisit if the Starweave/Shift question is resolved.
   for (const [alias, canonicalName] of Object.entries(GATE_ALIASES)) {
     if (namesGate(lower, alias)) {
       report(
