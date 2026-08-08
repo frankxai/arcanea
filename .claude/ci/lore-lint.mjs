@@ -51,10 +51,19 @@ const GATE_FREQUENCIES = {
   voice: 528,
   sight: 639,
   crown: 741,
-  shift: 852,
+  starweave: 852,
   unity: 963,
   source: 1111,
 };
+
+// The vault's locked Gate table (CANON_LOCKED.md:62) names the 852 Hz Gate
+// "Starweave". Much of the repo — including .claude/CLAUDE.md — calls it
+// "Shift", and there is NO rename entry in the vault's approval log. So this is
+// an unrecorded divergence, not a logged supersession: the alias still resolves
+// for the frequency check (a "Shift Gate — 1111 Hz" line must still error), but
+// using the name earns a warning pointing at the vault. Promote to ERROR only
+// once a /lock-decision records which name is canonical.
+const GATE_ALIASES = { shift: 'starweave' };
 
 const GODBEASTS = {
   lyssandria: 'Kaelith',
@@ -79,12 +88,16 @@ const SUPERSEDED = {
 // Files whose job IS to record the supersession, discuss other franchises, or
 // deliberately detect the old spelling. Naming a superseded entity here is
 // correct, not drift. Keep this list short and justified.
+// Deliberately NOT allowlisted: packages/os/src/canon-validator.ts. Its 714 Hz
+// entry is a genuine typo detector, but the file also hard-codes BOTH
+// superseded godbeast names as current canon (lines 164, 166) and normalizes
+// misspellings *toward* them (lines 327-333, one annotated "// correct"). It
+// does not miss the drift; it certifies it. It must be checked.
 const ALLOWLIST = [
   '.arcanea/lore/NAMING_REGISTRY.md',       // maintains the superseded inventory
   '.arcanea/lore/THESSARA.md',              // the redeployment proposal itself
-  'packages/os/src/canon-validator.ts',     // intentionally detects old spellings
   '.claude/ci/lore-lint.mjs',               // this file
-  'docs/worldbuilding/',                    // research discusses other worlds' canon
+  'docs/worldbuilding/research/',           // per-world files discuss other franchises' canon
 ];
 
 const LORE_EXT = /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/;
@@ -200,7 +213,21 @@ function checkGateFrequency(path, lineNo, line) {
   const hz = line.match(HZ);
   if (!hz) return;
   const value = Number(hz[1]);
-  const lower = line.toLowerCase();
+  let lower = line.toLowerCase();
+
+  // Resolve unrecorded name divergences before matching, and warn on the name.
+  for (const [alias, canonicalName] of Object.entries(GATE_ALIASES)) {
+    if (new RegExp(`\\b${alias}\\b`).test(lower)) {
+      report(
+        'WARN',
+        path,
+        lineNo,
+        'gate-name',
+        `CANON_LOCKED.md names the ${GATE_FREQUENCIES[canonicalName]} Hz Gate "${canonicalName}", not "${alias}". No rename is recorded in the vault's approval log — resolve via /lock-decision.`
+      );
+      lower = lower.replace(new RegExp(`\\b${alias}\\b`, 'g'), canonicalName);
+    }
+  }
 
   for (const [gate, canonical] of Object.entries(GATE_FREQUENCIES)) {
     // Word-boundary match so "source" inside "resource" cannot trigger.
