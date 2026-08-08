@@ -332,7 +332,19 @@ function checkTierBanner(path, contents) {
   }
 }
 
-// Only the vault may assert that something is locked.
+// Prose asserting that a file is locked canon.
+//
+// Deliberately NOT a ban on the word LOCKED outside the vault: locked content
+// legitimately lives in other files once the Creator has approved it —
+// `.arcanea/lore/MAGIC_SYSTEM.md:3` carries "Status: LOCKED ✅ — Approved by
+// Frank (Creator) 2026-06-23" and is correct. A status banner records a decision
+// that was made; this rule targets running prose that *asserts* lock status,
+// which is how a STAGING file talks itself into being treated as canon.
+//
+// So status banners and tier-vocabulary listings ("LOCKED ✅ / STAGING ⏳") stay
+// silent by design, and WARN never fails the build — an agent that has genuinely
+// earned a lock should not be blocked by a linter, only asked to show the
+// /lock-decision that granted it.
 function checkLockClaim(path, lineNo, line) {
   if (path === '.arcanea/lore/CANON_LOCKED.md') return;
   if (/\bLOCKED\s*(✅|:)/.test(line) && /this (document|file|section) is/i.test(line)) {
@@ -341,7 +353,7 @@ function checkLockClaim(path, lineNo, line) {
       path,
       lineNo,
       'lock-claim',
-      'Only .arcanea/lore/CANON_LOCKED.md may declare content LOCKED. Promotion goes through /lock-decision.'
+      'Prose declaring this file LOCKED. Promotion to locked canon goes through /lock-decision by the Creator; record it in a status banner with the approval date rather than asserting it inline.'
     );
   }
 }

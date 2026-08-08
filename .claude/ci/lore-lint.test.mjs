@@ -162,6 +162,40 @@ test('the shifted ladder is flagged on every row', () => {
   assert.equal(out.match(/gate-frequency/g)?.length, 3, out);
 });
 
+// --- lock-claim (WARN-only, so it needs tests more than the others, not less)-
+
+test('prose asserting a file is locked warns', () => {
+  const { code, out } = lint('# Thing (STAGING)\n\nThis document is LOCKED ✅ and may not be changed.\n');
+  assert.ok(out.includes('lock-claim'), out);
+  assert.equal(code, 0, 'lock-claim is WARN-only and must never fail the build');
+});
+
+test('a status banner recording an approved lock does not warn', () => {
+  // Near-miss on purpose: locked content legitimately lives outside the vault
+  // once the Creator approved it — .arcanea/lore/MAGIC_SYSTEM.md does exactly
+  // this. A banner records a decision; it does not assert one.
+  const { code, out } = lint(
+    '# Magic (LOCKED)\n\n> **Status: LOCKED ✅** — Approved by Frank (Creator) 2026-06-23.\n'
+  );
+  assert.equal(code, 0, out);
+  assert.ok(!out.includes('lock-claim'), out);
+});
+
+test('listing the tier vocabulary does not warn', () => {
+  const { code, out } = lint('# Guide (STAGING)\n\nTiers: LOCKED ✅ / STAGING ⏳ / EVOLVING 🔧\n');
+  assert.equal(code, 0, out);
+  assert.ok(!out.includes('lock-claim'), out);
+});
+
+test('the vault itself is exempt from lock-claim', () => {
+  // Path-based exemption, so this can only be checked through the real filename.
+  const { code, out } = lint(
+    '# Canon\n\nThis document is LOCKED ✅.\n',
+    'CANON_LOCKED.md'
+  );
+  assert.equal(code, 0, out);
+});
+
 // --- warnings (never fail the build) ----------------------------------------
 
 test('a lore file with no canon tier warns but exits 0', () => {
