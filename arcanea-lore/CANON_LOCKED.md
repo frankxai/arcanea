@@ -1,8 +1,12 @@
 # ARCANEA CANON - LOCKED TRUTHS
+
+> [!WARNING]
+> **STALE MIRROR — do not treat as canon.** This is an outdated copy from January 2026. Its Gate frequency table and several terms diverge from the real vault. The authoritative source of truth is [`.arcanea/lore/CANON_LOCKED.md`](../.arcanea/lore/CANON_LOCKED.md) (canonical ladder: Foundation 174 · Flow 285 · Fire 396 · Heart 417 · Voice 528 · Sight 639 · Crown 741 · Shift/Starweave 852 · Unity 963 · Source 1111 Hz). Kept only until this mirror directory is synced or retired.
+
 > **This document contains APPROVED canonical truth. Changes require explicit approval.**
 >
 > *Last Updated: January 16, 2026*
-> *Status: CANONICAL*
+> *Status: SUPERSEDED — see warning above*
 
 ---
 

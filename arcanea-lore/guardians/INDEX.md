@@ -83,7 +83,7 @@ Each Guardian has related entities documented in frontmatter:
 - **Alera**: sylphine, poiesis, orakis
 - **Lyria**: vysara, orakis, sophron
 - **Aiyami**: zenkai, orakis, sophron
-- **Elara**: thessara, valora, enduran
+- **Elara**: vaelith, valora, enduran
 - **Ino**: unara, enduran, sophron
 - **Shinkami**: amaterasu, orakis, all_guardians
 
