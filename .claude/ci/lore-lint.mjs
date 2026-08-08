@@ -93,12 +93,18 @@ const SUPERSEDED = {
 // superseded godbeast names as current canon (lines 164, 166) and normalizes
 // misspellings *toward* them (lines 327-333, one annotated "// correct"). It
 // does not miss the drift; it certifies it. It must be checked.
-const ALLOWLIST = [
+// SCOPE: this exempts the superseded-name check ONLY. These files legitimately
+// name retired entities; they do not get a pass on Gate frequencies, godbeast
+// pairings, or tier banners, all of which they can still get wrong.
+const SUPERSEDED_ALLOWLIST = [
   '.arcanea/lore/NAMING_REGISTRY.md',       // maintains the superseded inventory
   '.arcanea/lore/THESSARA.md',              // the redeployment proposal itself
-  '.claude/ci/lore-lint.mjs',               // this file
   'docs/worldbuilding/research/',           // per-world files discuss other franchises' canon
 ];
+
+// The linter's own source states every canonical and superseded name as data.
+// It is excluded from every check, not just one.
+const SELF = '.claude/ci/lore-lint.mjs';
 
 const LORE_EXT = /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/;
 
@@ -107,15 +113,17 @@ const LORE_EXT = /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/;
 // table) and narrow everywhere else.
 const LORE_PATH =
   /(^|\/)(\.arcanea\/lore|arcanea-lore|book|lore|sync\/aios\/lore)\//;
-const LORE_FILENAME = /(canon|lore|guardian|godbeast|mythology|gates?)/i;
+// Matches anywhere in the PATH, not just the basename — `lore/notes.md` and
+// `guardians/index.md` are both lore-bearing even though neither basename says so.
+const LORE_HINT = /(canon|lore|guardian|godbeast|mythology|gates?)/i;
 
 function isLoreFile(path) {
   if (!LORE_EXT.test(path)) return false;
-  return LORE_PATH.test(path) || LORE_FILENAME.test(path);
+  return LORE_PATH.test(path) || LORE_HINT.test(path);
 }
 
-function isAllowlisted(path) {
-  return ALLOWLIST.some((entry) =>
+function allowsSupersededNames(path) {
+  return SUPERSEDED_ALLOWLIST.some((entry) =>
     entry.endsWith('/') ? path.startsWith(entry) : path === entry
   );
 }
@@ -156,6 +164,7 @@ const ASSIGNMENT_PATTERNS = [
 ];
 
 function checkSupersededNames(path, lineNo, line) {
+  if (allowsSupersededNames(path)) return;
   for (const [stale, replacement] of Object.entries(SUPERSEDED)) {
     if (!line.toLowerCase().includes(stale)) continue;
 
@@ -209,6 +218,24 @@ function checkSupersededNames(path, lineNo, line) {
 // silent. This is the check that catches the 714/741 Crown typo class.
 const HZ = /(\d{3,4})\s*Hz\b/i;
 
+// Nearly every Gate name is also an ordinary English word — voice, source, flow,
+// heart, crown, shift, sight, unity, fire, foundation. Matching them bare turns
+// any sentence that happens to use one near a frequency into a false error: the
+// line "one legend per House voice ... (174→1111 Hz)" reported the Voice Gate as
+// misnumbered. So a name only counts as naming a Gate when it appears in Gate
+// context — "the Crown Gate", "Gate of Crown" — or alone in a table cell.
+function namesGate(lower, gate) {
+  if (new RegExp(`\\b${gate}\\s+gate\\b`).test(lower)) return true;
+  if (new RegExp(`\\bgate\\s+of\\s+(the\\s+)?${gate}\\b`).test(lower)) return true;
+  if (lower.includes('|')) {
+    return lower
+      .split('|')
+      .map((c) => c.trim().replace(/[*_`]/g, ''))
+      .some((c) => c === gate);
+  }
+  return false;
+}
+
 function checkGateFrequency(path, lineNo, line) {
   const hz = line.match(HZ);
   if (!hz) return;
@@ -216,8 +243,9 @@ function checkGateFrequency(path, lineNo, line) {
   let lower = line.toLowerCase();
 
   // Resolve unrecorded name divergences before matching, and warn on the name.
+  // Gated on the same Gate-context test, so the ordinary verb "shift" is silent.
   for (const [alias, canonicalName] of Object.entries(GATE_ALIASES)) {
-    if (new RegExp(`\\b${alias}\\b`).test(lower)) {
+    if (namesGate(lower, alias)) {
       report(
         'WARN',
         path,
@@ -230,14 +258,11 @@ function checkGateFrequency(path, lineNo, line) {
   }
 
   for (const [gate, canonical] of Object.entries(GATE_FREQUENCIES)) {
-    // Word-boundary match so "source" inside "resource" cannot trigger.
-    if (!new RegExp(`\\b${gate}\\b`).test(lower)) continue;
+    if (!namesGate(lower, gate)) continue;
     if (value === canonical) return;
     // A line naming several gates is a table header or a summary; skip it
     // rather than guess which gate the number belongs to.
-    const gatesNamed = Object.keys(GATE_FREQUENCIES).filter((g) =>
-      new RegExp(`\\b${g}\\b`).test(lower)
-    );
+    const gatesNamed = Object.keys(GATE_FREQUENCIES).filter((g) => namesGate(lower, g));
     if (gatesNamed.length > 1) return;
 
     report(
@@ -256,6 +281,14 @@ function checkGodbeastPairing(path, lineNo, line) {
   if (!line.includes('|')) return;
   const cells = line.split('|').map((c) => c.trim().replace(/\*/g, ''));
   const lowered = cells.map((c) => c.toLowerCase());
+
+  // A row naming several gods is a full canon table or a comparison row; which
+  // beast belongs to which god is a column-correspondence question this line-based
+  // check cannot answer. Guessing produces confident false errors — a two-pair row
+  // like `| Aiyami | Sol | Ino | Kyuro |` would report BOTH pairings wrong. Skip,
+  // matching the same single-subject rule checkGateFrequency uses.
+  const godsNamed = Object.keys(GODBEASTS).filter((g) => lowered.includes(g));
+  if (godsNamed.length !== 1) return;
 
   for (const [god, beast] of Object.entries(GODBEASTS)) {
     if (!lowered.includes(god)) continue;
@@ -320,7 +353,14 @@ function addedLinesFor(files, base) {
     let diff;
     try {
       diff = git(['diff', '-U0', `${base}...HEAD`, '--', file]);
-    } catch {
+    } catch (err) {
+      // Never fail silently: a file dropping out of --changed with no output
+      // looks exactly like "nothing to check", which is the one failure mode a
+      // drift linter cannot afford.
+      console.error(
+        `lore-lint: WARN could not diff ${file} against ${base} (${err.message.trim()}); ` +
+          `it was NOT checked. Re-run with the file passed explicitly for a full audit.`
+      );
       continue;
     }
     const lines = new Set();
@@ -364,7 +404,7 @@ function main() {
     files = argv.filter((a) => !a.startsWith('--') && a !== base);
   }
 
-  files = files.filter((f) => !isAllowlisted(f));
+  files = files.filter((f) => f !== SELF);
   if (files.length === 0) {
     console.log('lore-lint: no lore files to check.');
     process.exit(0);

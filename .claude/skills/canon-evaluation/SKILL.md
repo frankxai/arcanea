@@ -82,7 +82,7 @@ Lint: `lore-lint.mjs` exit 0 (N files)
 
 | # | Dimension | Score | Evidence |
 |---|---|---|---|
-| 1 | Canon fit | 4 | Uses locked Shift Gate (852 Hz) without redefining it — CANON_LOCKED.md:66 |
+| 1 | Canon fit | 4 | Uses the locked Starweave Gate (852 Hz) without redefining it — CANON_LOCKED.md:62 |
 | … | | | |
 
 **Adversarial pass**

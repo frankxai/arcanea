@@ -45,7 +45,15 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Smoke-test the linter
+      - name: Test the linter
+        # The linter is only worth having if it stays trusted, and that rests on
+        # near-zero false positives. These fixtures lock that in — a multi-pair
+        # table row, the full ten-gate table, prose naming a retired entity, a
+        # Gate name used as an ordinary English word — alongside the drift it
+        # must still catch. Verified by hand once is verified until the next edit.
+        run: node --test .claude/ci/lore-lint.test.mjs
+
+      - name: Smoke-test against the vault
         # Prove the script still parses and that its canon table still matches
         # the vault. A linter whose constants have drifted from
         # CANON_LOCKED.md is worse than no linter — it certifies the drift.
