@@ -59,6 +59,13 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
+          # Required, not optional: v5 defaults package-manager-cache to true,
+          # detects this repo's pnpm-lock.yaml, and fails with "Unable to locate
+          # executable file: pnpm". Every other workflow here runs
+          # pnpm/action-setup first; this job deliberately does not, because it
+          # installs nothing — it runs `node --test` over zero-dependency
+          # scripts. Nothing to cache, so ask for no cache.
+          package-manager-cache: false
 
       - name: Test the linter
         # The linter is only worth having if it stays trusted, and that rests on
