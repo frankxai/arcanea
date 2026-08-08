@@ -301,6 +301,36 @@ test('an alias named as a Gate with the wrong frequency still errors', () => {
   assert.ok(out.includes('gate-frequency'), out);
 });
 
+test('a second frequency later on the same line is checked too', () => {
+  // Two Gate/frequency pairs in one row. The wrong one is the second, so a
+  // check that only ever inspected the first match on a line would read this
+  // as clean — a silent miss, which is the failure mode that matters most.
+  const bad = lint('# T (STAGING)\n\n| Unity | 963 Hz | Crown | 400 Hz |\n');
+  assert.equal(bad.code, 1, `the second pair must be checked:\n${bad.out}`);
+  assert.ok(bad.out.includes('crown Gate is 741 Hz'), `blame the owning Gate:\n${bad.out}`);
+  assert.equal(bad.out.match(/gate-frequency/g).length, 1, `only the wrong pair:\n${bad.out}`);
+
+  const good = lint('# T (STAGING)\n\n| Unity | 963 Hz | Crown | 741 Hz |\n');
+  assert.equal(good.code, 0, `two correct pairs must stay clean:\n${good.out}`);
+});
+
+test('an alias and a neighbouring Gate on one line attribute separately', () => {
+  // "Shift" is rewritten to "starweave" in place, so every index the check
+  // derives has to come from the rewritten string. If an offset survived the
+  // substitution the attribution window would slide and blame the wrong Gate.
+  const good = lint(
+    '# T (STAGING)\n\nThe Shift Gate rings at 852 Hz, the Unity Gate at 963 Hz.\n'
+  );
+  assert.equal(good.code, 0, `both frequencies are canon:\n${good.out}`);
+
+  const bad = lint(
+    '# T (STAGING)\n\nThe Shift Gate rings at 963 Hz, the Unity Gate at 963 Hz.\n'
+  );
+  assert.equal(bad.code, 1, bad.out);
+  assert.ok(bad.out.includes('starweave Gate is 852 Hz'), `blame the alias, not Unity:\n${bad.out}`);
+  assert.equal(bad.out.match(/gate-frequency/g).length, 1, `Unity's own 963 is right:\n${bad.out}`);
+});
+
 // --- workflow / linter coupling ----------------------------------------------
 
 test('the workflow trigger covers every extension LORE_EXT checks', () => {

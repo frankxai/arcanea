@@ -266,6 +266,31 @@ const HZ = /(\d{3,4})\s*Hz\b/i;
 // line "one legend per House voice ... (174→1111 Hz)" reported the Voice Gate as
 // misnumbered. So a name only counts as naming a Gate when it appears in Gate
 // context — "the Crown Gate", "Gate of Crown" — or alone in a table cell.
+// Returns the earliest index at which this gate is named in Gate context, or -1.
+// Position matters, not just presence: with several Hz values on one line, each
+// belongs to the nearest Gate mention preceding it.
+function gateMentionIndex(lower, gate) {
+  const forms = [
+    new RegExp(`\\b${gate}\\s+gate\\b`),
+    new RegExp(`\\bgate\\s+of\\s+(the\\s+)?${gate}\\b`),
+    new RegExp(`\\bgate\\s*\\d*\\s*[:\\-–—]\\s*${gate}\\b`),
+    new RegExp(`\\bgate\\s+${gate}\\b`),
+  ];
+  let best = -1;
+  for (const form of forms) {
+    const m = lower.match(form);
+    if (m && (best === -1 || m.index < best)) best = m.index;
+  }
+  if (lower.includes('|')) {
+    let pos = 0;
+    for (const cell of lower.split('|')) {
+      if (cell.trim().replace(/[*_`]/g, '') === gate && (best === -1 || pos < best)) best = pos;
+      pos += cell.length + 1;
+    }
+  }
+  return best;
+}
+
 function namesGate(lower, gate) {
   if (new RegExp(`\\b${gate}\\s+gate\\b`).test(lower)) return true;
   if (new RegExp(`\\bgate\\s+of\\s+(the\\s+)?${gate}\\b`).test(lower)) return true;
@@ -290,9 +315,7 @@ function namesGate(lower, gate) {
 }
 
 function checkGateFrequency(path, lineNo, line) {
-  const hz = line.match(HZ);
-  if (!hz) return;
-  const value = Number(hz[1]);
+  if (!HZ.test(line)) return;
   let lower = line.toLowerCase();
 
   // Resolve unrecorded name divergences before matching, and warn on the name.
@@ -317,37 +340,49 @@ function checkGateFrequency(path, lineNo, line) {
     }
   }
 
-  for (const [gate, canonical] of Object.entries(GATE_FREQUENCIES)) {
-    if (!namesGate(lower, gate)) continue;
-    if (value === canonical) return;
-    // Whose frequency is this? Both blunt answers are wrong, and each was tried:
-    //
-    //   count Gate-context names  -> false positive. CONTINUITY_AUDIT.md:329
-    //     discusses Kael's "Foundation Gate" while quoting Voice's "528 Hz";
-    //     only Foundation was in Gate-context form, so it saw one gate and
-    //     blamed it for the other's number.
-    //   count bare names          -> false negative. "The Crown Gate resonates
-    //     at 963 Hz, though the source remains unclear" bails on the stray word
-    //     "source" and misses a real Crown error.
-    //
-    // The actual signal is proximity. A frequency belongs to whichever gate is
-    // quoted next to it — "Voice (528 Hz" — not to one mentioned elsewhere in
-    // the sentence. So bail only when a DIFFERENT gate name sits in the short
-    // window immediately before the number.
-    const before = lower.slice(Math.max(0, hz.index - 25), hz.index);
+  // Every Hz on the line, not just the first, and matched AFTER the alias
+  // rewrite above so the indices line up with the string being sliced. Both
+  // were bugs: `| Unity | 963 Hz | Crown | 400 Hz |` checked only 963 and let a
+  // real Crown error through, and the old code captured hz.index from the
+  // pre-rewrite string then sliced the post-rewrite one, which shifts by four
+  // characters per "shift"→"starweave" substitution earlier in the line.
+  //
+  // Ownership is by proximity: a frequency belongs to the nearest Gate mention
+  // preceding it. Both blunt alternatives were tried and both were wrong —
+  // presence of Gate-context names alone blames the wrong gate
+  // (CONTINUITY_AUDIT.md:329 quotes Voice's 528 Hz while discussing Foundation),
+  // and bare-name counting suppresses real errors ("the source remains unclear"
+  // silencing a Crown error).
+  for (const m of lower.matchAll(/(\d{3,4})\s*hz\b/g)) {
+    const value = Number(m[1]);
+
+    let owner = null;
+    let ownerIndex = -1;
+    for (const gate of Object.keys(GATE_FREQUENCIES)) {
+      const idx = gateMentionIndex(lower, gate);
+      if (idx !== -1 && idx < m.index && idx > ownerIndex) {
+        owner = gate;
+        ownerIndex = idx;
+      }
+    }
+    if (!owner) continue;
+    if (value === GATE_FREQUENCIES[owner]) continue;
+
+    // A different gate quoted between its owner and the number takes the number
+    // with it — "Foundation Gate … Voice (528 Hz" belongs to Voice.
+    const between = lower.slice(ownerIndex, m.index).slice(-25);
     const hijacker = Object.keys(GATE_FREQUENCIES).find(
-      (g) => g !== gate && new RegExp(`\\b${g}\\b`).test(before)
+      (g) => g !== owner && new RegExp(`\\b${g}\\b`).test(between)
     );
-    if (hijacker) return;
+    if (hijacker) continue;
 
     report(
       'ERROR',
       path,
       lineNo,
       'gate-frequency',
-      `${gate} Gate is ${canonical} Hz in CANON_LOCKED.md, not ${value} Hz.`
+      `${owner} Gate is ${GATE_FREQUENCIES[owner]} Hz in CANON_LOCKED.md, not ${value} Hz.`
     );
-    return;
   }
 }
 
