@@ -273,7 +273,16 @@ function gateMentionIndex(lower, gate) {
   const forms = [
     new RegExp(`\\b${gate}\\s+gate\\b`),
     new RegExp(`\\bgate\\s+of\\s+(the\\s+)?${gate}\\b`),
+    // "Gate 1: Foundation", "Gate: Crown" — a labelled list, which is how
+    // guardians.md writes the whole ladder. Omitting this form cost real
+    // detection: tightening for the "House voice" false positive silently took
+    // guardians.md from 10 errors to clean. The literal word "gate" immediately
+    // before the name keeps it specific.
     new RegExp(`\\bgate\\s*\\d*\\s*[:\\-–—]\\s*${gate}\\b`),
+    // Reversed order: "the Gate Starweave", "Gate Crown rings at ...". Safe to
+    // add because the literal word "gate" must sit immediately before the name,
+    // which is what keeps the ordinary-English cases ("House voice", "the source
+    // of") silent. Both examples above were real undetected frequency errors.
     new RegExp(`\\bgate\\s+${gate}\\b`),
   ];
   let best = -1;
@@ -291,28 +300,11 @@ function gateMentionIndex(lower, gate) {
   return best;
 }
 
-function namesGate(lower, gate) {
-  if (new RegExp(`\\b${gate}\\s+gate\\b`).test(lower)) return true;
-  if (new RegExp(`\\bgate\\s+of\\s+(the\\s+)?${gate}\\b`).test(lower)) return true;
-  // "Gate 1: Foundation", "Gate: Crown" — a labelled list, which is how
-  // guardians.md writes the whole ladder. Omitting this form cost real
-  // detection: tightening for the "House voice" false positive silently took
-  // guardians.md from 10 errors to clean. The literal word "gate" immediately
-  // before the name keeps it specific.
-  if (new RegExp(`\\bgate\\s*\\d*\\s*[:\\-–—]\\s*${gate}\\b`).test(lower)) return true;
-  // Reversed order: "the Gate Starweave", "Gate Crown rings at ...". Safe to add
-  // because the literal word "gate" must sit immediately before the name, which
-  // is what keeps the ordinary-English cases ("House voice", "the source of")
-  // silent. Both examples above were real undetected frequency errors.
-  if (new RegExp(`\\bgate\\s+${gate}\\b`).test(lower)) return true;
-  if (lower.includes('|')) {
-    return lower
-      .split('|')
-      .map((c) => c.trim().replace(/[*_`]/g, ''))
-      .some((c) => c === gate);
-  }
-  return false;
-}
+// Boolean form of the same question. Deliberately a one-line wrapper rather than
+// a second copy of the forms: the two were duplicated verbatim, and two lists of
+// regexes that must stay identical are precisely the drift this linter exists to
+// catch. One list, one place to edit.
+const namesGate = (lower, gate) => gateMentionIndex(lower, gate) !== -1;
 
 function checkGateFrequency(path, lineNo, line) {
   if (!HZ.test(line)) return;
@@ -369,10 +361,22 @@ function checkGateFrequency(path, lineNo, line) {
     if (value === GATE_FREQUENCIES[owner]) continue;
 
     // A different gate quoted between its owner and the number takes the number
-    // with it — "Foundation Gate … Voice (528 Hz" belongs to Voice.
-    const between = lower.slice(ownerIndex, m.index).slice(-25);
+    // with it — "Foundation Gate … Voice Gate (528 Hz" belongs to Voice.
+    //
+    // The candidate must name a Gate in Gate context, exactly as the owner did.
+    // Matching bare names here contradicted the whole premise of the owner rule
+    // and silently ate real errors: "The Foundation Gate resonates like a heart
+    // at 285 Hz" was suppressed by the ordinary word "heart" — Foundation is
+    // 174 Hz, so that line is a genuine error the check reported as clean.
+    //
+    // The window is the whole span from the owner to the number rather than a
+    // fixed 25 characters. A character budget could bisect "voice gate" and hide
+    // the context this now depends on, and the span is short by construction:
+    // the owner is the nearest preceding mention, so anything further back
+    // already lost the ownership race.
+    const between = lower.slice(ownerIndex, m.index);
     const hijacker = Object.keys(GATE_FREQUENCIES).find(
-      (g) => g !== owner && new RegExp(`\\b${g}\\b`).test(between)
+      (g) => g !== owner && gateMentionIndex(between, g) !== -1
     );
     if (hijacker) continue;
 

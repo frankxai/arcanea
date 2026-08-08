@@ -580,6 +580,30 @@ test('a contracted negation is not read as a lock claim', () => {
   assert.ok(!out.includes('lock-claim'), `contracted negation must not fire:\n${out}`);
 });
 
+test('an ordinary English Gate-word before the number does not suppress an error', () => {
+  // Owner selection requires Gate context precisely because every Gate name is
+  // also an ordinary word. The hijacker check used to match bare names, which
+  // contradicted that and ate real errors: "heart" used as a simile suppressed
+  // a genuine Foundation mistake. Foundation is 174 Hz, so 285 Hz is wrong.
+  const { code, out } = lint(
+    '# T (STAGING)\n\nThe Foundation Gate resonates like a heart at 285 Hz.\n'
+  );
+  assert.equal(code, 1, `an ordinary word must not silence a real error:\n${out}`);
+  assert.ok(out.includes('foundation Gate is 174 Hz'), out);
+});
+
+test('a Gate named both before and between still takes its own frequency', () => {
+  // The one case the hijacker check exists for, and the only one the owner rule
+  // cannot handle alone: gateMentionIndex returns a Gate's EARLIEST mention, so
+  // a Gate named before the owner loses the ownership race even when it is also
+  // named immediately before the number. Here 528 Hz is Voice's and correct;
+  // without the hijacker check the line is blamed on Foundation and errors.
+  const { code, out } = lint(
+    '# T (STAGING)\n\nThe Voice Gate and the Foundation Gate differ; the Voice Gate holds 528 Hz.\n'
+  );
+  assert.equal(code, 0, `Voice owns its own frequency:\n${out}`);
+});
+
 test('a curly-apostrophe contraction is not read as a lock claim', () => {
   // Same sentence, U+2019 instead of ASCII 0x27 — what a word processor or
   // autocorrect emits, and prose drafted elsewhere and pasted in is exactly
