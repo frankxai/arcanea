@@ -102,9 +102,13 @@ const SUPERSEDED_ALLOWLIST = [
   'docs/worldbuilding/research/',           // per-world files discuss other franchises' canon
 ];
 
-// The linter's own source states every canonical and superseded name as data.
-// It is excluded from every check, not just one.
-const SELF = '.claude/ci/lore-lint.mjs';
+// The linter's own source states every canonical and superseded name as data,
+// and its fixtures contain deliberate drift — a superseded godbeast in
+// assignment position, a mispaired god, a shifted frequency ladder — precisely
+// so the checks can be proven to fire. Both are excluded from every check.
+// Without this the linter reports its own test suite as canon drift, which it
+// did on the first CI run after the fixtures landed.
+const SELF_PREFIX = '.claude/ci/lore-lint';
 
 const LORE_EXT = /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/;
 
@@ -404,7 +408,7 @@ function main() {
     files = argv.filter((a) => !a.startsWith('--') && a !== base);
   }
 
-  files = files.filter((f) => f !== SELF);
+  files = files.filter((f) => !f.startsWith(SELF_PREFIX));
   if (files.length === 0) {
     console.log('lore-lint: no lore files to check.');
     process.exit(0);
