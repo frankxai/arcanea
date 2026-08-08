@@ -47,11 +47,16 @@ jobs:
     name: Canon consistency (mechanical)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # v5 matches this repo's dominant convention (35 workflows on checkout@v5,
+      # 17 on setup-node@v5) and clears the Node-20 deprecation warning the v4
+      # actions emit in this workflow's own logs. Tag-pinned rather than
+      # SHA-pinned to match every other workflow here — SHA hardening is a
+      # repo-wide decision, not one to make piecemeal in a single file.
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
 
