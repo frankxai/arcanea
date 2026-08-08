@@ -490,3 +490,53 @@ test('a banner recording supersession is not read as a lock claim', () => {
   assert.equal(code, 0, out);
   assert.ok(!out.includes('lock-claim'), out);
 });
+
+test('a period-terminated lock claim fires, a negated one does not', () => {
+  const fires = lint('# T (STAGING)\n\nThis document is now LOCKED.\n');
+  assert.ok(fires.out.includes('lock-claim'), `period-terminated claim missed:\n${fires.out}`);
+
+  const negated = lint('# T (STAGING)\n\nThis section is not LOCKED.\n');
+  assert.ok(!negated.out.includes('lock-claim'), `negation must not fire:\n${negated.out}`);
+});
+
+test('the linter constants match the vault they claim to mirror', () => {
+  // The file says "if these disagree with the vault, the vault wins and this
+  // file is the bug" — but nothing enforced it. The CI smoke test runs the
+  // linter OVER the vault, which only catches drift the checks already model;
+  // a locked rename the linter has never heard of passes silently. This diffs
+  // the transcribed constants against CANON_LOCKED.md's table directly, so the
+  // next locked rename cannot depend on someone remembering this file.
+  const repoRoot = fileURLToPath(new URL('../../', import.meta.url));
+  const vault = readFileSync(join(repoRoot, '.arcanea/lore/CANON_LOCKED.md'), 'utf8');
+  const src = readFileSync(fileURLToPath(new URL('./lore-lint.mjs', import.meta.url)), 'utf8');
+
+  // Vault: | Gate | 174 Hz | God | Godbeast | Domain |
+  const vaultGates = new Map();
+  const vaultBeasts = new Map();
+  for (const line of vault.split('\n')) {
+    const m = line.match(
+      /^\|\s*([A-Za-z]+)\s*\|\s*(\d{3,4})\s*Hz\s*\|\s*([A-Za-z]+)\s*\|\s*([A-Za-z]+)\s*\|/
+    );
+    if (m) {
+      vaultGates.set(m[1].toLowerCase(), Number(m[2]));
+      vaultBeasts.set(m[3].toLowerCase(), m[4]);
+    }
+  }
+  assert.equal(vaultGates.size, 10, `expected 10 gates in the vault, parsed ${vaultGates.size}`);
+
+  const block = (name) => src.slice(src.indexOf(`const ${name} = {`)).slice(0, src.slice(src.indexOf(`const ${name} = {`)).indexOf('};'));
+  const lintGates = new Map(
+    [...block('GATE_FREQUENCIES').matchAll(/(\w+):\s*(\d+)/g)].map((m) => [m[1], Number(m[2])])
+  );
+  const lintBeasts = new Map(
+    [...block('GODBEASTS').matchAll(/(\w+):\s*'([^']+)'/g)].map((m) => [m[1], m[2]])
+  );
+
+  for (const [gate, hz] of vaultGates) {
+    assert.equal(lintGates.get(gate), hz, `GATE_FREQUENCIES.${gate} must be ${hz} per the vault`);
+  }
+  for (const [god, beast] of vaultBeasts) {
+    assert.equal(lintBeasts.get(god), beast, `GODBEASTS.${god} must be ${beast} per the vault`);
+  }
+  assert.equal(lintGates.size, vaultGates.size, 'linter knows a different number of gates than the vault');
+});

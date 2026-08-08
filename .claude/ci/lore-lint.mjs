@@ -422,7 +422,12 @@ function checkLockClaim(path, lineNo, line) {
   // "Status: LOCKED ✅ — this document is superseded by the vault", which
   // asserts the opposite of a lock claim. The gap excludes sentence breaks so
   // the phrase has to actually be "this document is … LOCKED".
-  if (/this (document|file|section) is[^.;—]{0,15}LOCKED\s*(✅|:)/i.test(line)) {
+  // The trailing ✅/: requirement was punctuation coupling, not meaning: it let
+  // "This document is now LOCKED." through. Dropping it needs a negation guard,
+  // though — without one, "This section is not LOCKED" starts firing, which
+  // inverts the rule.
+  const claim = line.match(/this (document|file|section) is([^.;—]{0,15})LOCKED\b/i);
+  if (claim && !/\b(not|never|no longer)\b/i.test(claim[2])) {
     report(
       'WARN',
       path,
