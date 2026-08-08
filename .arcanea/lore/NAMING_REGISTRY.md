@@ -18,7 +18,7 @@
 | Register | Sound-space | Morphology | Locked exemplars | Coin like |
 |---|---|---|---|---|
 | **Arcanean Gods** | Liquid consonants (l, r, y), open vowels, feminine-leaning, 3 syllables | Often -ia/-a/-inn endings | Lyssandria, Leyla, Draconia, Maylinn, Alera, Lyria, Aiyami, Elara, Ino, Shinkami | *You don't. Set closed.* |
-| **Godbeasts** | Compact, totemic, hard-soft alternation, 2-3 syllables | -ith/-ura/-is/-o endings | Kaelith, Veloura, Draconis, Laeylinn, Otome, Yumiko, Sol, Vaelith, Kyuro, Source | *Closed for the Ten; T3 Leviathans use -yssa/-oth weight (Nethyssa)* |
+| **Godbeasts** | Compact, totemic, hard-soft alternation, 2-3 syllables | -ith/-ura/-is/-o endings | Kaelith, Veloura, Draconis, Laeylinn, Otome, Yumiko, Sol, Vaelith, Kyuro, Source | *Closed for the Ten; T3 Leviathans use -yssa/-oth weight (Nethyssa — proposed in open PR #76, unmerged)* |
 | **Eldrian / high antiquity** | Weight, dark vowels (a, o), -ar/-al/-ach endings | Two-element compounds (name + epithet-surname) | Malachar Lumenbright, Vantara | Ancient persons, fallen orders, pre-Age places |
 | **Wisdoms / abstracts** | Greek-adjacent, ends in consonant or -is/-a | Single word, capital | Sophron, Kardia, Valora, Eudaira, Orakis, Poiesis, Enduran | Virtues, principles, meta-concepts only |
 | **Verithal / Proof register** | Plain, workmanlike, Germanic-short; 1-2 syllables + trade-plain surnames | Given + surname; founder-lineage hyphenation | Ivo Solvane, Ordan Vey, Maren Solvane-Ket | March mortals, Provers, Wrights |
@@ -46,7 +46,7 @@ Rule: roots derive from the Five Elements' Arcanean lexicon, never from real-wor
 
 - **No new name within edit-distance 2 of a Locked name.** (Prevents "Lyssara", "Malakar".)
 - **No cross-register borrowing**: a mortal may not carry a God-register name; an institution may not use invented words.
-- **Sound-alike budget**: at most one prominent name per sound-family per era (Nethyssa and Thessara coexist only because one is a Leviathan of the deep sea and one is a drowned Academy — the echo is *deliberate*, see `THESSARA.md` §3).
+- **Sound-alike budget**: at most one prominent name per sound-family per era (Nethyssa — proposed in open PR #76, unmerged — and Thessara would coexist only because one is a Leviathan of the deep sea and one is a drowned Academy; the echo is *deliberate*, see `THESSARA.md` §2.5).
 - **The G-test**: read any new name aloud in a sentence with three Locked names. If it doesn't sound like the same universe, it fails.
 - Validation hook: `packages/os/src/canon-validator.ts` is the natural home for these rules as lint checks.
 
@@ -69,6 +69,8 @@ Godbeasts: Kaelith, Veloura, Draconis, Laeylinn, Otome, Yumiko, Sol, Vaelith, Ky
 Primordials: Lumina, Nero. Antagonist: Malachar (Lumenbright). Houses: Lumina, Nero, Pyros, Aqualis, Terra, Ventus, Synthesis.
 Superseded (never reuse for new entities): **Amaterasu** (→ Source, 2026-03-30), **Thessara** (→ Vaelith as godbeast; name reserved for redeployment per `THESSARA.md`).
 
+⚠️ **Cleanup status**: these supersessions are recorded in the vault, but stray references to both old names persist across the repo (mirrors under `arcanea-lore/` and `sync/aios/`, agent prompts, `packages/`, book texts — e.g. Amaterasu in `book/legends-of-arcanea/VII_THE_GODBEAST_CODEX.md`, Thessara-as-godbeast in `guardians.md` and `.claude/agents/guardians/elara.md`). A repo-wide superseded-name sweep is a tracked follow-up and a precondition for promoting the Thessara redeployment (`THESSARA.md` §1).
+
 ## 7. Coining Procedure (for agents and contributors)
 
 1. Identify the register (§2). 2. Draft 3 candidates inside its sound-space. 3. Run collision rules (§4). 4. Read the G-test sentence aloud. 5. Check the superseded list (§6). 6. Stage with a one-line etymology note ("Thessara: th- liquid onset + -essara water-flow center; Reaches covenant register"). Names without etymology notes fail review.
@@ -80,3 +82,4 @@ Superseded (never reuse for new entities): **Amaterasu** (→ Source, 2026-03-30
 | Date | Entry | Status |
 |------|-------|--------|
 | 2026-08-08 | Registry formalized from SYSTEM.md §6 + research swarm findings; spell morphology tiers; earnable elements; superseded list | ⏳ STAGING |
+| 2026-08-08 | Review fix: superseded-list cleanup-status warning added (stray Amaterasu/Thessara references persist repo-wide); Nethyssa citations marked as PR #76 (open/unmerged) | ⏳ STAGING |

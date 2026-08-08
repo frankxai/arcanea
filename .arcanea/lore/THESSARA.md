@@ -14,7 +14,7 @@
 
 ## 1. The name and its history
 
-**Thessara** entered the corpus as a candidate godbeast name for Elara's companion and was superseded by **Vaelith** when the Ten were locked; the conflict-cleanup (#96) removed its last stray references. The name itself is too good to waste — liquid *th-* onset, water-flowing *-essara* center, mythic weight without pomp — and the Creator has asked for its redeployment.
+**Thessara** entered the corpus as a candidate godbeast name for Elara's companion and was superseded by **Vaelith** when the Ten were locked (the vault, `.arcanea/lore/CANON_LOCKED.md`, records Vaelith). The conflict-cleanup (#96) scrubbed the references inside the 33 conflict-marked files, but **stray Thessara-as-godbeast references still persist elsewhere in the repo** — mirrors, agent prompts, and packages (e.g. `guardians.md`, `.claude/agents/guardians/elara.md`, `packages/aios/agents/guardians/elara.md`, `sync/aios/lore/**`, `.arcanea/gemini/guardian-prompts/elara.md`). A repo-wide superseded-name sweep is a **required precondition** to promoting this proposal: redeploying the name while those references live would create a two-referent collision. The name itself is too good to waste — liquid *th-* onset, water-flowing *-essara* center, mythic weight without pomp — and the Creator has asked for its redeployment.
 
 ## 2. The proposal (primary): Thessara, the Drowned Academy of the Vantara March
 
@@ -33,7 +33,7 @@ Six generations later, its flooded lower stacks were the only rooms worth robbin
 2. **The Concord's hinge**: when the Kingdom of Light demands Verithal honor the Academies, Verithal can answer — *we are the only ones who kept one.* When Verithal scorns Gate-craft, the Reaches can answer — *your Ladder is our drowned library, alphabetized.* Both humbled; treaty fuel.
 3. **A dungeon**: the drowned upper halls — where the *Gate* treatises sank, unread by Provers who couldn't use them — remain unexplored. What else is down there is on the mystery ledger (below).
 4. **A founder-figure**: Archmage Thessara herself (person AND place, the Elrond/Rivendell doubling) — a woman who shelved "lesser knowledge" beside high arcana when no one else would. Ivo's true predecessor, four centuries early. The Lantern Verses may yet remember her: *"Thessara shelved the low beside the high / and drowned before she learned the reason why."*
-5. **A deliberate echo**: Thessara (drowned Academy) and Nethyssa (the Abyss That Dreams, PR #76's Leviathan) share a sound-family *on purpose* — March sailors claim the Academy's bells still ring in the deep, and blame the Leviathan's dreaming. Two staged concepts, one folk-etymology, zero canon commitment (the ledger keeps it unresolved).
+5. **A deliberate echo**: Thessara (drowned Academy) and Nethyssa (the Abyss That Dreams — the Leviathan proposed in **PR #76, open/unmerged STAGING**, not yet in-tree) share a sound-family *on purpose* — March sailors claim the Academy's bells still ring in the deep, and blame the Leviathan's dreaming. Two staged concepts, one folk-etymology, zero canon commitment (the ledger keeps it unresolved); this echo only activates if both proposals are approved.
 
 ## 3. Alternates considered (recorded for the decision)
 
@@ -41,7 +41,7 @@ Six generations later, its flooded lower stacks were the only rooms worth robbin
 |---|---|
 | **A. The Drowned Academy + Archmage Thessara** (above) | **Recommended** — fills an existing unnamed slot, zero retcon cost, maximal idiom yield |
 | B. Thessara as the Arbor's first Gleam-reader saint | Good moral-complexity fuel, but competes with the Dimmed mythology's deliberate anonymity |
-| C. Thessara as a new T3 Leviathan | Rejected — collides with Nethyssa's sound-family as a *peer* entity (registry §4 adjacency rule); the folk-etymology echo (§2.5) captures the resonance without the collision |
+| C. Thessara as a new T3 Leviathan | Rejected — would collide with Nethyssa's sound-family as a *peer* entity if PR #76 lands (registry §4 adjacency rule); the folk-etymology echo (§2.5) captures the resonance without the collision |
 | D. Thessara as a Starbound Crew ship | Wastes the name's antiquity register on hardware |
 
 ## 4. Mystery ledger additions (protected)
@@ -63,3 +63,4 @@ Six generations later, its flooded lower stacks were the only rooms worth robbin
 | Date | Entry | Status |
 |------|-------|--------|
 | 2026-08-08 | Thessara redeployed as the Drowned Academy + founder Archmage Thessara; alternates recorded; mystery ledger entries minted | ⏳ STAGING |
+| 2026-08-08 | Review fix: corrected cleanup claim — stray Thessara-as-godbeast references persist repo-wide; sweep is a promotion precondition. Nethyssa marked as PR #76 (open/unmerged) | ⏳ STAGING |
