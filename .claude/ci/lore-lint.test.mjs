@@ -176,6 +176,59 @@ test('the shifted ladder is flagged on every row', () => {
   assert.equal(out.match(/gate-frequency/g)?.length, 3, out);
 });
 
+// --- file selection ----------------------------------------------------------
+
+test('--changed selects the paths that actually carry canon', () => {
+  // Regression: docs/worldbuilding/** and .claude/CLAUDE.md were both invisible
+  // to isLoreFile(), so 13 of this PR's own 20 changed files — every pattern
+  // library and research file it adds — were never selected in the mode CI runs.
+  // .claude/CLAUDE.md was the worse half: 17 errors, and it is what every agent
+  // reads at session start.
+  const mustSelect = [
+    'docs/worldbuilding/patterns/ARTIFACTS.md',
+    'docs/worldbuilding/research/SYNTHESIS.md',
+    '.claude/CLAUDE.md',
+    'CLAUDE.md',
+    'AGENTS.md',
+    '.arcanea/lore/CANON_LOCKED.md',
+    'book/legends-of-arcanea/x.md',
+  ];
+  const mustSkip = [
+    'src/components/Button.tsx',
+    'package.json',
+    'README.md',
+    '.github/workflows/deploy-apps.yml',
+  ];
+
+  const lintSrc = readFileSync(fileURLToPath(new URL('./lore-lint.mjs', import.meta.url)), 'utf8');
+  // Re-declare from source so the test fails if the patterns are renamed away.
+  for (const name of ['LORE_EXT', 'LORE_PATH', 'LORE_HINT', 'LORE_NAMED']) {
+    assert.ok(lintSrc.includes(`const ${name}`), `${name} missing from lore-lint.mjs`);
+  }
+
+  const ext = /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/;
+  const path = /(^|\/)(\.arcanea\/lore|arcanea-lore|book|lore|sync\/aios\/lore|docs\/worldbuilding)\//;
+  const hint = /(canon|lore|guardian|godbeast|mythology|gates?)/i;
+  const named = /(^|\/)(CLAUDE|AGENTS|GEMINI)\.md$/;
+  const selects = (p) => ext.test(p) && (path.test(p) || hint.test(p) || named.test(p));
+
+  for (const p of mustSelect) assert.ok(selects(p), `must be selected but was not: ${p}`);
+  for (const p of mustSkip) assert.ok(!selects(p), `must be skipped but was selected: ${p}`);
+});
+
+test('a lore-bearing file with no lore in its path is selected by content', () => {
+  // packages/chrome-extension/tests/chrome-extension.test.mjs matches no path
+  // pattern, yet holds 4 real errors. Round 7 widened the CI trigger for it and
+  // the selector still skipped it — caught only when the selection test above
+  // was written. The content probe is the backstop for that whole class.
+  const { code, out } = lint(
+    'export const ELARA = {\n  gate: "Starweave",\n  godbeast: "Thessara",\n};\n',
+    'chrome-extension.test.mjs'
+  );
+  assert.equal(code, 1, `content probe must reach this file:\n${out}`);
+  assert.ok(out.includes('superseded-name'), out);
+});
+
 // --- alias resolution --------------------------------------------------------
 
 test('an alias appearing twice, once as an ordinary word, resolves safely', () => {

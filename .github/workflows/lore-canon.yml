@@ -88,4 +88,12 @@ jobs:
         # --changed is a ratchet: only lines this PR adds. The repo has real
         # pre-existing drift (#98) and failing a PR for a line it merely sat
         # next to is how a linter gets switched off.
-        run: node .claude/ci/lore-lint.mjs --changed --base "origin/${{ github.base_ref }}"
+        #
+        # base_ref goes through env rather than being interpolated into the run
+        # string. The risk here is low — it is the PR's target branch, which must
+        # already exist in this repo, not the attacker-controlled head_ref — but
+        # the safe form costs nothing and keeps the anti-pattern out of a file
+        # people will copy.
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: node .claude/ci/lore-lint.mjs --changed --base "origin/$BASE_REF"

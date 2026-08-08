@@ -116,14 +116,52 @@ const LORE_EXT = /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/;
 // name hardcoded in a TS constant is exactly as wrong as one in a markdown
 // table) and narrow everywhere else.
 const LORE_PATH =
-  /(^|\/)(\.arcanea\/lore|arcanea-lore|book|lore|sync\/aios\/lore)\//;
+  /(^|\/)(\.arcanea\/lore|arcanea-lore|book|lore|sync\/aios\/lore|docs\/worldbuilding)\//;
+
+// Instruction files carry canon tables and no lore word in their names, so
+// neither pattern above reaches them. That made the single most drift-prone
+// file in the repo invisible to the ratchet: .claude/CLAUDE.md holds 17 errors
+// today (the whole Gate ladder shifted one position, in two duplicate tables)
+// and is what every agent reads at session start. A ratchet that cannot see the
+// file agents learn canon from is not a ratchet.
+const LORE_NAMED = /(^|\/)(CLAUDE|AGENTS|GEMINI)\.md$/;
 // Matches anywhere in the PATH, not just the basename — `lore/notes.md` and
 // `guardians/index.md` are both lore-bearing even though neither basename says so.
 const LORE_HINT = /(canon|lore|guardian|godbeast|mythology|gates?)/i;
 
+// Path heuristics cannot enumerate where canon hides. Round 7 widened the CI
+// trigger to .mjs after finding four real errors in
+// packages/chrome-extension/tests/chrome-extension.test.mjs — but that path
+// matches none of the patterns above, so the linter kept skipping it anyway.
+// The trigger and the selector disagreed and nothing noticed.
+//
+// So: names decide fast, content decides the rest. Over-selecting is cheap and
+// safe (the checks are themselves near-zero-false-positive, and a selected file
+// with no drift simply reports nothing); under-selecting is the failure that
+// looks identical to success. Bias wide.
+const CANON_TOKENS = new RegExp(
+  [
+    ...Object.keys(GODBEASTS),
+    ...Object.values(GODBEASTS),
+    ...Object.keys(SUPERSEDED),
+    'godbeast',
+    '\\d{3,4}\\s*Hz',
+  ].join('|'),
+  'i'
+);
+
+function looksLoreBearing(path) {
+  try {
+    return CANON_TOKENS.test(readFileSync(path, 'utf8'));
+  } catch {
+    return false;
+  }
+}
+
 function isLoreFile(path) {
   if (!LORE_EXT.test(path)) return false;
-  return LORE_PATH.test(path) || LORE_HINT.test(path);
+  if (LORE_PATH.test(path) || LORE_HINT.test(path) || LORE_NAMED.test(path)) return true;
+  return looksLoreBearing(path);
 }
 
 function allowsSupersededNames(path) {
