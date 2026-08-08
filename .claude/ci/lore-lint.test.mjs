@@ -540,3 +540,44 @@ test('the linter constants match the vault they claim to mirror', () => {
   }
   assert.equal(lintGates.size, vaultGates.size, 'linter knows a different number of gates than the vault');
 });
+
+test('a contracted negation is not read as a lock claim', () => {
+  // "isn't LOCKED" leaves "n't " in the gap, which contains no literal "not",
+  // so the word-boundary negation guard passed it through and warned that the
+  // file was claiming to be locked — the inverse of what it says.
+  const { code, out } = lint("# T (STAGING)\n\nThis document isn't LOCKED, still evolving.\n");
+  assert.equal(code, 0, out);
+  assert.ok(!out.includes('lock-claim'), `contracted negation must not fire:\n${out}`);
+});
+
+test('every GATE_ALIAS is a non-canonical name mapping to a canonical one', () => {
+  // An alias exists to resolve a name the vault does NOT use onto one it does.
+  // If /lock-decision ever settles Starweave vs Shift the other way, "shift"
+  // becomes canonical and this alias silently starts rewriting a correct name
+  // into a wrong one. Today it is a single entry maintained by memory.
+  const repoRoot = fileURLToPath(new URL('../../', import.meta.url));
+  const vault = readFileSync(join(repoRoot, '.arcanea/lore/CANON_LOCKED.md'), 'utf8');
+  const src = readFileSync(fileURLToPath(new URL('./lore-lint.mjs', import.meta.url)), 'utf8');
+
+  const canonical = new Set();
+  for (const line of vault.split('\n')) {
+    const m = line.match(/^\|\s*([A-Za-z]+)\s*\|\s*\d{3,4}\s*Hz\s*\|/);
+    if (m) canonical.add(m[1].toLowerCase());
+  }
+  assert.equal(canonical.size, 10, `expected 10 canonical gate names, parsed ${canonical.size}`);
+
+  const aliasBlock = src.slice(src.indexOf('const GATE_ALIASES'));
+  const aliases = [...aliasBlock.slice(0, aliasBlock.indexOf('}')).matchAll(/(\w+):\s*'([^']+)'/g)];
+  assert.ok(aliases.length > 0, 'GATE_ALIASES parsed empty — did the shape change?');
+
+  for (const [, alias, target] of aliases) {
+    assert.ok(
+      !canonical.has(alias.toLowerCase()),
+      `"${alias}" is an alias but the vault now names a Gate that — the alias would rewrite a correct name`
+    );
+    assert.ok(
+      canonical.has(target.toLowerCase()),
+      `alias "${alias}" targets "${target}", which is not a canonical Gate name in the vault`
+    );
+  }
+});

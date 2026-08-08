@@ -426,8 +426,13 @@ function checkLockClaim(path, lineNo, line) {
   // "This document is now LOCKED." through. Dropping it needs a negation guard,
   // though — without one, "This section is not LOCKED" starts firing, which
   // inverts the rule.
+  // The contraction matters: "isn't LOCKED" leaves "n't " in the gap, which
+  // contains no literal "not", so a word-boundary negation test passes it
+  // straight through and warns that the file claims to be locked — the opposite
+  // of what it says. Match the apostrophe form explicitly.
   const claim = line.match(/this (document|file|section) is([^.;—]{0,15})LOCKED\b/i);
-  if (claim && !/\b(not|never|no longer)\b/i.test(claim[2])) {
+  const negated = (gap) => /\b(not|never|no longer)\b/i.test(gap) || /^n[''`]?t\b/i.test(gap.trim());
+  if (claim && !negated(claim[2])) {
     report(
       'WARN',
       path,
