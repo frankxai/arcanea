@@ -419,6 +419,45 @@ test('--changed reports added drift and ignores pre-existing drift', () => {
   );
 });
 
+test('the tier banner is a ratchet: created files warn, edited ones do not', () => {
+  // The banner is a whole-file property, so it cannot be attributed to an added
+  // line and sat outside the ratchet: editing one paragraph re-warned about a
+  // banner the edit never touched. Both halves are asserted, because fixing the
+  // false warning by never running the check would look identical here.
+  const result = inTempRepo(({ dir, run }) => {
+    const lore = join(dir, '.arcanea', 'lore');
+    mkdirSync(lore, { recursive: true });
+    writeFileSync(join(lore, 'old.md'), '# Old\n\nNo tier declared here.\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    writeFileSync(
+      join(lore, 'old.md'),
+      '# Old\n\nNo tier declared here.\n\nThe Crown Gate rings at 741 Hz.\n',
+      'utf8'
+    );
+    writeFileSync(join(lore, 'new.md'), '# New\n\nAlso no tier declared.\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'change']);
+
+    try {
+      return { code: 0, out: execFileSync('node', [LINT, '--changed', '--base', base], { cwd: dir, encoding: 'utf8' }) };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+
+  assert.ok(
+    result.out.includes('new.md') && result.out.includes('missing-tier'),
+    `a file this change created must still declare its tier:\n${result.out}`
+  );
+  assert.ok(
+    !result.out.includes('old.md'),
+    `an edited file's pre-existing missing banner is not this change's problem:\n${result.out}`
+  );
+});
+
 test('--changed is clean when the added lines carry no drift', () => {
   const result = inTempRepo(({ dir, run }) => {
     const file = join(dir, 'lore-notes.md');
@@ -578,6 +617,30 @@ test('a contracted negation is not read as a lock claim', () => {
   const { code, out } = lint("# T (STAGING)\n\nThis document isn't LOCKED, still evolving.\n");
   assert.equal(code, 0, out);
   assert.ok(!out.includes('lock-claim'), `contracted negation must not fire:\n${out}`);
+});
+
+test('a wrong pairing stated in prose is flagged', () => {
+  // The pairing check was table-only. #98's completion test is "full-repo
+  // lore-lint clean", so a pairing written as a sentence would have survived
+  // the sweep and read as swept. Elara is bonded to Vaelith.
+  const { code, out } = lint(
+    "# T (STAGING)\n\nElara's godbeast is Kaelith, bound at the Starweave Gate.\n"
+  );
+  assert.equal(code, 1, `a prose pairing must be checked:\n${out}`);
+  assert.ok(out.includes('elara is bonded to Vaelith'), out);
+});
+
+test('prose pairings that are correct, historical, or novel stay silent', () => {
+  const cases = [
+    "Elara's godbeast is Vaelith.",                        // correct
+    "Elara's godbeast was Thessara, before the rename.",   // past tense: true history
+    "Elara's godbeast is Skarn, a new creature.",          // not a canonical beast
+    'Whose godbeast is Kaelith?',                          // no possessive subject
+  ];
+  for (const sentence of cases) {
+    const { code, out } = lint(`# T (STAGING)\n\n${sentence}\n`);
+    assert.equal(code, 0, `must not fire on "${sentence}":\n${out}`);
+  }
 });
 
 test('an ordinary English Gate-word before the number does not suppress an error', () => {

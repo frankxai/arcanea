@@ -391,6 +391,34 @@ function checkGateFrequency(path, lineNo, line) {
 }
 
 // A god paired with the wrong godbeast.
+// Prose stating a pairing outright: "Elara's godbeast is Kaelith". Narrow on
+// purpose — the possessive plus the literal word "godbeast" plus a present-tense
+// copula is an assignment position, the same standard the superseded-name check
+// uses, and it does not reach comparisons, questions, or past-tense history
+// ("Elara's godbeast was Thessara" is a true sentence about a rename).
+//
+// Added because #98's completion test is "full-repo lore-lint clean", and a
+// table-only pairing check makes that test quieter than it sounds: a wrong
+// pairing written as a sentence would survive the sweep and read as swept.
+const PROSE_PAIRING =
+  /\b([a-z]+)['’]s\s+godbeast\s+(?:is|remains)\s+\*{0,2}([a-z]+)/i;
+
+function checkProsePairing(path, lineNo, line) {
+  const m = line.match(PROSE_PAIRING);
+  if (!m) return;
+  const god = m[1].toLowerCase();
+  const named = m[2].toLowerCase();
+  const beast = GODBEASTS[god];
+  if (!beast) return;
+  if (named === beast.toLowerCase()) return;
+  // Only fire when the named beast is itself a canonical godbeast. An unknown
+  // word here is a new creature or a typo, neither of which this check can
+  // adjudicate; superseded names are already the other check's job.
+  const wrong = Object.values(GODBEASTS).find((b) => b.toLowerCase() === named);
+  if (!wrong) return;
+  report('ERROR', path, lineNo, 'godbeast-pairing', `${god} is bonded to ${beast}, not ${wrong}.`);
+}
+
 function checkGodbeastPairing(path, lineNo, line) {
   if (!line.includes('|')) return;
   const cells = line.split('|').map((c) => c.trim().replace(/\*/g, ''));
@@ -571,6 +599,29 @@ function main() {
 
   const added = changedMode && !allLines ? addedLinesFor(files, base) : null;
 
+  // The tier banner is a whole-file property, so unlike every other check it
+  // cannot be attributed to an added line — which quietly put it outside the
+  // ratchet: editing one paragraph of an existing untiered file re-warned about
+  // a banner the edit had nothing to do with. That is the "forced to fix
+  // everything you touch" behaviour the header promises this tool does not have,
+  // and warning about untouched debt is how a linter earns being switched off.
+  //
+  // So in ratchet mode it applies to files this change CREATED. A new lore file
+  // must declare its tier; an existing one without a banner is pre-existing debt
+  // (#98), visible in a full audit but not on an unrelated edit. On failure this
+  // stays null, which checks every file — over-warning is recoverable, silence
+  // is the failure this whole file exists to prevent.
+  let createdFiles = null;
+  if (added) {
+    try {
+      createdFiles = new Set(
+        git(['diff', '--name-only', '--diff-filter=A', `${base}...HEAD`]).split('\n').filter(Boolean)
+      );
+    } catch {
+      createdFiles = null;
+    }
+  }
+
   for (const path of files) {
     let contents;
     try {
@@ -580,7 +631,7 @@ function main() {
       continue;
     }
 
-    checkTierBanner(path, contents);
+    if (!createdFiles || createdFiles.has(path)) checkTierBanner(path, contents);
 
     const lines = contents.split('\n');
     for (let i = 0; i < lines.length; i += 1) {
@@ -591,6 +642,7 @@ function main() {
       checkSupersededNames(path, lineNo, line);
       checkGateFrequency(path, lineNo, line);
       checkGodbeastPairing(path, lineNo, line);
+      checkProsePairing(path, lineNo, line);
       checkLockClaim(path, lineNo, line);
     }
   }
