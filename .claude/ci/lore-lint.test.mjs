@@ -838,3 +838,51 @@ test('--changed over a diff with no lore in it is a real pass', () => {
   assert.equal(result.code, 0, `a diff touching no lore must pass:\n${result.out}`);
   assert.ok(result.out.includes('no lore files to check'), result.out);
 });
+
+test('a superseded godbeast in a prose pairing is flagged', () => {
+  // The gap that fell between both checks. checkSupersededNames needs a literal
+  // ":" or "=" after the key, and "godbeast is Thessara" has the word "is"
+  // there; checkProsePairing skipped any name absent from GODBEASTS, which is
+  // precisely what a superseded name is. So the one drift class this linter
+  // exists for (#98) was invisible in its most natural prose form, while
+  // `**Godbeast**: Thessara` errored. #98's completion test is a full-repo lint
+  // run, so the sweep could have reported done with these still live.
+  for (const text of [
+    "Elara's godbeast is Thessara, bound at the Starweave Gate.",
+    "Shinkami's godbeast is Amaterasu.",
+  ]) {
+    const { code, out } = lint(`# T (STAGING)\n\n${text}\n`);
+    assert.equal(code, 1, `expected an error for "${text}", got:\n${out}`);
+    assert.ok(out.includes('superseded-name'), out);
+  }
+});
+
+test('a correct prose pairing and a bare superseded mention stay silent', () => {
+  // The false-positive side of the same fix: the current pairing is fine, and
+  // naming a retired entity in ordinary prose has never been a violation.
+  const { code, out } = lint(
+    "# T (STAGING)\n\nElara's godbeast is Vaelith.\nThe Thessara question is still open.\n"
+  );
+  assert.equal(code, 0, `expected clean, got:\n${out}`);
+});
+
+test('a file allowlisted for superseded names keeps its prose exemption', () => {
+  // NAMING_REGISTRY.md maintains the superseded inventory; it must not fail for
+  // doing its job. The allowlist matches repo-relative paths, so this fixture
+  // builds the real directory shape and runs the CLI from that root rather than
+  // going through lint(), which writes into a flat temp dir.
+  const dir = mkdtempSync(join(tmpdir(), 'fixture-allow-'));
+  const rel = '.arcanea/lore/NAMING_REGISTRY.md';
+  mkdirSync(dirname(join(dir, rel)), { recursive: true });
+  writeFileSync(
+    join(dir, rel),
+    "# Registry (STAGING)\n\nElara's godbeast is Thessara (superseded, retained for redirects).\n",
+    'utf8'
+  );
+  try {
+    const out = execFileSync('node', [LINT, rel], { cwd: dir, encoding: 'utf8' });
+    assert.ok(out.includes('clean'), `the allowlisted file must stay clean:\n${out}`);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

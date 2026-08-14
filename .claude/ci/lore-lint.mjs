@@ -435,9 +435,35 @@ function checkProsePairing(path, lineNo, line) {
     const beast = GODBEASTS[god];
     if (!beast) continue;
     if (named === beast.toLowerCase()) continue;
-    // Only fire when the named beast is itself a canonical godbeast. An unknown
-    // word here is a new creature or a typo, neither of which this check can
-    // adjudicate; superseded names are already the other check's job.
+    // A superseded name in this position is the drift #98 exists for, and it
+    // fell between both checks: checkSupersededNames needs a literal ":" or "="
+    // after the key, and "godbeast is Thessara" has the word "is" there, so it
+    // matched nothing — while this check used to skip any name absent from
+    // GODBEASTS on the grounds that "superseded names are the other check's
+    // job." They are not, in this shape. `Elara's godbeast is Thessara` read
+    // clean; `**Godbeast**: Thessara` errored. That matters because #98's
+    // completion test is a full-repo lint run, so the sweep could have reported
+    // done with sentence-form superseded names still live — the exact failure
+    // this function was added to close, one case over.
+    if (SUPERSEDED[named]) {
+      // Files whose job is to record the supersession are exempt, same as in
+      // checkSupersededNames — otherwise NAMING_REGISTRY.md fails for doing its
+      // job. Gate frequency and pairing checks still apply to them.
+      if (!allowsSupersededNames(path)) {
+        report(
+          'ERROR',
+          path,
+          lineNo,
+          'superseded-name',
+          `"${named}" is superseded canon. Current: ${SUPERSEDED[named]}. See issue #98.`
+        );
+      }
+      continue;
+    }
+
+    // Otherwise only fire when the named beast is itself a canonical godbeast.
+    // An unknown word here is a new creature or a typo, neither of which this
+    // check can adjudicate.
     const wrong = Object.values(GODBEASTS).find((b) => b.toLowerCase() === named);
     if (!wrong) continue;
     report('ERROR', path, lineNo, 'godbeast-pairing', `${god} is bonded to ${beast}, not ${wrong}.`);
