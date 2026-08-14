@@ -428,25 +428,21 @@ function checkGateFrequency(path, lineNo, line) {
     if (!owner) continue;
     if (value === GATE_FREQUENCIES[owner]) continue;
 
-    // A different gate quoted between its owner and the number takes the number
-    // with it — "Foundation Gate … Voice Gate (528 Hz" belongs to Voice.
+    // There used to be a "hijacker" guard here, skipping the line when a
+    // different Gate appeared between the owner and the number. It was needed
+    // while ownership came from each Gate's EARLIEST mention, because a
+    // repeated name could lose the race to a Gate that merely sat later.
+    // Switching ownership to gateMentionIndexLast over the prefix subsumed it:
+    // ownerIndex is now the maximum last-mention position across all ten Gates
+    // within that prefix, so a Gate mentioned between ownerIndex and the number
+    // would have a later last-mention and would have won the argmax instead.
+    // The span is provably empty of other Gates.
     //
-    // The candidate must name a Gate in Gate context, exactly as the owner did.
-    // Matching bare names here contradicted the whole premise of the owner rule
-    // and silently ate real errors: "The Foundation Gate resonates like a heart
-    // at 285 Hz" was suppressed by the ordinary word "heart" — Foundation is
-    // 174 Hz, so that line is a genuine error the check reported as clean.
-    //
-    // The window is the whole span from the owner to the number rather than a
-    // fixed 25 characters. A character budget could bisect "voice gate" and hide
-    // the context this now depends on, and the span is short by construction:
-    // the owner is the nearest preceding mention, so anything further back
-    // already lost the ownership race.
-    const between = lower.slice(ownerIndex, m.index);
-    const hijacker = Object.keys(GATE_FREQUENCIES).find(
-      (g) => g !== owner && gateMentionIndex(between, g) !== -1
-    );
-    if (hijacker) continue;
+    // Verified rather than reasoned about: deleting the branch left all 58
+    // fixtures green and the full-repo sweep byte-identical at 723 findings.
+    // Removed instead of kept-with-a-comment because dead code carrying a
+    // stale rationale in the most delicate function here is how the next
+    // person concludes the guard is load-bearing and builds on it.
 
     report(
       'ERROR',
