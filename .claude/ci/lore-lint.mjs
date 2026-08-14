@@ -611,46 +611,70 @@ function checkLockClaim(path, lineNo, line) {
 // ---------------------------------------------------------------------------
 
 function addedLinesFor(files, base) {
-  // Map of path -> Set of line numbers this diff adds.
+  // ONE diff over the whole tree, not one scoped diff per file.
+  //
+  // Scoping with `-- <path>` hides the other side of a rename, so git cannot
+  // pair the old path with the new one and reports the file as freshly added:
+  // `git mv` a drifted lore file with zero content change and every pre-existing
+  // line came back as newly added, so the ratchet failed CI on drift the commit
+  // did not introduce — precisely the "forced to fix everything you touch"
+  // behaviour this file's header promises it does not have. Verified: a pure
+  // rename of a file holding three findings reported all three.
+  //
+  // Note that `--find-renames` on the scoped call does NOT fix it — the source
+  // path is still filtered out before detection runs, so git has nothing to pair
+  // against. Measured all three forms; only dropping the pathspec works.
+  const wanted = new Set(files);
   const added = new Map();
-  for (const file of files) {
-    let diff;
-    try {
-      diff = git(['diff', '-U0', `${base}...HEAD`, '--', file]);
-    } catch (err) {
-      // Never fail silently: a file dropping out of --changed with no output
-      // looks exactly like "nothing to check", which is the one failure mode a
-      // drift linter cannot afford.
-      console.error(
-        `lore-lint: WARN could not diff ${file} against ${base} (${err.message.trim()}); ` +
-          `it was NOT checked. Re-run with the file passed explicitly for a full audit.`
-      );
+  let diff;
+  try {
+    diff = git(['diff', '-U0', '--find-renames', `${base}...HEAD`]);
+  } catch (err) {
+    // Exit rather than continue. One diff now covers every file, so a failure
+    // here means NOTHING was checked — and a green run that inspected nothing is
+    // the one failure mode a drift linter cannot afford.
+    console.error(
+      `lore-lint: FATAL could not diff against ${base} (${err.message.trim()}), ` +
+        `so NOTHING was checked. This is a failure, not a pass — fix the base ref ` +
+        `(CI needs fetch-depth: 0) or pass files explicitly for a full audit.`
+    );
+    process.exit(1);
+  }
+
+  let current = null;
+  let cursor = 0;
+  for (const line of diff.split('\n')) {
+    // `+++ b/<path>` names the post-image and is emitted once per changed file.
+    // A pure rename emits no `+++` at all, which is the point: no post-image
+    // hunks means no added lines means nothing for the ratchet to flag.
+    if (line.startsWith('+++ ')) {
+      const path = line.slice(4);
+      current = path === '/dev/null' ? null : path.replace(/^b\//, '');
+      cursor = 0;
       continue;
     }
-    const lines = new Set();
+    if (!current) continue;
+    const hunk = line.match(/^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@/);
     // 0 means "no hunk seen yet". Everything before the first @@ is file header
-    // noise (`diff --git`, `index`, `--- a/`, `+++ b/`) and must not advance the
-    // cursor. It happens to be harmless today because every @@ resets the cursor
-    // absolutely, but that is an accident of ordering rather than an invariant —
-    // so skip headers explicitly instead of relying on it surviving a future
-    // edit to the hunk regex.
-    let cursor = 0;
-    for (const line of diff.split('\n')) {
-      const hunk = line.match(/^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@/);
-      if (!hunk && cursor === 0) continue;
-      if (hunk) {
-        cursor = Number(hunk[1]);
-        continue;
-      }
-      if (line.startsWith('+') && !line.startsWith('+++')) {
-        lines.add(cursor);
-        cursor += 1;
-      } else if (!line.startsWith('-') && !line.startsWith('\\')) {
-        cursor += 1;
-      }
+    // noise (`diff --git`, `index`, `similarity index`, `--- a/`) and must not
+    // advance the cursor.
+    if (!hunk && cursor === 0) continue;
+    if (hunk) {
+      cursor = Number(hunk[1]);
+      continue;
     }
-    added.set(file, lines);
+    if (line.startsWith('+')) {
+      if (!added.has(current)) added.set(current, new Set());
+      added.get(current).add(cursor);
+      cursor += 1;
+    } else if (!line.startsWith('-') && !line.startsWith('\\')) {
+      cursor += 1;
+    }
   }
+
+  // Selected files with no added lines get an empty set rather than no entry,
+  // so the caller's `added.get(path)?.has(lineNo)` reads the same either way.
+  for (const file of wanted) if (!added.has(file)) added.set(file, new Set());
   return added;
 }
 

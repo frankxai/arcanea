@@ -938,3 +938,73 @@ test('markdown emphasis between the name and "Gate" is still Gate context', () =
     assert.ok(out.includes('gate-frequency') || out.includes('gate-name'), out);
   }
 });
+
+test('renaming a drifted file does not surface its pre-existing drift', () => {
+  // The ratchet's central promise — "you are not forced to fix everything you
+  // touch" — failed on renames. addedLinesFor diffed each file with a `-- <path>`
+  // pathspec, which hides the other side of a rename, so git could not pair old
+  // with new and reported the file as freshly added: `git mv` with ZERO content
+  // change surfaced every pre-existing line as newly added drift.
+  //
+  // `--find-renames` on the scoped call does NOT fix this — the source path is
+  // filtered out before detection runs. Only dropping the pathspec works, which
+  // is why addedLinesFor now takes one diff over the whole tree.
+  const result = inTempRepo(({ dir, run }) => {
+    const oldPath = join(dir, 'lore-old.md');
+    writeFileSync(
+      oldPath,
+      '# Drifted (STAGING)\n\nThe Crown Gate resonates at 963 Hz.\n**Godbeast**: Thessara\n',
+      'utf8'
+    );
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    run(['mv', 'lore-old.md', 'lore-new.md']);
+    run(['commit', '-qm', 'pure rename, no content change']);
+
+    try {
+      const out = execFileSync('node', [LINT, '--changed', '--base', base], {
+        cwd: dir,
+        encoding: 'utf8',
+      });
+      return { code: 0, out };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+  assert.equal(result.code, 0, `a pure rename must add nothing:\n${result.out}`);
+  assert.ok(!result.out.includes('ERROR'), result.out);
+});
+
+test('drift added alongside a rename is still caught', () => {
+  // The other half: the rename fix must not turn the ratchet off for the file.
+  const result = inTempRepo(({ dir, run }) => {
+    writeFileSync(join(dir, 'lore-old.md'), '# Drifted (STAGING)\n\n**Godbeast**: Thessara\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    run(['mv', 'lore-old.md', 'lore-new.md']);
+    writeFileSync(
+      join(dir, 'lore-new.md'),
+      '# Drifted (STAGING)\n\n**Godbeast**: Thessara\nThe Fire Gate burns at 1111 Hz.\n',
+      'utf8'
+    );
+    run(['add', '-A']);
+    run(['commit', '-qm', 'rename plus new drift']);
+
+    try {
+      const out = execFileSync('node', [LINT, '--changed', '--base', base], {
+        cwd: dir,
+        encoding: 'utf8',
+      });
+      return { code: 0, out };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+  assert.equal(result.code, 1, `the new drifted line must be caught:\n${result.out}`);
+  assert.ok(result.out.includes('gate-frequency'), result.out);
+  assert.ok(!result.out.includes('superseded-name'), `the carried line is not new:\n${result.out}`);
+});
