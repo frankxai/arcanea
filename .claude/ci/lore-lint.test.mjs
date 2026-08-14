@@ -635,7 +635,20 @@ test('the linter constants match the vault they claim to mirror', () => {
   }
   assert.equal(vaultGates.size, 10, `expected 10 gates in the vault, parsed ${vaultGates.size}`);
 
-  const block = (name) => src.slice(src.indexOf(`const ${name} = {`)).slice(0, src.slice(src.indexOf(`const ${name} = {`)).indexOf('};'));
+  // Fail loudly if the constant moved or was renamed. `indexOf` returns -1 on a
+  // miss and `slice(-1)` then hands back the tail of the file, so the old
+  // one-liner would have parsed unrelated source and passed — this test's whole
+  // job is catching drift between the linter and the vault, and it would have
+  // gone quietly green while checking nothing. Same failure as the bare
+  // invocation, one level in.
+  const block = (name) => {
+    const start = src.indexOf(`const ${name} = {`);
+    assert.ok(start !== -1, `const ${name} not found in lore-lint.mjs — did it move or get renamed?`);
+    const rest = src.slice(start);
+    const end = rest.indexOf('};');
+    assert.ok(end !== -1, `const ${name} block is unterminated in lore-lint.mjs`);
+    return rest.slice(0, end);
+  };
   const lintGates = new Map(
     [...block('GATE_FREQUENCIES').matchAll(/(\w+):\s*(\d+)/g)].map((m) => [m[1], Number(m[2])])
   );
@@ -743,7 +756,7 @@ test('every GATE_ALIAS is a non-canonical name mapping to a canonical one', () =
   for (const [, alias, target] of aliases) {
     assert.ok(
       !canonical.has(alias.toLowerCase()),
-      `"${alias}" is an alias but the vault now names a Gate that — the alias would rewrite a correct name`
+      `"${alias}" is an alias, but the vault now names a Gate "${alias}" — the alias would rewrite a correct name into a wrong one`
     );
     assert.ok(
       canonical.has(target.toLowerCase()),
@@ -775,4 +788,53 @@ test('an explicit file list with no lore in it is still a real pass', () => {
   // a genuine clean run and must stay exit 0, or every unrelated PR fails.
   const { code, out } = lint('# Just a readme\n\nNothing canonical here.\n', 'readme.txt');
   assert.equal(code, 0, out);
+});
+
+test('a second assignment on the same line is checked too', () => {
+  // Regression: `line.match` returns the first match, so a correct pairing
+  // earlier in the line shielded a superseded one after it. Compact JSON and TS
+  // object literals are both in LORE_EXT, so the shape is reachable — and it is
+  // the same first-match-only defect R16 fixed in checkGateFrequency.
+  const { code, out } = lint('# Data (STAGING)\n\n{"beast":"veloura","godbeast":"thessara"}\n');
+  assert.equal(code, 1, `the second assignment must be caught:\n${out}`);
+  assert.ok(out.includes('superseded-name'), out);
+});
+
+test('a second prose pairing on the same line is checked too', () => {
+  // Same defect in checkProsePairing: a correct pairing first on the line hid a
+  // wrong one behind it.
+  const { code, out } = lint(
+    "# T (STAGING)\n\nAiyami's godbeast is Sol, and Elara's godbeast is Kaelith.\n"
+  );
+  assert.equal(code, 1, `the wrong pairing must be caught:\n${out}`);
+  assert.ok(out.includes('godbeast-pairing'), out);
+  assert.equal(out.match(/godbeast-pairing/g).length, 1, `only the wrong one:\n${out}`);
+});
+
+test('--changed over a diff with no lore in it is a real pass', () => {
+  // The other side of the bare-invocation guard: the "no lore files to check"
+  // exit-0 branch had no fixture, so nothing distinguished a genuine empty
+  // selection from the usage error that must fail.
+  const result = inTempRepo(({ dir, run }) => {
+    writeFileSync(join(dir, 'README.md'), '# readme\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    writeFileSync(join(dir, 'README.md'), '# readme\n\nA second line, no canon.\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'change']);
+
+    try {
+      const out = execFileSync('node', [LINT, '--changed', '--base', base], {
+        cwd: dir,
+        encoding: 'utf8',
+      });
+      return { code: 0, out };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+  assert.equal(result.code, 0, `a diff touching no lore must pass:\n${result.out}`);
+  assert.ok(result.out.includes('no lore files to check'), result.out);
 });

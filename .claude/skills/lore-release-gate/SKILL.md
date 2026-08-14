@@ -88,7 +88,8 @@ draft done.
 Four checks, all of them, every time:
 
 ```bash
-# Canon: superseded names, Gate frequencies, godbeast pairings, tier banners
+# Canon: superseded names, Gate names, Gate frequencies, godbeast pairings
+# (table and prose), tier banners, lock claims
 node .claude/ci/lore-lint.mjs <your files>
 ```
 

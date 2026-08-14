@@ -55,6 +55,12 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          # This job checks out PR-authored code and then RUNS it (lore-lint.mjs
+          # is itself part of the diff under review). checkout stores its token
+          # in .git/config by default, so that code could read it. The job only
+          # reads history and never pushes, so dropping the credential costs
+          # nothing. Flagged by zizmor as `artipacked`.
+          persist-credentials: false
 
       - uses: actions/setup-node@v5
         with:

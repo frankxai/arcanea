@@ -43,6 +43,12 @@ Score 1–5. Anchors are deliberately unsentimental: **3 is competent**, 5 is ra
 
 **Composite bands** (sum of 10 dimensions, max 50):
 
+**If any dimension is `unscored`, the verdict is `incomplete — evidence required`.**
+Do not compute a composite, do not stage, do not promote. Otherwise "evidence or
+no score" becomes a way to buy a band: omit evidence for the one weak dimension,
+sum the other nine, and a 38/45 reads like a 38/50. An unscored dimension is a
+missing answer, not a zero and not an exemption.
+
 | Band | Verdict |
 |---|---|
 | 42–50 | Stage it. Nominate for `/lock-decision` if it closes a known gap. |

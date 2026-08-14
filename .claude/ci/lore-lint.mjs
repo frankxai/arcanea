@@ -214,9 +214,16 @@ function checkSupersededNames(path, lineNo, line) {
 
     let assigned = false;
 
+    // Every assignment on the line, not just the first. `line.match` returns
+    // one match, so a correct pairing earlier in the line hid a superseded one
+    // later: `{"beast":"veloura","godbeast":"thessara"}` read clean while
+    // `{"godbeast":"thessara"}` errored. Compact JSON and TS object literals
+    // are both in LORE_EXT, so that shape is reachable, and it is the same
+    // first-match-only defect R16 fixed in checkGateFrequency.
     for (const pattern of ASSIGNMENT_PATTERNS) {
-      const m = line.match(pattern);
-      if (m && m[2] && m[2].toLowerCase() === stale) assigned = true;
+      for (const m of line.matchAll(new RegExp(pattern.source, `${pattern.flags}g`))) {
+        if (m[2] && m[2].toLowerCase() === stale) assigned = true;
+      }
     }
 
     // A heading naming a superseded entity. You do not title a section after a
@@ -419,19 +426,22 @@ const PROSE_PAIRING =
   /\b([a-z]+)['’]s\s+godbeast\s+(?:is|remains)\s+\*{0,2}([a-z]+)/i;
 
 function checkProsePairing(path, lineNo, line) {
-  const m = line.match(PROSE_PAIRING);
-  if (!m) return;
-  const god = m[1].toLowerCase();
-  const named = m[2].toLowerCase();
-  const beast = GODBEASTS[god];
-  if (!beast) return;
-  if (named === beast.toLowerCase()) return;
-  // Only fire when the named beast is itself a canonical godbeast. An unknown
-  // word here is a new creature or a typo, neither of which this check can
-  // adjudicate; superseded names are already the other check's job.
-  const wrong = Object.values(GODBEASTS).find((b) => b.toLowerCase() === named);
-  if (!wrong) return;
-  report('ERROR', path, lineNo, 'godbeast-pairing', `${god} is bonded to ${beast}, not ${wrong}.`);
+  // Every pairing on the line. Single-match let a correct pairing shield a
+  // wrong one behind it: "Aiyami's godbeast is Sol, and Elara's godbeast is
+  // Kaelith" read clean. Same first-match-only defect as checkSupersededNames.
+  for (const m of line.matchAll(new RegExp(PROSE_PAIRING.source, `${PROSE_PAIRING.flags}g`))) {
+    const god = m[1].toLowerCase();
+    const named = m[2].toLowerCase();
+    const beast = GODBEASTS[god];
+    if (!beast) continue;
+    if (named === beast.toLowerCase()) continue;
+    // Only fire when the named beast is itself a canonical godbeast. An unknown
+    // word here is a new creature or a typo, neither of which this check can
+    // adjudicate; superseded names are already the other check's job.
+    const wrong = Object.values(GODBEASTS).find((b) => b.toLowerCase() === named);
+    if (!wrong) continue;
+    report('ERROR', path, lineNo, 'godbeast-pairing', `${god} is bonded to ${beast}, not ${wrong}.`);
+  }
 }
 
 function checkGodbeastPairing(path, lineNo, line) {
@@ -583,6 +593,12 @@ function main() {
   const baseIdx = argv.indexOf('--base');
   const base = baseIdx !== -1 ? argv[baseIdx + 1] : 'origin/main';
 
+  // One source for the explicit list. It was computed twice — once to select
+  // files, once in the usage guard below — and those two must agree or a bare
+  // invocation can go green again, which is the failure the guard exists to
+  // stop. A guard that can drift from what it guards is not a guard.
+  const explicitFiles = argv.filter((a) => !a.startsWith('--') && a !== base);
+
   let files;
   if (changedMode) {
     let raw = '';
@@ -603,7 +619,7 @@ function main() {
     }
     files = raw.split('\n').filter(Boolean).filter(isLoreFile);
   } else {
-    files = argv.filter((a) => !a.startsWith('--') && a !== base);
+    files = explicitFiles;
   }
 
   // A bare `node lore-lint.mjs` selected nothing and printed a cheerful
@@ -613,7 +629,7 @@ function main() {
   // invoked it without arguments would have gone permanently, silently green.
   // Explicit-but-empty (`--changed` over a diff with no lore in it) is a real
   // pass and stays exit 0; asking for nothing at all is a usage error.
-  if (!changedMode && argv.filter((a) => !a.startsWith('--') && a !== base).length === 0) {
+  if (!changedMode && explicitFiles.length === 0) {
     console.error(
       'lore-lint: FATAL no files given and --changed not set, so NOTHING was checked. ' +
         'This is a usage error, not a pass. Pass files explicitly, or use --changed.'
