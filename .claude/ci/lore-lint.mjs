@@ -181,12 +181,25 @@ const findings = [];
 // A changelog/approval-log row records what WAS decided, including decisions
 // later reversed — CANON_LOCKED.md's own log contains "Corrected frequencies
 // (639 Hz Heart)" from January, superseded that February. Auditing history
-// against present canon is a category error, so date-led table rows and
-// STAGING LOG entries are exempt from every canon-assertion check.
+// against present canon is a category error, so those rows are exempt from
+// every canon-assertion check.
+//
+// The exemption requires BOTH a date-led row and a log section heading above
+// it. Date-shape alone used to be enough, which made a date prefix a universal
+// bypass: `| 2026-08-14 | The Foundation Gate is 963 Hz. |` in any ordinary
+// table skipped frequency, superseded-name, pairing and lock-claim checks
+// alike. An exemption keyed on shape rather than on context is the widest hole
+// a drift linter can have, because it is spelled the same as a normal row.
+//
+// Safe to require the heading: every log in the corpus carries one —
+// `## APPROVAL LOG` in CANON_LOCKED.md and MAGIC_SYSTEM.md, `## STAGING LOG` in
+// THE_UNMARRED.md, ARBOR_OF_FIRST_LIGHT.md, KINGDOM_OF_PROOF.md — and the skill
+// mandates that shape for new files.
 const LOG_ROW = /^\s*\|\s*\d{4}-\d{2}-\d{2}\s*\|/;
+const LOG_HEADING = /^#{1,6}\s+.*\b((staging|approval|change|revision)\s*log|changelog|log\s*format)\b/i;
 
-function isHistoricalRecord(line) {
-  return LOG_ROW.test(line);
+function isHistoricalRecord(line, inLogSection) {
+  return inLogSection && LOG_ROW.test(line);
 }
 
 function report(level, path, lineNo, rule, message) {
@@ -313,7 +326,30 @@ function gateMentionIndex(lower, gate) {
 // a second copy of the forms: the two were duplicated verbatim, and two lists of
 // regexes that must stay identical are precisely the drift this linter exists to
 // catch. One list, one place to edit.
+// Markdown emphasis sits between the name and the word "Gate" often enough to
+// matter: `**Starweave** Gate opens at 963 Hz` was not recognised as Gate
+// context at all, so a wrong frequency went unreported. Replaced with spaces
+// rather than removed, because every index the frequency attribution derives is
+// an offset into this string — deleting characters would slide them.
+const normaliseEmphasis = (line) => line.toLowerCase().replace(/[*_`]/g, ' ');
+
 const namesGate = (lower, gate) => gateMentionIndex(lower, gate) !== -1;
+
+// Same forms, last match instead of first. Used for owner attribution, where
+// "nearest preceding the number" is the question; gateMentionIndex answers
+// "does this Gate appear at all, and where first", which is the right question
+// for namesGate and the wrong one for ownership.
+function gateMentionIndexLast(lower, gate) {
+  let best = -1;
+  let from = 0;
+  for (;;) {
+    const idx = gateMentionIndex(lower.slice(from), gate);
+    if (idx === -1) break;
+    best = from + idx;
+    from = best + 1;
+  }
+  return best;
+}
 
 // Until Frank's 2026-08-14 ruling this fired only inside checkGateFrequency,
 // which returns early on any line without a frequency — so a bare "the Shift
@@ -327,7 +363,7 @@ const namesGate = (lower, gate) => gateMentionIndex(lower, gate) !== -1;
 // "form: \"Shift\"" in a name ledger — are all silent. Swept the whole repo
 // before keeping it: every hit is a real Gate reference, zero false positives.
 function checkGateName(path, lineNo, line) {
-  const lower = line.toLowerCase();
+  const lower = normaliseEmphasis(line);
   for (const [alias, canonicalName] of Object.entries(GATE_ALIASES)) {
     if (!namesGate(lower, alias)) continue;
     report(
@@ -342,7 +378,7 @@ function checkGateName(path, lineNo, line) {
 
 function checkGateFrequency(path, lineNo, line) {
   if (!HZ.test(line)) return;
-  let lower = line.toLowerCase();
+  let lower = normaliseEmphasis(line);
 
   // Resolve alias names before matching frequencies, so the Hz attribution below
   // sees the canonical Gate name. Reporting happens in checkGateName, which runs
@@ -370,11 +406,21 @@ function checkGateFrequency(path, lineNo, line) {
   for (const m of lower.matchAll(/(\d{3,4})\s*hz\b/g)) {
     const value = Number(m[1]);
 
+    // The nearest Gate mention PRECEDING this number, which is what the comment
+    // on gateMentionIndex promises. It returns the earliest mention anywhere, so
+    // a repeated Gate name lost ownership to a different Gate that happened to
+    // sit later: in "The Voice Gate and the Foundation Gate differ; the Voice
+    // Gate holds 900 Hz", Voice's earliest mention is index 4, Foundation's is
+    // later, so Foundation won — and the hijacker check then saw Voice between
+    // Foundation and the number and swallowed the finding. 900 Hz is wrong for
+    // both Gates and was reported for neither. Searching only the prefix and
+    // taking the LAST match makes "nearest preceding" literally true.
+    const prefix = lower.slice(0, m.index);
     let owner = null;
     let ownerIndex = -1;
     for (const gate of Object.keys(GATE_FREQUENCIES)) {
-      const idx = gateMentionIndex(lower, gate);
-      if (idx !== -1 && idx < m.index && idx > ownerIndex) {
+      const idx = gateMentionIndexLast(prefix, gate);
+      if (idx !== -1 && idx > ownerIndex) {
         owner = gate;
         ownerIndex = idx;
       }
@@ -706,11 +752,16 @@ function main() {
     if (!createdFiles || createdFiles.has(path)) checkTierBanner(path, contents);
 
     const lines = contents.split('\n');
+    // Section state is tracked over EVERY line, before the added-lines filter,
+    // or a PR that adds one row to an existing log would not have seen the
+    // heading above it and would lose the exemption.
+    let inLogSection = false;
     for (let i = 0; i < lines.length; i += 1) {
       const lineNo = i + 1;
-      if (added && !added.get(path)?.has(lineNo)) continue;
       const line = lines[i];
-      if (isHistoricalRecord(line)) continue;
+      if (/^#{1,6}\s/.test(line)) inLogSection = LOG_HEADING.test(line);
+      if (added && !added.get(path)?.has(lineNo)) continue;
+      if (isHistoricalRecord(line, inLogSection)) continue;
       checkSupersededNames(path, lineNo, line);
       checkGateName(path, lineNo, line);
       checkGateFrequency(path, lineNo, line);

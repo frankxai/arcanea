@@ -886,3 +886,55 @@ test('a file allowlisted for superseded names keeps its prose exemption', () => 
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test('a date-led row outside a log section is still checked', () => {
+  // Regression: the historical-record exemption keyed on date SHAPE alone, so
+  // prefixing any line with a date cell was a universal bypass — frequency,
+  // superseded name, pairing and lock claim all skipped. An exemption spelled
+  // the same as an ordinary row is the widest hole a drift linter can have.
+  for (const row of [
+    '| 2026-08-14 | The Foundation Gate is 963 Hz. |',
+    '| 2026-08-14 | **Godbeast**: Thessara |',
+  ]) {
+    const { code, out } = lint(`# T (STAGING)\n\n| Date | Note |\n|---|---|\n${row}\n`);
+    assert.equal(code, 1, `expected an error for "${row}", got:\n${out}`);
+  }
+});
+
+test('a date-led row under a log heading keeps its exemption', () => {
+  // The other half: CANON_LOCKED.md's own APPROVAL LOG records decisions later
+  // reversed, and auditing history against present canon is a category error.
+  const { code, out } = lint(
+    '# T (STAGING)\n\n## STAGING LOG\n\n| Date | Note |\n|---|---|\n' +
+      '| 2026-08-14 | The Foundation Gate is 963 Hz. |\n'
+  );
+  assert.equal(code, 0, `log rows must stay exempt:\n${out}`);
+});
+
+test('a repeated Gate name attributes the frequency to the nearest mention', () => {
+  // gateMentionIndex returns the EARLIEST mention anywhere, so a repeated Gate
+  // lost ownership to a different Gate sitting later, and the hijacker check
+  // then swallowed the finding entirely. 900 Hz is wrong for both Gates here
+  // and was reported for neither.
+  const bad = lint(
+    '# T (STAGING)\n\nThe Voice Gate and the Foundation Gate differ; the Voice Gate holds 900 Hz.\n'
+  );
+  assert.equal(bad.code, 1, `the wrong frequency must be caught:\n${bad.out}`);
+  assert.ok(bad.out.includes('voice Gate is 528 Hz'), `blame Voice, not Foundation:\n${bad.out}`);
+
+  const good = lint(
+    '# T (STAGING)\n\nThe Voice Gate and the Foundation Gate differ; the Voice Gate holds 528 Hz.\n'
+  );
+  assert.equal(good.code, 0, `the correct frequency must stay silent:\n${good.out}`);
+});
+
+test('markdown emphasis between the name and "Gate" is still Gate context', () => {
+  // `**Gate**: Crown (963 Hz)` is how every per-guardian agent card writes it,
+  // and the emphasis between "Gate" and ":" meant none of them were ever
+  // checked — 26 real findings across 17 files surfaced when this was fixed.
+  for (const text of ['**Starweave** Gate opens at 963 Hz.', '**Gate**: Crown (963 Hz)']) {
+    const { code, out } = lint(`# T (STAGING)\n\n${text}\n`);
+    assert.equal(code, 1, `expected an error for "${text}", got:\n${out}`);
+    assert.ok(out.includes('gate-frequency') || out.includes('gate-name'), out);
+  }
+});
