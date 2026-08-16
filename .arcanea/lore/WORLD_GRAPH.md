@@ -368,14 +368,15 @@ YGGDRASIL (Library Myth Node — NOT Locked)
 
 | Vault | Location | Status | Modification Rights | Word Count |
 |-------|----------|--------|-------------------|-----------|
-| **Locked Vault** | `.arcanea/lore/CANON_LOCKED.md` (locked sections only) + `.arcanea/lore/MAGIC_SYSTEM.md` | Immutable | Creator approval only | **2,144 words** |
-| **Library Vault** | Extended lore files, book manuscripts, docs, skills | Canonical but refineable | Agents with discipline | **190K+ words** (44 texts, 21 collections) |
+| **Locked Vault** | CANON_LOCKED locked sections + MAGIC_SYSTEM | Immutable | Creator approval only | **2,144** (1,348 + 796) |
+| **Library Vault** | Extended lore files, book manuscripts, docs, skills | Canonical but refineable | Agents with discipline | **190K+** (44 texts, 21 collections) |
 | **Staging Layer** | STAGING sections in lore files | Proposed | Agents may propose; Creator locks | Variable |
 
-**Locked vault breakdown:**
-- CANON_LOCKED.md (locked sections only): 1,348 words
-- MAGIC_SYSTEM.md (all content): 796 words
-- **Total locked canon**: 2,144 words
+**Notes:**
+- Locked vault: 2,144 (CANON_LOCKED locked sections 1,348 + MAGIC_SYSTEM 796)
+- Whole locked files: 3,481 — do not put 3,481 on the door
+- Library vault: 190K+ headline / 44 texts / 21 collections
+- Counted book/ top-level: 95,821 / 39 texts
 
 **Graph Metrics (from Lorekeeper audit):**
 - **88 nodes** (74 locked / 14 staging) = **84% lock rate**
