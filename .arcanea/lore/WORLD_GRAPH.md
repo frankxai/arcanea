@@ -480,14 +480,47 @@ The World Graph exists to **enable infinite story** while preserving consistency
 
 ---
 
+## CROSS-REFERENCES
+
+### Detailed Metrics & Node Census
+
+For quantified graph metrics, complete node enumeration, and Yggdrasil deep-dive analysis:
+
+**See:** `world-graph/STAGING_INDEX.md`
+
+That document contains:
+- Complete 88-node catalog (74 locked, 14 staging)
+- 70-edge census with lock status
+- Vault word-count breakdown (4,750 locked vs 220K+ Library)
+- Yggdrasil status clarification (Library myth, NOT locked)
+- Worldtree epithet analysis (Laeylinn only)
+- Graph health metrics (lock rates, density, extensibility)
+- Three paths forward for Creator decisions
+
+### Related Lore Documents
+
+| Document | Purpose |
+|----------|---------|
+| `.arcanea/lore/CANON_LOCKED.md` | Immutable foundation truths (DO NOT EDIT) |
+| `.arcanea/lore/MAGIC_SYSTEM.md` | Locked spell taxonomy |
+| `.arcanea/lore/FACTIONS.md` | Origin classes & organizations (STAGING) |
+| `.arcanea/lore/ARBOR_OF_FIRST_LIGHT.md` | Covenant object, Emberbearers (STAGING) |
+| `.arcanea/lore/STARLIGHT_CORPS_CODEX.md` | Corps institutional record (STAGING) |
+| `.arcanea/lore/STARLIGHT_CORPS_EMBLEM.md` | Visual doctrine specification (STAGING) |
+| `book/legends-of-arcanea/I_THE_FIRST_DAWN.md` | Yggdrasil appears in Ch. III as Library myth |
+
+---
+
 ## APPROVAL LOG
 
 | Date | Entry | Status |
 |------|-------|--------|
 | 2026-08-16 | World Graph proposed — topology of locked + Library + staging layers | ⏳ STAGING |
-| 2026-08-16 | Vault taxonomy: Locked (7K words) vs Library vs Staging | ⏳ STAGING |
-| 2026-08-16 | Yggdrasil explicitly marked STAGING (appears in canon but not locked) | ⏳ STAGING |
+| 2026-08-16 | Vault taxonomy: Locked (4.7K words) vs Library (220K+ words) — corrected per Lorekeeper audit | ⏳ STAGING |
+| 2026-08-16 | Graph metrics integrated: 88 nodes (84% locked), 70 edges (99% locked) | ⏳ STAGING |
+| 2026-08-16 | Yggdrasil status clarified: Library myth ONLY, NOT locked canon, Worldtree = Laeylinn epithet | ⏳ STAGING |
 | 2026-08-16 | Agent decision tree for lore creation | ⏳ STAGING |
+| 2026-08-16 | STAGING_INDEX.md added with complete node census and metrics | ⏳ STAGING |
 
 ---
 
