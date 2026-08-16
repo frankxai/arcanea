@@ -381,11 +381,13 @@ When creating new Arcanea content:
 85. Gate-Touched Underground (⏳ STAGING)
 86. Void Ascendants (⏳ STAGING)
 
-**Covenant Objects (2)**
-87. The Arbor of First Light (⏳ STAGING)
-88. [Yggdrasil — status UNKNOWN, Library myth only]
+**Covenant Objects (1 confirmed + 1 uncertain)**
+87. The Arbor of First Light (⏳ STAGING — confirmed file: `.arcanea/lore/ARBOR_OF_FIRST_LIGHT.md` 2026-07-12)
+88. [Yggdrasil — status UNKNOWN, Library myth only, NO dedicated file, place-name UNKNOWN in lock]
 
-**Total Staging**: 14 nodes
+**Note:** The Arbor and Yggdrasil are treated as distinct in current lore, but relationship is UNRESOLVED. The Arbor is explicitly NOT Yggdrasil per its STAGING file.
+
+**Total Staging**: 14 nodes (13 confirmed + 1 uncertain)
 
 ---
 

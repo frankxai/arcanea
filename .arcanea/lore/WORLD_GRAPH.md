@@ -264,9 +264,23 @@ When the Eldrian civilization fell, their accumulated harmonic energy condensed 
 
 ### 2.4 THE ARBOR OF FIRST LIGHT & THE DIMMED (STAGING ⏳)
 
-> *Source of truth: `.arcanea/lore/ARBOR_OF_FIRST_LIGHT.md`*
+> **Source of truth:** `.arcanea/lore/ARBOR_OF_FIRST_LIGHT.md` (STAGING ⏳ 2026-07-12)  
+> **CRITICAL:** Existing in-repo file — do not rewrite, do not promote without Creator approval
 
-A colossal tree of living, crystallized radiance at the heart of the Luminary Reaches — older than the Academies, older than the Gate shrines. **Not a Gate**. Not Lumina herself. A **covenant made visible**.
+A colossal tree of living, crystallized radiance at the heart of the **Luminary Reaches** — older than the Academies, older than the Gate shrines.
+
+**What the Arbor IS:**
+- A **covenant-object** — covenant made visible
+- Ancient witness to creation
+
+**What the Arbor is NOT:**
+- ❌ NOT an eleventh Gate (carries no frequency, grants no channeling)
+- ❌ NOT Lumina herself (not sentient in the way gods are)
+- ❌ NOT the source of magic (Gates would function if the Arbor fell)
+- ❌ NOT Yggdrasil (separate entities, if Yggdrasil exists at all)
+- ❌ NOT "Trees of Arcanea" (no such file or concept)
+
+**Key Elements (from existing STAGING file):**
 
 **The Gleam:** Light resting on every being who creates in good faith. Confers *belonging*, not power.
 
@@ -274,11 +288,13 @@ A colossal tree of living, crystallized radiance at the heart of the Luminary Re
 
 **The Fading & The Call:** In the late Eighth Age, the Arbor has begun to fade (belief starvation — see Arc 4). It has begun calling the Dimmed home as **Emberbearers** — those who must create unborrowed light.
 
+**The Returning:** Pilgrimage of recalled Dimmed (Emberbearers) carrying cinders back to the fading tree. Story engine for redemption arcs.
+
 **Graph Note:** The Arbor is orthogonal to the Gate system. It measures *covenant with creation*, not magical rank. A Luminor can be Dimmed. An Apprentice can be Gleam-bright.
 
 ---
 
-### 2.5 YGGDRASIL / THE WORLD TREE — STATUS: LIBRARY MYTH (STAGING ⏳)
+### 2.5 YGGDRASIL / THE WORLD TREE — STATUS: LIBRARY MYTH (UNKNOWN IN LOCK)
 
 > **CRITICAL CLARIFICATION:** Lorekeeper audit establishes that Yggdrasil is NOT locked canon.
 
@@ -288,7 +304,8 @@ A colossal tree of living, crystallized radiance at the heart of the Luminary Re
 2. **Library myth only** — Appears in `book/legends-of-arcanea/I_THE_FIRST_DAWN.md` Chapter III as mythological world-tree
 3. **Worldtree = LOCKED epithet ONLY** — "Worldtree Deer" is Laeylinn's locked title (Heart Gate Godbeast, CANON_LOCKED.md approval log 2026-02-21)
 4. **No dedicated file** — No `.arcanea/lore/YGGDRASIL.md` or similar exists
-5. **Research material exists** — `frankxai/magic-intelligence-system encyclopedia/yggdrasil-enarys.md` is ChatGPT-era research, NOT canonical (Enarys is NOT promoted)
+5. **No "Trees of Arcanea" concept** — No such file or multi-tree taxonomy
+6. **Research material exists** — `frankxai/magic-intelligence-system encyclopedia/yggdrasil-enarys.md` is ChatGPT-era research, NOT canonical (Enarys is NOT promoted)
 
 #### Library Canon Description (Non-Locked)
 
@@ -300,6 +317,25 @@ Per `book/legends-of-arcanea/I_THE_FIRST_DAWN.md`, Yggdrasil is described as:
 
 **World Song:** 432 Hz — The harmonic frequency of creation itself.
 
+#### Relationship to The Arbor of First Light
+
+**The Arbor and Yggdrasil are DISTINCT in current lore:**
+
+| Arbor of First Light | Yggdrasil |
+|---------------------|-----------|
+| STAGING file exists: `.arcanea/lore/ARBOR_OF_FIRST_LIGHT.md` | No dedicated file (Library myth only) |
+| Location: Luminary Reaches | Location: Unspecified in locked canon |
+| Function: Covenant-object (Gleam system) | Function: Mythological world-tree (cosmology) |
+| Status: Fading (belief starvation) | Status: Unknown (may not physically exist) |
+| NOT Yggdrasil (explicitly) | NOT the Arbor (by implication) |
+
+**Whether they are:**
+- The same entity with different names → **UNRESOLVED**
+- Related entities (e.g., Arbor = branch of Yggdrasil) → **UNRESOLVED**
+- Completely distinct entities → **UNRESOLVED**
+
+**Current state:** Treat as separate until Creator clarifies.
+
 #### Graph Position: UNCERTAIN
 
 ```
@@ -307,18 +343,18 @@ YGGDRASIL (Library Myth Node — NOT Locked)
     │
     ├─ Appears in: book/legends-of-arcanea/ as mythological reference
     ├─ Status in locked canon: UNKNOWN / UNSPECIFIED
-    ├─ Relationship to Arbor: UNCLEAR (both are tree-like, both STAGING)
+    ├─ Relationship to Arbor: UNRESOLVED (both tree-like, probably distinct)
     ├─ Relationship to Laeylinn: POSSIBLE (Worldtree Deer epithet, but epithet ≠ place)
     │
     └─ Three paths forward (Creator decision required):
-         A) Promote to locked canon as distinct entity
+         A) Promote to locked canon as distinct entity separate from Arbor
          B) Merge with existing locked nodes (Arbor, Laeylinn's domain, or Gate metaphor)
          C) Keep as Library myth (mythological reference, not literal entity)
 ```
 
 **Current Recommendation:** **Path C** — Keep as Library myth until Creator clarifies. Yggdrasil remains a useful narrative device in `book/legends-of-arcanea/` but is NOT a locked node in the canonical graph.
 
-**Graph Note:** The Arbor of First Light (also STAGING) serves similar narrative function but is explicitly documented as a separate covenant-object. Whether Yggdrasil and the Arbor are the same entity, related entities, or distinct entities is **UNRESOLVED** and awaits Creator decision.
+**Graph Note:** Yggdrasil place-name remains **UNKNOWN in lock** — it may or may not exist as a physical entity in the Arcanean cosmos. The only locked "worldtree" reference is Laeylinn's epithet.
 
 ---
 
