@@ -528,7 +528,7 @@ For quantified graph metrics, complete node enumeration, and Yggdrasil deep-dive
 That document contains:
 - Complete 88-node catalog (74 locked, 14 staging)
 - 70-edge census with lock status
-- Vault word-count breakdown (4,750 locked vs 220K+ Library)
+- Vault word counts (2,144 locked / 190K+ Library)
 - Yggdrasil status clarification (Library myth, NOT locked)
 - Worldtree epithet analysis (Laeylinn only)
 - Graph health metrics (lock rates, density, extensibility)
@@ -553,7 +553,7 @@ That document contains:
 | Date | Entry | Status |
 |------|-------|--------|
 | 2026-08-16 | World Graph proposed — topology of locked + Library + staging layers | ⏳ STAGING |
-| 2026-08-16 | Vault taxonomy: Locked (4.7K words) vs Library (220K+ words) — corrected per Lorekeeper audit | ⏳ STAGING |
+| 2026-08-16 | Vault taxonomy: 2,144 locked (1,348 + 796) / 190K+ Library (44 texts, 21 collections) | ⏳ STAGING |
 | 2026-08-16 | Graph metrics integrated: 88 nodes (84% locked), 70 edges (99% locked) | ⏳ STAGING |
 | 2026-08-16 | Yggdrasil status clarified: Library myth ONLY, NOT locked canon, Worldtree = Laeylinn epithet | ⏳ STAGING |
 | 2026-08-16 | Agent decision tree for lore creation | ⏳ STAGING |
