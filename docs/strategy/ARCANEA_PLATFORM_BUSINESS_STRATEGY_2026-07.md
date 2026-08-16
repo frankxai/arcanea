@@ -4,6 +4,8 @@
 
 *Last verified against repo state: 2026-07-13. Re-check before acting on file-level claims.*
 
+> **Merge-time status note (2026-08-16).** This document was drafted on 2026-07-13 and reads forward from that date. It is landing after the EU AI Act Article 50 date of **2026-08-02**, which has now passed. Everything §2 describes as upcoming compliance work — machine-readable synthetic-content marking (C2PA), AI-interaction disclosure, AI-influencer labeling — is a **live obligation, not a deadline to plan toward**, and is unshipped as of this merge. Read §2 and the O2 line in §7 as an overdue backlog. The rest of the doc's forward-looking framing (§8's 30/60/90) is likewise measured from 2026-07-13, not from merge.
+
 ---
 
 ## 0. Executive decisions (TL;DR)
@@ -15,7 +17,7 @@
 | Open platform vs. solo worlds | **Phased. Not either/or.** Phase 1: Frank builds sovereign worlds in public. Phase 2: invited creators (advanced authors). Phase 3: self-serve. | Opening self-serve before the loop is proven on yourself burns support, legal, and infra budget with no reference customers. |
 | Arcanea MCP | **Productize it as the second SKU.** Coding agents (Claude Code, Codex, Grok, Gemini) subscribing to Arcanea via MCP is a differentiated wedge nobody else in world-building owns. | The MCP packages already exist (`packages/arcanea-mcp` here; `arcanea-registry-mcp`, `publishing-house-mcp` in arcanea-ai-app). Distribution = every agent harness. |
 | "Arcanea Supercomputer" | **Defer as infrastructure; ship as brand.** Do not build compute. The "Supercomputer" is the orchestration layer (swarms + MCP + world engine) on rented infra (Vercel, Supabase, model APIs). | Capital and ops discipline. The name has power as product marketing for the orchestration tier, not as a datacenter. |
-| EU AI Act | **Act now — Article 50 transparency obligations apply from Aug 2, 2026 (3 weeks).** Label AI-generated/synthetic content, disclose AI interaction, mark AI influencers. No high-risk category applies to Arcanea today. | Arcanea is a deployer/integrator of GPAI, not a model provider. Obligations are transparency-class: real but light if done deliberately. |
+| EU AI Act | **Act now — Article 50 transparency obligations apply from Aug 2, 2026 (3 weeks from drafting; now past — see merge-time status note).** Label AI-generated/synthetic content, disclose AI interaction, mark AI influencers. No high-risk category applies to Arcanea today. | Arcanea is a deployer/integrator of GPAI, not a model provider. Obligations are transparency-class: real but light if done deliberately. |
 | Web3 / auctions / assets | **Sequence it last.** Digital collectibles only after the publishing pipeline earns fiat revenue. NFTs largely sit outside MiCA, but marketing them to EU consumers still needs care. | Revenue focus; regulatory ambiguity; brand risk if led with speculation instead of story. |
 
 ---
@@ -57,7 +59,7 @@
 2. **GDPR (ongoing).** Supabase EU residency for user data, a real privacy policy, DPAs with processors (Vercel, Supabase, model providers), and a data-deletion path. Standard SaaS hygiene; mostly configuration and documents, not engineering.
 3. **DSA (when UGC opens).** The moment Phase 2/3 lets others publish content on Arcanea surfaces, you need notice-and-action (report/takedown), a content policy, and a designated contact. Small-platform obligations are light; bake the report button into the world-viewer component from the start rather than retrofitting.
 
-*Provenance: the Aug 2, 2026 Article 50 date and the "no high-risk category" conclusion are an internal read of the AI Act timeline, not external legal advice. Owner of OKR O2 should get a one-hour counsel review to confirm both before the deadline.*
+*Provenance: the Aug 2, 2026 Article 50 date and the "no high-risk category" conclusion are an internal read of the AI Act timeline, not external legal advice. Owner of OKR O2 should get a one-hour counsel review to confirm both. Drafted as "before the deadline"; as of 2026-08-16 that date has passed and the review is overdue, which raises rather than lowers its priority.*
 
 **Also:**
 - **Marketplace IP terms** must settle AI-content ownership: creator owns their world; Arcanea gets a license to host/display; generated-asset ownership passes to the creator subject to model-provider terms.
