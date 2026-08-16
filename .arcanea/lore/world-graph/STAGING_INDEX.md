@@ -71,26 +71,23 @@
 
 ### The Locked Vault (Immutable Canon)
 
+**Locked vault: 2,144** (CANON_LOCKED locked sections 1,348 + MAGIC_SYSTEM 796)
+
 | Document | Word Count | Content |
 |----------|-----------|---------|
-| `CANON_LOCKED.md` (locked sections only) | 1,348 words | Primordials, Elements, Gates, Guardians, Godbeasts, Houses, Wisdoms, Malachar, Terminology |
-| `MAGIC_SYSTEM.md` (all content locked) | 796 words | Four axes, three disciplines, seven tiers, incantation grammar |
-| **Locked Vault Total** | **2,144 words** | Foundation truths that cannot change |
+| `CANON_LOCKED.md` (locked sections only) | 1,348 | Primordials, Elements, Gates, Guardians, Godbeasts, Houses, Wisdoms, Malachar, Terminology |
+| `MAGIC_SYSTEM.md` (all content locked) | 796 | Four axes, three disciplines, seven tiers, incantation grammar |
+| **Total** | **2,144** | Foundation truths that cannot change |
 
-**Note:** The whole `CANON_LOCKED.md` file (including staging sections within it) is 3,481 words, but only the locked sections (2,144 total including MAGIC_SYSTEM) constitute immutable canon.
+**Note:** Whole locked files 3,481 — do not put 3,481 on the door.
 
 ### The Library Vault (Canonical But Refineable)
 
-| Category | Word Count | Status |
-|----------|-----------|---------|
-| Library door claim | **190K+ words** (44 texts, 21 collections) | Canonical but refineable |
+**Library vault: 190K+ headline / 44 texts / 21 collections**
 
-**Reference breakdown (not exhaustive):**
-- Independent `book/` manuscripts: 95,821 words (39 texts)
-- Collections chapters add: 19,305 words
-- Extended lore files, docs, skills: Additional content
+**Reference:** Counted book/ top-level 95,821 / 39 texts
 
-**Total Library vault**: 190K+ words across multiple categories and formats.
+**Total Library vault**: 190K+ words across extended lore files, book manuscripts, docs, skills, and collections.
 
 ---
 
