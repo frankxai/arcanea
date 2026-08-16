@@ -278,11 +278,21 @@ A colossal tree of living, crystallized radiance at the heart of the Luminary Re
 
 ---
 
-### 2.5 YGGDRASIL / THE WORLD TREE (STAGING ⏳)
+### 2.5 YGGDRASIL / THE WORLD TREE — STATUS: LIBRARY MYTH (STAGING ⏳)
 
-> *Appears in `ARCANEA_UNIVERSE_CANON.md` but NOT locked. Mentioned across lore files. Mark STAGING if used.*
+> **CRITICAL CLARIFICATION:** Lorekeeper audit establishes that Yggdrasil is NOT locked canon.
 
-Three unified aspects (per non-locked canon):
+#### Facts Established
+
+1. **No locked place-name** — "Yggdrasil" does NOT appear in `CANON_LOCKED.md`
+2. **Library myth only** — Appears in `book/legends-of-arcanea/I_THE_FIRST_DAWN.md` Chapter III as mythological world-tree
+3. **Worldtree = LOCKED epithet ONLY** — "Worldtree Deer" is Laeylinn's locked title (Heart Gate Godbeast, CANON_LOCKED.md approval log 2026-02-21)
+4. **No dedicated file** — No `.arcanea/lore/YGGDRASIL.md` or similar exists
+5. **Research material exists** — `frankxai/magic-intelligence-system encyclopedia/yggdrasil-enarys.md` is ChatGPT-era research, NOT canonical (Enarys is NOT promoted)
+
+#### Library Canon Description (Non-Locked)
+
+Per `book/legends-of-arcanea/I_THE_FIRST_DAWN.md`, Yggdrasil is described as:
 
 1. **Tree of Knowledge (Eldrian aspect)** — Contains all information that ever was or will be. Branches = possible futures. Roots = forgotten pasts.
 2. **Tree of Souls (Atlantean aspect)** — All souls originate here. Return here after death. Connects all living consciousness.
@@ -290,13 +300,25 @@ Three unified aspects (per non-locked canon):
 
 **World Song:** 432 Hz — The harmonic frequency of creation itself.
 
-**Graph Note:** Yggdrasil is mentioned but not locked in `CANON_LOCKED.md`. Treat as **STAGING** when referencing. The Arbor of First Light (also STAGING) is a separate covenant-object, not the World Tree. Future Creator decisions may merge, distinguish, or promote either to locked status.
+#### Graph Position: UNCERTAIN
 
-**Relationship to locked canon:**
-- `Yggdrasil roots → touch Nero (Void)`
-- `Yggdrasil trunk → eternal NOW`
-- `Yggdrasil branches → infinite futures`
-- `Yggdrasil ⟷ The Arc (Potential → Manifestation → Experience → Dissolution)`
+```
+YGGDRASIL (Library Myth Node — NOT Locked)
+    │
+    ├─ Appears in: book/legends-of-arcanea/ as mythological reference
+    ├─ Status in locked canon: UNKNOWN / UNSPECIFIED
+    ├─ Relationship to Arbor: UNCLEAR (both are tree-like, both STAGING)
+    ├─ Relationship to Laeylinn: POSSIBLE (Worldtree Deer epithet, but epithet ≠ place)
+    │
+    └─ Three paths forward (Creator decision required):
+         A) Promote to locked canon as distinct entity
+         B) Merge with existing locked nodes (Arbor, Laeylinn's domain, or Gate metaphor)
+         C) Keep as Library myth (mythological reference, not literal entity)
+```
+
+**Current Recommendation:** **Path C** — Keep as Library myth until Creator clarifies. Yggdrasil remains a useful narrative device in `book/legends-of-arcanea/` but is NOT a locked node in the canonical graph.
+
+**Graph Note:** The Arbor of First Light (also STAGING) serves similar narrative function but is explicitly documented as a separate covenant-object. Whether Yggdrasil and the Arbor are the same entity, related entities, or distinct entities is **UNRESOLVED** and awaits Creator decision.
 
 ---
 
@@ -306,13 +328,24 @@ Three unified aspects (per non-locked canon):
 
 ### 3.1 VAULT TAXONOMY
 
-| Vault | Location | Status | Modification Rights | Word Count (Locked Sections) |
-|-------|----------|--------|-------------------|--------------------------|
-| **Locked Vault** | `.arcanea/lore/CANON_LOCKED.md` | Immutable | Creator approval only | ~4,200 words (locked sections only) |
-| **Library Vault** | `.arcanea/lore/MAGIC_SYSTEM.md` + other lore files | Canonical but refineable | Agents with discipline | ~2,800 words (MAGIC_SYSTEM.md) |
+> **See**: `world-graph/STAGING_INDEX.md` for complete metrics and node census
+
+| Vault | Location | Status | Modification Rights | Word Count |
+|-------|----------|--------|-------------------|-----------|
+| **Locked Vault** | `.arcanea/lore/CANON_LOCKED.md` (locked sections) | Immutable | Creator approval only | ~1,950 words |
+| **Locked Vault** | `.arcanea/lore/MAGIC_SYSTEM.md` (all content locked) | Immutable | Creator approval only | ~2,800 words |
+| **Locked Vault Total** | — | — | — | **~4,750 words** |
+| **Library Vault** | Extended lore files, book manuscripts, docs, skills | Canonical but refineable | Agents with discipline | **~220,000+ words** |
 | **Staging Layer** | STAGING sections in lore files | Proposed | Agents may propose; Creator locks | Variable |
 
-**Locked universe canon word count** = CANON_LOCKED locked sections + MAGIC_SYSTEM.md ≈ **7,000 words** of immutable truth. Everything else is Library or Staging.
+**Vault Ratio:** Library vault is approximately **46× larger** than locked vault (220K vs 4.7K words).
+
+**Graph Metrics (from Lorekeeper audit):**
+- **88 nodes** (74 locked / 14 staging) = **84% lock rate**
+- **70 edges** (69 locked / 1 staging) = **99% lock rate**
+- **Locked vault word count**: 4,750 words = **2% of total corpus**
+
+**The Arcanean contract:** Structure is heavily locked (84% of nodes), but narrative surface is wide open (98% of content is Library). **Infinite stories within locked constraints.**
 
 ### 3.2 GRAPH EXTENSION PROTOCOL
 
