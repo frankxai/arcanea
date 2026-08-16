@@ -368,20 +368,20 @@ YGGDRASIL (Library Myth Node — NOT Locked)
 
 | Vault | Location | Status | Modification Rights | Word Count |
 |-------|----------|--------|-------------------|-----------|
-| **Locked Vault** | `.arcanea/lore/CANON_LOCKED.md` (locked sections) | Immutable | Creator approval only | ~1,950 words |
-| **Locked Vault** | `.arcanea/lore/MAGIC_SYSTEM.md` (all content locked) | Immutable | Creator approval only | ~2,800 words |
-| **Locked Vault Total** | — | — | — | **~4,750 words** |
-| **Library Vault** | Extended lore files, book manuscripts, docs, skills | Canonical but refineable | Agents with discipline | **~220,000+ words** |
+| **Locked Vault** | `.arcanea/lore/CANON_LOCKED.md` (locked sections only) + `.arcanea/lore/MAGIC_SYSTEM.md` | Immutable | Creator approval only | **2,144 words** |
+| **Library Vault** | Extended lore files, book manuscripts, docs, skills | Canonical but refineable | Agents with discipline | **190K+ words** (44 texts, 21 collections) |
 | **Staging Layer** | STAGING sections in lore files | Proposed | Agents may propose; Creator locks | Variable |
 
-**Vault Ratio:** Library vault is approximately **46× larger** than locked vault (220K vs 4.7K words).
+**Locked vault breakdown:**
+- CANON_LOCKED.md (locked sections only): 1,348 words
+- MAGIC_SYSTEM.md (all content): 796 words
+- **Total locked canon**: 2,144 words
 
 **Graph Metrics (from Lorekeeper audit):**
 - **88 nodes** (74 locked / 14 staging) = **84% lock rate**
 - **70 edges** (69 locked / 1 staging) = **99% lock rate**
-- **Locked vault word count**: 4,750 words = **2% of total corpus**
 
-**The Arcanean contract:** Structure is heavily locked (84% of nodes), but narrative surface is wide open (98% of content is Library). **Infinite stories within locked constraints.**
+**The Arcanean contract:** Structure is heavily locked (84% of nodes), but narrative surface is wide open (Library vault is vastly larger). **Infinite stories within locked constraints.**
 
 ### 3.2 GRAPH EXTENSION PROTOCOL
 

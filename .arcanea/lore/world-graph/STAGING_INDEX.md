@@ -71,25 +71,26 @@
 
 ### The Locked Vault (Immutable Canon)
 
-| Document | Word Count (Approx) | Content |
-|----------|---------------------|---------|
-| `CANON_LOCKED.md` (locked sections only) | ~1,950 words | Primordials, Elements, Gates, Guardians, Godbeasts, Houses, Wisdoms, Malachar, Terminology |
-| `MAGIC_SYSTEM.md` (all content locked) | ~2,800 words | Four axes, three disciplines, seven tiers, incantation grammar |
-| **Locked Vault Subtotal** | **~4,750 words** | Foundation truths that cannot change |
+| Document | Word Count | Content |
+|----------|-----------|---------|
+| `CANON_LOCKED.md` (locked sections only) | 1,348 words | Primordials, Elements, Gates, Guardians, Godbeasts, Houses, Wisdoms, Malachar, Terminology |
+| `MAGIC_SYSTEM.md` (all content locked) | 796 words | Four axes, three disciplines, seven tiers, incantation grammar |
+| **Locked Vault Total** | **2,144 words** | Foundation truths that cannot change |
 
-**Note:** The originally stated "2144 words" likely referred to `CANON_LOCKED.md` locked sections only, excluding `MAGIC_SYSTEM.md`. Combined locked canon ≈ 4,750 words.
+**Note:** The whole `CANON_LOCKED.md` file (including staging sections within it) is 3,481 words, but only the locked sections (2,144 total including MAGIC_SYSTEM) constitute immutable canon.
 
 ### The Library Vault (Canonical But Refineable)
 
-| Category | Word Count (Approx) | Status |
-|----------|---------------------|---------|
-| Extended lore files (FACTIONS, ARBOR, ULTRAWORLD, etc.) | ~35,000 words | STAGING sections, refineable |
-| Book manuscripts (`book/legends-of-arcanea/`, `book/academy-handbook/`, etc.) | ~120,000 words | Library canon, narrative form |
-| Documentation & world-building guides | ~40,000 words | Process docs, guides, templates |
-| Skills, agents, commands | ~25,000 words | Operational knowledge |
-| **Library Vault Subtotal** | **~220,000+ words** | Canonical but extensible |
+| Category | Word Count | Status |
+|----------|-----------|---------|
+| Library door claim | **190K+ words** (44 texts, 21 collections) | Canonical but refineable |
 
-**Ratio**: Library vault is approximately **46× larger** than locked vault (220K vs 4.7K words).
+**Reference breakdown (not exhaustive):**
+- Independent `book/` manuscripts: 95,821 words (39 texts)
+- Collections chapters add: 19,305 words
+- Extended lore files, docs, skills: Additional content
+
+**Total Library vault**: 190K+ words across multiple categories and formats.
 
 ---
 
@@ -168,11 +169,12 @@ The Library vault proposes:
 
 - **Node lock rate**: 74/88 = **84% locked**
 - **Edge lock rate**: 69/70 = **99% locked**
-- **Vault word-count lock rate**: 4,750/(4,750+220,000) = **2% locked**
+- **Locked vault**: 2,144 words (foundation truths)
+- **Library vault**: 190K+ words (44 texts, 21 collections)
 
 **Interpretation:**
 - The **structure** is heavily locked (84% of nodes, 99% of edges)
-- The **narrative surface** is wide open (98% of content is Library, not lock)
+- The **narrative surface** is wide open (Library vault vastly exceeds locked canon)
 - **Infinite stories can be told** within the locked topology
 
 This is the Arcanean contract: **closed vertically (Gates), open horizontally (stories)**.
