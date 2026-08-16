@@ -225,8 +225,9 @@ When creating new Arcanea content:
 - Leave it in `book/legends-of-arcanea/` as mythological reference
 - Not a literal place or entity in locked cosmology
 - Useful narrative device but not canonical truth
+- The Arbor remains the only confirmed tree-entity (STAGING)
 
-**Current recommendation**: **Path C** until Creator specifies otherwise. Yggdrasil remains a Library myth, not a locked node.
+**Current recommendation**: **Path C** until Creator specifies otherwise. Yggdrasil remains a Library myth, not a locked node. The Arbor is the only documented tree-entity in the STAGING layer.
 
 ---
 
