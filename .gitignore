@@ -121,3 +121,11 @@ starlight-intelligence-system/.starlight/
 .lighthouse.json
 .extract-design-system/
 .claude/skills/.replaced/
+
+# claude-flow daemon + proven-config: machine-local runtime state, not repo artifacts
+.claude-flow/daemon-state.json
+.claude-flow/daemon.pid
+.claude-flow/harness-active-policy.json
+.claude-flow/policy/
+.claude/proven-config.json
+.claude/.proven-config-version
