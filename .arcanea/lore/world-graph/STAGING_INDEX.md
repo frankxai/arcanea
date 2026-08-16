@@ -396,7 +396,6 @@ When creating new Arcanea content:
 | Date | Entry | Status |
 |------|-------|--------|
 | 2026-08-16 | World Graph metrics compiled — 88 nodes (74 locked), 70 edges (69 locked) | ⏳ STAGING |
-| 2026-08-16 | Vault census: 2,144 locked (1,348 + 796) / 190K+ Library (44 texts, 21 collections) | ⏳ STAGING |
 | 2026-08-16 | Yggdrasil status clarified: Library myth, NOT locked canon, Worldtree = Laeylinn epithet ONLY | ⏳ STAGING |
 | 2026-08-16 | Node catalog: 74 locked nodes enumerated, 14 staging nodes marked | ⏳ STAGING |
 | 2026-08-16 | Graph health metrics established: 84% node lock, 99% edge lock | ⏳ STAGING |
