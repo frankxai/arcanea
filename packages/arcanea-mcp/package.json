@@ -1,7 +1,6 @@
 {
   "name": "@arcanea/mcp-server",
-  "version": "0.3.0",
-  "private": true,
+  "version": "0.7.1",
   "description": "Arcanea MCP Server - Worldbuilding toolkit, creative companion, and magic maker",
   "type": "module",
   "main": "dist/index.js",
@@ -27,5 +26,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
