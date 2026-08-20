@@ -6,6 +6,25 @@
 
 import type { PlatformType, PlatformConfig, PlatformAdapter } from '@arcanea/core';
 
+/**
+ * Thrown by every adapter's execute(). Execution belongs to the host agent —
+ * these adapters describe a platform, they do not drive one. Returning a
+ * plausible-looking string here would let a caller mistake "not implemented"
+ * for a model response.
+ */
+export class AdapterNotImplementedError extends Error {
+  readonly platform: PlatformType;
+
+  constructor(platform: PlatformType) {
+    super(
+      `${platform} adapter cannot execute prompts: the host agent owns execution. ` +
+        `Route the prompt through the host rather than calling adapter.execute().`
+    );
+    this.name = 'AdapterNotImplementedError';
+    this.platform = platform;
+  }
+}
+
 // Base adapter interface
 export interface BaseAdapter {
   type: PlatformType;
@@ -30,9 +49,8 @@ export class ClaudeAdapter implements BaseAdapter {
     this.config = config;
   }
 
-  async execute(prompt: string, _context?: Record<string, unknown>): Promise<string> {
-    // In full implementation, this would use Claude API or CLI
-    return `[Claude] Processing: ${prompt.slice(0, 50)}...`;
+  async execute(_prompt: string, _context?: Record<string, unknown>): Promise<string> {
+    throw new AdapterNotImplementedError(this.type);
   }
 }
 
@@ -50,8 +68,8 @@ export class GeminiAdapter implements BaseAdapter {
     this.config = config;
   }
 
-  async execute(prompt: string, _context?: Record<string, unknown>): Promise<string> {
-    return `[Gemini] Processing: ${prompt.slice(0, 50)}...`;
+  async execute(_prompt: string, _context?: Record<string, unknown>): Promise<string> {
+    throw new AdapterNotImplementedError(this.type);
   }
 }
 
@@ -69,8 +87,8 @@ export class OpenCodeAdapter implements BaseAdapter {
     this.config = config;
   }
 
-  async execute(prompt: string, _context?: Record<string, unknown>): Promise<string> {
-    return `[Sisyphus] Processing: ${prompt.slice(0, 50)}...`;
+  async execute(_prompt: string, _context?: Record<string, unknown>): Promise<string> {
+    throw new AdapterNotImplementedError(this.type);
   }
 }
 
@@ -88,8 +106,8 @@ export class CodexAdapter implements BaseAdapter {
     this.config = config;
   }
 
-  async execute(prompt: string, _context?: Record<string, unknown>): Promise<string> {
-    return `[Codex] Processing: ${prompt.slice(0, 50)}...`;
+  async execute(_prompt: string, _context?: Record<string, unknown>): Promise<string> {
+    throw new AdapterNotImplementedError(this.type);
   }
 }
 

@@ -6,11 +6,20 @@
 
 import { describe, it, before, after } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { existsSync, readFileSync, writeFileSync, unlinkSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, readFileSync, writeFileSync, unlinkSync, mkdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { homedir } from 'node:os';
 
 const MEMORIES_FILE = join(homedir(), '.arcanea', 'memories.json');
+
+// ~/.arcanea must exist before any test writes into it. This file's own header
+// says to run it with `node --test <path>`, which is also how CI runs it, but
+// the directory was only ever created by the package's `test` script wrapper —
+// so the tests passed locally (where the wrapper had run at some point, or the
+// directory already existed) and failed on a clean CI runner with ENOENT. A
+// test that only passes when invoked through one particular entry point owns
+// its own preconditions badly; it creates the directory itself now.
+mkdirSync(dirname(MEMORIES_FILE), { recursive: true });
 
 describe('Memory Persistence — File Format', () => {
   let backup = null;

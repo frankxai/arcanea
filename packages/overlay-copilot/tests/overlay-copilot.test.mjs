@@ -80,10 +80,14 @@ describe('GUARDIAN_QUICK_REFERENCE', () => {
   });
 
   it('lists canonical domains from @arcanea/os for each Guardian', () => {
-    // Domains now come from the canonical @arcanea/os constants
-    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('security'), 'Missing domain keyword: security');
-    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('transformation'), 'Missing domain keyword: transformation');
+    // Keywords must come from the canonical GUARDIANS domain strings
+    // ('Earth, survival', 'Truth, expression', 'Intuition, vision', ...).
+    // This previously asserted 'security' and 'transformation', which appear in
+    // no Guardian domain — 'transformation' belongs to the Fire *element*, and
+    // 'security' to nothing at all. It failed the moment the suite began running.
+    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('survival'), 'Missing domain keyword: survival');
     assert.ok(GUARDIAN_QUICK_REFERENCE.includes('expression'), 'Missing domain keyword: expression');
+    assert.ok(GUARDIAN_QUICK_REFERENCE.includes('vision'), 'Missing domain keyword: vision');
   });
 
   it('includes Gate names for each Guardian', () => {

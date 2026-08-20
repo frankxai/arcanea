@@ -28,13 +28,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      # pnpm must be installed BEFORE setup-node. setup-node@v5 defaults
+      # package-manager-cache to true and reads packageManager from
+      # package.json, so it shells out to pnpm for the cache path and dies with
+      # "Unable to locate executable file: pnpm" when pnpm is not yet on PATH.
+      # This job had the two steps in the opposite order and failed at setup on
+      # every run. test.yml already orders them correctly.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
