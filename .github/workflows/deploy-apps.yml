@@ -49,16 +49,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v5
 
-    # pnpm before setup-node. This job asked setup-node for cache: 'pnpm' and
-    # then installed pnpm on the next step, so setup-node shelled out to a pnpm
-    # that did not exist yet and failed with "Unable to locate executable file:
-    # pnpm" before the job did any work. Fourth instance of this in the repo,
-    # after packages-ci.yml, sync-packages.yml and lore-canon.yml.
-    #
-    # Also swapped `npm install -g pnpm` for pnpm/action-setup pinned to 8, to
-    # match the other workflows and this repo's packageManager field. The npm
-    # form installed whatever pnpm was newest, which is a lockfile-compatibility
-    # gamble on a job that runs `pnpm install` against a v8 lockfile.
+    # Must precede setup-node: its cache: 'pnpm' resolves the store by invoking
+    # pnpm, so pnpm has to be on PATH first. Version pinned to match
+    # packageManager in package.json and the v8 lockfile.
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
       with:
