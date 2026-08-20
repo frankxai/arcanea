@@ -97,11 +97,12 @@ When beginning work on Arcanea:
 
 ### 3. Design System
 The Arcanean Design System uses a cosmic theme:
-- **Primary**: Atlantean Teal (#7fffd4)
-- **Secondary**: Cosmic Blue (#78a6ff)
+- **Primary**: Atlantean Teal (#00bcd4)
+- **Secondary**: Cosmic Blue (#0d47a1)
 - **Accent**: Gold Bright (#ffd700)
-- **Fonts**: Cinzel (display), Crimson Pro (body)
+- **Fonts**: Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code) — never Cinzel, Space Grotesk, or Inter
 - **Effects**: Glass morphism, aurora gradients, cosmic glows
+- **Canonical**: `@arcanea/design-system` v0.2.0 (production repo `arcanea-ai-app`); background #09090b; Framer Motion via `domAnimation`, never `domMax`
 
 ---
 

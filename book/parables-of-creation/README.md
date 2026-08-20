@@ -31,6 +31,10 @@ They do not tell you what to think. They make you think. They do not give answer
 9. **The Parable of the Borrowed Voice** — On imitation and originality
 10. **The Parable of the Final Day** — On giving fully
 
+### Standalone Parables (STAGING ⏳)
+
+- **[The Parable of the Unmarred](./the-parable-of-the-unmarred.md)** — On protecting something by refusing to let it change. Companion canon: `.arcanea/lore/THE_UNMARRED.md`.
+
 ---
 
 ## How Parables Work

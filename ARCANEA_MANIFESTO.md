@@ -20,8 +20,8 @@ Our AI does not just "process"—it *grows*, *adapts*, and *guides*.
 - **Void Black (`#050505`)**: The canvas of space.
 
 ### Typography
-- **Headings**: *Space Grotesk* (or creating a custom SVG typeface). Wide tracking.
-- **Body**: *Inter* or *Spline Sans*. Clean, legible, humanist.
+- **Headings**: *Geist* (or creating a custom SVG typeface). Wide tracking.
+- **Body**: *Geist*. Clean, legible, humanist.
 
 ### Imagery Style
 - **Generative Art**: Fractals, neural networks that look like mycelium, cosmic clouds.

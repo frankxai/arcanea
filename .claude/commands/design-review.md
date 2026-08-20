@@ -33,7 +33,7 @@ Scan for generic AI patterns:
 
 ### Red Flags (Automatic Grade Reduction)
 - [ ] Raw hex values instead of Tailwind tokens
-- [ ] Inter/Roboto for display text (should be Cinzel)
+- [ ] Inter/Roboto for display text (should be Geist)
 - [ ] Generic purple-on-white gradient
 - [ ] Cookie-cutter card grids with no personality
 - [ ] Padding/margin with arbitrary pixel values instead of spacing scale

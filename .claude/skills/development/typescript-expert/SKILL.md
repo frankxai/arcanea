@@ -227,7 +227,7 @@ function assertNever(x: never): never {
 function getElementColor(element: Element): string {
   switch (element) {
     case 'earth': return '#4a7c59'
-    case 'water': return '#78a6ff'
+    case 'water': return '#0d47a1'
     case 'fire': return '#ff6b35'
     case 'wind': return '#e8e8e8'
     case 'void': return '#8b5cf6'
