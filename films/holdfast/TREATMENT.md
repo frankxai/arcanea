@@ -13,12 +13,9 @@
 > [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library)
 > `packs/film-excellence/LANGUAGE.md`. That pack also carries `film-design.md`,
 > `film-taste.md`, and the `film-release-gate` skill; craft lives there, canon
-> lives here.
->
-> ⚠️ **That path does not resolve yet.** The pack is on
-> [claude-skills-library#23](https://github.com/frankxai/claude-skills-library/pull/23),
-> open and unmerged, so the link 404s on `main` until it lands. Context:
-> [`films/README.md`](../README.md) § *The pack is not vendored here yet*.
+> lives here. Merged to `main` 2026-08-20
+> ([#23](https://github.com/frankxai/claude-skills-library/pull/23)) — the links
+> resolve.
 >
 > **Two different things are called silence in this film and they must not be
 > confused.** *Speech-free* means nobody is talking — the 174 Hz bed, wind, and

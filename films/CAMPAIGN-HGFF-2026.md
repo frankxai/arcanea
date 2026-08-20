@@ -191,16 +191,24 @@ frankxai/Starlight-Intelligence-System
     ├── BIBLE.md  CHARACTERS.md  TREATMENT.md  SCRIPT.md  LOOK-AND-SOUND.md
 ```
 
-⚠️ **None of these three are merged.** All sit on the same branch,
-`claude/arcanea-starlight-films-roeohz`, on open draft PRs —
-[claude-skills-library#23](https://github.com/frankxai/claude-skills-library/pull/23),
-[arcanea#91](https://github.com/frankxai/arcanea/pull/91),
-[Starlight-Intelligence-System#69](https://github.com/frankxai/Starlight-Intelligence-System/pull/69).
-The tree above is the intended layout, not the state of anyone's `main`. In
-particular, every reference to `packs/film-excellence/*` in the film documents
-404s until #23 lands, and the pack is not installed into either film repo's
-`.claude/skills/`, so no `/film-*` command runs anywhere today. The documents
-were produced by hand against the doctrine and stand on their own.
+**Merge state, as of 2026-08-20 — three repos, three different states:**
+
+- [claude-skills-library#23](https://github.com/frankxai/claude-skills-library/pull/23)
+  — **MERGED** to `main` (`b58b7a8`). The pack links in every film document
+  resolve.
+- [arcanea#91](https://github.com/frankxai/arcanea/pull/91) — **open, draft,
+  parked** pending Frank's creative gate.
+- [Starlight-Intelligence-System#69](https://github.com/frankxai/Starlight-Intelligence-System/pull/69)
+  — **closed unmerged** by the 2026-08-07 agent-lane prune; the branch is
+  retained on the remote at `9079adc` with all five film documents intact.
+  Reopening requires a rebase onto current `main` — the only conflict is the
+  regenerated portfolio-mesh files, which `main` has since fixed its own way,
+  so the mesh commit gets dropped and the film commits carry over clean.
+
+The pack is not installed into either film repo's `.claude/skills/`, so no
+`/film-*` command runs in a film repo yet — installation is a one-command step
+on a now-settled source, awaiting the maintainer. The documents were produced by
+hand against the doctrine and stand on their own.
 
 **Why not one new `starlight-films` repo?** Because it would have to hold
 Arcanea canon, and SIP § Sovereignty says the substrate does not absorb vertical

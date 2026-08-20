@@ -2,12 +2,10 @@
 
 > Stage 4. Written against the Spoken Law —
 > [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library)
-> `packs/film-excellence/LANGUAGE.md`.
->
-> ⚠️ **That path does not resolve yet.** The pack is on
-> [claude-skills-library#23](https://github.com/frankxai/claude-skills-library/pull/23),
-> open and unmerged, so the link 404s on `main` until it lands. Context:
-> [`films/README.md`](../README.md) § *The pack is not vendored here yet*.
+> `packs/film-excellence/LANGUAGE.md` — merged to `main` 2026-08-20
+> ([#23](https://github.com/frankxai/claude-skills-library/pull/23)); the link
+> resolves. Vendoring into this repo's `.claude/skills/` remains a separate,
+> deliberate step — see [`films/README.md`](../README.md).
 >
 > **Draft 1 — not locked.** Blocked from lock by the canon ruling and name
 > approval in `BIBLE.md`, neither of which changes a line below.

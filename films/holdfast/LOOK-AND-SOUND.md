@@ -6,10 +6,9 @@
 > (refusals), `LANGUAGE.md` (the Spoken Law), and the `film-release-gate` skill.
 > Craft lives there so it is reusable across productions; canon lives here.
 >
-> ⚠️ **Those paths do not resolve yet.** The pack is on
-> [claude-skills-library#23](https://github.com/frankxai/claude-skills-library/pull/23),
-> open and unmerged, so the links 404 on `main` until it lands. Context:
-> [`films/README.md`](../README.md) § *The pack is not vendored here yet*.
+> Merged to `main` 2026-08-20
+> ([#23](https://github.com/frankxai/claude-skills-library/pull/23)) — the links
+> resolve.
 >
 > This file and the local refusals below outrank every skill in the pack for
 > this production.

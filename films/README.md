@@ -26,26 +26,25 @@ contract shape:
 Start any film work with the `film-release-gate` skill, before writing a script
 or generating a frame.
 
-### The pack is not vendored here yet
+### The pack is merged upstream, not yet vendored here
 
-**The eight-stage pipeline and its `/film-*` commands are not runnable from this
-repo today.** Unlike `web-excellence`, `film-excellence` has not been installed
-into `.claude/skills/` — it currently lives only in
-[`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library)
-on an open PR (#23). Invoking `/film-bible` or `/film-script` here will find
-nothing.
-
-That is deliberate for now: vendoring from an unmerged branch would create a
-copy that drifts from its source before the source is settled. Once #23 merges:
+**[#23](https://github.com/frankxai/claude-skills-library/pull/23) merged to
+`main` on 2026-08-20** — every `packs/film-excellence/*` link in these documents
+now resolves. What has *not* happened is installation into this repo's
+`.claude/skills/`, so the `/film-*` commands and the `film-release-gate` skill
+are still not runnable from here. That is one deliberate step, on a settled
+source now:
 
 ```bash
 packs/film-excellence/install.sh /path/to/arcanea
 ```
 
-Until then the pack is a **reference** for how this bible was built, not tooling
-you can run. The documents in `holdfast/` stand on their own — they are the
-output of **stages 1–5** (bible · cast · beats · script · look & sound),
-produced by hand against the doctrine.
+It adds files under `.claude/skills/`, which widens this PR's footprint — so it
+waits for the maintainer's go rather than riding along. Until then the pack is a
+**reference** for how this bible was built, not tooling you can run. The
+documents in `holdfast/` stand on their own — they are the output of
+**stages 1–5** (bible · cast · beats · script · look & sound), produced by hand
+against the doctrine.
 
 **Stage 6, the shot list, is the next artifact and does not exist yet.** It is
 the last thing needed before generation can start.
