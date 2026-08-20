@@ -1,0 +1,271 @@
+.codexMargin,
+.elementPanel dt {
+  font-family: var(--font-jetbrains-mono), monospace;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.bookList > li > span,
+.elementIndex {
+  color: var(--gold);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.elementTabs {
+  display: flex;
+  margin-top: 4.5rem;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(214, 180, 104, 0.24);
+  scrollbar-width: none;
+}
+
+.elementTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.elementTabs button {
+  flex: 1 0 auto;
+  min-width: 8.5rem;
+  padding: 1rem 1.25rem 1.2rem;
+  border: 0;
+  background: transparent;
+  color: rgba(241, 233, 215, 0.72);
+  cursor: pointer;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 160ms ease, box-shadow 160ms ease;
+}
+
+.elementTabs button:hover,
+.elementTabs .elementActive {
+  color: var(--element-tone);
+  box-shadow: inset 0 -2px var(--element-tone);
+}
+
+.elementPanel {
+  display: grid;
+  min-height: 27rem;
+  padding: 3.5rem 0;
+  border-bottom: 1px solid rgba(214, 180, 104, 0.24);
+  grid-template-columns: 0.35fr 0.8fr 1.35fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  animation: livingArcCodexReveal 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.elementIndex {
+  margin: 0;
+  color: var(--element-tone);
+  font-size: clamp(4rem, 8vw, 8rem);
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+}
+
+.elementPanel h3 {
+  margin: 0;
+  color: var(--element-tone);
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.elementPanel dl,
+.elementPanel dd {
+  margin: 0;
+}
+
+.elementPanel dl {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.elementPanel dt {
+  margin-bottom: 0.6rem;
+  color: var(--element-tone);
+  font-size: 0.62rem;
+}
+
+.elementPanel dd {
+  color: rgba(241, 233, 215, 0.72);
+  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  line-height: 1.5;
+}
+
+.codexSection {
+  display: grid;
+  padding: clamp(5rem, 9vw, 9rem) max(5vw, calc((100vw - 82rem) / 2));
+  background: var(--moonbone);
+  color: var(--null);
+  grid-template-columns: minmax(10rem, 0.42fr) minmax(20rem, 1.58fr);
+  gap: clamp(3rem, 8vw, 9rem);
+}
+
+.codexMargin {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.35rem;
+  color: rgba(5, 7, 13, 0.74);
+  font-size: 0.63rem;
+}
+
+.codexMargin p,
+.codexMargin span {
+  margin: 0;
+}
+
+.codexMargin span {
+  margin-top: 2rem;
+  color: var(--teal-ink);
+  line-height: 1.65;
+}
+
+.codexPage {
+  max-width: 53rem;
+}
+
+.codexPage > p:first-child {
+  color: var(--teal-ink);
+}
+
+.codexPage h2 {
+  margin-bottom: 2.5rem;
+  font-size: clamp(2.6rem, 5vw, 5.3rem);
+  line-height: 1.03;
+}
+
+.codexPage > p,
+.codexMore p {
+  max-width: 45rem;
+  margin: 1.2rem 0 0;
+  color: rgba(5, 7, 13, 0.75);
+  font-size: clamp(1.18rem, 1.65vw, 1.42rem);
+  line-height: 1.66;
+}
+
+.codexPage blockquote {
+  max-width: 47rem;
+  margin: 2.8rem 0;
+  padding: 1.6rem 0 1.6rem 2rem;
+  border-left: 2px solid var(--teal-ink);
+  color: var(--teal-ink);
+  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.codexMore {
+  max-width: 45rem;
+  margin-top: 2.5rem;
+  border-block: 1px solid rgba(5, 7, 13, 0.25);
+}
+
+.codexMore summary {
+  padding: 1.2rem 0;
+  color: var(--null);
+  cursor: pointer;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  list-style-position: inside;
+  text-transform: uppercase;
+}
+
+.codexMore > div {
+  padding-bottom: 2rem;
+}
+
+.bookList {
+  margin: 5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bookList li {
+  display: grid;
+  min-height: 9rem;
+  padding: 1.7rem 0;
+  border-top: 1px solid rgba(214, 180, 104, 0.24);
+  grid-template-columns: minmax(6rem, 0.3fr) minmax(20rem, 1.7fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.bookList li:last-child {
+  border-bottom: 1px solid rgba(214, 180, 104, 0.24);
+}
+
+.bookList h3 {
+  margin: 0;
+  color: var(--moonbone);
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: clamp(1.55rem, 2.6vw, 2.6rem);
+  font-weight: 500;
+}
+
+.bookList p {
+  margin: 0.45rem 0 0;
+  color: rgba(241, 233, 215, 0.58);
+  font-size: 1.05rem;
+}
+
+
+@keyframes livingArcCodexReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1000px) {
+  .elementPanel {
+    grid-template-columns: 0.3fr 0.7fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .codexSection {
+    grid-template-columns: 1fr;
+  }
+
+  .elementPanel {
+    grid-template-columns: 0.35fr 0.65fr;
+    gap: 2rem;
+  }
+
+  .elementPanel dl {
+    grid-column: 1 / -1;
+  }
+
+  .elementIndex {
+    font-size: 4.5rem;
+  }
+
+  .codexSection {
+    padding-inline: 1.35rem;
+    gap: 2.5rem;
+  }
+
+  .codexMargin {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  .codexMargin span {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+  }
+
+  .bookList li {
+    grid-template-columns: 4rem 1fr;
+  }
+}

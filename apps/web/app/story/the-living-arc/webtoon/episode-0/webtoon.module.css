@@ -1,0 +1,384 @@
+:global(html),
+:global(body) {
+  overflow-x: clip;
+}
+
+.shell {
+  --ink: #03060a;
+  --obsidian: #071821;
+  --moonbone: #f1e9d7;
+  --cyan: #62f4de;
+  --gold: #d6b468;
+  position: relative;
+  isolation: isolate;
+  width: 100vw;
+  margin-block: -1rem;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--moonbone);
+  font-family: var(--font-crimson-pro), Georgia, serif;
+}
+
+.shell * {
+  box-sizing: border-box;
+}
+
+.shell a:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 5px;
+}
+
+.progressTrack {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(241, 233, 215, 0.12);
+  pointer-events: none;
+}
+
+.progressTrack span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  transition: transform 80ms linear;
+}
+
+.header {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 50%;
+  display: flex;
+  width: min(100% - 2rem, 72rem);
+  min-height: 4rem;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateX(-50%);
+  border-bottom: 1px solid rgba(214, 180, 104, 0.24);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.header a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.header span {
+  color: rgba(241, 233, 215, 0.54);
+}
+
+.prologue {
+  display: grid;
+  min-height: 100svh;
+  place-content: center;
+  padding: 8rem 1.25rem 5rem;
+  text-align: center;
+}
+
+.kicker,
+.scrollCue,
+.dialogue span,
+.footer small {
+  font-family: var(--font-jetbrains-mono), monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.kicker {
+  margin: 0 0 1rem;
+  color: var(--cyan);
+  font-size: 0.64rem;
+}
+
+.prologue h1,
+.footer h2 {
+  margin: 0;
+  color: var(--moonbone);
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.prologue h1 {
+  max-width: 66rem;
+  font-size: clamp(3.5rem, 9vw, 8.5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.prologue > p:not(.kicker) {
+  max-width: 39rem;
+  margin: 2rem auto 0;
+  color: var(--gold);
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  line-height: 1.45;
+}
+
+.scrollCue {
+  margin-top: 6rem;
+  color: rgba(241, 233, 215, 0.68);
+  font-size: 0.56rem;
+}
+
+.silence,
+.vision,
+.fatherBeat,
+.releaseBeat,
+.afterword {
+  display: grid;
+  width: min(100% - 2.5rem, 48rem);
+  margin: 0 auto;
+  place-content: center;
+  text-align: center;
+}
+
+.silence {
+  min-height: 105svh;
+  gap: 18vh;
+}
+
+.silence p,
+.vision p,
+.fatherBeat p,
+.releaseBeat p {
+  margin: 0;
+  color: rgba(241, 233, 215, 0.82);
+  font-size: clamp(1.55rem, 4vw, 3rem);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.panel {
+  position: relative;
+  width: min(100%, 47rem);
+  margin: 0 auto;
+  background: var(--obsidian);
+}
+
+.panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dialogue {
+  display: grid;
+  width: min(100% - 2.5rem, 47rem);
+  min-height: 115svh;
+  margin: 0 auto;
+  align-content: center;
+  gap: clamp(5rem, 14vh, 10rem);
+  padding-block: 10rem;
+}
+
+.dialogue > div {
+  max-width: 35rem;
+}
+
+.dialogue span {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--cyan);
+  font-size: 0.58rem;
+}
+
+.dialogue p {
+  margin: 0;
+  font-size: clamp(1.7rem, 5vw, 3.2rem);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.malacharLine {
+  justify-self: start;
+}
+
+.saelithLine {
+  justify-self: end;
+  text-align: right;
+}
+
+.saelithLine span {
+  color: var(--gold);
+}
+
+.vision {
+  min-height: 120svh;
+  gap: 16vh;
+}
+
+.vision p:nth-child(2) {
+  color: var(--gold);
+}
+
+.fatherBeat {
+  min-height: 80svh;
+}
+
+.fatherBeat p {
+  color: var(--gold);
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+}
+
+.handPanel::after,
+.aftermathPanel::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 15%;
+  background: linear-gradient(transparent, var(--ink));
+  content: '';
+  pointer-events: none;
+}
+
+.lastWords {
+  display: grid;
+  min-height: 150svh;
+  align-content: center;
+  gap: 26vh;
+  padding: 12rem max(1.25rem, calc((100vw - 47rem) / 2));
+}
+
+.lastWords p {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--moonbone);
+  font-size: clamp(2rem, 6vw, 4.7rem);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.lastWords .answer {
+  justify-self: end;
+  color: var(--gold);
+  text-align: right;
+}
+
+.releaseBeat {
+  min-height: 120svh;
+  gap: 20vh;
+}
+
+.releaseBeat p:last-child {
+  color: var(--gold);
+}
+
+.afterword {
+  min-height: 150svh;
+  gap: 12vh;
+  padding-block: 12rem;
+}
+
+.afterword p {
+  margin: 0;
+  color: rgba(241, 233, 215, 0.68);
+  font-size: clamp(1.4rem, 3.6vw, 2.4rem);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.afterword blockquote {
+  margin: 0;
+  color: var(--gold);
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: clamp(3rem, 10vw, 7rem);
+  line-height: 1;
+}
+
+.afterword blockquote:last-child {
+  color: var(--cyan);
+}
+
+.footer {
+  display: grid;
+  min-height: 100svh;
+  place-content: center;
+  padding: 8rem 1.25rem;
+  border-top: 1px solid rgba(214, 180, 104, 0.24);
+  background:
+    linear-gradient(rgba(3, 6, 10, 0.45), var(--ink)),
+    url('/story/the-living-arc/wallpapers/living-arc-desktop.webp') center / cover;
+  text-align: center;
+}
+
+.footer h2 {
+  max-width: 59rem;
+  font-size: clamp(2.8rem, 7vw, 6.7rem);
+  line-height: 0.98;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 3.5rem;
+}
+
+.actions a {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.2rem;
+  border: 1px solid rgba(214, 180, 104, 0.55);
+  background: rgba(3, 6, 10, 0.82);
+  color: var(--moonbone);
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.actions a:hover {
+  background: var(--moonbone);
+  color: var(--ink);
+}
+
+.footer small {
+  margin-top: 4rem;
+  color: rgba(241, 233, 215, 0.48);
+  font-size: 0.55rem;
+}
+
+@media (max-width: 600px) {
+  .header {
+    min-height: 3.5rem;
+  }
+
+  .prologue h1 {
+    font-size: clamp(3.2rem, 18vw, 5rem);
+  }
+
+  .dialogue {
+    gap: 16vh;
+  }
+
+  .lastWords {
+    min-height: 175svh;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressTrack span,
+  .actions a {
+    transition-duration: 1ms;
+  }
+}
