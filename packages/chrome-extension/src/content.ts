@@ -1,4 +1,5 @@
 import { extractPageContent, formatPageContextForAI } from './utils/readability.js';
+import type { Settings } from './utils/storage.js';
 
 // ─── Shadow DOM Setup ─────────────────────────────────────────────────────────
 
@@ -388,7 +389,11 @@ function setupWritingAssistant(): void {
 async function initialize(): Promise<void> {
   try {
     const result = await chrome.storage.local.get('settings');
-    const settings = result?.settings ?? {};
+    // `?? {}` widened settings to `{}`, so every property read off it was a
+    // type error. Partial<Settings> is the honest shape: chrome.storage returns
+    // whatever was written, which may predate any field, and each read below
+    // already supplies its own default.
+    const settings: Partial<Settings> = result?.settings ?? {};
     const enableFloating = settings.enableFloatingButton ?? true;
     const enableShortcuts = settings.keyboardShortcuts ?? true;
     floatingButtonEnabled = enableFloating;
