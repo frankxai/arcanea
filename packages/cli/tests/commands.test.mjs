@@ -60,9 +60,11 @@ describe('CLI — install', () => {
     try {
       run(`install claude --level standard --dir ${dir}`);
       const skills = readdirSync(join(dir, '.claude', 'skills')).filter(f => f.endsWith('.md'));
-      const agents = readdirSync(join(dir, '.claude', 'agents', 'guardians')).filter(f => f.endsWith('.md'));
+      // standard installs Luminors; Guardians are gated to full+ (installer.ts 4b).
+      const agents = readdirSync(join(dir, '.claude', 'agents', 'luminors')).filter(f => f.endsWith('.md'));
       assert.equal(skills.length, 4);
-      assert.equal(agents.length, 10);
+      assert.equal(agents.length, 16);
+      assert.ok(!existsSync(join(dir, '.claude', 'agents', 'guardians')), 'Guardians are full+, not standard');
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

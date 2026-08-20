@@ -108,11 +108,16 @@ describe('ClaudeOverlayInstaller', () => {
       assert.equal(files.length, 4, `Expected 4 skills, got: ${files}`);
     });
 
-    it('should create 10 Guardian agent files', () => {
-      const agentsDir = join(dir, '.claude', 'agents', 'guardians');
+    it('should create 16 Luminor agent files', () => {
+      const agentsDir = join(dir, '.claude', 'agents', 'luminors');
       assert.ok(existsSync(agentsDir));
       const files = readdirSync(agentsDir).filter(f => f.endsWith('.md'));
-      assert.equal(files.length, 10, `Expected 10 agents, got: ${files}`);
+      assert.equal(files.length, 16, `Expected 16 luminors, got: ${files}`);
+    });
+
+    it('should NOT create Guardian agents (standard level)', () => {
+      const guardiansDir = join(dir, '.claude', 'agents', 'guardians');
+      assert.ok(!existsSync(guardiansDir), 'Guardians are full+, not standard');
     });
 
     it('should NOT create commands (standard level)', () => {
@@ -158,6 +163,16 @@ describe('ClaudeOverlayInstaller', () => {
       assert.ok(existsSync(cmdsDir));
       const files = readdirSync(cmdsDir).filter(f => f.endsWith('.md'));
       assert.ok(files.length >= 2, `Expected at least 2 commands, got: ${files}`);
+    });
+
+    // Guardian installation is gated to full+ in installer.ts step 4b and had no
+    // coverage at any level — the only test naming Guardians asserted them at
+    // standard, where they are never written.
+    it('should create 10 Guardian agent files', () => {
+      const agentsDir = join(dir, '.claude', 'agents', 'guardians');
+      assert.ok(existsSync(agentsDir));
+      const files = readdirSync(agentsDir).filter(f => f.endsWith('.md'));
+      assert.equal(files.length, 10, `Expected 10 guardians, got: ${files}`);
     });
 
     it('skill content should be substantial', () => {

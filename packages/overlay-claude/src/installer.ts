@@ -4,9 +4,9 @@
  *
  * What gets installed by level:
  *   minimal  — CLAUDE.md + manifest
- *   standard — + 4 skills, 10 Guardian agents, 8 hooks, statusline, AgentDB, helpers
- *   full     — + /channel, /arcanea-status commands
- *   luminor  — + .arcanea/lore/ directory
+ *   standard — + 4 skills, 16 Luminor agents, 8 hooks, statusline, AgentDB, helpers
+ *   full     — + 5 dev skills, 10 Guardian agents, /channel + /arcanea-status commands
+ *   luminor  — + 10 Godbeast references, .arcanea/lore/ directory
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync, chmodSync } from 'node:fs';
