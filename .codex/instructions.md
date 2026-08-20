@@ -23,8 +23,8 @@ All Arcanea intelligence lives in `.arcanea/`:
 - Every feature should feel magical, not mundane
 
 ## Design System
-- Primary: Violet (#8b5cf6), Accent: Teal (#7fffd4), Gold: #ffd700
-- Fonts: Cinzel (display), Crimson Pro (body), Inter (UI)
+- Primary: Atlantean Teal (#00bcd4), Secondary: Cosmic Blue (#0d47a1), Accent: Gold (#ffd700), Background: #09090b
+- Fonts: Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code) — never Cinzel, Space Grotesk, or Inter
 - Glass morphism with blur(16px), aurora gradients, cosmic glows
 
 ## The Arcanea Universe

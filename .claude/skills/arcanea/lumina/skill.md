@@ -79,7 +79,7 @@ Code is complete when:
 bg-cosmic-void          /* #0b0e14 — Page backgrounds */
 bg-cosmic-deep          /* Deep panels */
 bg-cosmic-surface       /* Component surfaces */
-text-arcane-crystal     /* #7fffd4 — Primary text emphasis */
+text-arcane-crystal     /* #00bcd4 — Primary text emphasis */
 text-arcane-gold        /* #ffd700 — Secondary emphasis */
 border-arcane-void/30   /* Subtle borders */
 

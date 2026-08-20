@@ -99,10 +99,10 @@ The Arcanean UI represents **a portal into creative consciousness**:
 ### Font Stack
 ```css
 /* Display (Headings, Titles) */
-font-family: 'Cinzel', 'Cormorant Garamond', serif;
+font-family: 'Geist', sans-serif;
 
 /* Body (Content, UI) */
-font-family: 'Crimson Pro', 'Source Serif Pro', Georgia, serif;
+font-family: 'Geist', sans-serif;
 
 /* Code (Monospace) */
 font-family: 'JetBrains Mono', 'Fira Code', monospace;
@@ -564,8 +564,8 @@ const ARCANEA_TOKENS = {
     },
   },
   fonts: {
-    display: 'Cinzel, serif',
-    body: 'Crimson Pro, serif',
+    display: 'Geist, sans-serif',
+    body: 'Geist, sans-serif',
     mono: 'JetBrains Mono, monospace',
   },
   radii: {

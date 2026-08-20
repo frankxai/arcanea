@@ -4,6 +4,8 @@ Arcanea is the public code mirror for [arcanea.ai](https://arcanea.ai) — the c
 
 ![Arcanea GitHub Hero](.github/assets/arcanea-github-main-hero.jpg)
 
+> Premium visual identity per .github/ARCANEA_VISUAL_ECOSYSTEM.md (Lumina & Nero dance + Ten Gates; God of War meets Destiny ethereal 8K; Atlantean Teal #00bcd4 / Arcanean Gold #ffd700 / Cosmic Blue on Deep Void). Full alignment to DESIGN.md (tokens, Geist/Instrument/Mono, glass, no raw hex/emojis/Inter), TASTE.md 7 gates (AI-lab premium restraint, no slop), .arcanea/lore/VISUAL_DOCTRINE.md (luxury cosmic myth-tech, franchise eq, faction grammars).
+
 ## What this repo is
 
 - The public mirror of the Arcanea web experience and supporting packages

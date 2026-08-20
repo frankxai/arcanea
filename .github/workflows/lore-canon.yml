@@ -1,0 +1,105 @@
+name: Lore canon
+
+# The `lore-release-gate` skill covers a working session. This covers everything
+# else: every PR that touches lore, whoever or whatever opened it.
+#
+# Runs the mechanical subset of canon consistency — no model, no network, ~1
+# second. The judgment half stays in the `lore-release-gate` and
+# `canon-evaluation` skills, which a session runs against the same files.
+#
+# Why it exists: two locked godbeast renames silently failed to propagate across
+# ~15 files over five months, including an active chapter of a published Library
+# text. Nobody introduced that in one bad commit — it accumulated because
+# nothing checked. Issue #98.
+
+# Filter broadly: a godbeast name hardcoded in a constant is exactly as wrong as
+# one in a markdown table. This list must stay a superset of LORE_EXT in
+# lore-lint.mjs — a type the linter checks but the trigger omits is drift that
+# never even gets looked at, which is worse than a rule that fires wrongly
+# because nothing signals its absence.
+#
+# .js/.mjs are here because the repo really does carry lore in them:
+# packages/chrome-extension/tests/chrome-extension.test.mjs asserts both
+# superseded godbeast names and a shifted frequency ladder as expected values.
+#
+# The linter's own isLoreFile() decides what actually counts and short-circuits
+# cheaply when nothing is in scope.
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '**/*.mdx'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '**/*.json'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.js'
+      - '**/*.mjs'
+      - '.github/workflows/lore-canon.yml'
+      - '.claude/ci/lore-lint.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  canon:
+    name: Canon consistency (mechanical)
+    runs-on: ubuntu-latest
+    steps:
+      # v5 matches this repo's dominant convention (35 workflows on checkout@v5,
+      # 17 on setup-node@v5) and clears the Node-20 deprecation warning the v4
+      # actions emit in this workflow's own logs. Tag-pinned rather than
+      # SHA-pinned to match every other workflow here — SHA hardening is a
+      # repo-wide decision, not one to make piecemeal in a single file.
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          # This job checks out PR-authored code and then RUNS it (lore-lint.mjs
+          # is itself part of the diff under review). checkout stores its token
+          # in .git/config by default, so that code could read it. The job only
+          # reads history and never pushes, so dropping the credential costs
+          # nothing. Flagged by zizmor as `artipacked`.
+          persist-credentials: false
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          # Required, not optional: v5 defaults package-manager-cache to true,
+          # detects this repo's pnpm-lock.yaml, and fails with "Unable to locate
+          # executable file: pnpm". Every other workflow here runs
+          # pnpm/action-setup first; this job deliberately does not, because it
+          # installs nothing — it runs `node --test` over zero-dependency
+          # scripts. Nothing to cache, so ask for no cache.
+          package-manager-cache: false
+
+      - name: Test the linter
+        # The linter is only worth having if it stays trusted, and that rests on
+        # near-zero false positives. These fixtures lock that in — a multi-pair
+        # table row, the full ten-gate table, prose naming a retired entity, a
+        # Gate name used as an ordinary English word — alongside the drift it
+        # must still catch. Verified by hand once is verified until the next edit.
+        run: node --test .claude/ci/lore-lint.test.mjs
+
+      - name: Smoke-test against the vault
+        # Prove the script still parses and that its canon table still matches
+        # the vault. A linter whose constants have drifted from
+        # CANON_LOCKED.md is worse than no linter — it certifies the drift.
+        run: |
+          node --check .claude/ci/lore-lint.mjs && echo "ok lint script parses"
+          node .claude/ci/lore-lint.mjs .arcanea/lore/CANON_LOCKED.md
+
+      - name: Check changed lore files
+        # checkout above used fetch-depth: 0, so the base ref is already local.
+        # --changed is a ratchet: only lines this PR adds. The repo has real
+        # pre-existing drift (#98) and failing a PR for a line it merely sat
+        # next to is how a linter gets switched off.
+        #
+        # base_ref goes through env rather than being interpolated into the run
+        # string. The risk here is low — it is the PR's target branch, which must
+        # already exist in this repo, not the attacker-controlled head_ref — but
+        # the safe form costs nothing and keeps the anti-pattern out of a file
+        # people will copy.
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: node .claude/ci/lore-lint.mjs --changed --base "origin/$BASE_REF"
