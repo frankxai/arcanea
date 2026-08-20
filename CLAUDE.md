@@ -191,11 +191,13 @@ npx @claude-flow/cli@latest doctor --fix
 
 ## Lore canon gate — load-bearing
 
-**Lore, canon, and worldbuilding work goes through the `lore-release-gate` skill first**, before writing lore. It sequences the seven phases (ground in the vault → choose a pattern → draft in register → cross-check → evaluate → stage → promote), routes to the research and pattern libraries in `docs/worldbuilding/`, and defines what "done" requires: a lint run, an etymology note per coined name, an IP check, and a `canon-evaluation` score that survived its adversarial pass — never a self-assigned verdict.
+**Lore, canon, and worldbuilding work goes through the `lore-release-gate` skill first**, before writing lore. It sequences the seven phases (ground in the vault → choose a pattern → draft in register → cross-check → evaluate → stage → promote), routes to the libraries under `docs/worldbuilding/`, and defines what "done" requires: a lint run, an etymology note per coined name, an IP check, and a `canon-evaluation` score that survived its adversarial pass — never a self-assigned verdict.
 
 `.arcanea/lore/CANON_LOCKED.md` is the vault and is **read-only to agents**; promotion from STAGING happens only through `/lock-decision`, by Frank. Note that `arcanea-lore/` and `sync/aios/lore/` are stale mirrors whose frequency tables and godbeast names diverge from the vault — the vault wins.
 
-`.claude/ci/lore-lint.mjs` is the model-free half: superseded names, Gate frequencies, godbeast pairings, canon-tier banners. Between sessions, `.github/workflows/lore-canon.yml` runs it on every PR touching lore, as a ratchet on newly added lines only. It exists because two locked godbeast renames silently failed to propagate across ~15 files over five months (issue #98) — drift accumulates when nothing checks. Judgment calls belong in the skills; the linter stays near-zero-false-positive so it never gets switched off.
+**The 852 Hz Gate is `Starweave`** (ruled 2026-08-14). The vault always said so; much of the repo — including `.claude/CLAUDE.md` — says "Shift", and that is drift, not an alternative. The linter treats the name as an error on newly added lines; the ~186 pre-existing occurrences across ~30 files are issue #98's sweep, and fail nothing until then.
+
+`.claude/ci/lore-lint.mjs` is the model-free half: superseded names, Gate names, Gate frequencies, godbeast pairings (table and prose), canon-tier banners, and lock claims. Between sessions, `.github/workflows/lore-canon.yml` runs it on every PR touching lore, as a ratchet on newly added lines only. It exists because two locked godbeast renames silently failed to propagate across ~15 files over five months (issue #98) — drift accumulates when nothing checks. Judgment calls belong in the skills; the linter stays near-zero-false-positive so it never gets switched off.
 
 ## Web design gate — load-bearing
 

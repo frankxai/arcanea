@@ -287,12 +287,48 @@ test('an alias appearing twice, once as an ordinary word, resolves safely', () =
   // English verb rewrites both. Verifying that is harmless rather than assuming
   // it: the frequency check re-tests for Gate context afterwards, so a bare
   // rewritten verb cannot masquerade as a Gate reference.
+  //
+  // Exit code is 1 rather than 0 since the 2026-08-14 ruling made the NAME an
+  // error — the frequency on this line is still correct, and no gate-frequency
+  // finding appears, which is what this fixture actually pins.
   const { code, out } = lint(
     '# Notes (STAGING)\n\nA shift in tone, though the Shift Gate holds at 852 Hz.\n'
   );
-  assert.equal(code, 0, `correct frequency must not error:\n${out}`);
-  assert.ok(out.includes('gate-name'), `the Gate use must still warn:\n${out}`);
-  assert.equal(out.match(/gate-name/g).length, 1, `one warning, not one per occurrence:\n${out}`);
+  assert.equal(code, 1, `the drifted name errors:\n${out}`);
+  assert.ok(!out.includes('gate-frequency'), `852 Hz is correct for this Gate:\n${out}`);
+  assert.equal(out.match(/gate-name/g).length, 1, `one finding, not one per occurrence:\n${out}`);
+});
+
+test('a drifted Gate name errors even with no frequency on the line', () => {
+  // The capability the 2026-08-14 ruling unlocked. Before it, this check lived
+  // inside checkGateFrequency, which returns early on any line without a Hz
+  // value — so the single most common shape of this drift ("Guardian of the
+  // Shift Gate", a title line) was invisible. Verified against a mutant: with
+  // checkGateName's call site removed, this fixture is the one that fails.
+  const { code, out } = lint('# Elara (STAGING)\n\nGuardian of the Shift Gate.\n');
+  assert.equal(code, 1, `a bare drifted name must error:\n${out}`);
+  assert.ok(out.includes('gate-name'), out);
+});
+
+test('the labelled-list form of a drifted Gate name errors', () => {
+  const { code, out } = lint('# Gates (STAGING)\n\n- **Gate 8 - Shift (Elara)** - perspective\n');
+  assert.equal(code, 1, out);
+  assert.ok(out.includes('gate-name'), out);
+});
+
+test('ordinary uses of "shift" near lore prose stay silent', () => {
+  // The false-positive guarantee for the widened check. All three are shapes
+  // that appear in the real corpus: the English noun, the English verb, and a
+  // name-ledger entry recording the deprecated form deliberately.
+  const { code, out } = lint(
+    '# Notes (STAGING)\n\n' +
+      'A shift in perspective is the whole lesson.\n' +
+      'Shift the burden onto the reader.\n' +
+      '  - form: "Shift"\n' +
+      '    note: superseded, retained for redirects\n'
+  );
+  assert.equal(code, 0, `expected clean, got:\n${out}`);
+  assert.ok(!out.includes('gate-name'), out);
 });
 
 test('an alias named as a Gate with the wrong frequency still errors', () => {
@@ -321,7 +357,13 @@ test('an alias and a neighbouring Gate on one line attribute separately', () => 
   const good = lint(
     '# T (STAGING)\n\nThe Shift Gate rings at 852 Hz, the Unity Gate at 963 Hz.\n'
   );
-  assert.equal(good.code, 0, `both frequencies are canon:\n${good.out}`);
+  // Only the drifted NAME is reported since the 2026-08-14 ruling; what this
+  // fixture pins is that neither frequency is blamed, which is the attribution
+  // property under test.
+  assert.ok(
+    !good.out.includes('gate-frequency'),
+    `both frequencies are canon:\n${good.out}`
+  );
 
   const bad = lint(
     '# T (STAGING)\n\nThe Shift Gate rings at 963 Hz, the Unity Gate at 963 Hz.\n'
@@ -593,7 +635,20 @@ test('the linter constants match the vault they claim to mirror', () => {
   }
   assert.equal(vaultGates.size, 10, `expected 10 gates in the vault, parsed ${vaultGates.size}`);
 
-  const block = (name) => src.slice(src.indexOf(`const ${name} = {`)).slice(0, src.slice(src.indexOf(`const ${name} = {`)).indexOf('};'));
+  // Fail loudly if the constant moved or was renamed. `indexOf` returns -1 on a
+  // miss and `slice(-1)` then hands back the tail of the file, so the old
+  // one-liner would have parsed unrelated source and passed — this test's whole
+  // job is catching drift between the linter and the vault, and it would have
+  // gone quietly green while checking nothing. Same failure as the bare
+  // invocation, one level in.
+  const block = (name) => {
+    const start = src.indexOf(`const ${name} = {`);
+    assert.ok(start !== -1, `const ${name} not found in lore-lint.mjs — did it move or get renamed?`);
+    const rest = src.slice(start);
+    const end = rest.indexOf('};');
+    assert.ok(end !== -1, `const ${name} block is unterminated in lore-lint.mjs`);
+    return rest.slice(0, end);
+  };
   const lintGates = new Map(
     [...block('GATE_FREQUENCIES').matchAll(/(\w+):\s*(\d+)/g)].map((m) => [m[1], Number(m[2])])
   );
@@ -701,11 +756,255 @@ test('every GATE_ALIAS is a non-canonical name mapping to a canonical one', () =
   for (const [, alias, target] of aliases) {
     assert.ok(
       !canonical.has(alias.toLowerCase()),
-      `"${alias}" is an alias but the vault now names a Gate that — the alias would rewrite a correct name`
+      `"${alias}" is an alias, but the vault now names a Gate "${alias}" — the alias would rewrite a correct name into a wrong one`
     );
     assert.ok(
       canonical.has(target.toLowerCase()),
       `alias "${alias}" targets "${target}", which is not a canonical Gate name in the vault`
     );
   }
+});
+
+test('a bare invocation is a usage error, not a silent pass', () => {
+  // Regression: `node lore-lint.mjs` with no arguments printed "no lore files
+  // to check" and exited 0 — a green run that inspected nothing, which is the
+  // precise failure this tool exists to prevent. Found by running the linter
+  // bare during the Starweave sweep and getting zero findings from a repo with
+  // 186 of them.
+  let code = 0;
+  let out = '';
+  try {
+    out = execFileSync('node', [LINT], { encoding: 'utf8' });
+  } catch (err) {
+    code = err.status;
+    out = `${err.stdout || ''}${err.stderr || ''}`;
+  }
+  assert.equal(code, 1, `expected a usage failure, got:\n${out}`);
+  assert.ok(out.includes('NOTHING was checked'), out);
+});
+
+test('an explicit file list with no lore in it is still a real pass', () => {
+  // The other side of the guard: --changed over a diff that touched no lore is
+  // a genuine clean run and must stay exit 0, or every unrelated PR fails.
+  const { code, out } = lint('# Just a readme\n\nNothing canonical here.\n', 'readme.txt');
+  assert.equal(code, 0, out);
+});
+
+test('a second assignment on the same line is checked too', () => {
+  // Regression: `line.match` returns the first match, so a correct pairing
+  // earlier in the line shielded a superseded one after it. Compact JSON and TS
+  // object literals are both in LORE_EXT, so the shape is reachable — and it is
+  // the same first-match-only defect R16 fixed in checkGateFrequency.
+  const { code, out } = lint('# Data (STAGING)\n\n{"beast":"veloura","godbeast":"thessara"}\n');
+  assert.equal(code, 1, `the second assignment must be caught:\n${out}`);
+  assert.ok(out.includes('superseded-name'), out);
+});
+
+test('a second prose pairing on the same line is checked too', () => {
+  // Same defect in checkProsePairing: a correct pairing first on the line hid a
+  // wrong one behind it.
+  const { code, out } = lint(
+    "# T (STAGING)\n\nAiyami's godbeast is Sol, and Elara's godbeast is Kaelith.\n"
+  );
+  assert.equal(code, 1, `the wrong pairing must be caught:\n${out}`);
+  assert.ok(out.includes('godbeast-pairing'), out);
+  assert.equal(out.match(/godbeast-pairing/g).length, 1, `only the wrong one:\n${out}`);
+});
+
+test('--changed over a diff with no lore in it is a real pass', () => {
+  // The other side of the bare-invocation guard: the "no lore files to check"
+  // exit-0 branch had no fixture, so nothing distinguished a genuine empty
+  // selection from the usage error that must fail.
+  const result = inTempRepo(({ dir, run }) => {
+    writeFileSync(join(dir, 'README.md'), '# readme\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    writeFileSync(join(dir, 'README.md'), '# readme\n\nA second line, no canon.\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'change']);
+
+    try {
+      const out = execFileSync('node', [LINT, '--changed', '--base', base], {
+        cwd: dir,
+        encoding: 'utf8',
+      });
+      return { code: 0, out };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+  assert.equal(result.code, 0, `a diff touching no lore must pass:\n${result.out}`);
+  assert.ok(result.out.includes('no lore files to check'), result.out);
+});
+
+test('a superseded godbeast in a prose pairing is flagged', () => {
+  // The gap that fell between both checks. checkSupersededNames needs a literal
+  // ":" or "=" after the key, and "godbeast is Thessara" has the word "is"
+  // there; checkProsePairing skipped any name absent from GODBEASTS, which is
+  // precisely what a superseded name is. So the one drift class this linter
+  // exists for (#98) was invisible in its most natural prose form, while
+  // `**Godbeast**: Thessara` errored. #98's completion test is a full-repo lint
+  // run, so the sweep could have reported done with these still live.
+  for (const text of [
+    "Elara's godbeast is Thessara, bound at the Starweave Gate.",
+    "Shinkami's godbeast is Amaterasu.",
+  ]) {
+    const { code, out } = lint(`# T (STAGING)\n\n${text}\n`);
+    assert.equal(code, 1, `expected an error for "${text}", got:\n${out}`);
+    assert.ok(out.includes('superseded-name'), out);
+  }
+});
+
+test('a correct prose pairing and a bare superseded mention stay silent', () => {
+  // The false-positive side of the same fix: the current pairing is fine, and
+  // naming a retired entity in ordinary prose has never been a violation.
+  const { code, out } = lint(
+    "# T (STAGING)\n\nElara's godbeast is Vaelith.\nThe Thessara question is still open.\n"
+  );
+  assert.equal(code, 0, `expected clean, got:\n${out}`);
+});
+
+test('a file allowlisted for superseded names keeps its prose exemption', () => {
+  // NAMING_REGISTRY.md maintains the superseded inventory; it must not fail for
+  // doing its job. The allowlist matches repo-relative paths, so this fixture
+  // builds the real directory shape and runs the CLI from that root rather than
+  // going through lint(), which writes into a flat temp dir.
+  const dir = mkdtempSync(join(tmpdir(), 'fixture-allow-'));
+  const rel = '.arcanea/lore/NAMING_REGISTRY.md';
+  mkdirSync(dirname(join(dir, rel)), { recursive: true });
+  writeFileSync(
+    join(dir, rel),
+    "# Registry (STAGING)\n\nElara's godbeast is Thessara (superseded, retained for redirects).\n",
+    'utf8'
+  );
+  try {
+    const out = execFileSync('node', [LINT, rel], { cwd: dir, encoding: 'utf8' });
+    assert.ok(out.includes('clean'), `the allowlisted file must stay clean:\n${out}`);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('a date-led row outside a log section is still checked', () => {
+  // Regression: the historical-record exemption keyed on date SHAPE alone, so
+  // prefixing any line with a date cell was a universal bypass — frequency,
+  // superseded name, pairing and lock claim all skipped. An exemption spelled
+  // the same as an ordinary row is the widest hole a drift linter can have.
+  for (const row of [
+    '| 2026-08-14 | The Foundation Gate is 963 Hz. |',
+    '| 2026-08-14 | **Godbeast**: Thessara |',
+  ]) {
+    const { code, out } = lint(`# T (STAGING)\n\n| Date | Note |\n|---|---|\n${row}\n`);
+    assert.equal(code, 1, `expected an error for "${row}", got:\n${out}`);
+  }
+});
+
+test('a date-led row under a log heading keeps its exemption', () => {
+  // The other half: CANON_LOCKED.md's own APPROVAL LOG records decisions later
+  // reversed, and auditing history against present canon is a category error.
+  const { code, out } = lint(
+    '# T (STAGING)\n\n## STAGING LOG\n\n| Date | Note |\n|---|---|\n' +
+      '| 2026-08-14 | The Foundation Gate is 963 Hz. |\n'
+  );
+  assert.equal(code, 0, `log rows must stay exempt:\n${out}`);
+});
+
+test('a repeated Gate name attributes the frequency to the nearest mention', () => {
+  // gateMentionIndex returns the EARLIEST mention anywhere, so a repeated Gate
+  // lost ownership to a different Gate sitting later, and the hijacker check
+  // then swallowed the finding entirely. 900 Hz is wrong for both Gates here
+  // and was reported for neither.
+  const bad = lint(
+    '# T (STAGING)\n\nThe Voice Gate and the Foundation Gate differ; the Voice Gate holds 900 Hz.\n'
+  );
+  assert.equal(bad.code, 1, `the wrong frequency must be caught:\n${bad.out}`);
+  assert.ok(bad.out.includes('voice Gate is 528 Hz'), `blame Voice, not Foundation:\n${bad.out}`);
+
+  const good = lint(
+    '# T (STAGING)\n\nThe Voice Gate and the Foundation Gate differ; the Voice Gate holds 528 Hz.\n'
+  );
+  assert.equal(good.code, 0, `the correct frequency must stay silent:\n${good.out}`);
+});
+
+test('markdown emphasis between the name and "Gate" is still Gate context', () => {
+  // `**Gate**: Crown (963 Hz)` is how every per-guardian agent card writes it,
+  // and the emphasis between "Gate" and ":" meant none of them were ever
+  // checked — 26 real findings across 17 files surfaced when this was fixed.
+  for (const text of ['**Starweave** Gate opens at 963 Hz.', '**Gate**: Crown (963 Hz)']) {
+    const { code, out } = lint(`# T (STAGING)\n\n${text}\n`);
+    assert.equal(code, 1, `expected an error for "${text}", got:\n${out}`);
+    assert.ok(out.includes('gate-frequency') || out.includes('gate-name'), out);
+  }
+});
+
+test('renaming a drifted file does not surface its pre-existing drift', () => {
+  // The ratchet's central promise — "you are not forced to fix everything you
+  // touch" — failed on renames. addedLinesFor diffed each file with a `-- <path>`
+  // pathspec, which hides the other side of a rename, so git could not pair old
+  // with new and reported the file as freshly added: `git mv` with ZERO content
+  // change surfaced every pre-existing line as newly added drift.
+  //
+  // `--find-renames` on the scoped call does NOT fix this — the source path is
+  // filtered out before detection runs. Only dropping the pathspec works, which
+  // is why addedLinesFor now takes one diff over the whole tree.
+  const result = inTempRepo(({ dir, run }) => {
+    const oldPath = join(dir, 'lore-old.md');
+    writeFileSync(
+      oldPath,
+      '# Drifted (STAGING)\n\nThe Crown Gate resonates at 963 Hz.\n**Godbeast**: Thessara\n',
+      'utf8'
+    );
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    run(['mv', 'lore-old.md', 'lore-new.md']);
+    run(['commit', '-qm', 'pure rename, no content change']);
+
+    try {
+      const out = execFileSync('node', [LINT, '--changed', '--base', base], {
+        cwd: dir,
+        encoding: 'utf8',
+      });
+      return { code: 0, out };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+  assert.equal(result.code, 0, `a pure rename must add nothing:\n${result.out}`);
+  assert.ok(!result.out.includes('ERROR'), result.out);
+});
+
+test('drift added alongside a rename is still caught', () => {
+  // The other half: the rename fix must not turn the ratchet off for the file.
+  const result = inTempRepo(({ dir, run }) => {
+    writeFileSync(join(dir, 'lore-old.md'), '# Drifted (STAGING)\n\n**Godbeast**: Thessara\n', 'utf8');
+    run(['add', '-A']);
+    run(['commit', '-qm', 'base']);
+    const base = run(['rev-parse', 'HEAD']).trim();
+
+    run(['mv', 'lore-old.md', 'lore-new.md']);
+    writeFileSync(
+      join(dir, 'lore-new.md'),
+      '# Drifted (STAGING)\n\n**Godbeast**: Thessara\nThe Fire Gate burns at 1111 Hz.\n',
+      'utf8'
+    );
+    run(['add', '-A']);
+    run(['commit', '-qm', 'rename plus new drift']);
+
+    try {
+      const out = execFileSync('node', [LINT, '--changed', '--base', base], {
+        cwd: dir,
+        encoding: 'utf8',
+      });
+      return { code: 0, out };
+    } catch (err) {
+      return { code: err.status, out: `${err.stdout || ''}${err.stderr || ''}` };
+    }
+  });
+  assert.equal(result.code, 1, `the new drifted line must be caught:\n${result.out}`);
+  assert.ok(result.out.includes('gate-frequency'), result.out);
+  assert.ok(!result.out.includes('superseded-name'), `the carried line is not new:\n${result.out}`);
 });

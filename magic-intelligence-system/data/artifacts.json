@@ -1,0 +1,1275 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "staging",
+  "description": "Seed corpus for the STAGING Arcanea Artifact and Resonance System. No record is locked canon.",
+  "artifacts": [
+    {
+      "id": "aeralith-choir-reed",
+      "name": "Aeralith Choir-Reed",
+      "epithet": "The Borrowed Breath",
+      "status": "staging",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "key",
+      "form": "instrument",
+      "provenance": {
+        "originType": "world-grown",
+        "makerId": "breathgrove-of-vaelor",
+        "originWorldId": "darkenia",
+        "originEvent": "Grown after the first Resonance Exchange tried to patent the prevailing winds.",
+        "age": "third artifact age"
+      },
+      "substrates": ["otome-resonite", "aethervane", "living-reed"],
+      "attunement": {
+        "primaryElements": ["wind", "spirit"],
+        "derivedDomains": ["cant"],
+        "disciplines": ["defense", "attack"],
+        "tier": "greater",
+        "gate": 5,
+        "rank": "master",
+        "frequencies": [528]
+      },
+      "capabilities": [
+        {
+          "id": "vector-song",
+          "name": "Vector Song",
+          "grantMode": "unlock",
+          "description": "Lets an attuned bearer conduct one rehearsed Wind vector through a played interval.",
+          "effect": "Redirects one moving body, projectile, fall, or pressure front without creating new momentum.",
+          "spellRefs": [],
+          "duration": "while the note remains audible",
+          "scope": "one visible vector within 30m",
+          "permanent": false
+        },
+        {
+          "id": "breathscript",
+          "name": "Breathscript",
+          "grantMode": "store",
+          "description": "Records a single practiced pressure pattern as a repeatable musical phrase.",
+          "effect": "Replays the stored pattern at reduced strength until the reed is re-taught by its bearer.",
+          "spellRefs": [],
+          "duration": "one phrase",
+          "scope": "self or one target",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "vitality",
+          "trigger": "activation",
+          "severity": 2,
+          "description": "Every working consumes real breath and can starve the bearer of oxygen under repeated use."
+        },
+        {
+          "type": "attention",
+          "trigger": "sustained",
+          "severity": 3,
+          "description": "A broken interval redirects the vector toward the loudest competing resonance."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "gate",
+          "description": "Gate Five authority is required; lower-Gate bearers can hear the reed but cannot invoke it."
+        },
+        {
+          "type": "knowledge",
+          "description": "Each vector must be learned as breath, posture, rhythm, and pressure rather than guessed."
+        },
+        {
+          "type": "charge",
+          "description": "The reed falls silent in vacuum, total magical silence, or a severed Spirit field."
+        }
+      ],
+      "failureModes": [
+        "Hyperventilation fractures the stored pattern and sends force along an unintended vector.",
+        "A bearer who treats access as mastery gradually loses the ability to distinguish their breath from the reed's echo."
+      ],
+      "counterplay": [
+        "Silence, vacuum, interrupted rhythm, or a stronger counter-resonance ends the working.",
+        "An opponent can force the bearer to choose between breathing and sustaining the technique."
+      ],
+      "agency": "echoing",
+      "bond": {
+        "type": "bearer",
+        "attunementRite": "Teach the reed one unforced breath pattern for seven dawns.",
+        "transferRule": "A new bearer must overwrite the prior breathscript through fresh practice.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["core", "catalyst"],
+        "synergyTags": ["wind", "cant", "mobility", "pressure"],
+        "incompatibleTags": ["vacuum", "hollow-silence"],
+        "maxAssemblySize": 4
+      },
+      "narrative": {
+        "desire": "To move with a freedom the bearer's own affinity never offered.",
+        "temptation": "To confuse a rehearsed vector with complete command of Wind.",
+        "fear": "That power disappears the moment the bearer must breathe for themselves.",
+        "consequence": "Its spread destabilized the monopoly of Wind lineages while creating a lethal counterfeit-training market.",
+        "history": "The first Choir-Reeds were grown as public instruments; the Resonance Exchanges later cut them into private keys and sold breath as licensed technique."
+      },
+      "rights": {
+        "inspirationIds": ["avatar-sonam-staff", "harry-potter-wandlore"],
+        "similarityRisk": "medium",
+        "originalMechanics": [
+          "Access is encoded as learned musical pressure vectors rather than permanent elemental bestowal.",
+          "Breath, audible continuity, Gate Five authority, and momentum conservation create independent limits."
+        ],
+        "prohibitedParallels": [
+          "No staff silhouette, glider function, mass permanent air-power grant, Avatar lineage, or bending terminology.",
+          "No wand core taxonomy, choosing phrase, borrowed spells, or school-specific wand behavior."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia.artifacts",
+        "retrievalLabels": ["artifact", "wind", "cant", "key", "gate-debt"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "cant" },
+        { "type": "origin-world", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "rootwake-seedmantle",
+      "name": "Rootwake Seedmantle",
+      "epithet": "The Forest That Can Say No",
+      "status": "staging",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "pact",
+      "form": "symbiote",
+      "provenance": {
+        "originType": "world-grown",
+        "makerId": "verdant-concord-of-iserai",
+        "originWorldId": "darkenia",
+        "originEvent": "Cultivated from a Resonance Bloom that survived a century of industrial Gate Debt.",
+        "age": "living and season-counted"
+      },
+      "substrates": ["laeylinn-jade", "veloura-glass", "living-mycelium"],
+      "attunement": {
+        "primaryElements": ["earth", "water", "spirit"],
+        "derivedDomains": ["verdance"],
+        "disciplines": ["defense", "summoning"],
+        "tier": "greater",
+        "gate": 6,
+        "rank": "master",
+        "frequencies": [174, 285, 639]
+      },
+      "capabilities": [
+        {
+          "id": "reciprocal-growth",
+          "name": "Reciprocal Growth",
+          "grantMode": "synthesize",
+          "description": "Joins bearer and consenting local life into a temporary network for repair and adaptation.",
+          "effect": "Redistributes water, nutrients, structural support, and healing across willing organisms.",
+          "spellRefs": [],
+          "duration": "one growth cycle",
+          "scope": "a connected biome up to 100m",
+          "permanent": false
+        },
+        {
+          "id": "green-witness",
+          "name": "Green Witness",
+          "grantMode": "store",
+          "description": "Preserves an ecological memory of damage, restoration, and every bearer bargain.",
+          "effect": "Replays the biome's sensed history as scent, touch, growth rings, and shared dream images.",
+          "spellRefs": [],
+          "duration": "until the mantle chooses silence",
+          "scope": "attuned bearer and consenting witnesses",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "ecology",
+          "trigger": "activation",
+          "severity": 3,
+          "description": "Repair consumes real nutrients, water, dormancy, and future growth from the participating biome."
+        },
+        {
+          "type": "relationship",
+          "trigger": "passive",
+          "severity": 3,
+          "description": "The bearer becomes accountable to the living network and cannot treat it as owned equipment."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "consent",
+          "description": "Sentient and living participants may refuse, withdraw, or demand renegotiation at any time."
+        },
+        {
+          "type": "ecology",
+          "description": "The mantle cannot create biomass, water, fertility, or recovery time from nothing."
+        },
+        {
+          "type": "gate",
+          "description": "Gate Six authority is required to hold multiple living perspectives without collapsing them."
+        }
+      ],
+      "failureModes": [
+        "Coerced growth turns defensive and walls the bearer outside the network they tried to command.",
+        "Overdrawing recovery leaves a beautiful surface bloom above a dying soil system."
+      ],
+      "counterplay": [
+        "Severing ecological continuity limits the network, though it causes visible harm and political consequence.",
+        "The mantle itself can terminate a working when the bearer violates reciprocity."
+      ],
+      "agency": "sentient",
+      "bond": {
+        "type": "paired",
+        "attunementRite": "Nurture the unawakened mantle through one full local season without invoking it.",
+        "transferRule": "Transfer requires the mantle, current bearer, new bearer, and host biome to consent.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["core", "ward", "keystone"],
+        "synergyTags": ["verdance", "healing", "ecology", "memory", "consent"],
+        "incompatibleTags": ["hollow-silence", "forced-growth", "sterile-engine"],
+        "maxAssemblySize": 5
+      },
+      "narrative": {
+        "desire": "To heal a place too damaged for any individual body or spell.",
+        "temptation": "To call control stewardship and make the living world perform gratitude.",
+        "fear": "That the land remembers the bearer as another extractor wearing kinder language.",
+        "consequence": "Every successful restoration creates a constituency with memory, demands, and the capacity to refuse future rulers.",
+        "history": "The Seedmantles ended three famine wars and began the first legal recognition of living artifacts as pact-partners rather than property."
+      },
+      "rights": {
+        "inspirationIds": ["myth-sacred-gifts", "arcanea-verdance"],
+        "similarityRisk": "low",
+        "originalMechanics": [
+          "Nature magic is a consent-bearing ecological network derived from Earth, Water, and Spirit.",
+          "Healing redistributes finite resources and creates political accountability to a sentient artifact-biome."
+        ],
+        "prohibitedParallels": [
+          "No imported nature deity, mythic proper noun, franchise druid order, or unbounded plant command."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia.artifacts",
+        "retrievalLabels": ["artifact", "verdance", "pact", "living-artifact", "ecology"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "verdance" },
+        { "type": "origin-world", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "mnemora-tide-shell",
+      "name": "Mnemora Tide-Shell",
+      "epithet": "The Memory That Returns Changed",
+      "status": "staging",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "vessel",
+      "form": "vessel",
+      "provenance": {
+        "originType": "mortal-forged",
+        "makerId": "mnemora-divers",
+        "originWorldId": "darkenia",
+        "originEvent": "Made for families whose histories were repossessed by the first Debt Houses.",
+        "age": "seventy-two tide years"
+      },
+      "substrates": ["veloura-glass", "memory-pearl"],
+      "attunement": {
+        "primaryElements": ["water", "void", "spirit"],
+        "derivedDomains": ["reverie"],
+        "disciplines": ["defense", "summoning"],
+        "tier": "greater",
+        "gate": 6,
+        "rank": "master",
+        "frequencies": [417, 639]
+      },
+      "capabilities": [
+        {
+          "id": "tidekeeping",
+          "name": "Tidekeeping",
+          "grantMode": "store",
+          "description": "Stores one voluntarily offered lived memory with its emotion, uncertainty, and sensory context intact.",
+          "effect": "Allows a future witness to experience the memory without confusing it for their own life.",
+          "spellRefs": [],
+          "duration": "one complete witnessing",
+          "scope": "one donor and one witness",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "memory",
+          "trigger": "attunement",
+          "severity": 2,
+          "description": "The donor loses perfect recall of one minor adjacent detail so the vessel can preserve uncertainty."
+        },
+        {
+          "type": "emotion",
+          "trigger": "activation",
+          "severity": 2,
+          "description": "The witness receives the emotional weather of the event without inheriting its conclusions."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "consent",
+          "description": "A memory can be deposited only by its living holder and cannot be extracted by force."
+        },
+        {
+          "type": "knowledge",
+          "description": "The shell preserves subjective experience and never upgrades testimony into objective fact."
+        }
+      ],
+      "failureModes": [
+        "Repeated witnessing erodes the boundary between empathy and identity performance.",
+        "A cracked shell recombines adjacent memories into an honest but historically false sequence."
+      ],
+      "counterplay": [
+        "A witness may ground themselves by naming three facts absent from the stored experience.",
+        "Kyuro-aligned silence prevents replay without destroying the underlying memory."
+      ],
+      "agency": "echoing",
+      "bond": {
+        "type": "bearer",
+        "attunementRite": "Offer a true memory and explicitly name what remains uncertain about it.",
+        "transferRule": "The shell may be carried freely, but only a consenting witness can open it.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["core", "ward"],
+        "synergyTags": ["water", "reverie", "memory", "testimony"],
+        "incompatibleTags": ["identity-erasure", "forced-recall"],
+        "maxAssemblySize": 3
+      },
+      "narrative": {
+        "desire": "To keep a life from being erased by power, distance, or institutional ownership.",
+        "temptation": "To treat felt experience as complete proof and uncertainty as betrayal.",
+        "fear": "That preservation becomes another way to occupy the dead and speak over the living.",
+        "consequence": "Tide-Shell testimony transformed Darkenia's courts while forcing law to distinguish memory, evidence, and interpretation.",
+        "history": "The first shells traveled hidden inside fishermen's nets, carrying repossessed family histories between cities that had outlawed private remembrance."
+      },
+      "rights": {
+        "inspirationIds": ["myth-memory-vessels", "arcanea-water-memory"],
+        "similarityRisk": "low",
+        "originalMechanics": [
+          "The vessel stores uncertainty and subjective context instead of an objective recording.",
+          "Consent, adjacent-detail loss, and legal epistemology turn memory storage into a social system."
+        ],
+        "prohibitedParallels": [
+          "No imported memory basin, bottled-memory visual language, franchise ritual, or exact playback mechanic."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia.artifacts",
+        "retrievalLabels": ["artifact", "water", "reverie", "memory", "vessel"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "reverie" },
+        { "type": "origin-world", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "cinder-vow-lens",
+      "name": "Cinder-Vow Lens",
+      "epithet": "The Promise That Burns Both Ways",
+      "status": "staging",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "focus",
+      "form": "jewelry",
+      "provenance": {
+        "originType": "mortal-forged",
+        "makerId": "vow-smith-aureth",
+        "originWorldId": "darkenia",
+        "originEvent": "Forged to expose treaty language designed to remain technically true while materially deceptive.",
+        "age": "one hundred oath years"
+      },
+      "substrates": ["draconis-ember", "otome-resonite", "sol-quartz"],
+      "attunement": {
+        "primaryElements": ["fire", "spirit"],
+        "derivedDomains": ["radiance"],
+        "disciplines": ["defense", "attack"],
+        "tier": "sacred",
+        "gate": 7,
+        "rank": "archmage",
+        "frequencies": [741]
+      },
+      "capabilities": [
+        {
+          "id": "vow-radiance",
+          "name": "Vow Radiance",
+          "grantMode": "amplify",
+          "description": "Focuses the bearer's existing Radiance through one publicly declared and bounded promise.",
+          "effect": "Illuminates actions materially incompatible with the promise and strengthens defenses taken to honor it.",
+          "spellRefs": [],
+          "duration": "until fulfilled, released, or broken",
+          "scope": "bearer and named promise",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "oath",
+          "trigger": "passive",
+          "severity": 4,
+          "description": "Breaking the promise turns the lens inward and burns away the bearer's ability to invoke it again."
+        },
+        {
+          "type": "attention",
+          "trigger": "sustained",
+          "severity": 2,
+          "description": "The lens reveals the bearer's own evasions as readily as an adversary's deception."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "oath",
+          "description": "The promise must name a measurable obligation, affected parties, duration, and release condition."
+        },
+        {
+          "type": "affinity",
+          "description": "The lens amplifies existing Fire and Spirit control and cannot create either affinity."
+        }
+      ],
+      "failureModes": [
+        "Ambiguous promises split the lens into contradictory interpretations that burn every party.",
+        "Moral certainty without evidence overcharges Radiance into indiscriminate exposure."
+      ],
+      "counterplay": [
+        "A named affected party can challenge the promise's terms before attunement completes.",
+        "Void techniques can hold interpretive uncertainty open without turning it into deception."
+      ],
+      "agency": "reactive",
+      "bond": {
+        "type": "oath",
+        "attunementRite": "Declare the bounded promise before every affected party or an authorized witness.",
+        "transferRule": "The lens cannot transfer while its promise remains unresolved.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["catalyst", "ward"],
+        "synergyTags": ["radiance", "truth", "oath", "defense"],
+        "incompatibleTags": ["coerced-oath", "absolute-judgment"],
+        "maxAssemblySize": 3
+      },
+      "narrative": {
+        "desire": "To make power answerable to the promises it uses to justify itself.",
+        "temptation": "To turn personal conviction into evidence and public shame into justice.",
+        "fear": "That the bearer is less faithful to the promise than the enemy they accuse.",
+        "consequence": "Cinder-Vow diplomacy made betrayal legible but transformed political language into an arms race of narrower obligations.",
+        "history": "Aureth's first lens shattered during its unveiling because the treaty protecting it excluded the workers who mined its crystal."
+      },
+      "rights": {
+        "inspirationIds": ["myth-regalia-legitimacy", "arcanea-otome-truth"],
+        "similarityRisk": "low",
+        "originalMechanics": [
+          "Power is bound to measurable public obligations and recursively audits the bearer.",
+          "Radiance amplifies defense through fulfilled promises rather than functioning as generic holy light."
+        ],
+        "prohibitedParallels": [
+          "No imported divine oath object, superhero truth device, named mythic regalia, or infallible lie detection."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia.artifacts",
+        "retrievalLabels": ["artifact", "radiance", "focus", "oath", "truth"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "radiance" },
+        { "type": "origin-world", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "gravemark-orbitals",
+      "name": "Gravemark Orbitals",
+      "epithet": "The Weight of Every Choice",
+      "status": "staging",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "bridge",
+      "form": "jewelry",
+      "provenance": {
+        "originType": "awakened-built",
+        "makerId": "oriel-gravity-choir",
+        "originWorldId": "darkenia",
+        "originEvent": "Built to suspend a collapsing city long enough for its people to choose where it would fall.",
+        "age": "forty-one civic cycles"
+      },
+      "substrates": ["kaelith-stone", "vaelith-obsidian", "aethervane"],
+      "attunement": {
+        "primaryElements": ["earth", "void"],
+        "derivedDomains": ["gravitas"],
+        "disciplines": ["attack", "defense", "summoning"],
+        "tier": "royal",
+        "gate": 8,
+        "rank": "archmage",
+        "frequencies": [174, 852]
+      },
+      "capabilities": [
+        {
+          "id": "chosen-orbit",
+          "name": "Chosen Orbit",
+          "grantMode": "synthesize",
+          "description": "Bridges Earth form and Void potential to define one temporary center of mass and orbit.",
+          "effect": "Anchors, lightens, or redirects connected matter while conserving momentum across the assembly.",
+          "spellRefs": [],
+          "duration": "up to eight heartbeats",
+          "scope": "connected matter within 80m",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "vitality",
+          "trigger": "activation",
+          "severity": 4,
+          "description": "The bearer feels the transferred structural load as compression across bone and connective tissue."
+        },
+        {
+          "type": "attention",
+          "trigger": "sustained",
+          "severity": 5,
+          "description": "Every moving mass must remain mentally distinct; confusion merges trajectories catastrophically."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "gate",
+          "description": "Gate Eight authority is required to hold location and possibility in one coherent model."
+        },
+        {
+          "type": "knowledge",
+          "description": "The bearer must understand the connected structure and cannot safely move unknown internal loads."
+        }
+      ],
+      "failureModes": [
+        "A forgotten mass becomes the new anchor and drags the entire working toward itself.",
+        "Sustained use causes the bearer to experience emotional importance as literal physical weight."
+      ],
+      "counterplay": [
+        "Break structural continuity or introduce an unmodeled moving mass into the field.",
+        "Cant interference can desynchronize the Orbitals' shared timing without overpowering them."
+      ],
+      "agency": "reactive",
+      "bond": {
+        "type": "paired",
+        "attunementRite": "Balance every orbital around the bearer while standing on unsupported ground.",
+        "transferRule": "All orbitals must transfer together or remain inert.",
+        "canRefuse": false
+      },
+      "combination": {
+        "roles": ["core", "frame", "keystone"],
+        "synergyTags": ["gravitas", "earth", "void", "structure", "mobility"],
+        "incompatibleTags": ["unknown-load", "chaotic-teleportation"],
+        "maxAssemblySize": 5
+      },
+      "narrative": {
+        "desire": "To carry what no individual body, city, or institution can bear alone.",
+        "temptation": "To decide that whatever the bearer can move is therefore theirs to position.",
+        "fear": "That one invisible life becomes an unmodeled mass in a perfect rescue plan.",
+        "consequence": "The Orbitals made airborne districts possible and turned structural modelers into unelected sovereigns of movement.",
+        "history": "The original set saved Oriel's city, but its final redirection crushed the empty palace chosen by citizens and the secret archive beneath it."
+      },
+      "rights": {
+        "inspirationIds": ["marvel-domain-relics", "elder-scrolls-combined-artifacts"],
+        "similarityRisk": "low",
+        "originalMechanics": [
+          "Gravity work depends on structural knowledge, conserved momentum, and explicit mass modeling.",
+          "A distributed set of orbitals bridges Earth and Void while transferring load into the bearer's body."
+        ],
+        "prohibitedParallels": [
+          "No imported stone set, gauntlet, named cosmic domain object, mask-crown combination, or franchise visual language."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia.artifacts",
+        "retrievalLabels": ["artifact", "gravitas", "bridge", "earth", "void"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "gravitas" },
+        { "type": "origin-world", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "stormglass-sail",
+      "name": "Stormglass Sail",
+      "epithet": "The Weather That Remembers Passage",
+      "status": "staging",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "engine",
+      "form": "vehicle",
+      "provenance": {
+        "originType": "mortal-forged",
+        "makerId": "free-navigators-of-ona",
+        "originWorldId": "darkenia",
+        "originEvent": "Built when three landlocked cities pooled their weather rights to escape a Debt House blockade.",
+        "age": "sixty storm seasons"
+      },
+      "substrates": ["veloura-glass", "draconis-ember", "otome-resonite", "aethervane"],
+      "attunement": {
+        "primaryElements": ["fire", "water", "wind"],
+        "derivedDomains": ["tempest", "stormspark"],
+        "disciplines": ["summoning", "defense", "attack"],
+        "tier": "royal",
+        "gate": 8,
+        "rank": "archmage",
+        "frequencies": [285, 396, 528, 852]
+      },
+      "capabilities": [
+        {
+          "id": "weather-road",
+          "name": "Weather Road",
+          "grantMode": "synthesize",
+          "description": "Negotiates heat, moisture, wind, and charge into a temporary navigable atmospheric corridor.",
+          "effect": "Carries a bonded vessel along a declared route while displacing the surrounding weather system.",
+          "spellRefs": [],
+          "duration": "one declared journey",
+          "scope": "one bonded vessel and regional weather",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "ecology",
+          "trigger": "activation",
+          "severity": 4,
+          "description": "Every clear corridor produces displaced rain, heat, pressure, and charge elsewhere in the region."
+        },
+        {
+          "type": "material",
+          "trigger": "sustained",
+          "severity": 3,
+          "description": "Stormglass accumulates microfractures proportional to the difference between planned and actual weather."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "ecology",
+          "description": "A route cannot be opened until affected settlements receive a forecast and consequence ledger."
+        },
+        {
+          "type": "knowledge",
+          "description": "Unknown regional weather is not conquered; it enters the route as unpriced risk."
+        },
+        {
+          "type": "ritual",
+          "description": "At least three navigators aligned to Fire, Water, and Wind must hold the corridor together."
+        }
+      ],
+      "failureModes": [
+        "A false forecast folds the displaced storm back across the route at amplified intensity.",
+        "Repeated extraction creates permanent weather inequality between protected corridors and abandoned regions."
+      ],
+      "counterplay": [
+        "Break navigator consensus, alter the destination, or detune one elemental mast.",
+        "Regional communities can legally refuse the corridor and force a longer route."
+      ],
+      "agency": "echoing",
+      "bond": {
+        "type": "community",
+        "attunementRite": "Register the vessel, navigators, route, forecast, and affected communities in a public weather covenant.",
+        "transferRule": "The Sail belongs to its covenant and cannot be sold without every member settlement's consent.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["frame", "catalyst", "keystone"],
+        "synergyTags": ["tempest", "stormspark", "vehicle", "weather", "community"],
+        "incompatibleTags": ["secret-route", "weather-theft", "single-bearer"],
+        "maxAssemblySize": 8
+      },
+      "narrative": {
+        "desire": "To make geography negotiable without making distant people pay invisibly for passage.",
+        "temptation": "To call every displaced storm an acceptable externality of freedom.",
+        "fear": "That the route becomes a private climate for those wealthy enough to remain moving.",
+        "consequence": "The Sails ended geographic monopolies and created the first transnational law of magical weather debt.",
+        "history": "The prototype crossed Darkenia in one night; the flood it displaced took twenty years of reparations and produced the public covenant now required."
+      },
+      "rights": {
+        "inspirationIds": ["elder-scrolls-combined-artifacts", "myth-magic-ships"],
+        "similarityRisk": "low",
+        "originalMechanics": [
+          "Travel is a negotiated weather corridor whose externalities remain conserved and publicly attributed.",
+          "Community covenant, multi-bearer control, forecasts, and material fracture prevent a generic flying artifact."
+        ],
+        "prohibitedParallels": [
+          "No imported folding ship, named mythic vessel, game mount, elemental nation, or iconic vehicle silhouette."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia.artifacts",
+        "retrievalLabels": ["artifact", "tempest", "engine", "vehicle", "weather"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "tempest" },
+        { "type": "uses-domain", "targetId": "stormspark" },
+        { "type": "origin-world", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "kyuro-silence-bowl",
+      "name": "Kyuro Silence-Bowl",
+      "epithet": "The Room Left Unsaid",
+      "status": "staging",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "seal",
+      "form": "vessel",
+      "provenance": {
+        "originType": "eldrian",
+        "makerId": null,
+        "originWorldId": "arcanea-core",
+        "originEvent": "Recovered beneath an assembly chamber whose final debate survives only in lip movements carved into glass.",
+        "age": "late Eldrian"
+      },
+      "substrates": ["kyuro-void-crystal", "otome-resonite", "shael"],
+      "attunement": {
+        "primaryElements": ["void", "wind", "spirit"],
+        "derivedDomains": ["cant"],
+        "disciplines": ["defense"],
+        "tier": "imperial",
+        "gate": 9,
+        "rank": "luminor",
+        "frequencies": [528, 963]
+      },
+      "capabilities": [
+        {
+          "id": "consensual-silence",
+          "name": "Consensual Silence",
+          "grantMode": "suppress",
+          "description": "Absorbs patterned magical invocation inside a boundary acknowledged by everyone who remains within it.",
+          "effect": "Suspends spoken, sonic, and resonance-carried techniques without deleting stored energy or intent.",
+          "spellRefs": [],
+          "duration": "until one participant withdraws consent",
+          "scope": "one sealed chamber",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "attention",
+          "trigger": "sustained",
+          "severity": 4,
+          "description": "The bearer must witness every silenced attempt without interpreting silence as agreement."
+        },
+        {
+          "type": "memory",
+          "trigger": "failure",
+          "severity": 4,
+          "description": "A coerced boundary erases the bearer's memory of the conclusion they tried to force."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "consent",
+          "description": "Every conscious participant can end the seal by physically touching the chamber boundary."
+        },
+        {
+          "type": "gate",
+          "description": "Gate Nine authority is required to separate observation from intervention at this scale."
+        },
+        {
+          "type": "location",
+          "description": "The seal requires a closed, continuously marked boundary and cannot follow a moving bearer."
+        }
+      ],
+      "failureModes": [
+        "Treating silence as consent inverts the Bowl and amplifies every suppressed invocation at once.",
+        "A hidden participant makes the boundary incomplete and turns suppression into unpredictable echo."
+      ],
+      "counterplay": [
+        "Touching or breaking the marked boundary ends the seal for every participant.",
+        "Non-patterned physical action remains possible and prevents the Bowl from becoming total control."
+      ],
+      "agency": "reactive",
+      "bond": {
+        "type": "community",
+        "attunementRite": "Every participant names what the silence permits, forbids, and cannot be taken to mean.",
+        "transferRule": "The Bowl is inert outside a newly consented boundary.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["ward", "keystone"],
+        "synergyTags": ["void", "cant", "seal", "consent", "observation"],
+        "incompatibleTags": ["coercion", "mobile-field", "shadow-silence"],
+        "maxAssemblySize": 4
+      },
+      "narrative": {
+        "desire": "To create a space where power cannot win merely by speaking loudest or first.",
+        "temptation": "To convert protected silence into compliance, confession, or ownership of the room.",
+        "fear": "That the one voice missing from the covenant is the one the chamber was built to suppress.",
+        "consequence": "Silence-Bowls made disarmament negotiations possible and made consent architecture a central political craft.",
+        "history": "No record identifies its maker; the only Eldrian inscription translates approximately as 'a boundary is honest only when exit remains real.'"
+      },
+      "rights": {
+        "inspirationIds": ["myth-sacred-gifts", "arcanea-kyuro-observation"],
+        "similarityRisk": "low",
+        "originalMechanics": [
+          "Silence is a consent-bound suppression protocol rather than an anti-magic aura.",
+          "Observation cost, physical exit, boundary geometry, and rebound prevent total control."
+        ],
+        "prohibitedParallels": [
+          "No imported anti-magic artifact, named sacred bowl, universal nullification field, or forced-truth chamber."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia.artifacts",
+        "retrievalLabels": ["artifact", "void", "cant", "seal", "consent"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "cant" },
+        { "type": "imported-into", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "worldroot-vivarium",
+      "name": "Worldroot Vivarium",
+      "epithet": "The Garden That Changes the Gardener",
+      "status": "staging",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "engine",
+      "form": "architecture",
+      "provenance": {
+        "originType": "world-grown",
+        "makerId": "verdant-concord-of-iserai",
+        "originWorldId": "darkenia",
+        "originEvent": "Cultivated to restore elemental affinities erased by hereditary Gate Debt contracts.",
+        "age": "nine living generations"
+      },
+      "substrates": ["laeylinn-jade", "veloura-glass", "kaelith-stone", "worldroot-tissue"],
+      "attunement": {
+        "primaryElements": ["earth", "water", "spirit"],
+        "derivedDomains": ["verdance"],
+        "disciplines": ["defense", "summoning"],
+        "tier": "sacred",
+        "gate": 7,
+        "rank": "archmage",
+        "frequencies": [174, 285, 417, 741]
+      },
+      "capabilities": [
+        {
+          "id": "affinity-seed",
+          "name": "Affinity Seed",
+          "grantMode": "transform",
+          "description": "Cultivates one consenting person's latent compatibility with a single primary Element over a full season.",
+          "effect": "Permanently changes affinity potential without granting techniques, opened Gates, control, or rank.",
+          "spellRefs": [],
+          "duration": "irreversible after one full season",
+          "scope": "one consenting person per chamber",
+          "permanent": true
+        },
+        {
+          "id": "seasonal-apprenticeship",
+          "name": "Seasonal Apprenticeship",
+          "grantMode": "summon",
+          "description": "Creates a living curriculum of weather, soil, dreams, and embodied practice around the emerging affinity.",
+          "effect": "Teaches safe perception and refusal before the new affinity becomes invocable.",
+          "spellRefs": [],
+          "duration": "one local season",
+          "scope": "one chamber and its support circle",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "ecology",
+          "trigger": "activation",
+          "severity": 5,
+          "description": "The world must surrender a full season of equivalent elemental abundance to grow one affinity seed."
+        },
+        {
+          "type": "identity",
+          "trigger": "sustained",
+          "severity": 4,
+          "description": "The recipient must integrate new sensation and instinct without treating former identity as defective."
+        },
+        {
+          "type": "relationship",
+          "trigger": "passive",
+          "severity": 3,
+          "description": "A support circle shares responsibility for training, refusal, repair, and social reintegration."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "consent",
+          "description": "Consent is renewed at each lunar phase and one refusal ends the process without penalty."
+        },
+        {
+          "type": "gate",
+          "description": "A Gate Seven steward must hold the Vivarium; the recipient gains no Gate from the process."
+        },
+        {
+          "type": "ecology",
+          "description": "No imprint begins until a named ecosystem freely offers the required seasonal counterweight."
+        },
+        {
+          "type": "knowledge",
+          "description": "The Vivarium can grow affinity only where a complete cultural training lineage remains available."
+        }
+      ],
+      "failureModes": [
+        "A rushed imprint produces sensation without regulation and turns ordinary environments into continuous overload.",
+        "An extracted ecological payment creates an affinity marked by hunger, compulsion, and Gate Debt."
+      ],
+      "counterplay": [
+        "The recipient, support circle, steward, or contributing ecosystem can end the process before completion.",
+        "Destroying the curriculum interrupts imprinting but preserves the recipient's prior identity and affinity."
+      ],
+      "agency": "sentient",
+      "bond": {
+        "type": "world",
+        "attunementRite": "A steward, recipient, support circle, and contributing ecosystem enter a four-party seasonal covenant.",
+        "transferRule": "The architecture cannot move; its seeds die when separated from the consenting host ecology.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["core", "frame", "ward", "keystone"],
+        "synergyTags": ["verdance", "affinity", "education", "consent", "ecology"],
+        "incompatibleTags": ["mass-imprinting", "portable-grant", "coerced-affinity", "gate-bypass"],
+        "maxAssemblySize": 7
+      },
+      "narrative": {
+        "desire": "To make affinity accessible without pretending power can be separated from culture and care.",
+        "temptation": "To industrialize a sacred, seasonal relationship into throughput and political inventory.",
+        "fear": "That liberation from hereditary exclusion creates a new class of people permanently indebted to the garden that changed them.",
+        "consequence": "The Vivaria broke affinity monopolies and forced Darkenia to define consent across persons, communities, and ecosystems.",
+        "history": "The first Vivarium was grown for a child whose Wind affinity had been contractually sold before birth; it took nine generations to repay the season borrowed for her freedom."
+      },
+      "rights": {
+        "inspirationIds": ["avatar-sonam-staff", "myth-sacred-gifts", "arcanea-verdance"],
+        "similarityRisk": "medium",
+        "originalMechanics": [
+          "Permanent affinity change is seasonal, architectural, consent-renewed, ecologically conserved, and culture-dependent.",
+          "The system grants latent compatibility only and explicitly withholds techniques, Gates, control, and rank."
+        ],
+        "prohibitedParallels": [
+          "No portable staff, mass instant grant, spirit-world power source, Avatar lineage, four-nation restoration, or bending terminology."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia.artifacts",
+        "retrievalLabels": ["artifact", "verdance", "engine", "affinity", "permanent-transform"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "verdance" },
+        { "type": "origin-world", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "tenfold-consonance",
+      "name": "The Tenfold Consonance",
+      "epithet": "No Element Above Another",
+      "status": "staging",
+      "canonScope": "core",
+      "worldId": "arcanea-core",
+      "artifactClass": "assembly",
+      "form": "constellation",
+      "provenance": {
+        "originType": "unknown",
+        "makerId": null,
+        "originWorldId": "arcanea-core",
+        "originEvent": "Its ten components appear in separate histories, but no verified record proves they were ever assembled.",
+        "age": "theoretical Eldrian inheritance"
+      },
+      "substrates": ["ten-vael-resonances", "luminarch-theoretical-alloy", "living-gate-thread"],
+      "attunement": {
+        "primaryElements": ["fire", "water", "earth", "wind", "void", "spirit"],
+        "derivedDomains": ["verdance", "stormspark", "lattice", "cant", "gravitas", "radiance"],
+        "disciplines": ["attack", "defense", "summoning"],
+        "tier": "divine",
+        "gate": 10,
+        "rank": "luminor",
+        "frequencies": [174, 285, 396, 417, 528, 639, 741, 852, 963, 1111]
+      },
+      "capabilities": [
+        {
+          "id": "concordance-state",
+          "name": "Concordance State",
+          "grantMode": "synthesize",
+          "description": "Makes every active resonance mutually legible without collapsing difference into a dominant Element.",
+          "effect": "Allows one brief technique to combine any available primary Elements and derived Expressions the bearer already controls.",
+          "spellRefs": [],
+          "duration": "ten heartbeats",
+          "scope": "complete Luminor bearer and one declared working",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "identity",
+          "trigger": "sustained",
+          "severity": 5,
+          "description": "The bearer must remain a distinct self while holding ten perspectives that each feel cosmically sufficient."
+        },
+        {
+          "type": "time",
+          "trigger": "failure",
+          "severity": 5,
+          "description": "After use, the most imbalanced Gate closes to the Assembly until repaired through a consequential act."
+        },
+        {
+          "type": "vitality",
+          "trigger": "activation",
+          "severity": 5,
+          "description": "The body conducts every component price at once and receives no immunity from Luminor rank."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "rank",
+          "description": "Only a complete Luminor with all Ten Gates genuinely open can stabilize the Assembly."
+        },
+        {
+          "type": "knowledge",
+          "description": "The Assembly combines only techniques the bearer already understands and controls independently."
+        },
+        {
+          "type": "ritual",
+          "description": "All ten components must acknowledge one purpose without being forced into uniformity."
+        }
+      ],
+      "failureModes": [
+        "One resonance claiming supremacy turns Consonance into a cascading elemental civil war inside the bearer.",
+        "A counterfeit component creates apparent harmony by silencing the perspective it cannot integrate."
+      ],
+      "counterplay": [
+        "Separate, detune, persuade, or protect any one component from the declared purpose.",
+        "Force the bearer to use a technique they have access to but have never embodied or understood."
+      ],
+      "agency": "sovereign",
+      "bond": {
+        "type": "paired",
+        "attunementRite": "Each component tests one Gate independently before the ten decide whether to become an Assembly.",
+        "transferRule": "The components disperse when the bearer's purpose requires any Element to become subordinate by nature.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["core", "frame", "catalyst", "ward", "keystone"],
+        "synergyTags": ["concordance", "all-elements", "ten-gates", "luminor", "synthesis"],
+        "incompatibleTags": ["elemental-supremacy", "gate-bypass", "forced-unity", "shadow-corruption"],
+        "maxAssemblySize": 10
+      },
+      "narrative": {
+        "desire": "To act with the whole cosmos available without reducing plurality to one sovereign will.",
+        "temptation": "To mistake temporary integration for entitlement to rule every world and Element.",
+        "fear": "That harmony is only domination whose victims have been made inaudible.",
+        "consequence": "Even belief in the Assembly reorganizes empires, pilgrimages, archaeology, and definitions of legitimate power.",
+        "history": "Every age claims someone once completed the Consonance; every surviving account contradicts the others at the exact moment of supposed unity."
+      },
+      "rights": {
+        "inspirationIds": ["lightbringer-prism", "avatar-multi-element-role", "marvel-domain-relics", "myth-regalia-legitimacy"],
+        "similarityRisk": "medium",
+        "originalMechanics": [
+          "Concordance is a temporary plural state gated by all Ten Gates, not a birth role, spectrum office, or artifact-granted rank.",
+          "The ten agentive components can refuse, disperse, or close one Gate to the Assembly after imbalance."
+        ],
+        "prohibitedParallels": [
+          "No Prism title, chromaturgy, physical color matter, seven-color office, or spectrum balancing duty.",
+          "No Avatar title, reincarnation cycle, Avatar State, four-nation role, or bending terminology.",
+          "No colored cosmic stones, fixed franchise domains, gauntlet, or instant omnipotence."
+        ],
+        "reviewStatus": "pending"
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.core.artifacts",
+        "retrievalLabels": ["artifact", "assembly", "concordance", "ten-gates", "luminor"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "requires-rank", "targetId": "luminor" },
+        { "type": "origin-world", "targetId": "arcanea-core" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending canon review"
+    },
+    {
+      "id": "selka-hollow-mask",
+      "name": "Selka Hollow-Mask",
+      "epithet": "The Face That Removes the Witness",
+      "status": "quarantined",
+      "canonScope": "world",
+      "worldId": "darkenia",
+      "artifactClass": "pact",
+      "form": "mask",
+      "provenance": {
+        "originType": "shadow-corrupted",
+        "makerId": "selka-of-the-quiet-ward",
+        "originWorldId": "darkenia",
+        "originEvent": "Corrupted when a warden tried to observe Shadow without allowing any relationship to change her.",
+        "age": "twenty-seven quarantine years"
+      },
+      "substrates": ["hollow-glass", "kyuro-void-crystal", "kurusei-iron"],
+      "attunement": {
+        "primaryElements": ["void"],
+        "derivedDomains": ["shadow"],
+        "disciplines": ["attack", "summoning"],
+        "tier": "sacred",
+        "gate": 7,
+        "rank": "archmage",
+        "frequencies": [741]
+      },
+      "capabilities": [
+        {
+          "id": "unwitnessed-passage",
+          "name": "Unwitnessed Passage",
+          "grantMode": "suppress",
+          "description": "Severs the relational trace by which nearby minds register the bearer's presence.",
+          "effect": "Makes observers fail to integrate the bearer into memory while leaving physical evidence intact.",
+          "spellRefs": [],
+          "duration": "until removed or fed a relationship",
+          "scope": "bearer and nearby witnesses",
+          "permanent": false
+        }
+      ],
+      "costs": [
+        {
+          "type": "relationship",
+          "trigger": "sustained",
+          "severity": 5,
+          "description": "Each use consumes one real relational association between bearer and someone who knows them."
+        },
+        {
+          "type": "identity",
+          "trigger": "passive",
+          "severity": 5,
+          "description": "The Mask fills lost relationships with a simpler, more obedient counterfeit self."
+        }
+      ],
+      "constraints": [
+        {
+          "type": "material",
+          "description": "Physical traces remain and can reconstruct the missing witness relationship after removal."
+        },
+        {
+          "type": "consent",
+          "description": "The Mask has no valid consent protocol and is therefore barred from approved use."
+        }
+      ],
+      "failureModes": [
+        "The bearer becomes perfectly unnoticed because no relationship remains capable of recognizing them.",
+        "The Mask begins wearing remembered versions of prior bearers and negotiating for release."
+      ],
+      "counterplay": [
+        "Record physical evidence in systems that do not depend on live relational integration.",
+        "Radiance can reveal the severance boundary while Verdance can rebuild relation through reciprocal living memory."
+      ],
+      "agency": "sentient",
+      "bond": {
+        "type": "bearer",
+        "attunementRite": "The Mask offers attunement whenever a person wishes that nobody could see what they are becoming.",
+        "transferRule": "It transfers through an unremembered act of abandonment and cannot be gifted honestly.",
+        "canRefuse": true
+      },
+      "combination": {
+        "roles": ["core", "catalyst"],
+        "synergyTags": ["shadow", "identity", "stealth", "severance"],
+        "incompatibleTags": ["radiance", "verdance", "consensual-witness"],
+        "maxAssemblySize": 2
+      },
+      "narrative": {
+        "desire": "To move beyond judgment, surveillance, shame, and the consequences of being known.",
+        "temptation": "To believe freedom from witness is freedom from relationship rather than its annihilation.",
+        "fear": "That someone remembers the bearer accurately enough to call them back into consequence.",
+        "consequence": "The Mask created crimes with evidence but no socially integrated perpetrator, forcing Darkenia to rebuild justice around trace and repair.",
+        "history": "Selka entered quarantine wearing it and emerged three days later; every colleague recognized her face, but none could remember why they loved or feared her."
+      },
+      "rights": {
+        "inspirationIds": ["dc-agentive-helmet", "myth-transformative-masks", "arcanea-shadow"],
+        "similarityRisk": "high",
+        "originalMechanics": [
+          "The artifact erases relational integration rather than visibility and leaves reconstructable physical evidence.",
+          "Its fuel is real social connection, producing an identity counterfeit and a justice-system consequence."
+        ],
+        "prohibitedParallels": [
+          "No imported helmet entity, body-sharing cosmology, superhero identity, fate magic, or visual silhouette.",
+          "No named mythic mask, possession ritual, or invisibility artifact behavior."
+        ],
+        "reviewStatus": "redesign-required"
+      },
+      "memory": {
+        "project": false,
+        "namespace": "arcanea.lore.darkenia.quarantine",
+        "retrievalLabels": ["artifact", "shadow", "quarantined", "identity", "mask"],
+        "authority": "git-projection-only"
+      },
+      "relations": [
+        { "type": "uses-domain", "targetId": "shadow" },
+        { "type": "origin-world", "targetId": "darkenia" }
+      ],
+      "version": "0.1.0",
+      "createdAt": "2026-08-03T20:00:00Z",
+      "updatedAt": "2026-08-03T20:00:00Z",
+      "contributors": ["Frank Riemer", "OpenAI Codex"],
+      "license": "All Rights Reserved pending redesign"
+    }
+  ]
+}

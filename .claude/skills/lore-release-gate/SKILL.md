@@ -39,7 +39,10 @@ authoritative for what is currently true in the world.
 Read, every time:
 
 - `.arcanea/lore/CANON_LOCKED.md` — the vault. **Read-only.** Agents never edit it.
-- `.arcanea/lore/NAMING_REGISTRY.md` — registers, collision rules, superseded inventory
+- `.arcanea/lore/NAMING_REGISTRY.md` — registers, collision rules, superseded
+  inventory. **Lands with the prose half (#97).** Until it does, the vault's own
+  superseded list and `lore-lint.mjs` are the authority on retired names; coin
+  nothing new that you cannot check against them.
 - The existing files your subject touches (`FACTIONS.md`, `MAGIC_SYSTEM.md`,
   `STORY_ENGINE.md`, the relevant `book/` collection)
 
@@ -49,9 +52,13 @@ frequency tables and godbeast names diverge from the vault. The vault at
 
 ### 2. Choose — pick the pattern, don't inherit the default
 
-Open the horizontal library for your craft problem in `docs/worldbuilding/patterns/`
+Open the horizontal library for your craft problem under `docs/worldbuilding/`
 and name the specific pattern you are applying and the specific one you are
-rejecting. "I'm using the object-that-chooses-its-bearer pattern, not the
+rejecting. The by-craft-problem libraries (`patterns/ARTIFACTS.md`,
+`MAGIC_MECHANISMS.md`, `ENCYCLOPEDIA_IA.md`, `LANGUAGE_CRAFT.md`) land in a
+follow-up PR; until then use `SYSTEM.md` and `BEST_PRACTICES.md` there. Naming
+the rejected alternative is the requirement either way — that part needs no
+library. "I'm using the object-that-chooses-its-bearer pattern, not the
 stat-block pattern" is a decision. Reaching for whatever comes first is not.
 
 | Working on | Read |
@@ -84,14 +91,17 @@ draft done.
 Four checks, all of them, every time:
 
 ```bash
-# Canon: superseded names, Gate frequencies, godbeast pairings, tier banners
+# Canon: superseded names, Gate names, Gate frequencies, godbeast pairings
+# (table and prose), tier banners, lock claims
 node .claude/ci/lore-lint.mjs <your files>
 ```
 
 - **Naming** — every coined name runs the `NAMING_REGISTRY.md` §7 procedure:
   register identified, three candidates, collision rules applied, G-test read
   aloud, superseded list checked, **etymology note written**. A name without an
-  etymology note fails review.
+  etymology note fails review. Until §7 lands with #97, run the same steps from
+  this list — the etymology note and the superseded check are the two that
+  cannot be skipped, and neither needs the registry file to perform.
 - **IP** — `BEST_PRACTICES.md` §IV. Architecture, never bricks. If the thing you
   wrote would be recognizable as a specific franchise's element with the name
   changed, it fails — and the closer the mechanic sits to a single source, the

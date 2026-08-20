@@ -43,6 +43,12 @@ Score 1–5. Anchors are deliberately unsentimental: **3 is competent**, 5 is ra
 
 **Composite bands** (sum of 10 dimensions, max 50):
 
+**If any dimension is `unscored`, the verdict is `incomplete — evidence required`.**
+Do not compute a composite, do not stage, do not promote. Otherwise "evidence or
+no score" becomes a way to buy a band: omit evidence for the one weak dimension,
+sum the other nine, and a 38/45 reads like a 38/50. An unscored dimension is a
+missing answer, not a zero and not an exemption.
+
 | Band | Verdict |
 |---|---|
 | 42–50 | Stage it. Nominate for `/lock-decision` if it closes a known gap. |
@@ -99,7 +105,9 @@ Lint: `lore-lint.mjs` exit 0 (N files)
 For whole-system reviews — "how good is Arcanea's magic system now" — use the
 twelve-dimension world scorecard in `docs/worldbuilding/research/SYNTHESIS.md`
 §2 instead, which benchmarks against Tolkien, Elder Scrolls, FF, Marvel, HP,
-Warcraft, and the anime canon. That scorecard is the strategic instrument; this
+Warcraft, and the anime canon. That file lands in a follow-up PR; until it does,
+score per-artifact with the rubric below and defer the whole-system verdict
+rather than improvising a scorecard. That scorecard is the strategic instrument; this
 rubric is the per-artifact one. Re-score the world scorecard when a Ten Upgrade
 lands, and record the movement — an upgrade that does not move a dimension
 either was not needed or was not finished.

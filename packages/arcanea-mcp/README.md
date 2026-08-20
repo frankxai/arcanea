@@ -64,36 +64,63 @@ Features:
 
 ### Installation
 
-```bash
-# Clone and install
-git clone https://github.com/yourusername/arcanea-mcp.git
-cd arcanea-mcp
-npm install
+The fastest way to use Arcanea MCP Server is via `npx`:
 
-# Build
-npm run build
+```bash
+# Claude Desktop - add to your claude_desktop_config.json
+claude mcp add arcanea -- npx -y @arcanea/mcp-server
 ```
 
-### Claude Desktop Configuration
-
-Add to your `claude_desktop_config.json`:
+Or manually add to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "arcanea": {
-      "command": "node",
-      "args": ["/path/to/arcanea-mcp/dist/index.js"]
+      "command": "npx",
+      "args": ["-y", "@arcanea/mcp-server"]
     }
   }
 }
 ```
 
-### Using with Claude Code
+### Using with Cursor
 
 ```bash
-# Add to your Claude Code configuration
-claude mcp add arcanea node /path/to/arcanea-mcp/dist/index.js
+# Add to your Cursor MCP configuration
+cursor mcp add arcanea -- npx -y @arcanea/mcp-server
+```
+
+Or manually add to your `mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "arcanea": {
+      "command": "npx",
+      "args": ["-y", "@arcanea/mcp-server"]
+    }
+  }
+}
+```
+
+### Local Development
+
+If you want to develop or modify the server:
+
+```bash
+# Clone the monorepo
+git clone https://github.com/frankxai/arcanea.git
+cd arcanea/packages/arcanea-mcp
+
+# Install dependencies
+npm install
+
+# Build
+npm run build
+
+# Test locally
+npm start
 ```
 
 ## Usage Examples

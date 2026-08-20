@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arcanea.ai/schemas/spirit-reference-entity.schema.json",
+  "title": "Comparative Spirit Reference Entity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "sourceId", "entityKind", "functions", "mechanisms", "verification", "usage", "notForProjection"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]+$" },
+    "name": { "type": "string", "minLength": 1 },
+    "sourceId": { "type": "string", "pattern": "^[a-z][a-z0-9-]+$" },
+    "entityKind": { "enum": ["named-entity", "collective", "class", "phenomenon", "soul-component", "office"] },
+    "functions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]+$" } },
+    "mechanisms": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]+$" } },
+    "namingObservation": { "type": "string" },
+    "verification": { "enum": ["primary", "official", "authoritative-secondary", "community-index", "unresolved"] },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transferablePattern", "copyProhibitions"],
+      "properties": {
+        "transferablePattern": { "type": "string", "minLength": 12 },
+        "copyProhibitions": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 5 } }
+      }
+    },
+    "notForProjection": { "const": true }
+  }
+}

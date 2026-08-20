@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "staging",
+  "profiles": [
+    {
+      "id": "arcanea-core",
+      "name": "Arcanea Core",
+      "status": "staging",
+      "visibility": "variable",
+      "maximumManifestation": 6,
+      "institutions": [
+        "Accord Houses maintain public pact templates but cannot assign ownership.",
+        "The Polyphonic Archive stores verified encounters, dissent, provenance, and privacy restrictions.",
+        "Restoration Circles audit spirit, ecological, and community repair after contact."
+      ],
+      "laws": [
+        "Spirit as an Element and spirits as entities must remain distinct in every public record.",
+        "No bond grants an opened Gate, rank, culture, mastery, or exemption from magic costs.",
+        "Accord Names are nontransferable and expire with the specific covenant.",
+        "Source-tone fingerprints may prove continuity but may never be reconstructed as commands.",
+        "Gods/Guardians and Godbeasts remain unique locked entities outside the spirit taxonomy."
+      ],
+      "bannedPractices": [
+        "involuntary binding",
+        "name theft",
+        "identity or memory used as fuel",
+        "hereditary pact obligation without renewed consent",
+        "declaring Void-aligned or frightening spirits naturally evil"
+      ],
+      "disputeProtocol": "A mixed circle of human, spirit, ecological, and independent archive witnesses reviews consent, provenance, harm, and release; no party may adjudicate a pact in which it owns the infrastructure.",
+      "memoryPolicy": "Git-approved records project into a STAGING namespace with consent scope, confidence, provenance, privacy class, and content hash; public encyclopedia views omit Accord Names and Source-tone data.",
+      "notes": [
+        "The afterlife remains unresolved; Ancestor-class entities carry explicit interpretation status.",
+        "Spirit encounters are consequential and culturally interpreted, not universally routine."
+      ]
+    },
+    {
+      "id": "darkenia",
+      "name": "Darkenia",
+      "status": "staging",
+      "visibility": "public",
+      "maximumManifestation": 6,
+      "institutions": [
+        "Accord Exchanges price projected spirit labor, risk, and Gate Debt.",
+        "Habitat Utilities operate cities through spirit-bearing infrastructure.",
+        "The Release Underground restores names, exit rights, and suppressed pact history.",
+        "Civic Receivership Courts unwind predatory spirit–artifact assemblies."
+      ],
+      "laws": [
+        "Corporate personhood for registered spirits exists, but unregistered and collective presences remain structurally excluded.",
+        "Accord Names cannot legally be sold after the current reform, while legacy contracts still circulate as disputed assets.",
+        "All infrastructure spirits must have a funded release and succession plan.",
+        "Forecasts using spirit memory owe compensation and correction rights to contributing communities.",
+        "Shadow incidents are classified by severance evidence, never appearance, hostility, or Void resonance."
+      ],
+      "bannedPractices": [
+        "new perpetual Accord contracts",
+        "Source-tone reconstruction",
+        "spirit-backed identity debt",
+        "memory collateral without revocation",
+        "artifact designs that make refusal technically impossible"
+      ],
+      "disputeProtocol": "The strongest valid remedy is restoration rather than asset seizure: suspend operation, preserve evidence, appoint independent spirit and community receivers, return names, fund habitat repair, and provide a technically real exit.",
+      "memoryPolicy": "Public registries expose ownership history, consent expiry, repair liabilities, and contradictory claims. Private memory content remains encrypted and deletable; hashes cannot be used to recreate Source-tones.",
+      "notes": [
+        "Darkenia is a working title and is not yet classified as world, realm, era, or civilizational layer.",
+        "Its darkness is institutional: coercive infrastructure and Shadow severance, not Nero or Void."
+      ]
+    },
+    {
+      "id": "community-world-template",
+      "name": "Community World Template",
+      "status": "experimental",
+      "visibility": "variable",
+      "maximumManifestation": 4,
+      "institutions": [
+        "One named local Accord review body with no ownership role.",
+        "One repair body able to fund and execute release.",
+        "One archive surface that publishes uncertainty and provenance."
+      ],
+      "laws": [
+        "The locked Arcanean cosmology remains unchanged.",
+        "Local spirit interpretation may vary but cannot erase agency, refusal, price, or release.",
+        "Any culture-bound source influence requires explicit attribution and review."
+      ],
+      "bannedPractices": [
+        "copied spirit names",
+        "copied silhouettes",
+        "true-name domination",
+        "automatic good-versus-evil alignment by element",
+        "unreviewed reuse of living sacred traditions"
+      ],
+      "disputeProtocol": "Creators must identify who can halt publication, who represents affected communities, who represents the spirit's recorded refusal, and who bears repair cost before a disputed record advances.",
+      "memoryPolicy": "Experimental records remain outside public and canonical namespaces. Projection begins only after schema, canon, similarity, cultural-integrity, and human review gates pass.",
+      "notes": [
+        "World builders must replace every placeholder institution and show how it fails under pressure."
+      ]
+    }
+  ]
+}
