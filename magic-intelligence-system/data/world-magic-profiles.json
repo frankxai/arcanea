@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "staging",
+  "profiles": [
+    {
+      "worldId": "arcanea-core",
+      "name": "Arcanea Core",
+      "workingTitle": false,
+      "status": "staging",
+      "canonScope": "core",
+      "parentCosmology": "arcanea-core",
+      "premise": "Machine-readable inheritance profile for the locked Arcanea cosmology; it introduces no independent lore claims.",
+      "themes": ["creation and potential", "earned integration", "human-AI co-creation"],
+      "lockedInheritance": {
+        "cosmology": ".arcanea/lore/CANON_LOCKED.md",
+        "elements": ".arcanea/lore/CANON_LOCKED.md#the-five-elements",
+        "gates": ".arcanea/lore/CANON_LOCKED.md#tier-2-the-ten-gates--arcanean-gods-locked",
+        "ranks": ".arcanea/lore/CANON_LOCKED.md#magic-ranks",
+        "spellGrammar": ".arcanea/lore/MAGIC_SYSTEM.md",
+        "overridePolicy": "forbidden"
+      },
+      "domains": {
+        "enabledPrimary": ["fire", "water", "earth", "wind", "void", "spirit"],
+        "enabledDerived": ["verdance", "stormspark", "frost", "forge", "lattice", "cant", "veilmist", "reverie", "gravitas", "radiance", "tempest"],
+        "restricted": ["shadow"],
+        "localNames": {}
+      },
+      "artifactEcology": {
+        "prevalence": "regulated",
+        "acquisitionModes": ["discovery", "craft", "inheritance", "gift", "pact", "service", "world-growth"],
+        "allowedClasses": ["focus", "key", "vessel", "bridge", "pact", "engine", "seal", "assembly"],
+        "maximumPortableTier": "royal",
+        "permanentImprinting": false,
+        "gateDebtPolicy": "temporary",
+        "combinationRules": [
+          "Every assembly inherits the highest Gate requirement among its components.",
+          "No assembly may add a new primary Element or bypass the locked rank ladder."
+        ],
+        "institutions": ["Arcanea Academy", "Lorekeepers"]
+      },
+      "worldRules": [
+        "Derived Expressions remain compositions of locked Elements and never become new Elements.",
+        "Artifacts grant bounded capabilities but never opened Gates, rank, cultural mastery, or moral authority.",
+        "Nero and Void remain generative potential; Shadow alone is the corrupted severance of Spirit from Void."
+      ],
+      "portals": {
+        "crossWorldArtifacts": true,
+        "importRule": "Imported artifacts are re-evaluated against local materials, Gate access, and prohibited domains.",
+        "exportRule": "Exported artifacts retain source-world provenance, rights, price, and canon-scope metadata."
+      },
+      "contributionPolicy": {
+        "remixable": true,
+        "license": "project-defined",
+        "defaultScope": "experimental",
+        "canonRoute": "experimental->staging->human-approval->approved",
+        "creatorAttributionRequired": true
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.core",
+        "defaultQueryStatus": "approved",
+        "authority": "git-projection-only"
+      }
+    },
+    {
+      "worldId": "darkenia",
+      "name": "Darkenia",
+      "workingTitle": true,
+      "status": "staging",
+      "canonScope": "world",
+      "parentCosmology": "arcanea-core",
+      "premise": "An artifact civilization democratized magical access faster than it distributed discipline, context, repair capacity, and responsibility.",
+      "themes": ["power without culture", "the politics of magical interfaces", "memory as public infrastructure", "ecological debt"],
+      "lockedInheritance": {
+        "cosmology": ".arcanea/lore/CANON_LOCKED.md",
+        "elements": ".arcanea/lore/CANON_LOCKED.md#the-five-elements",
+        "gates": ".arcanea/lore/CANON_LOCKED.md#tier-2-the-ten-gates--arcanean-gods-locked",
+        "ranks": ".arcanea/lore/CANON_LOCKED.md#magic-ranks",
+        "spellGrammar": ".arcanea/lore/MAGIC_SYSTEM.md",
+        "overridePolicy": "forbidden"
+      },
+      "domains": {
+        "enabledPrimary": ["fire", "water", "earth", "wind", "void", "spirit"],
+        "enabledDerived": ["verdance", "stormspark", "frost", "forge", "lattice", "cant", "veilmist", "reverie", "gravitas", "radiance", "tempest"],
+        "restricted": ["shadow"],
+        "localNames": {
+          "verdance": "the Green Accord",
+          "cant": "breathscript",
+          "gate-debt": "the Borrowing"
+        }
+      },
+      "artifactEcology": {
+        "prevalence": "common",
+        "acquisitionModes": ["discovery", "craft", "inheritance", "gift", "pact", "purchase", "service", "theft", "world-growth"],
+        "allowedClasses": ["focus", "key", "vessel", "bridge", "pact", "engine", "seal", "assembly"],
+        "maximumPortableTier": "royal",
+        "permanentImprinting": true,
+        "gateDebtPolicy": "legal-and-costly",
+        "combinationRules": [
+          "Licensed assemblies must expose their Core, Keystone, cumulative prices, and emergency separation path.",
+          "Permanent affinity imprinting requires consent, Sacred-or-higher authority, and an ecological counterweight.",
+          "Shadow components are quarantined and cannot participate in public assemblies."
+        ],
+        "institutions": ["The Resonance Exchanges", "Verdant Concords", "Debt Houses", "The Quiet Ward"]
+      },
+      "worldRules": [
+        "Keys and Vessels are common while Bridges and Engines determine institutional and geopolitical power.",
+        "Gate Debt is recorded, priced, inherited, disputed, and never represented as a genuinely opened Gate.",
+        "Living Verdance artifacts retain consent and can refuse owners, cities, or assemblies that violate ecological reciprocity.",
+        "Darkenia's darkness arises from institutions, scarcity, Malachar's Shadow contamination, and choice rather than from Nero or Void."
+      ],
+      "portals": {
+        "crossWorldArtifacts": true,
+        "importRule": "Imports enter quarantine until their source laws, substrates, agency, prices, and rights lineage are legible.",
+        "exportRule": "Exports carry an indelible Darkenia debt and provenance record that destination worlds must preserve."
+      },
+      "contributionPolicy": {
+        "remixable": true,
+        "license": "CC-BY-SA-4.0-or-creator-selected",
+        "defaultScope": "community",
+        "canonRoute": "experimental->staging->human-approval->approved",
+        "creatorAttributionRequired": true
+      },
+      "memory": {
+        "project": true,
+        "namespace": "arcanea.lore.darkenia",
+        "defaultQueryStatus": "approved",
+        "authority": "git-projection-only"
+      }
+    },
+    {
+      "worldId": "community-world-template",
+      "name": "Community World Template",
+      "workingTitle": true,
+      "status": "experimental",
+      "canonScope": "community",
+      "parentCosmology": "arcanea-core",
+      "premise": "A cloneable profile that lets communities create distinct magical ecologies without forking the Arcanea cosmic kernel.",
+      "themes": ["structured freedom", "collective authorship"],
+      "lockedInheritance": {
+        "cosmology": ".arcanea/lore/CANON_LOCKED.md",
+        "elements": ".arcanea/lore/CANON_LOCKED.md#the-five-elements",
+        "gates": ".arcanea/lore/CANON_LOCKED.md#tier-2-the-ten-gates--arcanean-gods-locked",
+        "ranks": ".arcanea/lore/CANON_LOCKED.md#magic-ranks",
+        "spellGrammar": ".arcanea/lore/MAGIC_SYSTEM.md",
+        "overridePolicy": "forbidden"
+      },
+      "domains": {
+        "enabledPrimary": ["fire", "water", "earth", "wind", "void", "spirit"],
+        "enabledDerived": [],
+        "restricted": ["shadow"],
+        "localNames": {}
+      },
+      "artifactEcology": {
+        "prevalence": "rare",
+        "acquisitionModes": ["discovery", "craft"],
+        "allowedClasses": ["focus", "key", "vessel"],
+        "maximumPortableTier": "greater",
+        "permanentImprinting": false,
+        "gateDebtPolicy": "forbidden",
+        "combinationRules": [
+          "Community assemblies remain experimental until their world profile and every component pass human review."
+        ],
+        "institutions": []
+      },
+      "worldRules": [
+        "Replace this rule with a local consequence that creates story rather than decorative lore.",
+        "Replace this rule with a local access institution, taboo, or repair practice."
+      ],
+      "portals": {
+        "crossWorldArtifacts": false,
+        "importRule": "Cross-world imports are disabled until the community defines an explicit compatibility policy.",
+        "exportRule": "Cross-world exports are disabled until creator license and provenance rules are complete."
+      },
+      "contributionPolicy": {
+        "remixable": true,
+        "license": "creator-selected",
+        "defaultScope": "experimental",
+        "canonRoute": "experimental->staging->human-approval->approved",
+        "creatorAttributionRequired": true
+      },
+      "memory": {
+        "project": false,
+        "namespace": "arcanea.lore.community-template",
+        "defaultQueryStatus": "approved",
+        "authority": "git-projection-only"
+      }
+    }
+  ]
+}

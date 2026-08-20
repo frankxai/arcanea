@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arcanea.ai/schemas/spirit-artifact-bond.schema.json",
+  "title": "Spirit Artifact Bond",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "status", "spiritId", "artifactId", "worldId", "mode", "function", "consent", "price", "failure", "release", "memoryProjection"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]+$" },
+    "status": { "enum": ["experimental", "staging", "approved", "quarantined", "deprecated"] },
+    "spiritId": { "type": "string" },
+    "artifactId": { "type": "string" },
+    "worldId": { "type": "string" },
+    "mode": { "enum": ["witness", "invitation", "habitat", "co-stewardship", "translation", "channel", "seal", "predation"] },
+    "function": { "type": "string", "minLength": 15 },
+    "consent": { "type": "string", "minLength": 15 },
+    "price": { "type": "string", "minLength": 10 },
+    "failure": { "type": "string", "minLength": 10 },
+    "release": { "type": "string", "minLength": 10 },
+    "memoryProjection": { "type": "boolean" }
+  }
+}

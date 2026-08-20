@@ -1,0 +1,547 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "research-reference-only",
+  "sources": [
+    {
+      "id": "avatar-universe",
+      "kind": "fiction",
+      "name": "Avatar animated universe",
+      "ownerOrTradition": "Paramount / Nickelodeon / Avatar Studios",
+      "sourceLocators": [
+        { "title": "Avatar Legends official timeline", "url": "https://www.avatarstudiosofficial.com/timeline/", "sourceClass": "official" },
+        { "title": "Avatar Wiki category: Spirits", "url": "https://avatar.fandom.com/wiki/Category:Spirits", "sourceClass": "community-index" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "standard",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Names remain attributed reference data; no character, cosmology, visual design, plot, terminology, or spirit hierarchy enters Arcanea canon."
+      },
+      "coverage": {
+        "target": "All named and class-level spirits across official screen, novel, comic, and game canon",
+        "status": "partial",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Community index requires edition-level verification", "New 2025–2026 publications are not exhaustively indexed", "Unnamed background spirits are excluded"]
+      }
+    },
+    {
+      "id": "ghibli-spirit-films",
+      "kind": "fiction",
+      "name": "Studio Ghibli spirit and ecology films",
+      "ownerOrTradition": "Studio Ghibli and respective creators",
+      "sourceLocators": [
+        { "title": "Spirited Away official work page", "url": "https://www.ghibli.jp/works/chihiro/", "sourceClass": "official" },
+        { "title": "Princess Mononoke", "sourceClass": "primary-work" },
+        { "title": "My Neighbor Totoro", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study ecological reciprocity, labor, appetite, purification, and place memory; do not reproduce creatures, masks, silhouettes, bathhouse structures, scenes, or names."
+      },
+      "coverage": {
+        "target": "Representative spirit mechanisms across Ghibli works",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Not a complete Ghibli entity index", "Japanese-language production notes require specialist review"]
+      }
+    },
+    {
+      "id": "shaman-king",
+      "kind": "fiction",
+      "name": "Shaman King",
+      "ownerOrTradition": "Hiroyuki Takei / Kodansha and licensees",
+      "sourceLocators": [
+        { "title": "Shaman King manga and anime", "sourceClass": "primary-work" },
+        { "title": "Official Shaman King project", "url": "https://shamanking-project.com/", "sourceClass": "official" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study reciprocal partnership, medium, integration, and manifested form while excluding named spirits, techniques, tournament structure, weapons, and visual language."
+      },
+      "coverage": {
+        "target": "Major guardian spirits and bond mechanics",
+        "status": "seeded",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Sequel and spin-off entities not indexed", "Technique terminology requires edition verification"]
+      }
+    },
+    {
+      "id": "bleach",
+      "kind": "fiction",
+      "name": "Bleach",
+      "ownerOrTradition": "Tite Kubo / Shueisha and licensees",
+      "sourceLocators": [
+        { "title": "Bleach manga and anime", "sourceClass": "primary-work" },
+        { "title": "Official Bleach anime site", "url": "https://bleach-anime.com/", "sourceClass": "official" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "standard",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study inner-personhood, purification, masks, soul ecology, and weapon relationship only at pattern level; exclude all names, forms, factions, realm structures, and power releases."
+      },
+      "coverage": {
+        "target": "Soul classes and agentive weapon patterns",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["No exhaustive named spirit list", "Anime-original entities excluded"]
+      }
+    },
+    {
+      "id": "natsume-book-of-friends",
+      "kind": "fiction",
+      "name": "Natsume's Book of Friends",
+      "ownerOrTradition": "Yuki Midorikawa / Hakusensha and licensees",
+      "sourceLocators": [
+        { "title": "Natsume's Book of Friends manga and anime", "sourceClass": "primary-work" },
+        { "title": "Official anime site", "url": "https://www.natsume-anime.jp/", "sourceClass": "official" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study name return, inherited obligation, perception, and relationship repair; do not reproduce the book device, characters, episodes, yokai designs, or naming rules."
+      },
+      "coverage": {
+        "target": "Major named yokai and name-bound relationship mechanics",
+        "status": "seeded",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Large episodic cast not indexed", "Official English naming varies by edition"]
+      }
+    },
+    {
+      "id": "mushishi",
+      "kind": "fiction",
+      "name": "Mushishi",
+      "ownerOrTradition": "Yuki Urushibara / Kodansha and licensees",
+      "sourceLocators": [
+        { "title": "Mushishi manga and anime", "sourceClass": "primary-work" },
+        { "title": "Licensed series overview", "url": "https://www.crunchyroll.com/series/GRX0MGN76/mushi-shi", "sourceClass": "official" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "standard",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study nonmoral ecology, specialist observation, and coexistence; exclude individual phenomena, cases, remedies, character design, and terminology."
+      },
+      "coverage": {
+        "target": "Ecological spirit-class mechanics",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Episode-level organisms not indexed"]
+      }
+    },
+    {
+      "id": "jujutsu-kaisen",
+      "kind": "fiction",
+      "name": "Jujutsu Kaisen",
+      "ownerOrTradition": "Gege Akutami / Shueisha and licensees",
+      "sourceLocators": [
+        { "title": "Official VIZ series page", "url": "https://www.viz.com/jujutsu-kaisen", "sourceClass": "official" },
+        { "title": "Jujutsu Kaisen manga and anime", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "standard",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study collective emotion producing hostile agency and specialized containment; exclude names, techniques, rankings, domains, visual designs, and plot."
+      },
+      "coverage": {
+        "target": "Representative emotion-born entities and containment patterns",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["No exhaustive cursed-spirit index", "Current serialization changes excluded until edition review"]
+      }
+    },
+    {
+      "id": "noragami",
+      "kind": "fiction",
+      "name": "Noragami",
+      "ownerOrTradition": "Adachitoka / Kodansha and licensees",
+      "sourceLocators": [
+        { "title": "Noragami manga and anime", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study naming, divine office, dead-person continuity, and weaponized partnership critically; exclude all names, weapon forms, rules, cosmology, and terminology."
+      },
+      "coverage": {
+        "target": "God, loose-spirit, and named-instrument relationship patterns",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Named cast not indexed", "Translation-sensitive terms need primary Japanese review"]
+      }
+    },
+    {
+      "id": "fate",
+      "kind": "fiction",
+      "name": "Fate franchise",
+      "ownerOrTradition": "TYPE-MOON and licensees",
+      "sourceLocators": [
+        { "title": "Fate/stay night Heaven's Feel official glossary", "url": "https://www.fatestaynightusa.com/story-chara/?page=glossary", "sourceClass": "official" },
+        { "title": "Fate/stay night", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study partial manifestation of culturally remembered figures and container constraints; exclude classes, rituals, heroes, identities, abilities, and franchise cosmology."
+      },
+      "coverage": {
+        "target": "Heroic-memory manifestation pattern",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Franchise scope is intentionally not exhaustively indexed"]
+      }
+    },
+    {
+      "id": "fairy-tail",
+      "kind": "fiction",
+      "name": "Fairy Tail",
+      "ownerOrTradition": "Hiro Mashima / Kodansha and licensees",
+      "sourceLocators": [
+        { "title": "Fairy Tail manga and anime", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "standard",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study keys, schedules, contracts, and summoned allies at abstract level; exclude celestial roster, key system, powers, designs, and terminology."
+      },
+      "coverage": {
+        "target": "Contracted and time-bounded summoned-ally mechanics",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Named celestial roster not indexed"]
+      }
+    },
+    {
+      "id": "black-clover",
+      "kind": "fiction",
+      "name": "Black Clover",
+      "ownerOrTradition": "Yuki Tabata / Shueisha and licensees",
+      "sourceLocators": [
+        { "title": "Black Clover manga and anime", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "standard",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study rare elemental partners choosing hosts and growing through relationship; exclude four-spirit roster, names, host characters, designs, and powers."
+      },
+      "coverage": {
+        "target": "Elemental-partner selection and growth pattern",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Later manga developments not reviewed"]
+      }
+    },
+    {
+      "id": "chainsaw-man",
+      "kind": "fiction",
+      "name": "Chainsaw Man",
+      "ownerOrTradition": "Tatsuki Fujimoto / Shueisha and licensees",
+      "sourceLocators": [
+        { "title": "Chainsaw Man manga and anime", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "standard",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study socially amplified fear, contracts, asymmetric price, and conceptual persistence; exclude devil names, embodiments, contract terms, characters, and plot."
+      },
+      "coverage": {
+        "target": "Fear-born agency and asymmetric contract mechanics",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["No named entity index", "Ongoing work requires dated review"]
+      }
+    },
+    {
+      "id": "mob-psycho-100",
+      "kind": "fiction",
+      "name": "Mob Psycho 100",
+      "ownerOrTradition": "ONE / Shogakukan and licensees",
+      "sourceLocators": [
+        { "title": "Mob Psycho 100 manga and anime", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "standard",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study emotional residue, exorcism ethics, possession, and changing hostile relationships; exclude characters, powers, comedy beats, designs, and plot."
+      },
+      "coverage": {
+        "target": "Representative haunting, possession, and reformed-spirit patterns",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Episodic entities not indexed"]
+      }
+    },
+    {
+      "id": "mononoke-anime",
+      "kind": "fiction",
+      "name": "Mononoke animated works",
+      "ownerOrTradition": "Toei Animation / Twin Engine and respective creators",
+      "sourceLocators": [
+        { "title": "Mononoke television series and films", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "mechanics-only",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "abstract-patterns-only",
+        "notes": "Study investigation through form, truth, and reason; exclude the triadic formula, protagonist, medicine chest, visual grammar, cases, and entities."
+      },
+      "coverage": {
+        "target": "Truth-bound manifestation and investigation pattern",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Film-era entities not exhaustively reviewed"]
+      }
+    },
+    {
+      "id": "shinto",
+      "kind": "living-tradition",
+      "name": "Shinto kami traditions",
+      "ownerOrTradition": "Plural Japanese living traditions",
+      "sourceLocators": [
+        { "title": "Shinto Portal, Kokugakuin University", "url": "https://www2.kokugakuin.ac.jp/e-shinto/", "sourceClass": "scholarly" },
+        { "title": "Encyclopedia of Shinto", "url": "https://d-museum.kokugakuin.ac.jp/eos/", "sourceClass": "scholarly" }
+      ],
+      "rights": {
+        "usageMode": "consultation-required",
+        "culturalSensitivity": "living-sacred",
+        "canonIngestion": "human-review-required",
+        "notes": "Do not flatten kami into fantasy species or import names, shrine forms, ritual acts, symbols, or theology without Japanese specialist and practitioner review."
+      },
+      "coverage": {
+        "target": "High-level concepts of presence, place, relation, ritual, and naming",
+        "status": "seeded",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Plural schools and local practice cannot be reduced to one taxonomy", "Japanese-language scholarship not fully reviewed"]
+      }
+    },
+    {
+      "id": "ancient-greek",
+      "kind": "historical-tradition",
+      "name": "Ancient Greek religious and mythic traditions",
+      "ownerOrTradition": "Ancient Greek cultures; surviving texts and material record",
+      "sourceLocators": [
+        { "title": "Greek Gods and Religious Practices, The Met", "url": "https://www.metmuseum.org/essays/greek-gods-and-religious-practices", "sourceClass": "museum" },
+        { "title": "Homeric and Hesiodic texts", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "public-domain-study",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "human-review-required",
+        "notes": "Use historical sources and public-domain originals; do not assume a single Greek canon or copy modern translations and reconstructions."
+      },
+      "coverage": {
+        "target": "Daimon, nymph, household, place, fate, and underworld patterns",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Regional and chronological variation", "Modern Hellenic practice excluded from this historical record"]
+      }
+    },
+    {
+      "id": "ancient-egyptian",
+      "kind": "historical-tradition",
+      "name": "Ancient Egyptian personhood, divinity, and afterlife traditions",
+      "ownerOrTradition": "Ancient Egyptian cultures; surviving texts and material record",
+      "sourceLocators": [
+        { "title": "Journey to the afterlife, British Museum", "url": "https://www.britishmuseum.org/learn/schools/ages-7-11/ancient-egypt/journey-afterlife", "sourceClass": "museum" },
+        { "title": "The soul in ancient Egypt, Fitzwilliam Museum", "url": "https://book-of-the-dead.fitzmuseum.cam.ac.uk/explore/book-of-the-dead/the-soul-in-ancient-egypt", "sourceClass": "museum" },
+        { "title": "Ancient Egyptian Amulets, The Met", "url": "https://www.metmuseum.org/essays/egyptian-amulets", "sourceClass": "museum" }
+      ],
+      "rights": {
+        "usageMode": "public-domain-study",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "human-review-required",
+        "notes": "Study plural personhood, memory, name, body, offering, and transformed continuity without copying funerary texts, modern translations, iconography, or deity identities."
+      },
+      "coverage": {
+        "target": "Ka, ba, akh, name, shadow, image, and amulet relationships",
+        "status": "representative",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Concepts changed across periods", "Museum summaries do not replace Egyptological sources"]
+      }
+    },
+    {
+      "id": "norse",
+      "kind": "historical-tradition",
+      "name": "Norse and wider Germanic spirit traditions",
+      "ownerOrTradition": "Historical Norse and Germanic cultures; later textual witnesses",
+      "sourceLocators": [
+        { "title": "The Viking gods, National Museum of Denmark", "url": "https://en.natmus.dk/historical-knowledge/denmark/prehistoric-period-until-1050-ad/the-viking-age/religion-magic-death-and-rituals/the-viking-gods/", "sourceClass": "museum" },
+        { "title": "Poetic Edda and Prose Edda", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "public-domain-study",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "human-review-required",
+        "notes": "Separate archaeological evidence, medieval texts, folklore, and modern reconstruction; do not copy modern translations or treat contested terms as fixed species."
+      },
+      "coverage": {
+        "target": "Fylgja, landvættir, dísir, household, ancestor, and fate patterns",
+        "status": "seeded",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Terminology varies by source and period", "Sámi traditions are not included or remixed"]
+      }
+    },
+    {
+      "id": "celtic",
+      "kind": "historical-tradition",
+      "name": "Irish and Celtic-language mythic traditions",
+      "ownerOrTradition": "Plural Celtic-language cultures and later textual witnesses",
+      "sourceLocators": [
+        { "title": "The Dagda, World History Encyclopedia", "url": "https://www.worldhistory.org/The_Dagda/", "sourceClass": "scholarly" },
+        { "title": "Medieval Irish mythological cycles", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "public-domain-study",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "human-review-required",
+        "notes": "Do not merge Irish, Scottish, Welsh, Breton, and modern living traditions into one pantheon; modern translations and folklore collections retain rights."
+      },
+      "coverage": {
+        "target": "Otherworld, sovereignty, ancestor, household, land, and reciprocal-gift patterns",
+        "status": "seeded",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Language-specific specialists required", "Modern living practice excluded from automatic reuse"]
+      }
+    },
+    {
+      "id": "slavic",
+      "kind": "historical-tradition",
+      "name": "Slavic folk spirit traditions",
+      "ownerOrTradition": "Plural Slavic cultures and local folklore records",
+      "sourceLocators": [
+        { "title": "Historical folklore collections and regional ethnographies", "sourceClass": "scholarly" }
+      ],
+      "rights": {
+        "usageMode": "consultation-required",
+        "culturalSensitivity": "elevated",
+        "canonIngestion": "human-review-required",
+        "notes": "Local names and roles vary; require language and regional review before any commercial adaptation."
+      },
+      "coverage": {
+        "target": "Household, forest, water, field, ancestor, and seasonal presence patterns",
+        "status": "seeded",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["No single authoritative pan-Slavic taxonomy", "Primary-language sources not yet assembled"]
+      }
+    },
+    {
+      "id": "chinese-traditions",
+      "kind": "living-tradition",
+      "name": "Chinese religious, literary, and folk spirit traditions",
+      "ownerOrTradition": "Plural Chinese living traditions and historical texts",
+      "sourceLocators": [
+        { "title": "Historical Daoist, Buddhist, local, and literary source traditions", "sourceClass": "primary-work" }
+      ],
+      "rights": {
+        "usageMode": "consultation-required",
+        "culturalSensitivity": "living-sacred",
+        "canonIngestion": "human-review-required",
+        "notes": "Shen, gui, ancestors, immortals, yaoguai, and local gods cannot be treated as one interchangeable bestiary; Chinese-language and practitioner review required."
+      },
+      "coverage": {
+        "target": "High-level ancestor, bureaucratic office, transformed being, place, and offering patterns",
+        "status": "blocked",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Primary Chinese source packet required", "Regional and religious distinctions unresolved"]
+      }
+    },
+    {
+      "id": "korean-traditions",
+      "kind": "living-tradition",
+      "name": "Korean folk and religious spirit traditions",
+      "ownerOrTradition": "Plural Korean living traditions and historical records",
+      "sourceLocators": [
+        { "title": "Korean-language folklore, shamanic, Buddhist, and local historical sources", "sourceClass": "scholarly" }
+      ],
+      "rights": {
+        "usageMode": "consultation-required",
+        "culturalSensitivity": "living-sacred",
+        "canonIngestion": "human-review-required",
+        "notes": "Dokkaebi, gwishin, household presences, and ritual roles require Korean-language and practitioner review; do not rely on pop-culture composites."
+      },
+      "coverage": {
+        "target": "High-level household, restless-dead, trickster, and ritual-mediation patterns",
+        "status": "blocked",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Primary Korean source packet required", "Regional distinctions unresolved"]
+      }
+    },
+    {
+      "id": "south-asian-nature-deities",
+      "kind": "living-tradition",
+      "name": "South Asian nature-deity traditions",
+      "ownerOrTradition": "Plural South Asian living religions and historical cultures",
+      "sourceLocators": [
+        { "title": "The Nature Deities of Early South Asia, The Met", "url": "https://www.metmuseum.org/essays/the-nature-deities-of-early-south-asia", "sourceClass": "museum" },
+        { "title": "Tree & Serpent: Early Buddhist Art in India", "url": "https://www.metmuseum.org/exhibitions/tree-and-serpent/visiting-guide", "sourceClass": "museum" }
+      ],
+      "rights": {
+        "usageMode": "consultation-required",
+        "culturalSensitivity": "living-sacred",
+        "canonIngestion": "human-review-required",
+        "notes": "Yaksha, yakshi, naga, tree, river, Hindu, Buddhist, and Jain contexts remain distinct; no names, ritual forms, iconography, or theology enter canon automatically."
+      },
+      "coverage": {
+        "target": "Nature, water, fertility, treasure, protection, and transformed-role patterns",
+        "status": "seeded",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["Living traditions require practitioners", "Historical sources span distinct regions and religions"]
+      }
+    },
+    {
+      "id": "yoruba-orisa",
+      "kind": "living-tradition",
+      "name": "Yorùbá Òrìṣà traditions",
+      "ownerOrTradition": "Yorùbá and diasporic living religious communities",
+      "sourceLocators": [
+        { "title": "Community-led scholarship and museum collections to be commissioned", "sourceClass": "scholarly" }
+      ],
+      "rights": {
+        "usageMode": "consultation-required",
+        "culturalSensitivity": "living-sacred",
+        "canonIngestion": "prohibited",
+        "notes": "No automated remixing. Any future comparative treatment requires compensated scholars and practitioners and must preserve differences among Yorùbá and diasporic lineages."
+      },
+      "coverage": {
+        "target": "Consultation-governed study of personhood, force, office, offering, and community relation",
+        "status": "blocked",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["No approved source packet", "No community review or adaptation mandate"]
+      }
+    },
+    {
+      "id": "andean-apu",
+      "kind": "living-tradition",
+      "name": "Andean mountain-person and Apu traditions",
+      "ownerOrTradition": "Plural Andean living communities",
+      "sourceLocators": [
+        { "title": "The living landscapes of Peru, British Museum", "url": "https://www.britishmuseum.org/blog/living-landscapes-peru", "sourceClass": "museum" }
+      ],
+      "rights": {
+        "usageMode": "consultation-required",
+        "culturalSensitivity": "living-sacred",
+        "canonIngestion": "prohibited",
+        "notes": "Apu are not generic mountain monsters. No automated adaptation; future work requires community-led context and benefit."
+      },
+      "coverage": {
+        "target": "Consultation-governed study of living landscape and reciprocal protection",
+        "status": "blocked",
+        "lastReviewed": "2026-08-04",
+        "knownGaps": ["No community partnership", "Museum overview is insufficient for adaptation"]
+      }
+    }
+  ]
+}

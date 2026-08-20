@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "reference-only",
+  "description": "Attributed comparative index. These records are not Arcanea canon and are never projected to Starlight Memory.",
+  "entities": [
+    {
+      "id": "avatar-raava",
+      "name": "Raava",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["world-balance", "bonded-presence"],
+      "mechanisms": ["dualistic-cycle", "reciprocal-pact", "distributed-self"],
+      "namingObservation": "Short invented proper name paired with a cosmological office.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A world-scale presence enters a durable relationship without making either party reducible to the other.",
+        "copyProhibitions": ["name and phonetics", "light-versus-dark pair", "reincarnating chosen office", "visual form", "cosmology and plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-vaatu",
+      "name": "Vaatu",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["world-pressure", "cycle-adversary"],
+      "mechanisms": ["dualistic-cycle", "realm-crossing", "collective-amplification"],
+      "namingObservation": "Short invented proper name designed as a counterpart.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A suppressed cosmological pressure returns cyclically and cannot be solved by permanent erasure.",
+        "copyProhibitions": ["name and phonetics", "darkness-and-chaos identity", "paired visual design", "ten-thousand-year cycle", "plot events"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-tui",
+      "name": "Tui",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["cycle-keeper", "celestial-personification"],
+      "mechanisms": ["dualistic-cycle", "ecological-guardian", "embodied-vulnerability"],
+      "namingObservation": "Single-syllable name associated with a natural office.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A vast natural function becomes locally vulnerable by choosing a bounded embodiment.",
+        "copyProhibitions": ["name", "moon office", "koi embodiment", "paired black-white design", "water-power dependency"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-la",
+      "name": "La",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["cycle-keeper", "ocean-personification"],
+      "mechanisms": ["dualistic-cycle", "ecological-guardian", "embodied-vulnerability"],
+      "namingObservation": "Single-syllable name functioning as one half of a natural pair.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "Interdependent natural offices generate motion through difference rather than hierarchy.",
+        "copyProhibitions": ["name", "ocean office", "koi embodiment", "paired black-white design", "revenge sequence"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-hei-bai",
+      "name": "Hei Bai",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["placekeeper", "ecological-avenger"],
+      "mechanisms": ["ecological-guardian", "shape-change", "place-memory"],
+      "namingObservation": "Compact translated name built around contrast.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "Damage to a place alters the form and behavior of the presence that carries its continuity.",
+        "copyProhibitions": ["name", "panda identity", "specific transformed silhouette", "forest episode", "visual language"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-koh",
+      "name": "Koh",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["identity-hunter", "threshold-threat"],
+      "mechanisms": ["identity-harvest", "rule-bound-encounter", "shape-change"],
+      "namingObservation": "Short proper name joined to a descriptive epithet in common use.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A dangerous encounter is governed by a precise behavioral constraint tied to identity.",
+        "copyProhibitions": ["name and epithet", "face theft", "centipede silhouette", "emotion rule", "lair and plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-wan-shi-tong",
+      "name": "Wan Shi Tong",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["knowledge-custodian", "judge"],
+      "mechanisms": ["knowledge-custody", "offering-exchange", "domain-manifestation"],
+      "namingObservation": "Meaning-bearing Chinese-language title associated with an office.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "Knowledge access is a negotiated civic and moral relationship, not a neutral inventory.",
+        "copyProhibitions": ["name and translation", "owl form", "library realm", "fox assistants", "specific bargain and plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-mother-of-faces",
+      "name": "Mother of Faces",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["identity-maker", "judge"],
+      "mechanisms": ["identity-transformation", "rule-bound-gift", "lineage"],
+      "namingObservation": "Relational title plus governed domain.",
+      "verification": "community-index",
+      "usage": {
+        "transferablePattern": "An identity-changing gift becomes ethically complex because appearance, memory, and relation diverge.",
+        "copyProhibitions": ["name and kinship title", "face-changing office", "visual design", "rules and lineage", "comic plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-father-glowworm",
+      "name": "Father Glowworm",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["threshold-keeper", "predator"],
+      "mechanisms": ["realm-crossing", "bargain", "embodied-vulnerability"],
+      "namingObservation": "Kinship title combined with an animal-light image.",
+      "verification": "community-index",
+      "usage": {
+        "transferablePattern": "A gate-making presence turns passage into leverage and can be injured through the interface it opens.",
+        "copyProhibitions": ["name", "glowworm imagery", "specific portal anatomy", "bargain structure", "novel plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-general-old-iron",
+      "name": "General Old Iron",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["territorial-guardian", "war-memory"],
+      "mechanisms": ["ecological-guardian", "artifact-armor", "historical-grievance"],
+      "namingObservation": "Military title plus material epithet.",
+      "verification": "community-index",
+      "usage": {
+        "transferablePattern": "A protector outlives the context of its war and must confront whether its grievance still serves the place.",
+        "copyProhibitions": ["name and title", "iron armor design", "specific enemy and location", "battle mechanics", "comic plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-lady-tienhai",
+      "name": "Lady Tienhai",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["placekeeper", "human-spirit-bridge"],
+      "mechanisms": ["embodiment", "sacrifice", "place-memory"],
+      "namingObservation": "Honorific title plus personal name.",
+      "verification": "community-index",
+      "usage": {
+        "transferablePattern": "A presence becomes inseparable from a settlement through sacrifice, stewardship, and contested memory.",
+        "copyProhibitions": ["name and title", "specific origin", "visual form", "relationship to Old Iron", "comic plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-painted-lady",
+      "name": "Painted Lady",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["river-guardian", "healer"],
+      "mechanisms": ["ecological-guardian", "place-memory", "human-imitation"],
+      "namingObservation": "Descriptive mantle rather than a disclosed personal name.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A community's protective mantle can be enacted by a human before the actual presence reappears.",
+        "copyProhibitions": ["name and painted design", "river-village setting", "costume imitation", "episode sequence", "visual motifs"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-aye-aye",
+      "name": "Aye-Aye Spirit",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["sanctuary-keeper", "mentor"],
+      "mechanisms": ["ecological-guardian", "reciprocal-pact", "cross-species-trust"],
+      "namingObservation": "Species-derived Common Sign with a class descriptor.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Hospitality develops through repeated conduct rather than destiny or automatic moral purity.",
+        "copyProhibitions": ["name", "aye-aye design", "specific sanctuary", "relationship to Wan", "episode plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-bum-ju",
+      "name": "Bum-Ju",
+      "sourceId": "avatar-universe",
+      "entityKind": "named-entity",
+      "functions": ["companion", "comic-witness"],
+      "mechanisms": ["reciprocal-pact", "shape-language", "realm-crossing"],
+      "namingObservation": "Short hyphenated invented name.",
+      "verification": "community-index",
+      "usage": {
+        "transferablePattern": "A small companion can carry emotional continuity without functioning as a combat upgrade.",
+        "copyProhibitions": ["name", "dragonfly-bunny hybrid", "visual behavior", "character relationship", "scenes"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-dragon-eel",
+      "name": "Dragon eel spirit",
+      "sourceId": "avatar-universe",
+      "entityKind": "class",
+      "functions": ["transport", "wild-presence"],
+      "mechanisms": ["realm-crossing", "reciprocal-pact", "hybrid-form"],
+      "namingObservation": "Compound animal class name.",
+      "verification": "community-index",
+      "usage": {
+        "transferablePattern": "Movement through another realm can depend on negotiating with a mobile native presence.",
+        "copyProhibitions": ["compound species name", "dragon-eel anatomy", "specific travel role", "color design", "scenes"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-knowledge-seekers",
+      "name": "Knowledge Seekers",
+      "sourceId": "avatar-universe",
+      "entityKind": "collective",
+      "functions": ["archivist", "collector"],
+      "mechanisms": ["knowledge-custody", "distributed-self", "service-office"],
+      "namingObservation": "Collective named directly for its function.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A knowledge institution can be maintained by a distributed nonhuman workforce with its own agenda.",
+        "copyProhibitions": ["name", "fox form", "library service", "specific master", "visual behavior"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-kemurikage",
+      "name": "Kemurikage",
+      "sourceId": "avatar-universe",
+      "entityKind": "collective",
+      "functions": ["warning-apparition", "social-fear"],
+      "mechanisms": ["collective-belief", "appearance-imitation", "historical-memory"],
+      "namingObservation": "Japanese-language coined collective name.",
+      "verification": "community-index",
+      "usage": {
+        "transferablePattern": "A feared historical image can be imitated by humans and gain power through social expectation.",
+        "copyProhibitions": ["name and language construction", "smoke-shadow appearance", "child-abduction association", "political plot", "visual design"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-fog-of-lost-souls",
+      "name": "Fog of Lost Souls",
+      "sourceId": "avatar-universe",
+      "entityKind": "phenomenon",
+      "functions": ["memory-prison", "identity-trial"],
+      "mechanisms": ["domain-manifestation", "memory-loop", "realm-crossing"],
+      "namingObservation": "Descriptive location-phenomenon title.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A place can trap inhabitants inside self-reinforcing memory without being a conventional villain.",
+        "copyProhibitions": ["name", "fog prison", "specific victims", "Spirit World placement", "episode resolution"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-tree-of-time",
+      "name": "Tree of Time",
+      "sourceId": "avatar-universe",
+      "entityKind": "phenomenon",
+      "functions": ["world-memory", "convergence-site"],
+      "mechanisms": ["place-memory", "dualistic-cycle", "realm-crossing"],
+      "namingObservation": "Archetypal object-plus-domain title.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A site can store world-scale temporal relation without behaving as an owned database.",
+        "copyProhibitions": ["name", "tree design", "cosmic convergence role", "meditation mechanics", "plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "avatar-dark-spirits",
+      "name": "Dark spirits",
+      "sourceId": "avatar-universe",
+      "entityKind": "class",
+      "functions": ["corrupted-presence", "imbalance-signal"],
+      "mechanisms": ["state-transformation", "emotional-amplification", "purification"],
+      "namingObservation": "State label applied across many otherwise distinct entities.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A spirit's visible and behavioral state can change through imbalance without defining its permanent essence.",
+        "copyProhibitions": ["light-dark visual inversion", "Vaatu causality", "purification technique", "terminology", "design grammar"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "ghibli-haku",
+      "name": "Haku / Kohaku River spirit",
+      "sourceId": "ghibli-spirit-films",
+      "entityKind": "named-entity",
+      "functions": ["river-person", "guide", "memory-lost"],
+      "mechanisms": ["place-memory", "name-restoration", "shape-change"],
+      "namingObservation": "Personal abbreviation conceals a longer place-linked identity.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Recovering a place-linked name can restore agency and continuity after displacement.",
+        "copyProhibitions": ["all names", "river-dragon identity", "white dragon design", "name theft plot", "character relationships"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "ghibli-no-face",
+      "name": "No-Face",
+      "sourceId": "ghibli-spirit-films",
+      "entityKind": "named-entity",
+      "functions": ["social-mirror", "devourer"],
+      "mechanisms": ["environmental-amplification", "consumption", "identity-imitation"],
+      "namingObservation": "Absence-based descriptive Common Sign.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "An ambiguous presence absorbs the appetite and behavior of the institution that hosts it.",
+        "copyProhibitions": ["name", "mask and black body", "gold production", "bathhouse consumption", "plot and personality"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "ghibli-river-spirit",
+      "name": "River Spirit",
+      "sourceId": "ghibli-spirit-films",
+      "entityKind": "office",
+      "functions": ["river-person", "purification-test"],
+      "mechanisms": ["ecological-guardian", "pollution-burden", "purification"],
+      "namingObservation": "Natural office used in place of an individual name.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Pollution changes how a place-person is perceived, and communal labor can reveal rather than create its dignity.",
+        "copyProhibitions": ["specific polluted form", "bath sequence", "bicycle debris image", "medicine reward", "visual transformation"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "ghibli-radish-spirit",
+      "name": "Radish Spirit",
+      "sourceId": "ghibli-spirit-films",
+      "entityKind": "named-entity",
+      "functions": ["guest", "quiet-ally"],
+      "mechanisms": ["place-ritual", "nonverbal-aid", "anthropomorphic-nature"],
+      "namingObservation": "Plant-office descriptive Common Sign.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Minor spirits can establish a lived society through ordinary courtesy rather than exposition.",
+        "copyProhibitions": ["name", "radish body", "elevator scene", "costume", "visual design"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "ghibli-forest-spirit",
+      "name": "Forest Spirit",
+      "sourceId": "ghibli-spirit-films",
+      "entityKind": "office",
+      "functions": ["life-death-cycle", "world-sovereign"],
+      "mechanisms": ["ecological-guardian", "shape-change", "embodied-vulnerability"],
+      "namingObservation": "Place-domain office without a personal Common Sign.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Creation and death can belong to one ecological office whose embodiment makes the forest politically vulnerable.",
+        "copyProhibitions": ["deer face", "night-walker form", "head theft", "forest plot", "visual language"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "ghibli-kodama",
+      "name": "Kodama",
+      "sourceId": "ghibli-spirit-films",
+      "entityKind": "collective",
+      "functions": ["forest-health-signal", "witness"],
+      "mechanisms": ["ecological-guardian", "distributed-self", "nonverbal-signal"],
+      "namingObservation": "Borrowed Japanese folkloric class term.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "The presence or absence of small distributed beings makes ecosystem health visible.",
+        "copyProhibitions": ["name in Arcanean canon", "white humanoid design", "head-rattle movement", "film scenes", "collective behavior"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "ghibli-totoro",
+      "name": "Totoro",
+      "sourceId": "ghibli-spirit-films",
+      "entityKind": "named-entity",
+      "functions": ["place-companion", "childhood-witness"],
+      "mechanisms": ["liminal-perception", "reciprocal-gift", "ecological-guardian"],
+      "namingObservation": "Invented child-spoken proper name.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Perception and trust can be situational without making the presence imaginary or universally visible.",
+        "copyProhibitions": ["name", "round forest-creature silhouette", "umbrella and bus motifs", "roar and flight", "plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "ghibli-susuwatari",
+      "name": "Susuwatari",
+      "sourceId": "ghibli-spirit-films",
+      "entityKind": "collective",
+      "functions": ["labor-chorus", "house-presence"],
+      "mechanisms": ["distributed-self", "place-memory", "offering-exchange"],
+      "namingObservation": "Japanese coined class name translated variously across editions.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A place's hidden maintenance can be personified as a small collective with appetite and labor conditions.",
+        "copyProhibitions": ["name", "black soot-ball design", "star candy", "specific labor setting", "movement"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "shaman-amidamaru",
+      "name": "Amidamaru",
+      "sourceId": "shaman-king",
+      "entityKind": "named-entity",
+      "functions": ["ancestor-warrior", "bonded-companion"],
+      "mechanisms": ["reciprocal-pact", "vessel-manifestation", "ancestor-continuity"],
+      "namingObservation": "Japanese personal name retained across a long partnership.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A dead expert and living partner build capability through trust, medium, and repeated co-action.",
+        "copyProhibitions": ["name", "samurai identity", "sword medium", "techniques", "character relationship and plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "shaman-matamune",
+      "name": "Matamune",
+      "sourceId": "shaman-king",
+      "entityKind": "named-entity",
+      "functions": ["mentor", "sacrificial-companion"],
+      "mechanisms": ["ancestor-continuity", "artifact-interface", "sacrifice"],
+      "namingObservation": "Short Japanese proper name.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A mentor's finite continuity can be spent in a way that creates inheritance and grief rather than reusable power.",
+        "copyProhibitions": ["name", "cat form", "pipe and necklace", "specific sacrifice", "character history"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "shaman-spirit-of-fire",
+      "name": "Spirit of Fire",
+      "sourceId": "shaman-king",
+      "entityKind": "named-entity",
+      "functions": ["elemental-sovereign", "power-partner"],
+      "mechanisms": ["elemental-personification", "vessel-manifestation", "consumption-growth"],
+      "namingObservation": "Elemental office stated as a title.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A vast elemental partner has its own growth mechanics and cannot be treated as an inert spell slot.",
+        "copyProhibitions": ["title", "design", "specific growth by consuming souls", "owner relationship", "powers"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "shaman-great-spirit",
+      "name": "Great Spirit",
+      "sourceId": "shaman-king",
+      "entityKind": "office",
+      "functions": ["world-memory", "cosmic-office"],
+      "mechanisms": ["collective-memory", "world-sovereign", "succession"],
+      "namingObservation": "Scale adjective plus generic spiritual office.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "World memory and rulership can be linked through an office whose succession creates political stakes.",
+        "copyProhibitions": ["title", "tournament succession", "visual design", "cosmology", "powers and plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "bleach-zanpakuto-spirits",
+      "name": "Zanpakutō spirits",
+      "sourceId": "bleach",
+      "entityKind": "class",
+      "functions": ["inner-counterpart", "artifact-indweller"],
+      "mechanisms": ["artifact-interface", "inner-world", "name-bond"],
+      "namingObservation": "Japanese weapon-class term with each individual carrying a distinct name.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A weapon's full capability depends on relationship with an agentive inner counterpart rather than ownership alone.",
+        "copyProhibitions": ["class term", "release names and stages", "inner-world mechanics", "weapon forms", "characters and powers"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "bleach-hollows",
+      "name": "Hollows",
+      "sourceId": "bleach",
+      "entityKind": "class",
+      "functions": ["hungry-dead", "identity-loss"],
+      "mechanisms": ["ancestor-continuity", "hunger-loop", "purification"],
+      "namingObservation": "English absence-state class term.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Unresolved continuity can become predatory through progressive identity loss while retaining a path to transformation.",
+        "copyProhibitions": ["class name", "mask and hole design", "soul ecology", "purification rules", "ranks and powers"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "bleach-pluses",
+      "name": "Pluses",
+      "sourceId": "bleach",
+      "entityKind": "class",
+      "functions": ["untransitioned-dead", "memory-bearer"],
+      "mechanisms": ["ancestor-continuity", "attachment", "psychopomp"],
+      "namingObservation": "Abstract positive-sign term for a soul state.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Attachment can delay transition without making the dead automatically malicious.",
+        "copyProhibitions": ["class name", "chain design", "afterlife routes", "transformation rules", "plot mechanics"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "natsume-madara",
+      "name": "Madara / Nyanko-sensei",
+      "sourceId": "natsume-book-of-friends",
+      "entityKind": "named-entity",
+      "functions": ["guardian", "trickster", "companion"],
+      "mechanisms": ["reciprocal-pact", "shape-change", "name-bond"],
+      "namingObservation": "A personal name and comic social nickname coexist across forms.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A protector's self-interest, affection, and changing forms can coexist without reducing the relationship to purity.",
+        "copyProhibitions": ["names and nickname", "lucky-cat and beast forms", "Book of Friends relationship", "personality", "plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "natsume-hinoe",
+      "name": "Hinoe",
+      "sourceId": "natsume-book-of-friends",
+      "entityKind": "named-entity",
+      "functions": ["mentor", "memory-link"],
+      "mechanisms": ["ancestor-continuity", "name-bond", "social-network"],
+      "namingObservation": "Japanese personal name rather than a species descriptor.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A spirit can relate differently to successive generations while retaining history and preference.",
+        "copyProhibitions": ["name", "appearance", "relationship to Reiko and Natsume", "personality", "episodes"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "natsume-book-name-bonds",
+      "name": "Book of Friends name bonds",
+      "sourceId": "natsume-book-of-friends",
+      "entityKind": "phenomenon",
+      "functions": ["coercive-registry", "inherited-obligation"],
+      "mechanisms": ["name-bond", "name-restoration", "inheritance"],
+      "namingObservation": "Friendly title conceals a coercive registry function.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A descendant can inherit responsibility to release names without inheriting moral ownership of the bound beings.",
+        "copyProhibitions": ["book title", "notebook device", "specific name-return ritual", "inheritance plot", "characters"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "mushishi-mushi",
+      "name": "Mushi",
+      "sourceId": "mushishi",
+      "entityKind": "class",
+      "functions": ["primordial-ecology", "nonmoral-cause"],
+      "mechanisms": ["environmental-symbiosis", "liminal-perception", "specialist-observation"],
+      "namingObservation": "Short Japanese class term deliberately broader than ordinary animals.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Strange beings can be ecological conditions with consequences rather than villains, pets, or gods.",
+        "copyProhibitions": ["class term", "specific species and cases", "specialist title", "remedies", "visual and narrative format"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "jjk-cursed-spirits",
+      "name": "Cursed spirits",
+      "sourceId": "jujutsu-kaisen",
+      "entityKind": "class",
+      "functions": ["social-fear-embodiment", "hostile-presence"],
+      "mechanisms": ["emotion-born", "collective-amplification", "specialized-containment"],
+      "namingObservation": "State-plus-class term describes origin and threat.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "Repeated collective emotion can condense into agentive pressure that outlives any single contributor.",
+        "copyProhibitions": ["class name", "cursed energy", "rank system", "domains and techniques", "named entities and designs"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "noragami-loose-spirits",
+      "name": "Loose spirits",
+      "sourceId": "noragami",
+      "entityKind": "class",
+      "functions": ["unattached-dead", "potential-partner"],
+      "mechanisms": ["ancestor-continuity", "name-bond", "realm-crossing"],
+      "namingObservation": "Condition descriptor precedes assignment to a divine relationship.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Unresolved dead-person continuity becomes vulnerable to institutions that assign names and roles.",
+        "copyProhibitions": ["terminology", "tail or visual markers", "naming ritual", "afterlife rules", "characters and plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "noragami-shinki",
+      "name": "Shinki",
+      "sourceId": "noragami",
+      "entityKind": "office",
+      "functions": ["divine-instrument", "bonded-dead"],
+      "mechanisms": ["name-bond", "artifact-embodiment", "reciprocal-harm"],
+      "namingObservation": "Japanese office term; individuals receive names from a god.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A bond can make each party vulnerable to the other's conduct, exposing the ethics of naming and weaponization.",
+        "copyProhibitions": ["office term", "name suffix rules", "weapon forms", "blight mechanics", "god-shinki institution"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "fate-heroic-spirits",
+      "name": "Heroic Spirits / Servants",
+      "sourceId": "fate",
+      "entityKind": "class",
+      "functions": ["cultural-memory-embodiment", "summoned-agent"],
+      "mechanisms": ["collective-belief", "vessel-manifestation", "contract-summoning"],
+      "namingObservation": "Office and container terms distinguish stored identity from summoned instance.",
+      "verification": "official",
+      "usage": {
+        "transferablePattern": "A culturally remembered figure can manifest only partially through a constrained local vessel.",
+        "copyProhibitions": ["all class terms", "seven-class system", "Grail ritual", "historical identities", "abilities and command mechanics"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "fairy-tail-celestial-spirits",
+      "name": "Celestial Spirits",
+      "sourceId": "fairy-tail",
+      "entityKind": "class",
+      "functions": ["contracted-ally", "other-realm-citizen"],
+      "mechanisms": ["contract-summoning", "artifact-interface", "schedule-bound-access"],
+      "namingObservation": "Domain adjective plus generic class; many names derive from constellations.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Summoned allies can have schedules, rights, relationships, and a home polity beyond the summoner.",
+        "copyProhibitions": ["class term", "gold and silver keys", "zodiac roster", "specific contracts", "designs and powers"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "black-clover-elemental-spirits",
+      "name": "Elemental Spirits",
+      "sourceId": "black-clover",
+      "entityKind": "class",
+      "functions": ["elemental-partner", "power-amplifier"],
+      "mechanisms": ["elemental-personification", "partner-selection", "relationship-growth"],
+      "namingObservation": "Generic elemental office with individual myth-derived names.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A rare elemental presence chooses a partner and develops through shared experience rather than being manufactured.",
+        "copyProhibitions": ["four-spirit roster", "names", "host characters", "designs", "spell and grimoire mechanics"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "chainsaw-devils",
+      "name": "Devils",
+      "sourceId": "chainsaw-man",
+      "entityKind": "class",
+      "functions": ["fear-embodiment", "contract-counterparty"],
+      "mechanisms": ["fear-born", "collective-amplification", "asymmetric-contract"],
+      "namingObservation": "Entities are named directly for the feared concept they embody.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Social attention can strengthen a concept-person while contracts externalize price and asymmetry.",
+        "copyProhibitions": ["class term in equivalent system", "concept-name formula", "contract logic", "designs", "characters and plot"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "mob-dimple",
+      "name": "Dimple",
+      "sourceId": "mob-psycho-100",
+      "entityKind": "named-entity",
+      "functions": ["former-antagonist", "companion", "ambition-mirror"],
+      "mechanisms": ["emotion-born", "possession", "relationship-change"],
+      "namingObservation": "Comic appearance-based nickname replaces a grand self-presentation.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "A hostile spirit relationship can change through sustained interaction without erasing ambition or prior harm.",
+        "copyProhibitions": ["name", "green cloud-face design", "possession style", "cult plot", "personality and powers"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "mononoke-class",
+      "name": "Mononoke",
+      "sourceId": "mononoke-anime",
+      "entityKind": "class",
+      "functions": ["truth-bound-haunting", "grievance-form"],
+      "mechanisms": ["historical-grievance", "identity-investigation", "purification"],
+      "namingObservation": "Japanese supernatural class term with culturally specific history.",
+      "verification": "primary",
+      "usage": {
+        "transferablePattern": "Resolution requires understanding the presence's form, causal truth, and motive rather than applying force alone.",
+        "copyProhibitions": ["class term as Arcanean label", "form-truth-reason formula", "Medicine Seller", "visual style", "cases and sword"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "shinto-kami",
+      "name": "Kami",
+      "sourceId": "shinto",
+      "entityKind": "class",
+      "functions": ["presence", "place-relation", "ancestral-or-divine-office"],
+      "mechanisms": ["offering-exchange", "place-memory", "ritual-relation"],
+      "namingObservation": "A broad Japanese term whose meaning changes by context, source, and practice.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Presence and relation may be more fundamental than a fixed fantasy-species taxonomy.",
+        "copyProhibitions": ["term as Arcanean species", "specific kami names", "shrine architecture", "ritual forms", "symbols and theology"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "shinto-yokai",
+      "name": "Yōkai",
+      "sourceId": "shinto",
+      "entityKind": "class",
+      "functions": ["strange-presence", "category-boundary"],
+      "mechanisms": ["shape-change", "place-memory", "social-narrative"],
+      "namingObservation": "Japanese umbrella term with changing historical and popular meanings.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "A culture's category for strangeness can organize stories without asserting one biological species.",
+        "copyProhibitions": ["term as Arcanean class", "named yōkai", "Japanese iconography", "folk narratives", "pop-culture designs"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "shinto-yurei",
+      "name": "Yūrei",
+      "sourceId": "shinto",
+      "entityKind": "class",
+      "functions": ["restless-dead", "memory-return"],
+      "mechanisms": ["ancestor-continuity", "historical-grievance", "ritual-relation"],
+      "namingObservation": "Japanese dead-person spirit category with context-specific subtypes.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Claims of dead-person continuity can carry unresolved social obligation and require culturally situated repair.",
+        "copyProhibitions": ["term", "white burial clothing", "hair and floating silhouette", "named stories", "ritual prescriptions"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "shinto-tsukumogami",
+      "name": "Tsukumogami",
+      "sourceId": "shinto",
+      "entityKind": "class",
+      "functions": ["awakened-object", "memory-bearer"],
+      "mechanisms": ["artifact-embodiment", "age-accumulation", "social-narrative"],
+      "namingObservation": "Japanese category associated with old tools and later folklore/art traditions.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Long use and accumulated relation can make the disposal of an object ethically and narratively charged.",
+        "copyProhibitions": ["term", "hundred-year rule as direct mechanic", "named object spirits", "Japanese visual motifs", "specific tales"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "greek-daimon",
+      "name": "Daimon",
+      "sourceId": "ancient-greek",
+      "entityKind": "class",
+      "functions": ["divine-agency", "fate-distributor", "guardian"],
+      "mechanisms": ["delegated-office", "unseen-causality", "ancestor-continuity"],
+      "namingObservation": "Ancient Greek term with meanings that vary across authors and periods.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Unseen agency may be experienced as distributed power or office rather than a fixed creature species.",
+        "copyProhibitions": ["term as Arcanean class", "modern demon equivalence", "specific named daimones", "modern translations", "flattened hierarchy"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "greek-nymph",
+      "name": "Nymph",
+      "sourceId": "ancient-greek",
+      "entityKind": "class",
+      "functions": ["place-person", "nature-presence"],
+      "mechanisms": ["ecological-guardian", "place-memory", "offering-exchange"],
+      "namingObservation": "Broad ancient category with place- and medium-specific groups.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "A river, spring, tree, cave, or mountain can be socially encountered through a person-like local presence.",
+        "copyProhibitions": ["term as Arcanean species", "Greek group names", "classical visual motifs", "specific myths", "sexualized default design"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "egyptian-ka",
+      "name": "Ka",
+      "sourceId": "ancient-egyptian",
+      "entityKind": "soul-component",
+      "functions": ["vital-double", "offering-recipient"],
+      "mechanisms": ["soul-component", "offering-exchange", "body-relation"],
+      "namingObservation": "Transliterated Egyptian concept; not equivalent to a complete Western soul.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Personhood can be modeled as several relational continuities rather than one indivisible soul object.",
+        "copyProhibitions": ["term as Arcanean mechanic", "hieroglyph and iconography", "funerary rituals", "specific theology", "modern translation language"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "egyptian-ba",
+      "name": "Ba",
+      "sourceId": "ancient-egyptian",
+      "entityKind": "soul-component",
+      "functions": ["mobile-personality", "returning-presence"],
+      "mechanisms": ["soul-component", "realm-crossing", "body-relation"],
+      "namingObservation": "Transliterated Egyptian concept with period-dependent meaning.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Mobility, personality, body, and post-death continuity may be distinct but interdependent functions.",
+        "copyProhibitions": ["term as Arcanean mechanic", "human-headed bird form", "funerary spells", "specific theology", "modern translations"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "egyptian-akh",
+      "name": "Akh",
+      "sourceId": "ancient-egyptian",
+      "entityKind": "soul-component",
+      "functions": ["transformed-dead", "effective-presence"],
+      "mechanisms": ["soul-component", "ritual-transformation", "ancestor-continuity"],
+      "namingObservation": "Transliterated Egyptian term often glossed as an effective transformed spirit.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Post-death continuity may be an achieved transformation dependent on relation and practice rather than an automatic state.",
+        "copyProhibitions": ["term as Arcanean rank", "ibis or funerary iconography", "spells and rites", "theological claims", "modern translation language"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "egyptian-ren",
+      "name": "Ren",
+      "sourceId": "ancient-egyptian",
+      "entityKind": "soul-component",
+      "functions": ["name-continuity", "memory-anchor"],
+      "mechanisms": ["name-bond", "social-memory", "soul-component"],
+      "namingObservation": "Transliterated Egyptian concept associated with name and continued identity.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "A publicly maintained name can be one component of continuity without becoming a command key.",
+        "copyProhibitions": ["term as Arcanean name layer", "specific rites", "cartouche iconography", "theological claims", "modern translations"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "egyptian-sheut",
+      "name": "Sheut / shadow",
+      "sourceId": "ancient-egyptian",
+      "entityKind": "soul-component",
+      "functions": ["shadow-double", "personhood-component"],
+      "mechanisms": ["soul-component", "body-relation", "realm-crossing"],
+      "namingObservation": "Transliterated term often translated as shadow; not Arcanea's Shadow corruption.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "A shadow can be treated as one relational aspect of personhood without moralizing darkness.",
+        "copyProhibitions": ["term", "equating it with Arcanea Shadow", "funerary iconography", "spells", "theological claims"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "norse-fylgja",
+      "name": "Fylgja",
+      "sourceId": "norse",
+      "entityKind": "class",
+      "functions": ["companion-double", "fate-signal"],
+      "mechanisms": ["distributed-self", "ancestor-continuity", "omen"],
+      "namingObservation": "Old Norse term with contested and source-dependent meanings.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "A companion presence may externalize inherited character, fate, or relational identity without being a pet.",
+        "copyProhibitions": ["term as Arcanean class", "specific animal associations", "saga episodes", "modern reconstruction", "fixed definition"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "norse-landvaettir",
+      "name": "Landvættir",
+      "sourceId": "norse",
+      "entityKind": "collective",
+      "functions": ["land-presence", "territorial-guardian"],
+      "mechanisms": ["ecological-guardian", "place-memory", "ritual-relation"],
+      "namingObservation": "Old Norse plural term tied to land beings.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Political and ecological conduct toward land can be mediated through a plural local presence.",
+        "copyProhibitions": ["term", "saga rules", "dragon-head proscriptions", "specific rituals", "modern heathen practice"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "norse-disir",
+      "name": "Dísir",
+      "sourceId": "norse",
+      "entityKind": "collective",
+      "functions": ["female-ancestral-power", "fate-protection"],
+      "mechanisms": ["ancestor-continuity", "collective-office", "ritual-relation"],
+      "namingObservation": "Old Norse plural term with overlapping textual meanings.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Ancestral, protective, and fate-related functions may belong to a plural office rather than one named individual.",
+        "copyProhibitions": ["term", "fixed species taxonomy", "specific rites", "saga narratives", "modern practice"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "celtic-aos-si",
+      "name": "Aos Sí",
+      "sourceId": "celtic",
+      "entityKind": "collective",
+      "functions": ["otherworld-people", "land-relation"],
+      "mechanisms": ["realm-crossing", "offering-exchange", "place-memory"],
+      "namingObservation": "Irish-language collective term; not equivalent to generic modern fairies.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "A nonhuman people may share geography through protocols of respect, timing, and reciprocal boundary.",
+        "copyProhibitions": ["term", "Irish place names", "specific taboos and offerings", "folk narratives", "generic fairy reskin"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "slavic-domovoi",
+      "name": "Domovoi",
+      "sourceId": "slavic",
+      "entityKind": "class",
+      "functions": ["household-presence", "ancestor-adjacent"],
+      "mechanisms": ["place-memory", "offering-exchange", "household-continuity"],
+      "namingObservation": "Regional Slavic terms and forms vary; this transliteration is not universal.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "Domestic maintenance, inherited place, and family behavior can cohere as a household counterparty.",
+        "copyProhibitions": ["term as Arcanean class", "regional appearances", "specific offerings", "folk tales", "pan-Slavic generalization"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "slavic-leshy",
+      "name": "Leshy",
+      "sourceId": "slavic",
+      "entityKind": "class",
+      "functions": ["forest-keeper", "path-confuser"],
+      "mechanisms": ["ecological-guardian", "shape-change", "rule-bound-encounter"],
+      "namingObservation": "Regional forest-spirit term with variable forms and stories.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "A forest can defend its own scale and paths by disrupting human orientation.",
+        "copyProhibitions": ["term", "specific reversed-clothing motif", "regional rituals", "visual depictions", "folk narratives"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "slavic-rusalka",
+      "name": "Rusalka",
+      "sourceId": "slavic",
+      "entityKind": "class",
+      "functions": ["water-or-field-presence", "restless-dead"],
+      "mechanisms": ["ancestor-continuity", "seasonal-cycle", "place-memory"],
+      "namingObservation": "Regional term whose water, field, seasonal, and dead-person associations vary.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "A seasonal place-presence can carry unresolved death and social danger without one universal origin story.",
+        "copyProhibitions": ["term", "sexualized water-maiden default", "specific death origins", "ritual week", "folk narratives"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "chinese-shen",
+      "name": "Shén",
+      "sourceId": "chinese-traditions",
+      "entityKind": "class",
+      "functions": ["spirit-divinity", "office", "vital-presence"],
+      "mechanisms": ["ritual-relation", "ancestor-continuity", "delegated-office"],
+      "namingObservation": "Chinese term with multiple religious, philosophical, bodily, and everyday meanings.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "Spirit, divinity, vitality, and office may overlap without collapsing into a fantasy species.",
+        "copyProhibitions": ["term", "named deities", "bureaucratic pantheon", "ritual forms", "unsourced pop synthesis"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "chinese-gui",
+      "name": "Guǐ",
+      "sourceId": "chinese-traditions",
+      "entityKind": "class",
+      "functions": ["dead-person-presence", "hungry-or-restless-return"],
+      "mechanisms": ["ancestor-continuity", "offering-exchange", "social-memory"],
+      "namingObservation": "Chinese term with contextual meanings often oversimplified in English as ghost.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "Neglected relationship, ritual, or memory can shape how dead-person continuity is socially encountered.",
+        "copyProhibitions": ["term", "Hungry Ghost rites", "visual stereotypes", "specific cosmology", "generic evil-ghost mapping"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "chinese-yaoguai",
+      "name": "Yāoguài",
+      "sourceId": "chinese-traditions",
+      "entityKind": "class",
+      "functions": ["transformed-being", "category-transgressor"],
+      "mechanisms": ["cultivation-transformation", "shape-change", "social-narrative"],
+      "namingObservation": "Chinese literary and folk category with shifting meanings.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "Long-lived animals, objects, or forces may acquire personhood that institutions then classify as dangerous.",
+        "copyProhibitions": ["term", "cultivation rules", "named beings", "Journey to the West episodes", "Chinese visual language"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "korean-dokkaebi",
+      "name": "Dokkaebi",
+      "sourceId": "korean-traditions",
+      "entityKind": "class",
+      "functions": ["trickster", "object-adjacent-presence"],
+      "mechanisms": ["shape-change", "challenge-game", "social-narrative"],
+      "namingObservation": "Korean term with regional, historical, and media-dependent forms.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "A strange counterparty can test greed, courage, hospitality, or wit through rule-bound play.",
+        "copyProhibitions": ["term", "horned red-blue Japanese-derived imagery", "specific clubs or games", "folk narratives", "K-drama composites"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "korean-gwishin",
+      "name": "Gwishin",
+      "sourceId": "korean-traditions",
+      "entityKind": "class",
+      "functions": ["dead-person-presence", "grievance-bearer"],
+      "mechanisms": ["ancestor-continuity", "historical-grievance", "ritual-relation"],
+      "namingObservation": "Korean ghost category with multiple subtypes and contexts.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "A haunting can preserve a social wrong that living institutions refuse to acknowledge.",
+        "copyProhibitions": ["term", "white-clothed long-haired stereotype", "specific rites", "named stories", "generic horror mapping"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "south-asian-yaksha-yakshi",
+      "name": "Yaksha / Yakshi",
+      "sourceId": "south-asian-nature-deities",
+      "entityKind": "class",
+      "functions": ["nature-deity", "wealth-or-place-guardian"],
+      "mechanisms": ["ecological-guardian", "offering-exchange", "transformed-office"],
+      "namingObservation": "Sanskrit-derived terms used across distinct historical Hindu, Buddhist, Jain, and local contexts.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "A formidable local nature presence can be integrated into changing religious and civic roles without losing its earlier complexity.",
+        "copyProhibitions": ["terms", "named figures", "iconography", "religious conversion narratives", "ritual and theology"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "south-asian-naga",
+      "name": "Nāga / Nāginī",
+      "sourceId": "south-asian-nature-deities",
+      "entityKind": "class",
+      "functions": ["water-guardian", "treasure-or-relic-keeper"],
+      "mechanisms": ["ecological-guardian", "shape-change", "offering-exchange"],
+      "namingObservation": "Terms span multiple South and Southeast Asian religious and cultural contexts.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Water, fertility, treasure, protection, and dangerous sovereignty can coexist in one nonhuman people.",
+        "copyProhibitions": ["terms", "cobra iconography", "named naga", "Buddhist or Hindu narratives", "ritual and theology"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "yoruba-orisa-class",
+      "name": "Òrìṣà",
+      "sourceId": "yoruba-orisa",
+      "entityKind": "class",
+      "functions": ["divine-force", "community-office"],
+      "mechanisms": ["ritual-relation", "offering-exchange", "lineage"],
+      "namingObservation": "Yorùbá living religious term with lineage- and community-specific knowledge.",
+      "verification": "unresolved",
+      "usage": {
+        "transferablePattern": "Blocked from automated transfer; preserved only as a marker that divine force, personhood, community, and lineage require living-context interpretation.",
+        "copyProhibitions": ["all names", "term as fantasy class", "attributes and colors", "rituals and offerings", "stories and diaspora flattening"]
+      },
+      "notForProjection": true
+    },
+    {
+      "id": "andean-apu-class",
+      "name": "Apu",
+      "sourceId": "andean-apu",
+      "entityKind": "office",
+      "functions": ["mountain-person", "community-protector"],
+      "mechanisms": ["living-landscape", "reciprocity", "place-memory"],
+      "namingObservation": "Quechua title used in living Andean contexts; meanings vary by community.",
+      "verification": "authoritative-secondary",
+      "usage": {
+        "transferablePattern": "Blocked from automated transfer; preserves the constraint that a landscape may be a living social counterparty rather than scenery.",
+        "copyProhibitions": ["term", "named mountains", "offerings and festivals", "community practices", "generic mountain-spirit reskin"]
+      },
+      "notForProjection": true
+    }
+  ]
+}

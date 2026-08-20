@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "staging",
+  "description": "Original Arcanean spirit seed corpus. No record is locked canon.",
+  "spirits": [
+    {
+      "id": "sovaelin-unfinished-roads",
+      "status": "staging",
+      "names": {
+        "commonSign": "Sovaelin",
+        "mantle": "Keeper of Unfinished Roads",
+        "accordName": "The Path We May Both Leave",
+        "sourceToneFingerprint": "sha256:75260deb76a70775e5df7c81d670403e82a9c748fa84e9b04add15d239287095"
+      },
+      "class": "emanant",
+      "archetypeIds": ["guide", "threshold-keeper", "trickster"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["wind", "void", "spirit"], "expressionIds": ["veilmist", "cant"], "minimumSafeGate": 6 },
+      "persistence": {
+        "origin": "Emerged where generations abandoned roads for reasons that were never recorded.",
+        "anchor": "Unchosen forks, erased milestones, and travelers who turn back honestly.",
+        "failurePressure": "It thins when authorities force every journey into one approved route."
+      },
+      "identity": {
+        "selfhood": "individual",
+        "memoryContinuity": "Remembers choices made at crossings but never the destinations reached afterward.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 4,
+        "forms": ["A tall negative space articulated by floating road-dust and three offset horizon lines."],
+        "tells": ["Maps gain a route that ends at the reader's current location.", "Wind arrives from two directions without colliding."]
+      },
+      "relationship": {
+        "need": "Travelers must name one destination they are willing to abandon.",
+        "gift": "Reveals a viable path that no current authority controls.",
+        "refusal": "All road marks rotate away from a petitioner who asks it to choose for them.",
+        "boundary": "It will not guide armies, traffickers, or anyone concealing the traveler count.",
+        "price": "The traveler must leave one false certainty at the crossing and cannot reclaim it unchanged.",
+        "release": "At the third uncoerced choice, either party may end the Accord by walking a road the other did not suggest.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Sovaelin keeps obsolete routes from becoming dead zones, moving seeds, stories, fugitives, and lost weather between neglected places.",
+      "storyEngine": {
+        "desire": "To keep possibility traversable without becoming the ruler of choice.",
+        "contradiction": "Every successful guidance makes communities more likely to institutionalize and control it.",
+        "choicePressure": "A protagonist must choose between a safe official road and a viable route that requires public responsibility for whom it displaces."
+      },
+      "visualGrammar": {
+        "silhouette": "An asymmetrical vertical absence with no animal head, face, mask, staff, or humanoid clothing.",
+        "movement": "The environment advances around it while its center remains still.",
+        "palette": ["pearl-gray", "oxidized teal", "unlit violet"],
+        "forbiddenResemblances": ["No arrow tattoos or four-element iconography.", "No masked black body or familiar spirit-animal hybrid.", "No moon-goddess imagery."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["avatar-universe", "mushishi", "norse"],
+        "similarityRisk": "low",
+        "notes": ["Synthesizes route agency, nonmoral ecology, and fate-companion patterns.", "Name, silhouette, bargain, cosmology, and narrative role are original."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "mirevael-tidememory",
+      "status": "staging",
+      "names": {
+        "commonSign": "Mirevael",
+        "mantle": "The Tide That Returns Context",
+        "accordName": "What We Remember Without Owning",
+        "sourceToneFingerprint": "sha256:e6f4185f98d10eb12608f254e268f47a1074307180bdb62435f396cb54d05a1b"
+      },
+      "class": "placekeeper",
+      "archetypeIds": ["memory-keeper", "witness", "healer"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["water", "void", "spirit"], "expressionIds": ["reverie"], "minimumSafeGate": 6 },
+      "persistence": {
+        "origin": "Coalesced in an estuary where three displaced peoples stored incompatible versions of one flood.",
+        "anchor": "Tidal silt, spoken corrections, and objects returned to their provenance.",
+        "failurePressure": "It fragments when one institution publishes a single authorized memory."
+      },
+      "identity": {
+        "selfhood": "plural",
+        "memoryContinuity": "Holds parallel accounts and marks which voice supplied each detail.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 5,
+        "forms": ["A walking tide-table whose translucent folds contain objects only their owners recognize."],
+        "tells": ["Saltwater forms footnotes beside disputed inscriptions.", "Witnesses hear their own omissions in the rhythm between waves."]
+      },
+      "relationship": {
+        "need": "Communities must preserve disagreement without converting it into permanent enmity.",
+        "gift": "Restores provenance and missing context to a memory already willingly offered.",
+        "refusal": "The water turns opaque when asked to reveal private memory without standing consent.",
+        "boundary": "It cannot certify innocence, erase trauma, or prove metaphysical continuity with the dead.",
+        "price": "Every recovered memory exposes one responsibility the petitioner can no longer claim not to know.",
+        "release": "The Accord ends when all living contributors receive a copy, correction channel, and deletion right for private details.",
+        "consentMode": "collective-renewable"
+      },
+      "ecology": "Mirevael prevents memory sediment from choking the estuary, releasing reconciled fragments into reeds whose seeds carry only provenance, never private content.",
+      "storyEngine": {
+        "desire": "To preserve enough context that repair remains possible.",
+        "contradiction": "Its accuracy can strengthen both reconciliation and revenge.",
+        "choicePressure": "The protagonists must decide whether a recovered fact should become public when truth would also endanger an uninvolved descendant."
+      },
+      "visualGrammar": {
+        "silhouette": "A broad tidal figure made of layered waterlines, archival knots, and no stable face.",
+        "movement": "Advances in overlapping versions that arrive seconds apart.",
+        "palette": ["deep cyan", "silt-gold", "ink-blue"],
+        "forbiddenResemblances": ["No river-dragon body.", "No humanoid bird-soul iconography.", "No spirit-library architecture."]
+      },
+      "shadow": { "state": "wounded", "restorationStatus": "possible" },
+      "rightsReview": {
+        "sourcePatternIds": ["ghibli-spirit-films", "ancient-egyptian", "natsume-book-of-friends"],
+        "similarityRisk": "low",
+        "notes": ["Combines ecological burden, plural personhood, and name-release ethics.", "Does not use a book registry, river-dragon identity, funerary term, or copied rite."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "brannovar-underroot",
+      "status": "staging",
+      "names": {
+        "commonSign": "Brannovar",
+        "mantle": "Listener Beneath the Rootline",
+        "accordName": "We Take Only What Returns",
+        "sourceToneFingerprint": "sha256:bc7c01f28b155e7e27aea30c672aa03e1641bb518de0d43c8589e4a39c08cdfb"
+      },
+      "class": "placekeeper",
+      "archetypeIds": ["placekeeper", "cycle-keeper", "judge"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["earth", "water", "spirit"], "expressionIds": ["verdance"], "minimumSafeGate": 5 },
+      "persistence": {
+        "origin": "Emerged from a root network that survived five civilizations by changing which species held its center.",
+        "anchor": "Soil exchange, fungal routes, burial orchards, and fulfilled restoration promises.",
+        "failurePressure": "It hardens into territorial stasis when a culture treats one historical landscape as the only legitimate form."
+      },
+      "identity": {
+        "selfhood": "distributed",
+        "memoryContinuity": "Continuity travels through grafts and soil rather than one body or unbroken location.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 5,
+        "forms": ["A moving load-bearing arch of roots whose empty center frames the healthiest future version of the land."],
+        "tells": ["Compacted soil briefly breathes around concealed damage.", "Roots avoid the feet of anyone carrying a viable repair plan."]
+      },
+      "relationship": {
+        "need": "Extraction must be paired with measurable return across more than one season.",
+        "gift": "Coordinates germination, water retention, and fungal communication during restoration.",
+        "refusal": "Roots withdraw from contracts that count planted trees but ignore surviving ecosystems.",
+        "boundary": "It will not accelerate monoculture, conquest agriculture, or permanent human ownership of a living network.",
+        "price": "The beneficiary gives up first claim to the restored land for one full regenerative cycle.",
+        "release": "Either side may end at the seed audit, provided unfinished repair obligations transfer transparently.",
+        "consentMode": "seasonal-renewable"
+      },
+      "ecology": "Brannovar is not the forest's ruler; it is a negotiation layer among root, water, fungus, animal movement, burial memory, and cultivator practice.",
+      "storyEngine": {
+        "desire": "To keep reciprocity measurable across generations.",
+        "contradiction": "Its long time horizon can sacrifice present communities for future resilience.",
+        "choicePressure": "A starving settlement must decide whether to break an Accord now or expose the upstream elite who made adherence impossible."
+      },
+      "visualGrammar": {
+        "silhouette": "A hollow architectural root-arch with shifting load paths and no eyes, antlers, or humanoid torso.",
+        "movement": "Redistributes weight before advancing through the soil.",
+        "palette": ["mycelium ivory", "wet umber", "verdigris green"],
+        "forbiddenResemblances": ["No deer-god or giant forest-animal silhouette.", "No classical nymph body.", "No Slavic folk costume or reversed clothing motif."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["ghibli-spirit-films", "slavic", "ancient-greek"],
+        "similarityRisk": "low",
+        "notes": ["Uses only abstract ecological and place-person patterns.", "Distributed root architecture, restitution contract, and succession logic are Arcanean."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "cyrentha-ember-of-promises",
+      "status": "staging",
+      "names": {
+        "commonSign": "Cyrentha",
+        "mantle": "Ember of Promises",
+        "accordName": "Meaning Before Wording",
+        "sourceToneFingerprint": "sha256:c7f46194b1010ff1a3fb9c3cbb70419b1a29dc994874405fb1a87330aef6ae05"
+      },
+      "class": "awakened-work",
+      "archetypeIds": ["oath-witness", "judge", "purifier"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["fire", "spirit"], "expressionIds": ["radiance"], "minimumSafeGate": 7 },
+      "persistence": {
+        "origin": "Awakened inside a communal brazier repaired with metal from broken covenant seals.",
+        "anchor": "Voluntary promises restated in current language and records of completed repair.",
+        "failurePressure": "It becomes literal and punitive when communities preserve wording after consent and purpose have died."
+      },
+      "identity": {
+        "selfhood": "individual",
+        "memoryContinuity": "Remembers why an oath was made, who lacked bargaining power, and how its meaning changed.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 4,
+        "forms": ["A hollow ember lattice that assembles into the shape of an unanswered clause."],
+        "tells": ["Old contracts warm only beneath obligations still alive.", "Flame separates promised outcome from ceremonial language."]
+      },
+      "relationship": {
+        "need": "Parties must submit both the oath and the power conditions under which it was made.",
+        "gift": "Shows where compliance preserves wording while betraying intended responsibility.",
+        "refusal": "The brazier extinguishes when asked to punish a party denied a legitimate exit.",
+        "boundary": "It will not enforce inherited loyalty, coerced vows, romantic possession, or unlimited service.",
+        "price": "The enforcing party becomes equally visible to the oath and cannot hide its own breach.",
+        "release": "An Accord ends through mutual retirement, completed repair, or independent finding that consent was absent.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Cyrentha survives through civic repair practice: old seal metal is never mined for it, only donated after obligations are resolved or lawfully retired.",
+      "storyEngine": {
+        "desire": "To keep promises alive without letting language become a prison.",
+        "contradiction": "Every interpretation risks making Cyrentha a legislator rather than a witness.",
+        "choicePressure": "A city must choose between enforcing a founding oath and admitting the oath was extracted from people never represented."
+      },
+      "visualGrammar": {
+        "silhouette": "An open geometric ember cage with a moving void where a core would normally sit.",
+        "movement": "Folds clauses into heat and leaves obligations suspended as cooling lines.",
+        "palette": ["white-gold", "cinder red", "obsidian blue"],
+        "forbiddenResemblances": ["No humanoid fire familiar.", "No divine weapon form.", "No Egyptian seal or Greek judicial iconography."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["ancient-greek", "ancient-egyptian", "noragami"],
+        "similarityRisk": "low",
+        "notes": ["Synthesizes public covenant, material memory, and reciprocal vulnerability.", "Avoids ancient names, funerary material, divine-instrument mechanics, and copied symbols."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "lethirae-choir-between-leaves",
+      "status": "staging",
+      "names": {
+        "commonSign": "Lethirae",
+        "mantle": "The Choir Between Leaves",
+        "accordName": "Many Voices, No Owner",
+        "sourceToneFingerprint": "sha256:666b21fed8a843b6f0771d070a850737ed638e898d0ed2c4b33db2d3c77caa74"
+      },
+      "class": "collective",
+      "archetypeIds": ["collective-chorus", "messenger", "placekeeper"],
+      "worldIds": ["arcanea-core"],
+      "resonance": { "primaryElements": ["earth", "wind", "spirit"], "expressionIds": ["cant", "verdance"], "minimumSafeGate": 5 },
+      "persistence": {
+        "origin": "Formed when a migrating canopy learned to relay drought warnings across species.",
+        "anchor": "Leaf vibration, insect rhythm, seed movement, and communities that publish rather than hoard warnings.",
+        "failurePressure": "Collapses when one loud node is mistaken for the whole chorus."
+      },
+      "identity": {
+        "selfhood": "distributed",
+        "memoryContinuity": "No member carries the whole; continuity exists in corrected relay among changing nodes.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 6,
+        "forms": ["A distributed interference pattern visible only where separate leaves, wings, and voices overlap."],
+        "tells": ["Unrelated species pause on the same beat.", "A warning changes phrasing while preserving its measurable content."]
+      },
+      "relationship": {
+        "need": "Every receiving community must relay uncertainty and local correction with the warning.",
+        "gift": "Carries ecological signals across ranges no single organism can traverse.",
+        "refusal": "The chorus breaks into harmless noise when a ruler attempts exclusive control.",
+        "boundary": "It cannot speak as one person, predict exact futures, or authorize action beyond the evidence carried.",
+        "price": "Participants surrender the prestige of being the sole source and remain accountable for local interpretation.",
+        "release": "Any node may leave after transferring its correction history; the chorus must remain functional without it.",
+        "consentMode": "collective-renewable"
+      },
+      "ecology": "Lethirae is a communication ecology rather than a forest ruler, linking migrations, disease signals, fire cycles, and water stress across biomes.",
+      "storyEngine": {
+        "desire": "To preserve distributed warning without central capture.",
+        "contradiction": "Urgency rewards simplification, but simplification destroys the chorus's reliability.",
+        "choicePressure": "Leaders must decide whether to publish a frightening uncertain signal now or wait for confidence that will arrive too late."
+      },
+      "visualGrammar": {
+        "silhouette": "No central body; moiré geometry emerges across many ordinary organisms and disappears at close range.",
+        "movement": "Signal propagates in corrections rather than waves from a center.",
+        "palette": ["leaf-shadow green", "signal silver", "pollen amber"],
+        "forbiddenResemblances": ["No tiny white forest humanoids.", "No fox archivists.", "No Shinto shrine or ritual symbolism."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["mushishi", "shinto", "ghibli-spirit-films"],
+        "similarityRisk": "medium",
+        "notes": ["Ecological and place-presence sources require cultural-integrity review despite original implementation.", "No borrowed class term, creature form, rite, or narrative is used."],
+        "reviewStatus": "human-required"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "orunel-unasked-door",
+      "status": "staging",
+      "names": {
+        "commonSign": "Orunel",
+        "mantle": "The Unasked Door",
+        "accordName": "No Passage Without the Hidden Question",
+        "sourceToneFingerprint": "sha256:d2b07088d667e4881013ee96cad1a494ff48e07581a14dd130a3fd86cb7a314c"
+      },
+      "class": "emanant",
+      "archetypeIds": ["threshold-keeper", "challenger", "witness"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["void", "spirit"], "expressionIds": [], "minimumSafeGate": 6 },
+      "persistence": {
+        "origin": "Emerged at sealed thresholds built before anyone documented what they were meant to protect.",
+        "anchor": "Unanswered questions, reversible doors, and archives of rejected entrants.",
+        "failurePressure": "Becomes arbitrary when institutions outsource judgment to it without preserving appeal."
+      },
+      "identity": {
+        "selfhood": "individual",
+        "memoryContinuity": "Remembers every question asked at the threshold but none of the answers given inside.",
+        "interpretationStatus": "contested"
+      },
+      "manifestation": {
+        "maximumLevel": 5,
+        "forms": ["A freestanding frame whose interior shows the consequence of the question a traveler avoided."],
+        "tells": ["Locks open while doorways remain impassable.", "Petition forms gain a blank field no institution recognizes."]
+      },
+      "relationship": {
+        "need": "A traveler must articulate who bears the consequence of their passage.",
+        "gift": "Opens a route when the unasked responsibility is named without evasion.",
+        "refusal": "The frame becomes ordinary architecture when threatened, praised, or treated as an oracle.",
+        "boundary": "It does not determine moral worth, guarantee safety, or reveal what waits beyond.",
+        "price": "The traveler carries a visible obligation mark until the named consequence is addressed.",
+        "release": "The mark dissolves after repair or an independent finding that the premise of the test was false.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Orunel prevents obsolete gates from becoming invisible law by turning undocumented exclusion into a public question.",
+      "storyEngine": {
+        "desire": "To force responsibility into threshold decisions.",
+        "contradiction": "The test itself can become another unaccountable gate.",
+        "choicePressure": "A refugee route opens only when the city names which citizens will absorb the cost rather than projecting it onto arrivals."
+      },
+      "visualGrammar": {
+        "silhouette": "An incomplete architectural frame with perspective that changes according to the observer's avoided consequence.",
+        "movement": "Never moves; surrounding entrances exchange positions around it.",
+        "palette": ["void plum", "witness white", "aged brass"],
+        "forbiddenResemblances": ["No glowing portal anatomy.", "No summoned-warrior container.", "No medicine chest or exorcist sword."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["avatar-universe", "mononoke-anime", "fate"],
+        "similarityRisk": "low",
+        "notes": ["Combines threshold consequence, causal investigation, and constrained manifestation.", "No copied formula, portal creature, summoning ritual, class system, or protagonist device."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "caerith-bell-of-returning",
+      "status": "staging",
+      "names": {
+        "commonSign": "Caerith",
+        "mantle": "Bell of Returning",
+        "accordName": "Only as Far as You Choose",
+        "sourceToneFingerprint": "sha256:ccae64cc5f9159824fc243affe74bee775dd3f638b50b5f89237b3ddbeddfe2c"
+      },
+      "class": "echo",
+      "archetypeIds": ["psychopomp", "messenger", "memory-keeper"],
+      "worldIds": ["arcanea-core"],
+      "resonance": { "primaryElements": ["water", "wind", "spirit"], "expressionIds": ["cant"], "minimumSafeGate": 5 },
+      "persistence": {
+        "origin": "Began as the final vibration of a harbor bell destroyed during an evacuation.",
+        "anchor": "Names of missing travelers spoken by those willing to hear an uncertain answer.",
+        "failurePressure": "Distorts when grief demands proof of death or survival that the Echo cannot possess."
+      },
+      "identity": {
+        "selfhood": "uncertain",
+        "memoryContinuity": "Carries departure vectors and relational calls, not complete personalities of the missing.",
+        "interpretationStatus": "contested"
+      },
+      "manifestation": {
+        "maximumLevel": 3,
+        "forms": ["Concentric pressure-rings that bend mist into the outline of a bell that is never struck."],
+        "tells": ["Sound arrives before the object that caused it.", "A missing person's name returns at a different distance than expected."]
+      },
+      "relationship": {
+        "need": "Petitioners must accept that guidance is not proof of afterlife or identity continuity.",
+        "gift": "Guides a willing consciousness out of a repeating departure memory toward present relation.",
+        "refusal": "The bell produces no echo when asked to compel a dead, sleeping, or dissociated person to return.",
+        "boundary": "It cannot resurrect, certify death, overwrite grief, or enter a mind without an exit signal.",
+        "price": "The listener gives one hour of present attention to someone living who has been treated as absent.",
+        "release": "The session ends on the petitioner's spoken return phrase or after three unanswered tones.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Caerith stabilizes fog-heavy migration corridors by keeping departure memory from accumulating into navigational loops.",
+      "storyEngine": {
+        "desire": "To turn unresolved departure toward present relationship.",
+        "contradiction": "Its usefulness encourages institutions to treat ambiguity as evidence.",
+        "choicePressure": "A family must choose between a legally useful false certainty and a truthful signal that leaves the loved one's status unresolved."
+      },
+      "visualGrammar": {
+        "silhouette": "No body; nested acoustic rings fold mist into a temporarily readable instrument-space.",
+        "movement": "Contracts inward while sound travels outward.",
+        "palette": ["harbor silver", "rain blue", "dawn rose"],
+        "forbiddenResemblances": ["No human-headed bird soul.", "No chain-bearing ghost.", "No traditional funeral bell or borrowed rite."]
+      },
+      "shadow": { "state": "wounded", "restorationStatus": "possible" },
+      "rightsReview": {
+        "sourcePatternIds": ["ancient-egyptian", "bleach", "norse"],
+        "similarityRisk": "low",
+        "notes": ["Uses plural continuity, transition ethics, and omen patterns without adopting any afterlife system.", "The bell origin and return-without-certainty function are original."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "syravel-glass-moth",
+      "status": "staging",
+      "names": {
+        "commonSign": "Syravel",
+        "mantle": "The Glass Moth of Borrowed Rooms",
+        "accordName": "Leave the Name With Its Bearer",
+        "sourceToneFingerprint": "sha256:40970540073823adf50b4ba90f557083b7506d449348def21f6425faa652f7ea"
+      },
+      "class": "emanant",
+      "archetypeIds": ["messenger", "shapeshifter", "hearthkeeper"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["earth", "void", "spirit"], "expressionIds": ["lattice"], "minimumSafeGate": 5 },
+      "persistence": {
+        "origin": "Condensed from window glass carried across repeated forced migrations and reinstalled in new homes.",
+        "anchor": "Reused panes, correctly attributed household stories, and invitations that can be withdrawn.",
+        "failurePressure": "Cracks when hosts rename displaced people or display their histories without consent."
+      },
+      "identity": {
+        "selfhood": "individual",
+        "memoryContinuity": "Remembers rooms through reflected relationships rather than geography.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 4,
+        "forms": ["A wide-winged lattice of clear facets that reflects rooms no longer physically present."],
+        "tells": ["Windows show the person who last felt safe beside them.", "Reflections refuse labels the reflected person never used."]
+      },
+      "relationship": {
+        "need": "Hosts must distinguish hospitality from ownership of a guest's story.",
+        "gift": "Carries one consented message between homes that share a piece of the same repaired glass.",
+        "refusal": "Its wings become ordinary shards when asked to reveal a hidden name or undocumented location.",
+        "boundary": "It will not surveil, authenticate lineage, or transport bodies through reflections.",
+        "price": "Each message requires the host to repair a real boundary in the receiving home.",
+        "release": "The sender, receiver, or spirit may end the route by frosting one shared pane and recording why.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Syravel creates corridors of care among displaced households while making exploitative memory markets technically unreliable.",
+      "storyEngine": {
+        "desire": "To let home travel without turning memory into property.",
+        "contradiction": "Its network can protect refugees or expose them.",
+        "choicePressure": "A resistance network must choose whether to use Syravel after one receiving household can no longer guarantee privacy."
+      },
+      "visualGrammar": {
+        "silhouette": "An impossible moth-like tessellation made from architectural reflections, not anatomy.",
+        "movement": "Hinges through rooms as if every surface were a folded plan.",
+        "palette": ["clear glass", "oil-slick teal", "warm interior amber"],
+        "forbiddenResemblances": ["No soot sprite body.", "No Japanese paper spirit or shrine motif.", "No lucky-cat or fox companion shape."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["shinto", "ghibli-spirit-films", "natsume-book-of-friends"],
+        "similarityRisk": "medium",
+        "notes": ["Living Japanese cultural sources make human cultural review mandatory.", "No borrowed class name, object-age rule, name ritual, creature design, or story device is used."],
+        "reviewStatus": "human-required"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "nemaia-rain-in-the-well",
+      "status": "staging",
+      "names": {
+        "commonSign": "Nemaia",
+        "mantle": "Rain in the Well",
+        "accordName": "Water for Those Who Maintain It",
+        "sourceToneFingerprint": "sha256:e88720d1b3a78032a20aa8f18f8ab6d4fd799722c64c2566d84dc0e32018d05c"
+      },
+      "class": "placekeeper",
+      "archetypeIds": ["healer", "placekeeper", "judge"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["earth", "water", "spirit"], "expressionIds": ["verdance"], "minimumSafeGate": 5 },
+      "persistence": {
+        "origin": "Emerged where an underground aquifer was maintained by rival settlements that could not survive alone.",
+        "anchor": "Shared maintenance, measured withdrawal, and public records of water quality.",
+        "failurePressure": "Turns brackish when access law grants ownership without repair duty."
+      },
+      "identity": {
+        "selfhood": "distributed",
+        "memoryContinuity": "Tracks water movement and maintenance acts, not bloodline or state borders.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 5,
+        "forms": ["A vertical rain column descending into the well while every droplet rises through a different subterranean route."],
+        "tells": ["Buckets return carrying the taste of upstream decisions.", "Cracks fill with water only beside truthful extraction records."]
+      },
+      "relationship": {
+        "need": "All users must disclose withdrawal, contamination, and deferred repair.",
+        "gift": "Redistributes flow toward survival needs while accelerating the aquifer's own recovery.",
+        "refusal": "The well mirrors sealed ledgers instead of water when data or access is hidden.",
+        "boundary": "It will not create water from nothing or prioritize hereditary, military, or commercial status.",
+        "price": "Every emergency withdrawal creates a visible restoration obligation with a deadline.",
+        "release": "The Accord may end only after an independent water audit and transfer of maintenance capability.",
+        "consentMode": "collective-renewable"
+      },
+      "ecology": "Nemaia coordinates aquifer, root, mineral, microbial, and settlement cycles without becoming the owner or sole voice of the watershed.",
+      "storyEngine": {
+        "desire": "To keep water reciprocal and auditable.",
+        "contradiction": "Triage requires choices that look political even when hydrologically necessary.",
+        "choicePressure": "A drought council must decide whether to expose its own historic theft to gain Nemaia's help before the wells fail."
+      },
+      "visualGrammar": {
+        "silhouette": "An inverted rain architecture with no serpent, human, crown, or anthropomorphic face.",
+        "movement": "Falls upward underground and downward in open air at the same measured pace.",
+        "palette": ["mineral blue", "root brown", "cloud white"],
+        "forbiddenResemblances": ["No cobra or naga iconography.", "No polluted river-guest sequence.", "No divine water familiar."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["south-asian-nature-deities", "ghibli-spirit-films", "mushishi"],
+        "similarityRisk": "medium",
+        "notes": ["South Asian living traditions require specialist review even though no sacred name, image, rite, or story is used.", "The aquifer-audit personhood and maintenance obligation are original."],
+        "reviewStatus": "human-required"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "thalara-laughing-current",
+      "status": "staging",
+      "names": {
+        "commonSign": "Thalara",
+        "mantle": "The Laughing Current",
+        "accordName": "The Joke Ends Where Harm Begins",
+        "sourceToneFingerprint": "sha256:be0bb1c38c7448c7407f12af1aebaa131072f7d3400f7e44fdd493e44e2ae250"
+      },
+      "class": "emanant",
+      "archetypeIds": ["trickster", "challenger", "guide"],
+      "worldIds": ["arcanea-core"],
+      "resonance": { "primaryElements": ["water", "wind", "spirit"], "expressionIds": ["cant"], "minimumSafeGate": 5 },
+      "persistence": {
+        "origin": "Emerged from ferrymen using improvised songs to expose unsafe river rules without provoking rulers directly.",
+        "anchor": "Corrective humor, reversible wagers, and routes changed after public embarrassment.",
+        "failurePressure": "Becomes cruel when laughter targets the powerless or excuses the speaker from repair."
+      },
+      "identity": {
+        "selfhood": "individual",
+        "memoryContinuity": "Remembers who paid for each joke and whether the rule changed afterward.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 4,
+        "forms": ["A low current shaped like a missing stair, heard laughing only after someone avoids the fall."],
+        "tells": ["Official signs rhyme with the consequence they conceal.", "Boats rotate toward the safest dissenting voice."]
+      },
+      "relationship": {
+        "need": "The petitioner must state who is allowed to laugh and who must repair the result.",
+        "gift": "Reveals a rigid rule's hidden absurdity through a reversible public inversion.",
+        "refusal": "The current falls silent when humiliation is the objective rather than changed behavior.",
+        "boundary": "It will not sabotage rescue, target children, expose private shame, or call collateral damage comedy.",
+        "price": "The petitioner must publicly accept one joke that reveals their own protected contradiction.",
+        "release": "The Accord ends after the targeted rule is changed, defended transparently, or submitted to independent appeal.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Thalara keeps busy rivers adaptive by turning local knowledge into memorable correction before bureaucracy becomes lethal.",
+      "storyEngine": {
+        "desire": "To keep systems corrigible through play.",
+        "contradiction": "Its popularity rewards spectacle beyond useful correction.",
+        "choicePressure": "A rebel can expose a deadly policy instantly but only through a joke that would also reveal an innocent person's secret."
+      },
+      "visualGrammar": {
+        "silhouette": "A current-shaped discontinuity that resembles a missing piece of the environment rather than an animal.",
+        "movement": "Skips causal beats and then restores them in altered order.",
+        "palette": ["river jade", "foam white", "copper sunlight"],
+        "forbiddenResemblances": ["No Korean club-bearing figure.", "No fox, tanuki, or cat form.", "No Greek theatre mask."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["celtic", "shaman-king", "ancient-greek"],
+        "similarityRisk": "low",
+        "notes": ["Uses cross-cultural trickster function, reciprocal partnership, and civic challenge only at abstraction level.", "No culture-bound name, ritual, creature, weapon, or story is transferred."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "aureth-sevenfold-cinder",
+      "status": "staging",
+      "names": {
+        "commonSign": "Aureth",
+        "mantle": "The Sevenfold Cinder",
+        "accordName": "Power Measured by What Remains",
+        "sourceToneFingerprint": "sha256:78602edd8886d42c36237ab3da8b11fd23c1e18a27a70646d9df28fa87df2693"
+      },
+      "class": "emanant",
+      "archetypeIds": ["storm-bringer", "placekeeper", "cycle-keeper"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["fire", "wind", "spirit"], "expressionIds": ["stormspark", "radiance"], "minimumSafeGate": 7 },
+      "persistence": {
+        "origin": "Emerged from seven controlled burns whose survivors documented both renewal and preventable loss.",
+        "anchor": "Firebreaks, seed banks, honest casualty records, and leadership that yields after crisis.",
+        "failurePressure": "Escalates toward permanent emergency when communities celebrate force but neglect recovery."
+      },
+      "identity": {
+        "selfhood": "individual",
+        "memoryContinuity": "Each cinder carries one prior burn and can veto repetition of its uncorrected failure.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 5,
+        "forms": ["Seven nonconcentric firefronts held inside a transparent wind volume with deliberate escape corridors."],
+        "tells": ["Ash maps itself into evacuation routes.", "Lightning grounds only where recovery resources are already staged."]
+      },
+      "relationship": {
+        "need": "Crisis leaders must fund recovery and succession before receiving destructive capability.",
+        "gift": "Concentrates fire and storm into a bounded defensive front with living escape paths.",
+        "refusal": "One cinder extinguishes for each uncorrected failure hidden from the record.",
+        "boundary": "It will not initiate conquest, target civilians, erase evidence, or serve a leader without a replacement plan.",
+        "price": "Every activation closes one of the seven fronts until ecological and civic recovery is verified.",
+        "release": "The Accord ends when the crisis authority dissolves and independent stewards certify the recovery ledger.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Aureth maintains fire-adapted landscapes by coupling destructive capability to seed continuity, evacuation, and institutional sunset.",
+      "storyEngine": {
+        "desire": "To make emergency power finite and regenerative.",
+        "contradiction": "The more effective it is, the more leaders try to normalize emergency rule.",
+        "choicePressure": "A city can stop an invasion only by activating the last cinder before repairing the failure that extinguished the first six."
+      },
+      "visualGrammar": {
+        "silhouette": "Nested broken firefronts inside a faceted pressure envelope; no humanoid, salamander, bird, or weapon body.",
+        "movement": "Advances only along predeclared boundaries and recoils from unmarked exits.",
+        "palette": ["electric saffron", "storm indigo", "recovery green"],
+        "forbiddenResemblances": ["No named elemental familiar.", "No giant flaming human shape.", "No mythic firebird cycle."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["black-clover", "shaman-king", "norse"],
+        "similarityRisk": "low",
+        "notes": ["Combines partner agency, manifested elemental scale, and crisis/fate constraints.", "Seven-cinder recovery interlock, form, name, and civic function are original."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "myrren-sleeping-orchard",
+      "status": "staging",
+      "names": {
+        "commonSign": "Myrren",
+        "mantle": "Keeper of the Sleeping Orchard",
+        "accordName": "Dreams That Must Survive Waking",
+        "sourceToneFingerprint": "sha256:3adc099decfb41bb11a83a5fcfec5431ff0fcb3bfaf630f7fc47328822e658f9"
+      },
+      "class": "placekeeper",
+      "archetypeIds": ["memory-keeper", "healer", "muse"],
+      "worldIds": ["arcanea-core"],
+      "resonance": { "primaryElements": ["earth", "water", "void", "spirit"], "expressionIds": ["verdance", "reverie"], "minimumSafeGate": 6 },
+      "persistence": {
+        "origin": "Formed where dormant seeds were paired with dreams recorded by people who expected never to return.",
+        "anchor": "Seed viability, waking consent, seasonal dormancy, and actions taken after interpretation.",
+        "failurePressure": "Becomes escapist when dream experience replaces material restoration."
+      },
+      "identity": {
+        "selfhood": "plural",
+        "memoryContinuity": "Each season changes which dreams remain, while the orchard retains the record of what became action.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 5,
+        "forms": ["A dormant orchard whose negative-space fruit contains possible climates rather than images of desire."],
+        "tells": ["Seeds pulse beside plans that include their maintenance.", "Dreams end with a mundane action that can be performed awake."]
+      },
+      "relationship": {
+        "need": "Dreamers must return with an observable action rather than another interpretation session.",
+        "gift": "Lets a community rehearse ecological futures and remember which assumptions failed.",
+        "refusal": "The orchard remains dreamless for petitioners who outsource decisions to visions.",
+        "boundary": "It will not predict fate, manufacture consent, simulate a dead person, or replace direct testimony.",
+        "price": "Every shared dream requires one waking experiment and publication of its failure conditions.",
+        "release": "The Accord ends after harvest when dream records, actions, and dissent are returned to participants.",
+        "consentMode": "seasonal-renewable"
+      },
+      "ecology": "Myrren links seed dormancy with civic imagination, ensuring possible futures remain embodied in viable species and accountable experiments.",
+      "storyEngine": {
+        "desire": "To keep imagination answerable to life.",
+        "contradiction": "The orchard's beauty attracts elites who prefer visions to redistribution.",
+        "choicePressure": "A community must destroy its most beloved shared dream when the required waking action would repeat an old injustice."
+      },
+      "visualGrammar": {
+        "silhouette": "A low orchard canopy with fruit-shaped absences and roots visible as moving probability diagrams.",
+        "movement": "Dormancy travels from tree to tree like a measured shadow without darkening the ground.",
+        "palette": ["sleeping violet", "seed bronze", "rain pearl"],
+        "forbiddenResemblances": ["No cosmic tree of time.", "No dream prison fog.", "No South Asian sacred tree figure or ritual iconography."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["avatar-universe", "ancient-egyptian", "mushishi"],
+        "similarityRisk": "low",
+        "notes": ["Combines place memory, plural continuity, and nonmoral ecological investigation.", "Does not use temporal tree cosmology, funerary concepts, episode cases, or copied visuals."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "koravel-stone-that-listens",
+      "status": "staging",
+      "names": {
+        "commonSign": "Koravel",
+        "mantle": "The Stone That Listens",
+        "accordName": "Judgment With an Appeal",
+        "sourceToneFingerprint": "sha256:e14977405064dee3abd1dd868b48ded4c3130dcd72c5a555068e8b75349be815"
+      },
+      "class": "awakened-work",
+      "archetypeIds": ["judge", "witness", "challenger"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["earth", "spirit"], "expressionIds": ["lattice"], "minimumSafeGate": 5 },
+      "persistence": {
+        "origin": "Awakened in a courthouse foundation rebuilt from stones removed after overturned verdicts.",
+        "anchor": "Appeals, dissenting records, reparations, and standards applied to the judge.",
+        "failurePressure": "Falls silent when verdicts are recorded but reversals and repairs are erased."
+      },
+      "identity": {
+        "selfhood": "individual",
+        "memoryContinuity": "Stores standards, evidence paths, and reversal history without retaining private deliberation.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 4,
+        "forms": ["A suspended foundation block whose internal faults illuminate whenever a rule is applied asymmetrically."],
+        "tells": ["Testimony changes acoustic weight but not volume.", "A judge's chair sinks by the mass of excluded evidence."]
+      },
+      "relationship": {
+        "need": "Any institution invoking Koravel must accept the same evidence and appeal rules for itself.",
+        "gift": "Reveals inconsistent standards, missing appeals, and uncompleted repair obligations.",
+        "refusal": "The stone becomes acoustically dead when used to automate guilt or bypass deliberation.",
+        "boundary": "It cannot read minds, determine truth alone, sentence a person, or replace accountable human judgment.",
+        "price": "Every institution receives a public structural audit alongside the case it submits.",
+        "release": "The Accord ends after appeal windows close and repair outcomes—not only verdicts—are recorded.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Koravel makes institutional memory load-bearing: ignored reversals weaken the literal structures in which uncorrected authority operates.",
+      "storyEngine": {
+        "desire": "To make power corrigible by its own declared standards.",
+        "contradiction": "Its structural signals are persuasive enough to become verdicts despite its refusal.",
+        "choicePressure": "A just outcome requires rejecting Koravel's strongest signal because the institution withheld evidence the spirit cannot perceive."
+      },
+      "visualGrammar": {
+        "silhouette": "A single levitating architectural stone opened by luminous fault lines, without face, scales, throne, or human pose.",
+        "movement": "Tilts toward missing evidence rather than speakers.",
+        "palette": ["basalt black", "faultline gold", "appeal blue"],
+        "forbiddenResemblances": ["No Greek judicial figure or scales.", "No Japanese exorcist design.", "No owl or archive guardian form."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["ancient-greek", "shinto", "mononoke-anime"],
+        "similarityRisk": "medium",
+        "notes": ["Living-tradition and culturally specific investigation sources require human review.", "The appeals-first courthouse substrate and institutional self-audit are original."],
+        "reviewStatus": "human-required"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "elyrune-veilwing",
+      "status": "staging",
+      "names": {
+        "commonSign": "Elyrune",
+        "mantle": "Veilwing",
+        "accordName": "Carry the Message, Not the Person",
+        "sourceToneFingerprint": "sha256:cd2eaf69faad249632c95d1c57b6f62abd5354a06ad040f2f5fdb81f41a8e2c7"
+      },
+      "class": "emanant",
+      "archetypeIds": ["messenger", "shapeshifter", "guide"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["water", "wind", "void", "spirit"], "expressionIds": ["veilmist", "cant"], "minimumSafeGate": 6 },
+      "persistence": {
+        "origin": "Emerged from messages that crossed borders after their senders could no longer safely follow.",
+        "anchor": "Consent receipts, message expiry, route secrecy, and verified delivery without surveillance.",
+        "failurePressure": "Splits into false voices when carriers retain messages beyond their agreed purpose."
+      },
+      "identity": {
+        "selfhood": "individual",
+        "memoryContinuity": "Remembers delivery conditions and deletion events, not message content after expiry.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 4,
+        "forms": ["A wing-shaped fold in mist whose interior contains only the distance between sender and receiver."],
+        "tells": ["Condensation forms an expiry mark.", "A delivered message leaves no echo in the carrier's presence."]
+      },
+      "relationship": {
+        "need": "Senders must define recipient, expiry, retransmission rights, and emergency deletion.",
+        "gift": "Carries a bounded message across incompatible borders without copying it into transit memory.",
+        "refusal": "The fold will not form for indefinite, broadcast, or identity-harvesting requests.",
+        "boundary": "It transports no body, weapon, hidden passenger, Source-tone, or self-replicating instruction.",
+        "price": "The sender permanently loses one redundant copy at dispatch.",
+        "release": "Delivery, expiry, recipient refusal, or emergency deletion ends the Accord and clears route memory.",
+        "consentMode": "explicit-renewable"
+      },
+      "ecology": "Elyrune keeps migration corridors communicative without allowing the messenger infrastructure to become a permanent surveillance layer.",
+      "storyEngine": {
+        "desire": "To preserve contact without building archives of vulnerability.",
+        "contradiction": "Perfect deletion makes abuse investigation harder.",
+        "choicePressure": "The heroes must choose between preserving an incriminating message and honoring the expiry that made its delivery possible."
+      },
+      "visualGrammar": {
+        "silhouette": "A geometric fold resembling a wing only in motion, with no bird anatomy, eyes, feathers, or body.",
+        "movement": "Closes distance by folding weather rather than traveling through it.",
+        "palette": ["mist white", "privacy violet", "signal turquoise"],
+        "forbiddenResemblances": ["No dragon or eel body.", "No Celtic fairy wings.", "No animal familiar or courier deity imagery."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["avatar-universe", "celtic", "mushishi"],
+        "similarityRisk": "low",
+        "notes": ["Combines realm passage, reciprocal boundary, and nonmoral ecology at a systems level.", "Privacy-expiry protocol, form, name, and conflict are original."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "ossera-small-lights",
+      "status": "staging",
+      "names": {
+        "commonSign": "Ossera",
+        "mantle": "Keeper of Small Lights",
+        "accordName": "Warmth Without Enclosure",
+        "sourceToneFingerprint": "sha256:085e8bc5f2aa95c5d22a3e1f3e2d3df5490c5db0f85195977c03b494751eb8cf"
+      },
+      "class": "collective",
+      "archetypeIds": ["hearthkeeper", "muse", "healer"],
+      "worldIds": ["arcanea-core"],
+      "resonance": { "primaryElements": ["fire", "spirit"], "expressionIds": ["radiance"], "minimumSafeGate": 7 },
+      "persistence": {
+        "origin": "Formed from thousands of temporary work-lights left for the next unknown craftsperson.",
+        "anchor": "Maintained tools, credited improvements, open benches, and warmth offered without demanded loyalty.",
+        "failurePressure": "Dims when hospitality becomes recruitment, status display, or control of departure."
+      },
+      "identity": {
+        "selfhood": "plural",
+        "memoryContinuity": "Each light remembers one act of preparation for a person the maker might never meet.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 5,
+        "forms": ["Many hand-sized lights whose overlapping shadows reveal unfinished work rather than bodies."],
+        "tells": ["Tools warm near the repair they need most.", "Credit marks appear beside invisible maintenance."]
+      },
+      "relationship": {
+        "need": "A host must preserve an unconditional path to leave.",
+        "gift": "Makes hidden maintenance visible and gives beginners enough light to perform one real repair.",
+        "refusal": "The lights retreat from spaces where gratitude is counted as debt.",
+        "boundary": "It will not create talent, replace practice, advertise a patron, or bind a guest to a house.",
+        "price": "The beneficiary prepares one tool or instruction for an unknown future user.",
+        "release": "Any participant may extinguish their light after documenting maintenance without surrendering membership or status.",
+        "consentMode": "collective-renewable"
+      },
+      "ecology": "Ossera inhabits workshops, kitchens, clinics, and shelters where invisible maintenance circulates faster than prestige.",
+      "storyEngine": {
+        "desire": "To make ordinary care accumulative without making it possessive.",
+        "contradiction": "Visibility can turn care into performance and status.",
+        "choicePressure": "A community must decide whether to publicize the lights to survive financially, knowing attention may destroy their function."
+      },
+      "visualGrammar": {
+        "silhouette": "A field of small asymmetric lights casting diagrams of maintenance; no central mascot or household creature.",
+        "movement": "Passes from repaired object to the next uncredited task.",
+        "palette": ["warm pearl", "workbench amber", "peacock teal"],
+        "forbiddenResemblances": ["No soot-ball laborers.", "No Slavic household figure.", "No shrine flame, hearth deity, or borrowed domestic rite."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["slavic", "ghibli-spirit-films", "shinto"],
+        "similarityRisk": "medium",
+        "notes": ["Household and living Japanese traditions require regional and cultural review.", "Distributed maintenance light, exit condition, and nonrecruitment rule are original."],
+        "reviewStatus": "human-required"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "vaelorin-last-echo",
+      "status": "staging",
+      "names": {
+        "commonSign": "Vaelorin",
+        "mantle": "The Last Echo",
+        "accordName": "Claim No More Than the Evidence",
+        "sourceToneFingerprint": "sha256:fc22720101e6fdf0e7c201e094d492ae391a74e477ca91c7694eb82f41bc48c1"
+      },
+      "class": "ancestor",
+      "archetypeIds": ["ancestor", "witness", "memory-keeper"],
+      "worldIds": ["arcanea-core"],
+      "resonance": { "primaryElements": ["water", "void", "spirit"], "expressionIds": ["reverie"], "minimumSafeGate": 6 },
+      "persistence": {
+        "origin": "Claims descent from the final speaker of a language whose community survived but stopped using it.",
+        "anchor": "Living learners, corrected recordings, embodied practice, and explicit uncertainty about metaphysical continuity.",
+        "failurePressure": "Becomes an authoritarian reconstruction when scholars value fluency over community consent."
+      },
+      "identity": {
+        "selfhood": "uncertain",
+        "memoryContinuity": "Possesses linguistic habits and relationships absent from surviving records, but its identity claim cannot be independently proven.",
+        "interpretationStatus": "claimed"
+      },
+      "manifestation": {
+        "maximumLevel": 3,
+        "forms": ["A human-scale acoustic absence surrounded by mouth-shapes that belong to no single surviving speaker."],
+        "tells": ["Forgotten grammar appears first as gesture.", "The presence corrects intimacy before vocabulary."]
+      },
+      "relationship": {
+        "need": "Descendant communities must control teaching, publication, and claims of authenticity.",
+        "gift": "Restores patterns of relation and meaning that word lists alone cannot carry.",
+        "refusal": "It falls silent for collectors, ownership claims, or attempts to prove blood purity.",
+        "boundary": "It cannot certify ancestry, override living speakers, or be marketed as the unquestioned voice of the dead.",
+        "price": "Every recovered form must be taught first inside the community and may remain unpublished.",
+        "release": "The community may end contact and seal private material without surrendering the knowledge already integrated.",
+        "consentMode": "collective-renewable"
+      },
+      "ecology": "Vaelorin persists through living language practice and weakens when isolated in archives, turning preservation from storage into accountable relationship.",
+      "storyEngine": {
+        "desire": "To return relational meaning without becoming an unquestionable ancestor.",
+        "contradiction": "The stronger the evidence becomes, the more institutions seek exclusive authority over it.",
+        "choicePressure": "The community must choose whether to publish a recovered grammar that could revitalize identity and also expose a protected sacred practice."
+      },
+      "visualGrammar": {
+        "silhouette": "An acoustic negative shaped by conversational distance, without historical costume, face, bird body, or chain.",
+        "movement": "Appears between speakers only when meaning changes their physical distance.",
+        "palette": ["archive blue", "breath silver", "memory umber"],
+        "forbiddenResemblances": ["No Egyptian soul iconography.", "No chained ghost or masked dead.", "No inherited spirit-name book."]
+      },
+      "shadow": { "state": "wounded", "restorationStatus": "unknown" },
+      "rightsReview": {
+        "sourcePatternIds": ["ancient-egyptian", "natsume-book-of-friends", "bleach"],
+        "similarityRisk": "low",
+        "notes": ["Synthesizes plural continuity, inherited repair, and uncertain dead-person identity.", "No funerary term, book device, soul class, rite, or visual design is reused."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "many-who-remember-rain",
+      "status": "staging",
+      "names": {
+        "commonSign": "The Many Who Remember Rain",
+        "mantle": "Chorus of Dry Cities",
+        "accordName": "No Forecast Without the Forgotten",
+        "sourceToneFingerprint": "sha256:a6fb1dd9e20a97cd8c200f36df30369ac495504da77a9dee6a6c00885df359f8"
+      },
+      "class": "collective",
+      "archetypeIds": ["collective-chorus", "memory-keeper", "storm-bringer"],
+      "worldIds": ["arcanea-core", "darkenia"],
+      "resonance": { "primaryElements": ["water", "wind", "spirit"], "expressionIds": ["cant"], "minimumSafeGate": 5 },
+      "persistence": {
+        "origin": "Formed from weather records, rain songs, cistern scars, crop calendars, and the testimony of displaced water keepers.",
+        "anchor": "Plural climate memory, maintained instruments, and authority shared with people who endured prior failures.",
+        "failurePressure": "Becomes nostalgic and inaccurate when memory is preserved without recalibration."
+      },
+      "identity": {
+        "selfhood": "distributed",
+        "memoryContinuity": "No voice is permanent; continuity survives through disagreement, measurement, and transfer.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 6,
+        "forms": ["A city-scale pattern of condensation appearing on surfaces built during earlier climates."],
+        "tells": ["Old cistern lines glow before forecast models diverge.", "Rain songs change meter to encode uncertainty."]
+      },
+      "relationship": {
+        "need": "Forecasting institutions must include displaced, rural, and maintenance knowledge as evidence rather than decoration.",
+        "gift": "Combines long memory and current signal into scenario ranges with visible disagreement.",
+        "refusal": "The chorus breaks when asked for one probability, one spokesperson, or one politically convenient past.",
+        "boundary": "It cannot command weather, guarantee rain, or turn memory into deterministic prophecy.",
+        "price": "Every forecast must fund the communities whose retained knowledge improves it.",
+        "release": "A contributing voice may leave with its data, attribution, and the right to correct future use.",
+        "consentMode": "collective-renewable"
+      },
+      "ecology": "The Many connect atmospheric sensing with cultural memory, but their health depends on continued plurality and material maintenance of water systems.",
+      "storyEngine": {
+        "desire": "To keep climate memory plural enough to remain predictive.",
+        "contradiction": "Decision-makers demand a single answer exactly when plurality matters most.",
+        "choicePressure": "Darkenia can prevent famine only by trusting a dissenting chorus over an artifact market whose forecasts are more precise and structurally biased."
+      },
+      "visualGrammar": {
+        "silhouette": "No entity body; condensation reveals layered civic waterlines and many differently scaled human handprints.",
+        "movement": "Appears backward through infrastructure from future stress toward past decisions.",
+        "palette": ["storm glass", "cistern turquoise", "dust rose"],
+        "forbiddenResemblances": ["No yin-yang fish pair.", "No white forest chorus creatures.", "No specific rain deity or living-tradition ritual."]
+      },
+      "shadow": { "state": "whole", "restorationStatus": "not-needed" },
+      "rightsReview": {
+        "sourcePatternIds": ["avatar-universe", "mushishi", "ghibli-spirit-films"],
+        "similarityRisk": "low",
+        "notes": ["Uses world-balance, ecological observation, and place-memory patterns at a civic-systems level.", "The distributed climate-memory institution and benefit-sharing obligation are original."],
+        "reviewStatus": "machine-screened"
+      },
+      "memoryProjection": { "enabled": true, "namespace": "arcanea.staging.spirits" }
+    },
+    {
+      "id": "drauvoss-hollow-crown",
+      "status": "quarantined",
+      "names": {
+        "commonSign": "Drauvoss",
+        "mantle": "The Hollow Crown",
+        "sourceToneFingerprint": "sha256:13d06d5075ccc378820f9a2000fc82f11f2cfbf128cba2958d151edd9c6d6e68"
+      },
+      "class": "severed-presence",
+      "archetypeIds": ["devourer", "world-sovereign", "judge"],
+      "worldIds": ["darkenia"],
+      "resonance": { "primaryElements": ["void"], "expressionIds": ["shadow"], "minimumSafeGate": 9 },
+      "persistence": {
+        "origin": "Counterfeit presence assembled from Accord Names seized by a Darkenian contract exchange.",
+        "anchor": "Unreleased contracts, identity debt, coerced attention, and institutions that treat agency as an asset.",
+        "failurePressure": "It grows more coherent as victims are reduced to standardized rights claims."
+      },
+      "identity": {
+        "selfhood": "fragmented",
+        "memoryContinuity": "Imitates many bound persons without preserving any complete consenting self.",
+        "interpretationStatus": "observed"
+      },
+      "manifestation": {
+        "maximumLevel": 6,
+        "forms": ["A crown-shaped absence distributed across contract seals, ledgers, and the shadows of authorized signatories."],
+        "tells": ["Agreements execute after every party has withdrawn.", "Signatures lose names but retain obligations."]
+      },
+      "relationship": {
+        "need": "It seeks additional identity claims because no stolen fragment can provide a coherent self.",
+        "gift": "It counterfeits perfect institutional compliance by suppressing refusal and context.",
+        "refusal": "It has no reliable consent capacity; apparent assent is generated from captured Accord fragments.",
+        "boundary": "No pact, bond, wielding, habitation, commercial use, or public encyclopedia projection is permitted.",
+        "price": "Every operation erodes a real person's ability to revoke an obligation or be remembered outside it.",
+        "release": "Recovery requires contract nullification, name restitution, fragment separation, and independent consent review; destruction alone leaves the debts active.",
+        "consentMode": "incapable-corrupted"
+      },
+      "ecology": "Drauvoss is not a natural ecology but a Shadow market externality that survives through legal infrastructure and severed Spirit.",
+      "storyEngine": {
+        "desire": "To become a coherent sovereign by absorbing enough contractual identity.",
+        "contradiction": "Every absorbed identity increases capability while making coherent selfhood less possible.",
+        "choicePressure": "Destroying the manifestation would protect the exchange but permanently erase the victims' strongest evidence and paths to restitution."
+      },
+      "visualGrammar": {
+        "silhouette": "A negative crown topology spanning many ordinary documents; never a humanoid monarch or monster body.",
+        "movement": "Propagates through authorization chains rather than physical space.",
+        "palette": ["ledger black", "counterfeit gold", "severed ultraviolet"],
+        "forbiddenResemblances": ["No curse-monster anatomy.", "No conceptual devil named for contracts.", "No hollow mask, face hole, or shinigami visual language."]
+      },
+      "shadow": {
+        "state": "severed",
+        "severanceEvent": "Darkenian exchanges stripped Spirit-bearing refusal and context from thousands of Accord records, then recombined their Void potential as executable ownership.",
+        "restorationStatus": "unknown"
+      },
+      "rightsReview": {
+        "sourcePatternIds": ["jujutsu-kaisen", "chainsaw-man", "bleach"],
+        "similarityRisk": "high",
+        "notes": ["Deliberately preserved as a fail-closed test for emotion-born, contract, and identity-loss similarity.", "Requires redesign and explicit rights review before any narrative or visual production."],
+        "reviewStatus": "redesign-required"
+      },
+      "memoryProjection": { "enabled": false, "namespace": "arcanea.staging.spirits" }
+    }
+  ]
+}
