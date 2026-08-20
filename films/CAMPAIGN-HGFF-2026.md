@@ -251,6 +251,14 @@ arriving at day 24 with a bin of clips and no film.
 
 ### The decision gate — read this on 12 August
 
+> **⚠️ Status, recorded 2026-08-20: the gate has passed with no decision on
+> record.** Both PRs were parked on 7 Aug during an ops P0 week; neither script
+> was locked on the 12th, and no cut-to-one-film call was made. By this
+> section's own rule the campaign is in single-film territory — *Holdfast* —
+> **unless Frank overrules it**, which is his call and remains open. The
+> schedule table above describes the plan as designed, not the weeks that
+> actually happened. Eleven days remained at the time of this note.
+
 **If both scripts are not locked on 12 August, cut to one film.** Keep *Holdfast*.
 
 Reasons, in order: the series-episode track is the strongest fit; the Arcanea IP
@@ -331,6 +339,19 @@ the web gate is: the person who made the thing is the worst available judge of i
       they move to the PR record / a changelog. Raised in review 2026-08-20 —
       do it as part of the lock commit, not before, since reviewers are still
       using them.
+- [ ] **At script lock, run the film through `canon-evaluation`.** The
+      2026-08-20 merge from `main` brought the lore canon gate: root `CLAUDE.md`
+      now routes lore work through `lore-release-gate`, whose "done" includes an
+      adversarial `canon-evaluation` score, never a self-assigned verdict. The
+      film's canon-binding table is exactly that kind of artifact. The
+      model-free half already passes — `.claude/ci/lore-lint.mjs` runs clean on
+      `films/` as of `c56c907`.
+- [ ] **Maintainer call: should `films/` be inside the lore linter's scope?**
+      The linter's `isLoreFile()` watches the lore and book directories;
+      `films/` asserts canon facts (174 Hz, ranks, Kaelith, Starlight Corps) in
+      prose but sits outside the ratchet — only one of its seven files
+      currently counts. Raised in review 2026-08-20. Touching the canon gate's
+      path scope is not a film PR's change to make.
 - [ ] **Highest value item on this list:** confirm the five judging criteria on
       a browser that can reach `higgsfield.ai`. Two searches say **Platform
       Engagement 15% + Social Media Engagement 15%** — 30% of the score is

@@ -98,7 +98,7 @@ minutes and answered in none of them.
 |---|---|---|---|
 | Foundation Gate — 174 Hz, Earth/survival | `CANON_LOCKED.md` L55 (Tier 2) | **LOCKED ✅** | The gate she holds. The film's sound bed **is** its frequency. |
 | Lyssandria / Kaelith *the Godbeast* | `CANON_LOCKED.md` L55 (Tier 2) | **LOCKED ✅** | Never named aloud. Felt as pressure and dust; never fully seen. |
-| **Kaelith Stone** — gravity-dense, near-indestructible, *absorbs kinetic force* | `CANON_LOCKED.md` L264 (Tier 7, Arcanean Materials) | **STAGING ⏳** | The door is Kaelith Stone. The canon's own explanation for why the door holds and why it costs a body to help it. See the warning below. |
+| **Kaelith Stone** — gravity-dense, near-indestructible, *absorbs kinetic force* | `CANON_LOCKED.md` L264 (Tier 7, Arcanean Materials) | **STAGING ⏳** | The door is Kaelith Stone. The canon's own explanation for why the door holds and why it costs a body to help it. See the warning below. Etymology: named for **Kaelith**, Foundation's Godbeast — Tier 7's framing is "the Guardians in mineral form," so the stone is the Godbeast's mineral aspect, not a coincidence of names. The film exploits exactly that: the door is made of the thing behind it. |
 | Magic ranks — 0–2 Apprentice … 9–10 Luminor | `CANON_LOCKED.md` L72–80 (Tier 2) | **LOCKED ✅** | The measuring scene. Her rank is 0. |
 | House Terra — living stone, rooted, light from below | `VISUAL_DOCTRINE.md` | not tiered | Her house. Governs wardrobe and the yard's light law. |
 | Academy Houses | `CANON_LOCKED.md` Tier 5 | **LOCKED ✅** | Background texture only. |
