@@ -323,6 +323,14 @@ the web gate is: the person who made the thing is the worst available judge of i
 
 ## 8. Open items
 
+- [ ] **At script lock, sweep the audit annotations out of the bible.**
+      `CHARACTERS.md` and `SCRIPT.md` carry inline revision notes ("this read
+      3:12 until review caught it", the Word Ledger defect writeup). While the
+      documents are under active review those notes stop fixed defects being
+      re-flagged; once the script locks they are history inside a reference, and
+      they move to the PR record / a changelog. Raised in review 2026-08-20 —
+      do it as part of the lock commit, not before, since reviewers are still
+      using them.
 - [ ] **Highest value item on this list:** confirm the five judging criteria on
       a browser that can reach `higgsfield.ai`. Two searches say **Platform
       Engagement 15% + Social Media Engagement 15%** — 30% of the score is
