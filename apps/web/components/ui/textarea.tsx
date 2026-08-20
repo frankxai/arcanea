@@ -64,7 +64,11 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref
   ) => {
-    const textareaId = id ?? React.useId();
+    // useId must run on every render — see the same fix in input.tsx.
+    // `id ?? React.useId()` short-circuits, so the hook only ran when no id was
+    // passed, changing hook order between renders of the same component.
+    const generatedId = React.useId();
+    const textareaId = id ?? generatedId;
     const helperTextId = helperText ? `${textareaId}-helper` : undefined;
     const errorId = errorMessage ? `${textareaId}-error` : undefined;
     const resolvedState = errorMessage ? 'error' : state;
