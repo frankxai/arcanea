@@ -75,7 +75,7 @@ export const COLLECTIONS: Collection[] = [
     order: 4,
     format: 'story',
     readWhen: 'you need to remember the grandeur',
-    textCount: 5,
+    textCount: 7,
     icon: '🏔️',
   },
   {
@@ -95,7 +95,7 @@ export const COLLECTIONS: Collection[] = [
     order: 6,
     format: 'story',
     readWhen: 'you want wisdom through story',
-    textCount: 1,
+    textCount: 2,
     icon: '🌱',
   },
   {

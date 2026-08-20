@@ -33,11 +33,11 @@ bg-cosmic-elevated  #2e3348   — tooltips, popovers
 bg-cosmic-overlay   #383e54   — modals, overlays
 
 ARCANE ACCENTS (use sparingly — one per component max):
-arcane-crystal      #7fffd4   — primary brand accent (Arcanea teal)
+arcane-crystal      #00bcd4   — primary brand accent (Arcanea teal)
 arcane-gold         #ffd700   — premium, achievement, Source gate
 arcane-void         #9966ff   — mystery, Crown/Shift gates
 arcane-fire         #ff6b35   — energy, Fire gate
-arcane-water        #78a6ff   — flow, Flow/Sight gates
+arcane-water        #0d47a1   — flow, Flow/Sight gates
 arcane-wind         #00ff88   — change, Heart gate
 
 TEXT:
@@ -50,9 +50,9 @@ text-disabled       #454b5c   — placeholders, disabled
 ### Typography Rules — NON-NEGOTIABLE
 
 ```
-FONT: Inter EVERYWHERE — no exceptions, no Cinzel, no Crimson Pro
-DISPLAY: font-display (Inter, heavy weight 700-900)
-BODY: font-sans (Inter, 400-500)
+FONT: Geist EVERYWHERE — no exceptions, no Cinzel, no Crimson Pro, no Inter, no Space Grotesk
+DISPLAY: font-display (Geist, heavy weight 700-900)
+BODY: font-sans (Geist, 400-500)
 CODE: font-mono (Geist Mono)
 
 SCALE (fluid — use clamp):
@@ -102,16 +102,16 @@ Body: tracking-normal
 .liquid-glass-premium {
   background: rgba(24, 28, 42, 0.85);
   backdrop-filter: blur(32px);
-  border: 1px solid rgba(127,255,212,0.15);
-  box-shadow: 0 16px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(127,255,212,0.05) inset;
+  border: 1px solid rgba(0,188,212,0.15);
+  box-shadow: 0 16px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,188,212,0.05) inset;
 }
 
 /* Tier 5 — Iridescent (special moments) */
 .liquid-glass-iridescent {
-  background: linear-gradient(135deg, rgba(127,255,212,0.05), rgba(153,102,255,0.05));
+  background: linear-gradient(135deg, rgba(0,188,212,0.05), rgba(153,102,255,0.05));
   backdrop-filter: blur(40px);
-  border: 1px solid rgba(127,255,212,0.20);
-  box-shadow: 0 20px 80px rgba(0,0,0,0.7), 0 0 60px rgba(127,255,212,0.05);
+  border: 1px solid rgba(0,188,212,0.20);
+  box-shadow: 0 20px 80px rgba(0,0,0,0.7), 0 0 60px rgba(0,188,212,0.05);
 }
 ```
 
@@ -159,16 +159,16 @@ Body: tracking-normal
 >
   {/* Top highlight line */}
   <div className="absolute inset-x-0 top-0 h-px opacity-60"
-    style={{ background: "linear-gradient(90deg, transparent, rgba(127,255,212,0.4), transparent)" }} />
+    style={{ background: "linear-gradient(90deg, transparent, rgba(0,188,212,0.4), transparent)" }} />
 
   {/* Hover glow */}
   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-    style={{ background: "radial-gradient(600px at 50% -30%, rgba(127,255,212,0.06), transparent 70%)" }} />
+    style={{ background: "radial-gradient(600px at 50% -30%, rgba(0,188,212,0.06), transparent 70%)" }} />
 
   {/* Content */}
   <div className="relative z-10">
     {/* Accent marker */}
-    <div className="w-6 h-0.5 rounded-full mb-4" style={{ background: "#7fffd4" }} />
+    <div className="w-6 h-0.5 rounded-full mb-4" style={{ background: "#00bcd4" }} />
     <h3 className="font-display text-lg font-semibold text-text-primary mb-2">Title</h3>
     <p className="text-text-secondary text-sm leading-relaxed">Description</p>
   </div>
@@ -196,7 +196,7 @@ Body: tracking-normal
 {/* Primary — crystal CTA */}
 <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
   bg-arcane-crystal text-cosmic-void
-  hover:bg-arcane-crystal-bright hover:shadow-[0_0_24px_rgba(127,255,212,0.4)]
+  hover:bg-arcane-crystal-bright hover:shadow-[0_0_24px_rgba(0,188,212,0.4)]
   transition-all duration-200 min-h-[48px]">
   Build Your Universe
 </button>
@@ -220,11 +220,11 @@ Body: tracking-normal
 ```tsx
 {/* Crystal (primary) */}
 <span className="text-gradient-crystal">text</span>
-/* → background: linear-gradient(135deg, #7fffd4, #5ce6b8) */
+/* → background: linear-gradient(135deg, #00bcd4, #0097a7) */
 
 {/* Cosmic (multicolor) */}
 <span className="text-gradient-cosmic">text</span>
-/* → background: linear-gradient(135deg, #7fffd4, #9966ff) */
+/* → background: linear-gradient(135deg, #00bcd4, #9966ff) */
 
 {/* Aurora (animated) */}
 <span className="text-gradient-aurora">text</span>
@@ -236,7 +236,7 @@ Body: tracking-normal
 
 {/* Void */}
 <span className="text-gradient-void">text</span>
-/* → #9966ff → #7fffd4 */
+/* → #9966ff → #00bcd4 */
 ```
 
 ---
@@ -318,7 +318,7 @@ initial={{ opacity: 0, scale: 0.95 }}
 className="transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
 
 // Glow (buttons)
-className="hover:shadow-[0_0_24px_rgba(127,255,212,0.4)]"
+className="hover:shadow-[0_0_24px_rgba(0,188,212,0.4)]"
 
 // Scale (icons, thumbnails)
 whileHover={{ scale: 1.05 }}
@@ -358,7 +358,7 @@ className="animate-constellation-pulse"
 Before committing any UI work:
 
 - [ ] All icons are Phosphor (thin/regular) or inline SVG — zero lucide-react
-- [ ] All text uses Inter via `font-display` or `font-sans`
+- [ ] All text uses Geist via `font-display` or `font-sans`
 - [ ] All backgrounds use the glass system or cosmic depth ladder
 - [ ] All interactive elements have hover/focus states
 - [ ] All text gradients use the defined classes

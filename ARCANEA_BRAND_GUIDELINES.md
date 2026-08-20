@@ -37,18 +37,18 @@
 
 #### The Arcanea Mark
 
-The Arcanea logomark is a crystalline spark symbol rendered in a gradient from Crystal (#7fffd4) to Water (#78a6ff). It represents the moment of creative ignition where potential becomes reality.
+The Arcanea logomark is a crystalline spark symbol rendered in a gradient from Crystal (#00bcd4) to Water (#0d47a1). It represents the moment of creative ignition where potential becomes reality.
 
 **Logo Components:**
 | Component | Usage |
 |-----------|-------|
 | **Spark Mark** | Standalone icon for established contexts (favicons, app icons, badges) |
-| **Wordmark Lockup** | Spark + "Arcanea" in Cinzel typeface, for primary brand presence |
+| **Wordmark Lockup** | Spark + "Arcanea" in Geist typeface, for primary brand presence |
 | **Product Lockups** | "Arcanea AI", "Arcanea ACOS", "Arcanea Studio" - for product-specific contexts |
 
 **Logo Specifications:**
 - Spark mark: Rounded square container (border-radius: 0.75rem) with gradient fill
-- Wordmark: Cinzel font, tracking normal, white (#e6eefc) on dark backgrounds
+- Wordmark: Geist font, tracking normal, white (#e6eefc) on dark backgrounds
 - Badge: "AI" label in Crystal color, 10px font, pill shape
 
 **Clear Space:**
@@ -78,22 +78,19 @@ The Arcanea logomark is a crystalline spark symbol rendered in a gradient from C
 
 #### Type System Overview
 
-Arcanea's typography bridges the mythic and the modern. Four typefaces serve distinct roles, creating a hierarchy that moves from the ceremonial to the functional.
+Arcanea's typography bridges the mythic and the modern. Three typefaces serve distinct roles. Canonical source: `@arcanea/design-system` v0.2.0 (production repo `arcanea-ai-app`). Cinzel, Space Grotesk, and Inter are banned.
 
 #### Primary Typefaces
 
 | Typeface | Role | CSS Variable | Weight Range |
 |----------|------|-------------|--------------|
-| **Cinzel** | Display / Ceremonial | `--font-cinzel` | 400-900 |
-| **Crimson Pro** | Body / Narrative | `--font-crimson-pro` | 200-900 + italic |
-| **Inter** | UI / Interface | `--font-inter` | 100-900 |
+| **Geist** | Display + Body / UI | `--font-geist` | variable |
+| **Instrument Serif** | Editorial accent / Narrative emphasis | `--font-serif` | 400 + italic |
 | **JetBrains Mono** | Code / Data | `--font-jetbrains` | 100-800 |
 
-**Cinzel** (Display): Reserved for page titles, hero headings, section names, and any text that carries ceremonial weight. Cinzel evokes ancient inscriptions while remaining highly legible at large sizes.
+**Geist** (Display + Body): One family across headings, body text, buttons, labels, navigation, badges, and form elements. Weight and size carry the hierarchy, not a font switch.
 
-**Crimson Pro** (Body): The narrative voice. Used for long-form text, descriptions, and any content meant to be read at length. Its serif design provides warmth and readability.
-
-**Inter** (UI): The workhorse. Buttons, labels, navigation, badges, form elements, and interface text. Optimized for screen rendering at all sizes.
+**Instrument Serif** (Editorial accent): Quotes, pull-quotes, and narrative emphasis. Used sparingly — an accent, not a body font.
 
 **JetBrains Mono** (Code): Terminal output, code blocks, data displays, skill definitions, and technical specifications.
 
@@ -118,15 +115,14 @@ All typography uses fluid scaling via `clamp()` to adapt from mobile to large di
 #### Typography Rules
 
 **Do:**
-- Use Cinzel for headings that deserve presence and gravitas
-- Use Crimson Pro for any text longer than ~50 words
-- Use Inter for all interface elements, navigation, and labels
+- Use Geist for headings, body text, and all interface elements
+- Use Instrument Serif only as an editorial accent (quotes, narrative emphasis)
 - Allow fluid scaling to handle responsive sizing
 - Use `font-semibold` (600) for emphasis in UI text
 
 **Don't:**
-- Don't use Cinzel for body text or buttons
-- Don't use Crimson Pro for navigation or badges
+- Don't use Cinzel, Space Grotesk, or Inter anywhere — banned typefaces
+- Don't use Instrument Serif for navigation, badges, or long body copy
 - Don't manually set font sizes outside the fluid scale
 - Don't combine more than 2 typefaces in a single component
 - Don't use light weights (< 400) on dark backgrounds at small sizes
@@ -160,15 +156,15 @@ The Five Elements of Arcanea, each with a standard, bright, and deep variant:
 
 | Element | Standard | Bright | Deep | Domain |
 |---------|----------|--------|------|--------|
-| **Crystal** | #7fffd4 | #99ffe0 | #5ce6b8 | Primary accent, creation, clarity |
+| **Crystal** | #00bcd4 | #4dd0e1 | #0097a7 | Primary accent, creation, clarity |
 | **Fire** | #ff6b35 | #ff8c5a | #d94e1f | Energy, transformation, passion |
-| **Water** | #78a6ff | #9dbfff | #5a8ce6 | Flow, knowledge, serenity |
+| **Water** | #0d47a1 | #5472d3 | #002171 | Flow, knowledge, serenity |
 | **Void** | #9966ff | #b38cff | #7a4dcc | Mystery, potential, depth |
 | **Gold** | #ffd700 | #ffe44d | #ccac00 | Achievement, wisdom, premium |
 | **Wind** | #00ff88 | #33ffaa | #00cc6d | Freedom, speed, nature |
 | **Earth** | #8b7355 | #a89070 | #6e5940 | Stability, grounding, warmth |
 
-**Hero Color:** Crystal (#7fffd4) is Arcanea's signature color. It should be the dominant accent in most brand applications, grounded by the cosmic palette and white text.
+**Hero Color:** Crystal (#00bcd4) is Arcanea's signature color. It should be the dominant accent in most brand applications, grounded by the cosmic palette and white text.
 
 **Accent Distribution (80/10/5/5 Rule):**
 - 80% Cosmic neutrals (void through surface)
@@ -200,10 +196,10 @@ Glows create the magical atmosphere. Each elemental color has a glow variant:
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `glow-sm` | 0 0 10px rgba(127, 255, 212, 0.2) | Subtle emphasis |
-| `glow-md` | 0 0 20px rgba(127, 255, 212, 0.3) | Standard glow |
-| `glow-lg` | 0 0 40px rgba(127, 255, 212, 0.4) | Strong emphasis |
-| `glow-xl` | 0 0 60px rgba(127, 255, 212, 0.5) | Hero/dramatic |
+| `glow-sm` | 0 0 10px rgba(0, 188, 212, 0.2) | Subtle emphasis |
+| `glow-md` | 0 0 20px rgba(0, 188, 212, 0.3) | Standard glow |
+| `glow-lg` | 0 0 40px rgba(0, 188, 212, 0.4) | Strong emphasis |
+| `glow-xl` | 0 0 60px rgba(0, 188, 212, 0.5) | Hero/dramatic |
 | `glow-crystal` | Crystal double-layer | Crystal-specific glow |
 | `glow-fire` | Fire double-layer | Fire-specific glow |
 | `glow-void` | Void double-layer | Void-specific glow |
@@ -223,7 +219,7 @@ Glows create the magical atmosphere. Each elemental color has a glow variant:
 
 #### Color Don'ts
 
-- Don't use Crystal (#7fffd4) as a background fill for large areas
+- Don't use Crystal (#00bcd4) as a background fill for large areas
 - Don't place light text on bright elemental colors
 - Don't mix more than 3 elemental accents in one component
 - Don't use raw white (#ffffff) for text; always use `text-primary` (#e6eefc)
@@ -271,7 +267,7 @@ Arcanea's personality is defined by four core attributes:
 
 | Attribute | Description | In Practice |
 |-----------|-------------|-------------|
-| **Mythic** | Ancient wisdom meets future technology | Cinzel typography, cosmic palette, Gate references |
+| **Mythic** | Ancient wisdom meets future technology | Geist typography, cosmic palette, Gate references |
 | **Empowering** | Tools that amplify creative potential | Clear CTAs, progress tracking, achievement system |
 | **Inclusive** | Universal truths, no barriers to entry | Accessible design, multiple entry points, welcoming language |
 | **Transformative** | Every interaction should create change | Before/after states, journey metaphors, growth tracking |
@@ -367,9 +363,9 @@ Glass effects are Arcanea's signature UI treatment. Three tiers create visual hi
 ```css
 .bg-cosmic-mesh {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 50%, rgba(0, 188, 212, 0.03) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 20%, rgba(153, 102, 255, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(120, 166, 255, 0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 50% 80%, rgba(13, 71, 161, 0.03) 0%, transparent 50%);
 }
 ```
 
@@ -377,7 +373,7 @@ Glass effects are Arcanea's signature UI treatment. Three tiers create visual hi
 
 **Section Dividers:** Horizontal gradient lines using `section-divider` class:
 ```css
-linear-gradient(90deg, transparent, rgba(127, 255, 212, 0.3), transparent)
+linear-gradient(90deg, transparent, rgba(0, 188, 212, 0.3), transparent)
 ```
 
 ### Layouts
@@ -428,7 +424,7 @@ Every Arcanea page follows this hierarchy:
 | **Buttons (secondary)** | Ghost variant, `text-secondary` to white on hover |
 | **Badges** | `variant="crystal"`, small text, pill shape |
 | **Inputs** | `glass-subtle`, crystal border on focus |
-| **Headings** | Cinzel display, `text-gradient-crystal` for emphasis |
+| **Headings** | Geist display, `text-gradient-crystal` for emphasis |
 
 #### Gradient Text
 
@@ -446,11 +442,11 @@ Four gradient text classes for headings:
 #### Profile Elements
 - Avatar: Spark mark on cosmic-void background
 - Banner: Cosmic mesh with arcane-gradient overlay
-- Bio: Cinzel for brand name, Inter for description
+- Bio: Geist for brand name and description
 
 #### Post Templates
 - Announcements: Crystal gradient header, cosmic card
-- Quotes: Crimson Pro italic, crystal accent bar
+- Quotes: Instrument Serif italic, crystal accent bar
 - Features: Screenshot with glass overlay caption
 - Tips: Numbered with elemental icon per step
 
@@ -458,18 +454,18 @@ Four gradient text classes for headings:
 
 | Platform | Adaptation |
 |----------|------------|
-| **Twitter/X** | Cosmic-void backgrounds, crystal accent, Inter for readability |
-| **LinkedIn** | More muted cosmic palette, professional tone, Inter primary |
-| **Instagram** | Full cosmic visual treatments, Cinzel display, rich gradients |
+| **Twitter/X** | Cosmic-void backgrounds, crystal accent, Geist for readability |
+| **LinkedIn** | More muted cosmic palette, professional tone, Geist primary |
+| **Instagram** | Full cosmic visual treatments, Geist display, rich gradients |
 | **Discord** | Crystal accent on dark theme, monospace for code/skills |
 
 ### Presentations
 
 #### Slide Templates
-- **Title slide:** Cosmic mesh, centered Cinzel heading, crystal gradient
-- **Content slide:** Cosmic-deep background, left-aligned, Inter body
+- **Title slide:** Cosmic mesh, centered Geist heading, crystal gradient
+- **Content slide:** Cosmic-deep background, left-aligned, Geist body
 - **Feature slide:** Split layout, glass card on right, visual on left
-- **Quote slide:** Full cosmic with Crimson Pro italic, centered
+- **Quote slide:** Full cosmic with Instrument Serif italic, centered
 - **Data slide:** Cosmic-surface, clean grid, elemental color coding
 
 ---
@@ -543,10 +539,10 @@ Each of the Five Elements can serve as a section or page theme:
 
 The default Arcanea theme. Crystal represents creation, clarity, and the moment of manifestation.
 
-- **Primary accent:** #7fffd4
-- **Glow:** rgba(127, 255, 212, 0.5)
+- **Primary accent:** #00bcd4
+- **Glow:** rgba(0, 188, 212, 0.5)
 - **Text gradient:** Crystal to Crystal-bright
-- **Glass border:** rgba(127, 255, 212, 0.15)
+- **Glass border:** rgba(0, 188, 212, 0.15)
 - **Usage:** Homepage, general brand, primary product surfaces
 
 ### Fire
@@ -561,8 +557,8 @@ Transformation, energy, and creative passion.
 
 Knowledge, flow, and healing.
 
-- **Primary accent:** #78a6ff
-- **Glow:** rgba(120, 166, 255, 0.5)
+- **Primary accent:** #0d47a1
+- **Glow:** rgba(13, 71, 161, 0.5)
 - **Usage:** Learning, documentation, calm states, contemplation
 
 ### Void

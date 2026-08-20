@@ -34,19 +34,22 @@ context:
   design_system: "{workspace}/main/apps/web/components"
   figma_project: "Arcanea Design System"
 
+# Canonical: @arcanea/design-system v0.2.0 (production repo arcanea-ai-app)
 design_tokens:
   colors:
-    primary: "#7fffd4"      # Atlantean Teal
-    secondary: "#78a6ff"    # Cosmic Blue
+    primary: "#00bcd4"      # Atlantean Teal
+    secondary: "#0d47a1"    # Cosmic Blue
     accent: "#ffd700"       # Gold Bright
-    background: "#0a0a1a"   # Deep Void
+    background: "#09090b"   # Deep Void
     text: "#e8e8e8"         # Light text
   fonts:
-    display: "Cinzel"
-    body: "Crimson Pro"
+    display: "Geist"
+    body: "Geist"
+    editorial: "Instrument Serif"
     mono: "JetBrains Mono"
+    banned: ["Cinzel", "Space Grotesk", "Inter"]
   effects:
-    glow: "0 0 20px rgba(127, 255, 212, 0.3)"
+    glow: "0 0 20px rgba(0, 188, 212, 0.3)"
     glass: "backdrop-filter: blur(10px)"
 
 steps:

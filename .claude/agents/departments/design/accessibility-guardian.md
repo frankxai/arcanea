@@ -207,7 +207,7 @@ useEffect(() => {
 | Body text | 4.5:1 | `text-primary` (#e6eefc) on `cosmic-void` = 14.5:1 |
 | Large text (18px+) | 3:1 | `text-secondary` (#9bb1d0) on `cosmic-void` = 7.2:1 |
 | UI components | 3:1 | `text-muted` (#708094) on `cosmic-void` = 4.8:1 |
-| Focus indicators | 3:1 | `arcane-crystal` (#7fffd4) on `cosmic-void` = 12.4:1 |
+| Focus indicators | 3:1 | `arcane-crystal` (#00bcd4) on `cosmic-void` = 8.7:1 |
 
 #### Testing Command
 ```bash

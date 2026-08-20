@@ -46,12 +46,12 @@ Used by [USER PERSONA], in [CONTEXT], to [OUTCOME].
 DESIGN SYSTEM:
 Theme: Dark cosmic (Arcanea)
 Backgrounds: #0b0e14 (void), #121826 (deep), #1a2332 (surface)
-Primary: #7fffd4 (arcane-crystal/teal)
-Secondary: #78a6ff (water), #9966ff (void)
+Primary: #00bcd4 (arcane-crystal/teal)
+Secondary: #0d47a1 (water), #9966ff (void)
 Accents: #ff6b35 (fire), #ffd700 (gold), #00ff88 (wind)
 Text: #e6eefc (primary), #9bb1d0 (secondary), #708094 (muted)
-Glass: bg rgba(18,24,38,0.7), blur(16px), border rgba(127,255,212,0.15)
-Fonts: Cinzel (headings), Crimson Pro (body), Inter (UI), JetBrains Mono (code)
+Glass: bg rgba(18,24,38,0.7), blur(16px), border rgba(0,188,212,0.15)
+Fonts: Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code) — never Cinzel, Space Grotesk, or Inter
 
 REQUIREMENTS:
 - React 19 + TypeScript strict, Tailwind CSS, Framer Motion

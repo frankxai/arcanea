@@ -59,7 +59,7 @@ Malachar — formerly Malachar Lumenbright, First Eldrian Luminor. Tragic fall. 
 
 - **Framework**: Next.js 16 (App Router) + React 19
 - **Language**: TypeScript strict mode (NO `any`)
-- **Styling**: Tailwind CSS + Arcanean Design System (Cinzel display, Crimson Pro body, glass morphism)
+- **Styling**: Tailwind CSS + Arcanean Design System (Geist display + body, Instrument Serif editorial accent, glass morphism)
 - **Database**: Supabase (PostgreSQL + Auth + Realtime)
 - **AI**: Vercel AI SDK 6, Google Gemini, Anthropic Claude
 - **Deployment**: Vercel
@@ -68,12 +68,12 @@ Malachar — formerly Malachar Lumenbright, First Eldrian Luminor. Tragic fall. 
 
 ### Design System
 
-- Primary: Violet #8b5cf6
-- Accent: Crystal #7fffd4
-- Premium: Gold #ffd700
-- Fonts: Cinzel (display), Crimson Pro (body), Inter (UI), JetBrains Mono (code)
+- Primary: Atlantean Teal #00bcd4
+- Secondary: Cosmic Blue #0d47a1
+- Accent: Gold #ffd700 · Background: #09090b
+- Fonts: Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code)
 - Effects: Glass morphism, aurora gradients, cosmic glows
-- NEVER: raw hex colors, emoji icons, flat shadows, Space Grotesk
+- NEVER: raw hex colors, emoji icons, flat shadows, Cinzel, Space Grotesk, Inter
 
 ---
 

@@ -36,20 +36,21 @@ Use "creator" not "user" in generated comments and documentation.
 ## Arcanea Design System
 
 ### Primary Colors
-- **Crystal (Teal)**: #7fffd4 — Primary accent, Atlantean energy
+- **Crystal (Teal)**: #00bcd4 — Primary accent, Atlantean energy
 - **Gold**: #ffd700 — Achievement, enlightenment, Aiyami's domain
 - **Violet**: #a855f7 — Vision, Lyria's domain, Void gateway
 - **Void**: #0a0a0f — Background, depth, Nero's canvas
 
 ### Full Color System
 - Cosmic: void (#0a0a0f), deep (#12121f), surface (#1a1a2e), raised (#232340)
-- Arcane: crystal (#7fffd4), fire (#ff6b35), water (#78a6ff), earth (#4ade80), void (#a855f7), gold (#ffd700)
+- Arcane: crystal (#00bcd4), fire (#ff6b35), water (#0d47a1), earth (#4ade80), void (#a855f7), gold (#ffd700)
 
 ### Typography
-- Display: Cinzel, serif
-- Body: Crimson Pro, serif
-- UI: Inter, sans-serif
+- Display: Geist, sans-serif
+- Body: Geist, sans-serif
+- Editorial accent: Instrument Serif, serif
 - Code: JetBrains Mono, monospace
+- Banned: Cinzel, Space Grotesk, Inter (canonical: `@arcanea/design-system` v0.2.0)
 
 ### Signature Effects
 - Glass morphism with cosmic gradients
@@ -113,9 +114,9 @@ Use "creator" not "user" in generated comments and documentation.
 
 ## Design System
 - **Primary**: Violet (#8b5cf6)
-- **Accent**: Teal (#7fffd4)
+- **Accent**: Teal (#00bcd4)
 - **Gold**: Achievement (#ffd700)
-- **Fonts**: Cinzel (display), Crimson Pro (body), Inter (UI), JetBrains Mono (code)
+- **Fonts**: Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code) — never Cinzel, Space Grotesk, or Inter
 - **Effects**: Glass morphism (blur 16px), aurora gradients, cosmic glows
 
 ## Architecture Principle
