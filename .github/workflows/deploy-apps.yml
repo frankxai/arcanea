@@ -63,12 +63,11 @@ jobs:
       uses: actions/checkout@v5
 
     # Must precede setup-node: its cache: 'pnpm' resolves the store by invoking
-    # pnpm, so pnpm has to be on PATH first. Version pinned to match
-    # packageManager in package.json and the v8 lockfile.
+    # pnpm, so pnpm has to be on PATH first. No version key — action-setup@v4
+    # reads packageManager from package.json, and errors out if a `version`
+    # here disagrees with it.
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
-      with:
-        version: 8
 
     - name: Setup Node.js
       uses: actions/setup-node@v5
