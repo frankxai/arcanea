@@ -50,8 +50,13 @@ jobs:
           pnpm -r run build
           pnpm --filter arcanea-code exec -- esbuild src/guardians.ts --outfile=tests/_guardians.mjs --format=esm --platform=node
 
+      # dot reporter, not the default TAP. TAP emits ~1.8M characters for this
+      # suite and has no failure recap, so a red X is unreadable without
+      # downloading the whole log to find three "not ok" lines scattered
+      # through it. dot prints one character per test and a "Failed tests:"
+      # block at the end with names, assertions and source locations.
       - name: Run all tests
-        run: node --test packages/*/tests/*.test.mjs
+        run: node --test --test-reporter=dot packages/*/tests/*.test.mjs
         env:
           CI: true
           NO_COLOR: '1'
