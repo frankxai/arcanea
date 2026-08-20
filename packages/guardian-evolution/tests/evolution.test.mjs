@@ -464,13 +464,19 @@ describe('3. Pattern Learner', () => {
   it('findMatches returns matches after extracting patterns', () => {
     const pl = createPatternLearner({ matchThreshold: 0.0, qualityThreshold: 0.3 });
 
-    // Extract several patterns with similar embeddings
+    // The comment here used to say "with similar embeddings", but
+    // createMockTrajectory draws each one independently at random, so they are
+    // not similar to each other or to the query. Keep one pattern and query
+    // with its own embedding, so the match is guaranteed rather than sampled.
+    let known = null;
     for (let i = 0; i < 10; i++) {
       const traj = createMockTrajectory({ quality: 0.8, dim: 16 });
-      pl.extractPattern(traj);
+      const p = pl.extractPattern(traj);
+      if (p && !known) known = p;
     }
+    assert.ok(known, 'At least one pattern should have been extracted');
 
-    const queryEmb = createMockEmbedding(16);
+    const queryEmb = known.embedding;
     const matches = pl.findMatches(queryEmb, 3);
 
     assert.ok(matches.length > 0, 'Should find some matches');
@@ -487,16 +493,22 @@ describe('3. Pattern Learner', () => {
   it('findBestMatch returns single best match', () => {
     const pl = createPatternLearner({ matchThreshold: 0.0, qualityThreshold: 0.3 });
 
+    let known = null;
     for (let i = 0; i < 5; i++) {
-      pl.extractPattern(createMockTrajectory({ quality: 0.8, dim: 16 }));
+      const p = pl.extractPattern(createMockTrajectory({ quality: 0.8, dim: 16 }));
+      if (p && !known) known = p;
     }
+    assert.ok(known, 'At least one pattern should have been extracted');
 
-    const best = pl.findBestMatch(createMockEmbedding(16));
-    // Might be null if no match exceeds threshold; with threshold 0.0 should find something
-    if (best) {
-      assert.ok(best.pattern);
-      assert.equal(typeof best.similarity, 'number');
-    }
+    // Was: findBestMatch(createMockEmbedding(16)) guarded by `if (best)`, with a
+    // comment reasoning that threshold 0.0 "should find something". Neither part
+    // held — a random query against random patterns clears 0.0 only about half
+    // the time per pattern, and the `if` meant the test reported success on the
+    // runs where it found nothing. Asserting nothing is not the same as passing.
+    const best = pl.findBestMatch(known.embedding);
+    assert.ok(best, 'A pattern queried by its own embedding must match itself');
+    assert.ok(best.pattern);
+    assert.equal(typeof best.similarity, 'number');
   });
 
   it('evolvePattern updates success rate and records history', () => {
@@ -1215,8 +1227,18 @@ describe('6. Integration — Full Learning Cycle', () => {
     await bank.distill(traj2);
     learner.extractPattern(traj2);
 
-    // STEP 6: Retrieve similar patterns
-    const queryEmb = createMockEmbedding(16);
+    // STEP 6: Retrieve similar patterns.
+    // Query with a stored pattern's own embedding (cosine similarity 1.0) rather
+    // than a fresh random vector. createMockEmbedding fills uniformly from
+    // [-1, 1], so an independent random query has a cosine similarity centred on
+    // zero against each stored pattern — and this learner runs matchThreshold
+    // 0.0, so each of the two patterns cleared the bar on roughly a coin flip
+    // and the assertion failed whenever both landed negative. That is about a
+    // 1-in-4 failure rate, which is what it was doing: it failed once locally in
+    // five runs and once in CI. Querying with a known-similar vector tests the
+    // property the step is named for — a query close to a stored pattern
+    // retrieves it — instead of sampling a distribution.
+    const queryEmb = pattern.embedding;
     const matches = learner.findMatches(queryEmb, 3);
     assert.ok(matches.length > 0, 'Should find matching patterns');
 
