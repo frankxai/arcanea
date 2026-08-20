@@ -115,18 +115,25 @@ jobs:
     name: Quality Status
     runs-on: ubuntu-latest
     needs: [quality, build, release-integrity]
-    if: always()
+    # Not always(): a run cancelled by cancel-in-progress has no verdict to
+    # report, and reporting one anyway painted the PR red for being pushed to
+    # twice. Same fix as test.yml's summary job.
+    if: ${{ !cancelled() }}
 
     steps:
       - name: Check Results
         run: |
-          if [ "${{ needs.quality.result }}" == "success" ] && [ "${{ needs.build.result }}" == "success" ] && [ "${{ needs.release-integrity.result }}" == "success" ]; then
-            echo "All quality checks passed!"
-            exit 0
-          else
+          echo "TypeScript/Tests: ${{ needs.quality.result }}"
+          echo "Build: ${{ needs.build.result }}"
+          echo "Release integrity: ${{ needs.release-integrity.result }}"
+
+          # Fail on failure, not on "anything that isn't success". The previous
+          # form treated cancelled and skipped as failures too, so a superseded
+          # run reported "Quality checks failed" with every underlying job
+          # either passing or never having finished.
+          if [ "${{ needs.quality.result }}" == "failure" ] || [ "${{ needs.build.result }}" == "failure" ] || [ "${{ needs.release-integrity.result }}" == "failure" ]; then
             echo "Quality checks failed"
-            echo "TypeScript/Tests: ${{ needs.quality.result }}"
-            echo "Build: ${{ needs.build.result }}"
-            echo "Release integrity: ${{ needs.release-integrity.result }}"
             exit 1
           fi
+
+          echo "All quality checks passed!"
