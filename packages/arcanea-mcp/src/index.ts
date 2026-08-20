@@ -86,7 +86,7 @@ import {
 } from "./agents/index.js";
 
 const server = new Server(
-  { name: "arcanea-mcp", version: "0.3.0" },
+  { name: "arcanea-mcp", version: "0.7.1" },
   { capabilities: { tools: {}, resources: {}, prompts: {} } }
 );
 

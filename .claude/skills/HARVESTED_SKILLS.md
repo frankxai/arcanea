@@ -92,12 +92,12 @@ All harvested skills were adapted with these Arcanea-specific overrides:
 
 | Original | Arcanea Override |
 |----------|-----------------|
-| Cinzel font | Inter (MEMORY.md: Inter is main everywhere, no Cinzel in new code) |
+| Cinzel font | Geist (canonical `@arcanea/design-system` v0.2.0 — no Cinzel, Space Grotesk, or Inter in new code) |
 | Generic Next.js 15 | Next.js 16 (async params, async cookies, proxy middleware) |
 | `toDataStreamResponse()` | `toUIMessageStreamResponse()` (Vercel AI SDK 6) |
 | `maxTokens` | `maxOutputTokens` (Vercel AI SDK 6) |
 | Generic Supabase client | `@supabase/ssr` createServerClient + createBrowserClient pattern |
-| Purple gradient defaults | Arcanean Design System (violet #8b5cf6, crystal #7fffd4, gold #ffd700) |
+| Purple gradient defaults | Arcanean Design System (violet #8b5cf6, crystal #00bcd4, gold #ffd700) |
 | Generic Guardian refs | Canon-correct: Lyssandria/Kaelith, Leyla/Veloura, Draconia/Draconis... |
 
 ---

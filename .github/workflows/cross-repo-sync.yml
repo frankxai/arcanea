@@ -1,15 +1,9 @@
 name: Cross-Repository Synchronization
 
+# Automatic triggers were disabled on 2026-07-27 after five months of failed
+# runs and confirmed target drift. Keep this manual-only until ownership mapping,
+# destructive-copy tests, least-privilege credentials, and a reviewed backfill exist.
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'packages/ai-core/**'
-      - 'apps/library/**'
-      - 'apps/mobile/**'
-  schedule:
-    # Daily sync at 6 AM UTC
-    - cron: '0 6 * * *'
   workflow_dispatch:
 
 concurrency:

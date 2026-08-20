@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arcanea.ai/schemas/arcanean-spirit.schema.json",
+  "title": "Arcanean Spirit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "status", "names", "class", "archetypeIds", "worldIds", "resonance", "persistence", "identity", "manifestation", "relationship", "ecology", "storyEngine", "visualGrammar", "shadow", "rightsReview", "memoryProjection"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]+$" },
+    "status": { "enum": ["experimental", "staging", "approved", "quarantined", "deprecated"] },
+    "names": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commonSign", "mantle", "sourceToneFingerprint"],
+      "properties": {
+        "commonSign": { "type": "string", "minLength": 2 },
+        "mantle": { "type": "string", "minLength": 2 },
+        "accordName": { "type": "string", "minLength": 2 },
+        "sourceToneFingerprint": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      }
+    },
+    "class": { "enum": ["emanant", "placekeeper", "echo", "ancestor", "collective", "awakened-work", "delegated-presence", "severed-presence"] },
+    "archetypeIds": { "type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": { "type": "string" } },
+    "worldIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+    "resonance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primaryElements", "expressionIds", "minimumSafeGate"],
+      "properties": {
+        "primaryElements": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["earth", "fire", "spirit", "void", "water", "wind"] } },
+        "expressionIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "minimumSafeGate": { "type": "integer", "minimum": 1, "maximum": 10 }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "anchor", "failurePressure"],
+      "properties": {
+        "origin": { "type": "string", "minLength": 15 },
+        "anchor": { "type": "string", "minLength": 10 },
+        "failurePressure": { "type": "string", "minLength": 10 }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selfhood", "memoryContinuity", "interpretationStatus"],
+      "properties": {
+        "selfhood": { "enum": ["individual", "plural", "distributed", "fragmented", "uncertain"] },
+        "memoryContinuity": { "type": "string", "minLength": 10 },
+        "interpretationStatus": { "enum": ["observed", "contested", "claimed", "unknown"] }
+      }
+    },
+    "manifestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maximumLevel", "forms", "tells"],
+      "properties": {
+        "maximumLevel": { "type": "integer", "minimum": 0, "maximum": 6 },
+        "forms": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 8 } },
+        "tells": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 5 } }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["need", "gift", "refusal", "boundary", "price", "release", "consentMode"],
+      "properties": {
+        "need": { "type": "string", "minLength": 10 },
+        "gift": { "type": "string", "minLength": 10 },
+        "refusal": { "type": "string", "minLength": 10 },
+        "boundary": { "type": "string", "minLength": 10 },
+        "price": { "type": "string", "minLength": 10 },
+        "release": { "type": "string", "minLength": 10 },
+        "consentMode": { "enum": ["explicit-renewable", "collective-renewable", "seasonal-renewable", "incapable-corrupted"] }
+      }
+    },
+    "ecology": { "type": "string", "minLength": 30 },
+    "storyEngine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["desire", "contradiction", "choicePressure"],
+      "properties": {
+        "desire": { "type": "string", "minLength": 10 },
+        "contradiction": { "type": "string", "minLength": 10 },
+        "choicePressure": { "type": "string", "minLength": 15 }
+      }
+    },
+    "visualGrammar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["silhouette", "movement", "palette", "forbiddenResemblances"],
+      "properties": {
+        "silhouette": { "type": "string", "minLength": 15 },
+        "movement": { "type": "string", "minLength": 10 },
+        "palette": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "forbiddenResemblances": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "restorationStatus"],
+      "properties": {
+        "state": { "enum": ["whole", "wounded", "shadowed", "severed"] },
+        "severanceEvent": { "type": "string" },
+        "restorationStatus": { "enum": ["not-needed", "possible", "unknown", "impossible"] }
+      }
+    },
+    "rightsReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourcePatternIds", "similarityRisk", "notes", "reviewStatus"],
+      "properties": {
+        "sourcePatternIds": { "type": "array", "minItems": 3, "uniqueItems": true, "items": { "type": "string" } },
+        "similarityRisk": { "enum": ["low", "medium", "high"] },
+        "notes": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 8 } },
+        "reviewStatus": { "enum": ["machine-screened", "human-required", "approved", "redesign-required"] }
+      }
+    },
+    "memoryProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "namespace"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "namespace": { "type": "string", "pattern": "^arcanea\\.(staging|canon)\\.spirits$" }
+      }
+    }
+  }
+}

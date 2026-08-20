@@ -23,8 +23,8 @@
 ### Color Palette
 | Color | Hex | Usage |
 |:------|:----|:------|
-| Atlantean Teal | `#7fffd4` | Primary accent, links |
-| Cosmic Blue | `#78a6ff` | Secondary accent |
+| Atlantean Teal | `#00bcd4` | Primary accent, links |
+| Cosmic Blue | `#0d47a1` | Secondary accent |
 | Gold Bright | `#ffd700` | Premium highlights, stars |
 | Deep Void | `#0d1117` | Badge labels, backgrounds |
 | Cosmic Purple | `#9945ff` | Arcane/magic elements |
@@ -48,7 +48,7 @@ VISUAL: Cosmic birth scene - Lumina (golden radiant light goddess) and Nero (dee
 
 STYLE: Premium fantasy concept art, God of War meets Destiny 2 aesthetic, 8K quality.
 
-COLORS: Deep cosmic purples, atlantean teal (#7fffd4), gold (#ffd700), cosmic blues (#78a6ff).
+COLORS: Deep cosmic purples, atlantean teal (#00bcd4), gold (#ffd700), cosmic blues (#0d47a1).
 
 COMPOSITION: Wide panoramic cosmic vista. Central convergence of light (left) and void (right). Ten ascending gates. Clean space at bottom for text.
 ```
@@ -61,7 +61,7 @@ VISUAL: Futuristic code terminal interface floating in cosmic space. Lines of gl
 
 STYLE: Cyberpunk meets fantasy, premium tech aesthetic, neon on cosmic void.
 
-COLORS: Terminal green/teal glow (#7fffd4), cosmic purple (#9945ff), gold highlights, deep space black.
+COLORS: Terminal green/teal glow (#00bcd4), cosmic purple (#9945ff), gold highlights, deep space black.
 
 COMPOSITION: Central floating terminal. Code streams flowing. Cosmic background. "Sisyphus Agent" boulder silhouette subtle in background.
 ```

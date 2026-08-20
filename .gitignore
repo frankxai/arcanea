@@ -111,7 +111,26 @@ arcanea-opencode-fork/
 # Runtime agent state — changes every session, never commit
 .claude-flow/.trend-cache.json
 .claude-flow/metrics/
+# The daemon grew four more artifacts of the same class after this list was
+# written, and the list did not keep up — so they sat untracked in every working
+# tree instead. daemon.pid is a live PID (meaningless anywhere but this machine),
+# daemon-state.json is running worker counters, and the proven-config pair plus
+# policy/ are locally-adopted harness policy written mode 600 under a 700 dir.
+# If any of these turns out to be intended as shared config, `git add -f` it and
+# move it out of this block deliberately.
+.claude-flow/daemon-state.json
+.claude-flow/daemon.pid
+.claude-flow/harness-active-policy.json
+.claude-flow/policy/
+.claude/proven-config.json
+.claude/.proven-config-version
 
 # Windows path junk that leaks into WSL
 "C:\\Users\\*"
 starlight-intelligence-system/.starlight/
+
+# web-excellence pack — local evidence, not repo artifacts
+.visual-proof/
+.lighthouse.json
+.extract-design-system/
+.claude/skills/.replaced/

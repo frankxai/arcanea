@@ -186,3 +186,21 @@ npx @claude-flow/cli@latest doctor --fix
 
 - Documentation: https://github.com/ruvnet/claude-flow
 - Issues: https://github.com/ruvnet/claude-flow/issues
+
+---
+
+## Lore canon gate — load-bearing
+
+**Lore, canon, and worldbuilding work goes through the `lore-release-gate` skill first**, before writing lore. It sequences the seven phases (ground in the vault → choose a pattern → draft in register → cross-check → evaluate → stage → promote), routes to the libraries under `docs/worldbuilding/`, and defines what "done" requires: a lint run, an etymology note per coined name, an IP check, and a `canon-evaluation` score that survived its adversarial pass — never a self-assigned verdict.
+
+`.arcanea/lore/CANON_LOCKED.md` is the vault and is **read-only to agents**; promotion from STAGING happens only through `/lock-decision`, by Frank. Note that `arcanea-lore/` and `sync/aios/lore/` are stale mirrors whose frequency tables and godbeast names diverge from the vault — the vault wins.
+
+**The 852 Hz Gate is `Starweave`** (ruled 2026-08-14). The vault always said so; much of the repo — including `.claude/CLAUDE.md` — says "Shift", and that is drift, not an alternative. The linter treats the name as an error on newly added lines; the ~186 pre-existing occurrences across ~30 files are issue #98's sweep, and fail nothing until then.
+
+`.claude/ci/lore-lint.mjs` is the model-free half: superseded names, Gate names, Gate frequencies, godbeast pairings (table and prose), canon-tier banners, and lock claims. Between sessions, `.github/workflows/lore-canon.yml` runs it on every PR touching lore, as a ratchet on newly added lines only. It exists because two locked godbeast renames silently failed to propagate across ~15 files over five months (issue #98) — drift accumulates when nothing checks. Judgment calls belong in the skills; the linter stays near-zero-false-positive so it never gets switched off.
+
+## Web design gate — load-bearing
+
+**Website / web-design work goes through the `web-release-gate` skill first**, before writing UI code. It is the entry point of the `web-excellence` pack in `.claude/skills/` (installed from [`frankxai/claude-skills-library`](https://github.com/frankxai/claude-skills-library) `packs/web-excellence`; re-run its `install.sh` to upgrade). The gate sequences `web-design-guidelines` (live Vercel Web Interface Guidelines audit), `ui-ux-pro-max`, `emil-design-eng` / `apple-design` / `review-animations` for motion, `core-web-vitals`, and `visual-proof`, and defines what "done" requires: audit findings plus before/after screenshots at 375 / 768 / 1440, never a self-assigned score.
+
+Three committed hooks in `.claude/hooks/` make this the default rather than a suggestion — a `SessionStart` note, a `PreToolUse` reminder on the first UI-file edit, and a `Stop` check that blocks once if UI changed with no audit. Those three hooks and `.claude/ci/web-guidelines-lint.mjs` are vendored copies whose tests live with the pack upstream — change them in [`claude-skills-library`](https://github.com/frankxai/claude-skills-library) `packs/web-excellence/` and re-run `install.sh`, rather than hand-editing them here where nothing tests them. Between sessions, `.github/workflows/web-excellence.yml` runs the mechanical subset on every PR that touches a UI file, as a ratchet on newly added lines only. Any `design.md` / `taste.md` (or `DESIGN.md` / `TASTE.md`) in this repo outranks every skill in the pack.

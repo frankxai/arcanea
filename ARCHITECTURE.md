@@ -220,8 +220,8 @@ import {
 **Button Variants**: default, outline, secondary, ghost, link, cosmic, luminous, ethereal
 
 **Design Tokens**:
-- Primary: `#7fffd4` (Atlantean Teal)
-- Secondary: `#78a6ff` (Cosmic Blue)
+- Primary: `#00bcd4` (Atlantean Teal)
+- Secondary: `#0d47a1` (Cosmic Blue)
 - Accent: `#ffd700` (Gold Bright)
 - Effects: Glass morphism, aurora gradients, cosmic glows
 

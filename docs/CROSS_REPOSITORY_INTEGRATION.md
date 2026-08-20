@@ -2,7 +2,7 @@
 
 ## 🔄 **Integration Architecture**
 
-The Arcanea ecosystem uses a **hub-and-spoke model** where the main repository serves as the central hub, and standalone repositories are automatically synchronized for independent deployment and development.
+The Arcanea ecosystem historically used a **hub-and-spoke model**. Automatic synchronization is disabled; the repositories below are independently maintained until a replacement contract is explicitly ratified.
 
 ### Repository Structure
 
@@ -15,13 +15,14 @@ arcanea (main hub)
 
 ## 🤖 **Automated Synchronization**
 
+> **Current state (updated 2026-07-27):** automatic triggers are disabled. Every scheduled run from 2026-02-24 until disablement failed because `PERSONAL_ACCESS_TOKEN` was absent; no content synced in that window. The target repositories have therefore drifted and are independently maintained. Do not restore credentials or backfill blindly: the legacy APL job deletes target TypeScript files and the library job uses `rsync --delete`.
+
 ### Cross-Repository Sync Workflow
 **File**: `.github/workflows/cross-repo-sync.yml`
 
 #### Triggers
-- **Push to main**: When `packages/ai-core/` or `apps/library/` changes
-- **Daily schedule**: 6 AM UTC automatic sync
-- **Manual dispatch**: On-demand synchronization
+- **Automatic triggers:** disabled
+- **Manual dispatch:** retained for controlled diagnosis only; do not run until ownership, dry-run diff, rollback, and least-privilege credential gates are reviewed
 
 #### Sync Process
 1. **Detect Changes**: Monitor specific paths for updates
@@ -118,14 +119,14 @@ npm publish arcanean-library-content
 
 #### For Prompt Language (APL)
 1. **Edit in main repo**: `packages/ai-core/`
-2. **Commit to main**: Triggers automatic sync
-3. **Verify sync**: Check `arcanea-prompt-language` repository
+2. **Commit to main**: Does not update the standalone repository
+3. **Port and review intentionally** in `arcanea-prompt-language`; record source and target commit SHAs
 4. **NPM publish**: Manual step for package releases
 
 #### For Library Content
 1. **Edit in main repo**: `apps/library/`
-2. **Commit to main**: Triggers sync and deployment
-3. **Verify deployment**: Check `library.arcanea.ai`
+2. **Commit to main**: Does not update the standalone repository
+3. **Port, review, and deploy intentionally** from `arcanean-library`
 
 #### For Mobile App
 1. **Edit in standalone**: `arcanea-mobile` repository
@@ -161,8 +162,8 @@ npm run dev
 
 ### Sync Status Monitoring
 - **GitHub Actions**: Monitor workflow runs
-- **Daily Reports**: Automated sync summaries
-- **Error Alerts**: Failed sync notifications
+- **Status:** automatic sync disabled; no daily report is expected
+- **Drift control:** compare source/target commits before any manual port
 
 ### Version Management
 - **Automatic Versioning**: Patch version bumps on sync
@@ -170,7 +171,7 @@ npm run dev
 - **Changelog Generation**: Automated from commit messages
 
 ### Health Checks
-- **Daily Sync**: Ensures repositories stay current
+- **Repository ownership:** standalone repositories remain independent until a tested replacement exists
 - **Deployment Verification**: Confirms successful deployments
 - **Dependency Updates**: Regular maintenance workflows
 
@@ -183,8 +184,8 @@ npm run dev
 # Check workflow logs
 gh run list --repo frankxai/arcanea --workflow="Cross-Repository Synchronization"
 
-# Manual sync trigger
-gh workflow run "Cross-Repository Synchronization" --repo frankxai/arcanea
+# Do not manually dispatch the legacy sync. Inspect it and prepare a dry-run diff first.
+gh workflow view "Cross-Repository Synchronization" --repo frankxai/arcanea
 ```
 
 #### Deployment Failures
@@ -205,11 +206,8 @@ git reset --hard origin/main
 
 ### Emergency Procedures
 
-#### Full Repository Sync
-```bash
-# Re-extract all standalone repositories
-gh workflow run "Cross-Repository Synchronization" --repo frankxai/arcanea -f force_sync=true
-```
+#### Cross-repository recovery
+Do not use the legacy workflow as an emergency backfill. First snapshot both target repositories, produce a non-destructive source-to-target diff, define ownership for every deleted path, test rollback, and obtain explicit approval for the exact commit range.
 
 #### Rollback Deployment
 ```bash
@@ -231,4 +229,4 @@ vercel rollback --team frankxai studio.arcanea.ai
 - **A/B testing**: Cross-platform experimentation
 - **Analytics aggregation**: Unified metrics dashboard
 
-This integration system ensures seamless coordination between repositories while maintaining independent deployment capabilities for each Arcanea application.
+The repositories currently maintain independent release boundaries. Any future synchronization must be fail-closed, observable, non-destructive by default, and backed by explicit ownership and rollback contracts.

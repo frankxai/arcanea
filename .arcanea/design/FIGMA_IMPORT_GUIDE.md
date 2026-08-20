@@ -27,22 +27,22 @@ cosmic/overlay:   #364562
 ### Collection: Brand
 ```
 brand/primary:    #8b5cf6
-brand/accent:     #7fffd4
+brand/accent:     #00bcd4
 brand/gold:       #ffd700
-brand/secondary:  #78a6ff
+brand/secondary:  #0d47a1
 ```
 
 ### Collection: Elements
 ```
-crystal/standard: #7fffd4
-crystal/bright:   #99ffe0
-crystal/deep:     #5ce6b8
+crystal/standard: #00bcd4
+crystal/bright:   #4dd0e1
+crystal/deep:     #0097a7
 fire/standard:    #ff6b35
 fire/bright:      #ff8c5a
 fire/deep:        #d94e1f
-water/standard:   #78a6ff
-water/bright:     #9dbfff
-water/deep:       #5a8ce6
+water/standard:   #0d47a1
+water/bright:     #5472d3
+water/deep:       #002171
 void/standard:    #9966ff
 void/bright:      #b38cff
 void/deep:        #7a4dcc
@@ -75,21 +75,21 @@ Create these text styles:
 
 | Style Name | Font | Weight | Size | Line Height |
 |------------|------|--------|------|-------------|
-| Display/Hero | Cinzel | 700 | 56px | 0.9 |
-| Display/H1 | Cinzel | 700 | 40px | 1.1 |
-| Display/H2 | Cinzel | 600 | 32px | 1.2 |
-| Heading/H3 | Inter | 600 | 24px | 1.3 |
-| Heading/H4 | Inter | 600 | 20px | 1.4 |
-| Body/Large | Inter | 400 | 18px | 1.6 |
-| Body/Base | Inter | 400 | 16px | 1.6 |
-| Body/Small | Inter | 400 | 14px | 1.5 |
-| Body/Caption | Inter | 400 | 12px | 1.4 |
-| Narrative/Large | Crimson Pro | 400 | 20px | 1.7 |
-| Narrative/Base | Crimson Pro | 400 | 18px | 1.7 |
+| Display/Hero | Geist | 700 | 56px | 0.9 |
+| Display/H1 | Geist | 700 | 40px | 1.1 |
+| Display/H2 | Geist | 600 | 32px | 1.2 |
+| Heading/H3 | Geist | 600 | 24px | 1.3 |
+| Heading/H4 | Geist | 600 | 20px | 1.4 |
+| Body/Large | Geist | 400 | 18px | 1.6 |
+| Body/Base | Geist | 400 | 16px | 1.6 |
+| Body/Small | Geist | 400 | 14px | 1.5 |
+| Body/Caption | Geist | 400 | 12px | 1.4 |
+| Narrative/Large | Instrument Serif | 400 | 20px | 1.7 |
+| Narrative/Base | Instrument Serif | 400 | 18px | 1.7 |
 | Code/Base | JetBrains Mono | 400 | 14px | 1.5 |
 | Code/Small | JetBrains Mono | 400 | 12px | 1.4 |
-| Label/Default | Inter | 500 | 14px | 1.0 |
-| Label/Small | Inter | 500 | 12px | 1.0 |
+| Label/Default | Geist | 500 | 14px | 1.0 |
+| Label/Small | Geist | 500 | 12px | 1.0 |
 
 ---
 
@@ -107,9 +107,9 @@ Create these text styles:
 ### Glow Shadows
 | Style | Value |
 |-------|-------|
-| Glow/SM | 0 0 10px rgba(127,255,212,0.15) |
-| Glow/MD | 0 0 20px rgba(127,255,212,0.25) |
-| Glow/LG | 0 0 40px rgba(127,255,212,0.35) |
+| Glow/SM | 0 0 10px rgba(0,188,212,0.15) |
+| Glow/MD | 0 0 20px rgba(0,188,212,0.25) |
+| Glow/LG | 0 0 40px rgba(0,188,212,0.35) |
 | Glow/Brand | 0 0 20px rgba(139,92,246,0.3) |
 
 ### Elevation Shadows

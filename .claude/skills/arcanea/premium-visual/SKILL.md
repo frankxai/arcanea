@@ -22,7 +22,7 @@ Every visual MUST satisfy BOTH criteria:
 2. **Glass panels for structure** — Information organized on frosted/translucent glass cards
 3. **3D depth creates hierarchy** — Foreground = primary, midground = secondary, background = ambient
 4. **Labels are mandatory** — Clean, modern sans-serif labels on every significant element
-5. **2-3 accent colors maximum** — Teal (#7fffd4) + Gold (#ffd700) + Violet (#9966ff) on void (#0b0e14)
+5. **2-3 accent colors maximum** — Teal (#00bcd4) + Gold (#ffd700) + Violet (#9966ff) on void (#0b0e14)
 6. **Dramatic directional lighting** — Single key light creating rim glow on glass surfaces
 7. **Connections show relationships** — Luminous threads between related glass nodes
 8. **Numbers add credibility** — Stats, counts, frequencies, percentages wherever relevant
@@ -44,7 +44,7 @@ Every visual MUST satisfy BOTH criteria:
 ### Color Palette (Strict)
 ```
 VOID:      #0b0e14  (Background — infinite dark)
-CRYSTAL:   #7fffd4  (Primary accent — teal glass glow)
+CRYSTAL:   #00bcd4  (Primary accent — teal glass glow)
 GOLD:      #ffd700  (Secondary accent — warm highlights)
 VIOLET:    #9966ff  (Tertiary — depth and mystery)
 TEXT:      #e6eefc  (Primary text — cool white)
@@ -68,7 +68,7 @@ Dark void background (#0b0e14). Multiple frosted glass panels floating at
 different depths, each containing [SPECIFIC DATA POINTS].
 [NUMBER] translucent crystal nodes representing [CONCEPTS], connected by
 thin luminous teal threads. Each node labeled with clean white sans-serif
-text. Dramatic spotlight from upper-left creating teal (#7fffd4) rim
+text. Dramatic spotlight from upper-left creating teal (#00bcd4) rim
 lighting on glass edges. Gold (#ffd700) accents on [KEY HIGHLIGHTS].
 Title "[TITLE TEXT]" in elegant thin modern typeface at top.
 Statistics and numbers visible on glass surfaces. Professional data

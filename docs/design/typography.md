@@ -1,4 +1,7 @@
 # Arcanean Typography System
+
+> **Superseded (2026-08-07).** This document predates the canonical design system and is kept for historical reference. Current tokens: Primary Atlantean Teal `#00bcd4`, Secondary Cosmic Blue `#0d47a1`, Accent Gold `#ffd700`, Background `#09090b`; fonts Geist (display + body), Instrument Serif (editorial accent), JetBrains Mono (code). Cinzel, Space Grotesk, and Inter are banned. Canonical source: `@arcanea/design-system` v0.2.0 (production repo `arcanea-ai-app`).
+
 ## The Written Language of Light
 
 ---

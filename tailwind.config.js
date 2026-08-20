@@ -1,6 +1,7 @@
 /**
  * Arcanea Tailwind Configuration v2.0
  * Source of truth: .arcanea/design/DESIGN_BIBLE.md
+ * Canonical tokens: @arcanea/design-system v0.2.0 (production repo arcanea-ai-app)
  * Cosmic Glass Design System
  *
  * @type {import('tailwindcss').Config}
@@ -75,16 +76,16 @@ module.exports = {
         // Brand
         brand: {
           primary: "#8b5cf6",
-          accent: "#7fffd4",
+          accent: "#00bcd4",
           gold: "#ffd700",
-          secondary: "#78a6ff"
+          secondary: "#0d47a1"
         },
 
         // Elemental Accents
         crystal: {
-          DEFAULT: "#7fffd4",
-          bright: "#99ffe0",
-          deep: "#5ce6b8"
+          DEFAULT: "#00bcd4",
+          bright: "#4dd0e1",
+          deep: "#0097a7"
         },
         fire: {
           DEFAULT: "#ff6b35",
@@ -92,9 +93,9 @@ module.exports = {
           deep: "#d94e1f"
         },
         water: {
-          DEFAULT: "#78a6ff",
-          bright: "#9dbfff",
-          deep: "#5a8ce6"
+          DEFAULT: "#0d47a1",
+          bright: "#5472d3",
+          deep: "#002171"
         },
         "void-el": {
           DEFAULT: "#9966ff",
@@ -134,9 +135,9 @@ module.exports = {
          TYPOGRAPHY
          ========================================== */
       fontFamily: {
-        display: ["Cinzel", "serif"],
-        body: ["Crimson Pro", "serif"],
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        display: ["Geist", "sans-serif"],
+        body: ["Geist", "sans-serif"],
+        sans: ["Geist", "system-ui", "-apple-system", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"]
       },
 
@@ -170,10 +171,10 @@ module.exports = {
          ========================================== */
       boxShadow: {
         // Glows
-        "glow-sm": "0 0 10px rgba(127, 255, 212, 0.15)",
-        "glow-md": "0 0 20px rgba(127, 255, 212, 0.25)",
-        "glow-lg": "0 0 40px rgba(127, 255, 212, 0.35)",
-        "glow-xl": "0 0 60px rgba(127, 255, 212, 0.45)",
+        "glow-sm": "0 0 10px rgba(0, 188, 212, 0.15)",
+        "glow-md": "0 0 20px rgba(0, 188, 212, 0.25)",
+        "glow-lg": "0 0 40px rgba(0, 188, 212, 0.35)",
+        "glow-xl": "0 0 60px rgba(0, 188, 212, 0.45)",
         "glow-brand": "0 0 20px rgba(139, 92, 246, 0.3)",
         "glow-fire": "0 0 20px rgba(255, 107, 53, 0.3)",
         "glow-gold": "0 0 20px rgba(255, 215, 0, 0.3)",
@@ -191,13 +192,13 @@ module.exports = {
          ========================================== */
       backgroundImage: {
         "cosmic-gradient": "linear-gradient(135deg, #0b0e14 0%, #1a2332 100%)",
-        "cosmic-mesh": "radial-gradient(ellipse at 20% 50%, rgba(127, 255, 212, 0.03) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(153, 102, 255, 0.03) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(120, 166, 255, 0.03) 0%, transparent 50%)",
-        "aurora": "linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(127, 255, 212, 0.06) 33%, rgba(120, 166, 255, 0.08) 66%, rgba(255, 215, 0, 0.04) 100%)",
-        "gradient-crystal": "linear-gradient(135deg, #7fffd4 0%, #99ffe0 100%)",
+        "cosmic-mesh": "radial-gradient(ellipse at 20% 50%, rgba(0, 188, 212, 0.03) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(153, 102, 255, 0.03) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(13, 71, 161, 0.03) 0%, transparent 50%)",
+        "aurora": "linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(0, 188, 212, 0.06) 33%, rgba(13, 71, 161, 0.08) 66%, rgba(255, 215, 0, 0.04) 100%)",
+        "gradient-crystal": "linear-gradient(135deg, #00bcd4 0%, #4dd0e1 100%)",
         "gradient-fire": "linear-gradient(135deg, #ff6b35 0%, #ffd700 100%)",
         "gradient-void": "linear-gradient(135deg, #9966ff 0%, #b38cff 100%)",
         "gradient-gold": "linear-gradient(135deg, #ffd700 0%, #ffe44d 100%)",
-        "gradient-brand": "linear-gradient(135deg, #8b5cf6 0%, #7fffd4 100%)"
+        "gradient-brand": "linear-gradient(135deg, #8b5cf6 0%, #00bcd4 100%)"
       },
 
       /* ==========================================
@@ -251,8 +252,8 @@ module.exports = {
           "50%": { transform: "scale(1.03)", opacity: "0.9" }
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(127, 255, 212, 0.2)" },
-          "50%": { boxShadow: "0 0 40px rgba(127, 255, 212, 0.4)" }
+          "0%, 100%": { boxShadow: "0 0 20px rgba(0, 188, 212, 0.2)" },
+          "50%": { boxShadow: "0 0 40px rgba(0, 188, 212, 0.4)" }
         }
       },
 

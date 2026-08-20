@@ -333,7 +333,7 @@ export async function getServerUser() {
 // Glass tiers: glass-subtle (8px) | glass (16px) | glass-strong (24px) | liquid-glass (40px)
 // Text: text-gradient-aurora | text-gradient-gold | text-gradient-violet
 // Animations: float | pulse-glow | shimmer | cosmic-drift
-// FONTS: Inter everywhere (NO Cinzel in new code — MEMORY.md override)
+// FONTS: Geist everywhere (NO Cinzel, Space Grotesk, or Inter in new code — MEMORY.md override)
 
 function GuardianCard({ guardian }: Props) {
   return (
@@ -358,4 +358,4 @@ Before any React/Next.js PR in Arcanea:
 - [ ] State derived during render, not in useEffect
 - [ ] Vercel AI SDK 6: `maxOutputTokens` and `toUIMessageStreamResponse`
 - [ ] Glass components use Design Bible classes
-- [ ] Fonts: Inter only (no Cinzel in new code)
+- [ ] Fonts: Geist only (no Cinzel, Space Grotesk, or Inter in new code)

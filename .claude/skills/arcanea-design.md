@@ -59,7 +59,7 @@ COSMIC DEEP:    #121826  (card backgrounds)
 COSMIC SURFACE: #1a2332  (elevated cards, modals)
 COSMIC RAISED:  #242f42  (hover states)
 BRAND PRIMARY:  #8b5cf6  (primary actions - VIOLET)
-BRAND ACCENT:   #7fffd4  (crystal highlights)
+BRAND ACCENT:   #00bcd4  (crystal highlights)
 BRAND GOLD:     #ffd700  (achievement, premium)
 TEXT PRIMARY:   #e6eefc  (headlines)
 TEXT SECONDARY: #9bb1d0  (body text)
@@ -68,9 +68,9 @@ TEXT MUTED:     #708094  (captions)
 
 ### Typography
 
-- **Cinzel**: Display headings (h1, h2, hero text)
-- **Crimson Pro**: Narrative body (long-form > 50 words)
-- **Inter**: UI elements (buttons, labels, nav, forms)
+- **Geist**: Display headings (h1, h2, hero text) and body
+- **Instrument Serif**: Editorial accent (quotes, narrative emphasis)
+- **Geist**: UI elements (buttons, labels, nav, forms)
 - **JetBrains Mono**: Code blocks, technical data
 
 ### Glass Effects (Use These Classes)
@@ -128,7 +128,7 @@ TEXT MUTED:     #708094  (captions)
 
 ### Landing Page Formula
 
-1. **Hero**: Full viewport, mesh gradient bg, Cinzel display heading with gradient text, crystal CTA button, floating decorative orbs
+1. **Hero**: Full viewport, mesh gradient bg, Geist display heading with gradient text, crystal CTA button, floating decorative orbs
 2. **Social Proof**: Logo bar, glass cards with stats, stagger animation on scroll
 3. **Features**: 4-column grid on lg, glass cards, elemental icons, hover-lift
 4. **How It Works**: 3-step numbered flow, liquid-glass cards, connecting lines
@@ -161,7 +161,7 @@ Run this BEFORE declaring any visual work done:
 ### Mandatory Checks
 
 - [ ] Uses Arcanean color tokens (NO raw hex values)
-- [ ] Correct typography (Cinzel display, Inter UI, Crimson Pro body, JetBrains code)
+- [ ] Correct typography (Geist display + body, Instrument Serif editorial accent, JetBrains Mono code)
 - [ ] Proper spacing (4px grid, section padding py-24 lg:py-32)
 - [ ] Glass effects with proper backdrop-filter blur
 - [ ] Cosmic shadows (elevation scale, NOT flat box-shadow)
@@ -214,8 +214,8 @@ Run this BEFORE declaring any visual work done:
 
 - Raw white (#ffffff) for text - use text-primary (#e6eefc)
 - Emoji as icons
-- Space Grotesk font (not in our system)
-- Crystal (#7fffd4) as large background fills
+- Cinzel, Space Grotesk, or Inter fonts (banned — canonical: `@arcanea/design-system` v0.2.0)
+- Crystal (#00bcd4) as large background fills
 - More than 2 glass layers stacked
 - Glow effects on body text
 - Flat box-shadows without depth
