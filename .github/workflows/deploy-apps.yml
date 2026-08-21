@@ -5,10 +5,16 @@ on:
     branches: [ main ]
     paths:
       - 'apps/**'
+      - '.github/workflows/deploy-apps.yml'
   pull_request:
     branches: [ main ]
     paths:
       - 'apps/**'
+      # A change to this file must run this file. Without it the workflow is
+      # unreachable from any PR that edits it, so a broken deploy pipeline can
+      # be "fixed" and merged with no evidence either way — which is how the
+      # pnpm ordering bug below survived. test.yml already lists itself here.
+      - '.github/workflows/deploy-apps.yml'
   workflow_dispatch:
 
 concurrency:
@@ -24,6 +30,7 @@ jobs:
       gallery: ${{ steps.changes.outputs.gallery }}
       library: ${{ steps.changes.outputs.library }}
       web: ${{ steps.changes.outputs.web }}
+      workflow: ${{ steps.changes.outputs.workflow }}
     steps:
     - uses: actions/checkout@v5
     - uses: dorny/paths-filter@v2
@@ -38,25 +45,35 @@ jobs:
             - 'apps/library/**'
           web:
             - 'apps/web/**'
+          workflow:
+            - '.github/workflows/deploy-apps.yml'
 
   test-and-build:
     name: Test & Build Apps
     runs-on: ubuntu-latest
     needs: changes
-    if: needs.changes.outputs.studio == 'true' || needs.changes.outputs.gallery == 'true' || needs.changes.outputs.library == 'true' || needs.changes.outputs.web == 'true'
+    # `workflow` is in this condition so that editing this file exercises the
+    # job it defines. Adding the path to the trigger alone is not enough — the
+    # paths-filter outputs would all be false and this job would skip, leaving
+    # the same unverifiable state by a different route.
+    if: needs.changes.outputs.studio == 'true' || needs.changes.outputs.gallery == 'true' || needs.changes.outputs.library == 'true' || needs.changes.outputs.web == 'true' || needs.changes.outputs.workflow == 'true'
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v5
+
+    # Must precede setup-node: its cache: 'pnpm' resolves the store by invoking
+    # pnpm, so pnpm has to be on PATH first. No version key — action-setup@v4
+    # reads packageManager from package.json, and errors out if a `version`
+    # here disagrees with it.
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
 
     - name: Setup Node.js
       uses: actions/setup-node@v5
       with:
         node-version: '18'
         cache: 'pnpm'
-
-    - name: Install pnpm
-      run: npm install -g pnpm
 
     - name: Install dependencies
       run: pnpm install

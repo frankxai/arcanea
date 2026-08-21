@@ -30,7 +30,12 @@ env:
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
   NODE_VERSION: '18'
-  PNPM_VERSION: '8'
+  # Must match packageManager in package.json exactly. This file is still on
+  # pnpm/action-setup@v2, which tolerates '8' against pnpm@8.15.0 — but @v4
+  # treats a disagreement as fatal, so bumping the six action-setup pins below
+  # would break every job here. Matching the string now means that bump is a
+  # one-line change rather than a debugging session.
+  PNPM_VERSION: '8.15.0'
 
 concurrency:
   group: mvp-deploy-${{ github.ref }}
