@@ -3,12 +3,20 @@
 >
 > *Last Updated: February 21, 2026*
 > *Status: CANONICAL*
+>
+> **2026-08-27 governance note:** This file is the locked baseline. Creator-approved
+> deltas and unresolved conflicts for new releases are recorded in
+> [`governance/CANON_REGISTRY.yaml`](../../governance/CANON_REGISTRY.yaml).
+> Release manifests take precedence only for the release they govern.
 
 ---
 
 ## PURPOSE
 
-This is the **single source of truth** for Arcanea. Everything here is LOCKED - meaning it has been reviewed and approved by the Creator (Frank) and cannot be changed by AI agents without explicit permission.
+This is the **locked baseline** for Arcanea. Everything marked LOCKED has been
+reviewed and approved by the Creator (Frank) and cannot be changed by AI agents
+without explicit permission. Use the governance registry for approved deltas,
+conflicts, legacy mappings, and release-specific precedence.
 
 **How to use:**
 - ✅ **LOCKED** = Canon, do not modify

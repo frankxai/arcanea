@@ -1,0 +1,88 @@
+schema_version: "1.0"
+registry_id: "ARC-PUBLIC-ESTATE"
+snapshot_date: "2026-08-27"
+scope: "Public repositories discovered across the frankxai account and Arcanea-Labs/Arcanea"
+method: "GitHub repository metadata plus targeted root-file inspection"
+warning: >-
+  NOASSERTION means GitHub did not detect a standard license; it does not prove
+  that no file-level license exists. Every repository needs a root and
+  package-level diligence pass before reuse, publication, or consolidation.
+
+classes:
+  proprietary_ip: "Canon, media, manuscripts, brand, or commercial product"
+  open_candidate: "Technical component that may remain open after provenance review"
+  mixed_transition: "Code and protected content are entangled"
+  archive: "No new releases; retain provenance and notices"
+  decision_required: "Purpose or controlling license is unclear"
+
+repositories:
+  - { repo: "frankxai/arcanea", detected_license: "custom ARR notice", class: "mixed_transition", risk: "critical", action: "Use governance boundaries; extract open components; stop new private canon." }
+  - { repo: "Arcanea-Labs/Arcanea", detected_license: "custom ARR notice; historical CC0", class: "archive", risk: "critical", action: "Freeze; preserve historical license evidence; no new canon." }
+  - { repo: "frankxai/arcanean-library", detected_license: "NOASSERTION", class: "proprietary_ip", risk: "critical", action: "Add content notice and inventory; stop unsourced canon sync." }
+  - { repo: "frankxai/arcanea-records", detected_license: "none detected", class: "proprietary_ip", risk: "critical", action: "Keep canon and music masters private or add explicit ARR and provenance." }
+  - { repo: "frankxai/Starlight-Intelligence-System", detected_license: "MIT", class: "mixed_transition", risk: "high", action: "Remove or expressly exclude Arcanea canon from MIT scope." }
+  - { repo: "frankxai/starlight-horizon-dataset", detected_license: "NOASSERTION; description says CC-BY-SA-4.0", class: "decision_required", risk: "high", action: "Add dataset card, exact license, sources, consent, and exclusions." }
+
+  - { repo: "frankxai/arcanea-core", detected_license: "Apache-2.0", class: "open_candidate", risk: "medium", action: "Verify NOTICE, patents, dependencies, and absence of protected canon." }
+  - { repo: "frankxai/arcanea-vscode", detected_license: "Apache-2.0", class: "open_candidate", risk: "medium", action: "Keep tooling generic; move Arcanea fixtures behind separate notice." }
+  - { repo: "frankxai/agentic-creator-os", detected_license: "Apache-2.0", class: "open_candidate", risk: "medium", action: "Position as neutral creator infrastructure after provenance review." }
+  - { repo: "frankxai/arcanea-plugin-sdk", detected_license: "MIT", class: "open_candidate", risk: "medium", action: "Consider Starlight namespace; add trademark and canon exclusion." }
+  - { repo: "frankxai/arcanea-mcp-starter", detected_license: "MIT", class: "open_candidate", risk: "medium", action: "Keep as transport starter; remove claims that MCP licenses Arcanea." }
+  - { repo: "frankxai/arcanea-agents", detected_license: "MIT", class: "mixed_transition", risk: "high", action: "Separate generic agent code from character personas and lore prompts." }
+  - { repo: "frankxai/arcanea-openclaw", detected_license: "MIT", class: "open_candidate", risk: "medium", action: "Review upstream and brand boundary." }
+  - { repo: "frankxai/arcanea-code", detected_license: "MIT", class: "open_candidate", risk: "medium", action: "Review upstream and rename neutral engine surfaces if appropriate." }
+  - { repo: "frankxai/arcanea-flow", detected_license: "MIT", class: "open_candidate", risk: "high", action: "Complete claude-flow attribution and provenance review." }
+  - { repo: "frankxai/arcanea-onchain", detected_license: "MIT", class: "archive", risk: "medium", action: "Deprioritize; retain notices; do not make it the rights system." }
+  - { repo: "frankxai/arcanean-open-webui", detected_license: "BSD-3-Clause", class: "open_candidate", risk: "medium", action: "Preserve upstream notices and distinct branding." }
+  - { repo: "frankxai/arcanea-prompt-language", detected_license: "MIT", class: "archive", risk: "medium", action: "Keep historical; do not include protected prompt packs by default." }
+  - { repo: "frankxai/arcanean-prompt-language", detected_license: "MIT", class: "open_candidate", risk: "medium", action: "Resolve duplicate repository purpose and trademark boundary." }
+  - { repo: "frankxai/arcanea-orchestrator", detected_license: "MIT", class: "archive", risk: "medium", action: "Preserve notices; route maintained neutral orchestration to Starlight." }
+  - { repo: "frankxai/arcanea-dashboard-template", detected_license: "MIT", class: "open_candidate", risk: "low", action: "Confirm assets and screenshots are redistributable." }
+  - { repo: "frankxai/arcanea-templates", detected_license: "MIT", class: "mixed_transition", risk: "medium", action: "Separate code templates from Arcanea-branded story templates." }
+  - { repo: "frankxai/arcanean-claude-code-best-practice", detected_license: "MIT", class: "open_candidate", risk: "medium", action: "Verify third-party attribution and remove proprietary persona content." }
+
+  - { repo: "frankxai/arcanea-ai-research", detected_license: "NOASSERTION", class: "decision_required", risk: "medium", action: "Add root license and source ledger." }
+  - { repo: "frankxai/arcanea-mobile", detected_license: "NOASSERTION", class: "proprietary_ip", risk: "medium", action: "Choose private/proprietary or explicit source-available boundary." }
+  - { repo: "frankxai/arcanea-marketplace", detected_license: "NOASSERTION", class: "proprietary_ip", risk: "high", action: "Keep private until product terms, rights, payments, and moderation exist." }
+  - { repo: "frankxai/arcanea-intelligence-os", detected_license: "none detected", class: "decision_required", risk: "high", action: "Define purpose; do not publish mixed prompts and canon." }
+  - { repo: "frankxai/gemini-arcanea", detected_license: "none detected", class: "mixed_transition", risk: "medium", action: "Add license and separate provider adapter from Arcanea persona content." }
+  - { repo: "frankxai/arcanea-ecosystem", detected_license: "none detected", class: "decision_required", risk: "medium", action: "Replace hand-maintained estate counts with this registry." }
+  - { repo: "frankxai/arcanea-infogenius", detected_license: "none detected", class: "decision_required", risk: "medium", action: "Classify content, code, and data separately." }
+  - { repo: "frankxai/oh-my-arcanea", detected_license: "NOASSERTION", class: "open_candidate", risk: "medium", action: "Add upstream notices and explicit license." }
+  - { repo: "frankxai/arcanea-plugins", detected_license: "none detected; fork lineage MIT", class: "open_candidate", risk: "high", action: "Restore upstream license and NOTICE before reuse." }
+  - { repo: "frankxai/arcanea-author", detected_license: "none detected", class: "proprietary_ip", risk: "medium", action: "Consolidate into Connector/AuthorOS with explicit user-IP terms." }
+  - { repo: "frankxai/author-os", detected_license: "NOASSERTION", class: "proprietary_ip", risk: "medium", action: "Define commercial boundary and keep Arcanea canon out of reusable engine." }
+  - { repo: "frankxai/author-os-skills", detected_license: "none detected", class: "mixed_transition", risk: "high", action: "Classify generic skills versus proprietary taste/canon packs." }
+  - { repo: "frankxai/arcanea-studio", detected_license: "NOASSERTION", class: "proprietary_ip", risk: "high", action: "Treat as private studio product; attach media provenance controls." }
+  - { repo: "frankxai/AnimeLegends-Skills", detected_license: "NOASSERTION", class: "mixed_transition", risk: "high", action: "Separate reusable production contracts from proprietary style and canon packs." }
+  - { repo: "frankxai/starlight", detected_license: "NOASSERTION", class: "decision_required", risk: "high", action: "Make this the neutral architecture only after naming and license review." }
+  - { repo: "frankxai/starlight-voice", detected_license: "MIT", class: "open_candidate", risk: "medium", action: "Verify voice/likeness assets are excluded from code license." }
+  - { repo: "frankxai/starlight-swarm", detected_license: "MIT", class: "open_candidate", risk: "medium", action: "Complete upstream provenance and keep neutral." }
+
+  - { repo: "frankxai/Arcanea-Labs", detected_license: "NOASSERTION", class: "decision_required", risk: "medium", action: "Clarify relation to Arcanea-Labs organization and add root license." }
+  - { repo: "frankxai/Anime-Legends", detected_license: "none detected", class: "archive", risk: "medium", action: "Archive provenance; do not present as an active studio release." }
+  - { repo: "frankxai/arcanea-ai", detected_license: "none detected", class: "archive", risk: "low", action: "Keep empty archive or redirect to current surfaces." }
+  - { repo: "frankxai/arcanea-opencode", detected_license: "NOASSERTION", class: "archive", risk: "medium", action: "Add historical license and redirect maintained code." }
+  - { repo: "frankxai/arcanea-codex", detected_license: "none detected", class: "archive", risk: "medium", action: "Add historical notice; distinguish from OpenAI Codex naming." }
+  - { repo: "frankxai/claude-arcanea", detected_license: "none detected", class: "archive", risk: "medium", action: "Add historical notice and provider trademark disclaimer." }
+  - { repo: "frankxai/codex-arcanea", detected_license: "none detected", class: "archive", risk: "medium", action: "Add historical notice and provider trademark disclaimer." }
+  - { repo: "frankxai/arcanea-claw", detected_license: "none detected", class: "archive", risk: "medium", action: "Preserve history; consolidate maintained media code elsewhere." }
+  - { repo: "frankxai/arcanea-nft-forge", detected_license: "none detected", class: "archive", risk: "high", action: "Deprioritize and avoid franchise strategy dependence on mass minting." }
+  - { repo: "frankxai/arcanea-chat-template", detected_license: "NOASSERTION; description says MIT", class: "archive", risk: "medium", action: "Reconcile description and root license." }
+
+private_control_repositories:
+  - { repo: "frankxai/arcanea-ai-app", role: "current live source and manuscripts", required_state: "private proprietary" }
+  - { repo: "frankxai/arcanea-platform", role: "platform", required_state: "private proprietary" }
+  - { repo: "frankxai/AnimeLegends", role: "screen and animation development", required_state: "private proprietary" }
+  - { repo: "frankxai/arcanea-video-pipeline", role: "media production", required_state: "private proprietary" }
+
+estate_actions:
+  immediate:
+    - "Add or reconcile root licenses for critical and high-risk repositories."
+    - "Stop mirroring canon into permissively licensed technical repositories."
+    - "Archive or redirect duplicate provider-specific and obsolete repositories."
+    - "Run secrets and large-file history audit before any new public mirror."
+  later:
+    - "Rename neutral infrastructure under Starlight only after clearance."
+    - "Publish a deliberately small open SDK/schema/validator suite."
+    - "Create a separate licensed-fan and partner program after flagship demand exists."

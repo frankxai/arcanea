@@ -1,0 +1,51 @@
+schema_version: "1.0"
+registry_id: "ARC-RELEASES"
+effective_date: "2026-08-27"
+
+model:
+  hierarchy:
+    - universe
+    - saga
+    - work
+    - release
+    - edition
+    - channel
+  gates:
+    - "G0_GREENLIGHT"
+    - "G1_STORY_LOCK"
+    - "G2_MANUSCRIPT_LOCK"
+    - "G3_EDITORIAL"
+    - "G4_PRODUCTION"
+    - "G5_RIGHTS_DISTRIBUTION"
+    - "G6_LAUNCH"
+    - "G7_LEARNING"
+  rule: "A release advances only with evidence and a named human approval."
+
+works:
+  - work_id: "ARC-WRK-DRG-000"
+    title: "Dragonborne: The Last Clutch"
+    kind: "founding novella seed"
+    measured_words: 37590
+    continuity: "Theron/Kessa founding-era continuity"
+    state: "draft_complete"
+    release_id: null
+    next_decision: >-
+      Preserve as a Book Zero or rewrite source only after continuity and
+      editorial assessment. Do not present it as the Arion-led flagship.
+
+releases:
+  - release_id: "ARC-REL-001"
+    manifest: "governance/releases/ARC-REL-001.yaml"
+    universe: "Arcanea"
+    saga_working_name: "The Godbeast Covenant"
+    work_working_title: "The Unchosen Bond"
+    internal_lane: "Dragonborne"
+    primary_format: "novel"
+    current_gate: "G0_GREENLIGHT"
+    current_state: "greenlit_development"
+    greenlight_date: "2026-08-27"
+    release_date: null
+    owner: "Frank Riemer"
+
+next_available_id: "ARC-REL-002"
+id_rule: "IDs are never reused or renumbered; cancelled releases retain tombstones."

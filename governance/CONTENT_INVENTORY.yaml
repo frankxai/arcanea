@@ -1,0 +1,111 @@
+schema_version: "1.0"
+registry_id: "ARC-INVENTORY"
+snapshot_date: "2026-08-27"
+snapshot_commit: "6cfddd2de2cad2b2f3f79461cfc516376322fb06"
+count_method: >-
+  Repository-local file and whitespace-word counts. Counts include frontmatter
+  and repeated material and therefore describe inventory, not unique polished
+  prose or publishable words.
+
+roots:
+  - id: "ARC-INV-LORE-AUTH"
+    path: ".arcanea/lore/"
+    classification: "authoritative_public_snapshot"
+    canonicality: "mixed_locked_and_staging"
+    file_count: 91
+    markdown_file_count: 84
+    markdown_whitespace_word_count: 271456
+    public_count_eligible: false
+    reason: "Contains governance, staging, conflicts, and entity drafts."
+
+  - id: "ARC-INV-LORE-LEGACY"
+    path: "arcanea-lore/"
+    classification: "legacy_mirror"
+    canonicality: "legacy"
+    file_count: 37
+    markdown_file_count: 30
+    markdown_whitespace_word_count: 76676
+    public_count_eligible: false
+    warning: "CANON_LOCKED.md identifies itself as stale."
+
+  - id: "ARC-INV-LORE-SYNC"
+    path: "sync/aios/lore/"
+    classification: "legacy_sync_mirror"
+    canonicality: "legacy"
+    file_count: 64
+    markdown_file_count: 57
+    markdown_whitespace_word_count: 141678
+    public_count_eligible: false
+
+  - id: "ARC-INV-BOOK-EN"
+    path: "book/"
+    classification: "english_manuscript_inventory"
+    canonicality: "mixed"
+    markdown_file_count: 79
+    whitespace_word_count: 129229
+    public_count_eligible: false
+    reason: "No release manifests; status and uniqueness vary."
+
+  - id: "ARC-INV-BOOK-DE"
+    path: "book-de/"
+    classification: "german_manuscript_inventory"
+    canonicality: "mixed_translation_and_adaptation"
+    markdown_file_count: 57
+    whitespace_word_count: 80354
+    public_count_eligible: false
+    reason: "Rights, source version, translation method, and release status are unresolved."
+
+canon_fingerprints:
+  - path: ".arcanea/lore/CANON_LOCKED.md"
+    sha256: "750c37e392aa0a0a5c506bdd205e1c15188c54f865ffb61ec98ab6ebb062b857"
+    whitespace_word_count: 2685
+    authority: "current public snapshot"
+  - path: "arcanea-lore/CANON_LOCKED.md"
+    sha256: "381b41f34626adf861c4f314d3c20eba591f58baae490302f9d174afbd393779"
+    whitespace_word_count: 1412
+    authority: "stale mirror"
+  - path: "sync/aios/lore/CANON_LOCKED.md"
+    sha256: "d50c696c60773280da064beb4c21122f0d40e74fa5a730a4b4000d8649fc7d0e"
+    whitespace_word_count: 1376
+    authority: "stale mirror"
+
+verified_private_work_inventory:
+  - work_id: "ARC-WRK-DRG-000"
+    title: "Dragonborne: The Last Clutch"
+    source: "private arcanea-ai-app manuscript tree"
+    chapters_present: 7
+    measured_whitespace_words: 37590
+    status: "draft_complete"
+    publication_status: "unpublished"
+    protagonist_alignment: "Theron/Kessa continuity; not Arion/Mera/Emilia"
+    claim_rule: >-
+      May be described only as a 37.6K-word draft or founding novella seed,
+      never as an edited, released, or flagship Book One.
+
+known_claims_to_remove_or_generate:
+  - claim: "486K+ words"
+    status: "unsupported_and_inconsistent"
+  - claim: "190K+ words"
+    status: "may describe a specific live library build only; must be generated"
+  - claim: "17 collections / 34+ texts"
+    status: "must be generated from the deployed content source"
+  - claim: "Book One complete"
+    status: "replace with draft_complete unless release gates pass"
+  - claim: "all implementations MIT licensed"
+    status: "false_for_mixed_estate"
+
+broken_or_unverified_surfaces:
+  - route: "/books"
+    status: "unverified_or_inaccessible_in_current_audit"
+    action: "Do not advertise until current production verification passes."
+  - route: "/protocol"
+    status: "live_but_material_claims_inaccurate"
+    action: "Replace blanket licensing, governance, and mainnet promises."
+  - route: "/developers"
+    status: "live_but_inventory_and_availability_claims_unverified"
+    action: "Generate counts and test every advertised install/API path."
+
+automation:
+  command: "node scripts/governance-audit.mjs"
+  output: "generated/governance-audit.json"
+  policy: "Generated output is evidence, not canon."

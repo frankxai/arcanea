@@ -1,0 +1,184 @@
+schema_version: "1.0"
+release_id: "ARC-REL-001"
+created_at: "2026-08-27T00:00:00Z"
+owner: "Frank Riemer"
+
+identity:
+  universe: "Arcanea"
+  saga_working_name: "The Godbeast Covenant"
+  work_working_title: "The Unchosen Bond"
+  internal_franchise_lane: "Dragonborne"
+  descriptor: "An Arcanea Dragonborne novel"
+  title_status: "working; professional clearance required"
+  primary_format: "novel"
+  target_length_words: "90000-110000"
+  audience: "adult epic fantasy with strong 16+ crossover"
+  point_of_view: "three controlled viewpoints: Arion, Mera, Emilia"
+
+greenlight:
+  gate: "G0_GREENLIGHT"
+  decision: "pass_for_development"
+  approved_by: "Frank Riemer"
+  approved_on: "2026-08-27"
+  evidence:
+    - "Dragonborne has a complete seven-chapter, 37,590-word founding draft asset."
+    - "Arion, Mera, and Emilia are already defined in the private character-core bridge."
+    - "The Ten Guardians and Godbeasts provide a scalable saga spine and visual identity."
+    - "Kael-led public drafts are fragmented and collide with several Kael/Cael names."
+    - "Dragon bond fantasy provides an immediately legible reader promise."
+  conditions:
+    - "Do not use Dragonborne alone as the cleared public series title."
+    - "Do not relabel The Last Clutch as this release."
+    - "Resolve ARC-CAN-004 before definitive tenth-pair exposition."
+    - "Pass story lock before full drafting and external cover commission."
+
+reader_promise:
+  logline: >-
+    The first law of dragons is that they choose. When an experiment makes
+    three Godbeasts answer Arion at once, Mera hears the memory someone cut
+    from the ancient bond and Emilia discovers the Academies were built to
+    contain it. To prevent a frightened world from turning relationship into
+    command, the three must choose one another before Malachar offers Arion a
+    painless, finished version of reality.
+  public_hook: "The first law of dragons is that they choose. Arion is answered by more than one."
+  emotional_contract:
+    - "Power is intimate before it is spectacular."
+    - "Every magical victory costs or changes a relationship."
+    - "The trio wins through distinct agency, not Arion absorbing their functions."
+    - "Godbeasts remain persons and forces, never collectible power-ups."
+
+story_center:
+  arion:
+    dramatic_need: "Protect without deciding for everyone."
+    temptation: "Accept perfect control so nobody can be lost again."
+    irreversible_choice: "Refuse command when command would produce the safer tactical outcome."
+  mera:
+    dramatic_need: "Witness memory without treating another mind as evidence."
+    temptation: "Expose the truth without consent because the stakes seem to justify it."
+    irreversible_choice: "Return a stolen memory before using it, then earn its telling."
+  emilia:
+    dramatic_need: "Build tools that preserve freedom after they leave her hands."
+    temptation: "Engineer uncertainty out of the bond."
+    irreversible_choice: "Break her own control lattice and release an unrepeatable design."
+  akamoto:
+    dramatic_function: "Mentor whose past bond makes institutional obedience personally costly."
+  malachar:
+    dramatic_function: >-
+      Offers a coherent mercy: end grief by ending the unfinished. He must be
+      right about a real institutional failure and catastrophically wrong
+      about what a living world is allowed to become.
+
+reveal_budget:
+  foreground_pairs: 3
+  remaining_pairs: "present as pressure, absence, omen, or consequence; not full dossiers"
+  rule: "Earn one unforgettable scene before adding one page of explanation."
+
+saga_spine:
+  movement_1:
+    working_scope: "Foundation, Flow, Fire"
+    purpose: "Bond, memory, and the first refusal of command"
+  movement_2:
+    working_scope: "Heart, Voice, Sight, Shift"
+    purpose: "Who owns a story, a body, and a future"
+  movement_3:
+    working_scope: "Crown, Unity, Source"
+    purpose: "Leadership, plurality, and the tenth-pair truth"
+  expansion_rule: >-
+    Greenlight one book and architect a trilogy. Do not market ten books before
+    reader retention and preorder evidence justify expansion.
+
+source_inputs:
+  canon_registry: "governance/CANON_REGISTRY.yaml"
+  naming_registry: "governance/NAMING_REGISTRY.yaml"
+  mystery_ledger: "governance/MYSTERY_LEDGER.yaml"
+  rights_registry: "governance/RIGHTS_REGISTRY.yaml"
+  legacy_foundation_work: "ARC-WRK-DRG-000"
+  private_character_bridge: ".arcanea/lore/CHARACTER_CORE.md in arcanea-ai-app"
+
+connector_receipt:
+  requested_surface: "internal Arcanea Connector"
+  transport_checked: "governed Starlight n8n workflow catalog"
+  matching_approved_workflow_count: 0
+  execution_state: "not_executed_no_matching_workflow"
+  compilation_state: "compiled_to_connector_contract"
+  compiled_outputs:
+    - "release identity"
+    - "source and rights manifest"
+    - "canon and mystery bindings"
+    - "story architecture"
+    - "medium expansion plan"
+    - "gate and evidence states"
+  limitation: >-
+    No approved Arcanea book/release workflow was available in the connected
+    catalog. This manifest is a deterministic Connector-compatible packet, not
+    a claim that an automation or manuscript-generation job ran.
+
+world_release_artifacts:
+  mandatory:
+    - "edited novel manuscript"
+    - "ebook and print interiors"
+    - "audiobook master"
+    - "original score or thematic EP"
+    - "approved character and Godbeast key art"
+    - "cinematic release website"
+    - "30-60 second master trailer plus channel cutdowns"
+    - "rights and AI-disclosure manifest"
+  optional_after_demand:
+    - "illustrated field guide"
+    - "webtoon proof sequence"
+    - "tabletop quickstart"
+    - "vertical slice game experience"
+
+gates:
+  G0_GREENLIGHT:
+    status: passed
+    evidence: "decision and comparative audit recorded"
+  G1_STORY_LOCK:
+    status: pending
+    exit_criteria:
+      - "scene-level outline and ending locked"
+      - "three co-lead arcs pass agency audit"
+      - "Guardian/Godbeast reveal budget approved"
+      - "ARC-CAN-004 handled without contradiction"
+      - "10-15 target-reader concept interviews or equivalent evidence"
+  G2_MANUSCRIPT_LOCK:
+    status: pending
+    exit_criteria:
+      - "complete canonical manuscript in one source"
+      - "developmental revision complete"
+      - "cold-reader signal meets threshold"
+  G3_EDITORIAL:
+    status: pending
+    exit_criteria:
+      - "developmental, line, copy, and proof passes tracked separately"
+  G4_PRODUCTION:
+    status: pending
+    exit_criteria:
+      - "approved editions and media masters"
+      - "independent visual and technical verification"
+  G5_RIGHTS_DISTRIBUTION:
+    status: pending
+    exit_criteria:
+      - "chain of title and title clearance"
+      - "ISBN, metadata, retailer disclosures, contracts, and territories"
+  G6_LAUNCH:
+    status: pending
+    exit_criteria:
+      - "production capture, rollback, storefront checks, launch inventory"
+  G7_LEARNING:
+    status: pending
+    exit_criteria:
+      - "30/90-day audience and revenue review"
+
+commission_readiness:
+  developmental_editor:
+    state: "brief_allowed_after_G0; commission after outline and sample"
+    external_spend_authorized: false
+  cover_direction:
+    state: "mood and positioning brief allowed; final commission after title clearance and character lock"
+    external_spend_authorized: false
+  reason: >-
+    The creator greenlit development, but no vendor, budget, contract, or spend
+    authority was supplied in this program.
+
+release_status: "greenlit_development_not_publication_ready"

@@ -1,0 +1,65 @@
+schema_version: "1.0"
+registry_id: "ARC-MYSTERIES"
+effective_date: "2026-08-27"
+
+rules:
+  - "Every marketed question is either promised_answer or permanent_mystery."
+  - "A promised answer has a reveal window and an accountable owner."
+  - "A permanent mystery may gain evidence but may not receive a definitive answer."
+  - "Marketing may tease only what the release plan can pay off."
+
+promised_answers:
+  - id: "ARC-MYS-001"
+    question: "Why can Arion resonate with more than one Gate and Godbeast?"
+    introduced_in: "ARC-REL-001"
+    partial_reveal: "ARC-REL-001 climax"
+    full_reveal_window: "first trilogy"
+    owner: "franchise owner"
+    status: planned
+    guardrail: "The answer cannot reduce Arion to bloodline destiny alone."
+
+  - id: "ARC-MYS-002"
+    question: "What really happened in the first covenant between dragons, Guardians, and mortals?"
+    introduced_in: "The Last Clutch founding novella and ARC-REL-001"
+    partial_reveal: "ARC-REL-001"
+    full_reveal_window: "Book 2"
+    owner: "franchise owner"
+    status: planned
+
+  - id: "ARC-MYS-003"
+    question: "Who or what occupies the tenth Guardian position, and why was it erased?"
+    introduced_in: "ARC-REL-001 as an absence, never an exposition block"
+    partial_reveal: "Book 2"
+    full_reveal_window: "Book 3"
+    owner: "franchise owner"
+    status: blocked_on_ARC-CAN-004
+
+  - id: "ARC-MYS-004"
+    question: "What did Malachar lose that made a finished, unchanging world seem merciful?"
+    introduced_in: "ARC-REL-001"
+    partial_reveal: "Book 1 antagonist encounter"
+    full_reveal_window: "Book 3"
+    owner: "franchise owner"
+    status: planned
+
+  - id: "ARC-MYS-005"
+    question: "Why does memory inside the bond resist institutional editing?"
+    introduced_in: "Mera's ARC-REL-001 line"
+    partial_reveal: "ARC-REL-001 midpoint"
+    full_reveal_window: "Book 2"
+    owner: "Mera continuity owner"
+    status: planned
+
+permanent_mysteries:
+  - id: "ARC-MYS-P01"
+    question: "What, if anything, precedes the Source?"
+    allowed_evidence: "contradictory cultural accounts, visions, and Godbeast behavior"
+    forbidden_resolution: "omniscient authorial answer"
+  - id: "ARC-MYS-P02"
+    question: "Do Godbeasts dream independently, or does the world dream through them?"
+    allowed_evidence: "character experience and incompatible testimony"
+    forbidden_resolution: "mechanical taxonomy presented as final truth"
+  - id: "ARC-MYS-P03"
+    question: "Can creation remain alive after every known Gate is opened?"
+    allowed_evidence: "future-era stories"
+    forbidden_resolution: "closed cosmological endpoint"
