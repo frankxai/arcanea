@@ -1,21 +1,43 @@
-MIT License
+Arcanea Repository License Notice
 
-Copyright (c) 2024-2026 FrankX
+Copyright © 2024–2026 Frank Riemer. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Default rule
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Except where a file or directory contains a separate express license notice, no
+license is granted to copy, modify, distribute, sublicense, sell, host, train
+models on, or create derivative works from this repository or its contents.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Public access to this repository permits viewing and forking only as provided by
+GitHub's Terms of Service. It does not create an open-source, content, patent, or
+trademark license.
+
+2. Separately licensed components
+
+A component with its own LICENSE file or unambiguous SPDX license identifier is
+governed only by that component's license. Open ecosystem components are
+intended to live behind explicit package or repository boundaries; no open
+license for one component extends to Arcanea canon, applications, datasets,
+prompts, media, designs, or brand assets.
+
+3. Historical releases
+
+Versions previously distributed under MIT, CC0, Creative Commons, Apache-2.0,
+or another license remain governed by the license attached to those versions.
+Those historical grants are not revoked. This notice governs protectable
+original material first published in this revision and later revisions, unless
+a separate express license states otherwise.
+
+4. Third-party material
+
+Third-party code, dependencies, assets, and embedded tools remain governed by
+their respective licenses and notices. Nothing in this notice claims ownership
+of third-party material or narrows rights granted by its original licensors.
+
+5. Brands and canon
+
+ARCANEA and related names, characters, lore, logos, product names, visual
+identities, and trade dress are reserved. No trademark, merchandising, canon,
+adaptation, endorsement, or commercial-use right is granted by this notice.
+
+For commercial licensing or partnership requests, contact legal@arcanea.ai.
