@@ -1,0 +1,30 @@
+{
+  "schema_version": "starlight.editorial_contract.v1",
+  "brand_id": "arcanea",
+  "source": {
+    "repository": "frankxai/starlight-design-intelligence",
+    "ref": "50ae34c7ac06e6c083f277ca96c3bde8f0a39b43",
+    "profile": "brand-packs/arcanea/COPY.md",
+    "profile_sha256": "d7960162ac6f134c59b5e8f680808b9130279e4c5d8c030ee1caa01babb4556e"
+  },
+  "content_roots": [
+    "app",
+    "components",
+    "content",
+    "data",
+    "lib",
+    "pages",
+    "src"
+  ],
+  "generated_files": [
+    "CREATOR.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    ".github/copilot-instructions.md",
+    ".cursor/rules/editorial.mdc",
+    ".agents/skills/frank-brand-editor/SKILL.md",
+    ".github/workflows/starlight-editorial-contract.yml",
+    ".starlight/editorial-contract.json"
+  ]
+}
