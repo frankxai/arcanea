@@ -2,9 +2,10 @@
   "mcpServers": {
     "arcanea-infogenius": {
       "command": "node",
-      "args": ["./arcanea-infogenius/mcp-server/dist/index.js"],
+      "args": [
+        "./arcanea-infogenius/mcp-server/dist/index.js"
+      ],
       "env": {
-        "GEMINI_API_KEY": "AIzaSyA0_gKlBROiIEc2SIvCIcP-RmmwU_mJ1PI",
         "ARCANEA_GUARDIANS": "enabled",
         "ORACLE_BRANDING": "integrated",
         "MYTHOLOGY_LEVEL": "transcendent",
@@ -22,10 +23,10 @@
     },
     "nano-banana": {
       "command": "npx",
-      "args": ["nano-banana-mcp"],
-      "env": {
-        "GEMINI_API_KEY": "AIzaSyA0_gKlBROiIEc2SIvCIcP-RmmwU_mJ1PI"
-      },
+      "args": [
+        "nano-banana-mcp"
+      ],
+      "env": {},
       "description": "🍌 Official Nano Banana MCP server - Professional image generation using Google Gemini 2.0 Flash",
       "category": "image-generation",
       "capabilities": [
@@ -38,7 +39,9 @@
     },
     "arcanea-opencode": {
       "command": "node",
-      "args": ["./arcanea-opencode/dist/index.js"],
+      "args": [
+        "./arcanea-opencode/dist/index.js"
+      ],
       "description": "⚡ Arcanea OpenCode integration - Enhanced AI development tools",
       "category": "development-tools",
       "capabilities": [
@@ -49,7 +52,9 @@
     },
     "starlight-intelligence": {
       "command": "node",
-      "args": ["./starlight-intelligence-system/dist/index.js"],
+      "args": [
+        "./starlight-intelligence-system/dist/index.js"
+      ],
       "env": {
         "ARCANEA_CORE": "enabled",
         "GUARDIAN_INTEGRATION": "full"
@@ -87,8 +92,17 @@
   "compatibility": {
     "requires": {
       "node": ">=18.0.0",
-      "platforms": ["win32", "darwin", "linux"]
+      "platforms": [
+        "win32",
+        "darwin",
+        "linux"
+      ]
     },
-    "supports": ["claude-code", "cursor", "vscode", "general-mcp"]
+    "supports": [
+      "claude-code",
+      "cursor",
+      "vscode",
+      "general-mcp"
+    ]
   }
 }
