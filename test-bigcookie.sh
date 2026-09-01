@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export GEMINI_API_KEY="AIzaSyA0_gKlBROiIEc2SIvCIcP-RmmwU_mJ1PI"
+: "${GEMINI_API_KEY:?Set GEMINI_API_KEY in your environment}"
+export GEMINI_API_KEY
 
 echo "🍌 Testing BigCookie Nano Banana MCP..."
 

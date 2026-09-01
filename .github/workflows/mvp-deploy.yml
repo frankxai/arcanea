@@ -202,7 +202,10 @@ jobs:
     name: Deploy to Vercel (Preview)
     runs-on: ubuntu-latest
     needs: [build]
-    if: github.event_name == 'pull_request'
+    # HARD STOP: live arcanea.ai is the Vercel Git integration of
+    # frankxai/arcanea-ai-app (prj_90OIWsAmfeswv8IG8WxqEAFefTOV).
+    # This public repo must never vercel pull/deploy with the shared token.
+    if: false
     environment:
       name: preview
       url: ${{ steps.deploy.outputs.preview-url }}
@@ -259,7 +262,9 @@ jobs:
     name: Deploy to Vercel (Production)
     runs-on: ubuntu-latest
     needs: [build, database]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    # HARD STOP: do not vercel --prod from frankxai/arcanea.
+    # Production host https://www.arcanea.ai is owned by frankxai/arcanea-ai-app.
+    if: false
     environment:
       name: production
       url: https://arcanea.ai
@@ -329,7 +334,7 @@ jobs:
     name: Post-Deployment Health Check
     runs-on: ubuntu-latest
     needs: [deploy-production]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: false
     steps:
       - name: Wait for deployment propagation
         run: sleep 30

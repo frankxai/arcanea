@@ -14,7 +14,8 @@ echo '{"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}}' | timeo
 
 echo ""
 echo "3️⃣ Testing Image Generation with Arcanea Enhancement..."
-export GEMINI_API_KEY="AIzaSyA0_gKlBROiIEc2SIvCIcP-RmmwU_mJ1PI"
+: "${GEMINI_API_KEY:?Set GEMINI_API_KEY in your environment}"
+export GEMINI_API_KEY
 
 TEST_PROMPT="Create a simple test diagram showing Arcanea system integration.
 

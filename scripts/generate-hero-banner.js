@@ -8,7 +8,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const GEMINI_API_KEY = "AIzaSyBv2def7r-0VqmWQ6fkUqgS1q2eR9MjKdc";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+if (!GEMINI_API_KEY) throw new Error('GEMINI_API_KEY is required');
 
 const prompt = `Create a premium 16:9 hero banner for 'ARCANEA - The Living Mythology for AI-Human Co-Creation'.
 

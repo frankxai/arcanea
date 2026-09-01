@@ -4,7 +4,8 @@
 echo "🍌 Testing Official Nano Banana MCP Integration..."
 
 # Test with environment variable (recommended approach)
-export GEMINI_API_KEY="AIzaSyA0_gKlBROiIEc2SIvCIcP-RmmwU_mJ1PI"
+: "${GEMINI_API_KEY:?Set GEMINI_API_KEY in your environment}"
+export GEMINI_API_KEY
 
 echo "✅ Using official Nano Banana MCP repository"
 echo "✅ Gemini API key configured"

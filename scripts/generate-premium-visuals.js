@@ -9,7 +9,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const API_KEY = 'AIzaSyBv2def7r-0VqmWQ6fkUqgS1q2eR9MjKdc';
+const API_KEY = process.env.GEMINI_API_KEY;
+if (!API_KEY) throw new Error('GEMINI_API_KEY is required');
 const MODEL = 'gemini-3-pro-image-preview';
 
 const PREMIUM_IMAGES = [
