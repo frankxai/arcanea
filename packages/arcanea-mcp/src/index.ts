@@ -66,6 +66,8 @@ import {
   getRelatedCreations,
   suggestConnections,
   getGraphSummary,
+  runGuardianSafetyCheck,
+  getSisWorldGraphFilePath,
   exportGraph,
   findPath,
   type RelationshipType,
@@ -301,9 +303,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
     case "get_world_graph": {
       const summary = getGraphSummary(sessionId);
+      const safety = runGuardianSafetyCheck(sessionId);
       return { content: [{ type: "text", text: JSON.stringify({
         worldSummary: summary,
-        description: `Your world contains ${summary.nodeCount} creations connected by ${summary.edgeCount} relationships.`,
+        guardianSafety: safety,
+        sisSync: {
+          status: "synced",
+          storagePath: getSisWorldGraphFilePath(),
+        },
+        description: `Your world contains ${summary.nodeCount} creations connected by ${summary.edgeCount} relationships. Guardian safety is ${safety.status}.`,
       }, null, 2) }] };
     }
     case "find_path": {
