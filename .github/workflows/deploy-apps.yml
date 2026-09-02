@@ -8,6 +8,7 @@ on:
       - '.github/workflows/deploy-apps.yml'
   pull_request:
     branches: [ main ]
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - 'apps/**'
       # A change to this file must run this file. Without it the workflow is
@@ -25,6 +26,7 @@ jobs:
   changes:
     name: Detect Changes
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     outputs:
       studio: ${{ steps.changes.outputs.studio }}
       gallery: ${{ steps.changes.outputs.gallery }}
@@ -56,7 +58,10 @@ jobs:
     # job it defines. Adding the path to the trigger alone is not enough — the
     # paths-filter outputs would all be false and this job would skip, leaving
     # the same unverifiable state by a different route.
-    if: needs.changes.outputs.studio == 'true' || needs.changes.outputs.gallery == 'true' || needs.changes.outputs.library == 'true' || needs.changes.outputs.web == 'true' || needs.changes.outputs.workflow == 'true'
+    # Draft gate first: a draft PR skips this job entirely. Re-fired by
+    # ready_for_review in the trigger above.
+    if: (github.event_name != 'pull_request' || github.event.pull_request.draft == false) && (needs.changes.outputs.studio == 'true' || needs.changes.outputs.gallery == 'true' || needs.changes.outputs.library == 'true' || needs.changes.outputs.web == 'true' || needs.changes.outputs.workflow == 'true')
+    timeout-minutes: 30
 
     steps:
     - name: Checkout code

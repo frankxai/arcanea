@@ -6,6 +6,7 @@ on:
     branches: [main, develop, 'feature/**', 'cursor/**']
   pull_request:
     branches: [main, develop]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 concurrency:
   group: quality-${{ github.ref }}
@@ -18,6 +19,7 @@ env:
 jobs:
   quality:
     name: TypeScript & Package Tests
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -74,6 +76,7 @@ jobs:
 
   build:
     name: Production Build
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     needs: quality
     timeout-minutes: 20
@@ -115,6 +118,7 @@ jobs:
     name: Quality Status
     runs-on: ubuntu-latest
     needs: [quality, build, release-integrity]
+    timeout-minutes: 5
     # Not always(): a run cancelled by cancel-in-progress has no verdict to
     # report, and reporting one anyway painted the PR red for being pushed to
     # twice. Same fix as test.yml's summary job.
