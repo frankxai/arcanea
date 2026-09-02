@@ -68,7 +68,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const inputId = id ?? React.useId();
+    // useId must run on every render. `id ?? React.useId()` short-circuits, so
+    // the hook was only called when no id prop was supplied — rendering this
+    // component with an id and then without it (or vice versa) changed the hook
+    // order between renders, which is the invariant React relies on to match
+    // state to hooks.
+    const generatedId = React.useId();
+    const inputId = id ?? generatedId;
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
     const errorId = errorMessage ? `${inputId}-error` : undefined;
     const resolvedState = errorMessage ? 'error' : state;
