@@ -8,15 +8,11 @@
 const fs = require('fs');
 const path = require('path');
 
-// Read API key from config
-const configPath = path.join(__dirname, '..', '.nano-banana-config.json');
-let GEMINI_API_KEY;
+// Credentials must come from the runtime environment. Fail before any network call.
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY?.trim();
 
-try {
-  const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-  GEMINI_API_KEY = config.geminiApiKey;
-} catch (error) {
-  console.error('Error reading config:', error.message);
+if (!GEMINI_API_KEY) {
+  console.error('GEMINI_API_KEY is required');
   process.exit(1);
 }
 
