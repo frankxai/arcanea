@@ -1,0 +1,162 @@
+schema_version: "1.0"
+registry_id: "ARC-CANON"
+effective_date: "2026-08-27"
+authority: "Frank Riemer, franchise owner"
+default_publication_status: "unpublished"
+default_canonicality: "noncanon"
+
+axes:
+  canonicality:
+    - locked
+    - approved_delta
+    - staging
+    - legacy
+    - conflict
+    - noncanon
+  publication_status:
+    - unpublished
+    - announced
+    - released
+    - superseded
+
+precedence:
+  - rank: 1
+    source: "approved release manifest"
+  - rank: 2
+    source: "approved_delta in this registry"
+  - rank: 3
+    source: ".arcanea/lore/CANON_LOCKED.md"
+  - rank: 4
+    source: "approved entity file in .arcanea/lore"
+  - rank: 5
+    source: "staging file in .arcanea/lore"
+  - rank: 6
+    source: "legacy mirror, manuscript, generated artifact, prompt, or marketing copy"
+
+decisions:
+  - id: "ARC-CAN-001"
+    subject: "forward public story center"
+    canonicality: approved_delta
+    publication_status: unpublished
+    decision: >-
+      Arion is the primary audience anchor. Mera and Emilia are co-leads, not
+      satellites. Akamoto is the principal mentor and dragon-bond bridge.
+      Malachar is the principal opposing intelligence. The Ten Guardians and
+      Godbeasts are the saga spine, revealed through character consequences
+      rather than encyclopedia exposition.
+    evidence:
+      - "creator direction in this program, 2026-08-27"
+      - "private .arcanea/lore/CHARACTER_CORE.md staging bridge"
+    affects:
+      - "ARC-REL-001"
+      - "future public Books pages"
+    owner: "Frank Riemer"
+    approved_on: "2026-08-27"
+
+  - id: "ARC-CAN-002"
+    subject: "Kael continuity"
+    canonicality: approved_delta
+    publication_status: unpublished
+    decision: >-
+      Kael Thornfield and related Five-Fold lead variants are legacy draft
+      ancestry, not the forward public protagonist. Where source records
+      explicitly map a Kael variant to Arion, migrate deliberately; do not
+      globally replace the string because Kaelith and other independent names
+      are distinct entities.
+    evidence:
+      - "creator direction: Kael not focus; Arion focus"
+      - "CHARACTER_CORE.md records Kael aliases under Arion"
+      - ".arcanea/lore/CONTINUITY_AUDIT.md documents Kael collisions"
+    owner: "Frank Riemer"
+    approved_on: "2026-08-27"
+
+  - id: "ARC-CAN-003"
+    subject: "public divine nomenclature"
+    canonicality: approved_delta
+    publication_status: unpublished
+    decision: >-
+      Use Guardian as the primary public category for the ten Gate-aligned
+      intelligences and Godbeast for their great counterparts. Individual
+      cultures may call them gods, but marketing and registry copy must not
+      resolve the world's theology for the reader.
+    evidence:
+      - "creator direction emphasizing the Ten Guardians and Godbeasts"
+    owner: "Frank Riemer"
+    approved_on: "2026-08-27"
+
+  - id: "ARC-CAN-004"
+    subject: "Source, Shinkami, and the tenth pair"
+    canonicality: conflict
+    publication_status: unpublished
+    decision: >-
+      Go-forward creator context places the Source or The One above Lumina and
+      Nero and treats Shinkami as a Ten-Tailed Godbeast and Source-vessel, not
+      the ultimate God. The current public locked file instead lists Shinkami
+      as the Source Guardian and a Godbeast named Source. No release may state
+      the tenth pairing as settled until a canon delta identifies the tenth
+      Guardian and migrates every dependent source.
+    evidence:
+      - "creator canon context, 2026-08"
+      - ".arcanea/lore/CANON_LOCKED.md Tier 2"
+      - ".arcanea/lore/guardians/production/shinkami.md"
+    required_decision: "Approve the tenth-Guardian solution and migration map"
+    owner: "Frank Riemer"
+
+  - id: "ARC-CAN-005"
+    subject: "deep thematic engine"
+    canonicality: staging
+    publication_status: unpublished
+    decision: >-
+      The saga tests living creation against completed perfection. Public
+      stories translate that conflict into bonds versus possession, memory
+      versus control, repair versus frozen safety, and the cost of remaining
+      open to change. Vel'Thaan is optional deep-language texture, not the
+      franchise slogan or a theory that characters repeatedly explain.
+    evidence:
+      - "strategy synthesis, 2026-08-27"
+      - "creator objection to overemphasizing Vel'Thaan"
+    approval_needed: true
+
+  - id: "ARC-CAN-006"
+    subject: "core magic scaffold"
+    canonicality: locked
+    publication_status: unpublished
+    decision: >-
+      The Five Elements, Ten Gates, Guardian/Godbeast structure, and rank
+      ladder remain the current magic scaffold, subject to ARC-CAN-004 and
+      release-specific simplification.
+    source: ".arcanea/lore/CANON_LOCKED.md"
+
+  - id: "ARC-CAN-007"
+    subject: "Malachar dramatic function"
+    canonicality: staging
+    publication_status: unpublished
+    decision: >-
+      Malachar is not a generic dark lord and not merely a consent allegory. He
+      offers a seductive end to grief, risk, contradiction, and unfinished
+      creation. His methods turn relationship into control. His strongest
+      scenes must make a humane case before the cost becomes undeniable.
+    evidence:
+      - "existing tragic-champion canon"
+      - "strategy synthesis, 2026-08-27"
+    approval_needed: true
+
+release_rules:
+  - "No staging or conflict entry may be presented as settled canon."
+  - "A generated output inherits the canonicality of its least-authoritative material input."
+  - "All ARC-REL-001 prose must use ARC-CAN-001 through ARC-CAN-003."
+  - "ARC-CAN-004 blocks definitive tenth-pair exposition, not development of the mystery."
+
+migration_queue:
+  - id: "ARC-MIG-001"
+    task: "Replace the Kael-led public roadmap with the Arion/Mera/Emilia release line"
+    status: planned
+  - id: "ARC-MIG-002"
+    task: "Resolve Source/Shinkami/tenth-Guardian conflict"
+    status: blocked_on_creator_decision
+  - id: "ARC-MIG-003"
+    task: "Remove Amaterasu and Thessara legacy references using entity-aware edits"
+    status: planned
+  - id: "ARC-MIG-004"
+    task: "Retire lore mirrors or generate them from one source"
+    status: planned

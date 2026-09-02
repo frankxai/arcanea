@@ -1,0 +1,145 @@
+schema_version: "1.0"
+registry_id: "ARC-RIGHTS"
+effective_date: "2026-08-27"
+notice: >-
+  This operational registry is not legal advice, a copyright assignment, or a
+  substitute for signed agreements and qualified counsel.
+
+current_claimed_owner:
+  name: "Frank Riemer"
+  status: "creator-held pending any documented assignment"
+  evidence_required_for_transfer:
+    - "signed IP assignment"
+    - "schedule of transferred works and marks"
+    - "effective date and territory"
+
+default_classes:
+  - class_id: "ARC-RGT-CANON"
+    includes:
+      - canon
+      - lore
+      - characters
+      - settings
+      - manuscripts
+      - story bibles
+    go_forward_rights: "all_rights_reserved"
+    public_notice: "LICENSE-CONTENT.md"
+    open_source_code_license_extends_here: false
+
+  - class_id: "ARC-RGT-MEDIA"
+    includes:
+      - illustrations
+      - concept_art
+      - animation
+      - video
+      - music
+      - voice
+      - sound_design
+    go_forward_rights: "all_rights_reserved"
+    release_requirement: "asset-level provenance and commercial authorization"
+
+  - class_id: "ARC-RGT-BRAND"
+    includes:
+      - names
+      - logos
+      - visual_identity
+      - trade_dress
+      - product_marks
+    go_forward_rights: "reserved; no trademark grant"
+    public_notice: "TRADEMARKS.md"
+
+  - class_id: "ARC-RGT-OPEN-CODE"
+    includes:
+      - deliberately_open_sdk
+      - deliberately_open_schema
+      - deliberately_open_validator
+      - deliberately_open_connector_adapter
+    go_forward_rights: "per-component express license"
+    preferred_license: "Apache-2.0 after provenance review"
+    constraint: "No proprietary canon, prompts, training data, or brand assets bundled."
+
+  - class_id: "ARC-RGT-APP"
+    includes:
+      - hosted_application
+      - private_orchestration
+      - commercial_connector
+      - telemetry
+      - private_prompt_pack
+    go_forward_rights: "proprietary unless expressly licensed"
+
+  - class_id: "ARC-RGT-USER-WORLD"
+    includes:
+      - user_characters
+      - user_lore
+      - user_media
+      - user_exports
+    ownership_intent: "creator-owned"
+    controlling_instrument: "current product terms, not repository license"
+    platform_license: "minimum license needed to operate the requested service"
+    canon_effect: "never Arcanea canon by default"
+
+historical_exposure:
+  - id: "ARC-RGT-H01"
+    repository: "Arcanea-Labs/Arcanea"
+    exposure: "historical CC0 revisions"
+    effect: "historical grants cannot be revoked"
+    mitigation: "No new canon; preserve commit-level license evidence."
+    status: open
+  - id: "ARC-RGT-H02"
+    repository: "frankxai/arcanea and package subtrees"
+    exposure: "mixed historical MIT, Creative Commons, Apache, and custom notices"
+    effect: "file- and revision-level diligence required"
+    mitigation: "Use explicit nested boundaries and stop blanket claims."
+    status: open
+  - id: "ARC-RGT-H03"
+    repository: "frankxai/arcanean-library"
+    exposure: "public lore repository with no detected standard license"
+    effect: "public access plus ambiguous reuse expectations"
+    mitigation: "Add content notice, classify every file, stop syncing new canon."
+    status: high_priority
+  - id: "ARC-RGT-H04"
+    repository: "frankxai/Starlight-Intelligence-System"
+    exposure: "root MIT may contain composed Arcanea lore or canon snapshots"
+    effect: "permissive code license may be read as applying to embedded content"
+    mitigation: "Remove proprietary content or add explicit content exclusions."
+    status: high_priority
+
+release_rights_checklist:
+  - "author and contributor chain of title"
+  - "editor, illustrator, designer, composer, narrator, actor, and developer agreements"
+  - "AI provider terms and exact model/operation receipt"
+  - "reference-image, voice, likeness, font, stock, and music permissions"
+  - "human authorship and creative contribution record"
+  - "AI-generated versus AI-assisted disclosure record"
+  - "territory, language, format, duration, exclusivity, and sublicensing rights"
+  - "trademark and title clearance"
+  - "ISBN, metadata, retailer, platform, and rating requirements"
+  - "adaptation, interactive, merchandise, soundtrack, and sequel rights reserved"
+
+ai_authorship_policy:
+  principle: >-
+    Human authors determine and document the protected expressive choices.
+    Prompts alone are not treated as proof of authorship.
+  required_receipts:
+    - "human-authored outline and revision trail"
+    - "model, provider, date, input rights, and output identifier"
+    - "selection, arrangement, rewriting, and final approval evidence"
+    - "retailer disclosure classification"
+  crown_jewel_rule: >-
+    Do not upload unreleased manuscripts, master character references, or
+    confidential franchise bibles to a provider until current privacy,
+    retention, and training-use terms are approved for that account.
+
+open_decisions:
+  - id: "ARC-RGT-D01"
+    decision: "Future IP holding entity and written assignment"
+    owner: "Frank Riemer plus qualified counsel"
+    blocks: "studio financing or external licensing diligence"
+  - id: "ARC-RGT-D02"
+    decision: "Fan-content policy versus commercial community license"
+    owner: "franchise owner plus qualified counsel"
+    blocks: "licensed Arcanea creator program"
+  - id: "ARC-RGT-D03"
+    decision: "Trademark/title clearance for Dragonborne and proposed public titles"
+    owner: "qualified trademark counsel"
+    blocks: "final cover, ISBN metadata, paid launch"

@@ -1,0 +1,135 @@
+schema_version: "1.0"
+registry_id: "ARC-NAMES"
+effective_date: "2026-08-27"
+authority: "Frank Riemer, franchise owner"
+upstream_style_guide: ".arcanea/lore/NAMING_REGISTRY.md"
+
+rules:
+  - "A prominent public name must have one entity ID and one pronunciation."
+  - "Do not globally replace a short name that is embedded in unrelated locked names."
+  - "Working titles require market, domain, and trademark clearance before cover commission."
+  - "No new prominent name within edit distance two of a locked prominent name without review."
+  - "Legacy aliases may appear in provenance notes, never as competing public identities."
+
+forward_public_names:
+  - entity_id: "ARC-CHAR-ARION"
+    name: "Arion"
+    kind: "character"
+    role: "primary audience anchor"
+    status: reserved
+    legacy_aliases:
+      - "Kael Thornfield"
+      - "Kael Ashenvane"
+      - "Five-Fold protagonist variants"
+    note: "Migrate only sources explicitly mapped by the character-core bridge."
+
+  - entity_id: "ARC-CHAR-MERA"
+    name: "Mera Tidecrest"
+    kind: "character"
+    role: "co-lead; water-memory and consent line"
+    status: reserved
+    legacy_aliases:
+      - "Mira Tidecrest"
+
+  - entity_id: "ARC-CHAR-EMILIA"
+    name: "Emilia"
+    kind: "character"
+    role: "co-lead; synthesis and magic-technology bridge"
+    status: reserved
+    note: "Surname remains open; do not invent one in generated public copy."
+
+  - entity_id: "ARC-CHAR-AKAMOTO"
+    name: "Akamoto"
+    kind: "character"
+    role: "mentor; headmaster and dragon-bond bridge"
+    status: reserved
+
+  - entity_id: "ARC-CHAR-MALACHAR"
+    name: "Malachar Lumenbright"
+    kind: "character"
+    role: "principal opposing intelligence"
+    status: locked
+
+protected_sets:
+  guardians:
+    status: "locked_except_tenth_pair_conflict"
+    names:
+      - Lyssandria
+      - Leyla
+      - Draconia
+      - Maylinn
+      - Alera
+      - Lyria
+      - Aiyami
+      - Elara
+      - Ino
+      - Shinkami
+    conflict_reference: "ARC-CAN-004"
+  godbeasts:
+    status: "locked_except_tenth_pair_conflict"
+    names:
+      - Kaelith
+      - Veloura
+      - Draconis
+      - Laeylinn
+      - Otome
+      - Yumiko
+      - Sol
+      - Vaelith
+      - Kyuro
+      - Source
+    conflict_reference: "ARC-CAN-004"
+
+superseded:
+  - old: "Amaterasu"
+    replacement: "unresolved under ARC-CAN-004"
+    do_not_reuse: true
+  - old: "Thessara, as Godbeast"
+    replacement: "Vaelith"
+    do_not_reuse: true
+  - old: "Kael Thornfield, as forward protagonist"
+    replacement: "Arion"
+    do_not_reuse: false
+  - old: "Mira Tidecrest"
+    replacement: "Mera Tidecrest"
+    do_not_reuse: true
+
+collision_queue:
+  - id: "ARC-NAME-C01"
+    cluster:
+      - Kael
+      - Kaelith
+      - Kaelindra
+      - Kaelara
+      - Cael
+      - Caelum
+    decision: >-
+      Preserve Kaelith. Retire Kael as Kaelindra's nickname. Keep the remaining
+      entities in staging until a spoken-page and scene-cooccurrence test is
+      passed.
+    status: approved_delta
+  - id: "ARC-NAME-C02"
+    cluster:
+      - Mera
+      - Mira
+    decision: "Mera is forward; Mira is legacy."
+    status: approved_delta
+
+working_titles:
+  - id: "ARC-TITLE-DRAGONBORNE"
+    name: "Dragonborne"
+    intended_use: "internal franchise lane or in-world identity"
+    status: provisional_clearance_required
+    evidence_note: >-
+      The near-identical Dragonborn is an active New York Times bestselling
+      fantasy series from Penguin/Puffin in 2025–2026, in addition to extensive
+      prior fantasy use. Do not commission final cover or register metadata
+      under Dragonborne alone until professional clearance.
+  - id: "ARC-TITLE-GODBEAST-COVENANT"
+    name: "The Godbeast Covenant"
+    intended_use: "proposed saga name"
+    status: staging
+  - id: "ARC-TITLE-UNCHOSEN-BOND"
+    name: "The Unchosen Bond"
+    intended_use: "ARC-REL-001 working book title"
+    status: staging

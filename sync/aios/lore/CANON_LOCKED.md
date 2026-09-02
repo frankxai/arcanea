@@ -1,4 +1,8 @@
 # ARCANEA CANON - LOCKED TRUTHS
+> **STALE SYNC MIRROR — do not edit or cite as current canon.** Use
+> [`.arcanea/lore/CANON_LOCKED.md`](../../../.arcanea/lore/CANON_LOCKED.md) and
+> [`governance/CANON_REGISTRY.yaml`](../../../governance/CANON_REGISTRY.yaml).
+>
 > **This document contains APPROVED canonical truth. Changes require explicit approval.**
 >
 > *Last Updated: February 21, 2026*

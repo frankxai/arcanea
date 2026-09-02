@@ -4,6 +4,11 @@
 > **Last Updated**: 2026-08-08
 > **Purpose**: Names are metadata. A reader should infer register, faction, and era from sound alone — and a thousand contributors (human and AI) should coin names that feel *inevitable, not random*. This registry is the machine-checkable contract that makes that possible.
 > **Method lineage**: Tolkien's languages-first phonaesthetics, FromSoftware's phoneme-family lineage encoding, FF's tiered morphology — architecture, never bricks (`docs/worldbuilding/BEST_PRACTICES.md` §IV).
+>
+> **2026-08-27 release note:** This document remains the phonetic and morphology
+> guide. Forward public names, legacy mappings, title clearance, and collision
+> decisions are controlled by
+> [`governance/NAMING_REGISTRY.yaml`](../../governance/NAMING_REGISTRY.yaml).
 
 ---
 

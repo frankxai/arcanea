@@ -1,6 +1,6 @@
 # Arcanea
 
-Arcanea is the public code mirror for [arcanea.ai](https://arcanea.ai) — the creative intelligence universe for chat, lore, academy, and worldbuilding.
+Arcanea is a transitional public mirror for selected code, public lore snapshots, and the [arcanea.ai](https://arcanea.ai) experience. Arcanea is an original entertainment universe; its Connector also helps creators build worlds they own.
 
 ![Arcanea GitHub Hero](.github/assets/arcanea-github-main-hero.jpg)
 
@@ -8,9 +8,14 @@ Arcanea is the public code mirror for [arcanea.ai](https://arcanea.ai) — the c
 
 ## What this repo is
 
-- The public mirror of the Arcanea web experience and supporting packages
-- The best place to study the product architecture, design system, and lore model in public
+- A transitional mirror of selected Arcanea web and technical work
+- A public snapshot for studying architecture and explicitly released components
 - A pnpm/Turborepo monorepo centered on the active `apps/web` Next.js application
+
+This is a mixed repository. Public visibility does not make its story content,
+brand, media, prompts, datasets, or every package open source. Read
+[`governance/REPOSITORY_BOUNDARIES.md`](governance/REPOSITORY_BOUNDARIES.md)
+before reusing anything.
 
 ## Install
 
@@ -33,7 +38,10 @@ pnpm test:quick
 
 ## How this relates to Arcanea
 
-Arcanea.ai is the live product. This repository is its public mirror. Product operations, private datasets, and some internal workflows may evolve outside this mirror, but this repo remains the canonical public code reference for the living universe.
+Arcanea.ai is the live experience. Private repositories and approved release
+manifests control production and unpublished canon. This repository is not the
+master canon vault. For new work, the authority and conflict rules live in
+[`governance/README.md`](governance/README.md).
 
 ## Community
 
@@ -49,4 +57,8 @@ Arcanea.ai is the live product. This repository is its public mirror. Product op
 
 ## License
 
-See the repository license for usage terms.
+The root repository notice is the default. Separately licensed technical
+components keep their express licenses. Arcanea canon and media are covered by
+[`LICENSE-CONTENT.md`](LICENSE-CONTENT.md); no code license grants story,
+adaptation, merchandise, training, or trademark rights. Historical grants
+remain attached to the revisions that carried them.
