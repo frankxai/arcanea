@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 
 interface Particle {
@@ -20,6 +20,13 @@ interface ParticlesBackgroundProps {
   color?: "crystal" | "gold" | "brand" | "mixed";
 }
 
+const PARTICLE_COLORS: Record<string, string | string[]> = {
+  crystal: "#7fffd4",
+  gold: "#ffd700",
+  brand: "#8b5cf6",
+  mixed: ["#7fffd4", "#ffd700", "#8b5cf6", "#78a6ff"],
+};
+
 export function ParticlesBackground({
   className = "",
   particleCount = 50,
@@ -28,13 +35,6 @@ export function ParticlesBackground({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animationRef = useRef<number | undefined>(undefined);
-
-  const colors: Record<string, string | string[]> = {
-    crystal: "#7fffd4",
-    gold: "#ffd700",
-    brand: "#8b5cf6",
-    mixed: ["#7fffd4", "#ffd700", "#8b5cf6", "#78a6ff"],
-  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -50,9 +50,9 @@ export function ParticlesBackground({
 
     const createParticles = () => {
       const particles: Particle[] = [];
-      const colorArray = Array.isArray(colors[color])
-        ? (colors[color] as string[])
-        : [colors[color] as string];
+      const colorArray = Array.isArray(PARTICLE_COLORS[color])
+        ? (PARTICLE_COLORS[color] as string[])
+        : [PARTICLE_COLORS[color] as string];
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
@@ -146,26 +146,44 @@ export function StarField({
   className?: string;
   count?: number;
 }) {
+  const stars = useMemo(
+    () =>
+      Array.from({ length: count }, (_, i) => {
+        const seed = (multiplier: number) => {
+          const value = Math.sin((i + 1) * multiplier) * 10000;
+          return value - Math.floor(value);
+        };
+        return {
+          id: i,
+          left: `${seed(12.9898) * 100}%`,
+          top: `${seed(78.233) * 100}%`,
+          duration: seed(31.4159) * 3 + 2,
+          delay: seed(47.729) * 2,
+        };
+      }),
+    [count],
+  );
+
   return (
     <div
       className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
     >
-      {Array.from({ length: count }).map((_, i) => (
+      {stars.map((star) => (
         <motion.div
-          key={i}
+          key={star.id}
           className="absolute w-1 h-1 rounded-full bg-crystal"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: star.left,
+            top: star.top,
           }}
           animate={{
             opacity: [0.2, 0.8, 0.2],
             scale: [0.8, 1.2, 0.8],
           }}
           transition={{
-            duration: Math.random() * 3 + 2,
+            duration: star.duration,
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: star.delay,
           }}
         />
       ))}

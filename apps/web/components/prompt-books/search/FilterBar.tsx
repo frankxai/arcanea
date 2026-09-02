@@ -9,7 +9,6 @@ import {
   ChevronDown,
   Star,
   Tag,
-  X,
   SlidersHorizontal,
   Check,
   ArrowUpDown,
@@ -123,9 +122,21 @@ export function FilterBar() {
   const [sortBy, setSortBy] = useState<SortOption>("newest");
 
   // ── Dropdown controls ───────────────────────────────────────────────
-  const typeDropdown = useDropdown();
-  const tagDropdown = useDropdown();
-  const sortDropdown = useDropdown();
+  const {
+    isOpen: isTypeOpen,
+    setIsOpen: setTypeOpen,
+    ref: typeDropdownRef,
+  } = useDropdown();
+  const {
+    isOpen: isTagOpen,
+    setIsOpen: setTagOpen,
+    ref: tagDropdownRef,
+  } = useDropdown();
+  const {
+    isOpen: isSortOpen,
+    setIsOpen: setSortOpen,
+    ref: sortDropdownRef,
+  } = useDropdown();
 
   // ── Active filter count ─────────────────────────────────────────────
   const activeFilterCount = useMemo(() => {
@@ -218,9 +229,9 @@ export function FilterBar() {
         </div>
 
         {/* ── Prompt Type Dropdown ──────────────────────────────────── */}
-        <div ref={typeDropdown.ref} className="relative">
+        <div ref={typeDropdownRef} className="relative">
           <button
-            onClick={() => typeDropdown.setIsOpen(!typeDropdown.isOpen)}
+            onClick={() => setTypeOpen(!isTypeOpen)}
             className={cn(
               "glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans",
               "flex items-center gap-1.5 transition-all duration-150",
@@ -231,7 +242,7 @@ export function FilterBar() {
                 : "border-transparent text-text-muted hover:text-text-secondary",
             )}
             aria-haspopup="listbox"
-            aria-expanded={typeDropdown.isOpen}
+            aria-expanded={isTypeOpen}
           >
             <span>
               {selectedType ? PROMPT_TYPES[selectedType].label : "Type"}
@@ -239,13 +250,13 @@ export function FilterBar() {
             <ChevronDown
               className={cn(
                 "w-3 h-3 transition-transform duration-200",
-                typeDropdown.isOpen && "rotate-180",
+                isTypeOpen && "rotate-180",
               )}
             />
           </button>
 
           <AnimatePresence>
-            {typeDropdown.isOpen && (
+            {isTypeOpen && (
               <motion.div
                 variants={dropdownVariants}
                 initial="hidden"
@@ -267,7 +278,7 @@ export function FilterBar() {
                   aria-selected={!selectedType}
                   onClick={() => {
                     setSelectedType(null);
-                    typeDropdown.setIsOpen(false);
+                    setTypeOpen(false);
                   }}
                   className={cn(
                     "w-full px-2.5 py-2 rounded-md text-left text-xs font-sans",
@@ -293,7 +304,7 @@ export function FilterBar() {
                     aria-selected={selectedType === key}
                     onClick={() => {
                       setSelectedType(key);
-                      typeDropdown.setIsOpen(false);
+                      setTypeOpen(false);
                     }}
                     className={cn(
                       "w-full px-2.5 py-2 rounded-md text-left text-xs font-sans",
@@ -334,9 +345,9 @@ export function FilterBar() {
         </button>
 
         {/* ── Tags Dropdown ────────────────────────────────────────── */}
-        <div ref={tagDropdown.ref} className="relative">
+        <div ref={tagDropdownRef} className="relative">
           <button
-            onClick={() => tagDropdown.setIsOpen(!tagDropdown.isOpen)}
+            onClick={() => setTagOpen(!isTagOpen)}
             className={cn(
               "glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans",
               "flex items-center gap-1.5 transition-all duration-150",
@@ -347,7 +358,7 @@ export function FilterBar() {
                 : "border-transparent text-text-muted hover:text-text-secondary",
             )}
             aria-haspopup="listbox"
-            aria-expanded={tagDropdown.isOpen}
+            aria-expanded={isTagOpen}
           >
             <Tag className="w-3 h-3" />
             <span>
@@ -358,13 +369,13 @@ export function FilterBar() {
             <ChevronDown
               className={cn(
                 "w-3 h-3 transition-transform duration-200",
-                tagDropdown.isOpen && "rotate-180",
+                isTagOpen && "rotate-180",
               )}
             />
           </button>
 
           <AnimatePresence>
-            {tagDropdown.isOpen && (
+            {isTagOpen && (
               <motion.div
                 variants={dropdownVariants}
                 initial="hidden"
@@ -427,9 +438,9 @@ export function FilterBar() {
         </div>
 
         {/* ── Sort Dropdown ────────────────────────────────────────── */}
-        <div ref={sortDropdown.ref} className="relative ml-auto">
+        <div ref={sortDropdownRef} className="relative ml-auto">
           <button
-            onClick={() => sortDropdown.setIsOpen(!sortDropdown.isOpen)}
+            onClick={() => setSortOpen(!isSortOpen)}
             className={cn(
               "glass-subtle px-3 py-1.5 rounded-lg text-xs font-sans",
               "flex items-center gap-1.5 transition-all duration-150",
@@ -440,20 +451,20 @@ export function FilterBar() {
                 : "border-transparent text-text-muted hover:text-text-secondary",
             )}
             aria-haspopup="listbox"
-            aria-expanded={sortDropdown.isOpen}
+            aria-expanded={isSortOpen}
           >
             <ArrowUpDown className="w-3 h-3" />
             <span>{SORT_OPTIONS[sortBy].label}</span>
             <ChevronDown
               className={cn(
                 "w-3 h-3 transition-transform duration-200",
-                sortDropdown.isOpen && "rotate-180",
+                isSortOpen && "rotate-180",
               )}
             />
           </button>
 
           <AnimatePresence>
-            {sortDropdown.isOpen && (
+            {isSortOpen && (
               <motion.div
                 variants={dropdownVariants}
                 initial="hidden"
@@ -481,7 +492,7 @@ export function FilterBar() {
                       aria-selected={isActive}
                       onClick={() => {
                         setSortBy(key);
-                        sortDropdown.setIsOpen(false);
+                        setSortOpen(false);
                       }}
                       className={cn(
                         "w-full px-2.5 py-2 rounded-md text-left text-xs font-sans",
