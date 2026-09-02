@@ -32,6 +32,7 @@ import {
   generateMagicAbility,
   generateLocation,
   generateCreature,
+  generateLeviathan,
   generateArtifact,
   generateName,
   generateStoryPrompt,
@@ -110,6 +111,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     { name: "generate_magic", description: "Design a magical ability based on the Arcanea magic system", inputSchema: { type: "object", properties: { element: { type: "string", enum: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] }, gateLevel: { type: "number", minimum: 1, maximum: 10 }, purpose: { type: "string" } }, required: ["element", "gateLevel"] } },
     { name: "generate_location", description: "Create a location in Arcanea with elemental alignment", inputSchema: { type: "object", properties: { type: { type: "string" }, dominantElement: { type: "string", enum: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] }, alignment: { type: "string", enum: ["light", "dark", "balanced"] } } } },
     { name: "generate_creature", description: "Design a magical creature for the Arcanea world", inputSchema: { type: "object", properties: { element: { type: "string", enum: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] }, size: { type: "string", enum: ["tiny", "small", "medium", "large", "massive"] }, temperament: { type: "string", enum: ["hostile", "neutral", "friendly", "sacred"] } } } },
+    { name: "generate_leviathan", description: "Summon a Tier 3 Leviathan / Wild Godbeast — an unbonded titan outside the Ten Gates (e.g. Nethyssa). STAGING canon.", inputSchema: { type: "object", properties: { element: { type: "string", enum: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] }, temperament: { type: "string", enum: ["dreaming", "stirring", "waking", "corrupted"] }, named: { type: "boolean", description: "Return the canonical flagship Nethyssa for Water/Void" } } } },
     { name: "generate_artifact", description: "Create a magical artifact with history and powers", inputSchema: { type: "object", properties: { type: { type: "string" }, element: { type: "string", enum: ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] }, power: { type: "string", enum: ["minor", "moderate", "major", "legendary"] } } } },
     { name: "generate_name", description: "Generate Arcanean names following the language system", inputSchema: { type: "object", properties: { element: { type: "string" }, gender: { type: "string", enum: ["masculine", "feminine", "neutral"] }, type: { type: "string", enum: ["character", "place", "artifact", "creature"] }, count: { type: "number", minimum: 1, maximum: 20 } } } },
     { name: "generate_story_prompt", description: "Create an inspiring story prompt set in Arcanea", inputSchema: { type: "object", properties: { theme: { type: "string" }, gate: { type: "number", minimum: 1, maximum: 10 }, includeConflict: { type: "boolean" } } } },
@@ -176,6 +178,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const result = await generateCreature(args as any);
       const parsed = JSON.parse(result.content[0].text);
       const creation = { id: Date.now().toString(), type: "creature" as const, name: parsed.name, element: parsed.element, createdAt: new Date(), summary: parsed.species };
+      recordCreation(sessionId, creation);
+      addCreationToGraph(sessionId, creation, parsed);
+      return result;
+    }
+    case "generate_leviathan": {
+      const result = await generateLeviathan(args as any);
+      const parsed = JSON.parse(result.content[0].text);
+      const creation = { id: Date.now().toString(), type: "creature" as const, name: parsed.name, element: Array.isArray(parsed.elements) ? parsed.elements[0] : parsed.element, createdAt: new Date(), summary: `Leviathan — ${parsed.title || "Wild Godbeast"}` };
       recordCreation(sessionId, creation);
       addCreationToGraph(sessionId, creation, parsed);
       return result;

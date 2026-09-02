@@ -1,5 +1,7 @@
 // Worldbuilding Generator Tools
 
+import { LEVIATHANS } from "../data/leviathans/index.js";
+
 const elements = ["Fire", "Water", "Earth", "Wind", "Void", "Spirit"] as const;
 const houses = ["Lumina", "Nero", "Pyros", "Aqualis", "Terra", "Ventus", "Synthesis"] as const;
 
@@ -27,6 +29,19 @@ const godbeasts = [
   { name: "Vaelith", gate: 8, form: "Dimensional Serpent" },
   { name: "Kyuro", gate: 9, form: "Twin-Headed Unity Beast" },
 ];
+
+// Leviathan data is sourced from ../data/leviathans/index.ts (LEVIATHANS array).
+// Do not duplicate Nethyssa inline here — use the canonical data file.
+
+const leviathanRoots: Record<string, string[]> = {
+  // "Neth" excluded — reserved for Nethyssa (canonical Water Leviathan).
+  water: ["Mar", "Thal", "Abyss", "Vor", "Drown", "Pelag"],
+  void: ["Nyx", "Umbra", "Vael", "Obsa", "Ten", "Mael"],
+  fire: ["Pyr", "Mag", "Cind", "Ash", "Ember"],
+  earth: ["Geo", "Tect", "Lith", "Mont", "Crag"],
+  wind: ["Aer", "Strat", "Gale", "Cael", "Cyclo"],
+  spirit: ["Lum", "Aeth", "Anim", "Sol", "Vit"],
+};
 
 const nameRoots: Record<string, string[]> = {
   fire: ["Pyr", "Ign", "Flam", "Ard", "Cal"],
@@ -241,6 +256,87 @@ export async function generateCreature(options: {
         description: `A ${size} ${element}-attuned creature.`,
         abilities: [`Control ${element.toLowerCase()} energy`, `Enhanced ${size === "massive" ? "devastating" : size === "large" ? "powerful" : "precise"} attacks`],
         habitat: `Found near ${element} sources`,
+      }, null, 2),
+    }],
+  };
+}
+
+export async function generateLeviathan(options: {
+  element?: string;
+  temperament?: "dreaming" | "stirring" | "waking" | "corrupted";
+  named?: boolean;
+}): Promise<ToolResult> {
+  // Tier 3 Wild Godbeast — unbonded titan outside the Ten Gates.
+  const temperament = options.temperament ?? pick(["dreaming", "stirring", "waking", "corrupted"] as const);
+
+  if (options.named) {
+    // Named path: look up canonical Leviathan from the single-source data file.
+    // With element → match by element (so adding a second Leviathan Just Works).
+    // Without element → return the first canonical entry directly; avoids random
+    // element selection that may produce a procedural result or exclude Spirit.
+    const norm = options.element
+      ? options.element.charAt(0).toUpperCase() + options.element.slice(1).toLowerCase()
+      : null;
+    const n = norm
+      ? LEVIATHANS.find((l) => l.elements.includes(norm))
+      : LEVIATHANS[0];
+    if (n) {
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            name: n.name,
+            title: n.title,
+            tier: 3,
+            class: "Leviathan / Wild Godbeast",
+            bonded: false,
+            ...(norm ? { requestedElement: norm } : {}),
+            elements: n.elements,
+            resonance: n.subGateResonance ?? "Abyssal Hum",
+            domain: n.domain,
+            material: n.material,
+            corruption: n.corruption,
+            temperament,
+            canon: "STAGING — see .arcanea/lore/leviathans/nethyssa.md",
+          }, null, 2),
+        }],
+      };
+    }
+  }
+
+  // Procedural path — Spirit now included in the random pool (schema-complete).
+  const rawElement = options.element ?? pick(["Water", "Void", "Fire", "Earth", "Wind", "Spirit"]);
+  const element = rawElement.charAt(0).toUpperCase() + rawElement.slice(1).toLowerCase();
+  const elementKey = element.toLowerCase();
+  const root = pick(leviathanRoots[elementKey] || leviathanRoots.void);
+  const suffix = pick(["yssa", "thor", "alth", "umbra", "oraxis", "ystra", "akar"]);
+  const name = (root + suffix).replace(/\s+/g, "");
+
+  const titles: Record<string, string[]> = {
+    dreaming: ["the Sleeping Tide", "the Dreaming Deep", "the Long Slumber"],
+    stirring: ["the Rising Dark", "the Stirring Below", "the Waking Want"],
+    waking: ["the Drowned Crown", "the Open Eye", "the World-Sinker"],
+    corrupted: ["the Unmade Tide", "the Shadow Below", "the Hungry Deep"],
+  };
+
+  return {
+    content: [{
+      type: "text",
+      text: JSON.stringify({
+        name,
+        title: pick(titles[temperament]),
+        tier: 3,
+        class: "Leviathan / Wild Godbeast",
+        bonded: false,
+        elements: [element],
+        resonance: "Abyssal Hum",
+        temperament,
+        domain: `A wild domain of ${element}, sovereign to no Gate`,
+        description: `An unbonded titan of Nero's Unformed, ${temperament}. Power that was never given a name to obey.`,
+        material: `${name}'s ${element === "Water" ? "Pearl" : element === "Fire" ? "Cinder" : element === "Void" ? "Obsidian" : element === "Earth" ? "Hearthstone" : element === "Wind" ? "Tempest Shard" : "Aether Shard"}`,
+        elementalWeaknesses: temperament === "corrupted" ? ["Spirit", "the Tidesong"] : ["Fire", "Spirit"],
+        note: options.named ? "named=true requested, but no canonical Leviathan exists for this element yet — returned a procedural Wild Godbeast." : undefined,
+        canon: "STAGING — Wild Godbeast generator. Lock via /lock-decision before treating as canon.",
       }, null, 2),
     }],
   };
