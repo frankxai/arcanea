@@ -19,6 +19,7 @@ export const runtime = "edge";
 interface HealthCheck {
   api: boolean;
   database: boolean;
+  auth: boolean;
   timestamp: string;
   version: string;
   environment: string;
@@ -29,9 +30,14 @@ interface HealthCheck {
  * Main health check handler
  */
 export async function GET() {
+  const hasSupabaseConfig =
+    Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
+    Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+
   const health: HealthCheck = {
     api: true,
-    database: true, // Set to false until database connection is implemented
+    database: hasSupabaseConfig, // Baseline check until active DB probe is implemented
+    auth: hasSupabaseConfig,
     timestamp: new Date().toISOString(),
     version: process.env.npm_package_version || '1.0.0',
     environment: process.env.VERCEL_ENV || process.env.NODE_ENV || 'development',
@@ -44,7 +50,7 @@ export async function GET() {
   // health.database = !error;
 
   // Determine overall health
-  const isHealthy = health.api && health.database;
+  const isHealthy = health.api && health.database && health.auth;
 
   return NextResponse.json(
     health,
@@ -69,4 +75,3 @@ export async function HEAD() {
     },
   });
 }
-
