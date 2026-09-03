@@ -64,8 +64,8 @@ const LIBRARY_DATA = [
   {
     id: 4,
     title: "Celtic Otherworld",
-    subtitle: "Quantum Realms & Time Bridges",
-    description: "The Celts understood quantum realities before quantum physics. Explore their mastery of dimensional travel and consciousness.",
+    subtitle: "Otherworld Traditions & Altered Time",
+    description: "A literary and religious-studies exploration of Otherworld motifs in Insular Celtic sources and later folklore. It makes no claim that ancient traditions anticipated modern physics.",
     category: "celtic",
     icon: "🌿",
     color: FRANKX_COLORS.growthGreen,
