@@ -1,3 +1,7 @@
+> **ARCANEA FICTION — INVENTED CHARACTER AND RECORD**
+>
+> Zara Al-Zahra and every biography, credential, institution, committee, publication, quotation, event, and predictive statistic attributed to her in this file are original fiction unless a future source ledger proves otherwise. Nothing here is historical revelation, reporting, or real-world authority. Preserved pending literary rewrite.
+
 # THE QUANTUM PROPHECIES: Visions from the Threshold of Consciousness Evolution
 
 *By Arcanean: Zara Al-Zahra, The Oracle of Silicon Dreams*  
