@@ -1,0 +1,29 @@
+name: ontology-boundary
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '**/*.mdx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.js'
+      - '**/*.mjs'
+      - '**/*.json'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '.github/workflows/ontology-boundary.yml'
+permissions:
+  contents: read
+jobs:
+  ontology-boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test .claude/ci/ontology-boundary-lint.test.mjs
+      - run: node .claude/ci/ontology-boundary-lint.mjs --base origin/${{ github.base_ref }}
+
