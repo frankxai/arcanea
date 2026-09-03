@@ -28,24 +28,33 @@ export function scan(text, path = '<text>') {
   return RULES.filter(([, pattern]) => pattern.test(text)).map(([rule]) => ({ path, rule }));
 }
 
-function changedFiles(base) {
-  return execFileSync('git', ['diff', '--name-only', '--diff-filter=ACMR', `${base}...HEAD`], { encoding: 'utf8' })
-    .split('\n').filter(Boolean).filter((path) => /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/.test(path));
+function addedContent(base) {
+  const diff = execFileSync('git', ['diff', '--unified=0', `${base}...HEAD`], { encoding: 'utf8' });
+  const added = new Map();
+  let path = null;
+  for (const line of diff.split('\n')) {
+    if (line.startsWith('+++ b/')) {
+      path = line.slice(6);
+      if (!added.has(path)) added.set(path, []);
+      continue;
+    }
+    if (path && line.startsWith('+') && !line.startsWith('+++')) added.get(path).push(line.slice(1));
+  }
+  return [...added.entries()].filter(([name]) => /\.(md|mdx|ts|tsx|js|mjs|json|yaml|yml)$/.test(name));
 }
 
 function main() {
   const baseIndex = process.argv.indexOf('--base');
   const base = baseIndex >= 0 ? process.argv[baseIndex + 1] : 'origin/main';
-  const paths = process.argv.includes('--all')
-    ? execFileSync('git', ['ls-files'], { encoding: 'utf8' }).split('\n').filter(Boolean)
-    : changedFiles(base);
-  const findings = paths.flatMap((path) => scan(readFileSync(path, 'utf8'), path));
+  const entries = process.argv.includes('--all')
+    ? execFileSync('git', ['ls-files'], { encoding: 'utf8' }).split('\n').filter(Boolean).map((path) => [path, [readFileSync(path, 'utf8')]])
+    : addedContent(base);
+  const findings = entries.flatMap(([path, lines]) => scan(lines.join('\n'), path));
   if (findings.length) {
     for (const finding of findings) console.error(`ERROR ${finding.rule} ${finding.path}`);
     process.exit(1);
   }
-  console.log(`Ontology boundary lint passed (${paths.length} files checked).`);
+  console.log(`Ontology boundary lint passed (${entries.length} files checked).`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) main();
-
