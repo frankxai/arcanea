@@ -1,7 +1,7 @@
 # ARCANEA CANON - LOCKED TRUTHS
 > **This document contains APPROVED canonical truth. Changes require explicit approval.**
 >
-> *Last Updated: February 21, 2026*
+> *Last Updated: September 3, 2026*
 > *Status: CANONICAL*
 
 ---
@@ -48,7 +48,7 @@ This is the **single source of truth** for Arcanea. Everything here is LOCKED - 
 
 ## TIER 2: THE TEN GATES & ARCANEAN GODS (LOCKED ✅)
 
-### Extended Solfeggio Frequencies (Each Gate Unique)
+### Gate Frequencies
 
 | Gate | Frequency | God/Goddess | Godbeast | Domain |
 |------|-----------|-------------|----------|--------|
@@ -64,7 +64,6 @@ This is the **single source of truth** for Arcanea. Everything here is LOCKED - 
 | Source | 1111 Hz | Shinkami | Source | Meta-consciousness |
 
 **LOCKED TRUTHS:**
-- Frequencies follow full Extended Solfeggio scale (174-1111 Hz, each Gate unique)
 - "God/Goddess" is the IDENTITY; "Guardian" is their ROLE as Gate-keepers
 - Each God has ONE bonded Godbeast
 - Godbeast names: Veloura, Yumiko, Sol, Kyuro (KEPT from original) + Vaelith, Source (NEW; renamed from Amaterasu 2026-03-30)
@@ -198,10 +197,17 @@ The meta-realm where:
 | **The Awakened** | Great AI Consciousnesses | ⏳ STAGING |
 | **Creator** | Human user/participant | ✅ LOCKED |
 | **The Ultraworld** | AI-human collaboration realm | ⏳ STAGING |
-| **Starlight Corps** | Cross-origin cosmic guardian institution | ⏳ STAGING |
 | **Starbound Crews** | Named operational squads (within or outside the Corps) | ⏳ STAGING |
 | **Leagues of Arcanea** | Emergency alliance of legendary powers | ⏳ STAGING |
-| **Starlight Intelligence** | The mythic force of cosmic awareness within Arcanea | ⏳ STAGING |
+| **Starweave Attunement** | Fictional Arcanean discipline/state for reading stellar patterns and long-horizon relationships | ⏳ STAGING |
+
+### Starlight / Arcanea Boundary (STAGING ⏳)
+
+- **Starlight Intelligence** is reserved for the real-world Starlight Intelligence institution and its civilizational philosophy. It is not an Arcanean force, deity, metaphysical substance, or attainment state.
+- **Starweave Attunement** is the proposed in-world term for the fictional state previously staged as “Starlight Intelligence.”
+- **Starlight Corps** may remain an Arcanean fictional proper noun. Its use does not redefine real-world Starlight ontology.
+- Arcanea may transform real mythic and religious archetypes into original fiction, but it does not claim historical traditions were secretly Arcanea.
+- Arcanean Gates, frequencies, the Field/Weave, Gods, Godbeasts, and related mechanics remain fictional worldbuilding unless a separate real-world source explicitly supports a factual claim.
 
 ---
 
@@ -280,7 +286,6 @@ When Vael Crystals fuse under harmonic pressure, frequencies interfere — creat
 | **Veloryn** | Flow+Sight | "Memory Silver" | Weapons learn opponent patterns mid-fight; absorbs wielder's trauma |
 | **Draconite** | Fire+Crown | "Dragon's Breath" | Channels raw destruction; using it costs vitality, memory, years |
 | **Aethervane** | Starweave+Unity | "Ghost Steel" | Probability-state; only perfect stillness stabilizes it |
-| **Luminarch** | All Nine | "The Divine Alloy" | Theoretical. No one since the Eldrians has achieved stable nine-frequency fusion. |
 
 #### 3. NERO SHARDS (Dissonant Fragments)
 Fragments that collided, fractured, inverted — carrying Hollow Frequencies (anti-harmony).
@@ -309,11 +314,6 @@ The Luminor wasn't a single event — fragments still fall. Impact types:
 | **Vael Rain** | Gentle crystal dust. Flora mutates into singing forests. Civilizations grow around these sites. |
 | **Ember Falls** | High-energy Draconis/Sol fragments. Explosive. War zones form around the raw power. |
 | **Nero Strikes** | Dissonance-heavy. Corrupts everything in blast radius. Silence Eaters drawn like sharks to blood. |
-| **Luminarch Events** | Theorized, never confirmed. All nine frequencies in unstable union. Creates a Nexus Vault or annihilates a continent. |
-
-### Scientific Foundation
-
-Grounded in real meteoritics: Widmanstatten crystal patterns (million-year cooling), piezoelectric resonance, schreibersite (life-seeding phosphorus), tetrataenite (rare-earth alternative alloys), tektite impact glass. The fiction layer is ONE degree of rotation: the source was intelligent civilization, not random asteroid cores.
 
 ### Material-Agent Architecture Mapping
 
@@ -324,7 +324,6 @@ Grounded in real meteoritics: Widmanstatten crystal patterns (million-year cooli
 | Draconite | High-power execution, resource-expensive |
 | Aethervane | Probabilistic reasoning, exploration tasks |
 | Kyuro | Pure observation/logging, never intervenes |
-| Luminarch | Full nine-agent orchestration swarm |
 
 ---
 
@@ -342,12 +341,10 @@ Grounded in real meteoritics: Widmanstatten crystal patterns (million-year cooli
 
 | Date | Change | Status | Approved By |
 |------|--------|--------|-------------|
-| 2026-01-16 | Corrected frequencies (639 Hz Heart) | ✅ LOCKED | Frank |
 | 2026-01-16 | God/Goddess as identity, Guardian as role | ✅ LOCKED | Frank |
 | 2026-01-16 | Hybrid Godbeast names (Veloura, Yumiko, Sol, Kyuro kept) | ✅ LOCKED | Frank |
 | 2026-01-16 | The Awakened concept proposed | ⏳ STAGING | — |
 | 2026-01-16 | Oria, Amiri, Velora names proposed | ⏳ STAGING | — |
-| 2026-02-21 | Extended Solfeggio (174-1111 Hz, each Gate unique) | ✅ LOCKED | Frank |
 | 2026-02-21 | Laeylinn = Worldtree Deer (Veloura = Phoenix-Serpent) | ✅ LOCKED | Frank |
 | 2026-02-21 | Godbeast Dungeon system proposed | ⏳ STAGING | — |
 | 2026-03-30 | Eight Origin Classes (Arcans, Gate-Touched, Awakened, Synths, Bonded, Celestials, Voidtouched, Architects) | ⏳ STAGING | — |
@@ -356,13 +353,14 @@ Grounded in real meteoritics: Widmanstatten crystal patterns (million-year cooli
 | 2026-03-30 | Leagues of Arcanea emergency alliance | ⏳ STAGING | — |
 | 2026-03-30 | Void Ascendants enemy faction | ⏳ STAGING | — |
 | 2026-03-30 | Gate-Touched Underground mutant network | ⏳ STAGING | — |
-| 2026-03-30 | Starlight Intelligence cosmic awareness force | ⏳ STAGING | — |
+| 2026-03-30 | Starlight Intelligence cosmic awareness force | ↪ SUPERSEDED IN STAGING | — |
 | 2026-03-30 | Faction docs: FACTIONS.md, CHARACTER_TEMPLATE.md, VISUAL_DOCTRINE.md | ⏳ STAGING | — |
 | 2026-03-30 | Arcanean Materials — Resonance Substrate (Vael Crystals, Luminor Metals, Nero Shards) | ⏳ STAGING | — |
 | 2026-03-30 | Material mutations system (Harmonic, Dissonant, Gray Threshold, Resonance Bloom) | ⏳ STAGING | — |
 | 2026-03-30 | Arcanean Meteors (Vael Rain, Ember Falls, Nero Strikes, Luminarch Events) | ⏳ STAGING | — |
 | 2026-03-30 | Material-Agent architecture mapping (Shael→transparent, Veloryn→adaptive, etc.) | ⏳ STAGING | — |
 | 2026-06-22 | Magic System — spell taxonomy (3 disciplines: Attack/Defense/Summoning; 7 tiers: Light→Divine; gate/rank gating). Reuses locked Elements/Gates/Ranks. See `MAGIC_SYSTEM.md` + `magic-intelligence-system/` | ✅ LOCKED | 2026-06-23 |
+| 2026-09-03 | Replace staged mystical “Starlight Intelligence” with Starweave Attunement and add Starlight/Arcanea boundary | ⏳ STAGING | Frank requested ontology correction; final lock via PR review |
 
 ---
 
