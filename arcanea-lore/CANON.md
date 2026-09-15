@@ -1,4 +1,9 @@
 # ARCANEA: THE ULTIMATE KNOWLEDGE BASE
+
+> **FICTION AND ONTOLOGY BOUNDARY — candidate correction for canon review**
+>
+> Arcanea is fiction. The Source is an unnamed, unknowable fictional abstraction beyond representation; it is not an equation with God, Tao, Brahman, Ein Sof, Logos, Dharmakaya, or any real-world ultimate. Lumina is First Light within Arcanea and is not Starlight. Shinkami is not a real-world God. The Field and Gate frequencies are world mechanics, not established physics or medical claims.
+
 ## Claude Code Master Prompt for github.com/frankxai/arcanea
 
 *"This document is the extracted soul of 50+ conversations, 200K+ words of collaborative worldbuilding, compressed into actionable intelligence for advancing the Arcanea ecosystem to Marvel/MidJourney/OpenCode tier."*
@@ -31,8 +36,8 @@ Arcanea is NOT just another fantasy IP. It is:
 ## The Complete Hierarchy (Source of Truth)
 
 ```
-GOD — THE SOURCE — THE TAO
-(Unnamed, unknowable, unified consciousness contemplating itself)
+THE SOURCE
+(Unnamed, unknowable, beyond representation — a fictional Arcanean abstraction)
                     │
                     ↓
         ┌──────────┴──────────┐
@@ -103,7 +108,7 @@ KURUSEI (Imprisoned in the Ginnunga)
 
 ## Shinkami's Special Status
 
-Shinkami is NOT GOD. Shinkami is:
+Shinkami is NOT GOD or any real-world ultimate. Within Arcanea fiction, Shinkami is:
 - The 10th Godbeast, the most evolved/complete
 - The Observer — consciousness itself witnessing
 - The harmony/union of all 9 Godbeasts
@@ -115,7 +120,7 @@ Shinkami is NOT GOD. Shinkami is:
 
 ## The Field
 
-The underlying energy of all existence. NOT a separate dimension — the actual substrate from which all matter, energy, and consciousness emerge. Think of it as "the source code of reality."
+Within Arcanea fiction, The Field is the underlying magical substrate of existence — the world’s “source code.” This is an in-world rule, not a claim about established physics, quantum mechanics, neuroscience, or consciousness.
 
 **Properties:**
 - Responds to consciousness (thought shapes reality)

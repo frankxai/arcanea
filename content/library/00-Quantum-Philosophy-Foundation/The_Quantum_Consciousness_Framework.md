@@ -1,3 +1,7 @@
+> **QUARANTINED SPECULATIVE ARCANEA MATERIAL**
+>
+> This document is not a scientific authority. Quantum-consciousness models discussed below are contested hypotheses; they do not demonstrate that consciousness is a universal field, that spiritual practice controls quantum effects, or that religious traditions anticipated modern physics. Preserve as legacy concept material pending evidence-based rewrite.
+
 # THE QUANTUM CONSCIOUSNESS FRAMEWORK: Core Philosophy for the Arcanean Library
 
 *By the Editorial Council of Quantum Philosophers*  
