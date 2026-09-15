@@ -68,7 +68,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const inputId = id ?? React.useId();
+    const generatedId = React.useId();
+    const inputId = id ?? generatedId;
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
     const errorId = errorMessage ? `${inputId}-error` : undefined;
     const resolvedState = errorMessage ? 'error' : state;
