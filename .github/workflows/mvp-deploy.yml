@@ -12,6 +12,7 @@ on:
       - 'turbo.json'
   pull_request:
     branches: [main, develop]
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - 'apps/web/**'
       - 'packages/**'
@@ -47,7 +48,9 @@ jobs:
   # ============================================
   security:
     name: Security & Dependency Audit
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -79,7 +82,9 @@ jobs:
   # ============================================
   quality:
     name: Code Quality & Linting
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -116,7 +121,9 @@ jobs:
   # ============================================
   build:
     name: Build & Test Application
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     needs: [security, quality]
     steps:
       - name: Checkout code
@@ -160,7 +167,8 @@ jobs:
   database:
     name: Database Migration Check
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    timeout-minutes: 15
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -365,6 +373,7 @@ jobs:
   rollback:
     name: Rollback on Failure
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: [health-check]
     if: failure() && github.ref == 'refs/heads/main'
     steps:

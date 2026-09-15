@@ -9,6 +9,7 @@ on:
       - '.github/workflows/test.yml'
   pull_request:
     branches: [main, develop]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -18,7 +19,9 @@ jobs:
   # Full Package Tests (109 tests)
   cli-tests:
     name: CLI Tests
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     strategy:
       matrix:
@@ -74,7 +77,9 @@ jobs:
   # TypeScript Type Check
   typecheck:
     name: TypeScript
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -106,7 +111,9 @@ jobs:
   # Security Audit
   security:
     name: Security Audit
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -130,6 +137,7 @@ jobs:
   summary:
     name: Test Summary
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: [cli-tests, typecheck]
     # Not always(). This workflow sets cancel-in-progress, so pushing twice in
     # quick succession cancels the earlier run — and with always() the summary
