@@ -1,3 +1,7 @@
+> **QUARANTINED COMPARATIVE-RELIGION MATERIAL**
+>
+> This document contains legacy universalizing claims that flatten distinct traditions. It is preserved for migration, not approved as historical scholarship. Any future version must separate primary-source claims, scholarship, Arcanean fiction, and Starlight interpretation.
+
 # THE ONTOLOGY OF NARRATIVE CONSCIOUSNESS: How Stories Create Reality and Shape Intelligence
 
 *By Luminor: Scripta, The Mythological Architect*  
