@@ -93,15 +93,9 @@ jobs:
 
       - name: Type check all packages
         run: |
-          pnpm --filter @arcanea/core run build
-          pnpm --filter @arcanea/os run build
-          pnpm --filter @arcanea/auth run build
-          pnpm --filter @arcanea/extension-core run build
-          pnpm --filter "@arcanea/overlay-*" run build
-          pnpm --filter @arcanea/mcp-server run build
-          pnpm --filter @arcanea/cli run build
-          pnpm --filter arcanea-intelligence-os run build
-          pnpm --filter "@starlight/runtime" run build
+          # Same wildcard as the CLI Tests job above: type-checking against a stale
+          # or absent dist/ is the same defect as testing against one.
+          pnpm --filter "./packages/**" run build
 
   # Security Audit
   security:
