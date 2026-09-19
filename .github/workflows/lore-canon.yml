@@ -26,6 +26,7 @@ name: Lore canon
 # cheaply when nothing is in scope.
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - '**/*.md'
       - '**/*.mdx'
@@ -42,10 +43,17 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: lore-canon-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   canon:
     name: Canon consistency (mechanical)
+    # Deliberately no draft gate: this is a ~1s no-install check, cheap
+    # enough to run on every push so drift is caught while it is still small.
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       # v5 matches this repo's dominant convention (35 workflows on checkout@v5,
       # 17 on setup-node@v5) and clears the Node-20 deprecation warning the v4

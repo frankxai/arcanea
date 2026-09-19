@@ -19,6 +19,7 @@ name: Web excellence
 # scope.
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - '**/*.tsx'
       - '**/*.jsx'
@@ -34,10 +35,16 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: web-excellence-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   guidelines:
     name: Web Interface Guidelines (mechanical)
+    # No draft gate: ~2s, no install. Cheap linters run on every push.
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:

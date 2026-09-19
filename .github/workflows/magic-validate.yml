@@ -2,6 +2,7 @@ name: Magic System Validate
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - 'magic-intelligence-system/**'
   push:
@@ -9,9 +10,15 @@ on:
     paths:
       - 'magic-intelligence-system/**'
 
+concurrency:
+  group: magic-validate-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate-spells:
+    # No draft gate: single no-install node script, cheap enough for drafts.
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

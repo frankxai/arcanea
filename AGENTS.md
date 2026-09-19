@@ -6,3 +6,17 @@
 - Local Supabase startup with current CLI versions rejects the committed `supabase/config.toml` value `realtime.ip_version = "ipv4"`; use real remote Supabase env values, or fix/test that config casing before relying on `supabase start`.
 - The root `pnpm test:quick` command expects built package artifacts for several workspace packages. If it reports missing `dist` files, build `@arcanea/core`, `@arcanea/extension-core`, `@arcanea/mcp-server`, and `@arcanea/auth` before rerunning it.
 - MCP memory tests use the agent home directory and expect `~/.arcanea` to exist; create that directory in the current VM session before running those tests if it is absent.
+
+<!-- STARLIGHT-EDITORIAL:START -->
+## Editorial contract
+
+Brand: **Arcanea** (`arcanea`)
+
+- Read `CREATOR.md` before changing public or customer-facing copy.
+- Apply the registered brand voice and the shared editorial gate.
+- Reject generated prestige language, rhetorical contrast formulas, invented claims, and abstract labels that hide simple facts.
+- Keep public labels in sentence case.
+- Run the changed-copy editorial audit before release.
+
+Pinned source: https://github.com/frankxai/starlight-design-intelligence/blob/50ae34c7ac06e6c083f277ca96c3bde8f0a39b43/brand-packs/arcanea/COPY.md
+<!-- STARLIGHT-EDITORIAL:END -->
