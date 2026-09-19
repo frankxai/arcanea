@@ -64,7 +64,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref
   ) => {
-    const textareaId = id ?? React.useId();
+    const generatedId = React.useId();
+    const textareaId = id ?? generatedId;
     const helperTextId = helperText ? `${textareaId}-helper` : undefined;
     const errorId = errorMessage ? `${textareaId}-error` : undefined;
     const resolvedState = errorMessage ? 'error' : state;
