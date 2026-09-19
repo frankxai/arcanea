@@ -49,6 +49,14 @@ describe('Memory Persistence — File Format', () => {
       return;
     }
     const raw = readFileSync(MEMORIES_FILE, 'utf-8');
+    if (raw.trim() === '') {
+      // The file exists but is empty. On CI runners another process can create
+      // ~/.arcanea/memories.json without writing to it yet, and JSON.parse('')
+      // throws SyntaxError - failing the whole suite for a reason unrelated to
+      // the code under test. An empty file has no structure to validate, so
+      // treat it the same as a missing one.
+      return;
+    }
     const data = JSON.parse(raw);
     assert.equal(data.version, 1, 'Version should be 1');
     assert.ok(typeof data.updatedAt === 'string', 'updatedAt should be an ISO string');
