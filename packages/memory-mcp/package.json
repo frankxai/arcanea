@@ -10,8 +10,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "start": "node dist/server.js",
-    "test": "node --import tsx --test src/**/*.test.ts"
+    "start": "node dist/server.js"
+
   },
   "keywords": ["mcp", "memory", "arcanea", "starlight-vaults", "claude", "cursor", "ai-memory"],
   "author": "FrankX <frank@frankx.ai>",
