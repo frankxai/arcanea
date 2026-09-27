@@ -16,7 +16,7 @@
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist",
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@arcanea/model-runtime": "workspace:*",

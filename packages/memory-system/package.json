@@ -34,7 +34,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "node --import tsx --test src/**/*.test.ts",
+    "test": "node --import tsx --test src/*.test.ts",
     "lint": "tsc --noEmit",
     "clean": "rm -rf dist",
     "svaults": "node --import tsx src/cli.ts"

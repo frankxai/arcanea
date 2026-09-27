@@ -103,10 +103,11 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # @arcanea/os no longer exists (renamed to @arcanea/library-pipeline), and
+      # extension-core imports @arcanea/core, so build the extension's whole
+      # workspace dependency graph rather than a hand-maintained list.
       - name: Build dependencies
-        run: |
-          pnpm --filter @arcanea/os run build
-          pnpm --filter @arcanea/extension-core run build
+        run: pnpm turbo run build --filter=@arcanea/chrome-extension^...
 
       - name: Build Chrome extension
         working-directory: packages/chrome-extension
