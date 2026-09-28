@@ -1,0 +1,42 @@
+name: Workspace Type Check
+
+# Carries forward the one green, non-duplicated gate from the retired
+# deploy-apps.yml: a workspace-wide `turbo run type-check` (41 tasks, passing).
+# Quality Gate type-checks @arcanea/web only; this covers every package.
+# Lint is intentionally not here — Quality Gate reports the lint backlog
+# non-blocking, and whether lint becomes blocking is an open ruleset decision.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: workspace-typecheck-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  type-check:
+    name: Workspace Type Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      # pnpm before setup-node (cache: pnpm resolves the store via pnpm).
+      # No `version` key: action-setup@v4 reads packageManager from package.json.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check all workspaces
+        run: pnpm type-check

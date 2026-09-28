@@ -15,6 +15,8 @@ arcanea (main hub)
 
 ## 🤖 **Automated Synchronization**
 
+> **Retired (2026-09-28):** `cross-repo-sync.yml`, `sync-packages.yml` and `deploy-apps.yml` have been deleted. Their targets are archived (`arcanea-prompt-language`, `claude-arcanea`), no longer exist in this repo (`apps/library`, `apps/studio`, `apps/gallery`), are independently authored (`arcanea-intelligence-os`), or are forbidden from this public repo (Vercel production deploys, see #118). The sections below are historical.
+
 > **Current state (updated 2026-07-27):** automatic triggers are disabled. Every scheduled run from 2026-02-24 until disablement failed because `PERSONAL_ACCESS_TOKEN` was absent; no content synced in that window. The target repositories have therefore drifted and are independently maintained. Do not restore credentials or backfill blindly: the legacy APL job deletes target TypeScript files and the library job uses `rsync --delete`.
 
 ### Cross-Repository Sync Workflow
