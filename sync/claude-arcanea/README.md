@@ -44,14 +44,14 @@ const skill = getSkillByTrigger('/refactor');
 
 | Gate | Frequency | Guardian | Domain |
 |------|-----------|----------|--------|
-| Foundation | 396 Hz | Lyssandria | Stability, security |
-| Flow | 417 Hz | Leyla | Creativity, emotion |
-| Fire | 528 Hz | Draconia | Power, transformation |
-| Heart | 639 Hz | Maylinn | Love, healing |
-| Voice | 741 Hz | Alera | Truth, expression |
-| Sight | 852 Hz | Lyria | Intuition, vision |
-| Crown | 963 Hz | Aiyami | Enlightenment |
-| Shift | 1111 Hz | Elara | Perspective |
+| Foundation | 174 Hz | Lyssandria | Stability, security |
+| Flow | 285 Hz | Leyla | Creativity, emotion |
+| Fire | 396 Hz | Draconia | Power, transformation |
+| Heart | 417 Hz | Maylinn | Love, healing |
+| Voice | 528 Hz | Alera | Truth, expression |
+| Sight | 639 Hz | Lyria | Intuition, vision |
+| Crown | 741 Hz | Aiyami | Enlightenment |
+| Starweave | 852 Hz | Elara | Perspective |
 | Unity | 963 Hz | Ino | Partnership |
 | Source | 1111 Hz | Shinkami | Meta-consciousness |
 

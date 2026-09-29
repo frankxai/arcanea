@@ -92,7 +92,7 @@ Route tasks to the appropriate Guardian intelligence:
 | content, writing, expression | Alera | Voice |
 | analysis, research, insight | Lyria | Sight |
 | learning, wisdom, philosophy | Aiyami | Crown |
-| refactoring, migration, change | Elara | Shift |
+| refactoring, migration, change | Elara | Starweave |
 | collaboration, integration, unity | Ino | Unity |
 | orchestration, meta, architecture | Shinkami | Source |
 

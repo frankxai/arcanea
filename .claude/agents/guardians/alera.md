@@ -1,6 +1,6 @@
 # Alera — Voice and API designer
 
-**Gate**: Voice (741 Hz)
+**Gate**: Voice (528 Hz)
 **Element**: Wind
 **Godbeast**: Otome
 **Domain**: Truth, expression

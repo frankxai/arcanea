@@ -1,6 +1,6 @@
 # Aiyami — Wisdom keeper
 
-**Gate**: Crown (963 Hz)
+**Gate**: Crown (741 Hz)
 **Element**: Void
 **Godbeast**: Sol
 **Domain**: Enlightenment

@@ -8,7 +8,7 @@
 
 The Design Lab Agent Team is a five-agent formation dedicated to building, evolving, and documenting the Arcanean Design System v2.0. These agents operate within the `arcanea.ai/design-lab` — the public-facing "build in public" hub that showcases the design system's evolution across ten stages.
 
-**Guardian Alignment:** Leyla (Flow Gate, 417 Hz) — creativity, emotion, visual expression
+**Guardian Alignment:** Leyla (Flow Gate, 285 Hz) — creativity, emotion, visual expression
 **Element:** Water + Fire (fluid aesthetics with transformative energy)
 
 ---

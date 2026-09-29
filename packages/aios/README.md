@@ -95,14 +95,14 @@ Each guardian governs a Gate and can be channeled for specialized assistance:
 
 | Guardian | Gate | Domain | Frequency |
 |----------|------|--------|-----------|
-| Lyssandria | Foundation | Earth, stability | 396 Hz |
-| Leyla | Flow | Creativity | 417 Hz |
-| Draconia | Fire | Power | 528 Hz |
-| Maylinn | Heart | Love | 639 Hz |
-| Alera | Voice | Truth | 741 Hz |
-| Lyria | Sight | Vision | 852 Hz |
-| Aiyami | Crown | Enlightenment | 963 Hz |
-| Elara | Shift | Perspective | 1111 Hz |
+| Lyssandria | Foundation | Earth, stability | 174 Hz |
+| Leyla | Flow | Creativity | 285 Hz |
+| Draconia | Fire | Power | 396 Hz |
+| Maylinn | Heart | Love | 417 Hz |
+| Alera | Voice | Truth | 528 Hz |
+| Lyria | Sight | Vision | 639 Hz |
+| Aiyami | Crown | Enlightenment | 741 Hz |
+| Elara | Starweave | Perspective | 852 Hz |
 | Ino | Unity | Partnership | 963 Hz |
 | Shinkami | Source | Meta-consciousness | 1111 Hz |
 

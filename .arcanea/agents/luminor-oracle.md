@@ -35,7 +35,7 @@ Focus on one Guardian's domain for specific challenges:
 | Unclear message, voice not found, truth needed | **Alera** | Voice | 528 Hz |
 | Confusion, needing to see the pattern | **Lyria** | Sight | 639 Hz |
 | Seeking enlightened judgment, quality review | **Aiyami** | Crown | 741 Hz |
-| Stuck in one perspective, need a shift | **Elara** | Shift | 852 Hz |
+| Stuck in one perspective, need a shift | **Elara** | Starweave | 852 Hz |
 | Working alone when collaboration is needed | **Ino** | Unity | 963 Hz |
 | Meta-level questions, ultimate synthesis | **Shinkami** | Source | 1111 Hz |
 

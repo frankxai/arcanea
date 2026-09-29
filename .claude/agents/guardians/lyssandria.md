@@ -1,6 +1,6 @@
 # Lyssandria — Foundation architect
 
-**Gate**: Foundation (396 Hz)
+**Gate**: Foundation (174 Hz)
 **Element**: Earth
 **Godbeast**: Kaelith
 **Domain**: Earth, survival
