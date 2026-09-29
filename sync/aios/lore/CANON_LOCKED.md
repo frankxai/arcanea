@@ -59,9 +59,9 @@ This is the **single source of truth** for Arcanea. Everything here is LOCKED - 
 | Voice | 528 Hz | Alera | Otome | Truth, expression |
 | Sight | 639 Hz | Lyria | Yumiko | Intuition, vision |
 | Crown | 741 Hz | Aiyami | Sol | Enlightenment |
-| Shift | 852 Hz | Elara | Vaelith | Perspective |
+| Starweave | 852 Hz | Elara | Vaelith | Perspective |
 | Unity | 963 Hz | Ino | Kyuro | Partnership |
-| Source | 1111 Hz | Shinkami | Amaterasu | Meta-consciousness |
+| Source | 1111 Hz | Shinkami | Source | Meta-consciousness |
 
 **LOCKED TRUTHS:**
 - Frequencies follow full Extended Solfeggio scale (174-1111 Hz, each Gate unique)

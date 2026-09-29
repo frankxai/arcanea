@@ -121,9 +121,9 @@ ws.send(JSON.stringify({ type: 'ping' }));
 | Alera | Wind | Voice | 5 | Otome |
 | Lyria | Wind | Vision | 6 | Kasumi |
 | Aiyami | Void | Enlightenment | 7 | Sol |
-| Elara | Void | Innovation | 8 | Thessara |
+| Elara | Void | Innovation | 8 | Vaelith |
 | Ino | Integration | Unity | 9 | Nexus |
-| Shinkami | Integration | Source | 10 | Amaterasu |
+| Shinkami | Integration | Source | 10 | Source |
 
 ## ✨ Elements
 
