@@ -6,6 +6,12 @@ on:
     paths:
       - 'packages/**'
       - '.changeset/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'scripts/tests/**'
+      - '.github/workflows/packages-ci.yml'
+      - '.github/workflows/publish-packages.yml'
   workflow_dispatch:
 
 concurrency:

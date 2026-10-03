@@ -8,6 +8,7 @@ on:
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
+      - 'scripts/tests/**'
       - '.changeset/**'
       - '.github/workflows/packages-ci.yml'
       - '.github/workflows/publish-packages.yml'
@@ -18,6 +19,7 @@ on:
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
+      - 'scripts/tests/**'
       - '.changeset/**'
       - '.github/workflows/packages-ci.yml'
       - '.github/workflows/publish-packages.yml'
@@ -39,6 +41,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       # pnpm must be installed BEFORE setup-node. setup-node@v5 defaults
       # package-manager-cache to true and reads packageManager from
@@ -78,12 +82,32 @@ jobs:
       - name: Run CLI integration tests
         run: node --test packages/cli/tests/*.test.mjs
 
+      - name: Test release lockfile recovery
+        run: pnpm test:release
+
       - name: Verify generated release metadata
+        id: release-metadata
         if: matrix.node-version == 20
         run: |
-          # Exercise the actual release command in CI without committing or publishing.
+          # Exercise the shared release command; preserve the exact lock change for review.
+          mkdir -p "$RUNNER_TEMP/arcanea-release-metadata"
+          git rev-parse HEAD > "$RUNNER_TEMP/arcanea-release-metadata/checked-out-commit.txt"
+          cp pnpm-lock.yaml "$RUNNER_TEMP/arcanea-release-metadata/before-pnpm-lock.yaml"
           pnpm version-packages
+          # Validate independently of the shared script; diff --check only checks whitespace.
+          pnpm install --lockfile-only --frozen-lockfile --ignore-scripts
+          cp pnpm-lock.yaml "$RUNNER_TEMP/arcanea-release-metadata/after-pnpm-lock.yaml"
+          git diff -- pnpm-lock.yaml > "$RUNNER_TEMP/arcanea-release-metadata/pnpm-lock.diff"
           git diff --check
+
+      - name: Upload generated release lockfile evidence
+        if: always() && matrix.node-version == 20 && steps.release-metadata.outcome != 'skipped'
+        uses: actions/upload-artifact@v5
+        with:
+          name: release-lockfile-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/arcanea-release-metadata/
+          if-no-files-found: error
+          retention-days: 7
 
   security:
     name: Security Scan
