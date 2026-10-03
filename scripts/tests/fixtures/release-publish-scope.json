@@ -1,0 +1,445 @@
+{
+  "source": {
+    "base": "b148455bc448fbe2349ff6bfcd80e793203d37eb",
+    "head": "f97f087f95b5a4f9d819f703642d76a0c8f7246a",
+    "registryObservedAt": "2026-10-03T21:23:23.563641+00:00",
+    "scope": "Actual source workspace names/versions/privacy and public registry observations; no package code or live test doubles"
+  },
+  "workspaces": [
+    {
+      "name": "@arcanea/agent-bus",
+      "path": "packages/agent-bus",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "2b52b9e27d6aacb543413e53a43d469649d656407b9c555a21becf47bf4c449c",
+      "published": true
+    },
+    {
+      "name": "@arcanea/agent-runtime",
+      "path": "packages/agent-runtime",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "53b9d343b599e18c4ef1968f9f5d1359fd1e945fc1ff4b818b1b522dbf86551c",
+      "published": false
+    },
+    {
+      "name": "@arcanea/ai-core",
+      "path": "packages/ai-core",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": true,
+      "manifestSha256": "8b8c3841822b65c38b00ecdac4af99287d2550e89d85d69144b61788984b2797"
+    },
+    {
+      "name": "@arcanea/auth",
+      "path": "packages/auth",
+      "beforeVersion": "1.0.4",
+      "version": "1.0.5",
+      "private": false,
+      "manifestSha256": "8a5671d2d0e8fd6be45d489464113bb060c2e013f9a19d858966c805b0e49232",
+      "published": false
+    },
+    {
+      "name": "@arcanea/chrome-extension",
+      "path": "packages/chrome-extension",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": true,
+      "manifestSha256": "926876ff797bf684b924163003f02dddaa52d36c71e5a3a46565cf4a8fd59555"
+    },
+    {
+      "name": "@arcanea/cli",
+      "path": "packages/cli",
+      "beforeVersion": "0.7.1",
+      "version": "0.8.0",
+      "private": false,
+      "manifestSha256": "cf6636610f31837d62c8ecac2cf06febdc48855d84bffa5881c895b1fced8859",
+      "published": false
+    },
+    {
+      "name": "@arcanea/config",
+      "path": "packages/config",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "77469bb050cc1988f3b97a4d9bb384358b997d6a4c89acb36657d9da3da32816",
+      "published": false
+    },
+    {
+      "name": "@arcanea/content-api",
+      "path": "packages/content-api",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": true,
+      "manifestSha256": "d103edf46b8038dcdda9e63b4a50a64f88acca3117db60a4a794c29bf953cd66"
+    },
+    {
+      "name": "@arcanea/core",
+      "path": "packages/core",
+      "beforeVersion": "0.1.0",
+      "version": "0.2.0",
+      "private": false,
+      "manifestSha256": "b5d03e8b3be13addba9dc88dfb3df2b1fc7c3380ccd4e1841f188d6b8871f8dd",
+      "published": false
+    },
+    {
+      "name": "@arcanea/council",
+      "path": "packages/council",
+      "beforeVersion": "0.1.1",
+      "version": "0.1.1",
+      "private": false,
+      "manifestSha256": "55f531759b02b0db545e6f008fff36d94beaac2084f6cfb1db2c7da5bbc52490",
+      "published": true
+    },
+    {
+      "name": "@arcanea/creative-pipeline",
+      "path": "packages/creative-pipeline",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "48b39583d5082cf606f18c039ef3f93a5bea2d7a17dfb772d794120adac939ff",
+      "published": true
+    },
+    {
+      "name": "@arcanea/database",
+      "path": "packages/database",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": true,
+      "manifestSha256": "596198132a41f0dc81954ad764e2ed2308d367e49574691858a9e7dcd6c07cc7"
+    },
+    {
+      "name": "@arcanea/extension-core",
+      "path": "packages/extension-core",
+      "beforeVersion": "0.3.1",
+      "version": "0.3.2",
+      "private": false,
+      "manifestSha256": "a5fb273f7a1d12c265038ea4b49588644b67c7117a844dbea77a5f9409c73a75",
+      "published": false
+    },
+    {
+      "name": "@arcanea/flow-engine",
+      "path": "packages/flow-engine",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "0bc34ae6a6c57c0331582390ef56a140b8d9fa6895f7449c5b03597327335341",
+      "published": true
+    },
+    {
+      "name": "@arcanea/guardian-evolution",
+      "path": "packages/guardian-evolution",
+      "beforeVersion": "0.1.1",
+      "version": "0.1.1",
+      "private": false,
+      "manifestSha256": "c81ec388dbc240f5927f8da1d024f958018dfa3385d6d2ba58938b015e73a41e",
+      "published": true
+    },
+    {
+      "name": "@arcanea/guardian-memory",
+      "path": "packages/guardian-memory",
+      "beforeVersion": "0.1.1",
+      "version": "0.1.2",
+      "private": false,
+      "manifestSha256": "f7a081e56eddf7733d0f1e0e30fa1fa37fe5ed03492992044480931f3466a06f",
+      "published": false
+    },
+    {
+      "name": "@arcanea/hooks",
+      "path": "packages/arcanea-hooks",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "c06f7fa3c1b27d2ecd91275d3ec06ef9206ae5e0c9916a9deea8d1cf976c1ad2",
+      "published": true
+    },
+    {
+      "name": "@arcanea/hybrid-memory",
+      "path": "packages/hybrid-memory",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "f66936fcb392b918da2847a6ade193ec89754adcb244bf51b48c12c2399a072e",
+      "published": true
+    },
+    {
+      "name": "@arcanea/intelligence-bridge",
+      "path": "packages/intelligence-bridge",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "d429e11c0573f00e17811a5af0fe587fb8418918dfde1829921ca1743df194cd",
+      "published": true
+    },
+    {
+      "name": "@arcanea/library-pipeline",
+      "path": "packages/os",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "d5ce612b841133c3010547eea2f75c7bb1cde1d4948726c9b80098b8a94cedda",
+      "published": true
+    },
+    {
+      "name": "@arcanea/mcp-client",
+      "path": "packages/mcp-client",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "562d1cadc947af7561f5ed4e5cb2799667bfa27f9939f83dc8eaef22d7fbf2dd",
+      "published": false
+    },
+    {
+      "name": "@arcanea/mcp-server",
+      "path": "packages/arcanea-mcp",
+      "beforeVersion": "0.7.1",
+      "version": "0.7.1",
+      "private": false,
+      "manifestSha256": "6692a7a88394a106c2f2cb804d168c5e96da55004bcf51d6418acc6966e1aff7",
+      "published": false
+    },
+    {
+      "name": "@arcanea/memory-mcp",
+      "path": "packages/memory-mcp",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "00625ddc7fbcfdb05e1a3238b823d23a4339b623f10591e3a531f67b49a373c4",
+      "published": false
+    },
+    {
+      "name": "@arcanea/memory-system",
+      "path": "packages/memory-system",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "f4a9816646cafaf576e5df7025e9fd7af9019be1b38c59d62dedb8b09a852095",
+      "published": false
+    },
+    {
+      "name": "@arcanea/model-runtime",
+      "path": "packages/model-runtime",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "7710081800042c029cb3c79e06041729cb8fccf6b94dc71d92b3eb33bceb0934",
+      "published": false
+    },
+    {
+      "name": "@arcanea/overlay-chatgpt",
+      "path": "packages/overlay-chatgpt",
+      "beforeVersion": "1.2.1",
+      "version": "1.3.0",
+      "private": false,
+      "manifestSha256": "14410210adcb9221657c09200de89321eb3092e51fe6dada119ad5ae0ad16b07",
+      "published": false
+    },
+    {
+      "name": "@arcanea/overlay-claude",
+      "path": "packages/overlay-claude",
+      "beforeVersion": "1.2.1",
+      "version": "1.3.0",
+      "private": false,
+      "manifestSha256": "110df3303e268fa7b88ac42df30b03ebde180c7ad9ddcfe8c89a027772573f05",
+      "published": false
+    },
+    {
+      "name": "@arcanea/overlay-copilot",
+      "path": "packages/overlay-copilot",
+      "beforeVersion": "1.2.1",
+      "version": "1.3.0",
+      "private": false,
+      "manifestSha256": "5edb8916ce3b6a03ab77d220da587d68d2b8fcb1023903e4cff3d7b621dd45ff",
+      "published": false
+    },
+    {
+      "name": "@arcanea/overlay-cursor",
+      "path": "packages/overlay-cursor",
+      "beforeVersion": "1.2.1",
+      "version": "1.3.0",
+      "private": false,
+      "manifestSha256": "80fb785ad47190bbcea95be8b284c7f7f03b5fb07b3aa2a561c7a9d546873775",
+      "published": false
+    },
+    {
+      "name": "@arcanea/overlay-gemini",
+      "path": "packages/overlay-gemini",
+      "beforeVersion": "1.2.1",
+      "version": "1.3.0",
+      "private": false,
+      "manifestSha256": "7a9863d706e1531e509b60bab20e0c0bd51efe83bbac3bb27db69bed72cf4fff",
+      "published": false
+    },
+    {
+      "name": "@arcanea/prompt-books",
+      "path": "packages/prompt-books",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "a7f50562b81caf7fd61ebc9f134b2f3c82a41af2c45e2dcfeeeca383eebe671e",
+      "published": true
+    },
+    {
+      "name": "@arcanea/rituals",
+      "path": "packages/rituals",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "168d50e2a26ab948b88815ded58625108adb2efc483f0944c705f19338aef11c",
+      "published": true
+    },
+    {
+      "name": "@arcanea/security",
+      "path": "packages/arcanea-security",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "c31e069091bc25b043cd846ca6176151026da9a5489c96b5263dfba1a1b520f0",
+      "published": true
+    },
+    {
+      "name": "@arcanea/skill-registry",
+      "path": "packages/skill-registry",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "bb91c2ee6a1e0d048c3faeda473eba66d83c73c62dccdec05195e8bb045ea407",
+      "published": true
+    },
+    {
+      "name": "@arcanea/sona-learner",
+      "path": "packages/sona-learner",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "a1101fbce9f620f4a4bd0e949531a5844c974dc63e3f6c4872bd041c598ce522",
+      "published": true
+    },
+    {
+      "name": "@arcanea/starlight-runtime",
+      "path": "packages/starlight-runtime",
+      "beforeVersion": "0.2.0",
+      "version": "0.2.0",
+      "private": false,
+      "manifestSha256": "9d386f310dd7fc76c9d417aa8c709d0c18c6100e8cf7f98fbf10bdb63c0d7fdd",
+      "published": true
+    },
+    {
+      "name": "@arcanea/swarm-coordinator",
+      "path": "packages/swarm-coordinator",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "7437c2c1f8588ed0847114893b513fda1a01cd66936487512b88d796450f7a0c",
+      "published": true
+    },
+    {
+      "name": "@arcanea/token-optimizer",
+      "path": "packages/token-optimizer",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "bf89d255552d55f5bbcde8898f2159c2b199849098143608b50a1a79899718a6",
+      "published": true
+    },
+    {
+      "name": "@arcanea/tool-agent-builder",
+      "path": "tools/agent-builder",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "a56f417b89d6e8f810533c7e19b5bd3a8649f7034f7988a55df40d29547923f6",
+      "published": false
+    },
+    {
+      "name": "@arcanea/tool-knowledge-base",
+      "path": "tools/knowledge-base",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "25e4370ba132037bef30b59b55dec28dfced611e549a76184630ebf76a98dc5a",
+      "published": false
+    },
+    {
+      "name": "@arcanea/tool-memory",
+      "path": "tools/memory",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "32890520cbc65e4c75e91da492bd8e9f76f0e8d7dfb2de0c61b4f93145c5264d",
+      "published": false
+    },
+    {
+      "name": "@arcanea/tool-web-browse",
+      "path": "tools/web-browse",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "139b2bef5ccb38f7b006dbd629a526171ca1886575ad5add4f5157a4e5dc8c6c",
+      "published": false
+    },
+    {
+      "name": "@arcanea/ui",
+      "path": "packages/ui",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "ee1356acbff4c2917abf60a670e20b38f1352f8d2f5cc2853508b1a81983b821",
+      "published": false
+    },
+    {
+      "name": "@arcanea/web",
+      "path": "apps/web",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": true,
+      "manifestSha256": "9d823de086c0d2f03c25a1a0ecd1be92dd9b1d2c368d6ba6ebd00c1ebd8be9bd"
+    },
+    {
+      "name": "@arcanea/world-state",
+      "path": "packages/world-state",
+      "beforeVersion": "0.1.0",
+      "version": "0.1.0",
+      "private": false,
+      "manifestSha256": "db5232c0de7b72125eba0cae9e8cb298c173ef7b364e30ecb6d8c21da9642605",
+      "published": false
+    },
+    {
+      "name": "arcanea-code",
+      "path": "packages/vscode",
+      "beforeVersion": "0.1.1",
+      "version": "0.1.1",
+      "private": true,
+      "manifestSha256": "9a999ac9f2f2aaf0ee488f41c0193b603a2bbcc9deb37f7600bdc5c91fdeff1c"
+    },
+    {
+      "name": "arcanea-intelligence-os",
+      "path": "packages/aios",
+      "beforeVersion": "0.2.2",
+      "version": "0.2.3",
+      "private": false,
+      "manifestSha256": "53bff27429c11d8a96ee2197d2e8387319aa93e61b1590f864ef65056fa76ec7",
+      "published": false
+    },
+    {
+      "name": "arcanea-premium-web",
+      "path": "apps/premium-web",
+      "beforeVersion": "2.0.0",
+      "version": "2.0.0",
+      "private": false,
+      "manifestSha256": "961167d2cadfdd6c6a966116a028a3d4d089f833d18a83010ac72777ce27a908",
+      "published": false
+    },
+    {
+      "name": "claude-arcanea",
+      "path": "packages/claude-arcanea",
+      "beforeVersion": "0.2.2",
+      "version": "0.2.3",
+      "private": false,
+      "manifestSha256": "b612954211b92bf37a3f15f2b080ea8122eb30c606ad56281edc2e535f88f831",
+      "published": false
+    }
+  ]
+}
