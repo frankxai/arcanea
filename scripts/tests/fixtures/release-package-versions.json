@@ -1,0 +1,175 @@
+{
+  "sourceCommits": {
+    "before": "09a002f593b1f921bad72b4925c057c25acdd30b",
+    "after": "5eff985b7f424bdeeb00c88319cf829b9b64c38e"
+  },
+  "scope": "Exact eight source package names, versions and internal dependency graphs; external dependencies and application behavior are outside this fixture.",
+  "sourceManifestSha256": {
+    "09a002f593b1f921bad72b4925c057c25acdd30b": {
+      "packages/core/package.json": "7c8c72b998e3afbe9f00a007bfacf910cac569a0ffb4c0b09dd21f3a1a2d27ec",
+      "packages/auth/package.json": "5f7653f13f1dcb6c38e960c4267ffbe3d3427aa64c7c8aee0a310acd8dc7c371",
+      "packages/cli/package.json": "dc8e79e088101789f6688ce4e4914b89d7867533cc393872a3939f06cd7eb7c4",
+      "packages/overlay-claude/package.json": "b3819eea7301c5a16fb732eaa1cf8f8b865928299be2eb220be83533f7b8a25c",
+      "packages/overlay-chatgpt/package.json": "97b6cdd839fbf657fd22159e37483cdb8cf8afbf963c7c7bab6752f29d0288b4",
+      "packages/overlay-gemini/package.json": "ae366c1ffd4247838c33e81b907db6e960a9ddcab60843b7c52ab406875826a2",
+      "packages/overlay-copilot/package.json": "28990ac38e6191c78614308fbfceb5aec40fb01fc60e462f9b73642702b6186b",
+      "packages/overlay-cursor/package.json": "4a51db2d3d905ae274ae22054cdef744682390279b0f16ff198ec1b76dc99334"
+    },
+    "5eff985b7f424bdeeb00c88319cf829b9b64c38e": {
+      "packages/core/package.json": "b5d03e8b3be13addba9dc88dfb3df2b1fc7c3380ccd4e1841f188d6b8871f8dd",
+      "packages/auth/package.json": "8a5671d2d0e8fd6be45d489464113bb060c2e013f9a19d858966c805b0e49232",
+      "packages/cli/package.json": "cf6636610f31837d62c8ecac2cf06febdc48855d84bffa5881c895b1fced8859",
+      "packages/overlay-claude/package.json": "110df3303e268fa7b88ac42df30b03ebde180c7ad9ddcfe8c89a027772573f05",
+      "packages/overlay-chatgpt/package.json": "14410210adcb9221657c09200de89321eb3092e51fe6dada119ad5ae0ad16b07",
+      "packages/overlay-gemini/package.json": "7a9863d706e1531e509b60bab20e0c0bd51efe83bbac3bb27db69bed72cf4fff",
+      "packages/overlay-copilot/package.json": "5edb8916ce3b6a03ab77d220da587d68d2b8fcb1023903e4cff3d7b621dd45ff",
+      "packages/overlay-cursor/package.json": "80fb785ad47190bbcea95be8b284c7f7f03b5fb07b3aa2a561c7a9d546873775"
+    }
+  },
+  "packages": [
+    {
+      "path": "packages/core",
+      "before": {
+        "name": "@arcanea/core",
+        "version": "0.1.0",
+        "dependencies": {}
+      },
+      "after": {
+        "name": "@arcanea/core",
+        "version": "0.2.0",
+        "dependencies": {}
+      }
+    },
+    {
+      "path": "packages/auth",
+      "before": {
+        "name": "@arcanea/auth",
+        "version": "1.0.4",
+        "dependencies": {
+          "@arcanea/core": "^0.1.0"
+        }
+      },
+      "after": {
+        "name": "@arcanea/auth",
+        "version": "1.0.5",
+        "dependencies": {
+          "@arcanea/core": "^0.2.0"
+        }
+      }
+    },
+    {
+      "path": "packages/cli",
+      "before": {
+        "name": "@arcanea/cli",
+        "version": "0.7.1",
+        "dependencies": {
+          "@arcanea/core": "^0.1.0",
+          "@arcanea/auth": "^1.0.3",
+          "@arcanea/overlay-claude": "^1.2.0",
+          "@arcanea/overlay-chatgpt": "^1.2.0",
+          "@arcanea/overlay-gemini": "^1.2.0",
+          "@arcanea/overlay-copilot": "^1.2.0",
+          "@arcanea/overlay-cursor": "^1.2.0"
+        }
+      },
+      "after": {
+        "name": "@arcanea/cli",
+        "version": "0.8.0",
+        "dependencies": {
+          "@arcanea/core": "^0.2.0",
+          "@arcanea/auth": "^1.0.5",
+          "@arcanea/overlay-claude": "^1.3.0",
+          "@arcanea/overlay-chatgpt": "^1.3.0",
+          "@arcanea/overlay-gemini": "^1.3.0",
+          "@arcanea/overlay-copilot": "^1.3.0",
+          "@arcanea/overlay-cursor": "^1.3.0"
+        }
+      }
+    },
+    {
+      "path": "packages/overlay-claude",
+      "before": {
+        "name": "@arcanea/overlay-claude",
+        "version": "1.2.1",
+        "dependencies": {
+          "@arcanea/core": "^0.1.0"
+        }
+      },
+      "after": {
+        "name": "@arcanea/overlay-claude",
+        "version": "1.3.0",
+        "dependencies": {
+          "@arcanea/core": "^0.2.0"
+        }
+      }
+    },
+    {
+      "path": "packages/overlay-chatgpt",
+      "before": {
+        "name": "@arcanea/overlay-chatgpt",
+        "version": "1.2.1",
+        "dependencies": {
+          "@arcanea/core": "^0.1.0"
+        }
+      },
+      "after": {
+        "name": "@arcanea/overlay-chatgpt",
+        "version": "1.3.0",
+        "dependencies": {
+          "@arcanea/core": "^0.2.0"
+        }
+      }
+    },
+    {
+      "path": "packages/overlay-gemini",
+      "before": {
+        "name": "@arcanea/overlay-gemini",
+        "version": "1.2.1",
+        "dependencies": {
+          "@arcanea/core": "^0.1.0"
+        }
+      },
+      "after": {
+        "name": "@arcanea/overlay-gemini",
+        "version": "1.3.0",
+        "dependencies": {
+          "@arcanea/core": "^0.2.0"
+        }
+      }
+    },
+    {
+      "path": "packages/overlay-copilot",
+      "before": {
+        "name": "@arcanea/overlay-copilot",
+        "version": "1.2.1",
+        "dependencies": {
+          "@arcanea/core": "^0.1.0"
+        }
+      },
+      "after": {
+        "name": "@arcanea/overlay-copilot",
+        "version": "1.3.0",
+        "dependencies": {
+          "@arcanea/core": "^0.2.0"
+        }
+      }
+    },
+    {
+      "path": "packages/overlay-cursor",
+      "before": {
+        "name": "@arcanea/overlay-cursor",
+        "version": "1.2.1",
+        "dependencies": {
+          "@arcanea/core": "^0.1.0"
+        }
+      },
+      "after": {
+        "name": "@arcanea/overlay-cursor",
+        "version": "1.3.0",
+        "dependencies": {
+          "@arcanea/core": "^0.2.0"
+        }
+      }
+    }
+  ]
+}

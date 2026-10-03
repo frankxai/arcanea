@@ -20,8 +20,9 @@
     "clean": "turbo run clean",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,json}\"",
+    "test:release": "node --test scripts/tests/release-lockfile.test.mjs",
     "changeset": "changeset",
-    "version-packages": "changeset version",
+    "version-packages": "changeset version && pnpm install --lockfile-only --no-frozen-lockfile --ignore-scripts && pnpm install --lockfile-only --frozen-lockfile --ignore-scripts",
     "release": "turbo run build --filter=!@arcanea/mobile && changeset publish",
     "embed:library": "cd apps/web && npx tsx ../../scripts/embed-library.ts",
     "embed:library:dry-run": "cd apps/web && npx tsx ../../scripts/embed-library.ts --dry-run --verbose"
