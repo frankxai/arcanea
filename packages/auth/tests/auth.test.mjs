@@ -13,9 +13,9 @@
 
 import { describe, it, before, after } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { existsSync, rmSync, mkdirSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { tmpdir } from 'node:os';
+import { stateDirectory } from '../../../scripts/test-state.mjs';
 
 import {
   VERSION,
@@ -33,8 +33,6 @@ import {
   CascadingKeystore,
   maskCredential,
 } from '../dist/index.js';
-
-import { readFileSync, writeFileSync } from 'node:fs';
 
 // ============================================
 // VERSION
@@ -307,30 +305,10 @@ describe('EnvKeystore', () => {
 // ============================================
 
 describe('EncryptedFileKeystore — ephemeral write/read round-trip', () => {
-  // We monkey-patch the homedir used by the module by overriding HOME.
-  // Since EncryptedFileKeystore derives the path at module load time via
-  // node:os homedir(), we test the class against the REAL ~/.arcanea dir
-  // but clean up after ourselves. If a creds file already exists we
-  // back it up and restore it.
+  const CREDS_FILE = join(stateDirectory, 'credentials.enc');
 
-  const ARCANEA_DIR = join(process.env.HOME || process.env.USERPROFILE || tmpdir(), '.arcanea');
-  const CREDS_FILE = join(ARCANEA_DIR, 'credentials.enc');
-  let backupData = null;
-
-  before(() => {
-    // Back up any pre-existing credential file synchronously
-    if (existsSync(CREDS_FILE)) {
-      backupData = readFileSync(CREDS_FILE);
-    }
-  });
-
-  after(() => {
-    // Restore or remove
-    if (backupData !== null) {
-      writeFileSync(CREDS_FILE, backupData, { mode: 0o600 });
-    } else if (existsSync(CREDS_FILE)) {
-      rmSync(CREDS_FILE);
-    }
+  it('starts with an isolated credential store', () => {
+    assert.equal(existsSync(CREDS_FILE), false);
   });
 
   it('saves and loads a credential for a provider', async () => {
@@ -349,13 +327,8 @@ describe('EncryptedFileKeystore — ephemeral write/read round-trip', () => {
 
   it('returns null for a provider that has not been saved', async () => {
     const store = new EncryptedFileKeystore();
-    // 'copilot' should not exist in our ephemeral test store
     const result = await store.load('copilot');
-    // It might exist if the real ~/.arcanea has it — only assert null if
-    // we backed up (meaning we started fresh) or confirm absence first
-    if (backupData === null) {
-      assert.equal(result, null, 'copilot should not be loaded before saving');
-    }
+    assert.equal(result, null, 'copilot should not be loaded before saving');
   });
 
   it('deletes a saved provider credential', async () => {

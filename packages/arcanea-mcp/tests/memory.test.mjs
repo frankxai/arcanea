@@ -4,59 +4,23 @@
  * Run: node --test packages/arcanea-mcp/tests/memory.test.mjs
  */
 
-import { describe, it, before, after } from 'node:test';
+import { describe, it, after } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { existsSync, readFileSync, writeFileSync, unlinkSync, mkdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { homedir } from 'node:os';
+import { readFileSync, writeFileSync, unlinkSync } from 'node:fs';
+import { join } from 'node:path';
+import { stateDirectory } from '../../../scripts/test-state.mjs';
 
-const MEMORIES_FILE = join(homedir(), '.arcanea', 'memories.json');
-
-// ~/.arcanea must exist before any test writes into it. This file's own header
-// says to run it with `node --test <path>`, which is also how CI runs it, but
-// the directory was only ever created by the package's `test` script wrapper —
-// so the tests passed locally (where the wrapper had run at some point, or the
-// directory already existed) and failed on a clean CI runner with ENOENT. A
-// test that only passes when invoked through one particular entry point owns
-// its own preconditions badly; it creates the directory itself now.
-mkdirSync(dirname(MEMORIES_FILE), { recursive: true });
+const MEMORIES_FILE = join(stateDirectory, 'memories.json');
+const { getMemoryFilePath, getOrCreateSession } = await import('../dist/memory/index.js');
 
 describe('Memory Persistence — File Format', () => {
-  let backup = null;
-
-  before(() => {
-    // Backup existing file if present
-    if (existsSync(MEMORIES_FILE)) {
-      backup = readFileSync(MEMORIES_FILE, 'utf-8');
-    }
+  it('uses the current test process store', () => {
+    assert.equal(getMemoryFilePath(), MEMORIES_FILE);
   });
 
-  after(() => {
-    // Restore backup
-    if (backup !== null) {
-      writeFileSync(MEMORIES_FILE, backup, 'utf-8');
-    }
-  });
-
-  it('should use ~/.arcanea/ directory', () => {
-    const arcanDir = join(homedir(), '.arcanea');
-    assert.ok(existsSync(arcanDir), '~/.arcanea/ directory should exist');
-  });
-
-  it('memories.json should have valid structure when present', () => {
-    if (!existsSync(MEMORIES_FILE)) {
-      // File may not exist yet — that's fine, skip
-      return;
-    }
+  it('writes a complete memory file through the actual memory module', () => {
+    getOrCreateSession('file-format');
     const raw = readFileSync(MEMORIES_FILE, 'utf-8');
-    if (raw.trim() === '') {
-      // The file exists but is empty. On CI runners another process can create
-      // ~/.arcanea/memories.json without writing to it yet, and JSON.parse('')
-      // throws SyntaxError - failing the whole suite for a reason unrelated to
-      // the code under test. An empty file has no structure to validate, so
-      // treat it the same as a missing one.
-      return;
-    }
     const data = JSON.parse(raw);
     assert.equal(data.version, 1, 'Version should be 1');
     assert.ok(typeof data.updatedAt === 'string', 'updatedAt should be an ISO string');
@@ -109,7 +73,7 @@ describe('Memory Persistence — Session Schema', () => {
 });
 
 describe('Memory Persistence — Round-Trip', () => {
-  const testFile = join(homedir(), '.arcanea', 'memories-test-roundtrip.json');
+  const testFile = join(stateDirectory, 'memories-test-roundtrip.json');
 
   after(() => {
     // Clean up test file
