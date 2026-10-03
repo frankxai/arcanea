@@ -60,8 +60,9 @@ the private review evidence and issue #142; the earlier timeouts remain recorded
 Packages CI now checks out full history like publishing, runs the in-repo
 regression on Node 20 and 22, and runs an independent frozen verification after
 the shared version command. The original command chain remains intact. Source
-workflow and root release-input changes now also trigger publishing on main;
-pull request tests never publish or commit generated metadata.
+publishing workflow and root release-input changes now trigger publishing on main;
+test-only and Packages CI-only changes trigger CI without invoking publication.
+Pull request tests never publish or commit generated metadata.
 
 The two regression cases use pnpm 8.15.0 and eight recorded source package
 identities, versions and internal graphs. One reproduces stale-lock refusal,
@@ -86,6 +87,39 @@ alternative of directly repairing the bot branch remains rejected because the
 next version run would overwrite that repair. This follow-up retains the shared
 pipeline and provides repeatable failure checks plus its actual generated output.
 
-The revised exact source requires fresh native CI and independent review. No
-previous verdict transfers to it. PR #136, npm publication, creator acceptance,
+Candidate `3f8c859` passed native Packages CI `37149965385`, including both
+regression cases on Node 20/22 and the full 50-workspace pipeline on Node 20.
+Suite `37149965252`, quality/build `37149965208`, workspace types, source secrets
+and mechanical canon passed. Claude review `37149965231` failed with
+`is_error:true`; it provides no approval.
+
+Artifact `11283447045`, archive SHA256
+`4050fcc407ac6c5ce3f3b78f23b42ee8222b1a6449c137c30d13e58a9af324d7`,
+retains the original and generated locks. The original matches the candidate's
+Git blob. There are no external importer specifier/version changes, and 18
+internal workspace edges change. Regeneration removes the two obsolete importers,
+522 snapshots and adds one snapshot. Of 188 changed common snapshots, 146 only
+change development flags, and 42 remove the optional `supports-color@8.1.1`
+peer binding from `debug@4.4.3`, retaining its version and integrity. Complete
+reference traversal, including aliases, has zero unresolved references: 520
+removed snapshots were outside the active graph; the two reachable removals
+are the replaced debug peer variant and optional color peer. This analysis
+does not establish vulnerability remediation or installation of the new graph.
+
+The first full review request for `3f8c859` timed out at 180.39 seconds without
+a verdict. A complete six-file packet with duplicate new-file text removed and
+the actual CI/graph evidence completed in 137.05 seconds. Grok 4.6/high returned
+WARN, with no source defect requiring changes in the recovery command or tests.
+It identified publishing trigger scope and missing generated-graph installation
+as remaining release risks. Native receipt cost $0.03787396 is unreconciled.
+
+The next revision narrows publication triggers and adds an actual frozen install
+of the generated graph on Node 20, followed by rebuilding core, MCP, auth,
+overlays and CLI and rerunning their compiled core/overlay and CLI suites.
+This checks the release graph after versioning, in addition to testing the
+original checkout. The metadata artifact remains available if that later step
+fails. It is package recovery evidence, not all-workspace or app/customer proof.
+
+This revised exact source requires fresh native CI and independent review.
+No previous verdict transfers to it. PR #136, npm publication, creator acceptance,
 app production, and the other estate slices remain open under their own checks.

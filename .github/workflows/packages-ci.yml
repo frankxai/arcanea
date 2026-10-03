@@ -100,6 +100,19 @@ jobs:
           git diff -- pnpm-lock.yaml > "$RUNNER_TEMP/arcanea-release-metadata/pnpm-lock.diff"
           git diff --check
 
+      - name: Install and test generated release packages
+        if: matrix.node-version == 20
+        run: |
+          # Exercise the generated graph, rather than only the original checkout.
+          pnpm install --frozen-lockfile --ignore-scripts
+          pnpm --filter @arcanea/core build
+          pnpm --filter @arcanea/mcp-server build
+          pnpm --filter @arcanea/auth build
+          pnpm --filter "@arcanea/overlay-*" build
+          pnpm --filter @arcanea/cli build
+          node --test packages/core/tests/*.test.mjs packages/overlay-claude/tests/*.test.mjs
+          node --test packages/cli/tests/*.test.mjs
+
       - name: Upload generated release lockfile evidence
         if: always() && matrix.node-version == 20 && steps.release-metadata.outcome != 'skipped'
         uses: actions/upload-artifact@v5
