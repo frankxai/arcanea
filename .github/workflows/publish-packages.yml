@@ -45,7 +45,8 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm changeset publish
-          version: pnpm changeset version
+          # Commit matching dependency ranges and lockfile in the release PR.
+          version: pnpm version-packages
           title: 'chore: version packages'
           commit: 'chore: version packages'
         env:

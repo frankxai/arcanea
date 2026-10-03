@@ -5,10 +5,22 @@ on:
     branches: [main]
     paths:
       - 'packages/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.changeset/**'
+      - '.github/workflows/packages-ci.yml'
+      - '.github/workflows/publish-packages.yml'
   pull_request:
     branches: [main]
     paths:
       - 'packages/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.changeset/**'
+      - '.github/workflows/packages-ci.yml'
+      - '.github/workflows/publish-packages.yml'
 
 concurrency:
   group: packages-${{ github.ref }}
@@ -65,6 +77,13 @@ jobs:
 
       - name: Run CLI integration tests
         run: node --test packages/cli/tests/*.test.mjs
+
+      - name: Verify generated release metadata
+        if: matrix.node-version == 20
+        run: |
+          # Exercise the actual release command in CI without committing or publishing.
+          pnpm version-packages
+          git diff --check
 
   security:
     name: Security Scan
