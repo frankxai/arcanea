@@ -1,5 +1,22 @@
 # @arcanea/overlay-chatgpt
 
+## 1.3.0
+
+### Minor Changes
+
+- 228c202: Lumina-first architecture: Luminors central, Guardians & Godbeasts unlockable
+  - 16 Luminors as primary intelligence layer (always available at standard+)
+  - 10 Guardians unlocked at full tier via Gate alignment
+  - 10 Godbeasts unlocked at luminor tier as mythic amplifiers
+  - New ArcaneanRouter with tier-aware unified routing
+  - Tier-gated system prompts and CLAUDE.md generators
+  - All 5 overlay installers updated for progressive intelligence tiers
+
+### Patch Changes
+
+- Updated dependencies [228c202]
+  - @arcanea/core@0.2.0
+
 ## 1.2.0
 
 ### Minor Changes
