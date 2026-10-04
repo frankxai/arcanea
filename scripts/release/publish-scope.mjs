@@ -8,6 +8,12 @@ import { fileURLToPath } from 'node:url';
 export const planPath = '.changeset/release-plan.json';
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
 
+function assertPublicRegistry(value) {
+  let registry;
+  try { registry = new URL(value); } catch { throw new Error('Registry configuration could not be resolved to public npm'); }
+  assert.ok(registry.href === 'https://registry.npmjs.org/', 'Registry configuration differs from the public npm admission endpoint');
+}
+
 export function command(cwd, executable, args, timeout = 20_000) {
   const result = spawnSync(executable, args, { cwd, encoding: 'utf8', timeout, windowsHide: true, maxBuffer: 10 * 1024 * 1024 });
   assert.ifError(result.error);
@@ -38,7 +44,12 @@ export async function workspaces(cwd) {
     assert.equal(manifest.version, row.version);
     assert.match(manifest.name, /^(?:@[a-z0-9._-]+\/)?[a-z0-9._-]+$/);
     assert.equal(typeof manifest.version, 'string');
-    assert.ok(!manifest.publishConfig?.registry || manifest.publishConfig.registry === 'https://registry.npmjs.org', 'Only the public npm registry is supported');
+    const registryKeys = ['registry'];
+    if (manifest.name.startsWith('@')) registryKeys.push(`${manifest.name.split('/')[0]}:registry`);
+    for (const key of registryKeys) {
+      const value = manifest.publishConfig?.[key];
+      if (value) assertPublicRegistry(value);
+    }
     packages.push({ name: manifest.name, version: manifest.version, path, private: manifest.private === true });
   }
   assert.equal(new Set(packages.map((p) => p.name)).size, packages.length, 'Duplicate package names');
@@ -46,13 +57,17 @@ export async function workspaces(cwd) {
 }
 
 export function validateRegistryConfig(cwd, packages) {
-  const keys = ['registry', ...new Set(packages.filter((p) => !p.private && p.name.startsWith('@')).map((p) => `${p.name.split('/')[0]}:registry`))];
-  for (const key of keys) {
-    const value = pnpm(cwd, ['config', 'get', key]).trim();
-    if (key !== 'registry' && (value === 'undefined' || value === 'null')) continue;
-    let registry;
-    try { registry = new URL(value); } catch { throw new Error('Registry configuration could not be resolved to public npm'); }
-    assert.ok(registry.href === 'https://registry.npmjs.org/', 'Registry configuration differs from the public npm admission endpoint');
+  const publicPackages = packages.filter((p) => !p.private);
+  const contexts = [{ cwd, keys: ['registry', ...new Set(publicPackages.filter((p) => p.name.startsWith('@')).map((p) => `${p.name.split('/')[0]}:registry`))] }];
+  for (const p of publicPackages) {
+    contexts.push({ cwd: join(cwd, p.path), keys: ['registry', ...(p.name.startsWith('@') ? [`${p.name.split('/')[0]}:registry`] : [])] });
+  }
+  for (const context of contexts) {
+    for (const key of context.keys) {
+      const value = pnpm(context.cwd, ['config', 'get', key]).trim();
+      if (key !== 'registry' && (value === 'undefined' || value === 'null')) continue;
+      assertPublicRegistry(value);
+    }
   }
 }
 

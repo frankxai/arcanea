@@ -50,3 +50,29 @@ through source review and deliberate package disposition before release. Do not
 fill the plan with arbitrary names, fabricate historical changelog entries or
 transfer the preceding delta WARN into product/publication approval. Exact-revision
 CI and independent source review of this implementation are required before merge.
+
+## Review corrections, 4 October 2026
+
+Complete eight-file independent native review of `39362eb` returned WARN with two
+findings. The original verdict and timed-out delivery attempts are retained.
+Inspection of the integrity-verified published `@changesets/cli@2.29.7` source
+shows its registry resolver reads `publishConfig["@scope:registry"]` before the
+default manifest registry. The guard now validates both fields against normalized
+public npm URLs. The source is available from
+`https://registry.npmjs.org/@changesets%2fcli/2.29.7`.
+
+The review's proposed per-name registry keys are not read by that resolver.
+With the default-registry environment inherited from pinned pnpm 8.15.0 (also set
+explicitly by Changesets), default selection stays public. A package-local scoped
+registry can still override the root scope setting.
+The guard now validates resolved default and scope keys from both the root and
+every public package directory. The regression reproduces that package-local
+scoped override and the scoped manifest field before the corresponding corrections.
+
+A no-pending-changesets retry now exits before versioning, lock generation or
+workspace commands, preserving the existing release plan and lock byte for byte.
+A missing plan continues to refuse publication; no speculative replan is added.
+Both genuine defects were reproduced before the corrections. Current local,
+Node 20/22 CI and complete exact-source review results belong on PR #144.
+These corrections do not authorize npm publication or disposition of the 14
+unversioned candidates. Dependencies, workspace membership and lockfile are unchanged.

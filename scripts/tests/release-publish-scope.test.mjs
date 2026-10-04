@@ -127,6 +127,47 @@ test('actual default and scoped pnpm registry overrides refuse mismatched admiss
   await writeFile(join(cwd, '.npmrc'), 'registry=https://registry.npmjs.org/\n@arcanea:registry=https://example.invalid/\n');
   assert.throws(() => validateRegistryConfig(cwd, packages), /Registry configuration/);
 }));
+test('package-directory scoped registry overrides refuse publication with pinned pnpm', () => workspace(async ({ cwd, packages }) => {
+  const packageCwd = join(cwd, 'packages/core');
+  await writeFile(join(cwd, '.npmrc'), 'registry=https://registry.npmjs.org/\n@arcanea:registry=https://registry.npmjs.org/\n');
+  await writeFile(join(packageCwd, '.npmrc'), 'registry=https://example.invalid/\n');
+  assert.equal(command(packageCwd, process.execPath, [process.env.npm_execpath, 'config', 'get', 'registry']).trim(), 'https://registry.npmjs.org/');
+  validateRegistryConfig(cwd, packages);
+  await writeFile(join(packageCwd, '.npmrc'), 'registry=https://registry.npmjs.org/\n@arcanea:registry=https://example.invalid/\n');
+  assert.equal(command(packageCwd, process.execPath, [process.env.npm_execpath, 'config', 'get', '@arcanea:registry']).trim(), 'https://example.invalid/');
+  assert.throws(() => validateRegistryConfig(cwd, packages), /Registry configuration/);
+  await writeFile(join(packageCwd, '.npmrc'), 'registry=https://registry.npmjs.org/\n@arcanea:registry=https://registry.npmjs.org/\n');
+  validateRegistryConfig(cwd, packages);
+}));
+test('the pinned publisher scoped publishConfig registry cannot bypass admission', () => workspace(async ({ cwd }) => {
+  const path = join(cwd, 'packages/core/package.json');
+  const manifest = JSON.parse(await readFile(path, 'utf8'));
+  manifest.publishConfig = { '@arcanea:registry': 'https://example.invalid/' };
+  await writeFile(path, JSON.stringify(manifest));
+  await assert.rejects(workspaces(cwd), /Registry configuration/);
+  manifest.publishConfig['@arcanea:registry'] = 'https://registry.npmjs.org/';
+  manifest.publishConfig.registry = 'https://registry.npmjs.org/';
+  await writeFile(path, JSON.stringify(manifest));
+  assert.equal((await workspaces(cwd))[0].name, manifest.name);
+}));
+test('no pending changesets preserves the existing plan and lock without pnpm mutation', () => workspace(async ({ cwd }) => {
+  const lockBefore = await readFile(join(cwd, 'pnpm-lock.yaml'));
+  const planBefore = await readFile(join(cwd, planPath));
+  const probe = join(cwd, 'pnpm-mutation-probe.mjs');
+  await writeFile(probe, `import { appendFileSync, readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+const args = process.argv.slice(2); const cwd = process.cwd();
+appendFileSync(join(cwd, 'pnpm-called'), JSON.stringify(args) + '\\n');
+if (args[0] === 'list') { const manifest = JSON.parse(readFileSync(join(cwd, 'packages/core/package.json'))); console.log(JSON.stringify([{ ...manifest, path: join(cwd, 'packages/core') }])); }
+else { writeFileSync(join(cwd, 'pnpm-lock.yaml'), 'unexpected mutation\\n'); }
+`);
+  const version = fileURLToPath(new URL('../release/version-packages.mjs', import.meta.url));
+  const result = spawnSync(process.execPath, [version], { cwd, encoding: 'utf8', timeout: 10_000, windowsHide: true, env: { ...process.env, npm_execpath: probe, npm_config_user_agent: 'pnpm/8.15.0 node/test' } });
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(await readFile(join(cwd, 'pnpm-lock.yaml')), lockBefore);
+  assert.deepEqual(await readFile(join(cwd, planPath)), planBefore);
+  await assert.rejects(readFile(join(cwd, 'pnpm-called')), { code: 'ENOENT' });
+}));
 test('an invented release version cannot expand publication intent', () => workspace(async ({ cwd, plan, packages }) => {
   const forged = { ...plan, releases: [{ ...plan.releases[0], version: '999.0.0' }] };
   await assert.rejects(validatePlan(cwd, forged, packages), /does not match version changes/);
