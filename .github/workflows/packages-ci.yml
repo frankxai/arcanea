@@ -9,6 +9,7 @@ on:
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
       - 'scripts/tests/**'
+      - 'scripts/release/**'
       - '.changeset/**'
       - '.github/workflows/packages-ci.yml'
       - '.github/workflows/publish-packages.yml'
@@ -20,6 +21,7 @@ on:
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
       - 'scripts/tests/**'
+      - 'scripts/release/**'
       - '.changeset/**'
       - '.github/workflows/packages-ci.yml'
       - '.github/workflows/publish-packages.yml'
@@ -94,6 +96,9 @@ jobs:
           git rev-parse HEAD > "$RUNNER_TEMP/arcanea-release-metadata/checked-out-commit.txt"
           cp pnpm-lock.yaml "$RUNNER_TEMP/arcanea-release-metadata/before-pnpm-lock.yaml"
           pnpm version-packages
+          if [ -f .changeset/release-plan.json ]; then
+            cp .changeset/release-plan.json "$RUNNER_TEMP/arcanea-release-metadata/release-plan.json"
+          fi
           # Validate independently of the shared script; diff --check only checks whitespace.
           pnpm install --lockfile-only --frozen-lockfile --ignore-scripts
           cp pnpm-lock.yaml "$RUNNER_TEMP/arcanea-release-metadata/after-pnpm-lock.yaml"

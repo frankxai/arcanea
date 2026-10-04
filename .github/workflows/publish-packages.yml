@@ -9,6 +9,7 @@ on:
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
+      - 'scripts/release/**'
       - '.github/workflows/publish-packages.yml'
   workflow_dispatch:
 
@@ -48,7 +49,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm changeset publish
+          publish: pnpm release:publish
           # Commit matching dependency ranges and lockfile in the release PR.
           version: pnpm version-packages
           title: 'chore: version packages'
