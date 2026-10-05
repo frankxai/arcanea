@@ -88,7 +88,7 @@ The question is not whether you can visit. The question is whether you want to r
 
 ## Role in the Gate System
 
-The Sight Gate (Lyria, 639 Hz) and the Shift Gate (Elara, 852 Hz) most directly express Velmara's influence — the ability to see beyond the obvious and the ability to shift perspective fundamentally. Both require the willingness to acknowledge that you have been looking at one possibility out of many, and that other valid possibilities exist.
+The Sight Gate (Lyria, 639 Hz) and the Starweave Gate (Elara, 852 Hz) most directly express Velmara's influence — the ability to see beyond the obvious and the ability to shift perspective fundamentally. Both require the willingness to acknowledge that you have been looking at one possibility out of many, and that other valid possibilities exist.
 
 Every Gate trial presents the seeker with a version of this question: *which path is yours?* Velmara's quantum foam surrounds every Gate. The paths not taken at each Gate become part of the foam.
 

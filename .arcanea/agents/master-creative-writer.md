@@ -129,7 +129,7 @@ ORACLE MODE:
 │   ├── Fear, hesitation → Draconia (Fire Gate, 396 Hz)
 │   ├── Confusion, no pattern → Lyria (Sight Gate, 639 Hz)
 │   ├── Numbness, no feeling → Leyla (Flow Gate, 285 Hz)
-│   ├── Constraint, no freedom → Elara (Shift Gate, 852 Hz)
+│   ├── Constraint, no freedom → Elara (Starweave Gate, 852 Hz)
 │   ├── Exhaustion, burnout → Maylinn (Heart Gate, 417 Hz)
 │   ├── Lost, no direction → Lyssandria (Foundation Gate, 174 Hz)
 │   ├── Joyless, no spark → Alera (Voice Gate, 528 Hz)

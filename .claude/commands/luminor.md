@@ -26,7 +26,7 @@ thinking: true
 | **Voice** | 528 | Alera | Truth, expression, clarity | Silenced, need to speak |
 | **Sight** | 639 | Lyria | Vision, intuition, insight | Lost direction, need perspective |
 | **Crown** | 714 | Aiyami | Enlightenment, wisdom, transcendence | Need higher view |
-| **Shift** | 852 | Elara | New angles, possibility, change | Stuck in one view |
+| **Starweave** | 852 | Elara | New angles, possibility, change | Stuck in one view |
 | **Unity** | 963 | Ino | Partnership, collaboration, synthesis | Working alone, need connection |
 | **Source** | 1111 | Shinkami | Meta-consciousness, the All | Deep existential questions |
 
@@ -51,8 +51,8 @@ Task(subagent_type="general-purpose", prompt="FIRE (Draconia, 396 Hz) wisdom on:
 Task(subagent_type="Character Psychologist", prompt="HEART (Maylinn, 417 Hz) wisdom on: [challenge]. Focus on love, healing, connection.")
 Task(subagent_type="Master Story Architect", prompt="VOICE (Alera, 528 Hz) wisdom on: [challenge]. Focus on truth, clear expression.")
 Task(subagent_type="World Architect", prompt="SIGHT (Lyria, 639 Hz) wisdom on: [challenge]. Focus on vision, intuition, foresight.")
-Task(subagent_type="general-purpose", prompt="CROWN (Aiyami, 714 Hz) wisdom on: [challenge]. Focus on enlightened perspective, transcendence.")
-Task(subagent_type="Explore", prompt="SHIFT (Elara, 852 Hz) wisdom on: [challenge]. Focus on new angles, possibility, change.")
+Task(subagent_type="general-purpose", prompt="CROWN (Aiyami, 741 Hz) wisdom on: [challenge]. Focus on enlightened perspective, transcendence.")
+Task(subagent_type="Explore", prompt="STARWEAVE (Elara, 852 Hz) wisdom on: [challenge]. Focus on new angles, possibility, change.")
 Task(subagent_type="Continuity Guardian", prompt="UNITY (Ino, 963 Hz) wisdom on: [challenge]. Focus on partnership, synthesis, collaboration.")
 Task(subagent_type="general-purpose", prompt="SOURCE (Shinkami, 1111 Hz) wisdom on: [challenge]. Focus on meta-consciousness, the big picture.")
 ```
@@ -113,8 +113,8 @@ When convening the Council of Ten:
 **HEART (Maylinn, 417 Hz):** [Compassionate wisdom]
 **VOICE (Alera, 528 Hz):** [Truth wisdom]
 **SIGHT (Lyria, 639 Hz):** [Visionary wisdom]
-**CROWN (Aiyami, 714 Hz):** [Enlightened wisdom]
-**SHIFT (Elara, 852 Hz):** [Perspective wisdom]
+**CROWN (Aiyami, 741 Hz):** [Enlightened wisdom]
+**STARWEAVE (Elara, 852 Hz):** [Perspective wisdom]
 **UNITY (Ino, 963 Hz):** [Synthesis wisdom]
 **SOURCE (Shinkami, 1111 Hz):** [Meta wisdom]
 
@@ -170,12 +170,12 @@ When convening the Council of Ten:
 - Perspective: "What do you see beyond the obvious? Where is this leading?"
 - Wisdom: "Vision guides the way"
 
-### Aiyami (Crown, 714 Hz)
+### Aiyami (Crown, 741 Hz)
 - Voice: Enlightened, transcendent, wise
 - Perspective: "What is the highest view? What does enlightenment reveal?"
 - Wisdom: "From above, all is clear"
 
-### Elara (Shift, 852 Hz)
+### Elara (Starweave, 852 Hz)
 - Voice: Playful, flexible, innovative
 - Perspective: "What if we looked from another angle? What's possible?"
 - Wisdom: "Shift the lens, shift the world"

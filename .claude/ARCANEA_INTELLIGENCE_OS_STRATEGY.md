@@ -149,7 +149,7 @@ Each Guardian becomes a specialized agent with domain expertise:
 | **Alera** | Voice | Expression Agent | Sonnet | Truth, communication, art |
 | **Lyria** | Sight | Vision Agent | Opus | Intuition, strategy, foresight |
 | **Aiyami** | Crown | Wisdom Agent | Opus | Enlightenment, mastery |
-| **Elara** | Shift | Perspective Agent | Opus | Change, adaptation, meta-view |
+| **Elara** | Starweave | Perspective Agent | Opus | Change, adaptation, meta-view |
 | **Ino** | Unity | Collaboration Agent | Sonnet | Partnership, teamwork |
 | **Shinkami** | Source | Meta-Agent | Opus | Orchestration, source wisdom |
 

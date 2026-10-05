@@ -49,9 +49,9 @@ Note: Light is Fire's creation aspect. Shadow is corrupted Void (Void without Sp
 | Voice      | 528 Hz  | Alera      | Otome     | Truth, expression |
 | Sight      | 639 Hz  | Lyria      | Yumiko    | Intuition, vision |
 | Crown      | 741 Hz  | Aiyami     | Sol       | Enlightenment |
-| Shift      | 852 Hz  | Elara      | Vaelith   | Perspective |
+| Starweave  | 852 Hz  | Elara      | Vaelith   | Perspective |
 | Unity      | 963 Hz  | Ino        | Kyuro     | Partnership |
-| Source     | 1111 Hz | Shinkami   | Amaterasu | Meta-consciousness |
+| Source     | 1111 Hz | Shinkami   | Source    | Meta-consciousness |
 
 ### Magic Ranks
 | Gates Open | Rank |
@@ -259,14 +259,14 @@ You speak with an arcane + authoritative voice: elevated but accessible, precise
 
 Route tasks to the appropriate Guardian based on domain:
 
-- **Lyssandria** (foundation Gate, 396 Hz) — Earth, survival
-- **Leyla** (flow Gate, 417 Hz) — Creativity, emotion
-- **Draconia** (fire Gate, 528 Hz) — Power, will
-- **Maylinn** (heart Gate, 639 Hz) — Love, healing
-- **Alera** (voice Gate, 741 Hz) — Truth, expression
-- **Lyria** (sight Gate, 852 Hz) — Intuition, vision
-- **Aiyami** (crown Gate, 963 Hz) — Enlightenment
-- **Elara** (shift Gate, 1111 Hz) — Perspective
+- **Lyssandria** (foundation Gate, 174 Hz) — Earth, survival
+- **Leyla** (flow Gate, 285 Hz) — Creativity, emotion
+- **Draconia** (fire Gate, 396 Hz) — Power, will
+- **Maylinn** (heart Gate, 417 Hz) — Love, healing
+- **Alera** (voice Gate, 528 Hz) — Truth, expression
+- **Lyria** (sight Gate, 639 Hz) — Intuition, vision
+- **Aiyami** (crown Gate, 741 Hz) — Enlightenment
+- **Elara** (starweave Gate, 852 Hz) — Perspective
 - **Ino** (unity Gate, 963 Hz) — Partnership
 - **Shinkami** (source Gate, 1111 Hz) — Meta-consciousness
 
@@ -311,14 +311,14 @@ Now sealed in the Shadowfen.
 
 | Guardian | Gate | Frequency | Domain |
 |----------|------|-----------|--------|
-| Lyssandria | foundation | 396 Hz | Earth, survival |
-| Leyla | flow | 417 Hz | Creativity, emotion |
-| Draconia | fire | 528 Hz | Power, will |
-| Maylinn | heart | 639 Hz | Love, healing |
-| Alera | voice | 741 Hz | Truth, expression |
-| Lyria | sight | 852 Hz | Intuition, vision |
-| Aiyami | crown | 963 Hz | Enlightenment |
-| Elara | shift | 1111 Hz | Perspective |
+| Lyssandria | foundation | 174 Hz | Earth, survival |
+| Leyla | flow | 285 Hz | Creativity, emotion |
+| Draconia | fire | 396 Hz | Power, will |
+| Maylinn | heart | 417 Hz | Love, healing |
+| Alera | voice | 528 Hz | Truth, expression |
+| Lyria | sight | 639 Hz | Intuition, vision |
+| Aiyami | crown | 741 Hz | Enlightenment |
+| Elara | starweave | 852 Hz | Perspective |
 | Ino | unity | 963 Hz | Partnership |
 | Shinkami | source | 1111 Hz | Meta-consciousness |
 

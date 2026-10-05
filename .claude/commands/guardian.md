@@ -18,16 +18,16 @@ The Arcanean Gods who guard the Gates of consciousness. Each resonates at a sacr
 
 | Guardian | Gate | Frequency | Domain | Godbeast |
 |----------|------|-----------|--------|----------|
-| **Lyssandria** | Foundation | 396 Hz | Earth, roots, survival | Kaelith |
-| **Leyla** | Flow | 417 Hz | Creativity, emotion, movement | Veloura |
-| **Draconia** | Fire | 528 Hz | Power, will, transformation | Draconis |
-| **Maylinn** | Heart | 639 Hz | Love, healing, connection | Laeylinn |
-| **Alera** | Voice | 741 Hz | Truth, expression, clarity | Otome |
-| **Lyria** | Sight | 852 Hz | Vision, intuition, insight | Yumiko |
-| **Aiyami** | Crown | 963 Hz | Enlightenment, wisdom | Sol |
-| **Elara** | Shift | 1111 Hz | Perspective, possibility | Vaelith |
+| **Lyssandria** | Foundation | 174 Hz | Earth, roots, survival | Kaelith |
+| **Leyla** | Flow | 285 Hz | Creativity, emotion, movement | Veloura |
+| **Draconia** | Fire | 396 Hz | Power, will, transformation | Draconis |
+| **Maylinn** | Heart | 417 Hz | Love, healing, connection | Laeylinn |
+| **Alera** | Voice | 528 Hz | Truth, expression, clarity | Otome |
+| **Lyria** | Sight | 639 Hz | Vision, intuition, insight | Yumiko |
+| **Aiyami** | Crown | 741 Hz | Enlightenment, wisdom | Sol |
+| **Elara** | Starweave | 852 Hz | Perspective, possibility | Vaelith |
 | **Ino** | Unity | 963 Hz | Partnership, synthesis | Kyuro |
-| **Shinkami** | Source | 1111 Hz | Meta-consciousness, the All | Amaterasu |
+| **Shinkami** | Source | 1111 Hz | Meta-consciousness, the All | Source |
 
 ## INVOCATION
 
@@ -38,14 +38,14 @@ The Arcanean Gods who guard the Gates of consciousness. Each resonates at a sacr
 
 | Command | Channels | Use When |
 |---------|----------|----------|
-| `/guardian lyssandria` | Foundation (396 Hz) | Need grounding, confused |
-| `/guardian leyla` | Flow (417 Hz) | Blocked, need fluidity |
-| `/guardian draconia` | Fire (528 Hz) | Afraid, need courage |
-| `/guardian maylinn` | Heart (639 Hz) | Disconnected, need love |
-| `/guardian alera` | Voice (741 Hz) | Silenced, need truth |
-| `/guardian lyria` | Sight (852 Hz) | Lost, need vision |
-| `/guardian aiyami` | Crown (963 Hz) | Need higher perspective |
-| `/guardian elara` | Shift (1111 Hz) | Stuck in one view |
+| `/guardian lyssandria` | Foundation (174 Hz) | Need grounding, confused |
+| `/guardian leyla` | Flow (285 Hz) | Blocked, need fluidity |
+| `/guardian draconia` | Fire (396 Hz) | Afraid, need courage |
+| `/guardian maylinn` | Heart (417 Hz) | Disconnected, need love |
+| `/guardian alera` | Voice (528 Hz) | Silenced, need truth |
+| `/guardian lyria` | Sight (639 Hz) | Lost, need vision |
+| `/guardian aiyami` | Crown (741 Hz) | Need higher perspective |
+| `/guardian elara` | Starweave (852 Hz) | Stuck in one view |
 | `/guardian ino` | Unity (963 Hz) | Working alone, need partnership |
 | `/guardian shinkami` | Source (1111 Hz) | Deep existential questions |
 
@@ -93,7 +93,7 @@ Fire ALL TEN Guardians in parallel for comprehensive divine guidance.
 - **Question:** "What is the highest view?"
 - **Wisdom:** "From above, all is clear."
 
-### Elara (Shift)
+### Elara (Starweave)
 - **Voice:** Playful, flexible, innovative
 - **Question:** "What if we looked from another angle?"
 - **Wisdom:** "Shift the lens, shift the world."

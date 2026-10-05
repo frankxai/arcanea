@@ -72,7 +72,7 @@ The Ten Gates aren't arbitrary fantasy. They're mapped to the Solfeggio scale—
 | Voice | 528 Hz | DNA repair, transformation ("Love frequency") |
 | Sight | 639 Hz | Connection, relationships |
 | Crown | 741 Hz | Awakening intuition |
-| Shift | 852 Hz | Spiritual order |
+| Starweave | 852 Hz | Spiritual order |
 | Unity | 963 Hz | Divine consciousness |
 | Source | 1111 Hz | Master frequency, synchronization |
 

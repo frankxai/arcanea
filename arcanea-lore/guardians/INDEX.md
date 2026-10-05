@@ -16,7 +16,7 @@
 | alera | Voice | 528 Hz | Prismatic | Poiesis | ⏳ Staging | 1.0.0 | 2026-01-15 |
 | lyria | Sight | 639 Hz | Wind | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
 | aiyami | Crown | 741 Hz | Void | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
-| elara | Shift | 852 Hz | Light | Valora | ⏳ Staging | 1.0.0 | 2026-01-15 |
+| elara | Starweave | 852 Hz | Light | Valora | ⏳ Staging | 1.0.0 | 2026-01-15 |
 | ino | Unity | 963 Hz | Void | Enduran | ⏳ Staging | 1.0.0 | 2026-01-15 |
 | shinkami | Source | 1111 Hz | Light | Orakis | ⏳ Staging | 1.0.0 | 2026-01-15 |
 
@@ -41,7 +41,7 @@
 | Voice | alera | ⏳ Staging |
 | Sight | lyria | ⏳ Staging |
 | Crown | aiyami | ⏳ Staging |
-| Shift | elara | ⏳ Staging |
+| Starweave | elara | ⏳ Staging |
 | Unity | ino | ⏳ Staging |
 | Source | shinkami | ⏳ Staging |
 
@@ -85,7 +85,7 @@ Each Guardian has related entities documented in frontmatter:
 - **Aiyami**: zenkai, orakis, sophron
 - **Elara**: vaelith, valora, enduran
 - **Ino**: unara, enduran, sophron
-- **Shinkami**: amaterasu, orakis, all_guardians
+- **Shinkami**: source, orakis, all_guardians
 
 ---
 
