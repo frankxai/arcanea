@@ -1,9 +1,10 @@
 // Arcanea Memory Layer
 // Inspired by mem0 and Qdrant patterns
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs";
+import { randomUUID } from "node:crypto";
 import { homedir } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, isAbsolute, join } from "node:path";
 
 export interface CreativeSession {
   id: string;
@@ -49,7 +50,13 @@ export interface Milestone {
 
 // In-memory session store (for MVP)
 const sessions = new Map<string, CreativeSession>();
-const memoryFilePath = join(homedir(), ".arcanea", "memories.json");
+const configuredDirectory = process.env.ARCANEA_STATE_DIR;
+if (configuredDirectory !== undefined && !isAbsolute(configuredDirectory)) {
+  throw new Error("ARCANEA_STATE_DIR must be an absolute directory path.");
+}
+const memoryFilePath = join(configuredDirectory ?? join(homedir(), ".arcanea"), "memories.json");
+let persistedSessions = new Map<string, CreativeSession>();
+let memoryLoadError: Error | undefined;
 
 interface MemoryFile {
   version: 1;
@@ -58,7 +65,17 @@ interface MemoryFile {
 }
 
 function ensureMemoryDirectory(): void {
-  mkdirSync(dirname(memoryFilePath), { recursive: true });
+  mkdirSync(dirname(memoryFilePath), { recursive: true, mode: 0o700 });
+}
+
+function validateSession(id: string, session: CreativeSession): void {
+  if (!session || session.id !== id || typeof session.startedAt !== "string" ||
+      Number.isNaN(Date.parse(session.startedAt)) || !Array.isArray(session.gatesExplored) ||
+      !Array.isArray(session.luminorsConsulted) || !Array.isArray(session.creaturesEncountered) ||
+      !Array.isArray(session.creations) || !session.preferences ||
+      typeof session.preferences !== "object" || Array.isArray(session.preferences)) {
+    throw new Error("Invalid creative session.");
+  }
 }
 
 function loadSessions(): void {
@@ -70,28 +87,69 @@ function loadSessions(): void {
 
   try {
     const data = JSON.parse(readFileSync(memoryFilePath, "utf-8")) as Partial<MemoryFile>;
-    for (const [id, session] of Object.entries(data.sessions ?? {})) {
-      sessions.set(id, {
-        ...session,
-        startedAt:
-          typeof session.startedAt === "string"
-            ? session.startedAt
-            : new Date(session.startedAt).toISOString(),
-      });
+    if (data.version !== 1 || !data.sessions || typeof data.sessions !== "object" || Array.isArray(data.sessions)) {
+      throw new Error("Unsupported memory file structure.");
     }
+    const loaded = new Map<string, CreativeSession>();
+    for (const [id, session] of Object.entries(data.sessions)) {
+      validateSession(id, session);
+      loaded.set(id, session);
+    }
+    for (const [id, session] of loaded) {
+      sessions.set(id, session);
+    }
+    persistedSessions = structuredClone(sessions);
   } catch {
-    // Corrupt local memory should not prevent the MCP server from starting.
+    // Keep diagnostics available, but never overwrite an unreadable user's file.
+    memoryLoadError = new Error("Arcanea memory cannot be read. Preserve and repair memories.json before saving, then restart the server.");
   }
 }
 
 function saveSessions(): void {
-  ensureMemoryDirectory();
-  const data: MemoryFile = {
-    version: 1,
-    updatedAt: new Date().toISOString(),
-    sessions: Object.fromEntries(sessions),
-  };
-  writeFileSync(memoryFilePath, JSON.stringify(data, null, 2), "utf-8");
+  let temporaryPath: string | undefined;
+  let descriptor: number | undefined;
+  try {
+    if (memoryLoadError) throw memoryLoadError;
+    ensureMemoryDirectory();
+    const candidate = structuredClone(sessions);
+    for (const [id, session] of candidate) validateSession(id, session);
+    const data: MemoryFile = {
+      version: 1,
+      updatedAt: new Date().toISOString(),
+      sessions: Object.fromEntries(candidate),
+    };
+    // The existing file remains readable until a complete, flushed sibling replaces it.
+    temporaryPath = `${memoryFilePath}.${randomUUID()}.tmp`;
+    descriptor = openSync(temporaryPath, "wx", 0o600);
+    writeFileSync(descriptor, JSON.stringify(data, null, 2), "utf-8");
+    fsyncSync(descriptor);
+    closeSync(descriptor);
+    descriptor = undefined;
+    for (let attempt = 0; ; attempt++) {
+      try {
+        renameSync(temporaryPath, memoryFilePath);
+        break;
+      } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (process.platform !== "win32" || attempt >= 5 || !["EPERM", "EACCES", "EBUSY"].includes(code ?? "")) throw error;
+        // Windows readers/virus scanners can briefly prevent replacing an open file.
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10 * 2 ** attempt);
+      }
+    }
+    temporaryPath = undefined;
+    persistedSessions = candidate;
+  } catch (error) {
+    sessions.clear();
+    for (const [id, session] of structuredClone(persistedSessions)) sessions.set(id, session);
+    throw error;
+  } finally {
+    if (descriptor !== undefined) {
+      try { closeSync(descriptor); } catch { /* preserve the save error */ }
+    }
+    if (temporaryPath !== undefined) {
+      try { unlinkSync(temporaryPath); } catch { /* never delete another writer's file */ }
+    }
+  }
 }
 
 loadSessions();
@@ -102,10 +160,12 @@ export function getMemoryFilePath(): string {
 }
 
 export function listSessions(): string[] {
+  if (memoryLoadError) throw memoryLoadError;
   return [...sessions.keys()];
 }
 
 export function deleteSession(sessionId: string): boolean {
+  if (memoryLoadError) throw memoryLoadError;
   const deleted = sessions.delete(sessionId);
   if (deleted) {
     saveSessions();
@@ -114,6 +174,7 @@ export function deleteSession(sessionId: string): boolean {
 }
 
 export function getOrCreateSession(sessionId: string): CreativeSession {
+  if (memoryLoadError) throw memoryLoadError;
   if (!sessions.has(sessionId)) {
     sessions.set(sessionId, {
       id: sessionId,

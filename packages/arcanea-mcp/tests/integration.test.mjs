@@ -14,6 +14,7 @@
 
 import { describe, it, before } from 'node:test';
 import { strict as assert } from 'node:assert';
+import '../../../scripts/test-state.mjs';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
