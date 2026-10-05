@@ -1,52 +1,83 @@
-# Arcanea
+<div align="center">
 
-Arcanea is the public code mirror for [arcanea.ai](https://arcanea.ai) — the creative intelligence universe for chat, lore, academy, and worldbuilding.
+<img src="assets/premium/arcanea-wordmark.png" alt="Arcanea" width="520" />
 
-![Arcanea GitHub Hero](.github/assets/arcanea-github-main-hero.jpg)
+# Build living worlds with AI agents
 
-> Premium visual identity per .github/ARCANEA_VISUAL_ECOSYSTEM.md (Lumina & Nero dance + Ten Gates; God of War meets Destiny ethereal 8K; Atlantean Teal #00bcd4 / Arcanean Gold #ffd700 / Cosmic Blue on Deep Void). Full alignment to DESIGN.md (tokens, Geist/Instrument/Mono, glass, no raw hex/emojis/Inter), TASTE.md 7 gates (AI-lab premium restraint, no slop), .arcanea/lore/VISUAL_DOCTRINE.md (luxury cosmic myth-tech, franchise eq, faction grammars).
+Turn one idea into a connected world of lore, characters, rules, media, and agent work that can grow across sessions.
 
-## What this repo is
+[Explore Arcanea](https://arcanea.ai/) · [Deutsch](README.de.md) · [Community](https://arcanea.ai/community) · [Contribute](CONTRIBUTING.md)
 
-- The public mirror of the Arcanea web experience and supporting packages
-- The best place to study the product architecture, design system, and lore model in public
-- A pnpm/Turborepo monorepo centered on the active `apps/web` Next.js application
+[![Website](https://img.shields.io/badge/Explore-arcanea.ai-00bcd4?style=flat-square&labelColor=0d1117)](https://arcanea.ai/)
+[![License](https://img.shields.io/badge/License-see%20terms-c9a96e?style=flat-square&labelColor=0d1117)](LICENSE)
 
-## Install
+</div>
+
+![Concentric gold gates around a teal light on a dark background](assets/premium/arcanea-hero-premium.png)
+
+## Start with a world
+
+Arcanea is a creative intelligence universe for writers, artists, and world builders. Its central idea is continuity: a character, a place, a rule, and a scene should belong to the same world instead of living in disconnected prompts.
+
+The [live experience](https://arcanea.ai/) introduces the world through portals, canon guides, and creation paths. Some experiences on the site are marked **Preview** or **Dev preview**; those labels describe their current availability.
+
+## Explore the universe
+
+| Path | Where to begin |
+| --- | --- |
+| **Experience** | [Enter arcanea.ai](https://arcanea.ai/) and explore the available portals. |
+| **Lore** | Read the [Arcanea Library](book/README.md) and the [German collection](book-de/README.md). |
+| **Build** | Explore the [web app](apps/web/) and the [packages](packages/) in this public code mirror. |
+| **Community** | Share ideas and questions in [Discussions](https://github.com/frankxai/arcanea/discussions) or visit the [community page](https://arcanea.ai/community). |
+
+### One world, many forms
+
+1. Begin with an idea.
+2. Give it rules, characters, and places.
+3. Create stories and media from that shared context.
+4. Revise the world as each creation adds something new.
+
+Arcanea's Ten Gates, Five Elements, Guardians, and creator ranks provide a shared vocabulary for its world. The [canon](.arcanea/lore/CANON_LOCKED.md) governs those names and relationships.
+
+## Develop locally
+
+This repository is the public code mirror of arcanea.ai and a pnpm/Turborepo monorepo. The active web application is in [`apps/web`](apps/web/).
 
 ```bash
 git clone https://github.com/frankxai/arcanea.git
 cd arcanea
 pnpm install
 cp apps/web/.env.example apps/web/.env.local
-pnpm dev
+pnpm dev:web
 ```
 
-## Quality commands
+The app uses environment variables for its authenticated and AI features. See [`apps/web/.env.example`](apps/web/.env.example) before configuring a local instance. Public pages can be explored without those credentials; full Supabase and generation flows require the appropriate services.
+
+### Check a change
 
 ```bash
 pnpm turbo run type-check --filter=@arcanea/web
 pnpm turbo run lint --filter=@arcanea/web
 pnpm turbo run build --filter=@arcanea/web
-pnpm test:quick
 ```
 
-## How this relates to Arcanea
+`pnpm test:quick` also covers selected packages and may require their build artifacts first. See [contributing guidance](CONTRIBUTING.md) for the broader workflow.
 
-Arcanea.ai is the live product. This repository is its public mirror. Product operations, private datasets, and some internal workflows may evolve outside this mirror, but this repo remains the canonical public code reference for the living universe.
+## Arcanea ecosystem
 
-## Community
+| Project | Role |
+| --- | --- |
+| [arcanea-code](https://github.com/frankxai/arcanea-code) | Coding CLI for the Arcanea ecosystem |
+| [arcanea-orchestrator](https://github.com/frankxai/arcanea-orchestrator) | Agent orchestration workflows |
+| [arcanea-claw](https://github.com/frankxai/arcanea-claw) | Creator media engine |
+| [oh-my-arcanea](https://github.com/frankxai/oh-my-arcanea) | Arcanea overlay for oh-my-opencode |
 
-- [Discussions](https://github.com/frankxai/arcanea/discussions) — questions, ideas, and showcases
-- [arcanea.ai/community](https://arcanea.ai/community) — ways to contribute lore, agents, skills, code, art, and music
+## Contribute and usage terms
 
-## Ecosystem
+Creators and developers can start with [CONTRIBUTING.md](CONTRIBUTING.md) or open a [Discussion](https://github.com/frankxai/arcanea/discussions). Public visibility does not grant permission to reuse all repository content. Read the [repository license notice](LICENSE) and any separate license attached to a component before reuse.
 
-- [arcanea-code](https://github.com/frankxai/arcanea-code): Guardian-routed coding CLI for the Arcanea ecosystem
-- [arcanea-orchestrator](https://github.com/frankxai/arcanea-orchestrator): multi-agent orchestration for Arcanea swarm workflows
-- [arcanea-claw](https://github.com/frankxai/arcanea-claw): AI-powered creator media engine for Arcanea
-- [oh-my-arcanea](https://github.com/frankxai/oh-my-arcanea): Arcanea overlay for oh-my-opencode
+<div align="center">
 
-## License
+*Enter seeking, leave transformed, return whenever needed.*
 
-See the repository license for usage terms.
+</div>
