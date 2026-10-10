@@ -38,7 +38,7 @@
     "directory": "packages/arcanea-mcp"
   },
   "dependencies": {
-    "@arcanea/os": "workspace:*",
+    "@arcanea/os": "0.7.0",
     "@modelcontextprotocol/sdk": "^1.9.0",
     "zod": "^3.25.0"
   },

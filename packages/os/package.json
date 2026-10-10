@@ -38,7 +38,7 @@
     "directory": "packages/os"
   },
   "dependencies": {
-    "@arcanea/os": "workspace:*"
+    "@arcanea/os": "0.7.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
