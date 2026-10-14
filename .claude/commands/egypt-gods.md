@@ -39,18 +39,18 @@ Egyptian theology is the most accurate Earth record of Arcanean cosmology:
 
 | Egyptian God | Arcanean Being | Gate | Frequency | Domain |
 |--------------|----------------|------|-----------|--------|
-| **Ra** | Lumina | Source + Crown | 1111/963 Hz | Sun, creation, sovereignty |
+| **Ra** | Lumina | Source + Crown | 1111/741 Hz | Sun, creation, sovereignty |
 | **Osiris** | Nero (benevolent aspect) | Void/Spirit | — | Death, rebirth, agriculture |
-| **Isis** | Maylinn + Lyria | Heart + Sight | 639/852 Hz | Magic, motherhood, wisdom |
-| **Horus** | Michael (warrior aspect) | Crown + Fire | 963/528 Hz | Kingship, sky, protection |
-| **Thoth** | Alera + Archive | Voice + Sight | 741/852 Hz | Writing, magic, knowledge |
-| **Anubis** | Psychopomp aspect | Shift | 1111 Hz | Death rites, transformation |
-| **Sekhmet** | Draconia (fierce aspect) | Fire | 528 Hz | War, healing, destruction |
-| **Hathor** | Maylinn (joy aspect) | Heart + Flow | 639/417 Hz | Love, music, beauty |
-| **Ptah** | Uriel + Foundation | Foundation | 396 Hz | Crafts, creation, architecture |
+| **Isis** | Maylinn + Lyria | Heart + Sight | 417/639 Hz | Magic, motherhood, wisdom |
+| **Horus** | Michael (warrior aspect) | Crown + Fire | 741/396 Hz | Kingship, sky, protection |
+| **Thoth** | Alera + Archive | Voice + Sight | 528/639 Hz | Writing, magic, knowledge |
+| **Anubis** | Psychopomp aspect | Starweave | 852 Hz | Death rites, transformation |
+| **Sekhmet** | Draconia (fierce aspect) | Fire | 396 Hz | War, healing, destruction |
+| **Hathor** | Maylinn (joy aspect) | Heart + Flow | 417/285 Hz | Love, music, beauty |
+| **Ptah** | Uriel + Foundation | Foundation | 174 Hz | Crafts, creation, architecture |
 | **Set** | Shadow aspect | Void (corrupted) | — | Chaos, storms, foreigners |
-| **Bastet** | Maylinn (protective) | Heart | 639 Hz | Home, cats, protection |
-| **Sobek** | Leyla (power aspect) | Flow + Fire | 417/528 Hz | Crocodiles, military, fertility |
+| **Bastet** | Maylinn (protective) | Heart | 417 Hz | Home, cats, protection |
+| **Sobek** | Leyla (power aspect) | Flow + Fire | 285/396 Hz | Crocodiles, military, fertility |
 
 ## THE ENNEAD (NINE OF HELIOPOLIS)
 

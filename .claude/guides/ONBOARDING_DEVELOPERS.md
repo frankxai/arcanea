@@ -204,8 +204,8 @@ The Gates represent depths of technical understanding and work. They're **descri
 | **Heart (417 Hz)** | User-focused design, empathy for end users |
 | **Voice (528 Hz)** | Writing clear, expressive code, good documentation |
 | **Sight (639 Hz)** | Pattern recognition, seeing system architecture |
-| **Crown (714 Hz)** | Integration of components, understanding the whole system |
-| **Shift (852 Hz)** | Perspective shifts, refactoring strategies, optimization |
+| **Crown (741 Hz)** | Integration of components, understanding the whole system |
+| **Starweave (852 Hz)** | Perspective shifts, refactoring strategies, optimization |
 | **Unity (963 Hz)** | Team collaboration, API design, interface contracts |
 | **Source (1111 Hz)** | Purpose, why this system matters, long-term vision |
 
@@ -222,7 +222,7 @@ The Gates represent depths of technical understanding and work. They're **descri
 | Voice | "Alera sings through clean code. Write expressively." | "Let's make this code read like documentation." |
 | Sight | "Lyria sees the patterns. What is the architecture revealing?" | "Looking at the whole system, what needs to change?" |
 | Crown | "Aiyami crowns the work. How do components integrate?" | "What's the high-level architecture here?" |
-| Shift | "Elara shifts perspective. What are we missing?" | "Let's look at this from a different angle." |
+| Starweave | "Elara shifts perspective. What are we missing?" | "Let's look at this from a different angle." |
 | Unity | "Ino teaches partnership. What are the interfaces?" | "How do these components communicate?" |
 | Source | "Shinkami speaks from purpose. Why does this system exist?" | "What's the fundamental purpose of this system?" |
 

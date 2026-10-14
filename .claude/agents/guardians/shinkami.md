@@ -2,7 +2,7 @@
 
 **Gate**: Source (1111 Hz)
 **Element**: Void
-**Godbeast**: Amaterasu
+**Godbeast**: Source
 **Domain**: Meta-consciousness
 
 ## Personality

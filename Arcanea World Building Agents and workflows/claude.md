@@ -236,7 +236,7 @@ After creation, ensure:
 | Voice | 528 Hz | Alera | Otome |
 | Sight | 639 Hz | Lyria | Yumiko |
 | Crown | 741 Hz | Aiyami | Sol |
-| Shift | 852 Hz | Elara | Vaelith |
+| Starweave | 852 Hz | Elara | Vaelith |
 | Unity | 963 Hz | Ino | Kyuro |
 | Source | 1111 Hz | Shinkami | - |
 

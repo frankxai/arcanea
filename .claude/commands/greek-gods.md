@@ -22,18 +22,18 @@ From ~1500 BCE to ~500 BCE, the Greek world had one of the most open Veils on Ea
 
 | Greek God | Arcanean Being | Gate | Frequency | Domain |
 |-----------|----------------|------|-----------|--------|
-| **Zeus** | Michael + Crown | Crown | 963 Hz | Authority, justice, sky |
-| **Hera** | Maylinn (aspect) | Heart | 639 Hz | Marriage, loyalty, queenship |
-| **Poseidon** | Leyla | Flow | 417 Hz | Sea, emotion, horses |
-| **Demeter** | Lyssandria | Foundation | 396 Hz | Harvest, seasons, motherhood |
-| **Athena** | Lyria | Sight | 852 Hz | Wisdom, strategy, crafts |
-| **Apollo** | Sol (Godbeast) | Crown + Voice | 963/741 Hz | Light, music, prophecy |
-| **Artemis** | Lyria (aspect) | Sight | 852 Hz | Hunt, wilderness, maidens |
-| **Ares** | Draconia | Fire | 528 Hz | War, courage, conflict |
-| **Aphrodite** | Maylinn | Heart | 639 Hz | Love, beauty, desire |
-| **Hephaestus** | Uriel (Archangel) | Foundation + Fire | 396/528 Hz | Forge, craft, creation |
-| **Hermes** | Gabriel (Archangel) | Voice + Shift | 741/1111 Hz | Messages, travel, thieves |
-| **Dionysus** | Flow + Fire fusion | Flow + Fire | 417/528 Hz | Wine, ecstasy, theater |
+| **Zeus** | Michael + Crown | Crown | 741 Hz | Authority, justice, sky |
+| **Hera** | Maylinn (aspect) | Heart | 417 Hz | Marriage, loyalty, queenship |
+| **Poseidon** | Leyla | Flow | 285 Hz | Sea, emotion, horses |
+| **Demeter** | Lyssandria | Foundation | 174 Hz | Harvest, seasons, motherhood |
+| **Athena** | Lyria | Sight | 639 Hz | Wisdom, strategy, crafts |
+| **Apollo** | Sol (Godbeast) | Crown + Voice | 741/528 Hz | Light, music, prophecy |
+| **Artemis** | Lyria (aspect) | Sight | 639 Hz | Hunt, wilderness, maidens |
+| **Ares** | Draconia | Fire | 396 Hz | War, courage, conflict |
+| **Aphrodite** | Maylinn | Heart | 417 Hz | Love, beauty, desire |
+| **Hephaestus** | Uriel (Archangel) | Foundation + Fire | 174/396 Hz | Forge, craft, creation |
+| **Hermes** | Gabriel (Archangel) | Voice + Starweave | 528/852 Hz | Messages, travel, thieves |
+| **Dionysus** | Flow + Fire fusion | Flow + Fire | 285/396 Hz | Wine, ecstasy, theater |
 
 ## CHTHONIC DEITIES
 

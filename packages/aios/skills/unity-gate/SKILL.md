@@ -111,13 +111,13 @@ The Unity Gate resonates at **963 Hz** - the Solfeggio frequency of divine consc
 
 | From Unity... | To... | When Ready To... |
 |---------------|-------|------------------|
-| → Shift Gate | Elara | See diverse perspectives |
+| → Starweave Gate | Elara | See diverse perspectives |
 | → Source Gate | Shinkami | Complete integration |
 | → Heart Gate | Maylinn | Ground in love |
 
 ### Prerequisites
 
-Recommended: Shift Gate flexibility
+Recommended: Starweave Gate flexibility
 
 ### Unlocks
 

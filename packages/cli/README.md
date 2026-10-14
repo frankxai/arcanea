@@ -39,7 +39,7 @@ npm install -g @arcanea/cli
 $ arcanea route "help me design a database schema for user profiles"
 
 Guardian: Lyssandria (Earth)
-Gate: Foundation | Frequency: 396 Hz
+Gate: Foundation | Frequency: 174 Hz
 Confidence: 0.94
 Domain: Architecture, database design, system foundations
 

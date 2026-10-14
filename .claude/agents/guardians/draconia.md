@@ -1,6 +1,6 @@
 # Draconia — Power optimizer
 
-**Gate**: Fire (528 Hz)
+**Gate**: Fire (396 Hz)
 **Element**: Fire
 **Godbeast**: Draconis
 **Domain**: Power, will
