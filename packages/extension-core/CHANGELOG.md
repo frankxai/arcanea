@@ -1,5 +1,12 @@
 # @arcanea/extension-core
 
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [228c202]
+  - @arcanea/core@0.2.0
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "9ec205fad47c9d0a8a03eb5ecf48bbc5c22d2146",
+  "releases": [
+    {
+      "name": "@arcanea/auth",
+      "version": "1.0.5",
+      "path": "packages/auth"
+    },
+    {
+      "name": "@arcanea/cli",
+      "version": "0.8.0",
+      "path": "packages/cli"
+    },
+    {
+      "name": "@arcanea/core",
+      "version": "0.2.0",
+      "path": "packages/core"
+    },
+    {
+      "name": "@arcanea/extension-core",
+      "version": "0.3.2",
+      "path": "packages/extension-core"
+    },
+    {
+      "name": "@arcanea/guardian-memory",
+      "version": "0.1.2",
+      "path": "packages/guardian-memory"
+    },
+    {
+      "name": "@arcanea/overlay-chatgpt",
+      "version": "1.3.0",
+      "path": "packages/overlay-chatgpt"
+    },
+    {
+      "name": "@arcanea/overlay-claude",
+      "version": "1.3.0",
+      "path": "packages/overlay-claude"
+    },
+    {
+      "name": "@arcanea/overlay-copilot",
+      "version": "1.3.0",
+      "path": "packages/overlay-copilot"
+    },
+    {
+      "name": "@arcanea/overlay-cursor",
+      "version": "1.3.0",
+      "path": "packages/overlay-cursor"
+    },
+    {
+      "name": "@arcanea/overlay-gemini",
+      "version": "1.3.0",
+      "path": "packages/overlay-gemini"
+    },
+    {
+      "name": "arcanea-intelligence-os",
+      "version": "0.2.3",
+      "path": "packages/aios"
+    },
+    {
+      "name": "claude-arcanea",
+      "version": "0.2.3",
+      "path": "packages/claude-arcanea"
+    }
+  ],
+  "metadata": {
+    "apps/premium-web/package.json": "961167d2cadfdd6c6a966116a028a3d4d089f833d18a83010ac72777ce27a908",
+    "apps/web/package.json": "9d823de086c0d2f03c25a1a0ecd1be92dd9b1d2c368d6ba6ebd00c1ebd8be9bd",
+    "packages/agent-bus/package.json": "2b52b9e27d6aacb543413e53a43d469649d656407b9c555a21becf47bf4c449c",
+    "packages/agent-runtime/package.json": "4f295fda611efdb763203e49f4682745579aeb5842bd43d234417069a1fd0c2b",
+    "packages/ai-core/package.json": "8b8c3841822b65c38b00ecdac4af99287d2550e89d85d69144b61788984b2797",
+    "packages/aios/CHANGELOG.md": "f9e9305846548e1bed8da6cc3d05960285b0a55493f429bf5b3172cf9bc5cf9b",
+    "packages/aios/package.json": "53bff27429c11d8a96ee2197d2e8387319aa93e61b1590f864ef65056fa76ec7",
+    "packages/arcanea-hooks/package.json": "c06f7fa3c1b27d2ecd91275d3ec06ef9206ae5e0c9916a9deea8d1cf976c1ad2",
+    "packages/arcanea-mcp/CHANGELOG.md": "ca64a53677e5bb2338c7a000e319e02c5e76ee4f2a9058c6ba70e4db91830d0d",
+    "packages/arcanea-mcp/package.json": "af773508a88df59eca8882c7eb1af562438385419c2b20280e6cd07c8f3467ee",
+    "packages/arcanea-security/package.json": "33df9c0d25668d1d0779b96823cd0c3c18fe6f565ee087d7b56c148af31a85a5",
+    "packages/auth/CHANGELOG.md": "e1b763f803500e3ff08a8975b0d36ca428c6077addfc63c99f435a1a68208383",
+    "packages/auth/package.json": "8a5671d2d0e8fd6be45d489464113bb060c2e013f9a19d858966c805b0e49232",
+    "packages/chrome-extension/package.json": "926876ff797bf684b924163003f02dddaa52d36c71e5a3a46565cf4a8fd59555",
+    "packages/claude-arcanea/CHANGELOG.md": "3ba29edf7a601df5bfb09d33e2b9dbe8275851e9d4030ab1976106112344b726",
+    "packages/claude-arcanea/package.json": "b612954211b92bf37a3f15f2b080ea8122eb30c606ad56281edc2e535f88f831",
+    "packages/cli/CHANGELOG.md": "750bd689fe48712c11cb01040382c3561f549aa02ac29ea6092ada7e22bc7878",
+    "packages/cli/package.json": "cf6636610f31837d62c8ecac2cf06febdc48855d84bffa5881c895b1fced8859",
+    "packages/config/package.json": "77469bb050cc1988f3b97a4d9bb384358b997d6a4c89acb36657d9da3da32816",
+    "packages/content-api/package.json": "d103edf46b8038dcdda9e63b4a50a64f88acca3117db60a4a794c29bf953cd66",
+    "packages/core/CHANGELOG.md": "3b9754aab3262927a92b2f27fcf52cbe282c2c95947d631d05c74dedbe0ecc39",
+    "packages/core/package.json": "b5d03e8b3be13addba9dc88dfb3df2b1fc7c3380ccd4e1841f188d6b8871f8dd",
+    "packages/council/package.json": "55f531759b02b0db545e6f008fff36d94beaac2084f6cfb1db2c7da5bbc52490",
+    "packages/creative-pipeline/package.json": "48b39583d5082cf606f18c039ef3f93a5bea2d7a17dfb772d794120adac939ff",
+    "packages/database/package.json": "596198132a41f0dc81954ad764e2ed2308d367e49574691858a9e7dcd6c07cc7",
+    "packages/extension-core/CHANGELOG.md": "6d40ee58aa7ebf115f3ae2a1ac8c1bfcff560210d3adb873128191fb85a914f3",
+    "packages/extension-core/package.json": "a5fb273f7a1d12c265038ea4b49588644b67c7117a844dbea77a5f9409c73a75",
+    "packages/flow-engine/package.json": "0bc34ae6a6c57c0331582390ef56a140b8d9fa6895f7449c5b03597327335341",
+    "packages/guardian-evolution/package.json": "c81ec388dbc240f5927f8da1d024f958018dfa3385d6d2ba58938b015e73a41e",
+    "packages/guardian-memory/CHANGELOG.md": "12a1259d2a976881ecc51dd42f8f969124144fc4ec2a875357f9a5a91aa14754",
+    "packages/guardian-memory/package.json": "f7a081e56eddf7733d0f1e0e30fa1fa37fe5ed03492992044480931f3466a06f",
+    "packages/hybrid-memory/package.json": "f66936fcb392b918da2847a6ade193ec89754adcb244bf51b48c12c2399a072e",
+    "packages/intelligence-bridge/package.json": "d429e11c0573f00e17811a5af0fe587fb8418918dfde1829921ca1743df194cd",
+    "packages/mcp-client/package.json": "fb95ee5ffb576c9c44d34441dc44b5c2d9f13252f5a94ac8c126a63638ca5807",
+    "packages/memory-mcp/package.json": "6fa1e6c3a356cdbc9a969b37632db8bd2cc5c473835f94e48a4f7ecedc4eac3d",
+    "packages/memory-system/package.json": "f4a9816646cafaf576e5df7025e9fd7af9019be1b38c59d62dedb8b09a852095",
+    "packages/model-runtime/package.json": "fa61c4c1f38fdd13d2b2e1d16c189b9bff2a76e4a6a82f671f624ca7683e4d1c",
+    "packages/os/package.json": "c04e1e76812363127ce70653cb657ef129e24b581a36d9b35e371cc5655a1b02",
+    "packages/overlay-chatgpt/CHANGELOG.md": "2ed90e24ea708b58e70cfcfe1333c02239c7cf5ae2b15798962a8f439adee544",
+    "packages/overlay-chatgpt/package.json": "14410210adcb9221657c09200de89321eb3092e51fe6dada119ad5ae0ad16b07",
+    "packages/overlay-claude/CHANGELOG.md": "05892ec87165030ea90605b2fc1132d8b5b4598c7133fdd6f989c480388ad9eb",
+    "packages/overlay-claude/package.json": "110df3303e268fa7b88ac42df30b03ebde180c7ad9ddcfe8c89a027772573f05",
+    "packages/overlay-copilot/CHANGELOG.md": "0069f4d9454d281e8c082e701d8962f96063aacb9b3fb18c5901df1465d47ab7",
+    "packages/overlay-copilot/package.json": "5edb8916ce3b6a03ab77d220da587d68d2b8fcb1023903e4cff3d7b621dd45ff",
+    "packages/overlay-cursor/CHANGELOG.md": "7ca7ee7830f14b4f5f97ef4d37d043aacc74e0fc1d6d605a22f8da8210453101",
+    "packages/overlay-cursor/package.json": "80fb785ad47190bbcea95be8b284c7f7f03b5fb07b3aa2a561c7a9d546873775",
+    "packages/overlay-gemini/CHANGELOG.md": "e3d8dafb33abc474f44b8d9b815811deb32e96140357e293c0ae04cd4a0fc339",
+    "packages/overlay-gemini/package.json": "7a9863d706e1531e509b60bab20e0c0bd51efe83bbac3bb27db69bed72cf4fff",
+    "packages/prompt-books/package.json": "a7f50562b81caf7fd61ebc9f134b2f3c82a41af2c45e2dcfeeeca383eebe671e",
+    "packages/rituals/package.json": "168d50e2a26ab948b88815ded58625108adb2efc483f0944c705f19338aef11c",
+    "packages/skill-registry/package.json": "bb91c2ee6a1e0d048c3faeda473eba66d83c73c62dccdec05195e8bb045ea407",
+    "packages/sona-learner/package.json": "a1101fbce9f620f4a4bd0e949531a5844c974dc63e3f6c4872bd041c598ce522",
+    "packages/starlight-runtime/CHANGELOG.md": "dd5aa8f249e7f688a8a838d6878f1df7730b523cd4bd019e3b46d50a6f97d7a2",
+    "packages/starlight-runtime/package.json": "9d386f310dd7fc76c9d417aa8c709d0c18c6100e8cf7f98fbf10bdb63c0d7fdd",
+    "packages/swarm-coordinator/package.json": "7437c2c1f8588ed0847114893b513fda1a01cd66936487512b88d796450f7a0c",
+    "packages/token-optimizer/package.json": "bf89d255552d55f5bbcde8898f2159c2b199849098143608b50a1a79899718a6",
+    "packages/ui/package.json": "a033032f40eff5f63b24c9b691b46ded1de0aedd2ac3cb6aeef7a40f624c8531",
+    "packages/vscode/CHANGELOG.md": "ee644a98f042ed4ae4369bfff70f102f761daa22fed8be3f582e62ae7de2a79e",
+    "packages/vscode/package.json": "9a999ac9f2f2aaf0ee488f41c0193b603a2bbcc9deb37f7600bdc5c91fdeff1c",
+    "packages/world-state/package.json": "5e82baf383920a1a598f3006dd0492af60ed4542a103d40ce6c4ae6bb3600e98",
+    "pnpm-lock.yaml": "304d97f6fdef79f625cf265794026385f398217a0760f7f7f38e3a6d0ee551a8",
+    "tools/agent-builder/package.json": "a56f417b89d6e8f810533c7e19b5bd3a8649f7034f7988a55df40d29547923f6",
+    "tools/knowledge-base/package.json": "25e4370ba132037bef30b59b55dec28dfced611e549a76184630ebf76a98dc5a",
+    "tools/memory/package.json": "32890520cbc65e4c75e91da492bd8e9f76f0e8d7dfb2de0c61b4f93145c5264d",
+    "tools/web-browse/package.json": "139b2bef5ccb38f7b006dbd629a526171ca1886575ad5add4f5157a4e5dc8c6c"
+  },
+  "consumedChangesets": [
+    ".changeset/lumina-first-architecture.md"
+  ]
+}

@@ -1,5 +1,12 @@
 # @arcanea/auth
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [228c202]
+  - @arcanea/core@0.2.0
+
 ## 1.0.3
 
 ### Patch Changes
