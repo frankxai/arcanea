@@ -138,3 +138,7 @@ starlight-intelligence-system/.starlight/
 # estate-guard pack — per-machine files, never tracked
 .claude/settings.local.json
 .claude/ci/estate-guard/last-scan.json
+
+# queen-ops pack — local briefs and receipts, not repo artifacts
+.starlight/queen/
+.claude/hooks/__pycache__/
