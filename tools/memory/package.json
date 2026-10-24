@@ -10,7 +10,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@arcanea/agent-runtime": "workspace:*",
+    "@arcanea/agent-runtime": "^0.1.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
