@@ -19,7 +19,7 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@arcanea/model-runtime": "workspace:*",
+    "@arcanea/model-runtime": "^0.1.0",
     "zod": "^3.23.8",
     "nanoid": "^5.0.9"
   },
