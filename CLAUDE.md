@@ -1,5 +1,7 @@
 # Claude Code Configuration - Claude Flow V3
 
+Read `@AGENTS.md` first: it carries the generated estate registry block (decided stack, holds, required gates) and the repository's agent contract.
+
 ## Behavioral Rules (Always Enforced)
 
 - Do what has been asked; nothing more, nothing less
