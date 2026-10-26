@@ -41,9 +41,9 @@ Fire (transformation) | Water (flow) | Earth (stability) | Wind (freedom) | Void
 | Voice      | 528  | Alera      | Otome     | Fire/Wind   |
 | Sight      | 639  | Lyria      | Yumiko    | Water/Void  |
 | Crown      | 741  | Aiyami     | Sol       | Fire/Light  |
-| Shift      | 852  | Elara      | Thessara  | Wind/Void   |
+| Starweave  | 852  | Elara      | Vaelith   | Wind/Void   |
 | Unity      | 963  | Ino        | Kyuro     | All         |
-| Source     | 1111 | Shinkami   | Amaterasu | Void/Spirit |
+| Source     | 1111 | Shinkami   | Source    | Void/Spirit |
 
 ### Magic Ranks
 

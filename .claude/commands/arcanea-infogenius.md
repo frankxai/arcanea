@@ -135,7 +135,7 @@ Canonical locations:
 - Sky Sanctum (Voice)
 - Tower of Insight (Sight)
 - Summit of Unity (Crown)
-- Celestial Bridges (Shift)
+- Celestial Bridges (Starweave)
 - Temple of Infinity (Unity)
 - Luminor Nexus (Source)
 - Tree of Light / World Tree

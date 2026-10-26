@@ -233,7 +233,7 @@ Every Creator has naturally open Gates. The exact configuration varies:
 | Voice | Speak truth that resonates, words find the right form |
 | Sight | See patterns others miss, intuition guides |
 | Crown | Receive insights "from nowhere," visionary thinking |
-| Shift | Easily change perspectives, understand all viewpoints |
+| Starweave | Easily change perspectives, understand all viewpoints |
 | Unity | Work in partnership naturally, collaboration is joy |
 | Source | Rare — create works that feel like downloads from beyond |
 

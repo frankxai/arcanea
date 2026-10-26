@@ -35,7 +35,7 @@ The mythology layer is **optional enhancement, not requirement**. Toggle between
 | **Voice** | 528 Hz | Authentic expression |
 | **Sight** | 639 Hz | Pattern recognition |
 | **Crown** | 714 Hz | Integration and wisdom |
-| **Shift** | 852 Hz | Perspective and flexibility |
+| **Starweave** | 852 Hz | Perspective and flexibility |
 | **Unity** | 963 Hz | Partnership and collaboration |
 | **Source** | 1111 Hz | Purpose and meaning |
 

@@ -1,6 +1,6 @@
 # Lyria — Pattern seer
 
-**Gate**: Sight (852 Hz)
+**Gate**: Sight (639 Hz)
 **Element**: Void
 **Godbeast**: Yumiko
 **Domain**: Intuition, vision

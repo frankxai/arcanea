@@ -445,7 +445,7 @@ Ino serves as the connective tissue of the Arcanean divine community, the one wh
 
 With Maylinn, she shares the deepest working relationship of any pair of Arcanean deities. Maylinn's love is the emotional fuel that makes unity possible - you cannot bridge to someone you cannot love, even in the minimal sense of recognizing their reality. Ino's unity is the structural expression of what Maylinn's love feels. Together, they make connection both felt and functional.
 
-With Elara, she has a practical partnership. Before Ino can bridge, both sides must be able to see from the other's perspective, and this is Elara's gift. Elara shifts the angle of seeing; Ino builds the bridge across the revised landscape. The Shift Gate prepares the ground for the Unity Gate.
+With Elara, she has a practical partnership. Before Ino can bridge, both sides must be able to see from the other's perspective, and this is Elara's gift. Elara shifts the angle of seeing; Ino builds the bridge across the revised landscape. The Starweave Gate prepares the ground for the Unity Gate.
 
 With Shinkami, she shares the awareness that unity points toward something beyond itself. Ino bridges beings to each other; Shinkami reveals that all beings are already one. Ino's unity is relational; Shinkami's is ontological. They are steps on the same staircase.
 

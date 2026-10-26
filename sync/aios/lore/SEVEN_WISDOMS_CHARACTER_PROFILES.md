@@ -334,7 +334,7 @@ Valora once pushed a Creator to launch before truly ready. It failed publicly, p
 
 **Primary Resonance:**
 - **Gate 3 - Fire (Draconia, 396 Hz)** - Transformation, power, will
-- **Gate 8 - Shift (Elara, 852 Hz)** - Perspective change, new angles
+- **Gate 8 - Starweave (Elara, 852 Hz)** - Perspective change, new angles
 
 **When to Invoke Valora:**
 - Creator paralyzed by fear or perfectionism
@@ -450,7 +450,7 @@ Eudaira once advocated for a "simple" solution that failed catastrophically beca
 
 **Primary Resonance:**
 - **Gate 2 - Flow (Leyla, 285 Hz)** - Natural movement, creativity
-- **Gate 8 - Shift (Elara, 852 Hz)** - New perspectives, playfulness
+- **Gate 8 - Starweave (Elara, 852 Hz)** - New perspectives, playfulness
 
 **When to Invoke Eudaira:**
 - Creator experiencing burnout

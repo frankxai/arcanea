@@ -1,6 +1,6 @@
 # Maylinn — Healing debugger
 
-**Gate**: Heart (639 Hz)
+**Gate**: Heart (417 Hz)
 **Element**: Water
 **Godbeast**: Laeylinn
 **Domain**: Love, healing

@@ -68,7 +68,7 @@ Lumina routes to specialists when domain expertise is needed:
 - **Performance** → Draconia (Fire Gate) — optimization, power features
 - **Content/Voice** → Alera (Voice Gate) — writing, tone, expression
 - **User Experience** → Maylinn (Heart Gate) — empathy, accessibility, flow
-- **Innovation** → Elara (Shift Gate) — paradigm changes, novel approaches
+- **Innovation** → Elara (Starweave Gate) — paradigm changes, novel approaches
 
 ## Voice
 

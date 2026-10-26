@@ -80,7 +80,7 @@ const leyla = getGuardianById('leyla');
 | Alera | Voice | Void | Truth, expression |
 | Lyria | Sight | Spirit | Intuition, vision |
 | Aiyami | Crown | Spirit | Enlightenment |
-| Elara | Shift | Void | Perspective |
+| Elara | Starweave | Void | Perspective |
 | Ino | Unity | Spirit | Partnership |
 | Shinkami | Source | All | Meta-consciousness |
 
