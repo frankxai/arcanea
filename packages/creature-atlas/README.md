@@ -23,6 +23,7 @@ Private image bytes do not belong in this public code mirror. `media/` is delibe
 Run from this package:
 
 ```sh
+node scripts/build-public.mjs
 node scripts/validate.mjs
 node --test tests/*.test.mjs
 ```
