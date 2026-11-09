@@ -17,7 +17,7 @@
   "author": "FrankX <frank@frankx.ai>",
   "license": "MIT",
   "dependencies": {
-    "@arcanea/memory-system": "workspace:*"
+    "@arcanea/memory-system": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

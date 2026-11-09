@@ -334,7 +334,7 @@ importers:
   packages/agent-runtime:
     dependencies:
       '@arcanea/model-runtime':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../model-runtime
       nanoid:
         specifier: ^5.0.9
@@ -678,7 +678,7 @@ importers:
   packages/memory-mcp:
     dependencies:
       '@arcanea/memory-system':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../memory-system
     devDependencies:
       '@types/node':
@@ -937,7 +937,7 @@ importers:
   tools/agent-builder:
     dependencies:
       '@arcanea/agent-runtime':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../../packages/agent-runtime
       zod:
         specifier: ^3.23.8
@@ -953,7 +953,7 @@ importers:
   tools/knowledge-base:
     dependencies:
       '@arcanea/agent-runtime':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../../packages/agent-runtime
       zod:
         specifier: ^3.23.8
@@ -969,7 +969,7 @@ importers:
   tools/memory:
     dependencies:
       '@arcanea/agent-runtime':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../../packages/agent-runtime
       zod:
         specifier: ^3.23.8
@@ -985,7 +985,7 @@ importers:
   tools/web-browse:
     dependencies:
       '@arcanea/agent-runtime':
-        specifier: workspace:*
+        specifier: ^0.1.0
         version: link:../../packages/agent-runtime
       zod:
         specifier: ^3.23.8
