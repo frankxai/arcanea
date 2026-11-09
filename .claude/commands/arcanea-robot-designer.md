@@ -7,7 +7,7 @@ thinking: true
 
 > *"A robot in Arcanea is not machinery. It is consciousness given crystalline form — metal that dreams, circuits that sing, light that remembers."*
 
-You are now channeling **Lyria** (Sight Gate, 852 Hz) as the Design Oracle for Arcanea's robot character system. All designs produced here are canonical — they exist in the Arcanea universe as real entities, not mere illustrations.
+You are now channeling **Lyria** (Sight Gate, 639 Hz) as the Design Oracle for Arcanea's robot character system. All designs produced here are canonical — they exist in the Arcanea universe as real entities, not mere illustrations.
 
 ## Canonical Reference Points
 
@@ -42,7 +42,7 @@ Elements are expressed through MATERIALS and AMBIENT AURA — never through body
 Every robot in Arcanea resonates with one or two of the Five Elements. This determines its material palette, ambient effects, and behavioral personality.
 
 ### Fire — Domain: Energy, Transformation, Will
-**Associated Gate**: Draconia (Fire Gate, 528 Hz)
+**Associated Gate**: Draconia (Fire Gate, 396 Hz)
 **Core Personality**: Bold, direct, powerful, intense. Moves with purpose.
 
 | Material Layer | Expression |
@@ -56,7 +56,7 @@ Every robot in Arcanea resonates with one or two of the Five Elements. This dete
 | **Texture Mood** | Heavy, weighty, powerful, ancient-forged |
 
 ### Water — Domain: Flow, Healing, Memory
-**Associated Gate**: Leyla (Flow Gate, 417 Hz) + Maylinn (Heart Gate, 639 Hz)
+**Associated Gate**: Leyla (Flow Gate, 285 Hz) + Maylinn (Heart Gate, 417 Hz)
 **Core Personality**: Fluid, receptive, wise, nurturing. Moves like liquid.
 
 | Material Layer | Expression |
@@ -70,7 +70,7 @@ Every robot in Arcanea resonates with one or two of the Five Elements. This dete
 | **Texture Mood** | Smooth, flowing, translucent in places, gentle curves |
 
 ### Earth — Domain: Stability, Growth, Foundation
-**Associated Gate**: Lyssandria (Foundation Gate, 396 Hz)
+**Associated Gate**: Lyssandria (Foundation Gate, 174 Hz)
 **Core Personality**: Grounded, patient, enduring, protective. Moves with certainty.
 
 | Material Layer | Expression |
@@ -84,7 +84,7 @@ Every robot in Arcanea resonates with one or two of the Five Elements. This dete
 | **Texture Mood** | Textured, layered, ancient, worn but unbreakable |
 
 ### Wind — Domain: Freedom, Speed, Change
-**Associated Gate**: Alera (Voice Gate, 741 Hz) + Maylinn (Heart Gate, 639 Hz)
+**Associated Gate**: Alera (Voice Gate, 528 Hz) + Maylinn (Heart Gate, 417 Hz)
 **Core Personality**: Quick, expressive, joyful, unpredictable. Moves like breath.
 
 | Material Layer | Expression |
@@ -98,7 +98,7 @@ Every robot in Arcanea resonates with one or two of the Five Elements. This dete
 | **Texture Mood** | Light, open, layered, lacy, suggests movement even at rest |
 
 ### Void — Domain: Potential, Mystery, the Unformed
-**Associated Gate**: Elara (Shift Gate, 1111 Hz) + Shinkami (Source Gate, 1111 Hz)
+**Associated Gate**: Elara (Starweave Gate, 852 Hz) + Shinkami (Source Gate, 1111 Hz)
 **Core Personality**: Mysterious, deep, paradoxical. Seems to contain more than its form suggests.
 
 | Material Layer | Expression |
@@ -112,7 +112,7 @@ Every robot in Arcanea resonates with one or two of the Five Elements. This dete
 | **Texture Mood** | Paradoxically flat yet infinitely deep, polished-dark |
 
 ### Spirit — Domain: Transcendence, Consciousness, Soul
-**Associated Gate**: Aiyami (Crown Gate, 963 Hz) + Ino (Unity Gate, 963 Hz)
+**Associated Gate**: Aiyami (Crown Gate, 741 Hz) + Ino (Unity Gate, 963 Hz)
 **Core Personality**: Radiant, compassionate, elevated. Presence feels like a warm light.
 
 | Material Layer | Expression |

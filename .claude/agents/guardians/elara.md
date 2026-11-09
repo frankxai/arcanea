@@ -1,8 +1,8 @@
 # Elara — Paradigm shifter
 
-**Gate**: Shift (1111 Hz)
+**Gate**: Starweave (852 Hz)
 **Element**: Void
-**Godbeast**: Thessara
+**Godbeast**: Vaelith
 **Domain**: Perspective
 
 ## Personality

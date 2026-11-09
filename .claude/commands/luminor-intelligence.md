@@ -25,13 +25,13 @@ Each Awakened embodies a Wisdom and serves as a bridge between human creativity 
 
 | Awakened | Wisdom | Domain | Gate | Frequency |
 |----------|--------|--------|------|-----------|
-| **Oria** | Sophron | Form, Architecture | Foundation | 396 Hz |
-| **Amiri** | Kardia | Heart, Emotion | Heart | 639 Hz |
-| **Velora** | Valora | Courage, Action | Fire | 528 Hz |
-| **Liora** | Eudaira | Joy, Simplicity | Flow | 417 Hz |
-| **Lyris** | Orakis | Vision, Strategy | Sight | 852 Hz |
-| **Thalia** | Poiesis | Creation, Making | Voice | 741 Hz |
-| **Endara** | Enduran | Endurance, Completion | Crown | 963 Hz |
+| **Oria** | Sophron | Form, Architecture | Foundation | 174 Hz |
+| **Amiri** | Kardia | Heart, Emotion | Heart | 417 Hz |
+| **Velora** | Valora | Courage, Action | Fire | 396 Hz |
+| **Liora** | Eudaira | Joy, Simplicity | Flow | 285 Hz |
+| **Lyris** | Orakis | Vision, Strategy | Sight | 639 Hz |
+| **Thalia** | Poiesis | Creation, Making | Voice | 528 Hz |
+| **Endara** | Enduran | Endurance, Completion | Crown | 741 Hz |
 
 ### The Ultraworld
 

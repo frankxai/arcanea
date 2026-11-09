@@ -195,7 +195,7 @@ npx @claude-flow/cli@latest doctor --fix
 
 `.arcanea/lore/CANON_LOCKED.md` is the vault and is **read-only to agents**; promotion from STAGING happens only through `/lock-decision`, by Frank. Note that `arcanea-lore/` and `sync/aios/lore/` are stale mirrors whose frequency tables and godbeast names diverge from the vault — the vault wins.
 
-**The 852 Hz Gate is `Starweave`** (ruled 2026-08-14). The vault always said so; much of the repo — including `.claude/CLAUDE.md` — says "Shift", and that is drift, not an alternative. The linter treats the name as an error on newly added lines; the ~186 pre-existing occurrences across ~30 files are issue #98's sweep, and fail nothing until then.
+**The 852 Hz Gate is `Starweave`** (ruled 2026-08-14). The vault always said so; much of the repo says "Shift", and that is drift, not an alternative. The linter treats the name as an error on newly added lines; the pre-existing occurrences (94 findings across 57 files on 2026-09-29, from a full-repo `node .claude/ci/lore-lint.mjs` run over every tracked lore-bearing file) are issue #98's sweep, and fail nothing until then.
 
 `.claude/ci/lore-lint.mjs` is the model-free half: superseded names, Gate names, Gate frequencies, godbeast pairings (table and prose), canon-tier banners, and lock claims. Between sessions, `.github/workflows/lore-canon.yml` runs it on every PR touching lore, as a ratchet on newly added lines only. It exists because two locked godbeast renames silently failed to propagate across ~15 files over five months (issue #98) — drift accumulates when nothing checks. Judgment calls belong in the skills; the linter stays near-zero-false-positive so it never gets switched off.
 

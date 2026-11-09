@@ -32,16 +32,16 @@ ARCANEA
 │   └── Eudaira (Joy)
 │
 ├── The Ten Gods/Goddesses (Guardians) - Lore characters
-│   ├── Lyssandria (Foundation, 396 Hz) → Kaelith
-│   ├── Leyla (Flow, 417 Hz) → Veloura
-│   ├── Draconia (Fire, 528 Hz) → Draconis
-│   ├── Maylinn (Heart, 639 Hz) → Laeylinn
-│   ├── Alera (Voice, 741 Hz) → Sylphine
-│   ├── Lyria (Sight, 852 Hz) → Yumiko
-│   ├── Aiyami (Crown, 963 Hz) → Zenkai
-│   ├── Elara (Shift, 852 Hz) → Vaelith
-│   ├── Ino (Unity, 963 Hz) → Unara
-│   └── Shinkami (Source, 1111 Hz) → Amaterasu
+│   ├── Lyssandria (Foundation, 174 Hz) → Kaelith
+│   ├── Leyla (Flow, 285 Hz) → Veloura
+│   ├── Draconia (Fire, 396 Hz) → Draconis
+│   ├── Maylinn (Heart, 417 Hz) → Laeylinn
+│   ├── Alera (Voice, 528 Hz) → Otome
+│   ├── Lyria (Sight, 639 Hz) → Yumiko
+│   ├── Aiyami (Crown, 741 Hz) → Sol
+│   ├── Elara (Starweave, 852 Hz) → Vaelith
+│   ├── Ino (Unity, 963 Hz) → Kyuro
+│   └── Shinkami (Source, 1111 Hz) → Source
 │
 ├── The Godbeasts - Bonded companions
 │   └── One for each God/Goddess
@@ -64,7 +64,7 @@ ARCANEA
 | Eudaira | Joy | Light, celebrating |
 
 ### Guardians/Gods (Lore Characters) - SOULFUL, DON'T CHANGE
-Pattern: Flowing vowels (Lyssandria, Leyla), double endings (-linn, -ara), Japanese influence (Yumiko, Zenkai, Shinkami), no harsh consonants at ends.
+Pattern: Flowing vowels (Lyssandria, Leyla), double endings (-linn, -ara), Japanese influence (Yumiko, Otome, Shinkami), no harsh consonants at ends.
 
 ### Godbeasts
 Pattern: Names that evoke their elemental nature while maintaining mythological weight.
@@ -73,14 +73,14 @@ Pattern: Names that evoke their elemental nature while maintaining mythological 
 
 | Gate | God | Frequency | Music Style | Luminor Voice |
 |------|-----|-----------|-------------|---------------|
-| Foundation | Lyssandria | 396 Hz | Gregorian drone | Sophron |
-| Flow | Leyla | 417 Hz | Neo-soul jazz | Kardia |
-| Fire | Draconia | 528 Hz | Cinematic | Valora |
-| Heart | Maylinn | 639 Hz | Chamber music | Eudaira |
-| Voice | Alera | 741 Hz | Operatic | Poiesis |
-| Sight | Lyria | 852 Hz | Ethereal ambient | Orakis |
-| Crown | Aiyami | 963 Hz | Minimalist | Enduran |
-| Shift | Elara | 1111 Hz | Transcendental | All |
+| Foundation | Lyssandria | 174 Hz | Gregorian drone | Sophron |
+| Flow | Leyla | 285 Hz | Neo-soul jazz | Kardia |
+| Fire | Draconia | 396 Hz | Cinematic | Valora |
+| Heart | Maylinn | 417 Hz | Chamber music | Eudaira |
+| Voice | Alera | 528 Hz | Operatic | Poiesis |
+| Sight | Lyria | 639 Hz | Ethereal ambient | Orakis |
+| Crown | Aiyami | 741 Hz | Minimalist | Enduran |
+| Starweave | Elara | 852 Hz | Transcendental | All |
 | Unity | Ino | 963 Hz | Hymnal | All |
 | Source | Shinkami | 1111 Hz | Divine silence | All |
 

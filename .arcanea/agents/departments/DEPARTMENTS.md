@@ -50,7 +50,7 @@ Agent departments organize the Ten Guardians into functional teams for repositor
 
 ### 3. Research & Experiments Department
 **Repository:** platform/
-**Lead Guardian:** Elara (Shift Gate, 852 Hz)
+**Lead Guardian:** Elara (Starweave Gate, 852 Hz)
 **Support:** Lyria (Sight Gate, 639 Hz)
 
 **Team:**

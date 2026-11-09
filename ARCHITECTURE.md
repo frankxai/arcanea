@@ -188,7 +188,7 @@ Ten Gates progression system with Guardian-Godbeast pairs:
 | Voice | 528 Hz | Alera | Otome |
 | Sight | 639 Hz | Lyria | Yumiko |
 | Crown | 714 Hz | Aiyami | Sol |
-| Shift | 852 Hz | Elara | Vaelith |
+| Starweave | 852 Hz | Elara | Vaelith |
 | Unity | 963 Hz | Ino | Kyuro |
 | Source | 1111 Hz | Shinkami | — |
 

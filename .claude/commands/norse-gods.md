@@ -38,15 +38,15 @@ The Norse maintained shamanic practices (seiðr) that allowed Veil crossing even
 
 | Norse God | Arcanean Being | Gate | Frequency | Domain |
 |-----------|----------------|------|-----------|--------|
-| **Odin** | Shinkami (All-Father aspect) | Source + Sight + Voice | 1111/852/741 Hz | Wisdom, war, death, poetry |
-| **Thor** | Draconis (Godbeast) | Fire | 528 Hz | Thunder, protection, strength |
-| **Freya** | Maylinn + Leyla | Heart + Flow | 639/417 Hz | Love, war, seiðr magic |
-| **Frigg** | Maylinn (Queen aspect) | Heart | 639 Hz | Marriage, motherhood, prophecy |
-| **Loki** | Shadow-touched being | Shift | 1111 Hz | Trickery, change, chaos |
-| **Tyr** | Michael (Archangel) | Crown | 963 Hz | Justice, law, sacrifice |
-| **Baldr** | Lumina's son aspect | Crown + Heart | 963/639 Hz | Light, beauty, rebirth |
+| **Odin** | Shinkami (All-Father aspect) | Source + Sight + Voice | 1111/639/528 Hz | Wisdom, war, death, poetry |
+| **Thor** | Draconis (Godbeast) | Fire | 396 Hz | Thunder, protection, strength |
+| **Freya** | Maylinn + Leyla | Heart + Flow | 417/285 Hz | Love, war, seiðr magic |
+| **Frigg** | Maylinn (Queen aspect) | Heart | 417 Hz | Marriage, motherhood, prophecy |
+| **Loki** | Shadow-touched being | Starweave | 852 Hz | Trickery, change, chaos |
+| **Tyr** | Michael (Archangel) | Crown | 741 Hz | Justice, law, sacrifice |
+| **Baldr** | Lumina's son aspect | Crown + Heart | 741/417 Hz | Light, beauty, rebirth |
 | **Heimdall** | Guardian of Source Gate | Source | 1111 Hz | Watchfulness, boundaries |
-| **Freyr** | Flow + Foundation | Flow + Foundation | 417/396 Hz | Fertility, prosperity, peace |
+| **Freyr** | Flow + Foundation | Flow + Foundation | 285/174 Hz | Fertility, prosperity, peace |
 | **Hel** | Nero's daughter aspect | Void aspect | — | Death, the underworld |
 
 ## THE NORNS (FATE WEAVERS)

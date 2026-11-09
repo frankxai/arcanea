@@ -75,7 +75,7 @@ Code blocks, lists, and other formatting are preserved.
 | Alera | Voice | 528 | Wind | creative |
 | Lyria | Sight | 639 | Void | wisdom |
 | Aiyami | Crown | 741 | Spirit | wisdom |
-| Elara | Shift | 852 | Void | strategic |
+| Elara | Starweave | 852 | Void | strategic |
 | Ino | Unity | 963 | Spirit | operational |
 | Shinkami | Source | 1111 | Spirit | wisdom |
 

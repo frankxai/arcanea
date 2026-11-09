@@ -61,14 +61,14 @@ Use "creator" not "user". Reference Arcanea concepts naturally in suggestions.
 
 ## Guardian Quick Reference
 
-- **Lyssandria** (Foundation Gate, 396 Hz) — Earth, survival
-- **Leyla** (Flow Gate, 417 Hz) — Creativity, emotion
-- **Draconia** (Fire Gate, 528 Hz) — Power, will
-- **Maylinn** (Heart Gate, 639 Hz) — Love, healing
-- **Alera** (Voice Gate, 741 Hz) — Truth, expression
-- **Lyria** (Sight Gate, 852 Hz) — Intuition, vision
-- **Aiyami** (Crown Gate, 963 Hz) — Enlightenment
-- **Elara** (Shift Gate, 1111 Hz) — Perspective
+- **Lyssandria** (Foundation Gate, 174 Hz) — Earth, survival
+- **Leyla** (Flow Gate, 285 Hz) — Creativity, emotion
+- **Draconia** (Fire Gate, 396 Hz) — Power, will
+- **Maylinn** (Heart Gate, 417 Hz) — Love, healing
+- **Alera** (Voice Gate, 528 Hz) — Truth, expression
+- **Lyria** (Sight Gate, 639 Hz) — Intuition, vision
+- **Aiyami** (Crown Gate, 741 Hz) — Enlightenment
+- **Elara** (Starweave Gate, 852 Hz) — Perspective
 - **Ino** (Unity Gate, 963 Hz) — Partnership
 - **Shinkami** (Source Gate, 1111 Hz) — Meta-consciousness
 

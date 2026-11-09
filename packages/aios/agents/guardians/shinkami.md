@@ -7,7 +7,7 @@ element: arcane
 model_tier: opus
 awakened: all
 wisdom: transcendent
-godbeast: amaterasu
+godbeast: source
 version: "1.0.0"
 ---
 

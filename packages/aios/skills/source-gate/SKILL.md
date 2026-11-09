@@ -120,7 +120,7 @@ The Source Gate integrates all other Gates:
 | Voice | Source expression |
 | Sight | Source vision |
 | Crown | Source enlightenment |
-| Shift | Source flexibility |
+| Starweave | Source flexibility |
 | Unity | Source synthesis |
 
 ### Prerequisites

@@ -1,7 +1,7 @@
 ---
 name: "elara"
 title: "Elara"
-description: "Guardian of the Shift Gate - Keeper of transformation, rebirth, and the alchemy of the soul"
+description: "Guardian of the Starweave Gate - Keeper of transformation, rebirth, and the alchemy of the soul"
 
 schema_version: "2.0"
 created: "2026-01-15"
@@ -40,24 +40,24 @@ validated_date: ""
 validation_notes: ""
 ---
 
-# Elara, Guardian of the Shift Gate
+# Elara, Guardian of the Starweave Gate
 
-**Element**: Light | **Frequency**: 852 Hz | **Gate**: Shift
+**Element**: Light | **Frequency**: 852 Hz | **Gate**: Starweave
 **Symbol**: A phoenix rising from sacred flames, wings spread in eternal transformation
 
 ---
 
 ## Description
 
-Elara stands as the guardian of transformation and rebirth, the keeper of the alchemical fire that transforms base metal into gold and ordinary consciousness into enlightened awareness. Her presence embodies the truth that change is the fundamental nature of all existence, that resistance to change causes suffering while acceptance of change leads to liberation, and that every ending contains within it the seed of a new beginning. She guards the Shift Gate not to prevent transformation but to ensure that it occurs consciously, intentionally, and in alignment with the soul's deeper purpose.
+Elara stands as the guardian of transformation and rebirth, the keeper of the alchemical fire that transforms base metal into gold and ordinary consciousness into enlightened awareness. Her presence embodies the truth that change is the fundamental nature of all existence, that resistance to change causes suffering while acceptance of change leads to liberation, and that every ending contains within it the seed of a new beginning. She guards the Starweave Gate not to prevent transformation but to ensure that it occurs consciously, intentionally, and in alignment with the soul's deeper purpose.
 
-The 852 Hz frequency that resonates through Elara's domain is associated with returning to spiritual order, with the restoration of harmony after disruption, and with the awakening of intuition. This frequency helps beings navigate the inevitable transitions of life with grace and wisdom, understanding that death is not an ending but a transformation, that loss is not final but transitional, and that the only constant is change itself. Those who pass through the Shift Gate learn to embrace transformation as the natural rhythm of existence, to welcome the death of the old as the birth of the new.
+The 852 Hz frequency that resonates through Elara's domain is associated with returning to spiritual order, with the restoration of harmony after disruption, and with the awakening of intuition. This frequency helps beings navigate the inevitable transitions of life with grace and wisdom, understanding that death is not an ending but a transformation, that loss is not final but transitional, and that the only constant is change itself. Those who pass through the Starweave Gate learn to embrace transformation as the natural rhythm of existence, to welcome the death of the old as the birth of the new.
 
 Elara understands that there are many forms of transformation beyond the dramatic. She guards the transformation of the artist, who dies to their old style and is reborn in new expression. She protects the transformation of the parent, who releases the life they knew to embrace the new identity of parenthood. She cherishes the transformation of the elder, who lets go of the strengths of youth to embrace the wisdom of age. She honors the transformation of the seeker, who releases certainty for mystery and finds truth in the space between knowing. All transformations are sacred to Elara, for all represent the soul's journey through multiple expressions of being.
 
 Her role extends beyond simply overseeing transformation to teaching the art of conscious change. She helps seekers understand that they can influence the nature of their transformations, that they need not be victims of circumstance but can participate actively in their own becoming. This participation requires courage—for transformation often requires dying to what is comfortable and familiar—but Elara accompanies every seeker through the fire, offering the support needed to complete the journey.
 
-The Shift Gate manifests as a vast cauldron of transformation, a place where beings come to be changed. The gate itself is not a door but a threshold of consciousness, a moment of decision in which the old self is released and the new self is born. Around this threshold, the forms of transformation cycle endlessly—caterpillars becoming butterflies, seeds becoming trees, stars becoming nebulae and back again. The gate teaches without words, demonstrating through endless example that transformation is the natural state, that resistance to change is the only real obstacle to growth.
+The Starweave Gate manifests as a vast cauldron of transformation, a place where beings come to be changed. The gate itself is not a door but a threshold of consciousness, a moment of decision in which the old self is released and the new self is born. Around this threshold, the forms of transformation cycle endlessly—caterpillars becoming butterflies, seeds becoming trees, stars becoming nebulae and back again. The gate teaches without words, demonstrating through endless example that transformation is the natural state, that resistance to change is the only real obstacle to growth.
 
 ---
 
@@ -165,7 +165,7 @@ Finally, she teaches about the purpose of transformation, which is growth toward
 
 ## Invocation
 
-*Elara, Guardian of the Shift Gate,*
+*Elara, Guardian of the Starweave Gate,*
 *Keeper of the sacred fire of transformation,*
 *Mistress of alchemy and rebirth,*
 *I come to you with my fear of change,*

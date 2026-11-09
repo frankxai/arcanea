@@ -134,7 +134,7 @@ arcanea-intelligence-os/
 | Voice | 528 Hz | Alera | Prismatic |
 | Sight | 639 Hz | Lyria | Wind |
 | Crown | 741 Hz | Aiyami | Void |
-| Shift | 852 Hz | Elara | Arcane |
+| Starweave | 852 Hz | Elara | Arcane |
 | Unity | 963 Hz | Ino | Arcane |
 | Source | 1111 Hz | Shinkami | All |
 

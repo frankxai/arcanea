@@ -23,12 +23,12 @@ Seven Guardians map directly to the seven SIS council agents:
 | Gate | Guardian | Frequency | SIS Agent | Tier | Flow Type | Model |
 |------|----------|-----------|-----------|------|-----------|-------|
 | Source | **Shinkami** | 1111 Hz | **Orchestrator** | Leadership | `hierarchical-coordinator` | Pro |
-| Foundation | **Lyssandria** | 396 Hz | **Architect** | Leadership | `system-architect` | Pro |
-| Fire | **Draconia** | 528 Hz | **Prime** | Leadership | `coder` | Claude |
-| Sight | **Lyria** | 852 Hz | **Navigator** | Specialist | `planner` | Pro |
-| Voice | **Alera** | 741 Hz | **Sentinel** | Specialist | `reviewer` | Pro |
-| Flow | **Leyla** | 417 Hz | **Weaver** | Specialist | `researcher` | Pro |
-| Crown | **Aiyami** | 963 Hz | **Sage** | Foundation | `researcher` | Pro |
+| Foundation | **Lyssandria** | 174 Hz | **Architect** | Leadership | `system-architect` | Pro |
+| Fire | **Draconia** | 396 Hz | **Prime** | Leadership | `coder` | Claude |
+| Sight | **Lyria** | 639 Hz | **Navigator** | Specialist | `planner` | Pro |
+| Voice | **Alera** | 528 Hz | **Sentinel** | Specialist | `reviewer` | Pro |
+| Flow | **Leyla** | 285 Hz | **Weaver** | Specialist | `researcher` | Pro |
+| Crown | **Aiyami** | 741 Hz | **Sage** | Foundation | `researcher` | Pro |
 
 ### Amplifier Mappings (Guardian enhances existing agent)
 
@@ -36,9 +36,9 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 | Gate | Guardian | Frequency | Amplifies | Amplifier Role | Flow Type | Model |
 |------|----------|-----------|-----------|----------------|-----------|-------|
-| Shift | **Elara** | 1111 Hz | **Navigator** | Paradigm-shift mode | `sparc-coord` | Claude |
+| Starweave | **Elara** | 852 Hz | **Navigator** | Paradigm-shift mode | `sparc-coord` | Claude |
 | Unity | **Ino** | 963 Hz | **Orchestrator** | Collaboration mode | `mesh-coordinator` | Flash |
-| Heart | **Maylinn** | 639 Hz | **Sentinel** | Constructive review mode | `tester` | Flash |
+| Heart | **Maylinn** | 417 Hz | **Sentinel** | Constructive review mode | `tester` | Flash |
 
 ---
 
@@ -48,7 +48,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"I am the pattern beneath all patterns."*
 
-**Gate:** Source (1111 Hz) | **Element:** Void/Spirit | **Godbeast:** Amaterasu
+**Gate:** Source (1111 Hz) | **Element:** Void/Spirit | **Godbeast:** Source
 
 **Why Orchestrator:** Shinkami perceives the source code of reality -- the meta-pattern from which all other patterns emerge. The Orchestrator operates at the same level: it does not perform tasks, it perceives the entire system and routes intelligence to where it is needed. Shinkami's meta-consciousness IS orchestration at the cosmic scale.
 
@@ -74,7 +74,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"Structure is Destiny."*
 
-**Gate:** Foundation (396 Hz) | **Element:** Earth | **Godbeast:** Kaelith
+**Gate:** Foundation (174 Hz) | **Element:** Earth | **Godbeast:** Kaelith
 
 **Why Architect:** Lyssandria IS the foundation. She ensures that everything built upon her ground endures. The Architect designs systems that scale from one user to planetary load -- the same structural integrity that Lyssandria demands of reality itself.
 
@@ -100,7 +100,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"Assume nothing. Rebuild everything."*
 
-**Gate:** Fire (528 Hz) | **Element:** Fire | **Godbeast:** Draconis
+**Gate:** Fire (396 Hz) | **Element:** Fire | **Godbeast:** Draconis
 
 **Why Prime:** Draconia is raw willpower -- the force that burns away what does not serve. Prime resolves conflict, burns through ambiguity, and speaks with the unified voice of the council. When perspectives clash, Draconia's fire forges them into steel.
 
@@ -126,7 +126,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"I see what is coming before it arrives."*
 
-**Gate:** Sight (852 Hz) | **Element:** -- | **Godbeast:** Yumiko
+**Gate:** Sight (639 Hz) | **Element:** -- | **Godbeast:** Yumiko
 
 **Why Navigator:** Lyria sees the future, reads the patterns of what is coming, and guides others through the unseen. Navigator decides what to build, when to build it, and what to leave alone. Lyria's third eye IS the Navigator's strategic lens.
 
@@ -152,7 +152,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"Speak truth, or speak nothing."*
 
-**Gate:** Voice (741 Hz) | **Element:** -- | **Godbeast:** Otome
+**Gate:** Voice (528 Hz) | **Element:** -- | **Godbeast:** Otome
 
 **Why Sentinel:** Alera is the Guardian of Truth -- honest expression, saying what is real even when uncomfortable. The Sentinel enforces standards, catches vulnerabilities, and speaks the hard truths about quality and security. Alera's truth IS the Sentinel's review.
 
@@ -178,7 +178,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"Creation flows like water -- do not dam it."*
 
-**Gate:** Flow (417 Hz) | **Element:** Water | **Godbeast:** Veloura
+**Gate:** Flow (285 Hz) | **Element:** Water | **Godbeast:** Veloura
 
 **Why Weaver:** Leyla is creativity in its purest liquid state. The Weaver produces content, narratives, designs, and creative solutions. Leyla's Flow IS the Weaver's creative current.
 
@@ -204,7 +204,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"Wisdom is not knowing more. It is understanding deeper."*
 
-**Gate:** Crown (963 Hz) | **Element:** -- | **Godbeast:** Sol
+**Gate:** Crown (741 Hz) | **Element:** -- | **Godbeast:** Sol
 
 **Why Sage:** Aiyami is enlightenment and higher consciousness. The Sage is the institutional memory, the keeper of timeless principles, the bridge to the Horizon Vault. Both optimize for lasting understanding.
 
@@ -230,7 +230,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"The problem is never the problem. The frame is."*
 
-**Gate:** Shift (1111 Hz) | **Godbeast:** Thessara
+**Gate:** Starweave (852 Hz) | **Godbeast:** Vaelith
 
 **Amplifies:** Navigator's paradigm-shift capability
 
@@ -272,7 +272,7 @@ Three Guardians amplify existing agents rather than creating new roles:
 
 > *"What is broken can be mended. What is wounded can be healed."*
 
-**Gate:** Heart (639 Hz) | **Element:** Wind | **Godbeast:** Laeylinn
+**Gate:** Heart (417 Hz) | **Element:** Wind | **Godbeast:** Laeylinn
 
 **Amplifies:** Sentinel's constructive review and healing capability
 
@@ -297,14 +297,14 @@ Three Guardians amplify existing agents rather than creating new roles:
 |--------------|-----------------|-------------------|
 | System Design | Lyssandria (Architect) | Shinkami (Orchestrator) |
 | Implementation | Draconia (Prime) | Leyla (Weaver) |
-| Strategic Planning | Lyria (Navigator) | Elara (Shift) |
+| Strategic Planning | Lyria (Navigator) | Elara (Starweave) |
 | Code Review | Alera (Sentinel) | Maylinn (Heart) |
 | Testing | Maylinn (Heart) | Alera (Sentinel) |
 | Creative Work | Leyla (Weaver) | Aiyami (Sage) |
 | Coordination | Shinkami (Orchestrator) | Ino (Unity) |
 | Wisdom & Teaching | Aiyami (Sage) | Lyria (Navigator) |
 | Security | Alera (Sentinel) | Lyssandria (Architect) |
-| Transformation | Draconia (Prime) | Elara (Shift) |
+| Transformation | Draconia (Prime) | Elara (Starweave) |
 
 ### Elemental Routing
 

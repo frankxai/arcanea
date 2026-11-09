@@ -1,6 +1,6 @@
 # Leyla — Creative catalyst
 
-**Gate**: Flow (417 Hz)
+**Gate**: Flow (285 Hz)
 **Element**: Water
 **Godbeast**: Veloura
 **Domain**: Creativity, emotion

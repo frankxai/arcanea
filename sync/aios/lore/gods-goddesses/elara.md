@@ -4,7 +4,7 @@
 # =============================================================================
 id: "god-arcanean-elara"
 name: "Elara"
-title: "Goddess of the Shift Gate"
+title: "Goddess of the Starweave Gate"
 aliases:
   - "The Perspective Breaker"
   - "Lady of a Thousand Angles"
@@ -327,7 +327,7 @@ sections:
 # FULL CONTENT
 # =============================================================================
 
-# Elara, Goddess of the Shift Gate
+# Elara, Goddess of the Starweave Gate
 **The Perspective Breaker, Lady of a Thousand Angles, She Who Refused to Settle**
 
 **Element**: Fire/Void | **Frequency**: 852 Hz | **Chakra**: Between Third Eye and Crown | **Wisdom**: Orakis
@@ -350,7 +350,7 @@ And then Vaelith turned its gaze on Elara's skepticism itself - and showed her t
 
 Elara's fixed position shattered. Not into confusion, but into something far richer: the ability to hold multiple perspectives without collapsing into any single one. She discovered that cognitive flexibility - the capacity to shift viewpoints fluently, to see from angles that contradict your natural position, to hold paradox without needing to resolve it - is not weakness or indecision. It is the highest form of intellectual and spiritual strength.
 
-The frequency of 852 Hz that resonates through Elara's domain is the frequency of returning to spiritual order - the vibration that dissolves rigid patterns of thought and replaces them with flexible, responsive awareness. It is the tone that breaks frames, shatters assumptions, and creates space for the kind of radical cognitive freedom that the Shift Gate demands.
+The frequency of 852 Hz that resonates through Elara's domain is the frequency of returning to spiritual order - the vibration that dissolves rigid patterns of thought and replaces them with flexible, responsive awareness. It is the tone that breaks frames, shatters assumptions, and creates space for the kind of radical cognitive freedom that the Starweave Gate demands.
 
 ---
 
@@ -382,11 +382,11 @@ The architecture of the Kaleidoscope is built from materials that change dependi
 
 The Debate Arena in the east is the most practically useful space in the Kaleidoscope. Here, seekers are given a position they hold dear and asked to argue against it with full conviction. Then they are given a position they oppose and asked to argue for it with equal conviction. The experience is not designed to produce agreement but to produce flexibility - the ability to see from inside positions that are not your own, to feel the logic and emotion that makes another perspective make sense to those who hold it.
 
-The Enemy's Chair in the north is a single chair in a plain room. Seekers sit in it and experience the world through the eyes of someone they consider an enemy or opponent. Not their thoughts - Elara is not a mind-reader. Their perspective. Their angle. The shape of the world as it appears from where they stand. The experience is often devastating, not because the enemy's perspective is correct but because it is understandable. The gap between "wrong" and "understandable" is where the Shift Gate opens.
+The Enemy's Chair in the north is a single chair in a plain room. Seekers sit in it and experience the world through the eyes of someone they consider an enemy or opponent. Not their thoughts - Elara is not a mind-reader. Their perspective. Their angle. The shape of the world as it appears from where they stand. The experience is often devastating, not because the enemy's perspective is correct but because it is understandable. The gap between "wrong" and "understandable" is where the Starweave Gate opens.
 
 The Paradox Garden in the south is a living demonstration that reality does not require consistency to be real. Here, flowers that are red and blue at the same time grow beside trees that are tall and short simultaneously. Not through illusion - through the genuine coexistence of contradictory properties. The garden teaches that paradox is not a failure of logic but a feature of reality, and that the mind's insistence on resolving every contradiction is a limitation, not a strength.
 
-At the center, the Axis marks the still point around which all perspectives rotate. Here, seekers confront the question that the Shift Gate ultimately asks: if you can hold every perspective, who are you? If your identity is not defined by your positions, what remains? The answer, when it comes, opens the gate: what remains is the awareness that holds perspectives. Not a perspective itself, but the space in which perspectives arise.
+At the center, the Axis marks the still point around which all perspectives rotate. Here, seekers confront the question that the Starweave Gate ultimately asks: if you can hold every perspective, who are you? If your identity is not defined by your positions, what remains? The answer, when it comes, opens the gate: what remains is the awareness that holds perspectives. Not a perspective itself, but the space in which perspectives arise.
 
 ---
 
@@ -436,7 +436,7 @@ The Switchback Path climbs a mountain in seven turns, each one reversing the dir
 
 The Two-Faced Stone is a natural formation at a crossroads that depicts one form when viewed from the east and an entirely different form from the west. Both views are "correct." Neither is complete. The stone has become a place of dispute resolution: opposing parties stand on opposite sides and describe what they see, learning that two honest descriptions of the same reality can contradict each other without either party lying.
 
-The Prism Caves are a natural crystal formation where a single beam of light entering the cave is split, refracted, and reflected into a thousand colors that paint the walls in shifting patterns. The caves demonstrate the Shift Gate's core teaching: unity contains multiplicity. A single truth, when viewed through the prismatic lens of perspective, reveals an infinity of valid interpretations.
+The Prism Caves are a natural crystal formation where a single beam of light entering the cave is split, refracted, and reflected into a thousand colors that paint the walls in shifting patterns. The caves demonstrate the Starweave Gate's core teaching: unity contains multiplicity. A single truth, when viewed through the prismatic lens of perspective, reveals an infinity of valid interpretations.
 
 ---
 
@@ -454,7 +454,7 @@ With Draconia, she maintains a fiery kinship. Both share the element of fire - D
 
 ---
 
-*Elara, Goddess of the Shift Gate*
+*Elara, Goddess of the Starweave Gate*
 *The Perspective Breaker, Lady of a Thousand Angles, She Who Refused to Settle*
 *Bonded to Vaelith, the Fractal Eye*
 *See from everywhere. Land nowhere. The truth is in the turning.*
@@ -463,7 +463,7 @@ With Draconia, she maintains a fiery kinship. Both share the element of fire - D
 
 ## Invocation
 
-*Elara, Goddess of the Shift Gate,*
+*Elara, Goddess of the Starweave Gate,*
 *Perspective Breaker, Lady of a Thousand Angles,*
 *Vaelith, Fractal Eye,*
 *Void-center and prismatic edge,*

@@ -31,7 +31,7 @@ approved_date: ""
 
 **The Many-Seeing, Perspective Incarnate, The Entity That Proves Reality Has No Single Angle**
 
-**Creature Type**: Fractal Entity | **Bonded to**: Elara, Goddess of the Shift Gate
+**Creature Type**: Fractal Entity | **Bonded to**: Elara, Goddess of the Starweave Gate
 **Symbol**: Eye surrounded by fractaling sub-eyes | **Colors**: Iridescent, shifting spectrum, void-black center
 **Frequency**: 852 Hz | **Element**: Void
 
@@ -79,7 +79,7 @@ A vast eye -- the central iris a void-black pupil surrounded by shifting prismat
 
 Elara was a skeptic before becoming a Guardian. She trusted no single perspective, questioned every claim, refused to accept any truth as final. Vaelith recognized in this skepticism not cynicism but the embryonic form of true wisdom.
 
-Vaelith taught Elara that the answer is not choosing one perspective -- it is holding many at once without collapsing into any single one. The Shift Gate demands cognitive flexibility of the highest order -- the ability to see from every angle while still acting, to hold uncertainty while still moving forward.
+Vaelith taught Elara that the answer is not choosing one perspective -- it is holding many at once without collapsing into any single one. The Starweave Gate demands cognitive flexibility of the highest order -- the ability to see from every angle while still acting, to hold uncertainty while still moving forward.
 
 Their bond is one of mutual reframing. Elara gives Vaelith the human need for decision -- the anchor that prevents infinite perspective from becoming infinite paralysis. Vaelith gives Elara the courage to question every answer, including her own.
 
@@ -103,4 +103,4 @@ In the mortal realm, Vaelith's presence is felt in the moment of sudden reframin
 
 ---
 
-*Part of [The Library of Arcanea](https://arcanea.ai) | Godbeast of the Shift Gate*
+*Part of [The Library of Arcanea](https://arcanea.ai) | Godbeast of the Starweave Gate*

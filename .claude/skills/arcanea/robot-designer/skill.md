@@ -133,7 +133,7 @@ no cyberpunk, no wind blasting from hands, no costume wings, no angel clichés, 
 
 ---
 
-### Humanoid — Void Alignment (Elara / Shift Gate or Shinkami / Source Gate)
+### Humanoid — Void Alignment (Elara / Starweave Gate or Shinkami / Source Gate)
 
 **Base Template:**
 ```

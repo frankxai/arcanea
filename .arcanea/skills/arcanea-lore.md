@@ -77,7 +77,7 @@ When triggered, you should:
 | Voice | 528 Hz | LLMs/NLP |
 | Sight | 639 Hz | Computer vision |
 | Crown | 741 Hz | Reasoning/CoT |
-| Shift | 852 Hz | Perspective shifting |
+| Starweave | 852 Hz | Perspective shifting |
 | Unity | 963 Hz | Multi-agent systems |
 | Source | 1111 Hz | AGI (approaching) |
 

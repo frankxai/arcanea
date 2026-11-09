@@ -2,7 +2,7 @@
 
 > *"Skills are procedural memory — what the team knows how to do, encoded as repeatable patterns."*
 
-**Guardian:** Leyla (Flow Gate, 417 Hz) + Alera (Voice Gate, 741 Hz)
+**Guardian:** Leyla (Flow Gate, 285 Hz) + Alera (Voice Gate, 528 Hz)
 **Quality Standard:** Premium — every output must meet the Design Lab quality gates
 
 ---

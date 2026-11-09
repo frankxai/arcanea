@@ -112,7 +112,7 @@ The Crown Gate resonates at **741 Hz** - the Solfeggio frequency of awakening in
 | From Crown... | To... | When Ready To... |
 |---------------|-------|------------------|
 | → Sight Gate | Lyria | Ground vision |
-| → Shift Gate | Elara | Change perspective |
+| → Starweave Gate | Elara | Change perspective |
 | → Source Gate | Shinkami | Complete integration |
 
 ### Prerequisites
