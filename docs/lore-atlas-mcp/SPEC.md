@@ -54,11 +54,11 @@ One `MediaWikiAdapter` covers ~90% of the catalog; adding a world = one registry
 
 ## 4. Legal doctrine (baked into the architecture)
 
-**The product lives on the research side of the line.** An agent querying → reading → synthesizing → discarding is a reader, not a redistributor. License obligations (BY, SA) and ToS restrictions bite at *redistribution* — so redistribution decisions are pushed to the user, clearly labeled via `reuse_note`.
+**Research, storage, automated analysis and redistribution require separate assessment.** Lawful access is not a blanket license to copy, cache, screenshot, embed or publish. Check source terms, asset-specific licenses, rights reservations, database rights and applicable exceptions before each operation. Attribution does not itself authorize use. EU Directive 2019/790 Article 4 has conditions; Article 7(1) names Articles 3, 5 and 6, not Article 4. See the [creature atlas rights policy](../../packages/creature-atlas/docs/RIGHTS-AND-SOURCES.md) for the current operational contract.
 
 Hard rules, enforced in code:
 1. **No Fextralife content ingestion, ever** (ToS names AI/ML explicitly). LinkOnly adapter.
-2. **No bulk mirroring.** Short-TTL excerpt cache (hours–days) with attribution stored inline; caches never persist into distributable artifacts. Optional self-hosted `Special:Export`/dump mode for CC wikis (politer + license-clean) instead of hammering live APIs.
+2. **No unauthorized bulk mirroring.** Cache only content whose storage and analysis basis has been assessed, with retention limited to that basis. A short TTL alone does not clear rights. Prefer permitted APIs/exports over repeated live requests; verify the actual text/file license and access terms for each source.
 3. **Politeness layer**: descriptive User-Agent with contact URL; per-host token bucket (~1 req/s, serial per host); backoff honoring `Retry-After`; `maxlag=5` on Wikimedia; no header/IP games, robots.txt respected.
 4. **Attribution always** — even on CC0 Wikidata (good practice).
 5. **Trademark discipline** in naming/marketing: nominative references only; not-affiliated disclaimer ships in the README and the `list_worlds` output.
@@ -98,3 +98,4 @@ The Research Scout role (see `../worldbuilding/AGENTS.md`) queries Lore Atlas du
 1. Package home: this repo (`packages/lore-atlas-mcp/`, next to `arcanea-mcp`) or standalone repo for product velocity?
 2. Brand: "Lore Atlas" vs. an Arcanea-register name (e.g., "the Atlas of Territories" tie-in).
 3. Hosted tier (paid) vs. pure OSS at v1.0.
+

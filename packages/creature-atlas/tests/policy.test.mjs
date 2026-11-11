@@ -1,0 +1,9 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {canUseAsset,publicProjection,vectorId} from '../src/policy.mjs';
+const a={state:'approved',permissions:{display_public:true,embed:true},reviewer:'reviewer',reviewed_at:'2026-10-30T18:00:00Z',rights_evidence:'documented license'};
+test('unknown, partial and revoked assets fail closed',()=>{assert.equal(canUseAsset(null,'display_public'),false);assert.equal(canUseAsset({...a,reviewer:null},'display_public'),false);assert.equal(canUseAsset({...a,state:'revoked'},'embed'),false);assert.equal(canUseAsset({...a,state:'review-pending'},'display_public'),false);assert.equal(canUseAsset(a,'train'),false);assert.equal(canUseAsset(a,'unexpected'),false);});
+test('permissions do not imply each other',()=>{assert.equal(canUseAsset(a,'embed'),true);assert.equal(canUseAsset(a,'generate_from'),false);});
+test('expiry invalidates an approved grant',()=>assert.equal(canUseAsset({...a,expires_at:'2026-01-01T00:00:00Z'},'display_public',new Date('2026-10-30')),false));
+test('projection strips private evidence and unapproved assets',()=>{const out=publicProjection({entities:[{id:'e',visibility:'public',publication_status:'metadata-only',asset_ids:['a'],private_note:'secret'},{id:'p',visibility:'private',asset_ids:[]}],sources:[{id:'s',entity_id:'e',url:'https://example.org',private_note:'secret'}],relationships:[],assets:[{...a,id:'a',entity_id:'e',state:'review-pending',r2_key:'secret'}]});assert.equal(out.entities.length,1);assert.equal(out.entities[0].private_note,undefined);assert.deepEqual(out.entities[0].asset_ids,[]);assert.equal(out.sources[0].private_note,undefined);assert.deepEqual(out.assets,[]);});
+test('embedding identity distinguishes model revision and modality',()=>{assert.notEqual(vectorId({id:'e',model:'m',revision:'1',modality:'text'}),vectorId({id:'e',model:'m',revision:'2',modality:'text'}));assert.throws(()=>vectorId({id:'e'}));});

@@ -1,0 +1,12 @@
+import {readFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+const c=JSON.parse(readFileSync(new URL('../data/catalog.json',import.meta.url),'utf8'));
+const quote = v => v === null || v === undefined ? 'NULL' : "'"+String(v).replaceAll("'","''")+"'";
+const json = v => quote(JSON.stringify(v));
+const insert=(table,columns,values)=>console.log(`INSERT INTO ${table} (${columns}) VALUES (${values.join(',')}) ON CONFLICT(id) DO NOTHING;`);
+console.log('-- Immutable bounded seed. Replays do not replace reviewed state.');
+for(const e of c.entities) insert('atlas_entities','id,name,kind,world,canon_state,visibility,publication_status,summary,tags_json,verification,record_json,updated_at',[...['id','name','kind','world','canon_state','visibility','publication_status','summary'].map(k=>quote(e[k])),json(e.tags),quote(e.verification),json(e),quote(c.generated_at)]);
+for(const s of c.sources) insert('atlas_sources','id,entity_id,url,retrieval_status,observed_at,record_json',[...['id','entity_id','url','retrieval_status','observed_at'].map(k=>quote(s[k])),json(s)]);
+for(const r of c.relationships) insert('atlas_relationships','id,subject_id,predicate,object_id,evidence_id,status,record_json',[...['id','subject_id','predicate','object_id','evidence_id','status'].map(k=>quote(r[k])),json(r)]);
+for(const a of c.assets) insert('atlas_assets','id,entity_id,sha256,r2_key,bucket,state,allow_store,allow_analyze,allow_embed,allow_display_public,allow_generate_from,allow_train,reviewer,reviewed_at,expires_at,rights_evidence,record_json',[...['id','entity_id','sha256','r2_key'].map(k=>quote(a[k])),quote(a.storage_bucket),quote(a.state),...['store','analyze','embed','display_public','generate_from','train'].map(k=>Number(a.permissions[k]===true)),quote(a.reviewer),quote(a.reviewed_at),quote(a.expires_at),quote(a.rights_evidence),json(a)]);
+for(const e of c.events) insert('atlas_events','id,entity_id,event_type,observed_at,event_sha256,previous_event_sha256,record_json',[...['id','entity_id','event_type','observed_at','event_sha256','previous_event_sha256'].map(k=>quote(e[k])),json(e)]);
