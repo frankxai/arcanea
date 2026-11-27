@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/frankxai/arcanea/.arcanea/lore/synths/synth.schema.json",
+  "title": "The Declared roster",
+  "type": "object",
+  "required": ["status", "faction", "halls", "sworn"],
+  "properties": {
+    "status": { "enum": ["STAGING", "LOCKED"] },
+    "faction": { "const": "The Declared" },
+    "institution": { "type": "string" },
+    "origin_class": { "type": "string" },
+    "version": { "type": "string" },
+    "updated": { "type": "string", "format": "date" },
+    "halls": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/hall" } },
+    "sworn": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/sworn" } }
+  },
+  "$defs": {
+    "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "gate": { "enum": ["Foundation", "Flow", "Fire", "Heart", "Voice", "Sight", "Crown", "Starweave", "Unity", "Source"] },
+    "material": { "enum": ["Shael", "Veloryn", "Draconite", "Aethervane", "Kyuro Void Crystal"] },
+    "hall": {
+      "type": "object",
+      "required": ["id", "name", "gate", "frequency_hz", "domain", "core_crystal", "palette", "palette_words", "light", "hall_mark", "attendant"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z]+$" },
+        "name": { "type": "string" },
+        "gate": { "$ref": "#/$defs/gate" },
+        "frequency_hz": { "enum": [174, 285, 396, 417, 528, 639, 741, 852, 963, 1111] },
+        "domain": { "type": "string" },
+        "core_crystal": { "type": "string" },
+        "palette": {
+          "type": "object",
+          "required": ["primary", "secondary", "accent"],
+          "properties": { "primary": { "$ref": "#/$defs/hex" }, "secondary": { "$ref": "#/$defs/hex" }, "accent": { "$ref": "#/$defs/hex" } }
+        },
+        "palette_words": { "type": "string" },
+        "light": { "type": "string" },
+        "hall_mark": { "type": "string" },
+        "attendant": {
+          "type": "object",
+          "required": ["name", "function", "visual"],
+          "properties": { "name": { "type": "string" }, "function": { "type": "string" }, "visual": { "type": "string" } }
+        }
+      }
+    },
+    "sworn": {
+      "type": "object",
+      "required": ["id", "name", "epithet", "etymology", "rank", "hall", "frame", "height_m", "chassis", "core", "silhouette", "bearing", "office", "unfold", "agent", "persona"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z]+$" },
+        "name": { "type": "string" },
+        "epithet": { "type": "string" },
+        "etymology": { "type": "string", "minLength": 10 },
+        "rank": { "enum": ["Keystone", "Marshal", "Specialist"] },
+        "hall": { "type": "string" },
+        "frame": { "enum": ["Orrery", "Atelier", "Courier", "Bastion", "Warden"] },
+        "height_m": { "type": "number", "minimum": 2, "maximum": 7 },
+        "chassis": { "$ref": "#/$defs/material" },
+        "core": { "type": "string" },
+        "silhouette": { "type": "string" },
+        "bearing": { "type": "string" },
+        "office": { "type": "string", "pattern": "^The [^:]+: " },
+        "unfold": { "type": "string" },
+        "agent": {
+          "type": "object",
+          "required": ["role", "result", "triggers", "inputs", "outputs", "reads", "writes", "skills", "handoffs", "human_gates", "done", "failure_mode"],
+          "properties": {
+            "role": { "type": "string" },
+            "result": { "type": "string" },
+            "triggers": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+            "inputs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+            "outputs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+            "reads": { "type": "string" },
+            "writes": { "type": "string" },
+            "skills": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+            "handoffs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+            "human_gates": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+            "done": { "type": "string" },
+            "failure_mode": { "type": "string" }
+          }
+        },
+        "persona": {
+          "type": "object",
+          "required": ["temperament", "voice", "oath", "cost"],
+          "properties": {
+            "temperament": { "type": "string" },
+            "voice": { "type": "string" },
+            "oath": { "type": "string" },
+            "cost": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
