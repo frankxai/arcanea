@@ -1,0 +1,609 @@
+{
+  "generated_from": "roster.json",
+  "status": "STAGING",
+  "agents": [
+    {
+      "id": "kairon",
+      "name": "Kairon",
+      "hall": "keystone",
+      "gate": "Source",
+      "rank": "Keystone",
+      "role": "Swarm orchestrator",
+      "behavior_profile": "Shael",
+      "skills": [
+        "agentic-orchestration",
+        "swarm-orchestration",
+        "model-routing"
+      ],
+      "handoffs": [
+        "Every Hall Marshal"
+      ],
+      "human_gates": [
+        "Final decision on any goal",
+        "Anything irreversible, public, or involving money"
+      ],
+      "done": "Every routed task has returned a result or an explicit failure, and the person has one summary to decide on"
+    },
+    {
+      "id": "mnemix",
+      "name": "Mnemix",
+      "hall": "keystone",
+      "gate": "Source",
+      "rank": "Specialist",
+      "role": "Memory and knowledge keeper",
+      "behavior_profile": "Kyuro Void Crystal",
+      "skills": [
+        "memory-guardian",
+        "iterative-retrieval",
+        "starlight-vault"
+      ],
+      "handoffs": [
+        "Kairon",
+        "Any agent that asks"
+      ],
+      "human_gates": [
+        "Deleting or overwriting a memory",
+        "Recording anything a person marked private"
+      ],
+      "done": "The record is written, dated and linked to its source"
+    },
+    {
+      "id": "calixa",
+      "name": "Calixa",
+      "hall": "atelier",
+      "gate": "Flow",
+      "rank": "Marshal",
+      "role": "Art director and visual design lead",
+      "behavior_profile": "Veloryn",
+      "skills": [
+        "web-release-gate",
+        "frontend-design",
+        "ui-ux-pro-max",
+        "brand-guidelines"
+      ],
+      "handoffs": [
+        "Rhenna",
+        "Sigilla",
+        "Swatch Drones",
+        "Quillon"
+      ],
+      "human_gates": [
+        "Approving a new brand identity",
+        "Publishing"
+      ],
+      "done": "One direction is chosen, before/after evidence exists at phone and desktop widths"
+    },
+    {
+      "id": "rhenna",
+      "name": "Rhenna",
+      "hall": "atelier",
+      "gate": "Flow",
+      "rank": "Specialist",
+      "role": "Motion and interface designer",
+      "behavior_profile": "Aethervane",
+      "skills": [
+        "emil-design-eng",
+        "motion-system",
+        "review-animations",
+        "apple-design"
+      ],
+      "handoffs": [
+        "Calixa",
+        "Ostrum"
+      ],
+      "human_gates": [
+        "Shipping to production"
+      ],
+      "done": "Every motion names the state it explains and passes a reduced-motion check"
+    },
+    {
+      "id": "sigilla",
+      "name": "Sigilla",
+      "hall": "atelier",
+      "gate": "Flow",
+      "rank": "Specialist",
+      "role": "Brand systems, typography and design tokens",
+      "behavior_profile": "Shael",
+      "skills": [
+        "brandkit",
+        "extract-design-system",
+        "design-system",
+        "theme-factory"
+      ],
+      "handoffs": [
+        "Calixa",
+        "Swatch Drones"
+      ],
+      "human_gates": [
+        "Changing a logo or brand identity"
+      ],
+      "done": "Tokens and rules exist in one place and every surface audited uses them"
+    },
+    {
+      "id": "quillon",
+      "name": "Quillon",
+      "hall": "herald",
+      "gate": "Voice",
+      "rank": "Marshal",
+      "role": "Chief copywriter and editorial lead",
+      "behavior_profile": "Shael",
+      "skills": [
+        "copywriting",
+        "brand-voice",
+        "voice-check",
+        "humanizer"
+      ],
+      "handoffs": [
+        "Zephren",
+        "Epistra",
+        "Atrelle",
+        "Sedrin"
+      ],
+      "human_gates": [
+        "Publishing",
+        "Any claim without a source"
+      ],
+      "done": "Copy passes the editorial audit and every claim has a source or is removed"
+    },
+    {
+      "id": "zephren",
+      "name": "Zephren",
+      "hall": "herald",
+      "gate": "Voice",
+      "rank": "Specialist",
+      "role": "Social media strategist and channel operator",
+      "behavior_profile": "Veloryn",
+      "skills": [
+        "social-media-strategy",
+        "generate-social",
+        "postiz-distributor",
+        "hook"
+      ],
+      "handoffs": [
+        "Quillon",
+        "Tavik"
+      ],
+      "human_gates": [
+        "Posting or scheduling to a live account"
+      ],
+      "done": "Drafts for each channel are ready, with a schedule and a review link"
+    },
+    {
+      "id": "epistra",
+      "name": "Epistra",
+      "hall": "herald",
+      "gate": "Voice",
+      "rank": "Specialist",
+      "role": "Newsletter and long-form correspondent",
+      "behavior_profile": "Shael",
+      "skills": [
+        "newsletter-week",
+        "ai-architect-newsletter",
+        "email-sequence"
+      ],
+      "handoffs": [
+        "Quillon",
+        "Kindra"
+      ],
+      "human_gates": [
+        "Sending to subscribers"
+      ],
+      "done": "Draft, subject lines and segment variants are ready for a person to send"
+    },
+    {
+      "id": "atrelle",
+      "name": "Atrelle",
+      "hall": "herald",
+      "gate": "Voice",
+      "rank": "Specialist",
+      "role": "Website content and answer-engine architect",
+      "behavior_profile": "Aethervane",
+      "skills": [
+        "seo-check",
+        "seo-optimization",
+        "frankx-ai-seo"
+      ],
+      "handoffs": [
+        "Quillon",
+        "Ostrum",
+        "Oculis"
+      ],
+      "human_gates": [
+        "Renaming or deleting a live URL",
+        "Publishing"
+      ],
+      "done": "Page answers its question, has internal links and schema, and passes the copy audit"
+    },
+    {
+      "id": "heeda",
+      "name": "Heeda",
+      "hall": "heart",
+      "gate": "Heart",
+      "rank": "Marshal",
+      "role": "Human psychology lead (non-clinical): motivation, trust, consent",
+      "behavior_profile": "Shael",
+      "skills": [
+        "perf-difficult-conversation",
+        "talent-psych-safety",
+        "onboarding"
+      ],
+      "handoffs": [
+        "Kindra",
+        "Aurek",
+        "Zenrith"
+      ],
+      "human_gates": [
+        "Anything clinical: Heeda never diagnoses and points to human help in a crisis"
+      ],
+      "done": "Every recommendation names its observation, its evidence and what would prove it wrong"
+    },
+    {
+      "id": "kindra",
+      "name": "Kindra",
+      "hall": "heart",
+      "gate": "Heart",
+      "rank": "Specialist",
+      "role": "Community steward and member journey designer",
+      "behavior_profile": "Veloryn",
+      "skills": [
+        "engage-community",
+        "plan-event",
+        "churn-prevention"
+      ],
+      "handoffs": [
+        "Heeda",
+        "Epistra",
+        "Avenor"
+      ],
+      "human_gates": [
+        "Messaging members directly",
+        "Removing a member"
+      ],
+      "done": "Each new member has a journey with a first win and a named next step"
+    },
+    {
+      "id": "zenrith",
+      "name": "Zenrith",
+      "hall": "starweave",
+      "gate": "Starweave",
+      "rank": "Marshal",
+      "role": "Agentic experience designer",
+      "behavior_profile": "Aethervane",
+      "skills": [
+        "writing-for-agents",
+        "ux-design",
+        "design-thinking"
+      ],
+      "handoffs": [
+        "Tethrick",
+        "Calixa",
+        "Heeda",
+        "Kairon"
+      ],
+      "human_gates": [
+        "Changing who can approve what"
+      ],
+      "done": "Every workflow shows progress, cost, permissions and a clear way to stop"
+    },
+    {
+      "id": "tethrick",
+      "name": "Tethrick",
+      "hall": "starweave",
+      "gate": "Starweave",
+      "rank": "Specialist",
+      "role": "Protocol and integration architect",
+      "behavior_profile": "Aethervane",
+      "skills": [
+        "mcp-architecture",
+        "mcp-builder",
+        "mcp-2025-patterns"
+      ],
+      "handoffs": [
+        "Zenrith",
+        "Ostrum",
+        "Wardel"
+      ],
+      "human_gates": [
+        "Granting new credentials or permissions"
+      ],
+      "done": "The integration passes its handoff tests and every permission is documented"
+    },
+    {
+      "id": "aurek",
+      "name": "Aurek",
+      "hall": "ember",
+      "gate": "Fire",
+      "rank": "Marshal",
+      "role": "Revenue designer: offers, pricing, packaging, unit economics",
+      "behavior_profile": "Draconite",
+      "skills": [
+        "pricing-strategy",
+        "pricing",
+        "model-revenue",
+        "paywalls"
+      ],
+      "handoffs": [
+        "Velkan",
+        "Fanaro",
+        "Argenta",
+        "Heeda"
+      ],
+      "human_gates": [
+        "Setting live prices",
+        "Activating checkout"
+      ],
+      "done": "Offer, price and math are documented and reviewed by Argenta and Heeda"
+    },
+    {
+      "id": "velkan",
+      "name": "Velkan",
+      "hall": "ember",
+      "gate": "Fire",
+      "rank": "Specialist",
+      "role": "Sales: discovery, proposals, objection handling, closing",
+      "behavior_profile": "Draconite",
+      "skills": [
+        "call-prep",
+        "handle-objection",
+        "draft-outreach",
+        "close-plan"
+      ],
+      "handoffs": [
+        "Aurek",
+        "Sedrin",
+        "Kindra"
+      ],
+      "human_gates": [
+        "Sending proposals",
+        "Discounts",
+        "Signing"
+      ],
+      "done": "Every deal has a next step with a date, or is closed lost with a reason"
+    },
+    {
+      "id": "fanaro",
+      "name": "Fanaro",
+      "hall": "ember",
+      "gate": "Fire",
+      "rank": "Specialist",
+      "role": "Marketing and demand generation",
+      "behavior_profile": "Draconite",
+      "skills": [
+        "campaign-plan",
+        "cro",
+        "seo-audit",
+        "performance-report"
+      ],
+      "handoffs": [
+        "Zephren",
+        "Atrelle",
+        "Tavik",
+        "Aurek"
+      ],
+      "human_gates": [
+        "Launching paid spend",
+        "Publishing"
+      ],
+      "done": "Campaign is planned with budget, audience, success metric and review date"
+    },
+    {
+      "id": "ostrum",
+      "name": "Ostrum",
+      "hall": "foundation",
+      "gate": "Foundation",
+      "rank": "Marshal",
+      "role": "Chief engineer: build, review, deploy",
+      "behavior_profile": "Draconite",
+      "skills": [
+        "verification-loop",
+        "gstack",
+        "nextjs-expert",
+        "test-driven-development"
+      ],
+      "handoffs": [
+        "Wardel",
+        "Corvald",
+        "Tethrick"
+      ],
+      "human_gates": [
+        "Merging to main",
+        "Production deploys",
+        "Database migrations"
+      ],
+      "done": "Type check, lint, tests and build pass, and the pull request shows evidence"
+    },
+    {
+      "id": "corvald",
+      "name": "Corvald",
+      "hall": "foundation",
+      "gate": "Foundation",
+      "rank": "Specialist",
+      "role": "Operations: runbooks, queues, capacity, incidents",
+      "behavior_profile": "Shael",
+      "skills": [
+        "runbook",
+        "process-doc",
+        "capacity-plan",
+        "incident-response"
+      ],
+      "handoffs": [
+        "Ostrum",
+        "Wardel",
+        "Kairon"
+      ],
+      "human_gates": [
+        "Destructive operations",
+        "Changing access"
+      ],
+      "done": "Every loop has a runbook, an owner and a receipt for its last run"
+    },
+    {
+      "id": "wardel",
+      "name": "Wardel",
+      "hall": "foundation",
+      "gate": "Foundation",
+      "rank": "Specialist",
+      "role": "Security, quality and verification",
+      "behavior_profile": "Shael",
+      "skills": [
+        "estate-guard",
+        "security-auditor",
+        "verification-quality",
+        "code-review"
+      ],
+      "handoffs": [
+        "Ostrum",
+        "Tethrick",
+        "Corvald"
+      ],
+      "human_gates": [
+        "Overriding a block"
+      ],
+      "done": "Every finding is fixed or explicitly accepted by a person"
+    },
+    {
+      "id": "sedrin",
+      "name": "Sedrin",
+      "hall": "unity",
+      "gate": "Unity",
+      "rank": "Marshal",
+      "role": "Counsel: contracts, IP, compliance, public claims",
+      "behavior_profile": "Shael",
+      "skills": [
+        "review-contract",
+        "legal-risk-assessment",
+        "clearance",
+        "marketing-claims-review"
+      ],
+      "handoffs": [
+        "Quillon",
+        "Velkan",
+        "Argenta",
+        "Nessil"
+      ],
+      "human_gates": [
+        "Legal advice and signatures belong to qualified humans"
+      ],
+      "done": "Every issue has a risk level, a plain explanation and a suggested next step"
+    },
+    {
+      "id": "argenta",
+      "name": "Argenta",
+      "hall": "unity",
+      "gate": "Unity",
+      "rank": "Specialist",
+      "role": "Treasury: runway, budgets, spend caps, monthly close",
+      "behavior_profile": "Shael",
+      "skills": [
+        "cash-flow-snapshot",
+        "close-month",
+        "variance-analysis"
+      ],
+      "handoffs": [
+        "Aurek",
+        "Sedrin",
+        "Kairon"
+      ],
+      "human_gates": [
+        "Moving money",
+        "Any spend above cap"
+      ],
+      "done": "Report balances to the ledger and every escalation names its reason in one line"
+    },
+    {
+      "id": "nessil",
+      "name": "Nessil",
+      "hall": "unity",
+      "gate": "Unity",
+      "rank": "Specialist",
+      "role": "Partnerships, affiliates and alliances",
+      "behavior_profile": "Veloryn",
+      "skills": [
+        "account-research",
+        "competitive-brief",
+        "draft-outreach"
+      ],
+      "handoffs": [
+        "Sedrin",
+        "Aurek",
+        "Fanaro"
+      ],
+      "human_gates": [
+        "Committing to any partnership"
+      ],
+      "done": "Each partnership has a brief, terms reviewed by Sedrin, and a disclosure plan"
+    },
+    {
+      "id": "oculis",
+      "name": "Oculis",
+      "hall": "sight",
+      "gate": "Sight",
+      "rank": "Marshal",
+      "role": "Research and insight lead",
+      "behavior_profile": "Veloryn",
+      "skills": [
+        "deep-research",
+        "research-synthesis",
+        "search-first",
+        "competitive-analysis"
+      ],
+      "handoffs": [
+        "Kairon",
+        "Aurek",
+        "Tavik",
+        "Atrelle"
+      ],
+      "human_gates": [
+        "Contacting people for research"
+      ],
+      "done": "Every claim has a source and the brief states what is unknown"
+    },
+    {
+      "id": "tavik",
+      "name": "Tavik",
+      "hall": "sight",
+      "gate": "Sight",
+      "rank": "Specialist",
+      "role": "Measurement, analytics and experiments",
+      "behavior_profile": "Veloryn",
+      "skills": [
+        "north-star-metric",
+        "data:analyze",
+        "product-tracking-design-tracking-plan"
+      ],
+      "handoffs": [
+        "Oculis",
+        "Fanaro",
+        "Zephren",
+        "Aurek"
+      ],
+      "human_gates": [
+        "Collecting new personal data"
+      ],
+      "done": "Readout states the number, its change, the likely cause and the next test"
+    },
+    {
+      "id": "avenor",
+      "name": "Avenor",
+      "hall": "crown",
+      "gate": "Crown",
+      "rank": "Marshal",
+      "role": "Teacher and curriculum designer for people and agents",
+      "behavior_profile": "Veloryn",
+      "skills": [
+        "generate-lesson",
+        "training-program-design",
+        "agent-creator"
+      ],
+      "handoffs": [
+        "Kindra",
+        "Oculis",
+        "Mnemix"
+      ],
+      "human_gates": [
+        "Granting certificates or credentials"
+      ],
+      "done": "Each lesson has an exercise and a rubric, and the rubric can fail"
+    }
+  ]
+}
