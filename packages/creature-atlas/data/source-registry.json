@@ -1,0 +1,74 @@
+{
+  "version": "0.1",
+  "sources": [
+    {
+      "id": "wizarding-world",
+      "host": "www.harrypotter.com",
+      "mode": "link-only",
+      "max_pages_per_run": 20,
+      "status": "metadata-discovery-only",
+      "media_permission": "not-granted"
+    },
+    {
+      "id": "wikidata",
+      "host": "www.wikidata.org",
+      "mode": "api-candidate",
+      "api": "https://www.wikidata.org/w/api.php",
+      "license_candidate": "CC0 structured data; verify record and terms",
+      "status": "review-before-enable"
+    },
+    {
+      "id": "commons",
+      "host": "commons.wikimedia.org",
+      "mode": "api-candidate",
+      "api": "https://commons.wikimedia.org/w/api.php",
+      "required_fields": [
+        "imageinfo",
+        "extmetadata",
+        "Artist",
+        "LicenseUrl",
+        "UsageTerms",
+        "Restrictions"
+      ],
+      "status": "per-file-rights-review"
+    },
+    {
+      "id": "openverse",
+      "host": "api.openverse.org",
+      "api": "https://api.openverse.org/v1/images/",
+      "mode": "api-candidate",
+      "status": "verify-source-license-and-current-auth"
+    },
+    {
+      "id": "gbif",
+      "host": "api.gbif.org",
+      "api": "https://api.gbif.org/v1/",
+      "mode": "api-candidate",
+      "status": "occurrence-and-media-licenses-separate"
+    },
+    {
+      "id": "inaturalist",
+      "host": "api.inaturalist.org",
+      "api": "https://api.inaturalist.org/v1/",
+      "mode": "api-candidate",
+      "status": "observation-and-photo-licenses-separate"
+    },
+    {
+      "id": "met",
+      "host": "collectionapi.metmuseum.org",
+      "api": "https://collectionapi.metmuseum.org/public/collection/v1/",
+      "mode": "api-candidate",
+      "status": "require-isPublicDomain-and-verify-object-rights"
+    },
+    {
+      "id": "franchise-wikis",
+      "mode": "link-only",
+      "status": "site-specific-text-license-does-not-clear-images"
+    },
+    {
+      "id": "fextralife",
+      "mode": "link-only",
+      "status": "no-content-ingestion-per-existing-Lore-Atlas-policy"
+    }
+  ]
+}

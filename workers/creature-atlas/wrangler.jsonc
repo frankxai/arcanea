@@ -1,0 +1,8 @@
+{
+  "name": "arcanea-creature-atlas",
+  "main": "index.mjs",
+  "compatibility_date": "2026-10-30",
+  "workers_dev": true,
+  "d1_databases": [{"binding":"DB","database_name":"arcanea-creature-atlas","database_id":"caa2d4a0-4d66-40d5-b94d-ea2373a0ed3e","migrations_dir":"migrations"}],
+  "r2_buckets": [{"binding":"MEDIA","bucket_name":"starlight-media-private"}]
+}
